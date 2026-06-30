@@ -11,6 +11,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/ws"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/redis/rueidis"
@@ -24,15 +25,37 @@ type App struct {
 	ent       *ent.Client
 	redis     rueidis.Client
 	scheduler *scheduler.Scheduler
+	realtime  *RealtimeRuntime
+	cancel    context.CancelFunc
 }
 
 // NewApp 构造可运行的应用实例。
-func NewApp(h *server.Hertz, log *zap.Logger, entClient *ent.Client, redisClient rueidis.Client, sched *scheduler.Scheduler) *App {
-	return &App{h: h, log: log, ent: entClient, redis: redisClient, scheduler: sched}
+func NewApp(
+	h *server.Hertz,
+	log *zap.Logger,
+	entClient *ent.Client,
+	redisClient rueidis.Client,
+	sched *scheduler.Scheduler,
+	rt *RealtimeRuntime,
+) *App {
+	return &App{h: h, log: log, ent: entClient, redis: redisClient, scheduler: sched, realtime: rt}
 }
 
 // Run 启动 HTTP 服务并监听退出信号。
 func (a *App) Run() error {
+	ctx, cancel := context.WithCancel(context.Background())
+	a.cancel = cancel
+
+	if a.realtime != nil && a.realtime.Hub != nil {
+		go a.realtime.Hub.Run(ctx)
+		ws.StartRedisSubscriber(ctx, a.redis, a.realtime.Hub)
+		a.log.Info("websocket hub started")
+	}
+	if a.realtime != nil && a.realtime.Consumer != nil {
+		a.realtime.Consumer.Start(ctx)
+		a.log.Info("event consumer started")
+	}
+
 	if a.scheduler != nil {
 		if err := a.scheduler.RegisterPlaceholder(); err != nil {
 			a.log.Warn("register placeholder cron failed", zap.Error(err))
@@ -55,6 +78,9 @@ func (a *App) Run() error {
 
 // Shutdown 优雅关闭 HTTP、Ent、Redis。
 func (a *App) Shutdown() error {
+	if a.cancel != nil {
+		a.cancel()
+	}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	if err := a.h.Shutdown(ctx); err != nil {

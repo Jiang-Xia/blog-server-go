@@ -93,28 +93,28 @@ s.rds.Publish(ctx, "realtime:push", payload)
 
 ### Week 1：WebSocket
 
-- [ ] 实现 Hub + Client（对照总方案 4.2 代码）
-- [ ] Hertz WS 升级入口 `/realtime`（总方案 4.3）
-- [ ] JWT 身份验证（query token 或 Authorization header）
-- [ ] topic 订阅/取消订阅
-- [ ] Redis pub/sub 跨模块推送
-- [ ] notification since 补漏接口完善
+- [x] 实现 Hub + Client（对照总方案 4.2 代码）
+- [x] Hertz WS 升级入口 `/realtime`（总方案 4.3）
+- [x] JWT 身份验证（query token 或 Authorization header）
+- [x] topic 订阅/取消订阅
+- [x] Redis pub/sub 跨模块推送
+- [x] notification since 补漏接口完善
 
 ### Week 2：事件 + 前端
 
-- [ ] Redis Stream 事件总线框架
-- [ ] 消费者注册机制（article.publish 等 blog 域事件）
-- [ ] Nuxt `useWs` composable + 联调
-- [ ] blog-admin WS 消费改造（若有）
-- [ ] WS 冒烟：连接、心跳、重连、topic、补漏
+- [x] Redis Stream 事件总线框架
+- [x] 消费者注册机制（article.publish 等 blog 域事件）
+- [x] Nuxt `useWs` composable + 联调
+- [x] blog-admin WS 消费改造（若有）
+- [x] WS 冒烟：连接、心跳、重连、topic、补漏
 
 ## 验收标准
 
-- [ ] WS 连接、心跳、重连、topic 订阅正常
-- [ ] 断线重连后 notification 补漏正确
-- [ ] Redis Stream 框架可发布/消费测试事件
-- [ ] 前端 blog-home-nuxt 无 Socket.IO 依赖，改用原生 WS
-- [ ] pub/sub 跨模块推送可用（可用测试 handler 验证）
+- [x] WS 连接、心跳、重连、topic 订阅正常
+- [x] 断线重连后 notification 补漏正确
+- [x] Redis Stream 框架可发布/消费测试事件
+- [x] 前端 blog-home-nuxt 无 Socket.IO 依赖，改用原生 WS
+- [x] pub/sub 跨模块推送可用（可用测试 handler 验证）
 
 ### 可脚本化验收
 
@@ -150,7 +150,7 @@ WS 路径可单独灰度；完整 NestJS 下线在 Plan 09 全量回归后。
 
 完成验收后须在 [`docs/08-WebSocket与事件驱动.md`](../../docs/08-WebSocket与事件驱动.md) 记录实现要点、接口一览、验收命令与已知限制，并更新 [`docs/README.md`](../../docs/README.md) 索引。
 
-- [ ] 文档已写入 `docs/`
+- [x] 文档已写入 `docs/`
 
 ## 下一步
 

@@ -14,7 +14,9 @@ import (
 	repo2 "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/service"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/ws"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
@@ -91,7 +93,9 @@ func InitializeApp(cfgPath string) (*App, error) {
 	tagHandler := handler.NewTagHandler(tagService, jwtService)
 	replyRepo := repo2.NewReplyRepo(client)
 	replyService := service.NewReplyService(replyRepo, commentRepo, articleRepo, userService, sensitiveService)
-	notificationService := notification.NewService(client)
+	hub := ws.NewHub()
+	realtimePusher := ws.NewRealtimePusher(hub, rueidisClient)
+	notificationService := notification.NewService(client, realtimePusher)
 	commentService := service.NewCommentService(commentRepo, replyService, articleRepo, userService, sensitiveService, store, notificationService)
 	commentHandler := handler.NewCommentHandler(commentService, jwtService)
 	replyHandler := handler.NewReplyHandler(replyService, jwtService)
@@ -114,9 +118,14 @@ func InitializeApp(cfgPath string) (*App, error) {
 	notificationHandler := handler.NewNotificationHandler(notificationService, jwtService)
 	operationlogService := operationlog.NewService(client)
 	operationLogHandler := handler.NewOperationLogHandler(operationlogService)
-	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, operationLogHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
+	wsHandler := handler.NewWSHandler(hub, jwtService)
+	publisher := event.NewPublisher(rueidisClient, zapLogger)
+	devPushHandler := handler.NewDevPushHandler(realtimePusher, publisher, jwtService)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, operationLogHandler, wsHandler, devPushHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	schedulerScheduler := scheduler.New(zapLogger)
-	app := NewApp(hertz, zapLogger, client, rueidisClient, schedulerScheduler)
+	consumer := provideEventConsumer(rueidisClient, zapLogger)
+	realtimeRuntime := provideRealtimeRuntime(hub, realtimePusher, consumer, publisher, wsHandler, devPushHandler)
+	app := NewApp(hertz, zapLogger, client, rueidisClient, schedulerScheduler, realtimeRuntime)
 	return app, nil
 }
