@@ -12,6 +12,7 @@ import (
 // NewHTTPServer 装配中间件并注册全部路由。
 func NewHTTPServer(cfg *config.Config, log *zap.Logger, deps handler.RegisterDeps) *server.Hertz {
 	h := server.Default(server.WithHostPorts(cfg.HTTP.Addr))
+	h.NoHijackConnPool = true
 	h.Use(
 		middleware.Recovery(log),
 		middleware.RequestID(),

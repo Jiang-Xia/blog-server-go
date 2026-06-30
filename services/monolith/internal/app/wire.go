@@ -10,6 +10,8 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/notification"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/ws"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
 	blogsvc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/service"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
@@ -69,6 +71,11 @@ func InitializeApp(cfgPath string) (*App, error) {
 		blogsvc.NewResourcesService,
 		userpkg.NewUserService,
 		blogsvc.NewArticleService,
+		ws.NewHub,
+		ws.NewRealtimePusher,
+		wire.Bind(new(ws.Pusher), new(*ws.RealtimePusher)),
+		event.NewPublisher,
+		provideEventConsumer,
 		notification.NewService,
 		operationlog.NewService,
 		scheduler.New,
@@ -90,7 +97,10 @@ func InitializeApp(cfgPath string) (*App, error) {
 		handler.NewFileHandler,
 		handler.NewResourcesHandler,
 		handler.NewNotificationHandler,
+		handler.NewWSHandler,
+		handler.NewDevPushHandler,
 		handler.NewOperationLogHandler,
+		provideRealtimeRuntime,
 		provideCaptchaHandler,
 		providePubHandler,
 		handler.NewHealthHandler,

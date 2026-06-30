@@ -30,6 +30,8 @@ type RegisterDeps struct {
 	Resources    *ResourcesHandler
 	Notification *NotificationHandler
 	OperationLog *OperationLogHandler
+	WS           *WSHandler
+	DevPush      *DevPushHandler
 	JWT          *auth.JWTService
 	UserRepo     *repo.UserRepo
 	Permission   middleware.PermissionDeps
@@ -40,6 +42,10 @@ type RegisterDeps struct {
 func RegisterAll(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	r.GET("/health", deps.Health.OK)
 	r.GET(cfg.App.APIPrefix+"/health", deps.Health.OK)
+
+	if deps.WS != nil {
+		deps.WS.Register(r)
+	}
 
 	perm := middleware.Permission(deps.Permission)
 	jwtRequired := middleware.RequiredJWT(deps.JWT, deps.UserRepo)
@@ -129,6 +135,14 @@ func RegisterAll(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	notify.GET("/unread-count", jwtRequired, deps.Notification.UnreadCount)
 	notify.GET("/since", jwtRequired, deps.Notification.Since)
 	notify.PATCH("/read", jwtRequired, deps.Notification.MarkRead)
+
+	// dev — WS 冒烟（development）
+	if cfg.App.Env == "development" && deps.DevPush != nil {
+		dev := v1.Group("/dev")
+		dev.POST("/ws-push", jwtRequired, deps.DevPush.TestPush)
+		dev.POST("/ws-push-redis", jwtRequired, deps.DevPush.TestPushRedis)
+		dev.POST("/event-publish", jwtRequired, deps.DevPush.TestEvent)
+	}
 
 	// operation-log — Nest OperationLogController
 	opLog := v1.Group("/operation-log")
