@@ -17,6 +17,9 @@ type RegisterDeps struct {
 	Captcha      *CaptchaHandler
 	Pub          *PubHandler
 	Sensitive    *SensitiveWordHandler
+	Article      *ArticleHandler
+	Category     *CategoryHandler
+	Tag          *TagHandler
 	Notification *NotificationHandler
 	OperationLog *OperationLogHandler
 	JWT          *auth.JWTService
@@ -123,4 +126,38 @@ func RegisterAll(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	opLog := v1.Group("/operation-log")
 	opLog.GET("", deps.OperationLog.List)
 	opLog.DELETE("/clean", deps.OperationLog.Clean)
+
+	// article — Nest ArticleController
+	article := v1.Group("/article")
+	article.POST("/list", deps.Article.List)
+	article.GET("/info", deps.Article.Info)
+	article.POST("/create", jwtRequired, deps.Article.Create)
+	article.POST("/edit", jwtRequired, deps.Article.Edit)
+	article.DELETE("/delete", jwtRequired, deps.Article.Delete)
+	article.POST("/views", deps.Article.Views)
+	article.POST("/likes", deps.Article.Likes)
+	article.PATCH("/disabled", deps.Article.Disabled)
+	article.PATCH("/topping", deps.Article.Topping)
+	article.GET("/my-list", jwtRequired, deps.Article.MyList)
+	article.GET("/archives", deps.Article.Archives)
+	article.GET("/related", deps.Article.Related)
+	article.GET("/author-stats", jwtRequired, deps.Article.AuthorStats)
+	article.GET("/statistics", deps.Article.Statistics)
+
+	// category — Nest CategoryController
+	category := v1.Group("/category")
+	category.POST("", jwtRequired, deps.Category.Create)
+	category.GET("", deps.Category.List)
+	category.GET("/:id", deps.Category.Get)
+	category.PATCH("/:id", jwtRequired, deps.Category.Update)
+	category.DELETE("/:id", jwtRequired, deps.Category.Delete)
+
+	// tag — Nest TagController
+	tag := v1.Group("/tag")
+	tag.POST("", jwtRequired, deps.Tag.Create)
+	tag.GET("", deps.Tag.List)
+	tag.GET("/:id/article", deps.Tag.GetArticles)
+	tag.GET("/:id", deps.Tag.Get)
+	tag.PATCH("/:id", jwtRequired, deps.Tag.Update)
+	tag.DELETE("/:id", jwtRequired, deps.Tag.Delete)
 }

@@ -284,3 +284,19 @@ func AssertUserActive(status string) error {
 	}
 	return nil
 }
+
+// ListActiveUserIDs 返回未删除且 active 的用户 ID 列表，供 C 端文章列表过滤（避免跨表 JOIN）。
+func (r *UserRepo) ListActiveUserIDs(ctx context.Context) ([]int, error) {
+	rows, err := r.client.User.Query().
+		Where(user.IsDeleteEQ(false), user.StatusEQ(userStatusActive)).
+		Select(user.FieldID).
+		All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]int, 0, len(rows))
+	for _, u := range rows {
+		out = append(out, u.ID)
+	}
+	return out, nil
+}

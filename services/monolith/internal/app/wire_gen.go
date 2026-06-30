@@ -11,11 +11,14 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/notification"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
+	repo2 "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/service"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
@@ -54,8 +57,8 @@ func InitializeApp(cfgPath string) (*App, error) {
 	passwordChecker := providePasswordChecker(configConfig, userRepo)
 	jwtService := auth.NewJWTService(configConfig)
 	store := provideRedisStore(rueidisClient)
-	service := email.NewService(configConfig, store)
-	authService := auth.NewAuthService(userRepo, roleRepo, passwordChecker, jwtService, store, configConfig, service)
+	emailService := email.NewService(configConfig, store)
+	authService := auth.NewAuthService(userRepo, roleRepo, passwordChecker, jwtService, store, configConfig, emailService)
 	profileService := profile.NewService(userRepo, roleRepo)
 	gitHubOAuth := auth.NewGitHubOAuth(configConfig, authService, userRepo)
 	userAppAdapter := handler.NewUserAppAdapter(configConfig, authService, profileService, gitHubOAuth)
@@ -72,11 +75,21 @@ func InitializeApp(cfgPath string) (*App, error) {
 	pubHandler := providePubHandler(pubService)
 	sensitiveService := sensitive.NewService(client, zapLogger)
 	sensitiveWordHandler := handler.NewSensitiveWordHandler(sensitiveService, jwtService)
+	articleRepo := repo2.NewArticleRepo(client)
+	categoryRepo := repo2.NewCategoryRepo(client)
+	categoryService := service.NewCategoryService(categoryRepo, articleRepo)
+	tagRepo := repo2.NewTagRepo(client)
+	tagService := service.NewTagService(tagRepo, articleRepo)
+	userService := user.NewUserService(profileService)
+	articleService := service.NewArticleService(articleRepo, categoryService, tagService, userService, userRepo, adminService)
+	articleHandler := handler.NewArticleHandler(articleService, jwtService)
+	categoryHandler := handler.NewCategoryHandler(categoryService, jwtService)
+	tagHandler := handler.NewTagHandler(tagService, jwtService)
 	notificationService := notification.NewService(client)
 	notificationHandler := handler.NewNotificationHandler(notificationService, jwtService)
 	operationlogService := operationlog.NewService(client)
 	operationLogHandler := handler.NewOperationLogHandler(operationlogService)
-	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, notificationHandler, operationLogHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, articleHandler, categoryHandler, tagHandler, notificationHandler, operationLogHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	schedulerScheduler := scheduler.New(zapLogger)
 	app := NewApp(hertz, zapLogger, client, rueidisClient, schedulerScheduler)

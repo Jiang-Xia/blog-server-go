@@ -10,6 +10,8 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/notification"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
+	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
+	blogsvc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/service"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
@@ -22,6 +24,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
+	userpkg "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
 	"github.com/google/wire"
 )
 
@@ -44,6 +47,13 @@ func InitializeApp(cfgPath string) (*App, error) {
 		profile.NewService,
 		admin.NewService,
 		sensitive.NewService,
+		blogrepo.NewArticleRepo,
+		blogrepo.NewCategoryRepo,
+		blogrepo.NewTagRepo,
+		blogsvc.NewCategoryService,
+		blogsvc.NewTagService,
+		userpkg.NewUserService,
+		blogsvc.NewArticleService,
 		notification.NewService,
 		operationlog.NewService,
 		scheduler.New,
@@ -53,6 +63,9 @@ func InitializeApp(cfgPath string) (*App, error) {
 		provideUserHandler,
 		handler.NewAdminHandler,
 		handler.NewSensitiveWordHandler,
+		handler.NewArticleHandler,
+		handler.NewCategoryHandler,
+		handler.NewTagHandler,
 		handler.NewNotificationHandler,
 		handler.NewOperationLogHandler,
 		provideCaptchaHandler,

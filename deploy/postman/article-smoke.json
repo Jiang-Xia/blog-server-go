@@ -1,0 +1,68 @@
+{
+  "info": {
+    "name": "blog-server-go article smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" }
+  ],
+  "item": [
+    {
+      "name": "health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/health" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": ["pm.test('code 200', () => pm.expect(pm.response.json().code).to.eql(200));"] }
+      }]
+    },
+    {
+      "name": "article list (client)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"page\":1,\"pageSize\":10,\"client\":true}" },
+        "url": "{{baseUrl}}/api/v1/article/list"
+      },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "const j = pm.response.json();",
+          "pm.test('list ok', () => pm.expect(j.code).to.eql(200));",
+          "pm.test('has pagination', () => pm.expect(j.data.pagination).to.be.an('object'));"
+        ] }
+      }]
+    },
+    {
+      "name": "category list",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/category?isDelete=true" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": ["pm.test('category ok', () => pm.expect(pm.response.json().code).to.eql(200));"] }
+      }]
+    },
+    {
+      "name": "tag list",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/tag?isDelete=true" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": ["pm.test('tag ok', () => pm.expect(pm.response.json().code).to.eql(200));"] }
+      }]
+    },
+    {
+      "name": "article archives",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/article/archives" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": ["pm.test('archives ok', () => pm.expect(pm.response.json().code).to.eql(200));"] }
+      }]
+    },
+    {
+      "name": "article statistics",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/article/statistics" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": ["pm.test('statistics ok', () => pm.expect(pm.response.json().code).to.eql(200));"] }
+      }]
+    }
+  ]
+}
