@@ -22,10 +22,6 @@ type Link struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 图标链接
 	Icon string `json:"icon,omitempty"`
 	// 网址
@@ -48,9 +44,7 @@ func (*Link) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case link.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case link.FieldID, link.FieldVersion, link.FieldAgreed:
+		case link.FieldID, link.FieldAgreed:
 			values[i] = new(sql.NullInt64)
 		case link.FieldIcon, link.FieldURL, link.FieldTitle, link.FieldDesp, link.FieldLastCheckStatus:
 			values[i] = new(sql.NullString)
@@ -88,18 +82,6 @@ func (l *Link) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				l.UpdateTime = value.Time
-			}
-		case link.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				l.IsDelete = value.Bool
-			}
-		case link.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				l.Version = int(value.Int64)
 			}
 		case link.FieldIcon:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -185,12 +167,6 @@ func (l *Link) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(l.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", l.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", l.Version))
 	builder.WriteString(", ")
 	builder.WriteString("icon=")
 	builder.WriteString(l.Icon)

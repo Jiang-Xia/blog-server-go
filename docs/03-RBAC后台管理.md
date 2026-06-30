@@ -85,11 +85,14 @@ go build ./services/monolith/...
 # 未登录访问 RBAC 接口应 401
 curl.exe -s http://localhost:5000/api/v1/role
 
-# Postman/newman（需先登录获取 token，密码须 RSA 加密同 Plan 02）
+# Postman/newman（需先登录获取 token）
+$token = go run scripts/dev_login.go --token-only
 newman run deploy/postman/admin-rbac-smoke.json `
   --env-var baseUrl=http://localhost:5000 `
-  --env-var token=$ADMIN_TOKEN
+  --env-var token=$token
 ```
+
+默认测试账号：`18888888888` / `super`（超级管理员，与 Nest README 一致）。密码须 RSA 加密，请用 `scripts/dev_login.go`，勿在 Postman 中手写明文。
 
 前置：MySQL `x_my_blog`、Redis DB `1`、privilege 缓存与 Nest 共用；变更权限后 `redis-cli -n 1 DEL api_permission_mappings public_api_paths role_permissions:*`。
 

@@ -34,41 +34,6 @@ func (lu *LinkUpdate) SetUpdateTime(t time.Time) *LinkUpdate {
 	return lu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (lu *LinkUpdate) SetIsDelete(b bool) *LinkUpdate {
-	lu.mutation.SetIsDelete(b)
-	return lu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (lu *LinkUpdate) SetNillableIsDelete(b *bool) *LinkUpdate {
-	if b != nil {
-		lu.SetIsDelete(*b)
-	}
-	return lu
-}
-
-// SetVersion sets the "version" field.
-func (lu *LinkUpdate) SetVersion(i int) *LinkUpdate {
-	lu.mutation.ResetVersion()
-	lu.mutation.SetVersion(i)
-	return lu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (lu *LinkUpdate) SetNillableVersion(i *int) *LinkUpdate {
-	if i != nil {
-		lu.SetVersion(*i)
-	}
-	return lu
-}
-
-// AddVersion adds i to the "version" field.
-func (lu *LinkUpdate) AddVersion(i int) *LinkUpdate {
-	lu.mutation.AddVersion(i)
-	return lu
-}
-
 // SetIcon sets the "icon" field.
 func (lu *LinkUpdate) SetIcon(s string) *LinkUpdate {
 	lu.mutation.SetIcon(s)
@@ -233,15 +198,6 @@ func (lu *LinkUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := lu.mutation.UpdateTime(); ok {
 		_spec.SetField(link.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := lu.mutation.IsDelete(); ok {
-		_spec.SetField(link.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := lu.mutation.Version(); ok {
-		_spec.SetField(link.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := lu.mutation.AddedVersion(); ok {
-		_spec.AddField(link.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := lu.mutation.Icon(); ok {
 		_spec.SetField(link.FieldIcon, field.TypeString, value)
 	}
@@ -292,41 +248,6 @@ type LinkUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (luo *LinkUpdateOne) SetUpdateTime(t time.Time) *LinkUpdateOne {
 	luo.mutation.SetUpdateTime(t)
-	return luo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (luo *LinkUpdateOne) SetIsDelete(b bool) *LinkUpdateOne {
-	luo.mutation.SetIsDelete(b)
-	return luo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (luo *LinkUpdateOne) SetNillableIsDelete(b *bool) *LinkUpdateOne {
-	if b != nil {
-		luo.SetIsDelete(*b)
-	}
-	return luo
-}
-
-// SetVersion sets the "version" field.
-func (luo *LinkUpdateOne) SetVersion(i int) *LinkUpdateOne {
-	luo.mutation.ResetVersion()
-	luo.mutation.SetVersion(i)
-	return luo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (luo *LinkUpdateOne) SetNillableVersion(i *int) *LinkUpdateOne {
-	if i != nil {
-		luo.SetVersion(*i)
-	}
-	return luo
-}
-
-// AddVersion adds i to the "version" field.
-func (luo *LinkUpdateOne) AddVersion(i int) *LinkUpdateOne {
-	luo.mutation.AddVersion(i)
 	return luo
 }
 
@@ -523,15 +444,6 @@ func (luo *LinkUpdateOne) sqlSave(ctx context.Context) (_node *Link, err error) 
 	}
 	if value, ok := luo.mutation.UpdateTime(); ok {
 		_spec.SetField(link.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := luo.mutation.IsDelete(); ok {
-		_spec.SetField(link.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := luo.mutation.Version(); ok {
-		_spec.SetField(link.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := luo.mutation.AddedVersion(); ok {
-		_spec.AddField(link.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := luo.mutation.Icon(); ok {
 		_spec.SetField(link.FieldIcon, field.TypeString, value)

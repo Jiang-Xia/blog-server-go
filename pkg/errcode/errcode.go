@@ -27,6 +27,7 @@ func newCode(code int, msg string) ErrCode {
 var (
 	Success        = newCode(0, "success")
 	InvalidParam   = newCode(400, "参数错误")
+	TooManyRequests = newCode(429, "请求过于频繁")
 	Unauthorized   = newCode(401, "未授权")
 	Forbidden      = newCode(403, "无权限")
 	NotFound       = newCode(404, "资源不存在")

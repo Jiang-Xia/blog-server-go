@@ -20,6 +20,14 @@ type RegisterDeps struct {
 	Article      *ArticleHandler
 	Category     *CategoryHandler
 	Tag          *TagHandler
+	Comment      *CommentHandler
+	Reply        *ReplyHandler
+	Like         *LikeHandler
+	Collect      *CollectHandler
+	Msgboard     *MsgboardHandler
+	Link         *LinkHandler
+	File         *FileHandler
+	Resources    *ResourcesHandler
 	Notification *NotificationHandler
 	OperationLog *OperationLogHandler
 	JWT          *auth.JWTService
@@ -160,4 +168,64 @@ func RegisterAll(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	tag.GET("/:id", deps.Tag.Get)
 	tag.PATCH("/:id", jwtRequired, deps.Tag.Update)
 	tag.DELETE("/:id", jwtRequired, deps.Tag.Delete)
+
+	// comment — Nest CommentController
+	comment := v1.Group("/comment")
+	comment.POST("/create", jwtRequired, deps.Comment.Create)
+	comment.DELETE("/delete", jwtRequired, deps.Comment.Delete)
+	comment.GET("/findAll", deps.Comment.FindAll)
+	comment.GET("/admin", deps.Comment.Admin)
+	comment.GET("/my-list", jwtRequired, deps.Comment.MyList)
+	comment.GET("/on-my-articles", jwtRequired, deps.Comment.OnMyArticles)
+
+	// reply — Nest ReplyController
+	reply := v1.Group("/reply")
+	reply.POST("/create", jwtRequired, deps.Reply.Create)
+	reply.DELETE("/delete", jwtRequired, deps.Reply.Delete)
+	reply.GET("/findAll", deps.Reply.FindAll)
+	reply.GET("/my-list", jwtRequired, deps.Reply.MyList)
+
+	// like — Nest LikeController
+	v1.POST("/like", deps.Like.Update)
+	v1.GET("/like/check", jwtRequired, deps.Like.Check)
+	v1.GET("/like/my-ids", jwtRequired, deps.Like.MyIDs)
+
+	// collect — Nest CollectController
+	v1.POST("/collect", jwtRequired, deps.Collect.Toggle)
+	v1.DELETE("/collect/:id", jwtRequired, deps.Collect.Delete)
+	v1.GET("/collect/list", jwtRequired, deps.Collect.List)
+	v1.GET("/collect/check", jwtRequired, deps.Collect.Check)
+	v1.GET("/collect/count", deps.Collect.Count)
+
+	// msgboard — Nest MsgboardController
+	v1.POST("/msgboard", deps.Msgboard.Create)
+	v1.GET("/msgboard", deps.Msgboard.List)
+	v1.POST("/msgboard/delete", jwtRequired, deps.Msgboard.Delete)
+
+	// link — Nest LinkController
+	v1.POST("/link", deps.Link.Create)
+	v1.GET("/link", deps.Link.List)
+	v1.GET("/link/:id", deps.Link.Get)
+	v1.PATCH("/link/:id", deps.Link.Update)
+	v1.DELETE("/link", jwtRequired, deps.Link.Delete)
+
+	// file — Nest FileController（大文件分片）
+	fileGroup := v1.Group("/file")
+	fileGroup.POST("/uploadBigFile", jwtRequired, deps.File.UploadBigFile)
+	fileGroup.POST("/uploadBigFile/merge", jwtRequired, deps.File.MergeBigFile)
+	fileGroup.GET("/uploadBigFile/checkFile", jwtRequired, deps.File.CheckBigFile)
+
+	// resources — Nest ResourcesController
+	res := v1.Group("/resources")
+	res.GET("/daily-img", deps.Resources.DailyImg)
+	res.GET("/weather", deps.Resources.Weather)
+	res.POST("/uploadFile", jwtRequired, deps.Resources.UploadFile)
+	res.POST("/upload-media", jwtRequired, deps.Resources.UploadMedia)
+	res.POST("/upload-media/register-avatar", deps.Resources.RegisterAvatar)
+	res.GET("/files", deps.Resources.Files)
+	res.GET("/register-avatars", deps.Resources.RegisterAvatars)
+	res.GET("/file/:id", deps.Resources.GetFile)
+	res.DELETE("/file", jwtRequired, deps.Resources.DeleteFile)
+	res.POST("/folder", deps.Resources.CreateFolder)
+	res.PATCH("/file", deps.Resources.UpdateFile)
 }

@@ -3238,9 +3238,6 @@ type CollectMutation struct {
 	id            *string
 	createTime    *time.Time
 	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	uid           *int
 	adduid        *int
 	articleId     *int
@@ -3427,98 +3424,6 @@ func (m *CollectMutation) ResetUpdateTime() {
 	m.updateTime = nil
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (m *CollectMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *CollectMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the Collect entity.
-// If the Collect object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *CollectMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *CollectMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *CollectMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *CollectMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the Collect entity.
-// If the Collect object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *CollectMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *CollectMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *CollectMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *CollectMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
-}
-
 // SetUID sets the "uid" field.
 func (m *CollectMutation) SetUID(i int) {
 	m.uid = &i
@@ -3665,18 +3570,12 @@ func (m *CollectMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *CollectMutation) Fields() []string {
-	fields := make([]string, 0, 6)
+	fields := make([]string, 0, 4)
 	if m.createTime != nil {
 		fields = append(fields, collect.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, collect.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, collect.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, collect.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, collect.FieldUID)
@@ -3696,10 +3595,6 @@ func (m *CollectMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case collect.FieldUpdateTime:
 		return m.UpdateTime()
-	case collect.FieldIsDelete:
-		return m.IsDelete()
-	case collect.FieldVersion:
-		return m.Version()
 	case collect.FieldUID:
 		return m.UID()
 	case collect.FieldArticleId:
@@ -3717,10 +3612,6 @@ func (m *CollectMutation) OldField(ctx context.Context, name string) (ent.Value,
 		return m.OldCreateTime(ctx)
 	case collect.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case collect.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case collect.FieldVersion:
-		return m.OldVersion(ctx)
 	case collect.FieldUID:
 		return m.OldUID(ctx)
 	case collect.FieldArticleId:
@@ -3748,20 +3639,6 @@ func (m *CollectMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetUpdateTime(v)
 		return nil
-	case collect.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case collect.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
-		return nil
 	case collect.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -3784,9 +3661,6 @@ func (m *CollectMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *CollectMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, collect.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, collect.FieldUID)
 	}
@@ -3801,8 +3675,6 @@ func (m *CollectMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *CollectMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case collect.FieldVersion:
-		return m.AddedVersion()
 	case collect.FieldUID:
 		return m.AddedUID()
 	case collect.FieldArticleId:
@@ -3816,13 +3688,6 @@ func (m *CollectMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *CollectMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case collect.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case collect.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -3869,12 +3734,6 @@ func (m *CollectMutation) ResetField(name string) error {
 		return nil
 	case collect.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case collect.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case collect.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case collect.FieldUID:
 		m.ResetUID()
@@ -3942,9 +3801,6 @@ type CommentMutation struct {
 	id            *string
 	createTime    *time.Time
 	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	content       *string
 	uid           *int
 	adduid        *int
@@ -4133,98 +3989,6 @@ func (m *CommentMutation) OldUpdateTime(ctx context.Context) (v time.Time, err e
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *CommentMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *CommentMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *CommentMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the Comment entity.
-// If the Comment object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *CommentMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *CommentMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *CommentMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *CommentMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the Comment entity.
-// If the Comment object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *CommentMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *CommentMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *CommentMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *CommentMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetContent sets the "content" field.
@@ -4529,18 +4293,12 @@ func (m *CommentMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *CommentMutation) Fields() []string {
-	fields := make([]string, 0, 9)
+	fields := make([]string, 0, 7)
 	if m.createTime != nil {
 		fields = append(fields, comment.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, comment.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, comment.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, comment.FieldVersion)
 	}
 	if m.content != nil {
 		fields = append(fields, comment.FieldContent)
@@ -4569,10 +4327,6 @@ func (m *CommentMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case comment.FieldUpdateTime:
 		return m.UpdateTime()
-	case comment.FieldIsDelete:
-		return m.IsDelete()
-	case comment.FieldVersion:
-		return m.Version()
 	case comment.FieldContent:
 		return m.Content()
 	case comment.FieldUID:
@@ -4596,10 +4350,6 @@ func (m *CommentMutation) OldField(ctx context.Context, name string) (ent.Value,
 		return m.OldCreateTime(ctx)
 	case comment.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case comment.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case comment.FieldVersion:
-		return m.OldVersion(ctx)
 	case comment.FieldContent:
 		return m.OldContent(ctx)
 	case comment.FieldUID:
@@ -4632,20 +4382,6 @@ func (m *CommentMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case comment.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case comment.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case comment.FieldContent:
 		v, ok := value.(string)
@@ -4690,9 +4426,6 @@ func (m *CommentMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *CommentMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, comment.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, comment.FieldUID)
 	}
@@ -4710,8 +4443,6 @@ func (m *CommentMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *CommentMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case comment.FieldVersion:
-		return m.AddedVersion()
 	case comment.FieldUID:
 		return m.AddedUID()
 	case comment.FieldUserId:
@@ -4727,13 +4458,6 @@ func (m *CommentMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *CommentMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case comment.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case comment.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -4802,12 +4526,6 @@ func (m *CommentMutation) ResetField(name string) error {
 		return nil
 	case comment.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case comment.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case comment.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case comment.FieldContent:
 		m.ResetContent()
@@ -8691,9 +8409,6 @@ type LinkMutation struct {
 	id              *int
 	createTime      *time.Time
 	updateTime      *time.Time
-	isDelete        *bool
-	version         *int
-	addversion      *int
 	icon            *string
 	url             *string
 	title           *string
@@ -8882,98 +8597,6 @@ func (m *LinkMutation) OldUpdateTime(ctx context.Context) (v time.Time, err erro
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *LinkMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *LinkMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *LinkMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the Link entity.
-// If the Link object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *LinkMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *LinkMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *LinkMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *LinkMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the Link entity.
-// If the Link object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *LinkMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *LinkMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *LinkMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *LinkMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetIcon sets the "icon" field.
@@ -9295,18 +8918,12 @@ func (m *LinkMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *LinkMutation) Fields() []string {
-	fields := make([]string, 0, 11)
+	fields := make([]string, 0, 9)
 	if m.createTime != nil {
 		fields = append(fields, link.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, link.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, link.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, link.FieldVersion)
 	}
 	if m.icon != nil {
 		fields = append(fields, link.FieldIcon)
@@ -9341,10 +8958,6 @@ func (m *LinkMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case link.FieldUpdateTime:
 		return m.UpdateTime()
-	case link.FieldIsDelete:
-		return m.IsDelete()
-	case link.FieldVersion:
-		return m.Version()
 	case link.FieldIcon:
 		return m.Icon()
 	case link.FieldURL:
@@ -9372,10 +8985,6 @@ func (m *LinkMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldCreateTime(ctx)
 	case link.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case link.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case link.FieldVersion:
-		return m.OldVersion(ctx)
 	case link.FieldIcon:
 		return m.OldIcon(ctx)
 	case link.FieldURL:
@@ -9412,20 +9021,6 @@ func (m *LinkMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case link.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case link.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case link.FieldIcon:
 		v, ok := value.(string)
@@ -9484,9 +9079,6 @@ func (m *LinkMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *LinkMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, link.FieldVersion)
-	}
 	if m.addagreed != nil {
 		fields = append(fields, link.FieldAgreed)
 	}
@@ -9498,8 +9090,6 @@ func (m *LinkMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *LinkMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case link.FieldVersion:
-		return m.AddedVersion()
 	case link.FieldAgreed:
 		return m.AddedAgreed()
 	}
@@ -9511,13 +9101,6 @@ func (m *LinkMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *LinkMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case link.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case link.FieldAgreed:
 		v, ok := value.(int)
 		if !ok {
@@ -9566,12 +9149,6 @@ func (m *LinkMutation) ResetField(name string) error {
 		return nil
 	case link.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case link.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case link.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case link.FieldIcon:
 		m.ResetIcon()
@@ -10509,9 +10086,6 @@ type MsgboardMutation struct {
 	id            *int
 	createTime    *time.Time
 	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	name          *string
 	eamil         *string
 	address       *string
@@ -10708,98 +10282,6 @@ func (m *MsgboardMutation) OldUpdateTime(ctx context.Context) (v time.Time, err 
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *MsgboardMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *MsgboardMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *MsgboardMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the Msgboard entity.
-// If the Msgboard object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *MsgboardMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *MsgboardMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *MsgboardMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *MsgboardMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the Msgboard entity.
-// If the Msgboard object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *MsgboardMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *MsgboardMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *MsgboardMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *MsgboardMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetName sets the "name" field.
@@ -11433,18 +10915,12 @@ func (m *MsgboardMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *MsgboardMutation) Fields() []string {
-	fields := make([]string, 0, 18)
+	fields := make([]string, 0, 16)
 	if m.createTime != nil {
 		fields = append(fields, msgboard.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, msgboard.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, msgboard.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, msgboard.FieldVersion)
 	}
 	if m.name != nil {
 		fields = append(fields, msgboard.FieldName)
@@ -11500,10 +10976,6 @@ func (m *MsgboardMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case msgboard.FieldUpdateTime:
 		return m.UpdateTime()
-	case msgboard.FieldIsDelete:
-		return m.IsDelete()
-	case msgboard.FieldVersion:
-		return m.Version()
 	case msgboard.FieldName:
 		return m.Name()
 	case msgboard.FieldEamil:
@@ -11545,10 +11017,6 @@ func (m *MsgboardMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldCreateTime(ctx)
 	case msgboard.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case msgboard.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case msgboard.FieldVersion:
-		return m.OldVersion(ctx)
 	case msgboard.FieldName:
 		return m.OldName(ctx)
 	case msgboard.FieldEamil:
@@ -11599,20 +11067,6 @@ func (m *MsgboardMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case msgboard.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case msgboard.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case msgboard.FieldName:
 		v, ok := value.(string)
@@ -11720,9 +11174,6 @@ func (m *MsgboardMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *MsgboardMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, msgboard.FieldVersion)
-	}
 	if m.addpId != nil {
 		fields = append(fields, msgboard.FieldPId)
 	}
@@ -11737,8 +11188,6 @@ func (m *MsgboardMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *MsgboardMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case msgboard.FieldVersion:
-		return m.AddedVersion()
 	case msgboard.FieldPId:
 		return m.AddedPId()
 	case msgboard.FieldReplyId:
@@ -11752,13 +11201,6 @@ func (m *MsgboardMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *MsgboardMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case msgboard.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case msgboard.FieldPId:
 		v, ok := value.(int)
 		if !ok {
@@ -11832,12 +11274,6 @@ func (m *MsgboardMutation) ResetField(name string) error {
 		return nil
 	case msgboard.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case msgboard.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case msgboard.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case msgboard.FieldName:
 		m.ResetName()
@@ -16874,9 +16310,6 @@ type ReplyMutation struct {
 	id            *string
 	createTime    *time.Time
 	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	parentId      *string
 	replyUid      *string
 	content       *string
@@ -17063,98 +16496,6 @@ func (m *ReplyMutation) OldUpdateTime(ctx context.Context) (v time.Time, err err
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *ReplyMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *ReplyMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *ReplyMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the Reply entity.
-// If the Reply object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ReplyMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *ReplyMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *ReplyMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *ReplyMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the Reply entity.
-// If the Reply object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ReplyMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *ReplyMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *ReplyMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *ReplyMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetParentId sets the "parentId" field.
@@ -17391,18 +16732,12 @@ func (m *ReplyMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *ReplyMutation) Fields() []string {
-	fields := make([]string, 0, 9)
+	fields := make([]string, 0, 7)
 	if m.createTime != nil {
 		fields = append(fields, reply.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, reply.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, reply.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, reply.FieldVersion)
 	}
 	if m.parentId != nil {
 		fields = append(fields, reply.FieldParentId)
@@ -17431,10 +16766,6 @@ func (m *ReplyMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case reply.FieldUpdateTime:
 		return m.UpdateTime()
-	case reply.FieldIsDelete:
-		return m.IsDelete()
-	case reply.FieldVersion:
-		return m.Version()
 	case reply.FieldParentId:
 		return m.ParentId()
 	case reply.FieldReplyUid:
@@ -17458,10 +16789,6 @@ func (m *ReplyMutation) OldField(ctx context.Context, name string) (ent.Value, e
 		return m.OldCreateTime(ctx)
 	case reply.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case reply.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case reply.FieldVersion:
-		return m.OldVersion(ctx)
 	case reply.FieldParentId:
 		return m.OldParentId(ctx)
 	case reply.FieldReplyUid:
@@ -17494,20 +16821,6 @@ func (m *ReplyMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case reply.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case reply.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case reply.FieldParentId:
 		v, ok := value.(string)
@@ -17552,9 +16865,6 @@ func (m *ReplyMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *ReplyMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, reply.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, reply.FieldUID)
 	}
@@ -17566,8 +16876,6 @@ func (m *ReplyMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *ReplyMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case reply.FieldVersion:
-		return m.AddedVersion()
 	case reply.FieldUID:
 		return m.AddedUID()
 	}
@@ -17579,13 +16887,6 @@ func (m *ReplyMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *ReplyMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case reply.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case reply.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -17625,12 +16926,6 @@ func (m *ReplyMutation) ResetField(name string) error {
 		return nil
 	case reply.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case reply.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case reply.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case reply.FieldParentId:
 		m.ResetParentId()

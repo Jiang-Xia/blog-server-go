@@ -45,3 +45,17 @@ func TestRSADecryptFallbackOnInvalid(t *testing.T) {
 		t.Fatal("invalid cipher should return original text")
 	}
 }
+
+func TestRSAEncryptDecryptRoundTrip(t *testing.T) {
+	const pubKey = `-----BEGIN PUBLIC KEY-----
+MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL9r8jKkfORpiunFylF4XwvNi06sTD3N
+4hYLAmGNmviZ1IhCnu4VZ0sShdj7LYfh/Rw5IuqY55XXr6zVB/LzQ70CAwEAAQ==
+-----END PUBLIC KEY-----`
+	cipher, err := crypto.RSAEncrypt("super", pubKey)
+	if err != nil {
+		t.Fatalf("encrypt: %v", err)
+	}
+	if got := crypto.RSADecrypt(cipher, testPrivateKey); got != "super" {
+		t.Fatalf("want super, got %q", got)
+	}
+}

@@ -22,10 +22,6 @@ type Comment struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 评论内容
 	Content string `json:"content,omitempty"`
 	// UID holds the value of the "uid" field.
@@ -44,9 +40,7 @@ func (*Comment) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case comment.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case comment.FieldVersion, comment.FieldUID, comment.FieldUserId, comment.FieldArticleId:
+		case comment.FieldUID, comment.FieldUserId, comment.FieldArticleId:
 			values[i] = new(sql.NullInt64)
 		case comment.FieldID, comment.FieldContent, comment.FieldStatus:
 			values[i] = new(sql.NullString)
@@ -84,18 +78,6 @@ func (c *Comment) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				c.UpdateTime = value.Time
-			}
-		case comment.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				c.IsDelete = value.Bool
-			}
-		case comment.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				c.Version = int(value.Int64)
 			}
 		case comment.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -170,12 +152,6 @@ func (c *Comment) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(c.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", c.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", c.Version))
 	builder.WriteString(", ")
 	builder.WriteString("content=")
 	builder.WriteString(c.Content)

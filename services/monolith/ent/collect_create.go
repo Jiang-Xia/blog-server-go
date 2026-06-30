@@ -51,34 +51,6 @@ func (cc *CollectCreate) SetNillableUpdateTime(t *time.Time) *CollectCreate {
 	return cc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (cc *CollectCreate) SetIsDelete(b bool) *CollectCreate {
-	cc.mutation.SetIsDelete(b)
-	return cc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (cc *CollectCreate) SetNillableIsDelete(b *bool) *CollectCreate {
-	if b != nil {
-		cc.SetIsDelete(*b)
-	}
-	return cc
-}
-
-// SetVersion sets the "version" field.
-func (cc *CollectCreate) SetVersion(i int) *CollectCreate {
-	cc.mutation.SetVersion(i)
-	return cc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (cc *CollectCreate) SetNillableVersion(i *int) *CollectCreate {
-	if i != nil {
-		cc.SetVersion(*i)
-	}
-	return cc
-}
-
 // SetUID sets the "uid" field.
 func (cc *CollectCreate) SetUID(i int) *CollectCreate {
 	cc.mutation.SetUID(i)
@@ -140,14 +112,6 @@ func (cc *CollectCreate) defaults() {
 		v := collect.DefaultUpdateTime()
 		cc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := cc.mutation.IsDelete(); !ok {
-		v := collect.DefaultIsDelete
-		cc.mutation.SetIsDelete(v)
-	}
-	if _, ok := cc.mutation.Version(); !ok {
-		v := collect.DefaultVersion
-		cc.mutation.SetVersion(v)
-	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -157,12 +121,6 @@ func (cc *CollectCreate) check() error {
 	}
 	if _, ok := cc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Collect.updateTime"`)}
-	}
-	if _, ok := cc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Collect.isDelete"`)}
-	}
-	if _, ok := cc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Collect.version"`)}
 	}
 	if _, ok := cc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "Collect.uid"`)}
@@ -213,14 +171,6 @@ func (cc *CollectCreate) createSpec() (*Collect, *sqlgraph.CreateSpec) {
 	if value, ok := cc.mutation.UpdateTime(); ok {
 		_spec.SetField(collect.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := cc.mutation.IsDelete(); ok {
-		_spec.SetField(collect.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := cc.mutation.Version(); ok {
-		_spec.SetField(collect.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := cc.mutation.UID(); ok {
 		_spec.SetField(collect.FieldUID, field.TypeInt, value)
@@ -291,36 +241,6 @@ func (u *CollectUpsert) SetUpdateTime(v time.Time) *CollectUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *CollectUpsert) UpdateUpdateTime() *CollectUpsert {
 	u.SetExcluded(collect.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *CollectUpsert) SetIsDelete(v bool) *CollectUpsert {
-	u.Set(collect.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *CollectUpsert) UpdateIsDelete() *CollectUpsert {
-	u.SetExcluded(collect.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *CollectUpsert) SetVersion(v int) *CollectUpsert {
-	u.Set(collect.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *CollectUpsert) UpdateVersion() *CollectUpsert {
-	u.SetExcluded(collect.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *CollectUpsert) AddVersion(v int) *CollectUpsert {
-	u.Add(collect.FieldVersion, v)
 	return u
 }
 
@@ -422,41 +342,6 @@ func (u *CollectUpsertOne) SetUpdateTime(v time.Time) *CollectUpsertOne {
 func (u *CollectUpsertOne) UpdateUpdateTime() *CollectUpsertOne {
 	return u.Update(func(s *CollectUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *CollectUpsertOne) SetIsDelete(v bool) *CollectUpsertOne {
-	return u.Update(func(s *CollectUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *CollectUpsertOne) UpdateIsDelete() *CollectUpsertOne {
-	return u.Update(func(s *CollectUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *CollectUpsertOne) SetVersion(v int) *CollectUpsertOne {
-	return u.Update(func(s *CollectUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *CollectUpsertOne) AddVersion(v int) *CollectUpsertOne {
-	return u.Update(func(s *CollectUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *CollectUpsertOne) UpdateVersion() *CollectUpsertOne {
-	return u.Update(func(s *CollectUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -731,41 +616,6 @@ func (u *CollectUpsertBulk) SetUpdateTime(v time.Time) *CollectUpsertBulk {
 func (u *CollectUpsertBulk) UpdateUpdateTime() *CollectUpsertBulk {
 	return u.Update(func(s *CollectUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *CollectUpsertBulk) SetIsDelete(v bool) *CollectUpsertBulk {
-	return u.Update(func(s *CollectUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *CollectUpsertBulk) UpdateIsDelete() *CollectUpsertBulk {
-	return u.Update(func(s *CollectUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *CollectUpsertBulk) SetVersion(v int) *CollectUpsertBulk {
-	return u.Update(func(s *CollectUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *CollectUpsertBulk) AddVersion(v int) *CollectUpsertBulk {
-	return u.Update(func(s *CollectUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *CollectUpsertBulk) UpdateVersion() *CollectUpsertBulk {
-	return u.Update(func(s *CollectUpsert) {
-		s.UpdateVersion()
 	})
 }
 

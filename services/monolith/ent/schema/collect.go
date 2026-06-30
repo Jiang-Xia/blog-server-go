@@ -20,7 +20,7 @@ func (Collect) Annotations() []schema.Annotation {
 
 // Mixin 注入 TypeORM 公共时间戳与软删除字段。
 func (Collect) Mixin() []ent.Mixin {
-	return []ent.Mixin{TimeMixin{}}
+	return []ent.Mixin{TimestampMixin{}}
 }
 
 // Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。

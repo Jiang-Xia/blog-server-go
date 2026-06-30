@@ -1,0 +1,45 @@
+---
+description: blog-server-go 本地联调默认测试账号（需登录接口）
+alwaysApply: true
+---
+
+# 本地测试账号
+
+开发与 Agent 验收**需要登录**的接口时，默认使用 Nest 同源超级管理员账号（与 `blog-server/README.md` 一致）：
+
+| 字段 | 值 |
+|------|-----|
+| 用户名 | `18888888888` |
+| 密码 | `super` |
+| uid | `1`（roleId=1 超级管理员） |
+
+## 获取 JWT
+
+登录密码须 **RSA 公钥加密**（与 blog-admin 一致），勿在 curl/Postman 中传明文。
+
+```powershell
+cd d:\study\myGithub\blog-server-go
+
+# 输出 accessToken（服务须在 :5000 运行，MySQL x_my_blog + Redis db=1）
+go run scripts/dev_login.go --token-only
+
+# 带说明与 curl 示例
+go run scripts/dev_login.go
+```
+
+环境变量：`TEST_USERNAME`、`TEST_PASSWORD`、`DEV_LOGIN_BASE`（默认 `http://127.0.0.1:5000`）。
+
+## newman 冒烟（需 token 的 collection）
+
+```powershell
+$token = go run scripts/dev_login.go --token-only
+newman run deploy/postman/admin-rbac-smoke.json `
+  --env-var baseUrl=http://localhost:5000 `
+  --env-var token=$token
+```
+
+## 注意
+
+- 仅本地开发；**禁止**对生产环境使用该默认密码
+- 验证码答案从 Redis `captcha:{id}` 读取，Postman 内联 `authCode: "0000"` 无效
+- 权限变更后刷新 Redis：`redis-cli -n 1 DEL api_permission_mappings public_api_paths`

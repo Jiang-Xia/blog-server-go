@@ -1,58 +1,15 @@
 {
   "info": {
     "name": "blog-server-go ops smoke",
+    "description": "需 JWT：先 `go run scripts/dev_login.go --token-only` 获取 token，再 `--env-var token=...`。默认账号 18888888888/super。",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     { "key": "baseUrl", "value": "http://localhost:5000" },
     { "key": "token", "value": "" },
-    { "key": "captchaId", "value": "" },
     { "key": "sensitiveWordId", "value": "" }
   ],
   "item": [
-    {
-      "name": "authCode",
-      "request": {
-        "method": "GET",
-        "url": "{{baseUrl}}/api/v1/user/authCode"
-      },
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "const j = pm.response.json();",
-              "pm.test('captcha ok', () => pm.expect(j.code).to.eql(200));",
-              "pm.collectionVariables.set('captchaId', j.data.captchaId);"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "admin login",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\"username\":\"admin\",\"password\":\"123456\",\"authCode\":\"0000\",\"captchaId\":\"{{captchaId}}\",\"admin\":true}"
-        },
-        "url": "{{baseUrl}}/api/v1/user/login"
-      },
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "const j = pm.response.json();",
-              "pm.test('login ok', () => pm.expect(j.code).to.eql(200));",
-              "if (j.data && j.data.token) pm.collectionVariables.set('token', j.data.token);"
-            ]
-          }
-        }
-      ]
-    },
     {
       "name": "sensitive-word list",
       "request": {
