@@ -174,7 +174,7 @@ type MenuPrivilegeTreeNode struct {
 // CreateRole 创建角色并绑定权限/菜单。
 func (r *AdminRepo) CreateRole(ctx context.Context, roleName, roleDesc string, privilegeIDs []int, menuIDs []string) (*RoleListItemEntity, error) {
 	res, err := r.db.ExecContext(ctx,
-		fmt.Sprintf(`INSERT INTO %s (roleName, roleDesc, createTime, updateTime, isDelete, version) VALUES (?, ?, NOW(), NOW(), 0, 1)`, r.roleTable()),
+		fmt.Sprintf(`INSERT INTO %s (roleName, roleDesc, createTime, updateTime) VALUES (?, ?, NOW(), NOW())`, r.roleTable()),
 		roleName, roleDesc,
 	)
 	if err != nil {
@@ -202,7 +202,7 @@ func (r *AdminRepo) ListRoles(ctx context.Context, page, pageSize int, roleName 
 	if pageSize <= 0 {
 		pageSize = 20
 	}
-	where := "WHERE isDelete = 0"
+	where := "WHERE 1=1"
 	args := []any{}
 	if roleName != "" {
 		where += " AND roleName LIKE ?"
@@ -240,7 +240,7 @@ func (r *AdminRepo) ListRoles(ctx context.Context, page, pageSize int, roleName 
 
 // GetRoleDetail 查询角色详情（权限/菜单 ID 数组）。
 func (r *AdminRepo) GetRoleDetail(ctx context.Context, id int) (*RoleDetailEntity, error) {
-	q := fmt.Sprintf(`SELECT id, roleName, roleDesc, createTime, updateTime FROM %s WHERE id = ? AND isDelete = 0`, r.roleTable())
+	q := fmt.Sprintf(`SELECT id, roleName, roleDesc, createTime, updateTime FROM %s WHERE id = ?`, r.roleTable())
 	row := r.db.QueryRowContext(ctx, q, id)
 	detail, err := scanRoleDetailRow(row)
 	if err == sql.ErrNoRows {
@@ -382,7 +382,7 @@ func (r *AdminRepo) privilegeTable() string { return r.prefix + "privilege" }
 
 func (r *AdminRepo) roleExists(ctx context.Context, id int) (bool, error) {
 	var n int
-	err := r.db.QueryRowContext(ctx, fmt.Sprintf(`SELECT COUNT(*) FROM %s WHERE id = ? AND isDelete = 0`, r.roleTable()), id).Scan(&n)
+	err := r.db.QueryRowContext(ctx, fmt.Sprintf(`SELECT COUNT(*) FROM %s WHERE id = ?`, r.roleTable()), id).Scan(&n)
 	if err != nil {
 		return false, err
 	}

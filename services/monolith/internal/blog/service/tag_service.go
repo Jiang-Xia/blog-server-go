@@ -88,7 +88,7 @@ func (s *TagService) GetWithArticles(ctx context.Context, id, status string) (in
 		}
 		return nil, err
 	}
-	articles, err := s.tags.ListArticlesByTag(ctx, tagRow.ID, status)
+	articles, err := s.articles.ListByTagID(ctx, tagRow.ID, status)
 	if err != nil {
 		return nil, err
 	}

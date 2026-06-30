@@ -6,8 +6,6 @@ import (
 	"time"
 
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/article"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/articletagstag"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/tag"
 )
 
@@ -86,28 +84,4 @@ func (r *TagRepo) Update(ctx context.Context, id string, label, value, color *st
 // Delete 删除标签。
 func (r *TagRepo) Delete(ctx context.Context, id string) error {
 	return r.client.Tag.DeleteOneID(id).Exec(ctx)
-}
-
-// ListArticlesByTag 查询标签关联文章（可选 status 过滤）。
-func (r *TagRepo) ListArticlesByTag(ctx context.Context, tagID, status string) ([]*ent.Article, error) {
-	junctions, err := r.client.ArticleTagsTag.Query().
-		Where(articletagstag.TagIdEQ(tagID)).
-		All(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if len(junctions) == 0 {
-		return []*ent.Article{}, nil
-	}
-	ids := make([]int, 0, len(junctions))
-	for _, j := range junctions {
-		ids = append(ids, j.ArticleId)
-	}
-	q := r.client.Article.Query().
-		Where(article.IDIn(ids...)).
-		Order(ent.Desc(article.FieldUpdateTime))
-	if status != "" {
-		q = q.Where(article.StatusEQ(status))
-	}
-	return q.All(ctx)
 }

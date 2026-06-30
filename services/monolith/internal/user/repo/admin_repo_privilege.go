@@ -12,8 +12,8 @@ import (
 // CreatePrivilege 创建权限。
 func (r *AdminRepo) CreatePrivilege(ctx context.Context, p PrivilegeFullEntity) (*PrivilegeFullEntity, error) {
 	isVisible, isPublic, reqOwn := boolToTiny(p.IsVisible), boolToTiny(p.IsPublic), boolToTiny(p.RequireOwnership)
-	q := fmt.Sprintf(`INSERT INTO %s (privilegeName, privilegeCode, privilegePage, isVisible, pathPattern, httpMethod, isPublic, requireOwnership, description, createTime, updateTime, isDelete, version)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), 0, 1)`, r.privilegeTable())
+	q := fmt.Sprintf(`INSERT INTO %s (privilegeName, privilegeCode, privilegePage, isVisible, pathPattern, httpMethod, isPublic, requireOwnership, description, createTime, updateTime)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`, r.privilegeTable())
 	res, err := r.db.ExecContext(ctx, q, p.PrivilegeName, p.PrivilegeCode, p.PrivilegePage, isVisible, p.PathPattern, p.HTTPMethod, isPublic, reqOwn, p.Description)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (r *AdminRepo) ListPrivileges(ctx context.Context, page, pageSize int, filt
 	if pageSize <= 0 {
 		pageSize = 20
 	}
-	where := []string{"isDelete = 0"}
+	where := []string{"1=1"}
 	args := []any{}
 	if filters.PrivilegeName != "" {
 		where = append(where, "privilegeName LIKE ?")
@@ -89,7 +89,7 @@ type PrivilegeListFilters = privilegeFilters
 
 // GetPrivilegeByID 查询权限详情。
 func (r *AdminRepo) GetPrivilegeByID(ctx context.Context, id int) (*PrivilegeFullEntity, error) {
-	q := fmt.Sprintf(`SELECT id, privilegeName, privilegeCode, privilegePage, isVisible, pathPattern, httpMethod, isPublic, requireOwnership, description, createTime, updateTime FROM %s WHERE id = ? AND isDelete = 0`, r.privilegeTable())
+	q := fmt.Sprintf(`SELECT id, privilegeName, privilegeCode, privilegePage, isVisible, pathPattern, httpMethod, isPublic, requireOwnership, description, createTime, updateTime FROM %s WHERE id = ?`, r.privilegeTable())
 	row := r.db.QueryRowContext(ctx, q, id)
 	p, err := scanPrivilegeFullFromScanner(row)
 	if err == sql.ErrNoRows {
