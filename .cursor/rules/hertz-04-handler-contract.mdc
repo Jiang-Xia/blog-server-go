@@ -1,0 +1,70 @@
+---
+description: Hertz Handler 路由、绑参与响应契约（兼容 NestJS 前端）
+globs: "**/handler/**/*.go,**/internal/handler/**/*.go"
+alwaysApply: false
+---
+
+# Handler 契约
+
+## 响应格式（强制）
+
+```json
+{ "code": 0, "message": "success", "data": {} }
+```
+
+- HTTP 状态码 **始终 200**（除 WS Upgrade、静态文件等例外）
+- 成功：`response.Success(ctx, data)`
+- 失败：`response.Error(ctx, errcode.Xxx)` — **禁止** `c.JSON(400, ...)`
+
+与 Nest `TransformInterceptor` 对齐；`code` 值从 `pkg/errcode` 取，勿硬编码 magic number。
+
+## Handler 模板
+
+```go
+func (h *ArticleHandler) Create(ctx context.Context, c *app.RequestContext) {
+    var req dto.CreateArticleReq
+    if err := c.BindAndValidate(&req); err != nil {
+        response.Error(ctx, errcode.InvalidParam)
+        return
+    }
+    uid := ctxutil.UserID(ctx)
+    out, err := h.svc.Create(ctx, uid, &req)
+    if err != nil {
+        response.FromError(ctx, err)
+        return
+    }
+    response.Success(ctx, out)
+}
+```
+
+## 绑参与鉴权
+
+- 请求体/Query 用 struct + `validate` tag；统一 `BindAndValidate`
+- 登录用户从 **context** 取（middleware 注入），禁止 handler 内重复解析 JWT
+- 管理员权限在 middleware 或 service 层校验 RBAC，不在 handler 写 SQL
+
+## 路由注册
+
+```go
+// internal/handler/register.go
+func Register(r *server.Hertz, d *Deps) {
+    v1 := r.Group(d.Cfg.App.APIPrefix) // /api/v1
+    articles := v1.Group("/articles", middleware.JWT(d.Cfg.JWT))
+    articles.POST("", d.Article.Create)
+    articles.GET("/:id", d.Article.Get)
+}
+```
+
+- 全局前缀来自配置 `api_prefix`，handler 只写相对路径
+- REST 语义：资源名复数、HTTP 方法表达动作
+- **禁止**未经确认修改 `api_prefix` 或路径，避免 admin/nuxt 联调断裂
+
+## Swagger（swaggo）
+
+- 路由注释：`// @Router /articles [post]`、`@Summary`、`@Tags`
+- 响应类型引用 dto/vo struct；Tags 按域分组（用户/博客/RPG）
+
+## 流式 / 特殊路径
+
+- 文件下载、SSE、WS Upgrade 不走统一 JSON 包装
+- 新增例外须在 middleware 或注册处显式列出（对照 Nest `whiteControllerList`）

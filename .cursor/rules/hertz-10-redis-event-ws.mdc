@@ -1,0 +1,57 @@
+---
+description: Redis Stream 领域事件与 WebSocket Hub 规范
+globs: "**/ws/**/*.go,**/event/**/*.go,**/internal/ws/**/*.go,**/internal/event/**/*.go"
+alwaysApply: false
+---
+
+# Redis · 事件 · WebSocket
+
+与 Nest [`server-10-core-infra.mdc`](../../blog-server/.cursor/rules/server-10-core-infra.mdc) 行为对齐。
+
+## Redis（rueidis）
+
+- 业务经 **注入的 Redis 客户端** 访问，禁止 handler 内 `redis.NewClient`
+- Key 用常量前缀（`cache:`、`rbac:`、`realtime:`），禁止魔法字符串
+- Stream 消费用 **独立连接** 阻塞读，勿阻塞全局 client 连接池
+
+## 领域事件（Redis Stream）
+
+**发布（service）**
+
+```go
+// 主流程成功后发布；失败不阻断主流程（log 即可）
+_ = s.publisher.Publish(ctx, EventCommentCreated, payload)
+```
+
+- 事件名常量化（`internal/event/events.go`）
+- Stream 名与 Nest 一致：`blog:events`；消费组名固定，文档登记
+
+**消费（consumer）**
+
+- 启动独立 goroutine + `context` 取消；`XAUTOCLAIM` / pending  reclaim
+- 处理前 **幂等**（Redis SET NX + TTL）；成功 `XACK`
+- 解析失败 ack 丢弃；业务失败 log 不 ack（留 pending）
+- **禁止** blog service 直接 import rpg service 做副作用
+
+## WebSocket（gorilla/websocket）
+
+- 路径：`GET /realtime`（与 Nest Socket.IO namespace 等价）
+- 鉴权：query `token` 或 `Authorization: Bearer`；**禁止**信任 client 传的 uid
+- Hub：`Register` / `Unregister`；`pushToUser(uid, msg)` 按 user 路由
+- 消息格式：`{"type":"...", "seq": N, "data": {...}}` — 非 Socket.IO event 名
+
+## 双重心跳
+
+- **控制帧** Ping/Pong（`WriteMessage(PingMessage)`）— 连接探活
+- **应用层** `{"type":"ping"}` → `{"type":"pong"}` — 业务心跳
+
+## 跨服务推送（Plan 05）
+
+- rpg-service → Redis pub/sub `realtime:push` → blog-service Hub 转发
+- 推送 payload 须含 `type` + `seq` 供前端断线补漏
+
+## 新增 checklist
+
+1. 新 WS 消息类型：常量 + Hub 路由 + 前端 composable 注册
+2. 新 Stream 事件：常量 + publisher + consumer + 幂等 key
+3. 评估 Redis key TTL 与多实例一致性

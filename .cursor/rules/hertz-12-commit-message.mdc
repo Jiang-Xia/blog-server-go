@@ -1,0 +1,43 @@
+---
+description: blog-server-go Git 提交信息规范（Conventional Commits）
+alwaysApply: true
+---
+
+# 提交信息
+
+格式：
+
+```
+<type>(<scope>): <中文简述>
+```
+
+## type
+
+`feat` `fix` `docs` `style` `refactor` `perf` `test` `build` `ci` `chore` `revert`
+
+## scope（可选）
+
+`monolith` `gateway` `blog` `user` `rpg` `ent` `wire` `ws` `config` `deploy`
+
+## 示例
+
+```
+chore: 初始化 Hertz 单体脚手架与 wire 装配
+feat(auth): 实现 JWT 登录与 bcrypt 密码兼容
+fix(article): 修复列表分页未过滤软删除
+refactor(ent): 按 user/blog/rpg 域拆分 schema 目录
+```
+
+## 避免
+
+```
+feat: add login handler        # subject 不要用英文
+update code                    # 缺少 type
+WIP                            # 禁止
+```
+
+## 说明
+
+- subject 简体中文，无句号，50 字内
+- 破坏性变更 footer：`BREAKING CHANGE: ...`
+- 关联 Nest 迁移时在 body 注明对照模块（如 `blog-server/src/modules/features/article`）

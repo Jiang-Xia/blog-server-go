@@ -1,0 +1,59 @@
+---
+description: Viper 配置与环境变量映射（禁止业务层 os.Getenv）
+globs: pkg/config/**/*.go,configs/**/*.yaml,configs/**/*.yml
+alwaysApply: false
+---
+
+# 配置与环境变量
+
+## 加载方式
+
+- 启动最早阶段：`config.MustLoad(path)` 或 wire 注入 `*config.Config`
+- 配置文件：`configs/monolith.yaml`（单体）/ `configs/{service}.yaml`（拆分后）
+- **禁止** handler/service/repo 直接使用 `os.Getenv`
+
+## 结构体映射
+
+```yaml
+# configs/monolith.yaml
+app:
+  name: blog-server-go
+  env: development
+  api_prefix: /api/v1
+http:
+  addr: ":5000"
+mysql:
+  dsn: "..."
+redis:
+  addr: "127.0.0.1:6379"
+jwt:
+  secret: "..."
+  access_ttl: 720h
+```
+
+Viper 支持 env 覆盖：`APP_ENV` → `app.env`（AutomaticEnv + `SetEnvKeyReplacer` 统一约定）。
+
+## 环境变量命名
+
+沿用 Nest blog-server 语义，便于同机部署：
+
+| 前缀 | 示例 | 配置段 |
+|------|------|--------|
+| `APP_` | `APP_ENV`, `APP_API_PREFIX` | `app.*` |
+| `HTTP_` | `HTTP_ADDR` | `http.*` |
+| `MYSQL_` / `DB_` | `MYSQL_DSN` | `mysql.*` |
+| `REDIS_` | `REDIS_ADDR`, `REDIS_DB` | `redis.*` |
+| `JWT_` | `JWT_SECRET` | `jwt.*` |
+| `PAY_` | `PAY_ALIPAY_APP_ID` | `pay.*` |
+
+新增 key 须同时：yaml 示例 + `Config` struct 字段 + 上表登记。
+
+## 敏感信息
+
+- 密钥、DSN 只来自 env 或 `.env.local`（gitignore），禁止提交仓库
+- 日志打印配置时脱敏（JWT secret、DSN 密码）
+
+## 多服务
+
+- 各服务独立 yaml；共享项（JWT secret、MySQL DSN）数值须一致
+- gateway 额外：`grpc.blog_addr`、`grpc.user_addr`、`grpc.rpg_addr`

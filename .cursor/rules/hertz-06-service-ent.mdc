@@ -1,0 +1,66 @@
+---
+description: Service 层与 Ent 数据访问规范
+globs: "**/service/**/*.go,**/repo/**/*.go,**/ent/schema/**/*.go"
+alwaysApply: false
+---
+
+# Service 与 Ent
+
+## 数据访问
+
+- **仅 repo 层**直接依赖 `*ent.Client`；service 依赖 repo interface
+- 列表查询：过滤软删除、无效状态；必分页
+- 模糊查询封装在 repo，避免 service 拼 `%` 字符串散落
+- 预加载用 Ent `WithXxx()` edge，避免 N+1
+
+```go
+// repo/article.go
+func (r *ArticleRepo) ListPublished(ctx context.Context, p Page) ([]*ent.Article, int, error) {
+    q := r.client.Article.Query().
+        Where(article.IsDelete(false), article.StatusEQ(article.StatusPublish))
+    total, err := q.Clone().Count(ctx)
+    // ...
+}
+```
+
+## 事务
+
+```go
+err := r.client.WithTx(ctx, func(tx *ent.Tx) error {
+    // 多表写入
+    return nil
+})
+```
+
+- 跨 repo 的多步写入必须在同一 `WithTx` 内
+- 事务内传递 `tx.Client()` 给 repo 方法，禁止混用全局 client
+
+## 错误
+
+- 未找到：`errcode.NotFound` 或 Ent `ent.IsNotFound(err)` 映射
+- 冲突/重复：`errcode.Conflict`
+- **禁止** `return err` 直出 Ent/MySQL 英文错误给 handler
+
+## 跨模块协作
+
+- 单体阶段：同进程 service 调用可接受；避免 import cycle（抽 `internal/domain` 或事件）
+- 副作用（RPG 经验、通知）优先 **Redis Stream** 发布，consumer 幂等处理
+- Plan 05 后跨服务走 gRPC，禁止 shared service 包直接调其他服务 DB
+
+## Ent Schema
+
+- schema 按 **user / blog / rpg** 分子目录
+- 字段注释用 Ent `Comment()` 说明业务含义
+- 索引、唯一约束与现网 MySQL 保持一致；改 schema 后 `make ent-gen` + migration
+
+## Wire 注入
+
+```go
+type ArticleService struct {
+    repo   ArticleRepo
+    events EventPublisher
+    log    *zap.Logger
+}
+```
+
+- service 构造函数只接收 interface + logger，不接收 `*app.RequestContext`

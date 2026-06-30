@@ -1,0 +1,43 @@
+---
+description: blog-server-go 项目总览与 Hertz 核心约定
+alwaysApply: true
+---
+
+# blog-server-go 核心约定
+
+Go + Hertz 重构 [blog-server](https://github.com/Jiang-Xia/blog-server)（NestJS），保持 **REST `/api/v1/*` 与响应体** 与现网兼容，前端无感切换。
+
+## 技术栈
+
+| 层次 | 选型 |
+|------|------|
+| HTTP | **Hertz**（对外 REST） |
+| RPC | **gRPC** + protobuf + buf（Plan 05 拆分后） |
+| ORM | **Ent** |
+| Redis | **rueidis** |
+| 配置 | **Viper** |
+| 日志 | **zap** |
+| DI | **wire** |
+| 校验 | **go-playground/validator** |
+| WS | **gorilla/websocket** |
+
+## 演进路径
+
+- **Plan 01–04**：`services/monolith/` 模块化单体
+- **Plan 05**：拆为 gateway / blog / user / rpg 四服务
+- 单体阶段勿过早引入 gRPC 运行时；proto 可先占位
+
+## 强制通则
+
+1. **API 兼容**：HTTP 状态码对外 **200**，业务成败看 JSON `code`（与 NestJS TransformInterceptor 一致）
+2. **配置**：业务代码只读 `pkg/config`，禁止 `os.Getenv` 散落
+3. **响应**：handler 用 `pkg/response`，禁止手写 `{code,message,data}` 字面量
+4. **分层**：handler → service → repo(Ent)；handler 禁止 SQL / 复杂分支
+5. **展示字段**：枚举标签、状态文案由后端组装下发，禁止前后端各维护 code→文案 map
+6. **生成代码**：`*_gen.go`、`ent/` 生成物、`router_gen.go`（若用 hz）**禁止手改**，改 schema / wire / proto 后重新 generate
+
+## 参考
+
+- 架构详案：`blog-server-go-重构方案.md`
+- 分阶段计划：`.cursor/plans/`
+- Nest 对照：`../blog-server/.cursor/rules/server-*.mdc`

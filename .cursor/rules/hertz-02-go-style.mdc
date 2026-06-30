@@ -1,0 +1,67 @@
+---
+description: blog-server-go Go 编码风格与错误处理
+globs: "**/*.go"
+alwaysApply: false
+---
+
+# Go 编码风格
+
+遵循 **Effective Go**、**Uber Go Style Guide** 与仓库既有写法；提交前 `gofmt` / `goimports`。
+
+## 结构与导入
+
+```go
+import (
+    "context"
+    "fmt"
+    "time"
+
+    "github.com/cloudwego/hertz/pkg/app"
+
+    "github.com/Jiang-Xia/blog-server-go/pkg/response"
+    "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/service"
+)
+```
+
+- 标准库 → 空行 → 第三方 → 空行 → 本项目
+- 禁止 dot import、禁止 `_` 导入（代码生成 init 除外）
+
+## 函数签名
+
+- `context.Context` **永远第一个参数**
+- service / repo 方法：`(ctx context.Context, ...) (T, error)`
+- handler：`(ctx context.Context, c *app.RequestContext)`（Hertz 惯例）
+
+## 错误处理
+
+```go
+// ❌ 吞错 / panic
+_ = repo.Save(ctx, u)
+panic("failed")
+
+// ✅ 包装上下文，上层或 handler 映射 errcode
+if err := repo.Save(ctx, u); err != nil {
+    return fmt.Errorf("save user: %w", err)
+}
+```
+
+- 业务可预期失败用 `pkg/errcode`，禁止把 SQL 原文返回客户端
+- `errors.Is` / `errors.As` 判断 sentinel；不要字符串比较 `err.Error()`
+- handler 层统一 `response.Error`；service 返回 `error` 或 `(nil, errcode.ErrCode)`
+
+## 并发
+
+- goroutine 须可退出（`context` 取消或 `done` channel）
+- WS `ReadPump` / `WritePump` 遵循重构方案中的 defer 清理模式
+- 共享 map 加 `sync.RWMutex` 或 channel；禁止裸 map 并发写
+
+## 性能与依赖
+
+- JSON 序列化优先 Hertz 默认（sonic）；大结构体注意 `omitempty`
+- Ent 查询只 `Select` 需要的字段；列表必分页、限制 pageSize 上限
+- DB：`SetMaxOpenConns(15)`、`SetMaxIdleConns(5)`（2G 部署约束）
+
+## 测试
+
+- 表驱动 `_test.go`；mock repo **interface** 而非 concrete Ent client
+- 集成测试用 testcontainers-go；测试文件与源文件同包或 `package xxx_test`

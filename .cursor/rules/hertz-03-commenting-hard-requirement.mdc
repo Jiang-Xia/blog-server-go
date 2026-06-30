@@ -1,0 +1,67 @@
+---
+description: blog-server-go 代码注释规范（新功能必注释、复杂逻辑必注释）
+alwaysApply: true
+---
+
+# 代码注释规范
+
+注释解释 **意图、规则与边界**，不翻译代码。与 Nest 版 [`server-08-commenting-hard-requirement.mdc`](../../blog-server/.cursor/rules/server-08-commenting-hard-requirement.mdc) 对齐。
+
+## 保留已有注释
+
+- **禁止**重构/格式化时删除文件头、分节说明、行内注释
+- 注释与代码矛盾时**改注释**，不直接删
+
+## 文件级（新文件必须）
+
+包注释或文件头块注释（中文，1～3 行）：
+
+```go
+// Package handler 提供博客域 HTTP 入口。
+// 数据来源：internal/service → repo(Ent) → MySQL。
+package handler
+```
+
+## 导出符号（必须）
+
+所有 **exported** 函数、方法、类型须有 Go doc（中文）：
+
+```go
+// Login 校验账号密码并签发 JWT。
+// 副作用：旧格式密码验证通过时会静默升级为 bcrypt 写库。
+func (s *AuthService) Login(ctx context.Context, req *LoginReq) (*TokenPair, error)
+```
+
+## Service / Repo（强制）
+
+- 每个 exported 方法：doc 说明用途、副作用（写库/Redis/Stream/发邮件）
+- 方法体内下列场景须行内注释：
+
+| 场景 | 要求 |
+|------|------|
+| 业务规则 | 状态流转、权限、幂等 |
+| 复杂查询 | Ent 多条件、聚合、子查询意图 |
+| 事务边界 | 何处 Begin/Commit/Rollback |
+| 兼容逻辑 | 旧 Nest 哈希、API 字段映射 |
+| 魔法数字 | 阈值、TTL、上限及单位 |
+
+## Handler
+
+- 路由组文件顶：该组职责与鉴权方式
+- 非显然分支（白名单路径、流式响应）须注释
+- 简单 CRUD 若函数名已自解释，可不重复路由级注释
+
+## pkg 工具包
+
+`pkg/` 下 exported 函数与 Nest `utils` 同级要求：每个导出函数 doc + 复杂逻辑行内注释。
+
+## 展示类数据
+
+- 状态文案、枚举标签在 service 层组装进响应 struct
+- 在该组装处注释「字段来源」（Ent 字段 / 常量 / 关联表）
+
+## 何时可不注释
+
+- getter/setter 一行直通
+- 禁止废话（`// 返回 err`）
+- 用户明确要求「本次不加注释」时例外，须在回复说明

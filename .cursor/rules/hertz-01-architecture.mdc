@@ -1,0 +1,66 @@
+---
+description: blog-server-go 目录分层与模块注册规范
+globs: services/**/*.go,pkg/**/*.go,proto/**/*.proto
+alwaysApply: false
+---
+
+# 架构与目录
+
+## Monorepo 顶层
+
+```
+blog-server-go/
+├── proto/              # protobuf（buf 管理，go_package 必填）
+├── pkg/                # 跨服务共享（config/response/errcode/logger/crypto…）
+├── services/
+│   └── monolith/       # Plan 01–04 单体入口
+│       ├── cmd/main.go
+│       ├── internal/
+│       │   ├── app/        # wire 装配
+│       │   ├── handler/    # Hertz HTTP handler
+│       │   ├── service/    # 用例 / 业务逻辑
+│       │   ├── repo/       # Ent 仓储封装
+│       │   ├── middleware/
+│       │   └── ws/         # WebSocket Hub（Plan 04）
+│       └── ent/schema/     # Ent schema（按 user/blog/rpg 分子目录）
+├── migrations/         # golang-migrate
+├── configs/            # *.yaml（Viper）
+├── deploy/docker/
+├── Makefile
+├── buf.yaml / buf.gen.yaml
+└── go.mod              # 单 module monorepo
+```
+
+Plan 05 拆分后各服务复用相同 `internal/` 分层，Ent schema 随服务迁移到 `services/<name>/ent/schema/`。
+
+## 分层职责
+
+| 层 | 路径 | 职责 |
+|----|------|------|
+| handler | `internal/handler/` | 绑参、鉴权上下文读取、调 service、写响应 |
+| service | `internal/service/` | 事务、领域规则、事件发布、跨 repo 编排 |
+| repo | `internal/repo/` | Ent CRUD / 查询封装，不含 HTTP 概念 |
+| middleware | `internal/middleware/` | JWT、Recovery、RequestID、CORS、限流 |
+| pkg | `pkg/*` | 无业务语义的通用库 |
+
+## hz 工具链（若使用 IDL 生成）
+
+- **可改**：`biz/router/**/middleware.go`、handler 业务体
+- **禁止手改**：`router_gen.go`、`register.go`、thriftgo/protobuf 生成的 model
+- 更新 IDL 用 `hz update`，自定义目录时 `new` 与 `update` 的 `handler_dir`/`model_dir` 须一致
+
+## 新增业务能力 checklist
+
+1. Ent schema（若新表）→ `make ent-gen`
+2. repo 方法 → service 用例 → handler 路由
+3. 请求 struct + `validate` tag → handler `BindAndValidate`
+4. 错误码登记 `pkg/errcode`
+5. wire 注入新依赖 → `make wire`
+6. 路由注册在 `internal/handler/register.go`（或各域 `routes_*.go`）
+7. C 端新接口：同步 `deploy/sql/patches` 权限（与 Nest 一致）及文档
+
+## 命名
+
+- 包名：小写单词，不用下划线（`userservice` 包用 `service` 子目录 + 文件名区分）
+- 文件：`snake_case.go`；导出类型 `PascalCase`；未导出 `camelCase`
+- 接口：单方法以 `er` 结尾（`UserReader`），多方法用领域名（`ArticleRepo`）

@@ -1,0 +1,40 @@
+---
+description: 启动/测试 blog-server-go 后必须关闭服务，避免端口占用
+alwaysApply: true
+---
+
+# 开发服务清理（blog-server-go）
+
+Agent 为验证启动的任何 dev 进程，**结束后必须关闭**。
+
+## 默认端口
+
+| 阶段 | 命令 | 端口 |
+|------|------|------|
+| 单体 monolith | `make dev` / `go run services/monolith/cmd/main.go` | **5000** |
+| gateway（Plan 05） | `make dev-gateway` | **8000** |
+| blog / user / rpg | 各服务配置 `http.addr` | 5001–5003 |
+
+## 必须关闭的场景
+
+- `go run`、`make dev`、后台 Shell 启动的 Hertz 进程
+- 仅为 `curl`、集成测试临时拉起的 HTTP 服务
+
+## Windows 清理
+
+```powershell
+netstat -ano | findstr :5000
+Stop-Process -Id <PID> -Force
+```
+
+## 禁止关闭
+
+- **MySQL**（3306）
+- **Redis**（6379）
+
+只停止 Agent 启动的 Go HTTP 进程，勿误杀数据库/缓存。
+
+## 完成前自检
+
+- 验证完成后所有 dev 进程已停止
+- 未将「临时启动」当作交付留给用户

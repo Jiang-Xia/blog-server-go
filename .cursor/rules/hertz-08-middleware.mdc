@@ -1,0 +1,70 @@
+---
+description: Hertz 中间件编写与注册规范
+globs: "**/middleware/**/*.go"
+alwaysApply: false
+---
+
+# Hertz 中间件
+
+## 基本形态
+
+```go
+func RequestID() app.HandlerFunc {
+    return func(ctx context.Context, c *app.RequestContext) {
+        id := uuid.NewString()
+        c.Response.Header.Set("X-Request-Id", id)
+        ctx = context.WithValue(ctx, ctxKeyRequestID{}, id)
+        c.Next(ctx)
+    }
+}
+```
+
+- 返回 `app.HandlerFunc`；链式 `c.Next(ctx)` 传递 **更新后的 context**
+- 鉴权失败：`response.Error` + `c.Abort()`，勿 `AbortWithStatus` 破坏 JSON 契约
+
+## 必备中间件（对外 HTTP 服务）
+
+| 中间件 | 职责 |
+|--------|------|
+| Recovery | panic → 500 日志 + 统一 JSON（`server.New` 须手动挂；`server.Default` 自带） |
+| RequestID | 链路关联 |
+| Logger | 方法、路径、耗时、status、request_id |
+| CORS | 与 Nest `serve_corsOrigins` 一致 |
+
+按需：JWT、RBAC、限流（令牌桶）、Metrics（Prometheus）
+
+## JWT 中间件
+
+```go
+func JWT(cfg config.JWTConfig) app.HandlerFunc {
+    return func(ctx context.Context, c *app.RequestContext) {
+        token := strings.TrimPrefix(string(c.GetHeader("Authorization")), "Bearer ")
+        claims, err := parseToken(token, cfg.Secret)
+        if err != nil {
+            response.Error(ctx, errcode.TokenExpired)
+            c.Abort()
+            return
+        }
+        ctx = ctxutil.WithUser(ctx, claims.UID, claims.Roles)
+        c.Next(ctx)
+    }
+}
+```
+
+- context key 用未导出类型防冲突：`type ctxKeyUserID struct{}`
+- 公开路由注册在 **无 JWT** 的 Group 上，勿在 handler 内 skip
+
+## 注册顺序
+
+```go
+h := server.Default(server.WithHostPorts(cfg.HTTP.Addr))
+h.Use(middleware.Recovery(), middleware.RequestID(), middleware.Logger(log), middleware.CORS(cfg))
+// 路由组级别再挂 JWT / Permission
+```
+
+Recovery 最外层；Logger 在 Recovery 之内。
+
+## hz 生成的 middleware.go
+
+- 在 `biz/router/**/middleware.go` 追加路由组中间件时，**勿删** hz 已有函数
+- `hz update` 会在文件末尾 append 新中间件占位

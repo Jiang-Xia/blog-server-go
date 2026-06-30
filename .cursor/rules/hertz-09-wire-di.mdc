@@ -1,0 +1,66 @@
+---
+description: google/wire 依赖注入与启动装配规范
+globs: "**/wire.go,**/wire_gen.go,**/internal/app/**/*.go,**/cmd/**/*.go"
+alwaysApply: false
+---
+
+# Wire 依赖注入
+
+## 文件约定
+
+```
+internal/app/
+├── wire.go       //go:build wireinject — ProviderSet 声明
+├── wire_gen.go   // make wire 生成，禁止手改
+└── app.go        // NewApp(*server.Hertz, ...) 组装入口
+```
+
+- 修改依赖后执行 `make wire` 或 `go generate ./...`
+- **禁止**在 `wire_gen.go` 手改；**禁止**在 handler 里 `new` service
+
+## Provider 分层
+
+```go
+// wire.go
+func InitializeApp(cfgPath string) (*App, error) {
+    wire.Build(
+        config.MustLoad,
+        logger.New,
+        data.NewEntClient,
+        data.NewRedisClient,
+        repo.NewArticleRepo,
+        service.NewArticleService,
+        handler.NewArticleHandler,
+        server.NewHTTPServer,
+        NewApp,
+    )
+    return nil, nil
+}
+```
+
+- `data` 包：Ent、Redis、迁移
+- 每个 repo/service/handler 一个 `NewXxx` constructor
+- 接口绑定：`wire.Bind(new(ArticleRepo), new(*articleRepo))`
+
+## main.go
+
+```go
+func main() {
+    app, err := app.InitializeApp(os.Getenv("CONFIG_PATH"))
+    if err != nil { log.Fatal(err) }
+    app.Run() // 内部 h.Spin()
+}
+```
+
+- main **只做** 装配、信号监听、优雅退出
+- 禁止 main 中注册路由或业务逻辑
+
+## 优雅退出
+
+- 监听 `SIGINT/SIGTERM`；`h.Shutdown(ctx)` 带超时
+- 关闭 Ent、Redis、WS Hub、cron、Stream consumer 顺序写在 `App.Shutdown`
+
+## 测试
+
+- 集成测试可手写 `wire.Build` 子集或 test helper 构造 fake repo
+- 勿为测试复制一份生产 wire 图

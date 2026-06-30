@@ -1,0 +1,57 @@
+---
+description: 请求 DTO 与 validator 校验规范
+globs: "**/dto/**/*.go,**/req/**/*.go,**/model/request/**/*.go"
+alwaysApply: false
+---
+
+# 请求校验
+
+## 文件与命名
+
+```
+internal/dto/
+├── article_create.go   → CreateArticleReq
+├── article_update.go   → UpdateArticleReq
+├── article_list.go     → ListArticleReq
+└── id.go               → IDReq
+```
+
+- 创建：`CreateXxxReq`；更新：`UpdateXxxReq`（字段多用 `*string` 或 `optional` 语义）
+- 列表：`ListXxxReq` 内嵌 `PageReq`（page、pageSize）
+
+## Struct tag
+
+```go
+type CreateArticleReq struct {
+    Title   string `json:"title" validate:"required,max=200"`
+    Content string `json:"content" validate:"required"`
+    Status  string `json:"status" validate:"omitempty,oneof=draft publish scheduled"`
+}
+```
+
+- 校验用 `go-playground/validator/v10` tag
+- 错误消息在 handler 层映射为中文 `errcode.InvalidParam` 或字段级提示（与 Nest DTO 一致）
+- **禁止**在 dto 内写 DB 查询或业务逻辑
+
+## 分页
+
+```go
+type PageReq struct {
+    Page     int `query:"page" validate:"omitempty,min=1"`
+    PageSize int `query:"pageSize" validate:"omitempty,min=1,max=100"`
+}
+```
+
+- 默认值与上限在 service 或 Bind 后统一处理（复用 `pkg` 分页 helper）
+- 模糊搜索字段单独 `ListXxxReq`，避免与详情 Req 混用
+
+## 边界
+
+- 邮箱、手机号等复用 `pkg/validator` 或 `pkg` 正则，禁止复制粘贴正则
+- 枚举用 `oneof=` 白名单，展示文案由 service 填充响应字段
+- ID 路径参数：`uint64` + `validate:"required,min=1"` 或手动 `Param` 解析并校验
+
+## IDL / hz 生成 model
+
+- protobuf/thrift 生成的 model **勿改**；业务扩展字段用 wrapper dto 组合
+- 手写 dto 与 ent schema 字段映射在 service 层完成
