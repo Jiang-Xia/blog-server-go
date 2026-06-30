@@ -8,20 +8,25 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
+	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/article"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/articletagstag"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/predicate"
 )
 
 // ArticleRepo 文章表读写。
 type ArticleRepo struct {
-	client *ent.Client
+	client   *ent.Client
+	tagJunc  *articleTagJunction
 }
 
 // NewArticleRepo 构造 ArticleRepo。
-func NewArticleRepo(client *ent.Client) *ArticleRepo {
-	return &ArticleRepo{client: client}
+func NewArticleRepo(client *ent.Client, cfg *config.Config) (*ArticleRepo, error) {
+	junc, err := newArticleTagJunction(cfg)
+	if err != nil {
+		return nil, err
+	}
+	return &ArticleRepo{client: client, tagJunc: junc}, nil
 }
 
 // ListFilter 列表查询条件。
@@ -132,25 +137,7 @@ func applyArticleFilters(q *ent.ArticleQuery, f ListFilter, tagArticleIDs []int)
 
 // articleIDsByTags 查询包含任一指定标签的文章 ID。
 func (r *ArticleRepo) articleIDsByTags(ctx context.Context, tagIDs []string) ([]int, error) {
-	if len(tagIDs) == 0 {
-		return nil, nil
-	}
-	rows, err := r.client.ArticleTagsTag.Query().
-		Where(articletagstag.TagIdIn(tagIDs...)).
-		All(ctx)
-	if err != nil {
-		return nil, err
-	}
-	seen := make(map[int]struct{}, len(rows))
-	out := make([]int, 0, len(rows))
-	for _, row := range rows {
-		if _, ok := seen[row.ArticleId]; ok {
-			continue
-		}
-		seen[row.ArticleId] = struct{}{}
-		out = append(out, row.ArticleId)
-	}
-	return out, nil
+	return r.tagJunc.articleIDsByTagIDs(ctx, tagIDs)
 }
 
 // GetByID 按主键查询。
@@ -373,57 +360,17 @@ func (r *ArticleRepo) SetCategory(ctx context.Context, id int, categoryID string
 
 // ListTagIDsByArticle 查询文章关联标签 ID。
 func (r *ArticleRepo) ListTagIDsByArticle(ctx context.Context, articleID int) ([]string, error) {
-	rows, err := r.client.ArticleTagsTag.Query().
-		Where(articletagstag.ArticleIdEQ(articleID)).
-		All(ctx)
-	if err != nil {
-		return nil, err
-	}
-	out := make([]string, 0, len(rows))
-	for _, row := range rows {
-		out = append(out, row.TagId)
-	}
-	return out, nil
+	return r.tagJunc.tagIDsByArticleID(ctx, articleID)
 }
 
 // ListTagIDsByArticles 批量查询文章标签。
 func (r *ArticleRepo) ListTagIDsByArticles(ctx context.Context, articleIDs []int) (map[int][]string, error) {
-	if len(articleIDs) == 0 {
-		return map[int][]string{}, nil
-	}
-	rows, err := r.client.ArticleTagsTag.Query().
-		Where(articletagstag.ArticleIdIn(articleIDs...)).
-		All(ctx)
-	if err != nil {
-		return nil, err
-	}
-	out := make(map[int][]string, len(articleIDs))
-	for _, row := range rows {
-		out[row.ArticleId] = append(out[row.ArticleId], row.TagId)
-	}
-	return out, nil
+	return r.tagJunc.tagIDsByArticleIDs(ctx, articleIDs)
 }
 
 // ReplaceTags 替换文章标签关联。
 func (r *ArticleRepo) ReplaceTags(ctx context.Context, articleID int, tagIDs []string) error {
-	tx, err := r.client.Tx(ctx)
-	if err != nil {
-		return err
-	}
-	if _, err := tx.ArticleTagsTag.Delete().Where(articletagstag.ArticleIdEQ(articleID)).Exec(ctx); err != nil {
-		_ = tx.Rollback()
-		return err
-	}
-	for _, tagID := range tagIDs {
-		if tagID == "" {
-			continue
-		}
-		if _, err := tx.ArticleTagsTag.Create().SetArticleId(articleID).SetTagId(tagID).Save(ctx); err != nil {
-			_ = tx.Rollback()
-			return err
-		}
-	}
-	return tx.Commit()
+	return r.tagJunc.replaceTags(ctx, articleID, tagIDs)
 }
 
 // CountByCategory 统计分类下文章数。
@@ -437,25 +384,36 @@ func (r *ArticleRepo) CountByCategory(ctx context.Context, categoryID string, pu
 
 // CountByTag 统计标签下文章数。
 func (r *ArticleRepo) CountByTag(ctx context.Context, tagID string, publishedOnly bool) (int, error) {
-	articleIDs, err := r.client.ArticleTagsTag.Query().
-		Where(articletagstag.TagIdEQ(tagID)).
-		Select(articletagstag.FieldArticleId).
-		All(ctx)
+	ids, err := r.tagJunc.articleIDsByTagID(ctx, tagID)
 	if err != nil {
 		return 0, err
 	}
-	if len(articleIDs) == 0 {
+	if len(ids) == 0 {
 		return 0, nil
-	}
-	ids := make([]int, 0, len(articleIDs))
-	for _, row := range articleIDs {
-		ids = append(ids, row.ArticleId)
 	}
 	q := r.client.Article.Query().Where(article.IDIn(ids...), article.IsDeleteEQ(false))
 	if publishedOnly {
 		q = q.Where(article.StatusEQ("publish"))
 	}
 	return q.Count(ctx)
+}
+
+// ListByTagID 查询标签关联文章（可选 status 过滤）。
+func (r *ArticleRepo) ListByTagID(ctx context.Context, tagID, status string) ([]*ent.Article, error) {
+	ids, err := r.tagJunc.articleIDsByTagID(ctx, tagID)
+	if err != nil {
+		return nil, err
+	}
+	if len(ids) == 0 {
+		return []*ent.Article{}, nil
+	}
+	q := r.client.Article.Query().
+		Where(article.IDIn(ids...)).
+		Order(ent.Desc(article.FieldUpdateTime))
+	if status != "" {
+		q = q.Where(article.StatusEQ(status))
+	}
+	return q.All(ctx)
 }
 
 func parseInt(s string) (int, error) {

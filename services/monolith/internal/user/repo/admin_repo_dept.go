@@ -12,8 +12,8 @@ import (
 
 // CreateDept 创建部门。
 func (r *AdminRepo) CreateDept(ctx context.Context, d DeptEntity) (*DeptEntity, error) {
-	q := fmt.Sprintf(`INSERT INTO %s (deptName, deptCode, parentId, leaderId, leaderName, orderNum, status, remark, createTime, updateTime, isDelete, version)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), 0, 1)`, r.deptTable())
+	q := fmt.Sprintf(`INSERT INTO %s (deptName, deptCode, parentId, leaderId, leaderName, orderNum, status, remark, createTime, updateTime)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`, r.deptTable())
 	res, err := r.db.ExecContext(ctx, q, d.DeptName, d.DeptCode, d.ParentID, d.LeaderID, d.LeaderName, d.OrderNum, d.Status, d.Remark)
 	if err != nil {
 		return nil, err
@@ -33,7 +33,7 @@ func (r *AdminRepo) ListDepts(ctx context.Context, page, pageSize int, deptName 
 	if accessibleDeptIDs != nil && len(accessibleDeptIDs) == 0 {
 		return []DeptEntity{}, CalcNestPagination(0, pageSize, page), nil
 	}
-	where := []string{"isDelete = 0"}
+	where := []string{"1=1"}
 	args := []any{}
 	if accessibleDeptIDs != nil {
 		ph, a := inPlaceholders(accessibleDeptIDs)
@@ -74,7 +74,7 @@ func (r *AdminRepo) ListDepts(ctx context.Context, page, pageSize int, deptName 
 
 // GetDeptByID 查询部门详情。
 func (r *AdminRepo) GetDeptByID(ctx context.Context, id int) (*DeptEntity, error) {
-	q := fmt.Sprintf(`SELECT id, deptName, deptCode, parentId, leaderId, leaderName, orderNum, status, remark, createTime, updateTime FROM %s WHERE id = ? AND isDelete = 0`, r.deptTable())
+	q := fmt.Sprintf(`SELECT id, deptName, deptCode, parentId, leaderId, leaderName, orderNum, status, remark, createTime, updateTime FROM %s WHERE id = ?`, r.deptTable())
 	row := r.db.QueryRowContext(ctx, q, id)
 	d, err := scanDeptRow(row)
 	if err == sql.ErrNoRows {
@@ -116,13 +116,13 @@ func (r *AdminRepo) DeleteDept(ctx context.Context, id int) (bool, error) {
 // CountChildDepts 统计子部门数量。
 func (r *AdminRepo) CountChildDepts(ctx context.Context, parentID int) (int, error) {
 	var n int
-	err := r.db.QueryRowContext(ctx, fmt.Sprintf("SELECT COUNT(*) FROM %s WHERE parentId = ? AND isDelete = 0", r.deptTable()), parentID).Scan(&n)
+	err := r.db.QueryRowContext(ctx, fmt.Sprintf("SELECT COUNT(*) FROM %s WHERE parentId = ?", r.deptTable()), parentID).Scan(&n)
 	return n, err
 }
 
 // ListAllDepts 查询全部部门（树构建用）。
 func (r *AdminRepo) ListAllDepts(ctx context.Context) ([]DeptEntity, error) {
-	q := fmt.Sprintf(`SELECT id, deptName, deptCode, parentId, leaderId, leaderName, orderNum, status, remark, createTime, updateTime FROM %s WHERE isDelete = 0 ORDER BY orderNum ASC, createTime ASC`, r.deptTable())
+	q := fmt.Sprintf(`SELECT id, deptName, deptCode, parentId, leaderId, leaderName, orderNum, status, remark, createTime, updateTime FROM %s ORDER BY orderNum ASC, createTime ASC`, r.deptTable())
 	rows, err := r.db.QueryContext(ctx, q)
 	if err != nil {
 		return nil, err
@@ -368,7 +368,7 @@ func (r *AdminRepo) UpsertRoleDataScopes(ctx context.Context, roleID int, scopes
 		).Scan(&existingID)
 		if err == sql.ErrNoRows {
 			_, err = r.db.ExecContext(ctx,
-				fmt.Sprintf(`INSERT INTO %s (roleId, resourceType, scopeType, deptIds, createTime, updateTime, isDelete, version) VALUES (?, ?, ?, ?, NOW(), NOW(), 0, 1)`, r.roleDataScopeTable()),
+				fmt.Sprintf(`INSERT INTO %s (roleId, resourceType, scopeType, deptIds, createTime, updateTime) VALUES (?, ?, ?, ?, NOW(), NOW())`, r.roleDataScopeTable()),
 				roleID, s.ResourceType, s.ScopeType, deptJSON,
 			)
 		} else if err == nil {

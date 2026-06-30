@@ -75,7 +75,10 @@ func InitializeApp(cfgPath string) (*App, error) {
 	pubHandler := providePubHandler(pubService)
 	sensitiveService := sensitive.NewService(client, zapLogger)
 	sensitiveWordHandler := handler.NewSensitiveWordHandler(sensitiveService, jwtService)
-	articleRepo := repo2.NewArticleRepo(client)
+	articleRepo, err := repo2.NewArticleRepo(client, configConfig)
+	if err != nil {
+		return nil, err
+	}
 	categoryRepo := repo2.NewCategoryRepo(client)
 	categoryService := service.NewCategoryService(categoryRepo, articleRepo)
 	tagRepo := repo2.NewTagRepo(client)
