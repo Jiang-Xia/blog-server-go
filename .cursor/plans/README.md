@@ -69,5 +69,14 @@ flowchart TB
 
 1. 按序号 01→10 执行，完成上一计划验收后再开始下一计划。
 2. 每份计划末尾有 `- [ ]` 任务清单与「本计划不做」边界，完成后勾选。
-3. 验收优先用可脚本化方式：`curl` smoke、Postman/newman、`make test` 子集。
-4. 详细架构与代码示例见总方案对应章节，计划内仅摘录关键片段。
+3. **验收通过后须在 [`docs/`](../../docs/) 写入对应交付文档**（见各计划「文档交付」与 [`hertz-13-plan-docs.mdc`](../rules/hertz-13-plan-docs.mdc)），再进入下一计划。
+4. 验收优先用可脚本化方式：`curl` smoke、Postman/newman、`make test` 子集。
+5. 详细架构与代码示例见总方案对应章节，计划内仅摘录关键片段。
+
+## 计划 ↔ 交付文档
+
+| 计划 | 交付文档 |
+|------|----------|
+| 01–10 | [`docs/{同序号与标题}.md`](../../docs/README.md) |
+
+索引与模板：[`docs/README.md`](../../docs/README.md)、[`docs/_template.md`](../../docs/_template.md)。

@@ -146,6 +146,12 @@ WS 路径可单独灰度；完整 NestJS 下线在 Plan 09 全量回归后。
 | 前端 WS 改造 | 保留 Socket.IO 开关，灰度切换 composable |
 | 双心跳实现 | 严格对照总方案 4.2，写集成测试 |
 
+## 文档交付
+
+完成验收后须在 [`docs/08-WebSocket与事件驱动.md`](../../docs/08-WebSocket与事件驱动.md) 记录实现要点、接口一览、验收命令与已知限制，并更新 [`docs/README.md`](../../docs/README.md) 索引。
+
+- [ ] 文档已写入 `docs/`
+
 ## 下一步
 
 完成验收后进入 [09-RPG与支付.md](./09-RPG与支付.md)。

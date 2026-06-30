@@ -4,12 +4,18 @@ Format: <type>(<scope>): <subject>
 
 - type: English — feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 - scope: optional — monolith, gateway, blog, user, rpg, ent, wire, ws, config, deploy
-- subject: Simplified Chinese (简体中文) only, no period, max 50 characters
-- First line is subject only; put details in body as bullet list if needed
-- Never use English subject (e.g. "Add initial implementation", "Update code")
-- Forbidden: WIP, subject without type
+- subject: **required** — Simplified Chinese (简体中文) one-line summary, non-empty, no period, max 50 characters
+- body: when changes span multiple files/areas, blank line after subject, then `- ` bullet list in Chinese (SQL, docs, tests, services, etc.)
+- Never use English subject or body
+- Forbidden: WIP, missing/empty subject (e.g. `feat:`), subject-only without type
 
-Examples:
+Example (multi-file):
+feat: 增加抽奖保底计数功能与相关文档更新
+
+- 在 `init.sql` 中新增 `lotteryLegendaryPityCounter` 列，独立记录传说抽奖保底计数
+- 新增 SQL patch 与相关文档、测试、服务/DTO 支持
+
+Short examples (subject only):
 chore: 初始化 Hertz 单体脚手架与 wire 装配
 feat(auth): 实现 JWT 登录与 bcrypt 密码兼容
 fix(article): 修复列表分页未过滤软删除

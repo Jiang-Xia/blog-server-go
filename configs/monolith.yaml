@@ -1,0 +1,27 @@
+app:
+  name: blog-server-go
+  env: development
+  api_prefix: /api/v1
+
+http:
+  addr: ":5000"
+  cors_origins: []
+
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  user: jiangxia
+  password: "jiangxia123!@#"
+  database: x_my_blog
+  table_prefix: x_
+  # Ent schema 生成回退：x_my_blog 未初始化时从 Nest TypeORM 源库读取结构
+  schema_source_database: myblog
+
+redis:
+  addr: "127.0.0.1:6379"
+  db: 1
+
+jwt:
+  secret: "xia-007"
+  access_ttl: 720h
+  refresh_ttl: 2160h
