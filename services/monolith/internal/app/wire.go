@@ -12,6 +12,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
@@ -30,16 +31,19 @@ func InitializeApp(cfgPath string) (*App, error) {
 		provideRedisStore,
 		repo.NewUserRepo,
 		provideRoleRepo,
+		provideAdminRepo,
 		auth.NewJWTService,
 		providePasswordChecker,
 		email.NewService,
 		auth.NewAuthService,
 		auth.NewGitHubOAuth,
 		profile.NewService,
+		admin.NewService,
 		captcha.NewService,
 		pub.NewService,
 		handler.NewUserAppAdapter,
 		provideUserHandler,
+		handler.NewAdminHandler,
 		provideCaptchaHandler,
 		providePubHandler,
 		handler.NewHealthHandler,

@@ -14,6 +14,10 @@ import (
 	"go.uber.org/zap"
 )
 
+func provideAdminRepo(cfg *config.Config) (*repo.AdminRepo, error) {
+	return repo.NewAdminRepo(cfg)
+}
+
 func provideRoleRepo(cfg *config.Config) (*repo.RoleRepo, error) {
 	return repo.NewRoleRepo(cfg)
 }
@@ -41,6 +45,7 @@ func providePubHandler(pubSvc *pub.Service) *handler.PubHandler {
 func provideRegisterDeps(
 	health *handler.HealthHandler,
 	userH *handler.UserHandler,
+	adminH *handler.AdminHandler,
 	captchaH *handler.CaptchaHandler,
 	pubH *handler.PubHandler,
 	jwt *auth.JWTService,
@@ -51,10 +56,11 @@ func provideRegisterDeps(
 	log *zap.Logger,
 ) handler.RegisterDeps {
 	return handler.RegisterDeps{
-		Health:   health,
-		User:     userH,
-		Captcha:  captchaH,
-		Pub:      pubH,
+		Health:  health,
+		User:    userH,
+		Admin:   adminH,
+		Captcha: captchaH,
+		Pub:     pubH,
 		JWT:      jwt,
 		UserRepo: userRepo,
 		Permission: middleware.PermissionDeps{

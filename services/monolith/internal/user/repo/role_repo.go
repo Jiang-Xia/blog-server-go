@@ -52,6 +52,7 @@ type PrivilegeEntity struct {
 	HTTPMethod       string  `json:"httpMethod"`
 	IsPublic         int     `json:"isPublic"`
 	RequireOwnership int     `json:"requireOwnership"`
+	IsVisible        int     `json:"isVisible,omitempty"`
 	Description      *string `json:"description,omitempty"`
 }
 

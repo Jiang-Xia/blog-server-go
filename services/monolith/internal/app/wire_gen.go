@@ -13,6 +13,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
@@ -56,10 +57,16 @@ func InitializeApp(cfgPath string) (*App, error) {
 	userAppAdapter := handler.NewUserAppAdapter(configConfig, authService, profileService, gitHubOAuth)
 	captchaService := captcha.NewService(store)
 	userHandler := provideUserHandler(configConfig, userAppAdapter, captchaService)
+	adminRepo, err := provideAdminRepo(configConfig)
+	if err != nil {
+		return nil, err
+	}
+	adminService := admin.NewService(adminRepo, roleRepo, userRepo)
+	adminHandler := handler.NewAdminHandler(adminService, jwtService)
 	captchaHandler := provideCaptchaHandler(configConfig, captchaService)
 	pubService := pub.NewService(userRepo)
 	pubHandler := providePubHandler(pubService)
-	registerDeps := provideRegisterDeps(healthHandler, userHandler, captchaHandler, pubHandler, jwtService, userRepo, configConfig, store, roleRepo, zapLogger)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, jwtService, userRepo, configConfig, store, roleRepo, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	app := NewApp(hertz, zapLogger, client, rueidisClient)
 	return app, nil
