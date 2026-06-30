@@ -65,3 +65,13 @@ func (s *AuthService) Login(ctx context.Context, req *LoginReq) (*TokenPair, err
 - getter/setter 一行直通
 - 禁止废话（`// 返回 err`）
 - 用户明确要求「本次不加注释」时例外，须在回复说明
+
+## Ent 分层（学习项目统一中文）
+
+| 层级 | 语言 | 说明 |
+|------|------|------|
+| `ent/schema/*.go` | **中文** | 手写或 `scripts/gen_ent_schema.go` 生成；类型/字段用 `Comment()` 写业务含义 |
+| `pkg/`、`internal/`、`cmd/` | **中文** | 与上文导出符号要求一致 |
+| `ent/user/`、`ent/*/where.go` 等 | **英文** | `ent generate` 自动生成，**禁止手改**；读 schema 与 repo/service 中文 doc 即可 |
+
+本项目为微服务学习仓库，**以中文注释降低阅读成本**；Ent 客户端包内英文 predicate 注释可忽略，不视为规范例外。

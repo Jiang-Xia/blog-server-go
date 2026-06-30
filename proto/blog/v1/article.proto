@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package blog.v1;
+
+option go_package = "github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1";
+
+// ArticleService 博客域 gRPC 契约（Plan 01 仅占位，Plan 10 启用）。
+service ArticleService {
+  rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
+  rpc ListArticles(ListArticlesRequest) returns (ListArticlesResponse);
+}
+
+message GetArticleRequest {
+  uint64 id = 1;
+}
+
+message GetArticleResponse {
+  uint64 id = 1;
+  string title = 2;
+  uint64 author_id = 3;
+}
+
+message ListArticlesRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListArticlesResponse {
+  repeated GetArticleResponse items = 1;
+  int32 total = 2;
+}

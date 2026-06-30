@@ -95,6 +95,12 @@ newman run deploy/postman/admin-rbac-smoke.json \
 | 菜单树结构差异 | 对照 blog-admin 路由配置逐字段核对 |
 | data-scope 遗漏 | 检查 NestJS `security/data-scope` 是否需同步 |
 
+## 文档交付
+
+完成验收后须在 [`docs/03-RBAC后台管理.md`](../../docs/03-RBAC后台管理.md) 记录实现要点、接口一览、验收命令与已知限制，并更新 [`docs/README.md`](../../docs/README.md) 索引。
+
+- [ ] 文档已写入 `docs/`
+
 ## 下一步
 
 完成验收后进入 [04-敏感词与运维骨架.md](./04-敏感词与运维骨架.md)。
