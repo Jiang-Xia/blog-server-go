@@ -9,6 +9,9 @@ package app
 import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/notification"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
@@ -19,6 +22,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/sensitive"
 )
 
 // Injectors from wire.go:
@@ -66,8 +70,15 @@ func InitializeApp(cfgPath string) (*App, error) {
 	captchaHandler := provideCaptchaHandler(configConfig, captchaService)
 	pubService := pub.NewService(userRepo)
 	pubHandler := providePubHandler(pubService)
-	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, jwtService, userRepo, configConfig, store, roleRepo, zapLogger)
+	sensitiveService := sensitive.NewService(client, zapLogger)
+	sensitiveWordHandler := handler.NewSensitiveWordHandler(sensitiveService, jwtService)
+	notificationService := notification.NewService(client)
+	notificationHandler := handler.NewNotificationHandler(notificationService, jwtService)
+	operationlogService := operationlog.NewService(client)
+	operationLogHandler := handler.NewOperationLogHandler(operationlogService)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, notificationHandler, operationLogHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
-	app := NewApp(hertz, zapLogger, client, rueidisClient)
+	schedulerScheduler := scheduler.New(zapLogger)
+	app := NewApp(hertz, zapLogger, client, rueidisClient, schedulerScheduler)
 	return app, nil
 }

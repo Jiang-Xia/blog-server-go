@@ -18,14 +18,6 @@ type OperationLog struct {
 	// ID of the ent.
 	// 操作日志ID
 	ID int `json:"id,omitempty"`
-	// 创建时间
-	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 操作人ID
 	UserId int `json:"userId,omitempty"`
 	// 操作人用户名
@@ -45,7 +37,9 @@ type OperationLog struct {
 	// 请求体摘要（脱敏后）
 	RequestBody *string `json:"requestBody,omitempty"`
 	// 响应状态码
-	StatusCode   int `json:"statusCode,omitempty"`
+	StatusCode int `json:"statusCode,omitempty"`
+	// 操作时间
+	CreateTime   time.Time `json:"createTime,omitempty"`
 	selectValues sql.SelectValues
 }
 
@@ -54,13 +48,11 @@ func (*OperationLog) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case operationlog.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case operationlog.FieldID, operationlog.FieldVersion, operationlog.FieldUserId, operationlog.FieldStatusCode:
+		case operationlog.FieldID, operationlog.FieldUserId, operationlog.FieldStatusCode:
 			values[i] = new(sql.NullInt64)
 		case operationlog.FieldUsername, operationlog.FieldModule, operationlog.FieldAction, operationlog.FieldMethod, operationlog.FieldPath, operationlog.FieldDescription, operationlog.FieldIP, operationlog.FieldRequestBody:
 			values[i] = new(sql.NullString)
-		case operationlog.FieldCreateTime, operationlog.FieldUpdateTime:
+		case operationlog.FieldCreateTime:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -83,30 +75,6 @@ func (ol *OperationLog) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			ol.ID = int(value.Int64)
-		case operationlog.FieldCreateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field createTime", values[i])
-			} else if value.Valid {
-				ol.CreateTime = value.Time
-			}
-		case operationlog.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				ol.UpdateTime = value.Time
-			}
-		case operationlog.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				ol.IsDelete = value.Bool
-			}
-		case operationlog.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				ol.Version = int(value.Int64)
-			}
 		case operationlog.FieldUserId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field userId", values[i])
@@ -168,6 +136,12 @@ func (ol *OperationLog) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				ol.StatusCode = int(value.Int64)
 			}
+		case operationlog.FieldCreateTime:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field createTime", values[i])
+			} else if value.Valid {
+				ol.CreateTime = value.Time
+			}
 		default:
 			ol.selectValues.Set(columns[i], values[i])
 		}
@@ -204,18 +178,6 @@ func (ol *OperationLog) String() string {
 	var builder strings.Builder
 	builder.WriteString("OperationLog(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", ol.ID))
-	builder.WriteString("createTime=")
-	builder.WriteString(ol.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(ol.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", ol.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", ol.Version))
-	builder.WriteString(", ")
 	builder.WriteString("userId=")
 	builder.WriteString(fmt.Sprintf("%v", ol.UserId))
 	builder.WriteString(", ")
@@ -247,6 +209,9 @@ func (ol *OperationLog) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("statusCode=")
 	builder.WriteString(fmt.Sprintf("%v", ol.StatusCode))
+	builder.WriteString(", ")
+	builder.WriteString("createTime=")
+	builder.WriteString(ol.CreateTime.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -54,26 +54,6 @@ func IDLTE(id int) predicate.SensitiveWordHit {
 	return predicate.SensitiveWordHit(sql.FieldLTE(FieldID, id))
 }
 
-// CreateTime applies equality check predicate on the "createTime" field. It's identical to CreateTimeEQ.
-func CreateTime(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldEQ(FieldCreateTime, v))
-}
-
-// UpdateTime applies equality check predicate on the "updateTime" field. It's identical to UpdateTimeEQ.
-func UpdateTime(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldEQ(FieldUpdateTime, v))
-}
-
-// IsDelete applies equality check predicate on the "isDelete" field. It's identical to IsDeleteEQ.
-func IsDelete(v bool) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// Version applies equality check predicate on the "version" field. It's identical to VersionEQ.
-func Version(v int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldEQ(FieldVersion, v))
-}
-
 // SourceType applies equality check predicate on the "sourceType" field. It's identical to SourceTypeEQ.
 func SourceType(v string) predicate.SensitiveWordHit {
 	return predicate.SensitiveWordHit(sql.FieldEQ(FieldSourceType, v))
@@ -119,134 +99,9 @@ func ReviewTime(v time.Time) predicate.SensitiveWordHit {
 	return predicate.SensitiveWordHit(sql.FieldEQ(FieldReviewTime, v))
 }
 
-// CreateTimeEQ applies the EQ predicate on the "createTime" field.
-func CreateTimeEQ(v time.Time) predicate.SensitiveWordHit {
+// CreateTime applies equality check predicate on the "createTime" field. It's identical to CreateTimeEQ.
+func CreateTime(v time.Time) predicate.SensitiveWordHit {
 	return predicate.SensitiveWordHit(sql.FieldEQ(FieldCreateTime, v))
-}
-
-// CreateTimeNEQ applies the NEQ predicate on the "createTime" field.
-func CreateTimeNEQ(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldNEQ(FieldCreateTime, v))
-}
-
-// CreateTimeIn applies the In predicate on the "createTime" field.
-func CreateTimeIn(vs ...time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldIn(FieldCreateTime, vs...))
-}
-
-// CreateTimeNotIn applies the NotIn predicate on the "createTime" field.
-func CreateTimeNotIn(vs ...time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldNotIn(FieldCreateTime, vs...))
-}
-
-// CreateTimeGT applies the GT predicate on the "createTime" field.
-func CreateTimeGT(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldGT(FieldCreateTime, v))
-}
-
-// CreateTimeGTE applies the GTE predicate on the "createTime" field.
-func CreateTimeGTE(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldGTE(FieldCreateTime, v))
-}
-
-// CreateTimeLT applies the LT predicate on the "createTime" field.
-func CreateTimeLT(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldLT(FieldCreateTime, v))
-}
-
-// CreateTimeLTE applies the LTE predicate on the "createTime" field.
-func CreateTimeLTE(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldLTE(FieldCreateTime, v))
-}
-
-// UpdateTimeEQ applies the EQ predicate on the "updateTime" field.
-func UpdateTimeEQ(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldEQ(FieldUpdateTime, v))
-}
-
-// UpdateTimeNEQ applies the NEQ predicate on the "updateTime" field.
-func UpdateTimeNEQ(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldNEQ(FieldUpdateTime, v))
-}
-
-// UpdateTimeIn applies the In predicate on the "updateTime" field.
-func UpdateTimeIn(vs ...time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldIn(FieldUpdateTime, vs...))
-}
-
-// UpdateTimeNotIn applies the NotIn predicate on the "updateTime" field.
-func UpdateTimeNotIn(vs ...time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldNotIn(FieldUpdateTime, vs...))
-}
-
-// UpdateTimeGT applies the GT predicate on the "updateTime" field.
-func UpdateTimeGT(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldGT(FieldUpdateTime, v))
-}
-
-// UpdateTimeGTE applies the GTE predicate on the "updateTime" field.
-func UpdateTimeGTE(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldGTE(FieldUpdateTime, v))
-}
-
-// UpdateTimeLT applies the LT predicate on the "updateTime" field.
-func UpdateTimeLT(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldLT(FieldUpdateTime, v))
-}
-
-// UpdateTimeLTE applies the LTE predicate on the "updateTime" field.
-func UpdateTimeLTE(v time.Time) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldLTE(FieldUpdateTime, v))
-}
-
-// IsDeleteEQ applies the EQ predicate on the "isDelete" field.
-func IsDeleteEQ(v bool) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// IsDeleteNEQ applies the NEQ predicate on the "isDelete" field.
-func IsDeleteNEQ(v bool) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldNEQ(FieldIsDelete, v))
-}
-
-// VersionEQ applies the EQ predicate on the "version" field.
-func VersionEQ(v int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldEQ(FieldVersion, v))
-}
-
-// VersionNEQ applies the NEQ predicate on the "version" field.
-func VersionNEQ(v int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldNEQ(FieldVersion, v))
-}
-
-// VersionIn applies the In predicate on the "version" field.
-func VersionIn(vs ...int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldIn(FieldVersion, vs...))
-}
-
-// VersionNotIn applies the NotIn predicate on the "version" field.
-func VersionNotIn(vs ...int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldNotIn(FieldVersion, vs...))
-}
-
-// VersionGT applies the GT predicate on the "version" field.
-func VersionGT(v int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldGT(FieldVersion, v))
-}
-
-// VersionGTE applies the GTE predicate on the "version" field.
-func VersionGTE(v int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldGTE(FieldVersion, v))
-}
-
-// VersionLT applies the LT predicate on the "version" field.
-func VersionLT(v int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldLT(FieldVersion, v))
-}
-
-// VersionLTE applies the LTE predicate on the "version" field.
-func VersionLTE(v int) predicate.SensitiveWordHit {
-	return predicate.SensitiveWordHit(sql.FieldLTE(FieldVersion, v))
 }
 
 // SourceTypeEQ applies the EQ predicate on the "sourceType" field.
@@ -797,6 +652,46 @@ func ReviewTimeIsNil() predicate.SensitiveWordHit {
 // ReviewTimeNotNil applies the NotNil predicate on the "reviewTime" field.
 func ReviewTimeNotNil() predicate.SensitiveWordHit {
 	return predicate.SensitiveWordHit(sql.FieldNotNull(FieldReviewTime))
+}
+
+// CreateTimeEQ applies the EQ predicate on the "createTime" field.
+func CreateTimeEQ(v time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldEQ(FieldCreateTime, v))
+}
+
+// CreateTimeNEQ applies the NEQ predicate on the "createTime" field.
+func CreateTimeNEQ(v time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldNEQ(FieldCreateTime, v))
+}
+
+// CreateTimeIn applies the In predicate on the "createTime" field.
+func CreateTimeIn(vs ...time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldIn(FieldCreateTime, vs...))
+}
+
+// CreateTimeNotIn applies the NotIn predicate on the "createTime" field.
+func CreateTimeNotIn(vs ...time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldNotIn(FieldCreateTime, vs...))
+}
+
+// CreateTimeGT applies the GT predicate on the "createTime" field.
+func CreateTimeGT(v time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldGT(FieldCreateTime, v))
+}
+
+// CreateTimeGTE applies the GTE predicate on the "createTime" field.
+func CreateTimeGTE(v time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldGTE(FieldCreateTime, v))
+}
+
+// CreateTimeLT applies the LT predicate on the "createTime" field.
+func CreateTimeLT(v time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldLT(FieldCreateTime, v))
+}
+
+// CreateTimeLTE applies the LTE predicate on the "createTime" field.
+func CreateTimeLTE(v time.Time) predicate.SensitiveWordHit {
+	return predicate.SensitiveWordHit(sql.FieldLTE(FieldCreateTime, v))
 }
 
 // And groups predicates with the AND operator between them.

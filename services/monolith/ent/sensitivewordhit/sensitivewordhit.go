@@ -13,14 +13,6 @@ const (
 	Label = "sensitive_word_hit"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
-	// FieldCreateTime holds the string denoting the createtime field in the database.
-	FieldCreateTime = "createTime"
-	// FieldUpdateTime holds the string denoting the updatetime field in the database.
-	FieldUpdateTime = "updateTime"
-	// FieldIsDelete holds the string denoting the isdelete field in the database.
-	FieldIsDelete = "isDelete"
-	// FieldVersion holds the string denoting the version field in the database.
-	FieldVersion = "version"
 	// FieldSourceType holds the string denoting the sourcetype field in the database.
 	FieldSourceType = "sourceType"
 	// FieldSourceId holds the string denoting the sourceid field in the database.
@@ -39,6 +31,8 @@ const (
 	FieldReviewerId = "reviewerId"
 	// FieldReviewTime holds the string denoting the reviewtime field in the database.
 	FieldReviewTime = "reviewTime"
+	// FieldCreateTime holds the string denoting the createtime field in the database.
+	FieldCreateTime = "createTime"
 	// Table holds the table name of the sensitivewordhit in the database.
 	Table = "x_sensitive_word_hit"
 )
@@ -46,10 +40,6 @@ const (
 // Columns holds all SQL columns for sensitivewordhit fields.
 var Columns = []string{
 	FieldID,
-	FieldCreateTime,
-	FieldUpdateTime,
-	FieldIsDelete,
-	FieldVersion,
 	FieldSourceType,
 	FieldSourceId,
 	FieldContent,
@@ -59,6 +49,7 @@ var Columns = []string{
 	FieldStatus,
 	FieldReviewerId,
 	FieldReviewTime,
+	FieldCreateTime,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -72,18 +63,10 @@ func ValidColumn(column string) bool {
 }
 
 var (
-	// DefaultCreateTime holds the default value on creation for the "createTime" field.
-	DefaultCreateTime func() time.Time
-	// DefaultUpdateTime holds the default value on creation for the "updateTime" field.
-	DefaultUpdateTime func() time.Time
-	// UpdateDefaultUpdateTime holds the default value on update for the "updateTime" field.
-	UpdateDefaultUpdateTime func() time.Time
-	// DefaultIsDelete holds the default value on creation for the "isDelete" field.
-	DefaultIsDelete bool
-	// DefaultVersion holds the default value on creation for the "version" field.
-	DefaultVersion int
 	// DefaultStatus holds the default value on creation for the "status" field.
 	DefaultStatus string
+	// DefaultCreateTime holds the default value on creation for the "createTime" field.
+	DefaultCreateTime func() time.Time
 )
 
 // OrderOption defines the ordering options for the SensitiveWordHit queries.
@@ -92,26 +75,6 @@ type OrderOption func(*sql.Selector)
 // ByID orders the results by the id field.
 func ByID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldID, opts...).ToFunc()
-}
-
-// ByCreateTime orders the results by the createTime field.
-func ByCreateTime(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCreateTime, opts...).ToFunc()
-}
-
-// ByUpdateTime orders the results by the updateTime field.
-func ByUpdateTime(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUpdateTime, opts...).ToFunc()
-}
-
-// ByIsDelete orders the results by the isDelete field.
-func ByIsDelete(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldIsDelete, opts...).ToFunc()
-}
-
-// ByVersion orders the results by the version field.
-func ByVersion(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldVersion, opts...).ToFunc()
 }
 
 // BySourceType orders the results by the sourceType field.
@@ -157,4 +120,9 @@ func ByReviewerId(opts ...sql.OrderTermOption) OrderOption {
 // ByReviewTime orders the results by the reviewTime field.
 func ByReviewTime(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldReviewTime, opts...).ToFunc()
+}
+
+// ByCreateTime orders the results by the createTime field.
+func ByCreateTime(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldCreateTime, opts...).ToFunc()
 }

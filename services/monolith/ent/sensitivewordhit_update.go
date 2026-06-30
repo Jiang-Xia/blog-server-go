@@ -28,47 +28,6 @@ func (swhu *SensitiveWordHitUpdate) Where(ps ...predicate.SensitiveWordHit) *Sen
 	return swhu
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (swhu *SensitiveWordHitUpdate) SetUpdateTime(t time.Time) *SensitiveWordHitUpdate {
-	swhu.mutation.SetUpdateTime(t)
-	return swhu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (swhu *SensitiveWordHitUpdate) SetIsDelete(b bool) *SensitiveWordHitUpdate {
-	swhu.mutation.SetIsDelete(b)
-	return swhu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (swhu *SensitiveWordHitUpdate) SetNillableIsDelete(b *bool) *SensitiveWordHitUpdate {
-	if b != nil {
-		swhu.SetIsDelete(*b)
-	}
-	return swhu
-}
-
-// SetVersion sets the "version" field.
-func (swhu *SensitiveWordHitUpdate) SetVersion(i int) *SensitiveWordHitUpdate {
-	swhu.mutation.ResetVersion()
-	swhu.mutation.SetVersion(i)
-	return swhu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (swhu *SensitiveWordHitUpdate) SetNillableVersion(i *int) *SensitiveWordHitUpdate {
-	if i != nil {
-		swhu.SetVersion(*i)
-	}
-	return swhu
-}
-
-// AddVersion adds i to the "version" field.
-func (swhu *SensitiveWordHitUpdate) AddVersion(i int) *SensitiveWordHitUpdate {
-	swhu.mutation.AddVersion(i)
-	return swhu
-}
-
 // SetSourceType sets the "sourceType" field.
 func (swhu *SensitiveWordHitUpdate) SetSourceType(s string) *SensitiveWordHitUpdate {
 	swhu.mutation.SetSourceType(s)
@@ -240,7 +199,6 @@ func (swhu *SensitiveWordHitUpdate) Mutation() *SensitiveWordHitMutation {
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (swhu *SensitiveWordHitUpdate) Save(ctx context.Context) (int, error) {
-	swhu.defaults()
 	return withHooks(ctx, swhu.sqlSave, swhu.mutation, swhu.hooks)
 }
 
@@ -266,14 +224,6 @@ func (swhu *SensitiveWordHitUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (swhu *SensitiveWordHitUpdate) defaults() {
-	if _, ok := swhu.mutation.UpdateTime(); !ok {
-		v := sensitivewordhit.UpdateDefaultUpdateTime()
-		swhu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (swhu *SensitiveWordHitUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sensitivewordhit.Table, sensitivewordhit.Columns, sqlgraph.NewFieldSpec(sensitivewordhit.FieldID, field.TypeInt))
 	if ps := swhu.mutation.predicates; len(ps) > 0 {
@@ -282,18 +232,6 @@ func (swhu *SensitiveWordHitUpdate) sqlSave(ctx context.Context) (n int, err err
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := swhu.mutation.UpdateTime(); ok {
-		_spec.SetField(sensitivewordhit.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := swhu.mutation.IsDelete(); ok {
-		_spec.SetField(sensitivewordhit.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := swhu.mutation.Version(); ok {
-		_spec.SetField(sensitivewordhit.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := swhu.mutation.AddedVersion(); ok {
-		_spec.AddField(sensitivewordhit.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := swhu.mutation.SourceType(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceType, field.TypeString, value)
@@ -358,47 +296,6 @@ type SensitiveWordHitUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *SensitiveWordHitMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (swhuo *SensitiveWordHitUpdateOne) SetUpdateTime(t time.Time) *SensitiveWordHitUpdateOne {
-	swhuo.mutation.SetUpdateTime(t)
-	return swhuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (swhuo *SensitiveWordHitUpdateOne) SetIsDelete(b bool) *SensitiveWordHitUpdateOne {
-	swhuo.mutation.SetIsDelete(b)
-	return swhuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (swhuo *SensitiveWordHitUpdateOne) SetNillableIsDelete(b *bool) *SensitiveWordHitUpdateOne {
-	if b != nil {
-		swhuo.SetIsDelete(*b)
-	}
-	return swhuo
-}
-
-// SetVersion sets the "version" field.
-func (swhuo *SensitiveWordHitUpdateOne) SetVersion(i int) *SensitiveWordHitUpdateOne {
-	swhuo.mutation.ResetVersion()
-	swhuo.mutation.SetVersion(i)
-	return swhuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (swhuo *SensitiveWordHitUpdateOne) SetNillableVersion(i *int) *SensitiveWordHitUpdateOne {
-	if i != nil {
-		swhuo.SetVersion(*i)
-	}
-	return swhuo
-}
-
-// AddVersion adds i to the "version" field.
-func (swhuo *SensitiveWordHitUpdateOne) AddVersion(i int) *SensitiveWordHitUpdateOne {
-	swhuo.mutation.AddVersion(i)
-	return swhuo
 }
 
 // SetSourceType sets the "sourceType" field.
@@ -585,7 +482,6 @@ func (swhuo *SensitiveWordHitUpdateOne) Select(field string, fields ...string) *
 
 // Save executes the query and returns the updated SensitiveWordHit entity.
 func (swhuo *SensitiveWordHitUpdateOne) Save(ctx context.Context) (*SensitiveWordHit, error) {
-	swhuo.defaults()
 	return withHooks(ctx, swhuo.sqlSave, swhuo.mutation, swhuo.hooks)
 }
 
@@ -608,14 +504,6 @@ func (swhuo *SensitiveWordHitUpdateOne) Exec(ctx context.Context) error {
 func (swhuo *SensitiveWordHitUpdateOne) ExecX(ctx context.Context) {
 	if err := swhuo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (swhuo *SensitiveWordHitUpdateOne) defaults() {
-	if _, ok := swhuo.mutation.UpdateTime(); !ok {
-		v := sensitivewordhit.UpdateDefaultUpdateTime()
-		swhuo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -644,18 +532,6 @@ func (swhuo *SensitiveWordHitUpdateOne) sqlSave(ctx context.Context) (_node *Sen
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := swhuo.mutation.UpdateTime(); ok {
-		_spec.SetField(sensitivewordhit.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := swhuo.mutation.IsDelete(); ok {
-		_spec.SetField(sensitivewordhit.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := swhuo.mutation.Version(); ok {
-		_spec.SetField(sensitivewordhit.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := swhuo.mutation.AddedVersion(); ok {
-		_spec.AddField(sensitivewordhit.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := swhuo.mutation.SourceType(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceType, field.TypeString, value)

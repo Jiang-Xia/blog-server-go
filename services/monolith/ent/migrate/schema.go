@@ -268,10 +268,6 @@ var (
 	// XOperationLogColumns holds the columns for the "x_operation_log" table.
 	XOperationLogColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "createTime", Type: field.TypeTime},
-		{Name: "updateTime", Type: field.TypeTime},
-		{Name: "isDelete", Type: field.TypeBool, Default: false},
-		{Name: "version", Type: field.TypeInt, Default: 0},
 		{Name: "userId", Type: field.TypeInt},
 		{Name: "username", Type: field.TypeString, Default: ""},
 		{Name: "module", Type: field.TypeString},
@@ -282,6 +278,7 @@ var (
 		{Name: "ip", Type: field.TypeString, Default: ""},
 		{Name: "requestBody", Type: field.TypeString, Nullable: true, Size: 2147483647},
 		{Name: "statusCode", Type: field.TypeInt, Default: 200},
+		{Name: "createTime", Type: field.TypeTime},
 	}
 	// XOperationLogTable holds the schema information for the "x_operation_log" table.
 	XOperationLogTable = &schema.Table{
@@ -861,10 +858,6 @@ var (
 	// XSensitiveWordColumns holds the columns for the "x_sensitive_word" table.
 	XSensitiveWordColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "createTime", Type: field.TypeTime},
-		{Name: "updateTime", Type: field.TypeTime},
-		{Name: "isDelete", Type: field.TypeBool, Default: false},
-		{Name: "version", Type: field.TypeInt, Default: 0},
 		{Name: "word", Type: field.TypeString, Unique: true},
 		{Name: "category", Type: field.TypeString, Default: "自定义"},
 		{Name: "status", Type: field.TypeInt, Default: 1},
@@ -872,6 +865,8 @@ var (
 		{Name: "hpPenalty", Type: field.TypeInt, Default: 20},
 		{Name: "needReview", Type: field.TypeInt, Default: 1},
 		{Name: "action", Type: field.TypeInt, Default: 1},
+		{Name: "createTime", Type: field.TypeTime},
+		{Name: "updateTime", Type: field.TypeTime},
 	}
 	// XSensitiveWordTable holds the schema information for the "x_sensitive_word" table.
 	XSensitiveWordTable = &schema.Table{
@@ -882,10 +877,6 @@ var (
 	// XSensitiveWordHitColumns holds the columns for the "x_sensitive_word_hit" table.
 	XSensitiveWordHitColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "createTime", Type: field.TypeTime},
-		{Name: "updateTime", Type: field.TypeTime},
-		{Name: "isDelete", Type: field.TypeBool, Default: false},
-		{Name: "version", Type: field.TypeInt, Default: 0},
 		{Name: "sourceType", Type: field.TypeString},
 		{Name: "sourceId", Type: field.TypeString},
 		{Name: "content", Type: field.TypeString, Size: 2147483647},
@@ -895,6 +886,7 @@ var (
 		{Name: "status", Type: field.TypeString, Default: "pending"},
 		{Name: "reviewerId", Type: field.TypeInt, Nullable: true},
 		{Name: "reviewTime", Type: field.TypeTime, Nullable: true},
+		{Name: "createTime", Type: field.TypeTime},
 	}
 	// XSensitiveWordHitTable holds the schema information for the "x_sensitive_word_hit" table.
 	XSensitiveWordHitTable = &schema.Table{
@@ -905,14 +897,11 @@ var (
 	// XSiteNotificationColumns holds the columns for the "x_site_notification" table.
 	XSiteNotificationColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "createTime", Type: field.TypeTime},
-		{Name: "updateTime", Type: field.TypeTime},
-		{Name: "isDelete", Type: field.TypeBool, Default: false},
-		{Name: "version", Type: field.TypeInt, Default: 0},
 		{Name: "uid", Type: field.TypeInt},
 		{Name: "type", Type: field.TypeString},
 		{Name: "payload", Type: field.TypeString, Size: 2147483647},
 		{Name: "read", Type: field.TypeInt, Default: 0},
+		{Name: "createTime", Type: field.TypeTime},
 	}
 	// XSiteNotificationTable holds the schema information for the "x_site_notification" table.
 	XSiteNotificationTable = &schema.Table{

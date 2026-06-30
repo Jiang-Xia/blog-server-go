@@ -18,14 +18,6 @@ type SensitiveWord struct {
 	// ID of the ent.
 	// 敏感词ID
 	ID int `json:"id,omitempty"`
-	// 创建时间
-	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 敏感词
 	Word string `json:"word,omitempty"`
 	// 分类：广告/色情/赌博/自定义等
@@ -39,7 +31,11 @@ type SensitiveWord struct {
 	// 是否进审核：1是0否
 	NeedReview int `json:"needReview,omitempty"`
 	// 1替换/2拒绝/3仅记录
-	Action       int `json:"action,omitempty"`
+	Action int `json:"action,omitempty"`
+	// 创建时间
+	CreateTime time.Time `json:"createTime,omitempty"`
+	// 更新时间
+	UpdateTime   time.Time `json:"updateTime,omitempty"`
 	selectValues sql.SelectValues
 }
 
@@ -48,9 +44,7 @@ func (*SensitiveWord) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case sensitiveword.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case sensitiveword.FieldID, sensitiveword.FieldVersion, sensitiveword.FieldStatus, sensitiveword.FieldLevel, sensitiveword.FieldHpPenalty, sensitiveword.FieldNeedReview, sensitiveword.FieldAction:
+		case sensitiveword.FieldID, sensitiveword.FieldStatus, sensitiveword.FieldLevel, sensitiveword.FieldHpPenalty, sensitiveword.FieldNeedReview, sensitiveword.FieldAction:
 			values[i] = new(sql.NullInt64)
 		case sensitiveword.FieldWord, sensitiveword.FieldCategory:
 			values[i] = new(sql.NullString)
@@ -77,30 +71,6 @@ func (sw *SensitiveWord) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			sw.ID = int(value.Int64)
-		case sensitiveword.FieldCreateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field createTime", values[i])
-			} else if value.Valid {
-				sw.CreateTime = value.Time
-			}
-		case sensitiveword.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				sw.UpdateTime = value.Time
-			}
-		case sensitiveword.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				sw.IsDelete = value.Bool
-			}
-		case sensitiveword.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				sw.Version = int(value.Int64)
-			}
 		case sensitiveword.FieldWord:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field word", values[i])
@@ -143,6 +113,18 @@ func (sw *SensitiveWord) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				sw.Action = int(value.Int64)
 			}
+		case sensitiveword.FieldCreateTime:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field createTime", values[i])
+			} else if value.Valid {
+				sw.CreateTime = value.Time
+			}
+		case sensitiveword.FieldUpdateTime:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
+			} else if value.Valid {
+				sw.UpdateTime = value.Time
+			}
 		default:
 			sw.selectValues.Set(columns[i], values[i])
 		}
@@ -179,18 +161,6 @@ func (sw *SensitiveWord) String() string {
 	var builder strings.Builder
 	builder.WriteString("SensitiveWord(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", sw.ID))
-	builder.WriteString("createTime=")
-	builder.WriteString(sw.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(sw.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", sw.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", sw.Version))
-	builder.WriteString(", ")
 	builder.WriteString("word=")
 	builder.WriteString(sw.Word)
 	builder.WriteString(", ")
@@ -211,6 +181,12 @@ func (sw *SensitiveWord) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("action=")
 	builder.WriteString(fmt.Sprintf("%v", sw.Action))
+	builder.WriteString(", ")
+	builder.WriteString("createTime=")
+	builder.WriteString(sw.CreateTime.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("updateTime=")
+	builder.WriteString(sw.UpdateTime.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

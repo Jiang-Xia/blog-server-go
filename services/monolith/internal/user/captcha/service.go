@@ -3,11 +3,13 @@ package captcha
 
 import (
 	"context"
+	"encoding/base64"
 	"strings"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
-	"github.com/mojocn/base64Captcha"
+	svgcaptcha "github.com/reu98/go-svg-captcha"
+	"github.com/google/uuid"
 )
 
 const (
@@ -27,54 +29,35 @@ func NewService(redis *redisutil.Store) *Service {
 	return &Service{redis: redis}
 }
 
-// CaptchaResult 生成结果。
+// CaptchaResult 生成结果，字段与 Nest /user/authCode 响应对齐。
 type CaptchaResult struct {
-	ID  string
-	SVG string // 实际为 base64 图片，字段名与 Nest authCode 响应对齐
-}
-
-type redisCaptchaStore struct {
-	redis *redisutil.Store
-	ctx   context.Context
-}
-
-func (s *redisCaptchaStore) Set(id string, value string) error {
-	return s.redis.Set(s.ctx, captchaKey(id), strings.ToLower(value), captchaTTL)
-}
-
-func (s *redisCaptchaStore) Get(id string, clear bool) string {
-	v, _ := s.redis.Get(s.ctx, captchaKey(id))
-	if clear && v != "" {
-		_ = s.redis.Del(s.ctx, captchaKey(id), attemptKey(id))
-	}
-	return v
-}
-
-func (s *redisCaptchaStore) Verify(id, answer string, clear bool) bool {
-	stored := s.Get(id, false)
-	if stored == "" {
-		return false
-	}
-	ok := strings.EqualFold(strings.TrimSpace(answer), stored)
-	if ok && clear {
-		_ = s.redis.Del(s.ctx, captchaKey(id), attemptKey(id))
-	}
-	return ok
+	ID            string
+	CaptchaBase64 string // SVG 内容的 base64 编码
 }
 
 // Create 生成验证码并写入 Redis。
 func (s *Service) Create(ctx context.Context) (*CaptchaResult, error) {
-	driver := base64Captcha.NewDriverString(
-		48, 100, 2, 0,
-		4, "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", nil, nil, nil,
-	)
-	store := &redisCaptchaStore{redis: s.redis, ctx: ctx}
-	c := base64Captcha.NewCaptcha(driver, store)
-	id, b64, _, err := c.Generate()
+	result, err := svgcaptcha.CreateByText(svgcaptcha.OptionText{
+		Size:             4,
+		Width:            100,
+		Height:           48,
+		IsColor:          true,
+		Curve:            2,
+		IgnoreCharacters: "0o1iIlL",
+		CharactersPreset: "ABCDEFGHJKLMNPQRSTUVWXYZ23456789",
+	})
 	if err != nil {
 		return nil, err
 	}
-	return &CaptchaResult{ID: id, SVG: b64}, nil
+
+	id := strings.ReplaceAll(uuid.NewString(), "-", "")
+	if err := s.redis.Set(ctx, captchaKey(id), strings.ToLower(result.Text), captchaTTL); err != nil {
+		return nil, err
+	}
+	return &CaptchaResult{
+		ID:            id,
+		CaptchaBase64: base64.StdEncoding.EncodeToString([]byte(result.Data)),
+	}, nil
 }
 
 // AssertRateLimit 生成频率限制。

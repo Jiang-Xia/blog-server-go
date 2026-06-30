@@ -22,62 +22,6 @@ type SensitiveWordCreate struct {
 	conflict []sql.ConflictOption
 }
 
-// SetCreateTime sets the "createTime" field.
-func (swc *SensitiveWordCreate) SetCreateTime(t time.Time) *SensitiveWordCreate {
-	swc.mutation.SetCreateTime(t)
-	return swc
-}
-
-// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (swc *SensitiveWordCreate) SetNillableCreateTime(t *time.Time) *SensitiveWordCreate {
-	if t != nil {
-		swc.SetCreateTime(*t)
-	}
-	return swc
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (swc *SensitiveWordCreate) SetUpdateTime(t time.Time) *SensitiveWordCreate {
-	swc.mutation.SetUpdateTime(t)
-	return swc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (swc *SensitiveWordCreate) SetNillableUpdateTime(t *time.Time) *SensitiveWordCreate {
-	if t != nil {
-		swc.SetUpdateTime(*t)
-	}
-	return swc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (swc *SensitiveWordCreate) SetIsDelete(b bool) *SensitiveWordCreate {
-	swc.mutation.SetIsDelete(b)
-	return swc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (swc *SensitiveWordCreate) SetNillableIsDelete(b *bool) *SensitiveWordCreate {
-	if b != nil {
-		swc.SetIsDelete(*b)
-	}
-	return swc
-}
-
-// SetVersion sets the "version" field.
-func (swc *SensitiveWordCreate) SetVersion(i int) *SensitiveWordCreate {
-	swc.mutation.SetVersion(i)
-	return swc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (swc *SensitiveWordCreate) SetNillableVersion(i *int) *SensitiveWordCreate {
-	if i != nil {
-		swc.SetVersion(*i)
-	}
-	return swc
-}
-
 // SetWord sets the "word" field.
 func (swc *SensitiveWordCreate) SetWord(s string) *SensitiveWordCreate {
 	swc.mutation.SetWord(s)
@@ -168,6 +112,34 @@ func (swc *SensitiveWordCreate) SetNillableAction(i *int) *SensitiveWordCreate {
 	return swc
 }
 
+// SetCreateTime sets the "createTime" field.
+func (swc *SensitiveWordCreate) SetCreateTime(t time.Time) *SensitiveWordCreate {
+	swc.mutation.SetCreateTime(t)
+	return swc
+}
+
+// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
+func (swc *SensitiveWordCreate) SetNillableCreateTime(t *time.Time) *SensitiveWordCreate {
+	if t != nil {
+		swc.SetCreateTime(*t)
+	}
+	return swc
+}
+
+// SetUpdateTime sets the "updateTime" field.
+func (swc *SensitiveWordCreate) SetUpdateTime(t time.Time) *SensitiveWordCreate {
+	swc.mutation.SetUpdateTime(t)
+	return swc
+}
+
+// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
+func (swc *SensitiveWordCreate) SetNillableUpdateTime(t *time.Time) *SensitiveWordCreate {
+	if t != nil {
+		swc.SetUpdateTime(*t)
+	}
+	return swc
+}
+
 // SetID sets the "id" field.
 func (swc *SensitiveWordCreate) SetID(i int) *SensitiveWordCreate {
 	swc.mutation.SetID(i)
@@ -209,22 +181,6 @@ func (swc *SensitiveWordCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (swc *SensitiveWordCreate) defaults() {
-	if _, ok := swc.mutation.CreateTime(); !ok {
-		v := sensitiveword.DefaultCreateTime()
-		swc.mutation.SetCreateTime(v)
-	}
-	if _, ok := swc.mutation.UpdateTime(); !ok {
-		v := sensitiveword.DefaultUpdateTime()
-		swc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := swc.mutation.IsDelete(); !ok {
-		v := sensitiveword.DefaultIsDelete
-		swc.mutation.SetIsDelete(v)
-	}
-	if _, ok := swc.mutation.Version(); !ok {
-		v := sensitiveword.DefaultVersion
-		swc.mutation.SetVersion(v)
-	}
 	if _, ok := swc.mutation.Category(); !ok {
 		v := sensitiveword.DefaultCategory
 		swc.mutation.SetCategory(v)
@@ -249,22 +205,18 @@ func (swc *SensitiveWordCreate) defaults() {
 		v := sensitiveword.DefaultAction
 		swc.mutation.SetAction(v)
 	}
+	if _, ok := swc.mutation.CreateTime(); !ok {
+		v := sensitiveword.DefaultCreateTime()
+		swc.mutation.SetCreateTime(v)
+	}
+	if _, ok := swc.mutation.UpdateTime(); !ok {
+		v := sensitiveword.DefaultUpdateTime()
+		swc.mutation.SetUpdateTime(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (swc *SensitiveWordCreate) check() error {
-	if _, ok := swc.mutation.CreateTime(); !ok {
-		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SensitiveWord.createTime"`)}
-	}
-	if _, ok := swc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "SensitiveWord.updateTime"`)}
-	}
-	if _, ok := swc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "SensitiveWord.isDelete"`)}
-	}
-	if _, ok := swc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "SensitiveWord.version"`)}
-	}
 	if _, ok := swc.mutation.Word(); !ok {
 		return &ValidationError{Name: "word", err: errors.New(`ent: missing required field "SensitiveWord.word"`)}
 	}
@@ -285,6 +237,12 @@ func (swc *SensitiveWordCreate) check() error {
 	}
 	if _, ok := swc.mutation.Action(); !ok {
 		return &ValidationError{Name: "action", err: errors.New(`ent: missing required field "SensitiveWord.action"`)}
+	}
+	if _, ok := swc.mutation.CreateTime(); !ok {
+		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SensitiveWord.createTime"`)}
+	}
+	if _, ok := swc.mutation.UpdateTime(); !ok {
+		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "SensitiveWord.updateTime"`)}
 	}
 	return nil
 }
@@ -319,22 +277,6 @@ func (swc *SensitiveWordCreate) createSpec() (*SensitiveWord, *sqlgraph.CreateSp
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := swc.mutation.CreateTime(); ok {
-		_spec.SetField(sensitiveword.FieldCreateTime, field.TypeTime, value)
-		_node.CreateTime = value
-	}
-	if value, ok := swc.mutation.UpdateTime(); ok {
-		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := swc.mutation.IsDelete(); ok {
-		_spec.SetField(sensitiveword.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := swc.mutation.Version(); ok {
-		_spec.SetField(sensitiveword.FieldVersion, field.TypeInt, value)
-		_node.Version = value
-	}
 	if value, ok := swc.mutation.Word(); ok {
 		_spec.SetField(sensitiveword.FieldWord, field.TypeString, value)
 		_node.Word = value
@@ -363,6 +305,14 @@ func (swc *SensitiveWordCreate) createSpec() (*SensitiveWord, *sqlgraph.CreateSp
 		_spec.SetField(sensitiveword.FieldAction, field.TypeInt, value)
 		_node.Action = value
 	}
+	if value, ok := swc.mutation.CreateTime(); ok {
+		_spec.SetField(sensitiveword.FieldCreateTime, field.TypeTime, value)
+		_node.CreateTime = value
+	}
+	if value, ok := swc.mutation.UpdateTime(); ok {
+		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
+		_node.UpdateTime = value
+	}
 	return _node, _spec
 }
 
@@ -370,7 +320,7 @@ func (swc *SensitiveWordCreate) createSpec() (*SensitiveWord, *sqlgraph.CreateSp
 // of the `INSERT` statement. For example:
 //
 //	client.SensitiveWord.Create().
-//		SetCreateTime(v).
+//		SetWord(v).
 //		OnConflict(
 //			// Update the row with the new values
 //			// the was proposed for insertion.
@@ -379,7 +329,7 @@ func (swc *SensitiveWordCreate) createSpec() (*SensitiveWord, *sqlgraph.CreateSp
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.SensitiveWordUpsert) {
-//			SetCreateTime(v+v).
+//			SetWord(v+v).
 //		}).
 //		Exec(ctx)
 func (swc *SensitiveWordCreate) OnConflict(opts ...sql.ConflictOption) *SensitiveWordUpsertOne {
@@ -414,48 +364,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SensitiveWordUpsert) SetUpdateTime(v time.Time) *SensitiveWordUpsert {
-	u.Set(sensitiveword.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SensitiveWordUpsert) UpdateUpdateTime() *SensitiveWordUpsert {
-	u.SetExcluded(sensitiveword.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SensitiveWordUpsert) SetIsDelete(v bool) *SensitiveWordUpsert {
-	u.Set(sensitiveword.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SensitiveWordUpsert) UpdateIsDelete() *SensitiveWordUpsert {
-	u.SetExcluded(sensitiveword.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *SensitiveWordUpsert) SetVersion(v int) *SensitiveWordUpsert {
-	u.Set(sensitiveword.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SensitiveWordUpsert) UpdateVersion() *SensitiveWordUpsert {
-	u.SetExcluded(sensitiveword.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SensitiveWordUpsert) AddVersion(v int) *SensitiveWordUpsert {
-	u.Add(sensitiveword.FieldVersion, v)
-	return u
-}
 
 // SetWord sets the "word" field.
 func (u *SensitiveWordUpsert) SetWord(v string) *SensitiveWordUpsert {
@@ -571,6 +479,18 @@ func (u *SensitiveWordUpsert) AddAction(v int) *SensitiveWordUpsert {
 	return u
 }
 
+// SetUpdateTime sets the "updateTime" field.
+func (u *SensitiveWordUpsert) SetUpdateTime(v time.Time) *SensitiveWordUpsert {
+	u.Set(sensitiveword.FieldUpdateTime, v)
+	return u
+}
+
+// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
+func (u *SensitiveWordUpsert) UpdateUpdateTime() *SensitiveWordUpsert {
+	u.SetExcluded(sensitiveword.FieldUpdateTime)
+	return u
+}
+
 // UpdateNewValues updates the mutable fields using the new values that were set on create except the ID field.
 // Using this option is equivalent to using:
 //
@@ -620,55 +540,6 @@ func (u *SensitiveWordUpsertOne) Update(set func(*SensitiveWordUpsert)) *Sensiti
 		set(&SensitiveWordUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SensitiveWordUpsertOne) SetUpdateTime(v time.Time) *SensitiveWordUpsertOne {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SensitiveWordUpsertOne) UpdateUpdateTime() *SensitiveWordUpsertOne {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SensitiveWordUpsertOne) SetIsDelete(v bool) *SensitiveWordUpsertOne {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SensitiveWordUpsertOne) UpdateIsDelete() *SensitiveWordUpsertOne {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *SensitiveWordUpsertOne) SetVersion(v int) *SensitiveWordUpsertOne {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SensitiveWordUpsertOne) AddVersion(v int) *SensitiveWordUpsertOne {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SensitiveWordUpsertOne) UpdateVersion() *SensitiveWordUpsertOne {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetWord sets the "word" field.
@@ -801,6 +672,20 @@ func (u *SensitiveWordUpsertOne) AddAction(v int) *SensitiveWordUpsertOne {
 func (u *SensitiveWordUpsertOne) UpdateAction() *SensitiveWordUpsertOne {
 	return u.Update(func(s *SensitiveWordUpsert) {
 		s.UpdateAction()
+	})
+}
+
+// SetUpdateTime sets the "updateTime" field.
+func (u *SensitiveWordUpsertOne) SetUpdateTime(v time.Time) *SensitiveWordUpsertOne {
+	return u.Update(func(s *SensitiveWordUpsert) {
+		s.SetUpdateTime(v)
+	})
+}
+
+// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
+func (u *SensitiveWordUpsertOne) UpdateUpdateTime() *SensitiveWordUpsertOne {
+	return u.Update(func(s *SensitiveWordUpsert) {
+		s.UpdateUpdateTime()
 	})
 }
 
@@ -939,7 +824,7 @@ func (swcb *SensitiveWordCreateBulk) ExecX(ctx context.Context) {
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.SensitiveWordUpsert) {
-//			SetCreateTime(v+v).
+//			SetWord(v+v).
 //		}).
 //		Exec(ctx)
 func (swcb *SensitiveWordCreateBulk) OnConflict(opts ...sql.ConflictOption) *SensitiveWordUpsertBulk {
@@ -1019,55 +904,6 @@ func (u *SensitiveWordUpsertBulk) Update(set func(*SensitiveWordUpsert)) *Sensit
 		set(&SensitiveWordUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SensitiveWordUpsertBulk) SetUpdateTime(v time.Time) *SensitiveWordUpsertBulk {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SensitiveWordUpsertBulk) UpdateUpdateTime() *SensitiveWordUpsertBulk {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SensitiveWordUpsertBulk) SetIsDelete(v bool) *SensitiveWordUpsertBulk {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SensitiveWordUpsertBulk) UpdateIsDelete() *SensitiveWordUpsertBulk {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *SensitiveWordUpsertBulk) SetVersion(v int) *SensitiveWordUpsertBulk {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SensitiveWordUpsertBulk) AddVersion(v int) *SensitiveWordUpsertBulk {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SensitiveWordUpsertBulk) UpdateVersion() *SensitiveWordUpsertBulk {
-	return u.Update(func(s *SensitiveWordUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetWord sets the "word" field.
@@ -1200,6 +1036,20 @@ func (u *SensitiveWordUpsertBulk) AddAction(v int) *SensitiveWordUpsertBulk {
 func (u *SensitiveWordUpsertBulk) UpdateAction() *SensitiveWordUpsertBulk {
 	return u.Update(func(s *SensitiveWordUpsert) {
 		s.UpdateAction()
+	})
+}
+
+// SetUpdateTime sets the "updateTime" field.
+func (u *SensitiveWordUpsertBulk) SetUpdateTime(v time.Time) *SensitiveWordUpsertBulk {
+	return u.Update(func(s *SensitiveWordUpsert) {
+		s.SetUpdateTime(v)
+	})
+}
+
+// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
+func (u *SensitiveWordUpsertBulk) UpdateUpdateTime() *SensitiveWordUpsertBulk {
+	return u.Update(func(s *SensitiveWordUpsert) {
+		s.UpdateUpdateTime()
 	})
 }
 

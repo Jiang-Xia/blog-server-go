@@ -1,7 +1,9 @@
-// 由 scripts/gen_ent_schema.go 生成，请勿手改。
+// 由 scripts/gen_ent_schema.go 生成；operation_log 仅含 createTime（无 updateTime/isDelete）。
 package schema
 
 import (
+	"time"
+
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/entsql"
 	"entgo.io/ent/schema"
@@ -18,11 +20,6 @@ func (OperationLog) Annotations() []schema.Annotation {
 	}
 }
 
-// Mixin 注入 TypeORM 公共时间戳与软删除字段。
-func (OperationLog) Mixin() []ent.Mixin {
-	return []ent.Mixin{TimeMixin{}}
-}
-
 // Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。
 func (OperationLog) Fields() []ent.Field {
 	return []ent.Field{
@@ -37,5 +34,6 @@ func (OperationLog) Fields() []ent.Field {
 		field.String("ip").StorageKey("ip").Comment("操作人IP").Default(""),
 		field.Text("requestBody").StorageKey("requestBody").Comment("请求体摘要（脱敏后）").Optional().Nillable(),
 		field.Int("statusCode").StorageKey("statusCode").Comment("响应状态码").Default(200),
+		field.Time("createTime").StorageKey("createTime").Comment("操作时间").Default(time.Now).Immutable(),
 	}
 }

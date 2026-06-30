@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
@@ -25,47 +24,6 @@ type OperationLogUpdate struct {
 // Where appends a list predicates to the OperationLogUpdate builder.
 func (olu *OperationLogUpdate) Where(ps ...predicate.OperationLog) *OperationLogUpdate {
 	olu.mutation.Where(ps...)
-	return olu
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (olu *OperationLogUpdate) SetUpdateTime(t time.Time) *OperationLogUpdate {
-	olu.mutation.SetUpdateTime(t)
-	return olu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (olu *OperationLogUpdate) SetIsDelete(b bool) *OperationLogUpdate {
-	olu.mutation.SetIsDelete(b)
-	return olu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (olu *OperationLogUpdate) SetNillableIsDelete(b *bool) *OperationLogUpdate {
-	if b != nil {
-		olu.SetIsDelete(*b)
-	}
-	return olu
-}
-
-// SetVersion sets the "version" field.
-func (olu *OperationLogUpdate) SetVersion(i int) *OperationLogUpdate {
-	olu.mutation.ResetVersion()
-	olu.mutation.SetVersion(i)
-	return olu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (olu *OperationLogUpdate) SetNillableVersion(i *int) *OperationLogUpdate {
-	if i != nil {
-		olu.SetVersion(*i)
-	}
-	return olu
-}
-
-// AddVersion adds i to the "version" field.
-func (olu *OperationLogUpdate) AddVersion(i int) *OperationLogUpdate {
-	olu.mutation.AddVersion(i)
 	return olu
 }
 
@@ -236,7 +194,6 @@ func (olu *OperationLogUpdate) Mutation() *OperationLogMutation {
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (olu *OperationLogUpdate) Save(ctx context.Context) (int, error) {
-	olu.defaults()
 	return withHooks(ctx, olu.sqlSave, olu.mutation, olu.hooks)
 }
 
@@ -262,14 +219,6 @@ func (olu *OperationLogUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (olu *OperationLogUpdate) defaults() {
-	if _, ok := olu.mutation.UpdateTime(); !ok {
-		v := operationlog.UpdateDefaultUpdateTime()
-		olu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (olu *OperationLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(operationlog.Table, operationlog.Columns, sqlgraph.NewFieldSpec(operationlog.FieldID, field.TypeInt))
 	if ps := olu.mutation.predicates; len(ps) > 0 {
@@ -278,18 +227,6 @@ func (olu *OperationLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := olu.mutation.UpdateTime(); ok {
-		_spec.SetField(operationlog.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := olu.mutation.IsDelete(); ok {
-		_spec.SetField(operationlog.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := olu.mutation.Version(); ok {
-		_spec.SetField(operationlog.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := olu.mutation.AddedVersion(); ok {
-		_spec.AddField(operationlog.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := olu.mutation.UserId(); ok {
 		_spec.SetField(operationlog.FieldUserId, field.TypeInt, value)
@@ -348,47 +285,6 @@ type OperationLogUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *OperationLogMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (oluo *OperationLogUpdateOne) SetUpdateTime(t time.Time) *OperationLogUpdateOne {
-	oluo.mutation.SetUpdateTime(t)
-	return oluo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (oluo *OperationLogUpdateOne) SetIsDelete(b bool) *OperationLogUpdateOne {
-	oluo.mutation.SetIsDelete(b)
-	return oluo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (oluo *OperationLogUpdateOne) SetNillableIsDelete(b *bool) *OperationLogUpdateOne {
-	if b != nil {
-		oluo.SetIsDelete(*b)
-	}
-	return oluo
-}
-
-// SetVersion sets the "version" field.
-func (oluo *OperationLogUpdateOne) SetVersion(i int) *OperationLogUpdateOne {
-	oluo.mutation.ResetVersion()
-	oluo.mutation.SetVersion(i)
-	return oluo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (oluo *OperationLogUpdateOne) SetNillableVersion(i *int) *OperationLogUpdateOne {
-	if i != nil {
-		oluo.SetVersion(*i)
-	}
-	return oluo
-}
-
-// AddVersion adds i to the "version" field.
-func (oluo *OperationLogUpdateOne) AddVersion(i int) *OperationLogUpdateOne {
-	oluo.mutation.AddVersion(i)
-	return oluo
 }
 
 // SetUserId sets the "userId" field.
@@ -571,7 +467,6 @@ func (oluo *OperationLogUpdateOne) Select(field string, fields ...string) *Opera
 
 // Save executes the query and returns the updated OperationLog entity.
 func (oluo *OperationLogUpdateOne) Save(ctx context.Context) (*OperationLog, error) {
-	oluo.defaults()
 	return withHooks(ctx, oluo.sqlSave, oluo.mutation, oluo.hooks)
 }
 
@@ -594,14 +489,6 @@ func (oluo *OperationLogUpdateOne) Exec(ctx context.Context) error {
 func (oluo *OperationLogUpdateOne) ExecX(ctx context.Context) {
 	if err := oluo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (oluo *OperationLogUpdateOne) defaults() {
-	if _, ok := oluo.mutation.UpdateTime(); !ok {
-		v := operationlog.UpdateDefaultUpdateTime()
-		oluo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -630,18 +517,6 @@ func (oluo *OperationLogUpdateOne) sqlSave(ctx context.Context) (_node *Operatio
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := oluo.mutation.UpdateTime(); ok {
-		_spec.SetField(operationlog.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := oluo.mutation.IsDelete(); ok {
-		_spec.SetField(operationlog.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := oluo.mutation.Version(); ok {
-		_spec.SetField(operationlog.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := oluo.mutation.AddedVersion(); ok {
-		_spec.AddField(operationlog.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := oluo.mutation.UserId(); ok {
 		_spec.SetField(operationlog.FieldUserId, field.TypeInt, value)

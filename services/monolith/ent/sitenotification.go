@@ -18,14 +18,6 @@ type SiteNotification struct {
 	// ID of the ent.
 	// 主键 ID
 	ID int `json:"id,omitempty"`
-	// 创建时间
-	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 接收通知的用户 uid（文章作者等）
 	UID int `json:"uid,omitempty"`
 	// 通知类型，如 comment_on_article
@@ -33,7 +25,9 @@ type SiteNotification struct {
 	// JSON 字符串，含 articleId / articleTitle / commentId 等展示字段
 	Payload string `json:"payload,omitempty"`
 	// Read holds the value of the "read" field.
-	Read         int `json:"read,omitempty"`
+	Read int `json:"read,omitempty"`
+	// 创建时间
+	CreateTime   time.Time `json:"createTime,omitempty"`
 	selectValues sql.SelectValues
 }
 
@@ -42,13 +36,11 @@ func (*SiteNotification) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case sitenotification.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case sitenotification.FieldID, sitenotification.FieldVersion, sitenotification.FieldUID, sitenotification.FieldRead:
+		case sitenotification.FieldID, sitenotification.FieldUID, sitenotification.FieldRead:
 			values[i] = new(sql.NullInt64)
 		case sitenotification.FieldType, sitenotification.FieldPayload:
 			values[i] = new(sql.NullString)
-		case sitenotification.FieldCreateTime, sitenotification.FieldUpdateTime:
+		case sitenotification.FieldCreateTime:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -71,30 +63,6 @@ func (sn *SiteNotification) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			sn.ID = int(value.Int64)
-		case sitenotification.FieldCreateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field createTime", values[i])
-			} else if value.Valid {
-				sn.CreateTime = value.Time
-			}
-		case sitenotification.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				sn.UpdateTime = value.Time
-			}
-		case sitenotification.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				sn.IsDelete = value.Bool
-			}
-		case sitenotification.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				sn.Version = int(value.Int64)
-			}
 		case sitenotification.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
@@ -118,6 +86,12 @@ func (sn *SiteNotification) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field read", values[i])
 			} else if value.Valid {
 				sn.Read = int(value.Int64)
+			}
+		case sitenotification.FieldCreateTime:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field createTime", values[i])
+			} else if value.Valid {
+				sn.CreateTime = value.Time
 			}
 		default:
 			sn.selectValues.Set(columns[i], values[i])
@@ -155,18 +129,6 @@ func (sn *SiteNotification) String() string {
 	var builder strings.Builder
 	builder.WriteString("SiteNotification(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", sn.ID))
-	builder.WriteString("createTime=")
-	builder.WriteString(sn.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(sn.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", sn.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", sn.Version))
-	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", sn.UID))
 	builder.WriteString(", ")
@@ -178,6 +140,9 @@ func (sn *SiteNotification) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("read=")
 	builder.WriteString(fmt.Sprintf("%v", sn.Read))
+	builder.WriteString(", ")
+	builder.WriteString("createTime=")
+	builder.WriteString(sn.CreateTime.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

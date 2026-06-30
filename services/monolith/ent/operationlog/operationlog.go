@@ -13,14 +13,6 @@ const (
 	Label = "operation_log"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
-	// FieldCreateTime holds the string denoting the createtime field in the database.
-	FieldCreateTime = "createTime"
-	// FieldUpdateTime holds the string denoting the updatetime field in the database.
-	FieldUpdateTime = "updateTime"
-	// FieldIsDelete holds the string denoting the isdelete field in the database.
-	FieldIsDelete = "isDelete"
-	// FieldVersion holds the string denoting the version field in the database.
-	FieldVersion = "version"
 	// FieldUserId holds the string denoting the userid field in the database.
 	FieldUserId = "userId"
 	// FieldUsername holds the string denoting the username field in the database.
@@ -41,6 +33,8 @@ const (
 	FieldRequestBody = "requestBody"
 	// FieldStatusCode holds the string denoting the statuscode field in the database.
 	FieldStatusCode = "statusCode"
+	// FieldCreateTime holds the string denoting the createtime field in the database.
+	FieldCreateTime = "createTime"
 	// Table holds the table name of the operationlog in the database.
 	Table = "x_operation_log"
 )
@@ -48,10 +42,6 @@ const (
 // Columns holds all SQL columns for operationlog fields.
 var Columns = []string{
 	FieldID,
-	FieldCreateTime,
-	FieldUpdateTime,
-	FieldIsDelete,
-	FieldVersion,
 	FieldUserId,
 	FieldUsername,
 	FieldModule,
@@ -62,6 +52,7 @@ var Columns = []string{
 	FieldIP,
 	FieldRequestBody,
 	FieldStatusCode,
+	FieldCreateTime,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -75,16 +66,6 @@ func ValidColumn(column string) bool {
 }
 
 var (
-	// DefaultCreateTime holds the default value on creation for the "createTime" field.
-	DefaultCreateTime func() time.Time
-	// DefaultUpdateTime holds the default value on creation for the "updateTime" field.
-	DefaultUpdateTime func() time.Time
-	// UpdateDefaultUpdateTime holds the default value on update for the "updateTime" field.
-	UpdateDefaultUpdateTime func() time.Time
-	// DefaultIsDelete holds the default value on creation for the "isDelete" field.
-	DefaultIsDelete bool
-	// DefaultVersion holds the default value on creation for the "version" field.
-	DefaultVersion int
 	// DefaultUsername holds the default value on creation for the "username" field.
 	DefaultUsername string
 	// DefaultDescription holds the default value on creation for the "description" field.
@@ -93,6 +74,8 @@ var (
 	DefaultIP string
 	// DefaultStatusCode holds the default value on creation for the "statusCode" field.
 	DefaultStatusCode int
+	// DefaultCreateTime holds the default value on creation for the "createTime" field.
+	DefaultCreateTime func() time.Time
 )
 
 // OrderOption defines the ordering options for the OperationLog queries.
@@ -101,26 +84,6 @@ type OrderOption func(*sql.Selector)
 // ByID orders the results by the id field.
 func ByID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldID, opts...).ToFunc()
-}
-
-// ByCreateTime orders the results by the createTime field.
-func ByCreateTime(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCreateTime, opts...).ToFunc()
-}
-
-// ByUpdateTime orders the results by the updateTime field.
-func ByUpdateTime(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUpdateTime, opts...).ToFunc()
-}
-
-// ByIsDelete orders the results by the isDelete field.
-func ByIsDelete(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldIsDelete, opts...).ToFunc()
-}
-
-// ByVersion orders the results by the version field.
-func ByVersion(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldVersion, opts...).ToFunc()
 }
 
 // ByUserId orders the results by the userId field.
@@ -171,4 +134,9 @@ func ByRequestBody(opts ...sql.OrderTermOption) OrderOption {
 // ByStatusCode orders the results by the statusCode field.
 func ByStatusCode(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldStatusCode, opts...).ToFunc()
+}
+
+// ByCreateTime orders the results by the createTime field.
+func ByCreateTime(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldCreateTime, opts...).ToFunc()
 }

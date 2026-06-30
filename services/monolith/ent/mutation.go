@@ -12209,11 +12209,6 @@ type OperationLogMutation struct {
 	op            Op
 	typ           string
 	id            *int
-	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	userId        *int
 	adduserId     *int
 	username      *string
@@ -12226,6 +12221,7 @@ type OperationLogMutation struct {
 	requestBody   *string
 	statusCode    *int
 	addstatusCode *int
+	createTime    *time.Time
 	clearedFields map[string]struct{}
 	done          bool
 	oldValue      func(context.Context) (*OperationLog, error)
@@ -12334,170 +12330,6 @@ func (m *OperationLogMutation) IDs(ctx context.Context) ([]int, error) {
 	default:
 		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
 	}
-}
-
-// SetCreateTime sets the "createTime" field.
-func (m *OperationLogMutation) SetCreateTime(t time.Time) {
-	m.createTime = &t
-}
-
-// CreateTime returns the value of the "createTime" field in the mutation.
-func (m *OperationLogMutation) CreateTime() (r time.Time, exists bool) {
-	v := m.createTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCreateTime returns the old "createTime" field's value of the OperationLog entity.
-// If the OperationLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *OperationLogMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCreateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
-	}
-	return oldValue.CreateTime, nil
-}
-
-// ResetCreateTime resets all changes to the "createTime" field.
-func (m *OperationLogMutation) ResetCreateTime() {
-	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *OperationLogMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *OperationLogMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the OperationLog entity.
-// If the OperationLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *OperationLogMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *OperationLogMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *OperationLogMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *OperationLogMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the OperationLog entity.
-// If the OperationLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *OperationLogMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *OperationLogMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *OperationLogMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *OperationLogMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the OperationLog entity.
-// If the OperationLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *OperationLogMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *OperationLogMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *OperationLogMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *OperationLogMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUserId sets the "userId" field.
@@ -12913,6 +12745,42 @@ func (m *OperationLogMutation) ResetStatusCode() {
 	m.addstatusCode = nil
 }
 
+// SetCreateTime sets the "createTime" field.
+func (m *OperationLogMutation) SetCreateTime(t time.Time) {
+	m.createTime = &t
+}
+
+// CreateTime returns the value of the "createTime" field in the mutation.
+func (m *OperationLogMutation) CreateTime() (r time.Time, exists bool) {
+	v := m.createTime
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreateTime returns the old "createTime" field's value of the OperationLog entity.
+// If the OperationLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *OperationLogMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreateTime requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
+	}
+	return oldValue.CreateTime, nil
+}
+
+// ResetCreateTime resets all changes to the "createTime" field.
+func (m *OperationLogMutation) ResetCreateTime() {
+	m.createTime = nil
+}
+
 // Where appends a list predicates to the OperationLogMutation builder.
 func (m *OperationLogMutation) Where(ps ...predicate.OperationLog) {
 	m.predicates = append(m.predicates, ps...)
@@ -12947,19 +12815,7 @@ func (m *OperationLogMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *OperationLogMutation) Fields() []string {
-	fields := make([]string, 0, 14)
-	if m.createTime != nil {
-		fields = append(fields, operationlog.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, operationlog.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, operationlog.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, operationlog.FieldVersion)
-	}
+	fields := make([]string, 0, 11)
 	if m.userId != nil {
 		fields = append(fields, operationlog.FieldUserId)
 	}
@@ -12990,6 +12846,9 @@ func (m *OperationLogMutation) Fields() []string {
 	if m.statusCode != nil {
 		fields = append(fields, operationlog.FieldStatusCode)
 	}
+	if m.createTime != nil {
+		fields = append(fields, operationlog.FieldCreateTime)
+	}
 	return fields
 }
 
@@ -12998,14 +12857,6 @@ func (m *OperationLogMutation) Fields() []string {
 // schema.
 func (m *OperationLogMutation) Field(name string) (ent.Value, bool) {
 	switch name {
-	case operationlog.FieldCreateTime:
-		return m.CreateTime()
-	case operationlog.FieldUpdateTime:
-		return m.UpdateTime()
-	case operationlog.FieldIsDelete:
-		return m.IsDelete()
-	case operationlog.FieldVersion:
-		return m.Version()
 	case operationlog.FieldUserId:
 		return m.UserId()
 	case operationlog.FieldUsername:
@@ -13026,6 +12877,8 @@ func (m *OperationLogMutation) Field(name string) (ent.Value, bool) {
 		return m.RequestBody()
 	case operationlog.FieldStatusCode:
 		return m.StatusCode()
+	case operationlog.FieldCreateTime:
+		return m.CreateTime()
 	}
 	return nil, false
 }
@@ -13035,14 +12888,6 @@ func (m *OperationLogMutation) Field(name string) (ent.Value, bool) {
 // database failed.
 func (m *OperationLogMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
 	switch name {
-	case operationlog.FieldCreateTime:
-		return m.OldCreateTime(ctx)
-	case operationlog.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case operationlog.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case operationlog.FieldVersion:
-		return m.OldVersion(ctx)
 	case operationlog.FieldUserId:
 		return m.OldUserId(ctx)
 	case operationlog.FieldUsername:
@@ -13063,6 +12908,8 @@ func (m *OperationLogMutation) OldField(ctx context.Context, name string) (ent.V
 		return m.OldRequestBody(ctx)
 	case operationlog.FieldStatusCode:
 		return m.OldStatusCode(ctx)
+	case operationlog.FieldCreateTime:
+		return m.OldCreateTime(ctx)
 	}
 	return nil, fmt.Errorf("unknown OperationLog field %s", name)
 }
@@ -13072,34 +12919,6 @@ func (m *OperationLogMutation) OldField(ctx context.Context, name string) (ent.V
 // type.
 func (m *OperationLogMutation) SetField(name string, value ent.Value) error {
 	switch name {
-	case operationlog.FieldCreateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCreateTime(v)
-		return nil
-	case operationlog.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case operationlog.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case operationlog.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
-		return nil
 	case operationlog.FieldUserId:
 		v, ok := value.(int)
 		if !ok {
@@ -13170,6 +12989,13 @@ func (m *OperationLogMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetStatusCode(v)
 		return nil
+	case operationlog.FieldCreateTime:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreateTime(v)
+		return nil
 	}
 	return fmt.Errorf("unknown OperationLog field %s", name)
 }
@@ -13178,9 +13004,6 @@ func (m *OperationLogMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *OperationLogMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, operationlog.FieldVersion)
-	}
 	if m.adduserId != nil {
 		fields = append(fields, operationlog.FieldUserId)
 	}
@@ -13195,8 +13018,6 @@ func (m *OperationLogMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *OperationLogMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case operationlog.FieldVersion:
-		return m.AddedVersion()
 	case operationlog.FieldUserId:
 		return m.AddedUserId()
 	case operationlog.FieldStatusCode:
@@ -13210,13 +13031,6 @@ func (m *OperationLogMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *OperationLogMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case operationlog.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case operationlog.FieldUserId:
 		v, ok := value.(int)
 		if !ok {
@@ -13267,18 +13081,6 @@ func (m *OperationLogMutation) ClearField(name string) error {
 // It returns an error if the field is not defined in the schema.
 func (m *OperationLogMutation) ResetField(name string) error {
 	switch name {
-	case operationlog.FieldCreateTime:
-		m.ResetCreateTime()
-		return nil
-	case operationlog.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case operationlog.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case operationlog.FieldVersion:
-		m.ResetVersion()
-		return nil
 	case operationlog.FieldUserId:
 		m.ResetUserId()
 		return nil
@@ -13308,6 +13110,9 @@ func (m *OperationLogMutation) ResetField(name string) error {
 		return nil
 	case operationlog.FieldStatusCode:
 		m.ResetStatusCode()
+		return nil
+	case operationlog.FieldCreateTime:
+		m.ResetCreateTime()
 		return nil
 	}
 	return fmt.Errorf("unknown OperationLog field %s", name)
@@ -40330,11 +40135,6 @@ type SensitiveWordMutation struct {
 	op            Op
 	typ           string
 	id            *int
-	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	word          *string
 	category      *string
 	status        *int
@@ -40347,6 +40147,8 @@ type SensitiveWordMutation struct {
 	addneedReview *int
 	action        *int
 	addaction     *int
+	createTime    *time.Time
+	updateTime    *time.Time
 	clearedFields map[string]struct{}
 	done          bool
 	oldValue      func(context.Context) (*SensitiveWord, error)
@@ -40455,170 +40257,6 @@ func (m *SensitiveWordMutation) IDs(ctx context.Context) ([]int, error) {
 	default:
 		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
 	}
-}
-
-// SetCreateTime sets the "createTime" field.
-func (m *SensitiveWordMutation) SetCreateTime(t time.Time) {
-	m.createTime = &t
-}
-
-// CreateTime returns the value of the "createTime" field in the mutation.
-func (m *SensitiveWordMutation) CreateTime() (r time.Time, exists bool) {
-	v := m.createTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCreateTime returns the old "createTime" field's value of the SensitiveWord entity.
-// If the SensitiveWord object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCreateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
-	}
-	return oldValue.CreateTime, nil
-}
-
-// ResetCreateTime resets all changes to the "createTime" field.
-func (m *SensitiveWordMutation) ResetCreateTime() {
-	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *SensitiveWordMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *SensitiveWordMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the SensitiveWord entity.
-// If the SensitiveWord object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *SensitiveWordMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *SensitiveWordMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *SensitiveWordMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the SensitiveWord entity.
-// If the SensitiveWord object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *SensitiveWordMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *SensitiveWordMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *SensitiveWordMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the SensitiveWord entity.
-// If the SensitiveWord object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *SensitiveWordMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *SensitiveWordMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *SensitiveWordMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetWord sets the "word" field.
@@ -40973,6 +40611,78 @@ func (m *SensitiveWordMutation) ResetAction() {
 	m.addaction = nil
 }
 
+// SetCreateTime sets the "createTime" field.
+func (m *SensitiveWordMutation) SetCreateTime(t time.Time) {
+	m.createTime = &t
+}
+
+// CreateTime returns the value of the "createTime" field in the mutation.
+func (m *SensitiveWordMutation) CreateTime() (r time.Time, exists bool) {
+	v := m.createTime
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreateTime returns the old "createTime" field's value of the SensitiveWord entity.
+// If the SensitiveWord object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SensitiveWordMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreateTime requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
+	}
+	return oldValue.CreateTime, nil
+}
+
+// ResetCreateTime resets all changes to the "createTime" field.
+func (m *SensitiveWordMutation) ResetCreateTime() {
+	m.createTime = nil
+}
+
+// SetUpdateTime sets the "updateTime" field.
+func (m *SensitiveWordMutation) SetUpdateTime(t time.Time) {
+	m.updateTime = &t
+}
+
+// UpdateTime returns the value of the "updateTime" field in the mutation.
+func (m *SensitiveWordMutation) UpdateTime() (r time.Time, exists bool) {
+	v := m.updateTime
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUpdateTime returns the old "updateTime" field's value of the SensitiveWord entity.
+// If the SensitiveWord object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SensitiveWordMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
+	}
+	return oldValue.UpdateTime, nil
+}
+
+// ResetUpdateTime resets all changes to the "updateTime" field.
+func (m *SensitiveWordMutation) ResetUpdateTime() {
+	m.updateTime = nil
+}
+
 // Where appends a list predicates to the SensitiveWordMutation builder.
 func (m *SensitiveWordMutation) Where(ps ...predicate.SensitiveWord) {
 	m.predicates = append(m.predicates, ps...)
@@ -41007,19 +40717,7 @@ func (m *SensitiveWordMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *SensitiveWordMutation) Fields() []string {
-	fields := make([]string, 0, 11)
-	if m.createTime != nil {
-		fields = append(fields, sensitiveword.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, sensitiveword.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, sensitiveword.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, sensitiveword.FieldVersion)
-	}
+	fields := make([]string, 0, 9)
 	if m.word != nil {
 		fields = append(fields, sensitiveword.FieldWord)
 	}
@@ -41041,6 +40739,12 @@ func (m *SensitiveWordMutation) Fields() []string {
 	if m.action != nil {
 		fields = append(fields, sensitiveword.FieldAction)
 	}
+	if m.createTime != nil {
+		fields = append(fields, sensitiveword.FieldCreateTime)
+	}
+	if m.updateTime != nil {
+		fields = append(fields, sensitiveword.FieldUpdateTime)
+	}
 	return fields
 }
 
@@ -41049,14 +40753,6 @@ func (m *SensitiveWordMutation) Fields() []string {
 // schema.
 func (m *SensitiveWordMutation) Field(name string) (ent.Value, bool) {
 	switch name {
-	case sensitiveword.FieldCreateTime:
-		return m.CreateTime()
-	case sensitiveword.FieldUpdateTime:
-		return m.UpdateTime()
-	case sensitiveword.FieldIsDelete:
-		return m.IsDelete()
-	case sensitiveword.FieldVersion:
-		return m.Version()
 	case sensitiveword.FieldWord:
 		return m.Word()
 	case sensitiveword.FieldCategory:
@@ -41071,6 +40767,10 @@ func (m *SensitiveWordMutation) Field(name string) (ent.Value, bool) {
 		return m.NeedReview()
 	case sensitiveword.FieldAction:
 		return m.Action()
+	case sensitiveword.FieldCreateTime:
+		return m.CreateTime()
+	case sensitiveword.FieldUpdateTime:
+		return m.UpdateTime()
 	}
 	return nil, false
 }
@@ -41080,14 +40780,6 @@ func (m *SensitiveWordMutation) Field(name string) (ent.Value, bool) {
 // database failed.
 func (m *SensitiveWordMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
 	switch name {
-	case sensitiveword.FieldCreateTime:
-		return m.OldCreateTime(ctx)
-	case sensitiveword.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case sensitiveword.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case sensitiveword.FieldVersion:
-		return m.OldVersion(ctx)
 	case sensitiveword.FieldWord:
 		return m.OldWord(ctx)
 	case sensitiveword.FieldCategory:
@@ -41102,6 +40794,10 @@ func (m *SensitiveWordMutation) OldField(ctx context.Context, name string) (ent.
 		return m.OldNeedReview(ctx)
 	case sensitiveword.FieldAction:
 		return m.OldAction(ctx)
+	case sensitiveword.FieldCreateTime:
+		return m.OldCreateTime(ctx)
+	case sensitiveword.FieldUpdateTime:
+		return m.OldUpdateTime(ctx)
 	}
 	return nil, fmt.Errorf("unknown SensitiveWord field %s", name)
 }
@@ -41111,34 +40807,6 @@ func (m *SensitiveWordMutation) OldField(ctx context.Context, name string) (ent.
 // type.
 func (m *SensitiveWordMutation) SetField(name string, value ent.Value) error {
 	switch name {
-	case sensitiveword.FieldCreateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCreateTime(v)
-		return nil
-	case sensitiveword.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case sensitiveword.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case sensitiveword.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
-		return nil
 	case sensitiveword.FieldWord:
 		v, ok := value.(string)
 		if !ok {
@@ -41188,6 +40856,20 @@ func (m *SensitiveWordMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetAction(v)
 		return nil
+	case sensitiveword.FieldCreateTime:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreateTime(v)
+		return nil
+	case sensitiveword.FieldUpdateTime:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUpdateTime(v)
+		return nil
 	}
 	return fmt.Errorf("unknown SensitiveWord field %s", name)
 }
@@ -41196,9 +40878,6 @@ func (m *SensitiveWordMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *SensitiveWordMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, sensitiveword.FieldVersion)
-	}
 	if m.addstatus != nil {
 		fields = append(fields, sensitiveword.FieldStatus)
 	}
@@ -41222,8 +40901,6 @@ func (m *SensitiveWordMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *SensitiveWordMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case sensitiveword.FieldVersion:
-		return m.AddedVersion()
 	case sensitiveword.FieldStatus:
 		return m.AddedStatus()
 	case sensitiveword.FieldLevel:
@@ -41243,13 +40920,6 @@ func (m *SensitiveWordMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *SensitiveWordMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case sensitiveword.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case sensitiveword.FieldStatus:
 		v, ok := value.(int)
 		if !ok {
@@ -41312,18 +40982,6 @@ func (m *SensitiveWordMutation) ClearField(name string) error {
 // It returns an error if the field is not defined in the schema.
 func (m *SensitiveWordMutation) ResetField(name string) error {
 	switch name {
-	case sensitiveword.FieldCreateTime:
-		m.ResetCreateTime()
-		return nil
-	case sensitiveword.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case sensitiveword.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case sensitiveword.FieldVersion:
-		m.ResetVersion()
-		return nil
 	case sensitiveword.FieldWord:
 		m.ResetWord()
 		return nil
@@ -41344,6 +41002,12 @@ func (m *SensitiveWordMutation) ResetField(name string) error {
 		return nil
 	case sensitiveword.FieldAction:
 		m.ResetAction()
+		return nil
+	case sensitiveword.FieldCreateTime:
+		m.ResetCreateTime()
+		return nil
+	case sensitiveword.FieldUpdateTime:
+		m.ResetUpdateTime()
 		return nil
 	}
 	return fmt.Errorf("unknown SensitiveWord field %s", name)
@@ -41403,11 +41067,6 @@ type SensitiveWordHitMutation struct {
 	op            Op
 	typ           string
 	id            *int
-	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	sourceType    *string
 	sourceId      *string
 	content       *string
@@ -41419,6 +41078,7 @@ type SensitiveWordHitMutation struct {
 	reviewerId    *int
 	addreviewerId *int
 	reviewTime    *time.Time
+	createTime    *time.Time
 	clearedFields map[string]struct{}
 	done          bool
 	oldValue      func(context.Context) (*SensitiveWordHit, error)
@@ -41527,170 +41187,6 @@ func (m *SensitiveWordHitMutation) IDs(ctx context.Context) ([]int, error) {
 	default:
 		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
 	}
-}
-
-// SetCreateTime sets the "createTime" field.
-func (m *SensitiveWordHitMutation) SetCreateTime(t time.Time) {
-	m.createTime = &t
-}
-
-// CreateTime returns the value of the "createTime" field in the mutation.
-func (m *SensitiveWordHitMutation) CreateTime() (r time.Time, exists bool) {
-	v := m.createTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCreateTime returns the old "createTime" field's value of the SensitiveWordHit entity.
-// If the SensitiveWordHit object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordHitMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCreateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
-	}
-	return oldValue.CreateTime, nil
-}
-
-// ResetCreateTime resets all changes to the "createTime" field.
-func (m *SensitiveWordHitMutation) ResetCreateTime() {
-	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *SensitiveWordHitMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *SensitiveWordHitMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the SensitiveWordHit entity.
-// If the SensitiveWordHit object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordHitMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *SensitiveWordHitMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *SensitiveWordHitMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *SensitiveWordHitMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the SensitiveWordHit entity.
-// If the SensitiveWordHit object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordHitMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *SensitiveWordHitMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *SensitiveWordHitMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *SensitiveWordHitMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the SensitiveWordHit entity.
-// If the SensitiveWordHit object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SensitiveWordHitMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *SensitiveWordHitMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *SensitiveWordHitMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *SensitiveWordHitMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetSourceType sets the "sourceType" field.
@@ -42111,6 +41607,42 @@ func (m *SensitiveWordHitMutation) ResetReviewTime() {
 	delete(m.clearedFields, sensitivewordhit.FieldReviewTime)
 }
 
+// SetCreateTime sets the "createTime" field.
+func (m *SensitiveWordHitMutation) SetCreateTime(t time.Time) {
+	m.createTime = &t
+}
+
+// CreateTime returns the value of the "createTime" field in the mutation.
+func (m *SensitiveWordHitMutation) CreateTime() (r time.Time, exists bool) {
+	v := m.createTime
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreateTime returns the old "createTime" field's value of the SensitiveWordHit entity.
+// If the SensitiveWordHit object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SensitiveWordHitMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreateTime requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
+	}
+	return oldValue.CreateTime, nil
+}
+
+// ResetCreateTime resets all changes to the "createTime" field.
+func (m *SensitiveWordHitMutation) ResetCreateTime() {
+	m.createTime = nil
+}
+
 // Where appends a list predicates to the SensitiveWordHitMutation builder.
 func (m *SensitiveWordHitMutation) Where(ps ...predicate.SensitiveWordHit) {
 	m.predicates = append(m.predicates, ps...)
@@ -42145,19 +41677,7 @@ func (m *SensitiveWordHitMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *SensitiveWordHitMutation) Fields() []string {
-	fields := make([]string, 0, 13)
-	if m.createTime != nil {
-		fields = append(fields, sensitivewordhit.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, sensitivewordhit.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, sensitivewordhit.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, sensitivewordhit.FieldVersion)
-	}
+	fields := make([]string, 0, 10)
 	if m.sourceType != nil {
 		fields = append(fields, sensitivewordhit.FieldSourceType)
 	}
@@ -42185,6 +41705,9 @@ func (m *SensitiveWordHitMutation) Fields() []string {
 	if m.reviewTime != nil {
 		fields = append(fields, sensitivewordhit.FieldReviewTime)
 	}
+	if m.createTime != nil {
+		fields = append(fields, sensitivewordhit.FieldCreateTime)
+	}
 	return fields
 }
 
@@ -42193,14 +41716,6 @@ func (m *SensitiveWordHitMutation) Fields() []string {
 // schema.
 func (m *SensitiveWordHitMutation) Field(name string) (ent.Value, bool) {
 	switch name {
-	case sensitivewordhit.FieldCreateTime:
-		return m.CreateTime()
-	case sensitivewordhit.FieldUpdateTime:
-		return m.UpdateTime()
-	case sensitivewordhit.FieldIsDelete:
-		return m.IsDelete()
-	case sensitivewordhit.FieldVersion:
-		return m.Version()
 	case sensitivewordhit.FieldSourceType:
 		return m.SourceType()
 	case sensitivewordhit.FieldSourceId:
@@ -42219,6 +41734,8 @@ func (m *SensitiveWordHitMutation) Field(name string) (ent.Value, bool) {
 		return m.ReviewerId()
 	case sensitivewordhit.FieldReviewTime:
 		return m.ReviewTime()
+	case sensitivewordhit.FieldCreateTime:
+		return m.CreateTime()
 	}
 	return nil, false
 }
@@ -42228,14 +41745,6 @@ func (m *SensitiveWordHitMutation) Field(name string) (ent.Value, bool) {
 // database failed.
 func (m *SensitiveWordHitMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
 	switch name {
-	case sensitivewordhit.FieldCreateTime:
-		return m.OldCreateTime(ctx)
-	case sensitivewordhit.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case sensitivewordhit.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case sensitivewordhit.FieldVersion:
-		return m.OldVersion(ctx)
 	case sensitivewordhit.FieldSourceType:
 		return m.OldSourceType(ctx)
 	case sensitivewordhit.FieldSourceId:
@@ -42254,6 +41763,8 @@ func (m *SensitiveWordHitMutation) OldField(ctx context.Context, name string) (e
 		return m.OldReviewerId(ctx)
 	case sensitivewordhit.FieldReviewTime:
 		return m.OldReviewTime(ctx)
+	case sensitivewordhit.FieldCreateTime:
+		return m.OldCreateTime(ctx)
 	}
 	return nil, fmt.Errorf("unknown SensitiveWordHit field %s", name)
 }
@@ -42263,34 +41774,6 @@ func (m *SensitiveWordHitMutation) OldField(ctx context.Context, name string) (e
 // type.
 func (m *SensitiveWordHitMutation) SetField(name string, value ent.Value) error {
 	switch name {
-	case sensitivewordhit.FieldCreateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCreateTime(v)
-		return nil
-	case sensitivewordhit.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case sensitivewordhit.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case sensitivewordhit.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
-		return nil
 	case sensitivewordhit.FieldSourceType:
 		v, ok := value.(string)
 		if !ok {
@@ -42354,6 +41837,13 @@ func (m *SensitiveWordHitMutation) SetField(name string, value ent.Value) error 
 		}
 		m.SetReviewTime(v)
 		return nil
+	case sensitivewordhit.FieldCreateTime:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreateTime(v)
+		return nil
 	}
 	return fmt.Errorf("unknown SensitiveWordHit field %s", name)
 }
@@ -42362,9 +41852,6 @@ func (m *SensitiveWordHitMutation) SetField(name string, value ent.Value) error 
 // this mutation.
 func (m *SensitiveWordHitMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, sensitivewordhit.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, sensitivewordhit.FieldUID)
 	}
@@ -42379,8 +41866,6 @@ func (m *SensitiveWordHitMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *SensitiveWordHitMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case sensitivewordhit.FieldVersion:
-		return m.AddedVersion()
 	case sensitivewordhit.FieldUID:
 		return m.AddedUID()
 	case sensitivewordhit.FieldReviewerId:
@@ -42394,13 +41879,6 @@ func (m *SensitiveWordHitMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *SensitiveWordHitMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case sensitivewordhit.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case sensitivewordhit.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -42469,18 +41947,6 @@ func (m *SensitiveWordHitMutation) ClearField(name string) error {
 // It returns an error if the field is not defined in the schema.
 func (m *SensitiveWordHitMutation) ResetField(name string) error {
 	switch name {
-	case sensitivewordhit.FieldCreateTime:
-		m.ResetCreateTime()
-		return nil
-	case sensitivewordhit.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case sensitivewordhit.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case sensitivewordhit.FieldVersion:
-		m.ResetVersion()
-		return nil
 	case sensitivewordhit.FieldSourceType:
 		m.ResetSourceType()
 		return nil
@@ -42507,6 +41973,9 @@ func (m *SensitiveWordHitMutation) ResetField(name string) error {
 		return nil
 	case sensitivewordhit.FieldReviewTime:
 		m.ResetReviewTime()
+		return nil
+	case sensitivewordhit.FieldCreateTime:
+		m.ResetCreateTime()
 		return nil
 	}
 	return fmt.Errorf("unknown SensitiveWordHit field %s", name)
@@ -42566,17 +42035,13 @@ type SiteNotificationMutation struct {
 	op            Op
 	typ           string
 	id            *int
-	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	uid           *int
 	adduid        *int
 	_type         *string
 	payload       *string
 	read          *int
 	addread       *int
+	createTime    *time.Time
 	clearedFields map[string]struct{}
 	done          bool
 	oldValue      func(context.Context) (*SiteNotification, error)
@@ -42685,170 +42150,6 @@ func (m *SiteNotificationMutation) IDs(ctx context.Context) ([]int, error) {
 	default:
 		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
 	}
-}
-
-// SetCreateTime sets the "createTime" field.
-func (m *SiteNotificationMutation) SetCreateTime(t time.Time) {
-	m.createTime = &t
-}
-
-// CreateTime returns the value of the "createTime" field in the mutation.
-func (m *SiteNotificationMutation) CreateTime() (r time.Time, exists bool) {
-	v := m.createTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCreateTime returns the old "createTime" field's value of the SiteNotification entity.
-// If the SiteNotification object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SiteNotificationMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCreateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
-	}
-	return oldValue.CreateTime, nil
-}
-
-// ResetCreateTime resets all changes to the "createTime" field.
-func (m *SiteNotificationMutation) ResetCreateTime() {
-	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *SiteNotificationMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *SiteNotificationMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the SiteNotification entity.
-// If the SiteNotification object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SiteNotificationMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *SiteNotificationMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *SiteNotificationMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *SiteNotificationMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the SiteNotification entity.
-// If the SiteNotification object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SiteNotificationMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *SiteNotificationMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *SiteNotificationMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *SiteNotificationMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the SiteNotification entity.
-// If the SiteNotification object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SiteNotificationMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *SiteNotificationMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *SiteNotificationMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *SiteNotificationMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -43035,6 +42336,42 @@ func (m *SiteNotificationMutation) ResetRead() {
 	m.addread = nil
 }
 
+// SetCreateTime sets the "createTime" field.
+func (m *SiteNotificationMutation) SetCreateTime(t time.Time) {
+	m.createTime = &t
+}
+
+// CreateTime returns the value of the "createTime" field in the mutation.
+func (m *SiteNotificationMutation) CreateTime() (r time.Time, exists bool) {
+	v := m.createTime
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreateTime returns the old "createTime" field's value of the SiteNotification entity.
+// If the SiteNotification object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SiteNotificationMutation) OldCreateTime(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreateTime is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreateTime requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreateTime: %w", err)
+	}
+	return oldValue.CreateTime, nil
+}
+
+// ResetCreateTime resets all changes to the "createTime" field.
+func (m *SiteNotificationMutation) ResetCreateTime() {
+	m.createTime = nil
+}
+
 // Where appends a list predicates to the SiteNotificationMutation builder.
 func (m *SiteNotificationMutation) Where(ps ...predicate.SiteNotification) {
 	m.predicates = append(m.predicates, ps...)
@@ -43069,19 +42406,7 @@ func (m *SiteNotificationMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *SiteNotificationMutation) Fields() []string {
-	fields := make([]string, 0, 8)
-	if m.createTime != nil {
-		fields = append(fields, sitenotification.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, sitenotification.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, sitenotification.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, sitenotification.FieldVersion)
-	}
+	fields := make([]string, 0, 5)
 	if m.uid != nil {
 		fields = append(fields, sitenotification.FieldUID)
 	}
@@ -43094,6 +42419,9 @@ func (m *SiteNotificationMutation) Fields() []string {
 	if m.read != nil {
 		fields = append(fields, sitenotification.FieldRead)
 	}
+	if m.createTime != nil {
+		fields = append(fields, sitenotification.FieldCreateTime)
+	}
 	return fields
 }
 
@@ -43102,14 +42430,6 @@ func (m *SiteNotificationMutation) Fields() []string {
 // schema.
 func (m *SiteNotificationMutation) Field(name string) (ent.Value, bool) {
 	switch name {
-	case sitenotification.FieldCreateTime:
-		return m.CreateTime()
-	case sitenotification.FieldUpdateTime:
-		return m.UpdateTime()
-	case sitenotification.FieldIsDelete:
-		return m.IsDelete()
-	case sitenotification.FieldVersion:
-		return m.Version()
 	case sitenotification.FieldUID:
 		return m.UID()
 	case sitenotification.FieldType:
@@ -43118,6 +42438,8 @@ func (m *SiteNotificationMutation) Field(name string) (ent.Value, bool) {
 		return m.Payload()
 	case sitenotification.FieldRead:
 		return m.Read()
+	case sitenotification.FieldCreateTime:
+		return m.CreateTime()
 	}
 	return nil, false
 }
@@ -43127,14 +42449,6 @@ func (m *SiteNotificationMutation) Field(name string) (ent.Value, bool) {
 // database failed.
 func (m *SiteNotificationMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
 	switch name {
-	case sitenotification.FieldCreateTime:
-		return m.OldCreateTime(ctx)
-	case sitenotification.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case sitenotification.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case sitenotification.FieldVersion:
-		return m.OldVersion(ctx)
 	case sitenotification.FieldUID:
 		return m.OldUID(ctx)
 	case sitenotification.FieldType:
@@ -43143,6 +42457,8 @@ func (m *SiteNotificationMutation) OldField(ctx context.Context, name string) (e
 		return m.OldPayload(ctx)
 	case sitenotification.FieldRead:
 		return m.OldRead(ctx)
+	case sitenotification.FieldCreateTime:
+		return m.OldCreateTime(ctx)
 	}
 	return nil, fmt.Errorf("unknown SiteNotification field %s", name)
 }
@@ -43152,34 +42468,6 @@ func (m *SiteNotificationMutation) OldField(ctx context.Context, name string) (e
 // type.
 func (m *SiteNotificationMutation) SetField(name string, value ent.Value) error {
 	switch name {
-	case sitenotification.FieldCreateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCreateTime(v)
-		return nil
-	case sitenotification.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case sitenotification.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case sitenotification.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
-		return nil
 	case sitenotification.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -43208,6 +42496,13 @@ func (m *SiteNotificationMutation) SetField(name string, value ent.Value) error 
 		}
 		m.SetRead(v)
 		return nil
+	case sitenotification.FieldCreateTime:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreateTime(v)
+		return nil
 	}
 	return fmt.Errorf("unknown SiteNotification field %s", name)
 }
@@ -43216,9 +42511,6 @@ func (m *SiteNotificationMutation) SetField(name string, value ent.Value) error 
 // this mutation.
 func (m *SiteNotificationMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, sitenotification.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, sitenotification.FieldUID)
 	}
@@ -43233,8 +42525,6 @@ func (m *SiteNotificationMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *SiteNotificationMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case sitenotification.FieldVersion:
-		return m.AddedVersion()
 	case sitenotification.FieldUID:
 		return m.AddedUID()
 	case sitenotification.FieldRead:
@@ -43248,13 +42538,6 @@ func (m *SiteNotificationMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *SiteNotificationMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case sitenotification.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case sitenotification.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -43296,18 +42579,6 @@ func (m *SiteNotificationMutation) ClearField(name string) error {
 // It returns an error if the field is not defined in the schema.
 func (m *SiteNotificationMutation) ResetField(name string) error {
 	switch name {
-	case sitenotification.FieldCreateTime:
-		m.ResetCreateTime()
-		return nil
-	case sitenotification.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case sitenotification.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case sitenotification.FieldVersion:
-		m.ResetVersion()
-		return nil
 	case sitenotification.FieldUID:
 		m.ResetUID()
 		return nil
@@ -43319,6 +42590,9 @@ func (m *SiteNotificationMutation) ResetField(name string) error {
 		return nil
 	case sitenotification.FieldRead:
 		m.ResetRead()
+		return nil
+	case sitenotification.FieldCreateTime:
+		m.ResetCreateTime()
 		return nil
 	}
 	return fmt.Errorf("unknown SiteNotification field %s", name)

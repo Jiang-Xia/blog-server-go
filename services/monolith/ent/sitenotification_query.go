@@ -262,12 +262,12 @@ func (snq *SiteNotificationQuery) Clone() *SiteNotificationQuery {
 // Example:
 //
 //	var v []struct {
-//		CreateTime time.Time `json:"createTime,omitempty"`
+//		UID int `json:"uid,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.SiteNotification.Query().
-//		GroupBy(sitenotification.FieldCreateTime).
+//		GroupBy(sitenotification.FieldUID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (snq *SiteNotificationQuery) GroupBy(field string, fields ...string) *SiteNotificationGroupBy {
@@ -285,11 +285,11 @@ func (snq *SiteNotificationQuery) GroupBy(field string, fields ...string) *SiteN
 // Example:
 //
 //	var v []struct {
-//		CreateTime time.Time `json:"createTime,omitempty"`
+//		UID int `json:"uid,omitempty"`
 //	}
 //
 //	client.SiteNotification.Query().
-//		Select(sitenotification.FieldCreateTime).
+//		Select(sitenotification.FieldUID).
 //		Scan(ctx, &v)
 func (snq *SiteNotificationQuery) Select(fields ...string) *SiteNotificationSelect {
 	snq.ctx.Fields = append(snq.ctx.Fields, fields...)

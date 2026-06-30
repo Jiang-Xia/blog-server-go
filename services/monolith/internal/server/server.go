@@ -16,6 +16,7 @@ func NewHTTPServer(cfg *config.Config, log *zap.Logger, deps handler.RegisterDep
 		middleware.Recovery(log),
 		middleware.RequestID(),
 		middleware.Logger(log),
+		middleware.OperationLog(deps.OpLog),
 		middleware.CORS(cfg),
 	)
 	handler.RegisterAll(h, cfg, deps)
