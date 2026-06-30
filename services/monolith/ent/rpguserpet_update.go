@@ -23,177 +23,177 @@ type RpgUserPetUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserPetUpdate builder.
-func (_u *RpgUserPetUpdate) Where(ps ...predicate.RpgUserPet) *RpgUserPetUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rupu *RpgUserPetUpdate) Where(ps ...predicate.RpgUserPet) *RpgUserPetUpdate {
+	rupu.mutation.Where(ps...)
+	return rupu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserPetUpdate) SetUpdateTime(v time.Time) *RpgUserPetUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetUpdateTime(t time.Time) *RpgUserPetUpdate {
+	rupu.mutation.SetUpdateTime(t)
+	return rupu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserPetUpdate) SetIsDelete(v bool) *RpgUserPetUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetIsDelete(b bool) *RpgUserPetUpdate {
+	rupu.mutation.SetIsDelete(b)
+	return rupu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillableIsDelete(v *bool) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rupu *RpgUserPetUpdate) SetNillableIsDelete(b *bool) *RpgUserPetUpdate {
+	if b != nil {
+		rupu.SetIsDelete(*b)
 	}
-	return _u
+	return rupu
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserPetUpdate) SetVersion(v int) *RpgUserPetUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetVersion(i int) *RpgUserPetUpdate {
+	rupu.mutation.ResetVersion()
+	rupu.mutation.SetVersion(i)
+	return rupu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillableVersion(v *int) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rupu *RpgUserPetUpdate) SetNillableVersion(i *int) *RpgUserPetUpdate {
+	if i != nil {
+		rupu.SetVersion(*i)
 	}
-	return _u
+	return rupu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserPetUpdate) AddVersion(v int) *RpgUserPetUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rupu *RpgUserPetUpdate) AddVersion(i int) *RpgUserPetUpdate {
+	rupu.mutation.AddVersion(i)
+	return rupu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserPetUpdate) SetUID(v int) *RpgUserPetUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetUID(i int) *RpgUserPetUpdate {
+	rupu.mutation.ResetUID()
+	rupu.mutation.SetUID(i)
+	return rupu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillableUID(v *int) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (rupu *RpgUserPetUpdate) SetNillableUID(i *int) *RpgUserPetUpdate {
+	if i != nil {
+		rupu.SetUID(*i)
 	}
-	return _u
+	return rupu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserPetUpdate) AddUID(v int) *RpgUserPetUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rupu *RpgUserPetUpdate) AddUID(i int) *RpgUserPetUpdate {
+	rupu.mutation.AddUID(i)
+	return rupu
 }
 
 // SetPetCode sets the "petCode" field.
-func (_u *RpgUserPetUpdate) SetPetCode(v string) *RpgUserPetUpdate {
-	_u.mutation.SetPetCode(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetPetCode(s string) *RpgUserPetUpdate {
+	rupu.mutation.SetPetCode(s)
+	return rupu
 }
 
 // SetNillablePetCode sets the "petCode" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillablePetCode(v *string) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetPetCode(*v)
+func (rupu *RpgUserPetUpdate) SetNillablePetCode(s *string) *RpgUserPetUpdate {
+	if s != nil {
+		rupu.SetPetCode(*s)
 	}
-	return _u
+	return rupu
 }
 
 // SetLevel sets the "level" field.
-func (_u *RpgUserPetUpdate) SetLevel(v int) *RpgUserPetUpdate {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetLevel(i int) *RpgUserPetUpdate {
+	rupu.mutation.ResetLevel()
+	rupu.mutation.SetLevel(i)
+	return rupu
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillableLevel(v *int) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetLevel(*v)
+func (rupu *RpgUserPetUpdate) SetNillableLevel(i *int) *RpgUserPetUpdate {
+	if i != nil {
+		rupu.SetLevel(*i)
 	}
-	return _u
+	return rupu
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *RpgUserPetUpdate) AddLevel(v int) *RpgUserPetUpdate {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (rupu *RpgUserPetUpdate) AddLevel(i int) *RpgUserPetUpdate {
+	rupu.mutation.AddLevel(i)
+	return rupu
 }
 
 // SetExp sets the "exp" field.
-func (_u *RpgUserPetUpdate) SetExp(v int) *RpgUserPetUpdate {
-	_u.mutation.ResetExp()
-	_u.mutation.SetExp(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetExp(i int) *RpgUserPetUpdate {
+	rupu.mutation.ResetExp()
+	rupu.mutation.SetExp(i)
+	return rupu
 }
 
 // SetNillableExp sets the "exp" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillableExp(v *int) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetExp(*v)
+func (rupu *RpgUserPetUpdate) SetNillableExp(i *int) *RpgUserPetUpdate {
+	if i != nil {
+		rupu.SetExp(*i)
 	}
-	return _u
+	return rupu
 }
 
-// AddExp adds value to the "exp" field.
-func (_u *RpgUserPetUpdate) AddExp(v int) *RpgUserPetUpdate {
-	_u.mutation.AddExp(v)
-	return _u
+// AddExp adds i to the "exp" field.
+func (rupu *RpgUserPetUpdate) AddExp(i int) *RpgUserPetUpdate {
+	rupu.mutation.AddExp(i)
+	return rupu
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserPetUpdate) SetEffectJson(v string) *RpgUserPetUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetEffectJson(s string) *RpgUserPetUpdate {
+	rupu.mutation.SetEffectJson(s)
+	return rupu
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillableEffectJson(v *string) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rupu *RpgUserPetUpdate) SetNillableEffectJson(s *string) *RpgUserPetUpdate {
+	if s != nil {
+		rupu.SetEffectJson(*s)
 	}
-	return _u
+	return rupu
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserPetUpdate) ClearEffectJson() *RpgUserPetUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rupu *RpgUserPetUpdate) ClearEffectJson() *RpgUserPetUpdate {
+	rupu.mutation.ClearEffectJson()
+	return rupu
 }
 
 // SetNickname sets the "nickname" field.
-func (_u *RpgUserPetUpdate) SetNickname(v string) *RpgUserPetUpdate {
-	_u.mutation.SetNickname(v)
-	return _u
+func (rupu *RpgUserPetUpdate) SetNickname(s string) *RpgUserPetUpdate {
+	rupu.mutation.SetNickname(s)
+	return rupu
 }
 
 // SetNillableNickname sets the "nickname" field if the given value is not nil.
-func (_u *RpgUserPetUpdate) SetNillableNickname(v *string) *RpgUserPetUpdate {
-	if v != nil {
-		_u.SetNickname(*v)
+func (rupu *RpgUserPetUpdate) SetNillableNickname(s *string) *RpgUserPetUpdate {
+	if s != nil {
+		rupu.SetNickname(*s)
 	}
-	return _u
+	return rupu
 }
 
 // Mutation returns the RpgUserPetMutation object of the builder.
-func (_u *RpgUserPetUpdate) Mutation() *RpgUserPetMutation {
-	return _u.mutation
+func (rupu *RpgUserPetUpdate) Mutation() *RpgUserPetMutation {
+	return rupu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserPetUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rupu *RpgUserPetUpdate) Save(ctx context.Context) (int, error) {
+	rupu.defaults()
+	return withHooks(ctx, rupu.sqlSave, rupu.mutation, rupu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserPetUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rupu *RpgUserPetUpdate) SaveX(ctx context.Context) int {
+	affected, err := rupu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -201,78 +201,78 @@ func (_u *RpgUserPetUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserPetUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rupu *RpgUserPetUpdate) Exec(ctx context.Context) error {
+	_, err := rupu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserPetUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rupu *RpgUserPetUpdate) ExecX(ctx context.Context) {
+	if err := rupu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserPetUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rupu *RpgUserPetUpdate) defaults() {
+	if _, ok := rupu.mutation.UpdateTime(); !ok {
 		v := rpguserpet.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rupu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserPetUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rupu *RpgUserPetUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserpet.Table, rpguserpet.Columns, sqlgraph.NewFieldSpec(rpguserpet.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rupu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rupu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserpet.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rupu.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserpet.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rupu.mutation.Version(); ok {
 		_spec.SetField(rpguserpet.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rupu.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserpet.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rupu.mutation.UID(); ok {
 		_spec.SetField(rpguserpet.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rupu.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserpet.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PetCode(); ok {
+	if value, ok := rupu.mutation.PetCode(); ok {
 		_spec.SetField(rpguserpet.FieldPetCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := rupu.mutation.Level(); ok {
 		_spec.SetField(rpguserpet.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := rupu.mutation.AddedLevel(); ok {
 		_spec.AddField(rpguserpet.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Exp(); ok {
+	if value, ok := rupu.mutation.Exp(); ok {
 		_spec.SetField(rpguserpet.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedExp(); ok {
+	if value, ok := rupu.mutation.AddedExp(); ok {
 		_spec.AddField(rpguserpet.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rupu.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserpet.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rupu.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserpet.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Nickname(); ok {
+	if value, ok := rupu.mutation.Nickname(); ok {
 		_spec.SetField(rpguserpet.FieldNickname, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rupu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserpet.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -280,8 +280,8 @@ func (_u *RpgUserPetUpdate) sqlSave(ctx context.Context) (_node int, err error) 
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rupu.mutation.done = true
+	return n, nil
 }
 
 // RpgUserPetUpdateOne is the builder for updating a single RpgUserPet entity.
@@ -293,184 +293,184 @@ type RpgUserPetUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserPetUpdateOne) SetUpdateTime(v time.Time) *RpgUserPetUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetUpdateTime(t time.Time) *RpgUserPetUpdateOne {
+	rupuo.mutation.SetUpdateTime(t)
+	return rupuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserPetUpdateOne) SetIsDelete(v bool) *RpgUserPetUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetIsDelete(b bool) *RpgUserPetUpdateOne {
+	rupuo.mutation.SetIsDelete(b)
+	return rupuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillableIsDelete(v *bool) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillableIsDelete(b *bool) *RpgUserPetUpdateOne {
+	if b != nil {
+		rupuo.SetIsDelete(*b)
 	}
-	return _u
+	return rupuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserPetUpdateOne) SetVersion(v int) *RpgUserPetUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetVersion(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.ResetVersion()
+	rupuo.mutation.SetVersion(i)
+	return rupuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillableVersion(v *int) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillableVersion(i *int) *RpgUserPetUpdateOne {
+	if i != nil {
+		rupuo.SetVersion(*i)
 	}
-	return _u
+	return rupuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserPetUpdateOne) AddVersion(v int) *RpgUserPetUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rupuo *RpgUserPetUpdateOne) AddVersion(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.AddVersion(i)
+	return rupuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserPetUpdateOne) SetUID(v int) *RpgUserPetUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetUID(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.ResetUID()
+	rupuo.mutation.SetUID(i)
+	return rupuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillableUID(v *int) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillableUID(i *int) *RpgUserPetUpdateOne {
+	if i != nil {
+		rupuo.SetUID(*i)
 	}
-	return _u
+	return rupuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserPetUpdateOne) AddUID(v int) *RpgUserPetUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rupuo *RpgUserPetUpdateOne) AddUID(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.AddUID(i)
+	return rupuo
 }
 
 // SetPetCode sets the "petCode" field.
-func (_u *RpgUserPetUpdateOne) SetPetCode(v string) *RpgUserPetUpdateOne {
-	_u.mutation.SetPetCode(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetPetCode(s string) *RpgUserPetUpdateOne {
+	rupuo.mutation.SetPetCode(s)
+	return rupuo
 }
 
 // SetNillablePetCode sets the "petCode" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillablePetCode(v *string) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetPetCode(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillablePetCode(s *string) *RpgUserPetUpdateOne {
+	if s != nil {
+		rupuo.SetPetCode(*s)
 	}
-	return _u
+	return rupuo
 }
 
 // SetLevel sets the "level" field.
-func (_u *RpgUserPetUpdateOne) SetLevel(v int) *RpgUserPetUpdateOne {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetLevel(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.ResetLevel()
+	rupuo.mutation.SetLevel(i)
+	return rupuo
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillableLevel(v *int) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetLevel(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillableLevel(i *int) *RpgUserPetUpdateOne {
+	if i != nil {
+		rupuo.SetLevel(*i)
 	}
-	return _u
+	return rupuo
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *RpgUserPetUpdateOne) AddLevel(v int) *RpgUserPetUpdateOne {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (rupuo *RpgUserPetUpdateOne) AddLevel(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.AddLevel(i)
+	return rupuo
 }
 
 // SetExp sets the "exp" field.
-func (_u *RpgUserPetUpdateOne) SetExp(v int) *RpgUserPetUpdateOne {
-	_u.mutation.ResetExp()
-	_u.mutation.SetExp(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetExp(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.ResetExp()
+	rupuo.mutation.SetExp(i)
+	return rupuo
 }
 
 // SetNillableExp sets the "exp" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillableExp(v *int) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetExp(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillableExp(i *int) *RpgUserPetUpdateOne {
+	if i != nil {
+		rupuo.SetExp(*i)
 	}
-	return _u
+	return rupuo
 }
 
-// AddExp adds value to the "exp" field.
-func (_u *RpgUserPetUpdateOne) AddExp(v int) *RpgUserPetUpdateOne {
-	_u.mutation.AddExp(v)
-	return _u
+// AddExp adds i to the "exp" field.
+func (rupuo *RpgUserPetUpdateOne) AddExp(i int) *RpgUserPetUpdateOne {
+	rupuo.mutation.AddExp(i)
+	return rupuo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserPetUpdateOne) SetEffectJson(v string) *RpgUserPetUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetEffectJson(s string) *RpgUserPetUpdateOne {
+	rupuo.mutation.SetEffectJson(s)
+	return rupuo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillableEffectJson(v *string) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillableEffectJson(s *string) *RpgUserPetUpdateOne {
+	if s != nil {
+		rupuo.SetEffectJson(*s)
 	}
-	return _u
+	return rupuo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserPetUpdateOne) ClearEffectJson() *RpgUserPetUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rupuo *RpgUserPetUpdateOne) ClearEffectJson() *RpgUserPetUpdateOne {
+	rupuo.mutation.ClearEffectJson()
+	return rupuo
 }
 
 // SetNickname sets the "nickname" field.
-func (_u *RpgUserPetUpdateOne) SetNickname(v string) *RpgUserPetUpdateOne {
-	_u.mutation.SetNickname(v)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) SetNickname(s string) *RpgUserPetUpdateOne {
+	rupuo.mutation.SetNickname(s)
+	return rupuo
 }
 
 // SetNillableNickname sets the "nickname" field if the given value is not nil.
-func (_u *RpgUserPetUpdateOne) SetNillableNickname(v *string) *RpgUserPetUpdateOne {
-	if v != nil {
-		_u.SetNickname(*v)
+func (rupuo *RpgUserPetUpdateOne) SetNillableNickname(s *string) *RpgUserPetUpdateOne {
+	if s != nil {
+		rupuo.SetNickname(*s)
 	}
-	return _u
+	return rupuo
 }
 
 // Mutation returns the RpgUserPetMutation object of the builder.
-func (_u *RpgUserPetUpdateOne) Mutation() *RpgUserPetMutation {
-	return _u.mutation
+func (rupuo *RpgUserPetUpdateOne) Mutation() *RpgUserPetMutation {
+	return rupuo.mutation
 }
 
 // Where appends a list predicates to the RpgUserPetUpdate builder.
-func (_u *RpgUserPetUpdateOne) Where(ps ...predicate.RpgUserPet) *RpgUserPetUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) Where(ps ...predicate.RpgUserPet) *RpgUserPetUpdateOne {
+	rupuo.mutation.Where(ps...)
+	return rupuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserPetUpdateOne) Select(field string, fields ...string) *RpgUserPetUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rupuo *RpgUserPetUpdateOne) Select(field string, fields ...string) *RpgUserPetUpdateOne {
+	rupuo.fields = append([]string{field}, fields...)
+	return rupuo
 }
 
 // Save executes the query and returns the updated RpgUserPet entity.
-func (_u *RpgUserPetUpdateOne) Save(ctx context.Context) (*RpgUserPet, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rupuo *RpgUserPetUpdateOne) Save(ctx context.Context) (*RpgUserPet, error) {
+	rupuo.defaults()
+	return withHooks(ctx, rupuo.sqlSave, rupuo.mutation, rupuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserPetUpdateOne) SaveX(ctx context.Context) *RpgUserPet {
-	node, err := _u.Save(ctx)
+func (rupuo *RpgUserPetUpdateOne) SaveX(ctx context.Context) *RpgUserPet {
+	node, err := rupuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -478,34 +478,34 @@ func (_u *RpgUserPetUpdateOne) SaveX(ctx context.Context) *RpgUserPet {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserPetUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rupuo *RpgUserPetUpdateOne) Exec(ctx context.Context) error {
+	_, err := rupuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserPetUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rupuo *RpgUserPetUpdateOne) ExecX(ctx context.Context) {
+	if err := rupuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserPetUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rupuo *RpgUserPetUpdateOne) defaults() {
+	if _, ok := rupuo.mutation.UpdateTime(); !ok {
 		v := rpguserpet.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rupuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserPetUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserPet, err error) {
+func (rupuo *RpgUserPetUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserPet, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserpet.Table, rpguserpet.Columns, sqlgraph.NewFieldSpec(rpguserpet.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rupuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserPet.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rupuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserpet.FieldID)
 		for _, f := range fields {
@@ -517,59 +517,59 @@ func (_u *RpgUserPetUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserPet, 
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rupuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rupuo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserpet.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rupuo.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserpet.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rupuo.mutation.Version(); ok {
 		_spec.SetField(rpguserpet.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rupuo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserpet.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rupuo.mutation.UID(); ok {
 		_spec.SetField(rpguserpet.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rupuo.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserpet.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PetCode(); ok {
+	if value, ok := rupuo.mutation.PetCode(); ok {
 		_spec.SetField(rpguserpet.FieldPetCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := rupuo.mutation.Level(); ok {
 		_spec.SetField(rpguserpet.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := rupuo.mutation.AddedLevel(); ok {
 		_spec.AddField(rpguserpet.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Exp(); ok {
+	if value, ok := rupuo.mutation.Exp(); ok {
 		_spec.SetField(rpguserpet.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedExp(); ok {
+	if value, ok := rupuo.mutation.AddedExp(); ok {
 		_spec.AddField(rpguserpet.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rupuo.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserpet.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rupuo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserpet.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Nickname(); ok {
+	if value, ok := rupuo.mutation.Nickname(); ok {
 		_spec.SetField(rpguserpet.FieldNickname, field.TypeString, value)
 	}
-	_node = &RpgUserPet{config: _u.config}
+	_node = &RpgUserPet{config: rupuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rupuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserpet.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -577,6 +577,6 @@ func (_u *RpgUserPetUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserPet, 
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rupuo.mutation.done = true
 	return _node, nil
 }

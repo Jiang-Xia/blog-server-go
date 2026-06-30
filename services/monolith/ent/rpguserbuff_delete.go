@@ -20,56 +20,56 @@ type RpgUserBuffDelete struct {
 }
 
 // Where appends a list predicates to the RpgUserBuffDelete builder.
-func (_d *RpgUserBuffDelete) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rubd *RpgUserBuffDelete) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffDelete {
+	rubd.mutation.Where(ps...)
+	return rubd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgUserBuffDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rubd *RpgUserBuffDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rubd.sqlExec, rubd.mutation, rubd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserBuffDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rubd *RpgUserBuffDelete) ExecX(ctx context.Context) int {
+	n, err := rubd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgUserBuffDelete) sqlExec(ctx context.Context) (int, error) {
+func (rubd *RpgUserBuffDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpguserbuff.Table, sqlgraph.NewFieldSpec(rpguserbuff.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rubd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rubd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rubd.mutation.done = true
 	return affected, err
 }
 
 // RpgUserBuffDeleteOne is the builder for deleting a single RpgUserBuff entity.
 type RpgUserBuffDeleteOne struct {
-	_d *RpgUserBuffDelete
+	rubd *RpgUserBuffDelete
 }
 
 // Where appends a list predicates to the RpgUserBuffDelete builder.
-func (_d *RpgUserBuffDeleteOne) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rubdo *RpgUserBuffDeleteOne) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffDeleteOne {
+	rubdo.rubd.mutation.Where(ps...)
+	return rubdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgUserBuffDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rubdo *RpgUserBuffDeleteOne) Exec(ctx context.Context) error {
+	n, err := rubdo.rubd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgUserBuffDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserBuffDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rubdo *RpgUserBuffDeleteOne) ExecX(ctx context.Context) {
+	if err := rubdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

@@ -22,86 +22,86 @@ type RpgUserLoadoutCreate struct {
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgUserLoadoutCreate) SetUID(v int) *RpgUserLoadoutCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rulc *RpgUserLoadoutCreate) SetUID(i int) *RpgUserLoadoutCreate {
+	rulc.mutation.SetUID(i)
+	return rulc
 }
 
 // SetTitleCode sets the "titleCode" field.
-func (_c *RpgUserLoadoutCreate) SetTitleCode(v string) *RpgUserLoadoutCreate {
-	_c.mutation.SetTitleCode(v)
-	return _c
+func (rulc *RpgUserLoadoutCreate) SetTitleCode(s string) *RpgUserLoadoutCreate {
+	rulc.mutation.SetTitleCode(s)
+	return rulc
 }
 
 // SetNillableTitleCode sets the "titleCode" field if the given value is not nil.
-func (_c *RpgUserLoadoutCreate) SetNillableTitleCode(v *string) *RpgUserLoadoutCreate {
-	if v != nil {
-		_c.SetTitleCode(*v)
+func (rulc *RpgUserLoadoutCreate) SetNillableTitleCode(s *string) *RpgUserLoadoutCreate {
+	if s != nil {
+		rulc.SetTitleCode(*s)
 	}
-	return _c
+	return rulc
 }
 
 // SetAvatarFrameCode sets the "avatarFrameCode" field.
-func (_c *RpgUserLoadoutCreate) SetAvatarFrameCode(v string) *RpgUserLoadoutCreate {
-	_c.mutation.SetAvatarFrameCode(v)
-	return _c
+func (rulc *RpgUserLoadoutCreate) SetAvatarFrameCode(s string) *RpgUserLoadoutCreate {
+	rulc.mutation.SetAvatarFrameCode(s)
+	return rulc
 }
 
 // SetNillableAvatarFrameCode sets the "avatarFrameCode" field if the given value is not nil.
-func (_c *RpgUserLoadoutCreate) SetNillableAvatarFrameCode(v *string) *RpgUserLoadoutCreate {
-	if v != nil {
-		_c.SetAvatarFrameCode(*v)
+func (rulc *RpgUserLoadoutCreate) SetNillableAvatarFrameCode(s *string) *RpgUserLoadoutCreate {
+	if s != nil {
+		rulc.SetAvatarFrameCode(*s)
 	}
-	return _c
+	return rulc
 }
 
 // SetPetId sets the "petId" field.
-func (_c *RpgUserLoadoutCreate) SetPetId(v int) *RpgUserLoadoutCreate {
-	_c.mutation.SetPetId(v)
-	return _c
+func (rulc *RpgUserLoadoutCreate) SetPetId(i int) *RpgUserLoadoutCreate {
+	rulc.mutation.SetPetId(i)
+	return rulc
 }
 
 // SetNillablePetId sets the "petId" field if the given value is not nil.
-func (_c *RpgUserLoadoutCreate) SetNillablePetId(v *int) *RpgUserLoadoutCreate {
-	if v != nil {
-		_c.SetPetId(*v)
+func (rulc *RpgUserLoadoutCreate) SetNillablePetId(i *int) *RpgUserLoadoutCreate {
+	if i != nil {
+		rulc.SetPetId(*i)
 	}
-	return _c
+	return rulc
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgUserLoadoutCreate) SetEffectJson(v string) *RpgUserLoadoutCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (rulc *RpgUserLoadoutCreate) SetEffectJson(s string) *RpgUserLoadoutCreate {
+	rulc.mutation.SetEffectJson(s)
+	return rulc
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgUserLoadoutCreate) SetNillableEffectJson(v *string) *RpgUserLoadoutCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (rulc *RpgUserLoadoutCreate) SetNillableEffectJson(s *string) *RpgUserLoadoutCreate {
+	if s != nil {
+		rulc.SetEffectJson(*s)
 	}
-	return _c
+	return rulc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserLoadoutCreate) SetID(v int) *RpgUserLoadoutCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rulc *RpgUserLoadoutCreate) SetID(i int) *RpgUserLoadoutCreate {
+	rulc.mutation.SetID(i)
+	return rulc
 }
 
 // Mutation returns the RpgUserLoadoutMutation object of the builder.
-func (_c *RpgUserLoadoutCreate) Mutation() *RpgUserLoadoutMutation {
-	return _c.mutation
+func (rulc *RpgUserLoadoutCreate) Mutation() *RpgUserLoadoutMutation {
+	return rulc.mutation
 }
 
 // Save creates the RpgUserLoadout in the database.
-func (_c *RpgUserLoadoutCreate) Save(ctx context.Context) (*RpgUserLoadout, error) {
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rulc *RpgUserLoadoutCreate) Save(ctx context.Context) (*RpgUserLoadout, error) {
+	return withHooks(ctx, rulc.sqlSave, rulc.mutation, rulc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserLoadoutCreate) SaveX(ctx context.Context) *RpgUserLoadout {
-	v, err := _c.Save(ctx)
+func (rulc *RpgUserLoadoutCreate) SaveX(ctx context.Context) *RpgUserLoadout {
+	v, err := rulc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -109,32 +109,32 @@ func (_c *RpgUserLoadoutCreate) SaveX(ctx context.Context) *RpgUserLoadout {
 }
 
 // Exec executes the query.
-func (_c *RpgUserLoadoutCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rulc *RpgUserLoadoutCreate) Exec(ctx context.Context) error {
+	_, err := rulc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserLoadoutCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rulc *RpgUserLoadoutCreate) ExecX(ctx context.Context) {
+	if err := rulc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserLoadoutCreate) check() error {
-	if _, ok := _c.mutation.UID(); !ok {
+func (rulc *RpgUserLoadoutCreate) check() error {
+	if _, ok := rulc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserLoadout.uid"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserLoadoutCreate) sqlSave(ctx context.Context) (*RpgUserLoadout, error) {
-	if err := _c.check(); err != nil {
+func (rulc *RpgUserLoadoutCreate) sqlSave(ctx context.Context) (*RpgUserLoadout, error) {
+	if err := rulc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rulc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rulc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -144,38 +144,38 @@ func (_c *RpgUserLoadoutCreate) sqlSave(ctx context.Context) (*RpgUserLoadout, e
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rulc.mutation.id = &_node.ID
+	rulc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserLoadoutCreate) createSpec() (*RpgUserLoadout, *sqlgraph.CreateSpec) {
+func (rulc *RpgUserLoadoutCreate) createSpec() (*RpgUserLoadout, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserLoadout{config: _c.config}
+		_node = &RpgUserLoadout{config: rulc.config}
 		_spec = sqlgraph.NewCreateSpec(rpguserloadout.Table, sqlgraph.NewFieldSpec(rpguserloadout.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rulc.conflict
+	if id, ok := rulc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rulc.mutation.UID(); ok {
 		_spec.SetField(rpguserloadout.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.TitleCode(); ok {
+	if value, ok := rulc.mutation.TitleCode(); ok {
 		_spec.SetField(rpguserloadout.FieldTitleCode, field.TypeString, value)
 		_node.TitleCode = &value
 	}
-	if value, ok := _c.mutation.AvatarFrameCode(); ok {
+	if value, ok := rulc.mutation.AvatarFrameCode(); ok {
 		_spec.SetField(rpguserloadout.FieldAvatarFrameCode, field.TypeString, value)
 		_node.AvatarFrameCode = &value
 	}
-	if value, ok := _c.mutation.PetId(); ok {
+	if value, ok := rulc.mutation.PetId(); ok {
 		_spec.SetField(rpguserloadout.FieldPetId, field.TypeInt, value)
 		_node.PetId = &value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := rulc.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserloadout.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
@@ -198,10 +198,10 @@ func (_c *RpgUserLoadoutCreate) createSpec() (*RpgUserLoadout, *sqlgraph.CreateS
 //			SetUID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserLoadoutCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserLoadoutUpsertOne {
-	_c.conflict = opts
+func (rulc *RpgUserLoadoutCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserLoadoutUpsertOne {
+	rulc.conflict = opts
 	return &RpgUserLoadoutUpsertOne{
-		create: _c,
+		create: rulc,
 	}
 }
 
@@ -211,10 +211,10 @@ func (_c *RpgUserLoadoutCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserL
 //	client.RpgUserLoadout.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserLoadoutCreate) OnConflictColumns(columns ...string) *RpgUserLoadoutUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rulc *RpgUserLoadoutCreate) OnConflictColumns(columns ...string) *RpgUserLoadoutUpsertOne {
+	rulc.conflict = append(rulc.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserLoadoutUpsertOne{
-		create: _c,
+		create: rulc,
 	}
 }
 
@@ -529,16 +529,16 @@ type RpgUserLoadoutCreateBulk struct {
 }
 
 // Save creates the RpgUserLoadout entities in the database.
-func (_c *RpgUserLoadoutCreateBulk) Save(ctx context.Context) ([]*RpgUserLoadout, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rulcb *RpgUserLoadoutCreateBulk) Save(ctx context.Context) ([]*RpgUserLoadout, error) {
+	if rulcb.err != nil {
+		return nil, rulcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserLoadout, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rulcb.builders))
+	nodes := make([]*RpgUserLoadout, len(rulcb.builders))
+	mutators := make([]Mutator, len(rulcb.builders))
+	for i := range rulcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rulcb.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserLoadoutMutation)
 				if !ok {
@@ -551,12 +551,12 @@ func (_c *RpgUserLoadoutCreateBulk) Save(ctx context.Context) ([]*RpgUserLoadout
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rulcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rulcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rulcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -580,7 +580,7 @@ func (_c *RpgUserLoadoutCreateBulk) Save(ctx context.Context) ([]*RpgUserLoadout
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rulcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -588,8 +588,8 @@ func (_c *RpgUserLoadoutCreateBulk) Save(ctx context.Context) ([]*RpgUserLoadout
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserLoadoutCreateBulk) SaveX(ctx context.Context) []*RpgUserLoadout {
-	v, err := _c.Save(ctx)
+func (rulcb *RpgUserLoadoutCreateBulk) SaveX(ctx context.Context) []*RpgUserLoadout {
+	v, err := rulcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -597,14 +597,14 @@ func (_c *RpgUserLoadoutCreateBulk) SaveX(ctx context.Context) []*RpgUserLoadout
 }
 
 // Exec executes the query.
-func (_c *RpgUserLoadoutCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rulcb *RpgUserLoadoutCreateBulk) Exec(ctx context.Context) error {
+	_, err := rulcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserLoadoutCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rulcb *RpgUserLoadoutCreateBulk) ExecX(ctx context.Context) {
+	if err := rulcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -624,10 +624,10 @@ func (_c *RpgUserLoadoutCreateBulk) ExecX(ctx context.Context) {
 //			SetUID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserLoadoutCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserLoadoutUpsertBulk {
-	_c.conflict = opts
+func (rulcb *RpgUserLoadoutCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserLoadoutUpsertBulk {
+	rulcb.conflict = opts
 	return &RpgUserLoadoutUpsertBulk{
-		create: _c,
+		create: rulcb,
 	}
 }
 
@@ -637,10 +637,10 @@ func (_c *RpgUserLoadoutCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgU
 //	client.RpgUserLoadout.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserLoadoutCreateBulk) OnConflictColumns(columns ...string) *RpgUserLoadoutUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rulcb *RpgUserLoadoutCreateBulk) OnConflictColumns(columns ...string) *RpgUserLoadoutUpsertBulk {
+	rulcb.conflict = append(rulcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserLoadoutUpsertBulk{
-		create: _c,
+		create: rulcb,
 	}
 }
 

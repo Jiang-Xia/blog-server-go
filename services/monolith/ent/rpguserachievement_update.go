@@ -23,163 +23,163 @@ type RpgUserAchievementUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserAchievementUpdate builder.
-func (_u *RpgUserAchievementUpdate) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruau *RpgUserAchievementUpdate) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementUpdate {
+	ruau.mutation.Where(ps...)
+	return ruau
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserAchievementUpdate) SetUpdateTime(v time.Time) *RpgUserAchievementUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetUpdateTime(t time.Time) *RpgUserAchievementUpdate {
+	ruau.mutation.SetUpdateTime(t)
+	return ruau
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserAchievementUpdate) SetIsDelete(v bool) *RpgUserAchievementUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetIsDelete(b bool) *RpgUserAchievementUpdate {
+	ruau.mutation.SetIsDelete(b)
+	return ruau
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdate) SetNillableIsDelete(v *bool) *RpgUserAchievementUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ruau *RpgUserAchievementUpdate) SetNillableIsDelete(b *bool) *RpgUserAchievementUpdate {
+	if b != nil {
+		ruau.SetIsDelete(*b)
 	}
-	return _u
+	return ruau
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserAchievementUpdate) SetVersion(v int) *RpgUserAchievementUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetVersion(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.ResetVersion()
+	ruau.mutation.SetVersion(i)
+	return ruau
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdate) SetNillableVersion(v *int) *RpgUserAchievementUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ruau *RpgUserAchievementUpdate) SetNillableVersion(i *int) *RpgUserAchievementUpdate {
+	if i != nil {
+		ruau.SetVersion(*i)
 	}
-	return _u
+	return ruau
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserAchievementUpdate) AddVersion(v int) *RpgUserAchievementUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ruau *RpgUserAchievementUpdate) AddVersion(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.AddVersion(i)
+	return ruau
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserAchievementUpdate) SetUID(v int) *RpgUserAchievementUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetUID(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.ResetUID()
+	ruau.mutation.SetUID(i)
+	return ruau
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdate) SetNillableUID(v *int) *RpgUserAchievementUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (ruau *RpgUserAchievementUpdate) SetNillableUID(i *int) *RpgUserAchievementUpdate {
+	if i != nil {
+		ruau.SetUID(*i)
 	}
-	return _u
+	return ruau
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserAchievementUpdate) AddUID(v int) *RpgUserAchievementUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ruau *RpgUserAchievementUpdate) AddUID(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.AddUID(i)
+	return ruau
 }
 
 // SetAchievementCode sets the "achievementCode" field.
-func (_u *RpgUserAchievementUpdate) SetAchievementCode(v string) *RpgUserAchievementUpdate {
-	_u.mutation.SetAchievementCode(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetAchievementCode(s string) *RpgUserAchievementUpdate {
+	ruau.mutation.SetAchievementCode(s)
+	return ruau
 }
 
 // SetNillableAchievementCode sets the "achievementCode" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdate) SetNillableAchievementCode(v *string) *RpgUserAchievementUpdate {
-	if v != nil {
-		_u.SetAchievementCode(*v)
+func (ruau *RpgUserAchievementUpdate) SetNillableAchievementCode(s *string) *RpgUserAchievementUpdate {
+	if s != nil {
+		ruau.SetAchievementCode(*s)
 	}
-	return _u
+	return ruau
 }
 
 // SetProgress sets the "progress" field.
-func (_u *RpgUserAchievementUpdate) SetProgress(v int) *RpgUserAchievementUpdate {
-	_u.mutation.ResetProgress()
-	_u.mutation.SetProgress(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetProgress(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.ResetProgress()
+	ruau.mutation.SetProgress(i)
+	return ruau
 }
 
 // SetNillableProgress sets the "progress" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdate) SetNillableProgress(v *int) *RpgUserAchievementUpdate {
-	if v != nil {
-		_u.SetProgress(*v)
+func (ruau *RpgUserAchievementUpdate) SetNillableProgress(i *int) *RpgUserAchievementUpdate {
+	if i != nil {
+		ruau.SetProgress(*i)
 	}
-	return _u
+	return ruau
 }
 
-// AddProgress adds value to the "progress" field.
-func (_u *RpgUserAchievementUpdate) AddProgress(v int) *RpgUserAchievementUpdate {
-	_u.mutation.AddProgress(v)
-	return _u
+// AddProgress adds i to the "progress" field.
+func (ruau *RpgUserAchievementUpdate) AddProgress(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.AddProgress(i)
+	return ruau
 }
 
 // SetCompleted sets the "completed" field.
-func (_u *RpgUserAchievementUpdate) SetCompleted(v int) *RpgUserAchievementUpdate {
-	_u.mutation.ResetCompleted()
-	_u.mutation.SetCompleted(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetCompleted(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.ResetCompleted()
+	ruau.mutation.SetCompleted(i)
+	return ruau
 }
 
 // SetNillableCompleted sets the "completed" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdate) SetNillableCompleted(v *int) *RpgUserAchievementUpdate {
-	if v != nil {
-		_u.SetCompleted(*v)
+func (ruau *RpgUserAchievementUpdate) SetNillableCompleted(i *int) *RpgUserAchievementUpdate {
+	if i != nil {
+		ruau.SetCompleted(*i)
 	}
-	return _u
+	return ruau
 }
 
-// AddCompleted adds value to the "completed" field.
-func (_u *RpgUserAchievementUpdate) AddCompleted(v int) *RpgUserAchievementUpdate {
-	_u.mutation.AddCompleted(v)
-	return _u
+// AddCompleted adds i to the "completed" field.
+func (ruau *RpgUserAchievementUpdate) AddCompleted(i int) *RpgUserAchievementUpdate {
+	ruau.mutation.AddCompleted(i)
+	return ruau
 }
 
 // SetCompletedAt sets the "completedAt" field.
-func (_u *RpgUserAchievementUpdate) SetCompletedAt(v time.Time) *RpgUserAchievementUpdate {
-	_u.mutation.SetCompletedAt(v)
-	return _u
+func (ruau *RpgUserAchievementUpdate) SetCompletedAt(t time.Time) *RpgUserAchievementUpdate {
+	ruau.mutation.SetCompletedAt(t)
+	return ruau
 }
 
 // SetNillableCompletedAt sets the "completedAt" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdate) SetNillableCompletedAt(v *time.Time) *RpgUserAchievementUpdate {
-	if v != nil {
-		_u.SetCompletedAt(*v)
+func (ruau *RpgUserAchievementUpdate) SetNillableCompletedAt(t *time.Time) *RpgUserAchievementUpdate {
+	if t != nil {
+		ruau.SetCompletedAt(*t)
 	}
-	return _u
+	return ruau
 }
 
 // ClearCompletedAt clears the value of the "completedAt" field.
-func (_u *RpgUserAchievementUpdate) ClearCompletedAt() *RpgUserAchievementUpdate {
-	_u.mutation.ClearCompletedAt()
-	return _u
+func (ruau *RpgUserAchievementUpdate) ClearCompletedAt() *RpgUserAchievementUpdate {
+	ruau.mutation.ClearCompletedAt()
+	return ruau
 }
 
 // Mutation returns the RpgUserAchievementMutation object of the builder.
-func (_u *RpgUserAchievementUpdate) Mutation() *RpgUserAchievementMutation {
-	return _u.mutation
+func (ruau *RpgUserAchievementUpdate) Mutation() *RpgUserAchievementMutation {
+	return ruau.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserAchievementUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruau *RpgUserAchievementUpdate) Save(ctx context.Context) (int, error) {
+	ruau.defaults()
+	return withHooks(ctx, ruau.sqlSave, ruau.mutation, ruau.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserAchievementUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (ruau *RpgUserAchievementUpdate) SaveX(ctx context.Context) int {
+	affected, err := ruau.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -187,75 +187,75 @@ func (_u *RpgUserAchievementUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserAchievementUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruau *RpgUserAchievementUpdate) Exec(ctx context.Context) error {
+	_, err := ruau.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserAchievementUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruau *RpgUserAchievementUpdate) ExecX(ctx context.Context) {
+	if err := ruau.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserAchievementUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ruau *RpgUserAchievementUpdate) defaults() {
+	if _, ok := ruau.mutation.UpdateTime(); !ok {
 		v := rpguserachievement.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ruau.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserAchievementUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (ruau *RpgUserAchievementUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserachievement.Table, rpguserachievement.Columns, sqlgraph.NewFieldSpec(rpguserachievement.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruau.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ruau.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserachievement.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ruau.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserachievement.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ruau.mutation.Version(); ok {
 		_spec.SetField(rpguserachievement.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ruau.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserachievement.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ruau.mutation.UID(); ok {
 		_spec.SetField(rpguserachievement.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ruau.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserachievement.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AchievementCode(); ok {
+	if value, ok := ruau.mutation.AchievementCode(); ok {
 		_spec.SetField(rpguserachievement.FieldAchievementCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Progress(); ok {
+	if value, ok := ruau.mutation.Progress(); ok {
 		_spec.SetField(rpguserachievement.FieldProgress, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedProgress(); ok {
+	if value, ok := ruau.mutation.AddedProgress(); ok {
 		_spec.AddField(rpguserachievement.FieldProgress, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Completed(); ok {
+	if value, ok := ruau.mutation.Completed(); ok {
 		_spec.SetField(rpguserachievement.FieldCompleted, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCompleted(); ok {
+	if value, ok := ruau.mutation.AddedCompleted(); ok {
 		_spec.AddField(rpguserachievement.FieldCompleted, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.CompletedAt(); ok {
+	if value, ok := ruau.mutation.CompletedAt(); ok {
 		_spec.SetField(rpguserachievement.FieldCompletedAt, field.TypeTime, value)
 	}
-	if _u.mutation.CompletedAtCleared() {
+	if ruau.mutation.CompletedAtCleared() {
 		_spec.ClearField(rpguserachievement.FieldCompletedAt, field.TypeTime)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, ruau.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserachievement.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -263,8 +263,8 @@ func (_u *RpgUserAchievementUpdate) sqlSave(ctx context.Context) (_node int, err
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	ruau.mutation.done = true
+	return n, nil
 }
 
 // RpgUserAchievementUpdateOne is the builder for updating a single RpgUserAchievement entity.
@@ -276,170 +276,170 @@ type RpgUserAchievementUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserAchievementUpdateOne) SetUpdateTime(v time.Time) *RpgUserAchievementUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetUpdateTime(t time.Time) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.SetUpdateTime(t)
+	return ruauo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserAchievementUpdateOne) SetIsDelete(v bool) *RpgUserAchievementUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetIsDelete(b bool) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.SetIsDelete(b)
+	return ruauo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdateOne) SetNillableIsDelete(v *bool) *RpgUserAchievementUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ruauo *RpgUserAchievementUpdateOne) SetNillableIsDelete(b *bool) *RpgUserAchievementUpdateOne {
+	if b != nil {
+		ruauo.SetIsDelete(*b)
 	}
-	return _u
+	return ruauo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserAchievementUpdateOne) SetVersion(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetVersion(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.ResetVersion()
+	ruauo.mutation.SetVersion(i)
+	return ruauo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdateOne) SetNillableVersion(v *int) *RpgUserAchievementUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ruauo *RpgUserAchievementUpdateOne) SetNillableVersion(i *int) *RpgUserAchievementUpdateOne {
+	if i != nil {
+		ruauo.SetVersion(*i)
 	}
-	return _u
+	return ruauo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserAchievementUpdateOne) AddVersion(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ruauo *RpgUserAchievementUpdateOne) AddVersion(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.AddVersion(i)
+	return ruauo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserAchievementUpdateOne) SetUID(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetUID(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.ResetUID()
+	ruauo.mutation.SetUID(i)
+	return ruauo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdateOne) SetNillableUID(v *int) *RpgUserAchievementUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (ruauo *RpgUserAchievementUpdateOne) SetNillableUID(i *int) *RpgUserAchievementUpdateOne {
+	if i != nil {
+		ruauo.SetUID(*i)
 	}
-	return _u
+	return ruauo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserAchievementUpdateOne) AddUID(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ruauo *RpgUserAchievementUpdateOne) AddUID(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.AddUID(i)
+	return ruauo
 }
 
 // SetAchievementCode sets the "achievementCode" field.
-func (_u *RpgUserAchievementUpdateOne) SetAchievementCode(v string) *RpgUserAchievementUpdateOne {
-	_u.mutation.SetAchievementCode(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetAchievementCode(s string) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.SetAchievementCode(s)
+	return ruauo
 }
 
 // SetNillableAchievementCode sets the "achievementCode" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdateOne) SetNillableAchievementCode(v *string) *RpgUserAchievementUpdateOne {
-	if v != nil {
-		_u.SetAchievementCode(*v)
+func (ruauo *RpgUserAchievementUpdateOne) SetNillableAchievementCode(s *string) *RpgUserAchievementUpdateOne {
+	if s != nil {
+		ruauo.SetAchievementCode(*s)
 	}
-	return _u
+	return ruauo
 }
 
 // SetProgress sets the "progress" field.
-func (_u *RpgUserAchievementUpdateOne) SetProgress(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.ResetProgress()
-	_u.mutation.SetProgress(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetProgress(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.ResetProgress()
+	ruauo.mutation.SetProgress(i)
+	return ruauo
 }
 
 // SetNillableProgress sets the "progress" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdateOne) SetNillableProgress(v *int) *RpgUserAchievementUpdateOne {
-	if v != nil {
-		_u.SetProgress(*v)
+func (ruauo *RpgUserAchievementUpdateOne) SetNillableProgress(i *int) *RpgUserAchievementUpdateOne {
+	if i != nil {
+		ruauo.SetProgress(*i)
 	}
-	return _u
+	return ruauo
 }
 
-// AddProgress adds value to the "progress" field.
-func (_u *RpgUserAchievementUpdateOne) AddProgress(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.AddProgress(v)
-	return _u
+// AddProgress adds i to the "progress" field.
+func (ruauo *RpgUserAchievementUpdateOne) AddProgress(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.AddProgress(i)
+	return ruauo
 }
 
 // SetCompleted sets the "completed" field.
-func (_u *RpgUserAchievementUpdateOne) SetCompleted(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.ResetCompleted()
-	_u.mutation.SetCompleted(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetCompleted(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.ResetCompleted()
+	ruauo.mutation.SetCompleted(i)
+	return ruauo
 }
 
 // SetNillableCompleted sets the "completed" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdateOne) SetNillableCompleted(v *int) *RpgUserAchievementUpdateOne {
-	if v != nil {
-		_u.SetCompleted(*v)
+func (ruauo *RpgUserAchievementUpdateOne) SetNillableCompleted(i *int) *RpgUserAchievementUpdateOne {
+	if i != nil {
+		ruauo.SetCompleted(*i)
 	}
-	return _u
+	return ruauo
 }
 
-// AddCompleted adds value to the "completed" field.
-func (_u *RpgUserAchievementUpdateOne) AddCompleted(v int) *RpgUserAchievementUpdateOne {
-	_u.mutation.AddCompleted(v)
-	return _u
+// AddCompleted adds i to the "completed" field.
+func (ruauo *RpgUserAchievementUpdateOne) AddCompleted(i int) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.AddCompleted(i)
+	return ruauo
 }
 
 // SetCompletedAt sets the "completedAt" field.
-func (_u *RpgUserAchievementUpdateOne) SetCompletedAt(v time.Time) *RpgUserAchievementUpdateOne {
-	_u.mutation.SetCompletedAt(v)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) SetCompletedAt(t time.Time) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.SetCompletedAt(t)
+	return ruauo
 }
 
 // SetNillableCompletedAt sets the "completedAt" field if the given value is not nil.
-func (_u *RpgUserAchievementUpdateOne) SetNillableCompletedAt(v *time.Time) *RpgUserAchievementUpdateOne {
-	if v != nil {
-		_u.SetCompletedAt(*v)
+func (ruauo *RpgUserAchievementUpdateOne) SetNillableCompletedAt(t *time.Time) *RpgUserAchievementUpdateOne {
+	if t != nil {
+		ruauo.SetCompletedAt(*t)
 	}
-	return _u
+	return ruauo
 }
 
 // ClearCompletedAt clears the value of the "completedAt" field.
-func (_u *RpgUserAchievementUpdateOne) ClearCompletedAt() *RpgUserAchievementUpdateOne {
-	_u.mutation.ClearCompletedAt()
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) ClearCompletedAt() *RpgUserAchievementUpdateOne {
+	ruauo.mutation.ClearCompletedAt()
+	return ruauo
 }
 
 // Mutation returns the RpgUserAchievementMutation object of the builder.
-func (_u *RpgUserAchievementUpdateOne) Mutation() *RpgUserAchievementMutation {
-	return _u.mutation
+func (ruauo *RpgUserAchievementUpdateOne) Mutation() *RpgUserAchievementMutation {
+	return ruauo.mutation
 }
 
 // Where appends a list predicates to the RpgUserAchievementUpdate builder.
-func (_u *RpgUserAchievementUpdateOne) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementUpdateOne {
+	ruauo.mutation.Where(ps...)
+	return ruauo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserAchievementUpdateOne) Select(field string, fields ...string) *RpgUserAchievementUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (ruauo *RpgUserAchievementUpdateOne) Select(field string, fields ...string) *RpgUserAchievementUpdateOne {
+	ruauo.fields = append([]string{field}, fields...)
+	return ruauo
 }
 
 // Save executes the query and returns the updated RpgUserAchievement entity.
-func (_u *RpgUserAchievementUpdateOne) Save(ctx context.Context) (*RpgUserAchievement, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruauo *RpgUserAchievementUpdateOne) Save(ctx context.Context) (*RpgUserAchievement, error) {
+	ruauo.defaults()
+	return withHooks(ctx, ruauo.sqlSave, ruauo.mutation, ruauo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserAchievementUpdateOne) SaveX(ctx context.Context) *RpgUserAchievement {
-	node, err := _u.Save(ctx)
+func (ruauo *RpgUserAchievementUpdateOne) SaveX(ctx context.Context) *RpgUserAchievement {
+	node, err := ruauo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -447,34 +447,34 @@ func (_u *RpgUserAchievementUpdateOne) SaveX(ctx context.Context) *RpgUserAchiev
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserAchievementUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruauo *RpgUserAchievementUpdateOne) Exec(ctx context.Context) error {
+	_, err := ruauo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserAchievementUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruauo *RpgUserAchievementUpdateOne) ExecX(ctx context.Context) {
+	if err := ruauo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserAchievementUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ruauo *RpgUserAchievementUpdateOne) defaults() {
+	if _, ok := ruauo.mutation.UpdateTime(); !ok {
 		v := rpguserachievement.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ruauo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserAchievementUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserAchievement, err error) {
+func (ruauo *RpgUserAchievementUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserAchievement, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserachievement.Table, rpguserachievement.Columns, sqlgraph.NewFieldSpec(rpguserachievement.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := ruauo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserAchievement.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := ruauo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserachievement.FieldID)
 		for _, f := range fields {
@@ -486,56 +486,56 @@ func (_u *RpgUserAchievementUpdateOne) sqlSave(ctx context.Context) (_node *RpgU
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruauo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ruauo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserachievement.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ruauo.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserachievement.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ruauo.mutation.Version(); ok {
 		_spec.SetField(rpguserachievement.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ruauo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserachievement.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ruauo.mutation.UID(); ok {
 		_spec.SetField(rpguserachievement.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ruauo.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserachievement.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AchievementCode(); ok {
+	if value, ok := ruauo.mutation.AchievementCode(); ok {
 		_spec.SetField(rpguserachievement.FieldAchievementCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Progress(); ok {
+	if value, ok := ruauo.mutation.Progress(); ok {
 		_spec.SetField(rpguserachievement.FieldProgress, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedProgress(); ok {
+	if value, ok := ruauo.mutation.AddedProgress(); ok {
 		_spec.AddField(rpguserachievement.FieldProgress, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Completed(); ok {
+	if value, ok := ruauo.mutation.Completed(); ok {
 		_spec.SetField(rpguserachievement.FieldCompleted, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCompleted(); ok {
+	if value, ok := ruauo.mutation.AddedCompleted(); ok {
 		_spec.AddField(rpguserachievement.FieldCompleted, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.CompletedAt(); ok {
+	if value, ok := ruauo.mutation.CompletedAt(); ok {
 		_spec.SetField(rpguserachievement.FieldCompletedAt, field.TypeTime, value)
 	}
-	if _u.mutation.CompletedAtCleared() {
+	if ruauo.mutation.CompletedAtCleared() {
 		_spec.ClearField(rpguserachievement.FieldCompletedAt, field.TypeTime)
 	}
-	_node = &RpgUserAchievement{config: _u.config}
+	_node = &RpgUserAchievement{config: ruauo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, ruauo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserachievement.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -543,6 +543,6 @@ func (_u *RpgUserAchievementUpdateOne) sqlSave(ctx context.Context) (_node *RpgU
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	ruauo.mutation.done = true
 	return _node, nil
 }

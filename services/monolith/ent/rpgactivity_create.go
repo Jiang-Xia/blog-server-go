@@ -23,189 +23,189 @@ type RpgActivityCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgActivityCreate) SetCreateTime(v time.Time) *RpgActivityCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (rac *RpgActivityCreate) SetCreateTime(t time.Time) *RpgActivityCreate {
+	rac.mutation.SetCreateTime(t)
+	return rac
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableCreateTime(v *time.Time) *RpgActivityCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (rac *RpgActivityCreate) SetNillableCreateTime(t *time.Time) *RpgActivityCreate {
+	if t != nil {
+		rac.SetCreateTime(*t)
 	}
-	return _c
+	return rac
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgActivityCreate) SetUpdateTime(v time.Time) *RpgActivityCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (rac *RpgActivityCreate) SetUpdateTime(t time.Time) *RpgActivityCreate {
+	rac.mutation.SetUpdateTime(t)
+	return rac
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableUpdateTime(v *time.Time) *RpgActivityCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (rac *RpgActivityCreate) SetNillableUpdateTime(t *time.Time) *RpgActivityCreate {
+	if t != nil {
+		rac.SetUpdateTime(*t)
 	}
-	return _c
+	return rac
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgActivityCreate) SetIsDelete(v bool) *RpgActivityCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (rac *RpgActivityCreate) SetIsDelete(b bool) *RpgActivityCreate {
+	rac.mutation.SetIsDelete(b)
+	return rac
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableIsDelete(v *bool) *RpgActivityCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (rac *RpgActivityCreate) SetNillableIsDelete(b *bool) *RpgActivityCreate {
+	if b != nil {
+		rac.SetIsDelete(*b)
 	}
-	return _c
+	return rac
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgActivityCreate) SetVersion(v int) *RpgActivityCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (rac *RpgActivityCreate) SetVersion(i int) *RpgActivityCreate {
+	rac.mutation.SetVersion(i)
+	return rac
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableVersion(v *int) *RpgActivityCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (rac *RpgActivityCreate) SetNillableVersion(i *int) *RpgActivityCreate {
+	if i != nil {
+		rac.SetVersion(*i)
 	}
-	return _c
+	return rac
 }
 
 // SetCode sets the "code" field.
-func (_c *RpgActivityCreate) SetCode(v string) *RpgActivityCreate {
-	_c.mutation.SetCode(v)
-	return _c
+func (rac *RpgActivityCreate) SetCode(s string) *RpgActivityCreate {
+	rac.mutation.SetCode(s)
+	return rac
 }
 
 // SetName sets the "name" field.
-func (_c *RpgActivityCreate) SetName(v string) *RpgActivityCreate {
-	_c.mutation.SetName(v)
-	return _c
+func (rac *RpgActivityCreate) SetName(s string) *RpgActivityCreate {
+	rac.mutation.SetName(s)
+	return rac
 }
 
 // SetStartTime sets the "startTime" field.
-func (_c *RpgActivityCreate) SetStartTime(v time.Time) *RpgActivityCreate {
-	_c.mutation.SetStartTime(v)
-	return _c
+func (rac *RpgActivityCreate) SetStartTime(t time.Time) *RpgActivityCreate {
+	rac.mutation.SetStartTime(t)
+	return rac
 }
 
 // SetEndTime sets the "endTime" field.
-func (_c *RpgActivityCreate) SetEndTime(v time.Time) *RpgActivityCreate {
-	_c.mutation.SetEndTime(v)
-	return _c
+func (rac *RpgActivityCreate) SetEndTime(t time.Time) *RpgActivityCreate {
+	rac.mutation.SetEndTime(t)
+	return rac
 }
 
 // SetExpBuffRate sets the "expBuffRate" field.
-func (_c *RpgActivityCreate) SetExpBuffRate(v float64) *RpgActivityCreate {
-	_c.mutation.SetExpBuffRate(v)
-	return _c
+func (rac *RpgActivityCreate) SetExpBuffRate(f float64) *RpgActivityCreate {
+	rac.mutation.SetExpBuffRate(f)
+	return rac
 }
 
 // SetNillableExpBuffRate sets the "expBuffRate" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableExpBuffRate(v *float64) *RpgActivityCreate {
-	if v != nil {
-		_c.SetExpBuffRate(*v)
+func (rac *RpgActivityCreate) SetNillableExpBuffRate(f *float64) *RpgActivityCreate {
+	if f != nil {
+		rac.SetExpBuffRate(*f)
 	}
-	return _c
+	return rac
 }
 
 // SetActive sets the "active" field.
-func (_c *RpgActivityCreate) SetActive(v int) *RpgActivityCreate {
-	_c.mutation.SetActive(v)
-	return _c
+func (rac *RpgActivityCreate) SetActive(i int) *RpgActivityCreate {
+	rac.mutation.SetActive(i)
+	return rac
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableActive(v *int) *RpgActivityCreate {
-	if v != nil {
-		_c.SetActive(*v)
+func (rac *RpgActivityCreate) SetNillableActive(i *int) *RpgActivityCreate {
+	if i != nil {
+		rac.SetActive(*i)
 	}
-	return _c
+	return rac
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgActivityCreate) SetEffectJson(v string) *RpgActivityCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (rac *RpgActivityCreate) SetEffectJson(s string) *RpgActivityCreate {
+	rac.mutation.SetEffectJson(s)
+	return rac
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableEffectJson(v *string) *RpgActivityCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (rac *RpgActivityCreate) SetNillableEffectJson(s *string) *RpgActivityCreate {
+	if s != nil {
+		rac.SetEffectJson(*s)
 	}
-	return _c
+	return rac
 }
 
 // SetDescription sets the "description" field.
-func (_c *RpgActivityCreate) SetDescription(v string) *RpgActivityCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (rac *RpgActivityCreate) SetDescription(s string) *RpgActivityCreate {
+	rac.mutation.SetDescription(s)
+	return rac
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableDescription(v *string) *RpgActivityCreate {
-	if v != nil {
-		_c.SetDescription(*v)
+func (rac *RpgActivityCreate) SetNillableDescription(s *string) *RpgActivityCreate {
+	if s != nil {
+		rac.SetDescription(*s)
 	}
-	return _c
+	return rac
 }
 
 // SetActivityType sets the "activityType" field.
-func (_c *RpgActivityCreate) SetActivityType(v string) *RpgActivityCreate {
-	_c.mutation.SetActivityType(v)
-	return _c
+func (rac *RpgActivityCreate) SetActivityType(s string) *RpgActivityCreate {
+	rac.mutation.SetActivityType(s)
+	return rac
 }
 
 // SetNillableActivityType sets the "activityType" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillableActivityType(v *string) *RpgActivityCreate {
-	if v != nil {
-		_c.SetActivityType(*v)
+func (rac *RpgActivityCreate) SetNillableActivityType(s *string) *RpgActivityCreate {
+	if s != nil {
+		rac.SetActivityType(*s)
 	}
-	return _c
+	return rac
 }
 
 // SetPosterUrl sets the "posterUrl" field.
-func (_c *RpgActivityCreate) SetPosterUrl(v string) *RpgActivityCreate {
-	_c.mutation.SetPosterUrl(v)
-	return _c
+func (rac *RpgActivityCreate) SetPosterUrl(s string) *RpgActivityCreate {
+	rac.mutation.SetPosterUrl(s)
+	return rac
 }
 
 // SetNillablePosterUrl sets the "posterUrl" field if the given value is not nil.
-func (_c *RpgActivityCreate) SetNillablePosterUrl(v *string) *RpgActivityCreate {
-	if v != nil {
-		_c.SetPosterUrl(*v)
+func (rac *RpgActivityCreate) SetNillablePosterUrl(s *string) *RpgActivityCreate {
+	if s != nil {
+		rac.SetPosterUrl(*s)
 	}
-	return _c
+	return rac
 }
 
 // SetID sets the "id" field.
-func (_c *RpgActivityCreate) SetID(v int) *RpgActivityCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rac *RpgActivityCreate) SetID(i int) *RpgActivityCreate {
+	rac.mutation.SetID(i)
+	return rac
 }
 
 // Mutation returns the RpgActivityMutation object of the builder.
-func (_c *RpgActivityCreate) Mutation() *RpgActivityMutation {
-	return _c.mutation
+func (rac *RpgActivityCreate) Mutation() *RpgActivityMutation {
+	return rac.mutation
 }
 
 // Save creates the RpgActivity in the database.
-func (_c *RpgActivityCreate) Save(ctx context.Context) (*RpgActivity, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rac *RpgActivityCreate) Save(ctx context.Context) (*RpgActivity, error) {
+	rac.defaults()
+	return withHooks(ctx, rac.sqlSave, rac.mutation, rac.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgActivityCreate) SaveX(ctx context.Context) *RpgActivity {
-	v, err := _c.Save(ctx)
+func (rac *RpgActivityCreate) SaveX(ctx context.Context) *RpgActivity {
+	v, err := rac.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -213,108 +213,108 @@ func (_c *RpgActivityCreate) SaveX(ctx context.Context) *RpgActivity {
 }
 
 // Exec executes the query.
-func (_c *RpgActivityCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rac *RpgActivityCreate) Exec(ctx context.Context) error {
+	_, err := rac.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgActivityCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rac *RpgActivityCreate) ExecX(ctx context.Context) {
+	if err := rac.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgActivityCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rac *RpgActivityCreate) defaults() {
+	if _, ok := rac.mutation.CreateTime(); !ok {
 		v := rpgactivity.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		rac.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rac.mutation.UpdateTime(); !ok {
 		v := rpgactivity.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		rac.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rac.mutation.IsDelete(); !ok {
 		v := rpgactivity.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		rac.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rac.mutation.Version(); !ok {
 		v := rpgactivity.DefaultVersion
-		_c.mutation.SetVersion(v)
+		rac.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.ExpBuffRate(); !ok {
+	if _, ok := rac.mutation.ExpBuffRate(); !ok {
 		v := rpgactivity.DefaultExpBuffRate
-		_c.mutation.SetExpBuffRate(v)
+		rac.mutation.SetExpBuffRate(v)
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := rac.mutation.Active(); !ok {
 		v := rpgactivity.DefaultActive
-		_c.mutation.SetActive(v)
+		rac.mutation.SetActive(v)
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := rac.mutation.Description(); !ok {
 		v := rpgactivity.DefaultDescription
-		_c.mutation.SetDescription(v)
+		rac.mutation.SetDescription(v)
 	}
-	if _, ok := _c.mutation.ActivityType(); !ok {
+	if _, ok := rac.mutation.ActivityType(); !ok {
 		v := rpgactivity.DefaultActivityType
-		_c.mutation.SetActivityType(v)
+		rac.mutation.SetActivityType(v)
 	}
-	if _, ok := _c.mutation.PosterUrl(); !ok {
+	if _, ok := rac.mutation.PosterUrl(); !ok {
 		v := rpgactivity.DefaultPosterUrl
-		_c.mutation.SetPosterUrl(v)
+		rac.mutation.SetPosterUrl(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgActivityCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rac *RpgActivityCreate) check() error {
+	if _, ok := rac.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgActivity.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rac.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgActivity.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rac.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgActivity.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rac.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgActivity.version"`)}
 	}
-	if _, ok := _c.mutation.Code(); !ok {
+	if _, ok := rac.mutation.Code(); !ok {
 		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "RpgActivity.code"`)}
 	}
-	if _, ok := _c.mutation.Name(); !ok {
+	if _, ok := rac.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "RpgActivity.name"`)}
 	}
-	if _, ok := _c.mutation.StartTime(); !ok {
+	if _, ok := rac.mutation.StartTime(); !ok {
 		return &ValidationError{Name: "startTime", err: errors.New(`ent: missing required field "RpgActivity.startTime"`)}
 	}
-	if _, ok := _c.mutation.EndTime(); !ok {
+	if _, ok := rac.mutation.EndTime(); !ok {
 		return &ValidationError{Name: "endTime", err: errors.New(`ent: missing required field "RpgActivity.endTime"`)}
 	}
-	if _, ok := _c.mutation.ExpBuffRate(); !ok {
+	if _, ok := rac.mutation.ExpBuffRate(); !ok {
 		return &ValidationError{Name: "expBuffRate", err: errors.New(`ent: missing required field "RpgActivity.expBuffRate"`)}
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := rac.mutation.Active(); !ok {
 		return &ValidationError{Name: "active", err: errors.New(`ent: missing required field "RpgActivity.active"`)}
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := rac.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "RpgActivity.description"`)}
 	}
-	if _, ok := _c.mutation.ActivityType(); !ok {
+	if _, ok := rac.mutation.ActivityType(); !ok {
 		return &ValidationError{Name: "activityType", err: errors.New(`ent: missing required field "RpgActivity.activityType"`)}
 	}
-	if _, ok := _c.mutation.PosterUrl(); !ok {
+	if _, ok := rac.mutation.PosterUrl(); !ok {
 		return &ValidationError{Name: "posterUrl", err: errors.New(`ent: missing required field "RpgActivity.posterUrl"`)}
 	}
 	return nil
 }
 
-func (_c *RpgActivityCreate) sqlSave(ctx context.Context) (*RpgActivity, error) {
-	if err := _c.check(); err != nil {
+func (rac *RpgActivityCreate) sqlSave(ctx context.Context) (*RpgActivity, error) {
+	if err := rac.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rac.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rac.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -324,74 +324,74 @@ func (_c *RpgActivityCreate) sqlSave(ctx context.Context) (*RpgActivity, error) 
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rac.mutation.id = &_node.ID
+	rac.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgActivityCreate) createSpec() (*RpgActivity, *sqlgraph.CreateSpec) {
+func (rac *RpgActivityCreate) createSpec() (*RpgActivity, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgActivity{config: _c.config}
+		_node = &RpgActivity{config: rac.config}
 		_spec = sqlgraph.NewCreateSpec(rpgactivity.Table, sqlgraph.NewFieldSpec(rpgactivity.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rac.conflict
+	if id, ok := rac.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := rac.mutation.CreateTime(); ok {
 		_spec.SetField(rpgactivity.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := rac.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgactivity.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := rac.mutation.IsDelete(); ok {
 		_spec.SetField(rpgactivity.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := rac.mutation.Version(); ok {
 		_spec.SetField(rpgactivity.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.Code(); ok {
+	if value, ok := rac.mutation.Code(); ok {
 		_spec.SetField(rpgactivity.FieldCode, field.TypeString, value)
 		_node.Code = value
 	}
-	if value, ok := _c.mutation.Name(); ok {
+	if value, ok := rac.mutation.Name(); ok {
 		_spec.SetField(rpgactivity.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := _c.mutation.StartTime(); ok {
+	if value, ok := rac.mutation.StartTime(); ok {
 		_spec.SetField(rpgactivity.FieldStartTime, field.TypeTime, value)
 		_node.StartTime = value
 	}
-	if value, ok := _c.mutation.EndTime(); ok {
+	if value, ok := rac.mutation.EndTime(); ok {
 		_spec.SetField(rpgactivity.FieldEndTime, field.TypeTime, value)
 		_node.EndTime = value
 	}
-	if value, ok := _c.mutation.ExpBuffRate(); ok {
+	if value, ok := rac.mutation.ExpBuffRate(); ok {
 		_spec.SetField(rpgactivity.FieldExpBuffRate, field.TypeFloat64, value)
 		_node.ExpBuffRate = value
 	}
-	if value, ok := _c.mutation.Active(); ok {
+	if value, ok := rac.mutation.Active(); ok {
 		_spec.SetField(rpgactivity.FieldActive, field.TypeInt, value)
 		_node.Active = value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := rac.mutation.EffectJson(); ok {
 		_spec.SetField(rpgactivity.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := rac.mutation.Description(); ok {
 		_spec.SetField(rpgactivity.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.ActivityType(); ok {
+	if value, ok := rac.mutation.ActivityType(); ok {
 		_spec.SetField(rpgactivity.FieldActivityType, field.TypeString, value)
 		_node.ActivityType = value
 	}
-	if value, ok := _c.mutation.PosterUrl(); ok {
+	if value, ok := rac.mutation.PosterUrl(); ok {
 		_spec.SetField(rpgactivity.FieldPosterUrl, field.TypeString, value)
 		_node.PosterUrl = value
 	}
@@ -414,10 +414,10 @@ func (_c *RpgActivityCreate) createSpec() (*RpgActivity, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgActivityCreate) OnConflict(opts ...sql.ConflictOption) *RpgActivityUpsertOne {
-	_c.conflict = opts
+func (rac *RpgActivityCreate) OnConflict(opts ...sql.ConflictOption) *RpgActivityUpsertOne {
+	rac.conflict = opts
 	return &RpgActivityUpsertOne{
-		create: _c,
+		create: rac,
 	}
 }
 
@@ -427,10 +427,10 @@ func (_c *RpgActivityCreate) OnConflict(opts ...sql.ConflictOption) *RpgActivity
 //	client.RpgActivity.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgActivityCreate) OnConflictColumns(columns ...string) *RpgActivityUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rac *RpgActivityCreate) OnConflictColumns(columns ...string) *RpgActivityUpsertOne {
+	rac.conflict = append(rac.conflict, sql.ConflictColumns(columns...))
 	return &RpgActivityUpsertOne{
-		create: _c,
+		create: rac,
 	}
 }
 
@@ -930,16 +930,16 @@ type RpgActivityCreateBulk struct {
 }
 
 // Save creates the RpgActivity entities in the database.
-func (_c *RpgActivityCreateBulk) Save(ctx context.Context) ([]*RpgActivity, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (racb *RpgActivityCreateBulk) Save(ctx context.Context) ([]*RpgActivity, error) {
+	if racb.err != nil {
+		return nil, racb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgActivity, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(racb.builders))
+	nodes := make([]*RpgActivity, len(racb.builders))
+	mutators := make([]Mutator, len(racb.builders))
+	for i := range racb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := racb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgActivityMutation)
@@ -953,12 +953,12 @@ func (_c *RpgActivityCreateBulk) Save(ctx context.Context) ([]*RpgActivity, erro
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, racb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = racb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, racb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -982,7 +982,7 @@ func (_c *RpgActivityCreateBulk) Save(ctx context.Context) ([]*RpgActivity, erro
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, racb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -990,8 +990,8 @@ func (_c *RpgActivityCreateBulk) Save(ctx context.Context) ([]*RpgActivity, erro
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgActivityCreateBulk) SaveX(ctx context.Context) []*RpgActivity {
-	v, err := _c.Save(ctx)
+func (racb *RpgActivityCreateBulk) SaveX(ctx context.Context) []*RpgActivity {
+	v, err := racb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -999,14 +999,14 @@ func (_c *RpgActivityCreateBulk) SaveX(ctx context.Context) []*RpgActivity {
 }
 
 // Exec executes the query.
-func (_c *RpgActivityCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (racb *RpgActivityCreateBulk) Exec(ctx context.Context) error {
+	_, err := racb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgActivityCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (racb *RpgActivityCreateBulk) ExecX(ctx context.Context) {
+	if err := racb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1026,10 +1026,10 @@ func (_c *RpgActivityCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgActivityCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgActivityUpsertBulk {
-	_c.conflict = opts
+func (racb *RpgActivityCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgActivityUpsertBulk {
+	racb.conflict = opts
 	return &RpgActivityUpsertBulk{
-		create: _c,
+		create: racb,
 	}
 }
 
@@ -1039,10 +1039,10 @@ func (_c *RpgActivityCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgActi
 //	client.RpgActivity.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgActivityCreateBulk) OnConflictColumns(columns ...string) *RpgActivityUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (racb *RpgActivityCreateBulk) OnConflictColumns(columns ...string) *RpgActivityUpsertBulk {
+	racb.conflict = append(racb.conflict, sql.ConflictColumns(columns...))
 	return &RpgActivityUpsertBulk{
-		create: _c,
+		create: racb,
 	}
 }
 

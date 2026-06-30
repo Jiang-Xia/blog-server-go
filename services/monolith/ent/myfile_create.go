@@ -23,24 +23,24 @@ type MyFileCreate struct {
 }
 
 // SetID sets the "id" field.
-func (_c *MyFileCreate) SetID(v string) *MyFileCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (mfc *MyFileCreate) SetID(s string) *MyFileCreate {
+	mfc.mutation.SetID(s)
+	return mfc
 }
 
 // Mutation returns the MyFileMutation object of the builder.
-func (_c *MyFileCreate) Mutation() *MyFileMutation {
-	return _c.mutation
+func (mfc *MyFileCreate) Mutation() *MyFileMutation {
+	return mfc.mutation
 }
 
 // Save creates the MyFile in the database.
-func (_c *MyFileCreate) Save(ctx context.Context) (*MyFile, error) {
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (mfc *MyFileCreate) Save(ctx context.Context) (*MyFile, error) {
+	return withHooks(ctx, mfc.sqlSave, mfc.mutation, mfc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *MyFileCreate) SaveX(ctx context.Context) *MyFile {
-	v, err := _c.Save(ctx)
+func (mfc *MyFileCreate) SaveX(ctx context.Context) *MyFile {
+	v, err := mfc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -48,29 +48,29 @@ func (_c *MyFileCreate) SaveX(ctx context.Context) *MyFile {
 }
 
 // Exec executes the query.
-func (_c *MyFileCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (mfc *MyFileCreate) Exec(ctx context.Context) error {
+	_, err := mfc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *MyFileCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (mfc *MyFileCreate) ExecX(ctx context.Context) {
+	if err := mfc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *MyFileCreate) check() error {
+func (mfc *MyFileCreate) check() error {
 	return nil
 }
 
-func (_c *MyFileCreate) sqlSave(ctx context.Context) (*MyFile, error) {
-	if err := _c.check(); err != nil {
+func (mfc *MyFileCreate) sqlSave(ctx context.Context) (*MyFile, error) {
+	if err := mfc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := mfc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, mfc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -83,18 +83,18 @@ func (_c *MyFileCreate) sqlSave(ctx context.Context) (*MyFile, error) {
 			return nil, fmt.Errorf("unexpected MyFile.ID type: %T", _spec.ID.Value)
 		}
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	mfc.mutation.id = &_node.ID
+	mfc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *MyFileCreate) createSpec() (*MyFile, *sqlgraph.CreateSpec) {
+func (mfc *MyFileCreate) createSpec() (*MyFile, *sqlgraph.CreateSpec) {
 	var (
-		_node = &MyFile{config: _c.config}
+		_node = &MyFile{config: mfc.config}
 		_spec = sqlgraph.NewCreateSpec(myfile.Table, sqlgraph.NewFieldSpec(myfile.FieldID, field.TypeString))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = mfc.conflict
+	if id, ok := mfc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
@@ -111,10 +111,10 @@ func (_c *MyFileCreate) createSpec() (*MyFile, *sqlgraph.CreateSpec) {
 //			sql.ResolveWithNewValues(),
 //		).
 //		Exec(ctx)
-func (_c *MyFileCreate) OnConflict(opts ...sql.ConflictOption) *MyFileUpsertOne {
-	_c.conflict = opts
+func (mfc *MyFileCreate) OnConflict(opts ...sql.ConflictOption) *MyFileUpsertOne {
+	mfc.conflict = opts
 	return &MyFileUpsertOne{
-		create: _c,
+		create: mfc,
 	}
 }
 
@@ -124,10 +124,10 @@ func (_c *MyFileCreate) OnConflict(opts ...sql.ConflictOption) *MyFileUpsertOne 
 //	client.MyFile.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *MyFileCreate) OnConflictColumns(columns ...string) *MyFileUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (mfc *MyFileCreate) OnConflictColumns(columns ...string) *MyFileUpsertOne {
+	mfc.conflict = append(mfc.conflict, sql.ConflictColumns(columns...))
 	return &MyFileUpsertOne{
-		create: _c,
+		create: mfc,
 	}
 }
 
@@ -239,16 +239,16 @@ type MyFileCreateBulk struct {
 }
 
 // Save creates the MyFile entities in the database.
-func (_c *MyFileCreateBulk) Save(ctx context.Context) ([]*MyFile, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (mfcb *MyFileCreateBulk) Save(ctx context.Context) ([]*MyFile, error) {
+	if mfcb.err != nil {
+		return nil, mfcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*MyFile, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(mfcb.builders))
+	nodes := make([]*MyFile, len(mfcb.builders))
+	mutators := make([]Mutator, len(mfcb.builders))
+	for i := range mfcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := mfcb.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*MyFileMutation)
 				if !ok {
@@ -261,12 +261,12 @@ func (_c *MyFileCreateBulk) Save(ctx context.Context) ([]*MyFile, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, mfcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = mfcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, mfcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -286,7 +286,7 @@ func (_c *MyFileCreateBulk) Save(ctx context.Context) ([]*MyFile, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, mfcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -294,8 +294,8 @@ func (_c *MyFileCreateBulk) Save(ctx context.Context) ([]*MyFile, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *MyFileCreateBulk) SaveX(ctx context.Context) []*MyFile {
-	v, err := _c.Save(ctx)
+func (mfcb *MyFileCreateBulk) SaveX(ctx context.Context) []*MyFile {
+	v, err := mfcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -303,14 +303,14 @@ func (_c *MyFileCreateBulk) SaveX(ctx context.Context) []*MyFile {
 }
 
 // Exec executes the query.
-func (_c *MyFileCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (mfcb *MyFileCreateBulk) Exec(ctx context.Context) error {
+	_, err := mfcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *MyFileCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (mfcb *MyFileCreateBulk) ExecX(ctx context.Context) {
+	if err := mfcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -325,10 +325,10 @@ func (_c *MyFileCreateBulk) ExecX(ctx context.Context) {
 //			sql.ResolveWithNewValues(),
 //		).
 //		Exec(ctx)
-func (_c *MyFileCreateBulk) OnConflict(opts ...sql.ConflictOption) *MyFileUpsertBulk {
-	_c.conflict = opts
+func (mfcb *MyFileCreateBulk) OnConflict(opts ...sql.ConflictOption) *MyFileUpsertBulk {
+	mfcb.conflict = opts
 	return &MyFileUpsertBulk{
-		create: _c,
+		create: mfcb,
 	}
 }
 
@@ -338,10 +338,10 @@ func (_c *MyFileCreateBulk) OnConflict(opts ...sql.ConflictOption) *MyFileUpsert
 //	client.MyFile.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *MyFileCreateBulk) OnConflictColumns(columns ...string) *MyFileUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (mfcb *MyFileCreateBulk) OnConflictColumns(columns ...string) *MyFileUpsertBulk {
+	mfcb.conflict = append(mfcb.conflict, sql.ConflictColumns(columns...))
 	return &MyFileUpsertBulk{
-		create: _c,
+		create: mfcb,
 	}
 }
 

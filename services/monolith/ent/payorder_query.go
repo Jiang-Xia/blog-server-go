@@ -28,40 +28,40 @@ type PayOrderQuery struct {
 }
 
 // Where adds a new predicate for the PayOrderQuery builder.
-func (_q *PayOrderQuery) Where(ps ...predicate.PayOrder) *PayOrderQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (poq *PayOrderQuery) Where(ps ...predicate.PayOrder) *PayOrderQuery {
+	poq.predicates = append(poq.predicates, ps...)
+	return poq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *PayOrderQuery) Limit(limit int) *PayOrderQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (poq *PayOrderQuery) Limit(limit int) *PayOrderQuery {
+	poq.ctx.Limit = &limit
+	return poq
 }
 
 // Offset to start from.
-func (_q *PayOrderQuery) Offset(offset int) *PayOrderQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (poq *PayOrderQuery) Offset(offset int) *PayOrderQuery {
+	poq.ctx.Offset = &offset
+	return poq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *PayOrderQuery) Unique(unique bool) *PayOrderQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (poq *PayOrderQuery) Unique(unique bool) *PayOrderQuery {
+	poq.ctx.Unique = &unique
+	return poq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *PayOrderQuery) Order(o ...payorder.OrderOption) *PayOrderQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (poq *PayOrderQuery) Order(o ...payorder.OrderOption) *PayOrderQuery {
+	poq.order = append(poq.order, o...)
+	return poq
 }
 
 // First returns the first PayOrder entity from the query.
 // Returns a *NotFoundError when no PayOrder was found.
-func (_q *PayOrderQuery) First(ctx context.Context) (*PayOrder, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (poq *PayOrderQuery) First(ctx context.Context) (*PayOrder, error) {
+	nodes, err := poq.Limit(1).All(setContextOp(ctx, poq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *PayOrderQuery) First(ctx context.Context) (*PayOrder, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *PayOrderQuery) FirstX(ctx context.Context) *PayOrder {
-	node, err := _q.First(ctx)
+func (poq *PayOrderQuery) FirstX(ctx context.Context) *PayOrder {
+	node, err := poq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *PayOrderQuery) FirstX(ctx context.Context) *PayOrder {
 
 // FirstID returns the first PayOrder ID from the query.
 // Returns a *NotFoundError when no PayOrder ID was found.
-func (_q *PayOrderQuery) FirstID(ctx context.Context) (id int, err error) {
+func (poq *PayOrderQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = poq.Limit(1).IDs(setContextOp(ctx, poq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *PayOrderQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *PayOrderQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (poq *PayOrderQuery) FirstIDX(ctx context.Context) int {
+	id, err := poq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *PayOrderQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single PayOrder entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one PayOrder entity is found.
 // Returns a *NotFoundError when no PayOrder entities are found.
-func (_q *PayOrderQuery) Only(ctx context.Context) (*PayOrder, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (poq *PayOrderQuery) Only(ctx context.Context) (*PayOrder, error) {
+	nodes, err := poq.Limit(2).All(setContextOp(ctx, poq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *PayOrderQuery) Only(ctx context.Context) (*PayOrder, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *PayOrderQuery) OnlyX(ctx context.Context) *PayOrder {
-	node, err := _q.Only(ctx)
+func (poq *PayOrderQuery) OnlyX(ctx context.Context) *PayOrder {
+	node, err := poq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *PayOrderQuery) OnlyX(ctx context.Context) *PayOrder {
 // OnlyID is like Only, but returns the only PayOrder ID in the query.
 // Returns a *NotSingularError when more than one PayOrder ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *PayOrderQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (poq *PayOrderQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = poq.Limit(2).IDs(setContextOp(ctx, poq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *PayOrderQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *PayOrderQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (poq *PayOrderQuery) OnlyIDX(ctx context.Context) int {
+	id, err := poq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *PayOrderQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of PayOrders.
-func (_q *PayOrderQuery) All(ctx context.Context) ([]*PayOrder, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (poq *PayOrderQuery) All(ctx context.Context) ([]*PayOrder, error) {
+	ctx = setContextOp(ctx, poq.ctx, ent.OpQueryAll)
+	if err := poq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*PayOrder, *PayOrderQuery]()
-	return withInterceptors[[]*PayOrder](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*PayOrder](ctx, poq, qr, poq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *PayOrderQuery) AllX(ctx context.Context) []*PayOrder {
-	nodes, err := _q.All(ctx)
+func (poq *PayOrderQuery) AllX(ctx context.Context) []*PayOrder {
+	nodes, err := poq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *PayOrderQuery) AllX(ctx context.Context) []*PayOrder {
 }
 
 // IDs executes the query and returns a list of PayOrder IDs.
-func (_q *PayOrderQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (poq *PayOrderQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if poq.ctx.Unique == nil && poq.path != nil {
+		poq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(payorder.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, poq.ctx, ent.OpQueryIDs)
+	if err = poq.Select(payorder.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *PayOrderQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (poq *PayOrderQuery) IDsX(ctx context.Context) []int {
+	ids, err := poq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *PayOrderQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *PayOrderQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (poq *PayOrderQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, poq.ctx, ent.OpQueryCount)
+	if err := poq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*PayOrderQuery](), _q.inters)
+	return withInterceptors[int](ctx, poq, querierCount[*PayOrderQuery](), poq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *PayOrderQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (poq *PayOrderQuery) CountX(ctx context.Context) int {
+	count, err := poq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *PayOrderQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *PayOrderQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (poq *PayOrderQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, poq.ctx, ent.OpQueryExist)
+	switch _, err := poq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *PayOrderQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *PayOrderQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (poq *PayOrderQuery) ExistX(ctx context.Context) bool {
+	exist, err := poq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *PayOrderQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the PayOrderQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *PayOrderQuery) Clone() *PayOrderQuery {
-	if _q == nil {
+func (poq *PayOrderQuery) Clone() *PayOrderQuery {
+	if poq == nil {
 		return nil
 	}
 	return &PayOrderQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]payorder.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.PayOrder{}, _q.predicates...),
+		config:     poq.config,
+		ctx:        poq.ctx.Clone(),
+		order:      append([]payorder.OrderOption{}, poq.order...),
+		inters:     append([]Interceptor{}, poq.inters...),
+		predicates: append([]predicate.PayOrder{}, poq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  poq.sql.Clone(),
+		path: poq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *PayOrderQuery) Clone() *PayOrderQuery {
 //		GroupBy(payorder.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *PayOrderQuery) GroupBy(field string, fields ...string) *PayOrderGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &PayOrderGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (poq *PayOrderQuery) GroupBy(field string, fields ...string) *PayOrderGroupBy {
+	poq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &PayOrderGroupBy{build: poq}
+	grbuild.flds = &poq.ctx.Fields
 	grbuild.label = payorder.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *PayOrderQuery) GroupBy(field string, fields ...string) *PayOrderGroupB
 //	client.PayOrder.Query().
 //		Select(payorder.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *PayOrderQuery) Select(fields ...string) *PayOrderSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &PayOrderSelect{PayOrderQuery: _q}
+func (poq *PayOrderQuery) Select(fields ...string) *PayOrderSelect {
+	poq.ctx.Fields = append(poq.ctx.Fields, fields...)
+	sbuild := &PayOrderSelect{PayOrderQuery: poq}
 	sbuild.label = payorder.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &poq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a PayOrderSelect configured with the given aggregations.
-func (_q *PayOrderQuery) Aggregate(fns ...AggregateFunc) *PayOrderSelect {
-	return _q.Select().Aggregate(fns...)
+func (poq *PayOrderQuery) Aggregate(fns ...AggregateFunc) *PayOrderSelect {
+	return poq.Select().Aggregate(fns...)
 }
 
-func (_q *PayOrderQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (poq *PayOrderQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range poq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, poq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range poq.ctx.Fields {
 		if !payorder.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if poq.path != nil {
+		prev, err := poq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		poq.sql = prev
 	}
 	return nil
 }
 
-func (_q *PayOrderQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*PayOrder, error) {
+func (poq *PayOrderQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*PayOrder, error) {
 	var (
 		nodes = []*PayOrder{}
-		_spec = _q.querySpec()
+		_spec = poq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*PayOrder).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &PayOrder{config: _q.config}
+		node := &PayOrder{config: poq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, poq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *PayOrderQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Pay
 	return nodes, nil
 }
 
-func (_q *PayOrderQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (poq *PayOrderQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := poq.querySpec()
+	_spec.Node.Columns = poq.ctx.Fields
+	if len(poq.ctx.Fields) > 0 {
+		_spec.Unique = poq.ctx.Unique != nil && *poq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, poq.driver, _spec)
 }
 
-func (_q *PayOrderQuery) querySpec() *sqlgraph.QuerySpec {
+func (poq *PayOrderQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(payorder.Table, payorder.Columns, sqlgraph.NewFieldSpec(payorder.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = poq.sql
+	if unique := poq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if poq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := poq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, payorder.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *PayOrderQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := poq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := poq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := poq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := poq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *PayOrderQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *PayOrderQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (poq *PayOrderQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(poq.driver.Dialect())
 	t1 := builder.Table(payorder.Table)
-	columns := _q.ctx.Fields
+	columns := poq.ctx.Fields
 	if len(columns) == 0 {
 		columns = payorder.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if poq.sql != nil {
+		selector = poq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if poq.ctx.Unique != nil && *poq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range poq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range poq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := poq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := poq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type PayOrderGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *PayOrderGroupBy) Aggregate(fns ...AggregateFunc) *PayOrderGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (pogb *PayOrderGroupBy) Aggregate(fns ...AggregateFunc) *PayOrderGroupBy {
+	pogb.fns = append(pogb.fns, fns...)
+	return pogb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *PayOrderGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (pogb *PayOrderGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, pogb.build.ctx, ent.OpQueryGroupBy)
+	if err := pogb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*PayOrderQuery, *PayOrderGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*PayOrderQuery, *PayOrderGroupBy](ctx, pogb.build, pogb, pogb.build.inters, v)
 }
 
-func (_g *PayOrderGroupBy) sqlScan(ctx context.Context, root *PayOrderQuery, v any) error {
+func (pogb *PayOrderGroupBy) sqlScan(ctx context.Context, root *PayOrderQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(pogb.fns))
+	for _, fn := range pogb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*pogb.flds)+len(pogb.fns))
+		for _, f := range *pogb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*pogb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := pogb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type PayOrderSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *PayOrderSelect) Aggregate(fns ...AggregateFunc) *PayOrderSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (pos *PayOrderSelect) Aggregate(fns ...AggregateFunc) *PayOrderSelect {
+	pos.fns = append(pos.fns, fns...)
+	return pos
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *PayOrderSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (pos *PayOrderSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, pos.ctx, ent.OpQuerySelect)
+	if err := pos.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*PayOrderQuery, *PayOrderSelect](ctx, _s.PayOrderQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*PayOrderQuery, *PayOrderSelect](ctx, pos.PayOrderQuery, pos, pos.inters, v)
 }
 
-func (_s *PayOrderSelect) sqlScan(ctx context.Context, root *PayOrderQuery, v any) error {
+func (pos *PayOrderSelect) sqlScan(ctx context.Context, root *PayOrderQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(pos.fns))
+	for _, fn := range pos.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*pos.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *PayOrderSelect) sqlScan(ctx context.Context, root *PayOrderQuery, v an
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := pos.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

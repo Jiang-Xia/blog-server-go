@@ -91,7 +91,7 @@ func (*Article) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Article fields.
-func (_m *Article) assignValues(columns []string, values []any) error {
+func (a *Article) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -102,157 +102,157 @@ func (_m *Article) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			a.ID = int(value.Int64)
 		case article.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				a.CreateTime = value.Time
 			}
 		case article.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				a.UpdateTime = value.Time
 			}
 		case article.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				a.IsDelete = value.Bool
 			}
 		case article.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				a.Version = int(value.Int64)
 			}
 		case article.FieldUTime:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field uTime", values[i])
 			} else if value.Valid {
-				_m.UTime = value.String
+				a.UTime = value.String
 			}
 		case article.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				a.UID = int(value.Int64)
 			}
 		case article.FieldDeptId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field deptId", values[i])
 			} else if value.Valid {
-				_m.DeptId = new(int)
-				*_m.DeptId = int(value.Int64)
+				a.DeptId = new(int)
+				*a.DeptId = int(value.Int64)
 			}
 		case article.FieldTopping:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field topping", values[i])
 			} else if value.Valid {
-				_m.Topping = int(value.Int64)
+				a.Topping = int(value.Int64)
 			}
 		case article.FieldTitle:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field title", values[i])
 			} else if value.Valid {
-				_m.Title = value.String
+				a.Title = value.String
 			}
 		case article.FieldCover:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field cover", values[i])
 			} else if value.Valid {
-				_m.Cover = value.String
+				a.Cover = value.String
 			}
 		case article.FieldLikes:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field likes", values[i])
 			} else if value.Valid {
-				_m.Likes = int(value.Int64)
+				a.Likes = int(value.Int64)
 			}
 		case article.FieldViews:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field views", values[i])
 			} else if value.Valid {
-				_m.Views = int(value.Int64)
+				a.Views = int(value.Int64)
 			}
 		case article.FieldArticleExp:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field articleExp", values[i])
 			} else if value.Valid {
-				_m.ArticleExp = int(value.Int64)
+				a.ArticleExp = int(value.Int64)
 			}
 		case article.FieldArticleLevel:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field articleLevel", values[i])
 			} else if value.Valid {
-				_m.ArticleLevel = int(value.Int64)
+				a.ArticleLevel = int(value.Int64)
 			}
 		case article.FieldReputationGained:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field reputationGained", values[i])
 			} else if value.Valid {
-				_m.ReputationGained = int(value.Int64)
+				a.ReputationGained = int(value.Int64)
 			}
 		case article.FieldIsMasterpiece:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field isMasterpiece", values[i])
 			} else if value.Valid {
-				_m.IsMasterpiece = int(value.Int64)
+				a.IsMasterpiece = int(value.Int64)
 			}
 		case article.FieldTipTotal:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field tipTotal", values[i])
 			} else if value.Valid {
-				_m.TipTotal = int(value.Int64)
+				a.TipTotal = int(value.Int64)
 			}
 		case article.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				a.Status = value.String
 			}
 		case article.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				a.Description = value.String
 			}
 		case article.FieldContentHtml:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field contentHtml", values[i])
 			} else if value.Valid {
-				_m.ContentHtml = value.String
+				a.ContentHtml = value.String
 			}
 		case article.FieldUseArticles:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field useArticles", values[i])
 			} else if value.Valid {
-				_m.UseArticles = new(int)
-				*_m.UseArticles = int(value.Int64)
+				a.UseArticles = new(int)
+				*a.UseArticles = int(value.Int64)
 			}
 		case article.FieldArticles:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field articles", values[i])
 			} else if value.Valid {
-				_m.Articles = new(string)
-				*_m.Articles = value.String
+				a.Articles = new(string)
+				*a.Articles = value.String
 			}
 		case article.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content", values[i])
 			} else if value.Valid {
-				_m.Content = value.String
+				a.Content = value.String
 			}
 		case article.FieldScheduledPublishAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field scheduledPublishAt", values[i])
 			} else if value.Valid {
-				_m.ScheduledPublishAt = new(time.Time)
-				*_m.ScheduledPublishAt = value.Time
+				a.ScheduledPublishAt = new(time.Time)
+				*a.ScheduledPublishAt = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			a.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -260,109 +260,109 @@ func (_m *Article) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Article.
 // This includes values selected through modifiers, order, etc.
-func (_m *Article) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (a *Article) Value(name string) (ent.Value, error) {
+	return a.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Article.
 // Note that you need to call Article.Unwrap() before calling this method if this Article
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Article) Update() *ArticleUpdateOne {
-	return NewArticleClient(_m.config).UpdateOne(_m)
+func (a *Article) Update() *ArticleUpdateOne {
+	return NewArticleClient(a.config).UpdateOne(a)
 }
 
 // Unwrap unwraps the Article entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Article) Unwrap() *Article {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (a *Article) Unwrap() *Article {
+	_tx, ok := a.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Article is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	a.config.driver = _tx.drv
+	return a
 }
 
 // String implements the fmt.Stringer.
-func (_m *Article) String() string {
+func (a *Article) String() string {
 	var builder strings.Builder
 	builder.WriteString("Article(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(a.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(a.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", a.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", a.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uTime=")
-	builder.WriteString(_m.UTime)
+	builder.WriteString(a.UTime)
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", a.UID))
 	builder.WriteString(", ")
-	if v := _m.DeptId; v != nil {
+	if v := a.DeptId; v != nil {
 		builder.WriteString("deptId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("topping=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Topping))
+	builder.WriteString(fmt.Sprintf("%v", a.Topping))
 	builder.WriteString(", ")
 	builder.WriteString("title=")
-	builder.WriteString(_m.Title)
+	builder.WriteString(a.Title)
 	builder.WriteString(", ")
 	builder.WriteString("cover=")
-	builder.WriteString(_m.Cover)
+	builder.WriteString(a.Cover)
 	builder.WriteString(", ")
 	builder.WriteString("likes=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Likes))
+	builder.WriteString(fmt.Sprintf("%v", a.Likes))
 	builder.WriteString(", ")
 	builder.WriteString("views=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Views))
+	builder.WriteString(fmt.Sprintf("%v", a.Views))
 	builder.WriteString(", ")
 	builder.WriteString("articleExp=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleExp))
+	builder.WriteString(fmt.Sprintf("%v", a.ArticleExp))
 	builder.WriteString(", ")
 	builder.WriteString("articleLevel=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleLevel))
+	builder.WriteString(fmt.Sprintf("%v", a.ArticleLevel))
 	builder.WriteString(", ")
 	builder.WriteString("reputationGained=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ReputationGained))
+	builder.WriteString(fmt.Sprintf("%v", a.ReputationGained))
 	builder.WriteString(", ")
 	builder.WriteString("isMasterpiece=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsMasterpiece))
+	builder.WriteString(fmt.Sprintf("%v", a.IsMasterpiece))
 	builder.WriteString(", ")
 	builder.WriteString("tipTotal=")
-	builder.WriteString(fmt.Sprintf("%v", _m.TipTotal))
+	builder.WriteString(fmt.Sprintf("%v", a.TipTotal))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(a.Status)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(a.Description)
 	builder.WriteString(", ")
 	builder.WriteString("contentHtml=")
-	builder.WriteString(_m.ContentHtml)
+	builder.WriteString(a.ContentHtml)
 	builder.WriteString(", ")
-	if v := _m.UseArticles; v != nil {
+	if v := a.UseArticles; v != nil {
 		builder.WriteString("useArticles=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := _m.Articles; v != nil {
+	if v := a.Articles; v != nil {
 		builder.WriteString("articles=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("content=")
-	builder.WriteString(_m.Content)
+	builder.WriteString(a.Content)
 	builder.WriteString(", ")
-	if v := _m.ScheduledPublishAt; v != nil {
+	if v := a.ScheduledPublishAt; v != nil {
 		builder.WriteString("scheduledPublishAt=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}

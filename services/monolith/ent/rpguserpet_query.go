@@ -28,40 +28,40 @@ type RpgUserPetQuery struct {
 }
 
 // Where adds a new predicate for the RpgUserPetQuery builder.
-func (_q *RpgUserPetQuery) Where(ps ...predicate.RpgUserPet) *RpgUserPetQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rupq *RpgUserPetQuery) Where(ps ...predicate.RpgUserPet) *RpgUserPetQuery {
+	rupq.predicates = append(rupq.predicates, ps...)
+	return rupq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgUserPetQuery) Limit(limit int) *RpgUserPetQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rupq *RpgUserPetQuery) Limit(limit int) *RpgUserPetQuery {
+	rupq.ctx.Limit = &limit
+	return rupq
 }
 
 // Offset to start from.
-func (_q *RpgUserPetQuery) Offset(offset int) *RpgUserPetQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rupq *RpgUserPetQuery) Offset(offset int) *RpgUserPetQuery {
+	rupq.ctx.Offset = &offset
+	return rupq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgUserPetQuery) Unique(unique bool) *RpgUserPetQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rupq *RpgUserPetQuery) Unique(unique bool) *RpgUserPetQuery {
+	rupq.ctx.Unique = &unique
+	return rupq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgUserPetQuery) Order(o ...rpguserpet.OrderOption) *RpgUserPetQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rupq *RpgUserPetQuery) Order(o ...rpguserpet.OrderOption) *RpgUserPetQuery {
+	rupq.order = append(rupq.order, o...)
+	return rupq
 }
 
 // First returns the first RpgUserPet entity from the query.
 // Returns a *NotFoundError when no RpgUserPet was found.
-func (_q *RpgUserPetQuery) First(ctx context.Context) (*RpgUserPet, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rupq *RpgUserPetQuery) First(ctx context.Context) (*RpgUserPet, error) {
+	nodes, err := rupq.Limit(1).All(setContextOp(ctx, rupq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgUserPetQuery) First(ctx context.Context) (*RpgUserPet, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgUserPetQuery) FirstX(ctx context.Context) *RpgUserPet {
-	node, err := _q.First(ctx)
+func (rupq *RpgUserPetQuery) FirstX(ctx context.Context) *RpgUserPet {
+	node, err := rupq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgUserPetQuery) FirstX(ctx context.Context) *RpgUserPet {
 
 // FirstID returns the first RpgUserPet ID from the query.
 // Returns a *NotFoundError when no RpgUserPet ID was found.
-func (_q *RpgUserPetQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rupq *RpgUserPetQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rupq.Limit(1).IDs(setContextOp(ctx, rupq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgUserPetQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgUserPetQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rupq *RpgUserPetQuery) FirstIDX(ctx context.Context) int {
+	id, err := rupq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgUserPetQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgUserPet entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgUserPet entity is found.
 // Returns a *NotFoundError when no RpgUserPet entities are found.
-func (_q *RpgUserPetQuery) Only(ctx context.Context) (*RpgUserPet, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rupq *RpgUserPetQuery) Only(ctx context.Context) (*RpgUserPet, error) {
+	nodes, err := rupq.Limit(2).All(setContextOp(ctx, rupq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgUserPetQuery) Only(ctx context.Context) (*RpgUserPet, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgUserPetQuery) OnlyX(ctx context.Context) *RpgUserPet {
-	node, err := _q.Only(ctx)
+func (rupq *RpgUserPetQuery) OnlyX(ctx context.Context) *RpgUserPet {
+	node, err := rupq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgUserPetQuery) OnlyX(ctx context.Context) *RpgUserPet {
 // OnlyID is like Only, but returns the only RpgUserPet ID in the query.
 // Returns a *NotSingularError when more than one RpgUserPet ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgUserPetQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rupq *RpgUserPetQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rupq.Limit(2).IDs(setContextOp(ctx, rupq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgUserPetQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgUserPetQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rupq *RpgUserPetQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rupq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgUserPetQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgUserPets.
-func (_q *RpgUserPetQuery) All(ctx context.Context) ([]*RpgUserPet, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rupq *RpgUserPetQuery) All(ctx context.Context) ([]*RpgUserPet, error) {
+	ctx = setContextOp(ctx, rupq.ctx, ent.OpQueryAll)
+	if err := rupq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgUserPet, *RpgUserPetQuery]()
-	return withInterceptors[[]*RpgUserPet](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgUserPet](ctx, rupq, qr, rupq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgUserPetQuery) AllX(ctx context.Context) []*RpgUserPet {
-	nodes, err := _q.All(ctx)
+func (rupq *RpgUserPetQuery) AllX(ctx context.Context) []*RpgUserPet {
+	nodes, err := rupq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgUserPetQuery) AllX(ctx context.Context) []*RpgUserPet {
 }
 
 // IDs executes the query and returns a list of RpgUserPet IDs.
-func (_q *RpgUserPetQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rupq *RpgUserPetQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rupq.ctx.Unique == nil && rupq.path != nil {
+		rupq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpguserpet.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rupq.ctx, ent.OpQueryIDs)
+	if err = rupq.Select(rpguserpet.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgUserPetQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rupq *RpgUserPetQuery) IDsX(ctx context.Context) []int {
+	ids, err := rupq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgUserPetQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgUserPetQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rupq *RpgUserPetQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rupq.ctx, ent.OpQueryCount)
+	if err := rupq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgUserPetQuery](), _q.inters)
+	return withInterceptors[int](ctx, rupq, querierCount[*RpgUserPetQuery](), rupq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgUserPetQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rupq *RpgUserPetQuery) CountX(ctx context.Context) int {
+	count, err := rupq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgUserPetQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgUserPetQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rupq *RpgUserPetQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rupq.ctx, ent.OpQueryExist)
+	switch _, err := rupq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgUserPetQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgUserPetQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rupq *RpgUserPetQuery) ExistX(ctx context.Context) bool {
+	exist, err := rupq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgUserPetQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgUserPetQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgUserPetQuery) Clone() *RpgUserPetQuery {
-	if _q == nil {
+func (rupq *RpgUserPetQuery) Clone() *RpgUserPetQuery {
+	if rupq == nil {
 		return nil
 	}
 	return &RpgUserPetQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpguserpet.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgUserPet{}, _q.predicates...),
+		config:     rupq.config,
+		ctx:        rupq.ctx.Clone(),
+		order:      append([]rpguserpet.OrderOption{}, rupq.order...),
+		inters:     append([]Interceptor{}, rupq.inters...),
+		predicates: append([]predicate.RpgUserPet{}, rupq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rupq.sql.Clone(),
+		path: rupq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgUserPetQuery) Clone() *RpgUserPetQuery {
 //		GroupBy(rpguserpet.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgUserPetQuery) GroupBy(field string, fields ...string) *RpgUserPetGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgUserPetGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rupq *RpgUserPetQuery) GroupBy(field string, fields ...string) *RpgUserPetGroupBy {
+	rupq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgUserPetGroupBy{build: rupq}
+	grbuild.flds = &rupq.ctx.Fields
 	grbuild.label = rpguserpet.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgUserPetQuery) GroupBy(field string, fields ...string) *RpgUserPetGr
 //	client.RpgUserPet.Query().
 //		Select(rpguserpet.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RpgUserPetQuery) Select(fields ...string) *RpgUserPetSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgUserPetSelect{RpgUserPetQuery: _q}
+func (rupq *RpgUserPetQuery) Select(fields ...string) *RpgUserPetSelect {
+	rupq.ctx.Fields = append(rupq.ctx.Fields, fields...)
+	sbuild := &RpgUserPetSelect{RpgUserPetQuery: rupq}
 	sbuild.label = rpguserpet.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rupq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgUserPetSelect configured with the given aggregations.
-func (_q *RpgUserPetQuery) Aggregate(fns ...AggregateFunc) *RpgUserPetSelect {
-	return _q.Select().Aggregate(fns...)
+func (rupq *RpgUserPetQuery) Aggregate(fns ...AggregateFunc) *RpgUserPetSelect {
+	return rupq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgUserPetQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rupq *RpgUserPetQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rupq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rupq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rupq.ctx.Fields {
 		if !rpguserpet.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rupq.path != nil {
+		prev, err := rupq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rupq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgUserPetQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserPet, error) {
+func (rupq *RpgUserPetQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserPet, error) {
 	var (
 		nodes = []*RpgUserPet{}
-		_spec = _q.querySpec()
+		_spec = rupq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgUserPet).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgUserPet{config: _q.config}
+		node := &RpgUserPet{config: rupq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rupq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgUserPetQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*R
 	return nodes, nil
 }
 
-func (_q *RpgUserPetQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rupq *RpgUserPetQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rupq.querySpec()
+	_spec.Node.Columns = rupq.ctx.Fields
+	if len(rupq.ctx.Fields) > 0 {
+		_spec.Unique = rupq.ctx.Unique != nil && *rupq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rupq.driver, _spec)
 }
 
-func (_q *RpgUserPetQuery) querySpec() *sqlgraph.QuerySpec {
+func (rupq *RpgUserPetQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpguserpet.Table, rpguserpet.Columns, sqlgraph.NewFieldSpec(rpguserpet.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rupq.sql
+	if unique := rupq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rupq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rupq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserpet.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgUserPetQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rupq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rupq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rupq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rupq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgUserPetQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgUserPetQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rupq *RpgUserPetQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rupq.driver.Dialect())
 	t1 := builder.Table(rpguserpet.Table)
-	columns := _q.ctx.Fields
+	columns := rupq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpguserpet.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rupq.sql != nil {
+		selector = rupq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rupq.ctx.Unique != nil && *rupq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rupq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rupq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rupq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rupq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgUserPetGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgUserPetGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserPetGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rupgb *RpgUserPetGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserPetGroupBy {
+	rupgb.fns = append(rupgb.fns, fns...)
+	return rupgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgUserPetGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rupgb *RpgUserPetGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rupgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rupgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserPetQuery, *RpgUserPetGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgUserPetQuery, *RpgUserPetGroupBy](ctx, rupgb.build, rupgb, rupgb.build.inters, v)
 }
 
-func (_g *RpgUserPetGroupBy) sqlScan(ctx context.Context, root *RpgUserPetQuery, v any) error {
+func (rupgb *RpgUserPetGroupBy) sqlScan(ctx context.Context, root *RpgUserPetQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rupgb.fns))
+	for _, fn := range rupgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rupgb.flds)+len(rupgb.fns))
+		for _, f := range *rupgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rupgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rupgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgUserPetSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgUserPetSelect) Aggregate(fns ...AggregateFunc) *RpgUserPetSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rups *RpgUserPetSelect) Aggregate(fns ...AggregateFunc) *RpgUserPetSelect {
+	rups.fns = append(rups.fns, fns...)
+	return rups
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgUserPetSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rups *RpgUserPetSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rups.ctx, ent.OpQuerySelect)
+	if err := rups.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserPetQuery, *RpgUserPetSelect](ctx, _s.RpgUserPetQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgUserPetQuery, *RpgUserPetSelect](ctx, rups.RpgUserPetQuery, rups, rups.inters, v)
 }
 
-func (_s *RpgUserPetSelect) sqlScan(ctx context.Context, root *RpgUserPetQuery, v any) error {
+func (rups *RpgUserPetSelect) sqlScan(ctx context.Context, root *RpgUserPetQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rups.fns))
+	for _, fn := range rups.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rups.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgUserPetSelect) sqlScan(ctx context.Context, root *RpgUserPetQuery, 
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rups.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

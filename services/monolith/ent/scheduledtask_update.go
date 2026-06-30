@@ -23,185 +23,185 @@ type ScheduledTaskUpdate struct {
 }
 
 // Where appends a list predicates to the ScheduledTaskUpdate builder.
-func (_u *ScheduledTaskUpdate) Where(ps ...predicate.ScheduledTask) *ScheduledTaskUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (stu *ScheduledTaskUpdate) Where(ps ...predicate.ScheduledTask) *ScheduledTaskUpdate {
+	stu.mutation.Where(ps...)
+	return stu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *ScheduledTaskUpdate) SetUpdateTime(v time.Time) *ScheduledTaskUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetUpdateTime(t time.Time) *ScheduledTaskUpdate {
+	stu.mutation.SetUpdateTime(t)
+	return stu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *ScheduledTaskUpdate) SetIsDelete(v bool) *ScheduledTaskUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetIsDelete(b bool) *ScheduledTaskUpdate {
+	stu.mutation.SetIsDelete(b)
+	return stu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableIsDelete(v *bool) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (stu *ScheduledTaskUpdate) SetNillableIsDelete(b *bool) *ScheduledTaskUpdate {
+	if b != nil {
+		stu.SetIsDelete(*b)
 	}
-	return _u
+	return stu
 }
 
 // SetVersion sets the "version" field.
-func (_u *ScheduledTaskUpdate) SetVersion(v int) *ScheduledTaskUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetVersion(i int) *ScheduledTaskUpdate {
+	stu.mutation.ResetVersion()
+	stu.mutation.SetVersion(i)
+	return stu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableVersion(v *int) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (stu *ScheduledTaskUpdate) SetNillableVersion(i *int) *ScheduledTaskUpdate {
+	if i != nil {
+		stu.SetVersion(*i)
 	}
-	return _u
+	return stu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *ScheduledTaskUpdate) AddVersion(v int) *ScheduledTaskUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (stu *ScheduledTaskUpdate) AddVersion(i int) *ScheduledTaskUpdate {
+	stu.mutation.AddVersion(i)
+	return stu
 }
 
 // SetName sets the "name" field.
-func (_u *ScheduledTaskUpdate) SetName(v string) *ScheduledTaskUpdate {
-	_u.mutation.SetName(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetName(s string) *ScheduledTaskUpdate {
+	stu.mutation.SetName(s)
+	return stu
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableName(v *string) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetName(*v)
+func (stu *ScheduledTaskUpdate) SetNillableName(s *string) *ScheduledTaskUpdate {
+	if s != nil {
+		stu.SetName(*s)
 	}
-	return _u
+	return stu
 }
 
 // SetDescription sets the "description" field.
-func (_u *ScheduledTaskUpdate) SetDescription(v string) *ScheduledTaskUpdate {
-	_u.mutation.SetDescription(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetDescription(s string) *ScheduledTaskUpdate {
+	stu.mutation.SetDescription(s)
+	return stu
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableDescription(v *string) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetDescription(*v)
+func (stu *ScheduledTaskUpdate) SetNillableDescription(s *string) *ScheduledTaskUpdate {
+	if s != nil {
+		stu.SetDescription(*s)
 	}
-	return _u
+	return stu
 }
 
 // SetCron sets the "cron" field.
-func (_u *ScheduledTaskUpdate) SetCron(v string) *ScheduledTaskUpdate {
-	_u.mutation.SetCron(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetCron(s string) *ScheduledTaskUpdate {
+	stu.mutation.SetCron(s)
+	return stu
 }
 
 // SetNillableCron sets the "cron" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableCron(v *string) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetCron(*v)
+func (stu *ScheduledTaskUpdate) SetNillableCron(s *string) *ScheduledTaskUpdate {
+	if s != nil {
+		stu.SetCron(*s)
 	}
-	return _u
+	return stu
 }
 
 // SetCronHuman sets the "cronHuman" field.
-func (_u *ScheduledTaskUpdate) SetCronHuman(v string) *ScheduledTaskUpdate {
-	_u.mutation.SetCronHuman(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetCronHuman(s string) *ScheduledTaskUpdate {
+	stu.mutation.SetCronHuman(s)
+	return stu
 }
 
 // SetNillableCronHuman sets the "cronHuman" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableCronHuman(v *string) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetCronHuman(*v)
+func (stu *ScheduledTaskUpdate) SetNillableCronHuman(s *string) *ScheduledTaskUpdate {
+	if s != nil {
+		stu.SetCronHuman(*s)
 	}
-	return _u
+	return stu
 }
 
 // SetEnabled sets the "enabled" field.
-func (_u *ScheduledTaskUpdate) SetEnabled(v int) *ScheduledTaskUpdate {
-	_u.mutation.ResetEnabled()
-	_u.mutation.SetEnabled(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetEnabled(i int) *ScheduledTaskUpdate {
+	stu.mutation.ResetEnabled()
+	stu.mutation.SetEnabled(i)
+	return stu
 }
 
 // SetNillableEnabled sets the "enabled" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableEnabled(v *int) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetEnabled(*v)
+func (stu *ScheduledTaskUpdate) SetNillableEnabled(i *int) *ScheduledTaskUpdate {
+	if i != nil {
+		stu.SetEnabled(*i)
 	}
-	return _u
+	return stu
 }
 
-// AddEnabled adds value to the "enabled" field.
-func (_u *ScheduledTaskUpdate) AddEnabled(v int) *ScheduledTaskUpdate {
-	_u.mutation.AddEnabled(v)
-	return _u
+// AddEnabled adds i to the "enabled" field.
+func (stu *ScheduledTaskUpdate) AddEnabled(i int) *ScheduledTaskUpdate {
+	stu.mutation.AddEnabled(i)
+	return stu
 }
 
 // SetLogRecording sets the "logRecording" field.
-func (_u *ScheduledTaskUpdate) SetLogRecording(v int) *ScheduledTaskUpdate {
-	_u.mutation.ResetLogRecording()
-	_u.mutation.SetLogRecording(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetLogRecording(i int) *ScheduledTaskUpdate {
+	stu.mutation.ResetLogRecording()
+	stu.mutation.SetLogRecording(i)
+	return stu
 }
 
 // SetNillableLogRecording sets the "logRecording" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableLogRecording(v *int) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetLogRecording(*v)
+func (stu *ScheduledTaskUpdate) SetNillableLogRecording(i *int) *ScheduledTaskUpdate {
+	if i != nil {
+		stu.SetLogRecording(*i)
 	}
-	return _u
+	return stu
 }
 
-// AddLogRecording adds value to the "logRecording" field.
-func (_u *ScheduledTaskUpdate) AddLogRecording(v int) *ScheduledTaskUpdate {
-	_u.mutation.AddLogRecording(v)
-	return _u
+// AddLogRecording adds i to the "logRecording" field.
+func (stu *ScheduledTaskUpdate) AddLogRecording(i int) *ScheduledTaskUpdate {
+	stu.mutation.AddLogRecording(i)
+	return stu
 }
 
 // SetSortOrder sets the "sortOrder" field.
-func (_u *ScheduledTaskUpdate) SetSortOrder(v int) *ScheduledTaskUpdate {
-	_u.mutation.ResetSortOrder()
-	_u.mutation.SetSortOrder(v)
-	return _u
+func (stu *ScheduledTaskUpdate) SetSortOrder(i int) *ScheduledTaskUpdate {
+	stu.mutation.ResetSortOrder()
+	stu.mutation.SetSortOrder(i)
+	return stu
 }
 
 // SetNillableSortOrder sets the "sortOrder" field if the given value is not nil.
-func (_u *ScheduledTaskUpdate) SetNillableSortOrder(v *int) *ScheduledTaskUpdate {
-	if v != nil {
-		_u.SetSortOrder(*v)
+func (stu *ScheduledTaskUpdate) SetNillableSortOrder(i *int) *ScheduledTaskUpdate {
+	if i != nil {
+		stu.SetSortOrder(*i)
 	}
-	return _u
+	return stu
 }
 
-// AddSortOrder adds value to the "sortOrder" field.
-func (_u *ScheduledTaskUpdate) AddSortOrder(v int) *ScheduledTaskUpdate {
-	_u.mutation.AddSortOrder(v)
-	return _u
+// AddSortOrder adds i to the "sortOrder" field.
+func (stu *ScheduledTaskUpdate) AddSortOrder(i int) *ScheduledTaskUpdate {
+	stu.mutation.AddSortOrder(i)
+	return stu
 }
 
 // Mutation returns the ScheduledTaskMutation object of the builder.
-func (_u *ScheduledTaskUpdate) Mutation() *ScheduledTaskMutation {
-	return _u.mutation
+func (stu *ScheduledTaskUpdate) Mutation() *ScheduledTaskMutation {
+	return stu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *ScheduledTaskUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (stu *ScheduledTaskUpdate) Save(ctx context.Context) (int, error) {
+	stu.defaults()
+	return withHooks(ctx, stu.sqlSave, stu.mutation, stu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ScheduledTaskUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (stu *ScheduledTaskUpdate) SaveX(ctx context.Context) int {
+	affected, err := stu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -209,78 +209,78 @@ func (_u *ScheduledTaskUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *ScheduledTaskUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (stu *ScheduledTaskUpdate) Exec(ctx context.Context) error {
+	_, err := stu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ScheduledTaskUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (stu *ScheduledTaskUpdate) ExecX(ctx context.Context) {
+	if err := stu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *ScheduledTaskUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (stu *ScheduledTaskUpdate) defaults() {
+	if _, ok := stu.mutation.UpdateTime(); !ok {
 		v := scheduledtask.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		stu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *ScheduledTaskUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (stu *ScheduledTaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(scheduledtask.Table, scheduledtask.Columns, sqlgraph.NewFieldSpec(scheduledtask.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := stu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := stu.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtask.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := stu.mutation.IsDelete(); ok {
 		_spec.SetField(scheduledtask.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := stu.mutation.Version(); ok {
 		_spec.SetField(scheduledtask.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := stu.mutation.AddedVersion(); ok {
 		_spec.AddField(scheduledtask.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := stu.mutation.Name(); ok {
 		_spec.SetField(scheduledtask.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := stu.mutation.Description(); ok {
 		_spec.SetField(scheduledtask.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Cron(); ok {
+	if value, ok := stu.mutation.Cron(); ok {
 		_spec.SetField(scheduledtask.FieldCron, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CronHuman(); ok {
+	if value, ok := stu.mutation.CronHuman(); ok {
 		_spec.SetField(scheduledtask.FieldCronHuman, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Enabled(); ok {
+	if value, ok := stu.mutation.Enabled(); ok {
 		_spec.SetField(scheduledtask.FieldEnabled, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedEnabled(); ok {
+	if value, ok := stu.mutation.AddedEnabled(); ok {
 		_spec.AddField(scheduledtask.FieldEnabled, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LogRecording(); ok {
+	if value, ok := stu.mutation.LogRecording(); ok {
 		_spec.SetField(scheduledtask.FieldLogRecording, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLogRecording(); ok {
+	if value, ok := stu.mutation.AddedLogRecording(); ok {
 		_spec.AddField(scheduledtask.FieldLogRecording, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.SortOrder(); ok {
+	if value, ok := stu.mutation.SortOrder(); ok {
 		_spec.SetField(scheduledtask.FieldSortOrder, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSortOrder(); ok {
+	if value, ok := stu.mutation.AddedSortOrder(); ok {
 		_spec.AddField(scheduledtask.FieldSortOrder, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, stu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{scheduledtask.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -288,8 +288,8 @@ func (_u *ScheduledTaskUpdate) sqlSave(ctx context.Context) (_node int, err erro
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	stu.mutation.done = true
+	return n, nil
 }
 
 // ScheduledTaskUpdateOne is the builder for updating a single ScheduledTask entity.
@@ -301,192 +301,192 @@ type ScheduledTaskUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *ScheduledTaskUpdateOne) SetUpdateTime(v time.Time) *ScheduledTaskUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetUpdateTime(t time.Time) *ScheduledTaskUpdateOne {
+	stuo.mutation.SetUpdateTime(t)
+	return stuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *ScheduledTaskUpdateOne) SetIsDelete(v bool) *ScheduledTaskUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetIsDelete(b bool) *ScheduledTaskUpdateOne {
+	stuo.mutation.SetIsDelete(b)
+	return stuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableIsDelete(v *bool) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableIsDelete(b *bool) *ScheduledTaskUpdateOne {
+	if b != nil {
+		stuo.SetIsDelete(*b)
 	}
-	return _u
+	return stuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *ScheduledTaskUpdateOne) SetVersion(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetVersion(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.ResetVersion()
+	stuo.mutation.SetVersion(i)
+	return stuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableVersion(v *int) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableVersion(i *int) *ScheduledTaskUpdateOne {
+	if i != nil {
+		stuo.SetVersion(*i)
 	}
-	return _u
+	return stuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *ScheduledTaskUpdateOne) AddVersion(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (stuo *ScheduledTaskUpdateOne) AddVersion(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.AddVersion(i)
+	return stuo
 }
 
 // SetName sets the "name" field.
-func (_u *ScheduledTaskUpdateOne) SetName(v string) *ScheduledTaskUpdateOne {
-	_u.mutation.SetName(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetName(s string) *ScheduledTaskUpdateOne {
+	stuo.mutation.SetName(s)
+	return stuo
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableName(v *string) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetName(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableName(s *string) *ScheduledTaskUpdateOne {
+	if s != nil {
+		stuo.SetName(*s)
 	}
-	return _u
+	return stuo
 }
 
 // SetDescription sets the "description" field.
-func (_u *ScheduledTaskUpdateOne) SetDescription(v string) *ScheduledTaskUpdateOne {
-	_u.mutation.SetDescription(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetDescription(s string) *ScheduledTaskUpdateOne {
+	stuo.mutation.SetDescription(s)
+	return stuo
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableDescription(v *string) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetDescription(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableDescription(s *string) *ScheduledTaskUpdateOne {
+	if s != nil {
+		stuo.SetDescription(*s)
 	}
-	return _u
+	return stuo
 }
 
 // SetCron sets the "cron" field.
-func (_u *ScheduledTaskUpdateOne) SetCron(v string) *ScheduledTaskUpdateOne {
-	_u.mutation.SetCron(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetCron(s string) *ScheduledTaskUpdateOne {
+	stuo.mutation.SetCron(s)
+	return stuo
 }
 
 // SetNillableCron sets the "cron" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableCron(v *string) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetCron(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableCron(s *string) *ScheduledTaskUpdateOne {
+	if s != nil {
+		stuo.SetCron(*s)
 	}
-	return _u
+	return stuo
 }
 
 // SetCronHuman sets the "cronHuman" field.
-func (_u *ScheduledTaskUpdateOne) SetCronHuman(v string) *ScheduledTaskUpdateOne {
-	_u.mutation.SetCronHuman(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetCronHuman(s string) *ScheduledTaskUpdateOne {
+	stuo.mutation.SetCronHuman(s)
+	return stuo
 }
 
 // SetNillableCronHuman sets the "cronHuman" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableCronHuman(v *string) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetCronHuman(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableCronHuman(s *string) *ScheduledTaskUpdateOne {
+	if s != nil {
+		stuo.SetCronHuman(*s)
 	}
-	return _u
+	return stuo
 }
 
 // SetEnabled sets the "enabled" field.
-func (_u *ScheduledTaskUpdateOne) SetEnabled(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.ResetEnabled()
-	_u.mutation.SetEnabled(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetEnabled(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.ResetEnabled()
+	stuo.mutation.SetEnabled(i)
+	return stuo
 }
 
 // SetNillableEnabled sets the "enabled" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableEnabled(v *int) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetEnabled(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableEnabled(i *int) *ScheduledTaskUpdateOne {
+	if i != nil {
+		stuo.SetEnabled(*i)
 	}
-	return _u
+	return stuo
 }
 
-// AddEnabled adds value to the "enabled" field.
-func (_u *ScheduledTaskUpdateOne) AddEnabled(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.AddEnabled(v)
-	return _u
+// AddEnabled adds i to the "enabled" field.
+func (stuo *ScheduledTaskUpdateOne) AddEnabled(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.AddEnabled(i)
+	return stuo
 }
 
 // SetLogRecording sets the "logRecording" field.
-func (_u *ScheduledTaskUpdateOne) SetLogRecording(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.ResetLogRecording()
-	_u.mutation.SetLogRecording(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetLogRecording(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.ResetLogRecording()
+	stuo.mutation.SetLogRecording(i)
+	return stuo
 }
 
 // SetNillableLogRecording sets the "logRecording" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableLogRecording(v *int) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetLogRecording(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableLogRecording(i *int) *ScheduledTaskUpdateOne {
+	if i != nil {
+		stuo.SetLogRecording(*i)
 	}
-	return _u
+	return stuo
 }
 
-// AddLogRecording adds value to the "logRecording" field.
-func (_u *ScheduledTaskUpdateOne) AddLogRecording(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.AddLogRecording(v)
-	return _u
+// AddLogRecording adds i to the "logRecording" field.
+func (stuo *ScheduledTaskUpdateOne) AddLogRecording(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.AddLogRecording(i)
+	return stuo
 }
 
 // SetSortOrder sets the "sortOrder" field.
-func (_u *ScheduledTaskUpdateOne) SetSortOrder(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.ResetSortOrder()
-	_u.mutation.SetSortOrder(v)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) SetSortOrder(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.ResetSortOrder()
+	stuo.mutation.SetSortOrder(i)
+	return stuo
 }
 
 // SetNillableSortOrder sets the "sortOrder" field if the given value is not nil.
-func (_u *ScheduledTaskUpdateOne) SetNillableSortOrder(v *int) *ScheduledTaskUpdateOne {
-	if v != nil {
-		_u.SetSortOrder(*v)
+func (stuo *ScheduledTaskUpdateOne) SetNillableSortOrder(i *int) *ScheduledTaskUpdateOne {
+	if i != nil {
+		stuo.SetSortOrder(*i)
 	}
-	return _u
+	return stuo
 }
 
-// AddSortOrder adds value to the "sortOrder" field.
-func (_u *ScheduledTaskUpdateOne) AddSortOrder(v int) *ScheduledTaskUpdateOne {
-	_u.mutation.AddSortOrder(v)
-	return _u
+// AddSortOrder adds i to the "sortOrder" field.
+func (stuo *ScheduledTaskUpdateOne) AddSortOrder(i int) *ScheduledTaskUpdateOne {
+	stuo.mutation.AddSortOrder(i)
+	return stuo
 }
 
 // Mutation returns the ScheduledTaskMutation object of the builder.
-func (_u *ScheduledTaskUpdateOne) Mutation() *ScheduledTaskMutation {
-	return _u.mutation
+func (stuo *ScheduledTaskUpdateOne) Mutation() *ScheduledTaskMutation {
+	return stuo.mutation
 }
 
 // Where appends a list predicates to the ScheduledTaskUpdate builder.
-func (_u *ScheduledTaskUpdateOne) Where(ps ...predicate.ScheduledTask) *ScheduledTaskUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) Where(ps ...predicate.ScheduledTask) *ScheduledTaskUpdateOne {
+	stuo.mutation.Where(ps...)
+	return stuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *ScheduledTaskUpdateOne) Select(field string, fields ...string) *ScheduledTaskUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (stuo *ScheduledTaskUpdateOne) Select(field string, fields ...string) *ScheduledTaskUpdateOne {
+	stuo.fields = append([]string{field}, fields...)
+	return stuo
 }
 
 // Save executes the query and returns the updated ScheduledTask entity.
-func (_u *ScheduledTaskUpdateOne) Save(ctx context.Context) (*ScheduledTask, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (stuo *ScheduledTaskUpdateOne) Save(ctx context.Context) (*ScheduledTask, error) {
+	stuo.defaults()
+	return withHooks(ctx, stuo.sqlSave, stuo.mutation, stuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ScheduledTaskUpdateOne) SaveX(ctx context.Context) *ScheduledTask {
-	node, err := _u.Save(ctx)
+func (stuo *ScheduledTaskUpdateOne) SaveX(ctx context.Context) *ScheduledTask {
+	node, err := stuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -494,34 +494,34 @@ func (_u *ScheduledTaskUpdateOne) SaveX(ctx context.Context) *ScheduledTask {
 }
 
 // Exec executes the query on the entity.
-func (_u *ScheduledTaskUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (stuo *ScheduledTaskUpdateOne) Exec(ctx context.Context) error {
+	_, err := stuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ScheduledTaskUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (stuo *ScheduledTaskUpdateOne) ExecX(ctx context.Context) {
+	if err := stuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *ScheduledTaskUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (stuo *ScheduledTaskUpdateOne) defaults() {
+	if _, ok := stuo.mutation.UpdateTime(); !ok {
 		v := scheduledtask.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		stuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *ScheduledTaskUpdateOne) sqlSave(ctx context.Context) (_node *ScheduledTask, err error) {
+func (stuo *ScheduledTaskUpdateOne) sqlSave(ctx context.Context) (_node *ScheduledTask, err error) {
 	_spec := sqlgraph.NewUpdateSpec(scheduledtask.Table, scheduledtask.Columns, sqlgraph.NewFieldSpec(scheduledtask.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := stuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "ScheduledTask.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := stuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, scheduledtask.FieldID)
 		for _, f := range fields {
@@ -533,59 +533,59 @@ func (_u *ScheduledTaskUpdateOne) sqlSave(ctx context.Context) (_node *Scheduled
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := stuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := stuo.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtask.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := stuo.mutation.IsDelete(); ok {
 		_spec.SetField(scheduledtask.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := stuo.mutation.Version(); ok {
 		_spec.SetField(scheduledtask.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := stuo.mutation.AddedVersion(); ok {
 		_spec.AddField(scheduledtask.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := stuo.mutation.Name(); ok {
 		_spec.SetField(scheduledtask.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := stuo.mutation.Description(); ok {
 		_spec.SetField(scheduledtask.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Cron(); ok {
+	if value, ok := stuo.mutation.Cron(); ok {
 		_spec.SetField(scheduledtask.FieldCron, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CronHuman(); ok {
+	if value, ok := stuo.mutation.CronHuman(); ok {
 		_spec.SetField(scheduledtask.FieldCronHuman, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Enabled(); ok {
+	if value, ok := stuo.mutation.Enabled(); ok {
 		_spec.SetField(scheduledtask.FieldEnabled, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedEnabled(); ok {
+	if value, ok := stuo.mutation.AddedEnabled(); ok {
 		_spec.AddField(scheduledtask.FieldEnabled, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LogRecording(); ok {
+	if value, ok := stuo.mutation.LogRecording(); ok {
 		_spec.SetField(scheduledtask.FieldLogRecording, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLogRecording(); ok {
+	if value, ok := stuo.mutation.AddedLogRecording(); ok {
 		_spec.AddField(scheduledtask.FieldLogRecording, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.SortOrder(); ok {
+	if value, ok := stuo.mutation.SortOrder(); ok {
 		_spec.SetField(scheduledtask.FieldSortOrder, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSortOrder(); ok {
+	if value, ok := stuo.mutation.AddedSortOrder(); ok {
 		_spec.AddField(scheduledtask.FieldSortOrder, field.TypeInt, value)
 	}
-	_node = &ScheduledTask{config: _u.config}
+	_node = &ScheduledTask{config: stuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, stuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{scheduledtask.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -593,6 +593,6 @@ func (_u *ScheduledTaskUpdateOne) sqlSave(ctx context.Context) (_node *Scheduled
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	stuo.mutation.done = true
 	return _node, nil
 }

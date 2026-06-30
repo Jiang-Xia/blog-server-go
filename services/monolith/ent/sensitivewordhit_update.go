@@ -23,230 +23,230 @@ type SensitiveWordHitUpdate struct {
 }
 
 // Where appends a list predicates to the SensitiveWordHitUpdate builder.
-func (_u *SensitiveWordHitUpdate) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (swhu *SensitiveWordHitUpdate) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitUpdate {
+	swhu.mutation.Where(ps...)
+	return swhu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *SensitiveWordHitUpdate) SetUpdateTime(v time.Time) *SensitiveWordHitUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetUpdateTime(t time.Time) *SensitiveWordHitUpdate {
+	swhu.mutation.SetUpdateTime(t)
+	return swhu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *SensitiveWordHitUpdate) SetIsDelete(v bool) *SensitiveWordHitUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetIsDelete(b bool) *SensitiveWordHitUpdate {
+	swhu.mutation.SetIsDelete(b)
+	return swhu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableIsDelete(v *bool) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableIsDelete(b *bool) *SensitiveWordHitUpdate {
+	if b != nil {
+		swhu.SetIsDelete(*b)
 	}
-	return _u
+	return swhu
 }
 
 // SetVersion sets the "version" field.
-func (_u *SensitiveWordHitUpdate) SetVersion(v int) *SensitiveWordHitUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetVersion(i int) *SensitiveWordHitUpdate {
+	swhu.mutation.ResetVersion()
+	swhu.mutation.SetVersion(i)
+	return swhu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableVersion(v *int) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableVersion(i *int) *SensitiveWordHitUpdate {
+	if i != nil {
+		swhu.SetVersion(*i)
 	}
-	return _u
+	return swhu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *SensitiveWordHitUpdate) AddVersion(v int) *SensitiveWordHitUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (swhu *SensitiveWordHitUpdate) AddVersion(i int) *SensitiveWordHitUpdate {
+	swhu.mutation.AddVersion(i)
+	return swhu
 }
 
 // SetSourceType sets the "sourceType" field.
-func (_u *SensitiveWordHitUpdate) SetSourceType(v string) *SensitiveWordHitUpdate {
-	_u.mutation.SetSourceType(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetSourceType(s string) *SensitiveWordHitUpdate {
+	swhu.mutation.SetSourceType(s)
+	return swhu
 }
 
 // SetNillableSourceType sets the "sourceType" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableSourceType(v *string) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetSourceType(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableSourceType(s *string) *SensitiveWordHitUpdate {
+	if s != nil {
+		swhu.SetSourceType(*s)
 	}
-	return _u
+	return swhu
 }
 
 // SetSourceId sets the "sourceId" field.
-func (_u *SensitiveWordHitUpdate) SetSourceId(v string) *SensitiveWordHitUpdate {
-	_u.mutation.SetSourceId(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetSourceId(s string) *SensitiveWordHitUpdate {
+	swhu.mutation.SetSourceId(s)
+	return swhu
 }
 
 // SetNillableSourceId sets the "sourceId" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableSourceId(v *string) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetSourceId(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableSourceId(s *string) *SensitiveWordHitUpdate {
+	if s != nil {
+		swhu.SetSourceId(*s)
 	}
-	return _u
+	return swhu
 }
 
 // SetContent sets the "content" field.
-func (_u *SensitiveWordHitUpdate) SetContent(v string) *SensitiveWordHitUpdate {
-	_u.mutation.SetContent(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetContent(s string) *SensitiveWordHitUpdate {
+	swhu.mutation.SetContent(s)
+	return swhu
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableContent(v *string) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetContent(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableContent(s *string) *SensitiveWordHitUpdate {
+	if s != nil {
+		swhu.SetContent(*s)
 	}
-	return _u
+	return swhu
 }
 
 // SetHitWords sets the "hitWords" field.
-func (_u *SensitiveWordHitUpdate) SetHitWords(v string) *SensitiveWordHitUpdate {
-	_u.mutation.SetHitWords(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetHitWords(s string) *SensitiveWordHitUpdate {
+	swhu.mutation.SetHitWords(s)
+	return swhu
 }
 
 // SetNillableHitWords sets the "hitWords" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableHitWords(v *string) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetHitWords(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableHitWords(s *string) *SensitiveWordHitUpdate {
+	if s != nil {
+		swhu.SetHitWords(*s)
 	}
-	return _u
+	return swhu
 }
 
 // SetUID sets the "uid" field.
-func (_u *SensitiveWordHitUpdate) SetUID(v int) *SensitiveWordHitUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetUID(i int) *SensitiveWordHitUpdate {
+	swhu.mutation.ResetUID()
+	swhu.mutation.SetUID(i)
+	return swhu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableUID(v *int) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableUID(i *int) *SensitiveWordHitUpdate {
+	if i != nil {
+		swhu.SetUID(*i)
 	}
-	return _u
+	return swhu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *SensitiveWordHitUpdate) AddUID(v int) *SensitiveWordHitUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (swhu *SensitiveWordHitUpdate) AddUID(i int) *SensitiveWordHitUpdate {
+	swhu.mutation.AddUID(i)
+	return swhu
 }
 
 // ClearUID clears the value of the "uid" field.
-func (_u *SensitiveWordHitUpdate) ClearUID() *SensitiveWordHitUpdate {
-	_u.mutation.ClearUID()
-	return _u
+func (swhu *SensitiveWordHitUpdate) ClearUID() *SensitiveWordHitUpdate {
+	swhu.mutation.ClearUID()
+	return swhu
 }
 
 // SetIP sets the "ip" field.
-func (_u *SensitiveWordHitUpdate) SetIP(v string) *SensitiveWordHitUpdate {
-	_u.mutation.SetIP(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetIP(s string) *SensitiveWordHitUpdate {
+	swhu.mutation.SetIP(s)
+	return swhu
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableIP(v *string) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetIP(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableIP(s *string) *SensitiveWordHitUpdate {
+	if s != nil {
+		swhu.SetIP(*s)
 	}
-	return _u
+	return swhu
 }
 
 // ClearIP clears the value of the "ip" field.
-func (_u *SensitiveWordHitUpdate) ClearIP() *SensitiveWordHitUpdate {
-	_u.mutation.ClearIP()
-	return _u
+func (swhu *SensitiveWordHitUpdate) ClearIP() *SensitiveWordHitUpdate {
+	swhu.mutation.ClearIP()
+	return swhu
 }
 
 // SetStatus sets the "status" field.
-func (_u *SensitiveWordHitUpdate) SetStatus(v string) *SensitiveWordHitUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetStatus(s string) *SensitiveWordHitUpdate {
+	swhu.mutation.SetStatus(s)
+	return swhu
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableStatus(v *string) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableStatus(s *string) *SensitiveWordHitUpdate {
+	if s != nil {
+		swhu.SetStatus(*s)
 	}
-	return _u
+	return swhu
 }
 
 // SetReviewerId sets the "reviewerId" field.
-func (_u *SensitiveWordHitUpdate) SetReviewerId(v int) *SensitiveWordHitUpdate {
-	_u.mutation.ResetReviewerId()
-	_u.mutation.SetReviewerId(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetReviewerId(i int) *SensitiveWordHitUpdate {
+	swhu.mutation.ResetReviewerId()
+	swhu.mutation.SetReviewerId(i)
+	return swhu
 }
 
 // SetNillableReviewerId sets the "reviewerId" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableReviewerId(v *int) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetReviewerId(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableReviewerId(i *int) *SensitiveWordHitUpdate {
+	if i != nil {
+		swhu.SetReviewerId(*i)
 	}
-	return _u
+	return swhu
 }
 
-// AddReviewerId adds value to the "reviewerId" field.
-func (_u *SensitiveWordHitUpdate) AddReviewerId(v int) *SensitiveWordHitUpdate {
-	_u.mutation.AddReviewerId(v)
-	return _u
+// AddReviewerId adds i to the "reviewerId" field.
+func (swhu *SensitiveWordHitUpdate) AddReviewerId(i int) *SensitiveWordHitUpdate {
+	swhu.mutation.AddReviewerId(i)
+	return swhu
 }
 
 // ClearReviewerId clears the value of the "reviewerId" field.
-func (_u *SensitiveWordHitUpdate) ClearReviewerId() *SensitiveWordHitUpdate {
-	_u.mutation.ClearReviewerId()
-	return _u
+func (swhu *SensitiveWordHitUpdate) ClearReviewerId() *SensitiveWordHitUpdate {
+	swhu.mutation.ClearReviewerId()
+	return swhu
 }
 
 // SetReviewTime sets the "reviewTime" field.
-func (_u *SensitiveWordHitUpdate) SetReviewTime(v time.Time) *SensitiveWordHitUpdate {
-	_u.mutation.SetReviewTime(v)
-	return _u
+func (swhu *SensitiveWordHitUpdate) SetReviewTime(t time.Time) *SensitiveWordHitUpdate {
+	swhu.mutation.SetReviewTime(t)
+	return swhu
 }
 
 // SetNillableReviewTime sets the "reviewTime" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdate) SetNillableReviewTime(v *time.Time) *SensitiveWordHitUpdate {
-	if v != nil {
-		_u.SetReviewTime(*v)
+func (swhu *SensitiveWordHitUpdate) SetNillableReviewTime(t *time.Time) *SensitiveWordHitUpdate {
+	if t != nil {
+		swhu.SetReviewTime(*t)
 	}
-	return _u
+	return swhu
 }
 
 // ClearReviewTime clears the value of the "reviewTime" field.
-func (_u *SensitiveWordHitUpdate) ClearReviewTime() *SensitiveWordHitUpdate {
-	_u.mutation.ClearReviewTime()
-	return _u
+func (swhu *SensitiveWordHitUpdate) ClearReviewTime() *SensitiveWordHitUpdate {
+	swhu.mutation.ClearReviewTime()
+	return swhu
 }
 
 // Mutation returns the SensitiveWordHitMutation object of the builder.
-func (_u *SensitiveWordHitUpdate) Mutation() *SensitiveWordHitMutation {
-	return _u.mutation
+func (swhu *SensitiveWordHitUpdate) Mutation() *SensitiveWordHitMutation {
+	return swhu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *SensitiveWordHitUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (swhu *SensitiveWordHitUpdate) Save(ctx context.Context) (int, error) {
+	swhu.defaults()
+	return withHooks(ctx, swhu.sqlSave, swhu.mutation, swhu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *SensitiveWordHitUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (swhu *SensitiveWordHitUpdate) SaveX(ctx context.Context) int {
+	affected, err := swhu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -254,93 +254,93 @@ func (_u *SensitiveWordHitUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *SensitiveWordHitUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (swhu *SensitiveWordHitUpdate) Exec(ctx context.Context) error {
+	_, err := swhu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *SensitiveWordHitUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (swhu *SensitiveWordHitUpdate) ExecX(ctx context.Context) {
+	if err := swhu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *SensitiveWordHitUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (swhu *SensitiveWordHitUpdate) defaults() {
+	if _, ok := swhu.mutation.UpdateTime(); !ok {
 		v := sensitivewordhit.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		swhu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *SensitiveWordHitUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (swhu *SensitiveWordHitUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sensitivewordhit.Table, sensitivewordhit.Columns, sqlgraph.NewFieldSpec(sensitivewordhit.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := swhu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := swhu.mutation.UpdateTime(); ok {
 		_spec.SetField(sensitivewordhit.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := swhu.mutation.IsDelete(); ok {
 		_spec.SetField(sensitivewordhit.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := swhu.mutation.Version(); ok {
 		_spec.SetField(sensitivewordhit.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := swhu.mutation.AddedVersion(); ok {
 		_spec.AddField(sensitivewordhit.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.SourceType(); ok {
+	if value, ok := swhu.mutation.SourceType(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.SourceId(); ok {
+	if value, ok := swhu.mutation.SourceId(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceId, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Content(); ok {
+	if value, ok := swhu.mutation.Content(); ok {
 		_spec.SetField(sensitivewordhit.FieldContent, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.HitWords(); ok {
+	if value, ok := swhu.mutation.HitWords(); ok {
 		_spec.SetField(sensitivewordhit.FieldHitWords, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := swhu.mutation.UID(); ok {
 		_spec.SetField(sensitivewordhit.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := swhu.mutation.AddedUID(); ok {
 		_spec.AddField(sensitivewordhit.FieldUID, field.TypeInt, value)
 	}
-	if _u.mutation.UIDCleared() {
+	if swhu.mutation.UIDCleared() {
 		_spec.ClearField(sensitivewordhit.FieldUID, field.TypeInt)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := swhu.mutation.IP(); ok {
 		_spec.SetField(sensitivewordhit.FieldIP, field.TypeString, value)
 	}
-	if _u.mutation.IPCleared() {
+	if swhu.mutation.IPCleared() {
 		_spec.ClearField(sensitivewordhit.FieldIP, field.TypeString)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := swhu.mutation.Status(); ok {
 		_spec.SetField(sensitivewordhit.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ReviewerId(); ok {
+	if value, ok := swhu.mutation.ReviewerId(); ok {
 		_spec.SetField(sensitivewordhit.FieldReviewerId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedReviewerId(); ok {
+	if value, ok := swhu.mutation.AddedReviewerId(); ok {
 		_spec.AddField(sensitivewordhit.FieldReviewerId, field.TypeInt, value)
 	}
-	if _u.mutation.ReviewerIdCleared() {
+	if swhu.mutation.ReviewerIdCleared() {
 		_spec.ClearField(sensitivewordhit.FieldReviewerId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.ReviewTime(); ok {
+	if value, ok := swhu.mutation.ReviewTime(); ok {
 		_spec.SetField(sensitivewordhit.FieldReviewTime, field.TypeTime, value)
 	}
-	if _u.mutation.ReviewTimeCleared() {
+	if swhu.mutation.ReviewTimeCleared() {
 		_spec.ClearField(sensitivewordhit.FieldReviewTime, field.TypeTime)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, swhu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{sensitivewordhit.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -348,8 +348,8 @@ func (_u *SensitiveWordHitUpdate) sqlSave(ctx context.Context) (_node int, err e
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	swhu.mutation.done = true
+	return n, nil
 }
 
 // SensitiveWordHitUpdateOne is the builder for updating a single SensitiveWordHit entity.
@@ -361,237 +361,237 @@ type SensitiveWordHitUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *SensitiveWordHitUpdateOne) SetUpdateTime(v time.Time) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetUpdateTime(t time.Time) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetUpdateTime(t)
+	return swhuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *SensitiveWordHitUpdateOne) SetIsDelete(v bool) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetIsDelete(b bool) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetIsDelete(b)
+	return swhuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableIsDelete(v *bool) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableIsDelete(b *bool) *SensitiveWordHitUpdateOne {
+	if b != nil {
+		swhuo.SetIsDelete(*b)
 	}
-	return _u
+	return swhuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *SensitiveWordHitUpdateOne) SetVersion(v int) *SensitiveWordHitUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetVersion(i int) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.ResetVersion()
+	swhuo.mutation.SetVersion(i)
+	return swhuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableVersion(v *int) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableVersion(i *int) *SensitiveWordHitUpdateOne {
+	if i != nil {
+		swhuo.SetVersion(*i)
 	}
-	return _u
+	return swhuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *SensitiveWordHitUpdateOne) AddVersion(v int) *SensitiveWordHitUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (swhuo *SensitiveWordHitUpdateOne) AddVersion(i int) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.AddVersion(i)
+	return swhuo
 }
 
 // SetSourceType sets the "sourceType" field.
-func (_u *SensitiveWordHitUpdateOne) SetSourceType(v string) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetSourceType(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetSourceType(s string) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetSourceType(s)
+	return swhuo
 }
 
 // SetNillableSourceType sets the "sourceType" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableSourceType(v *string) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetSourceType(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableSourceType(s *string) *SensitiveWordHitUpdateOne {
+	if s != nil {
+		swhuo.SetSourceType(*s)
 	}
-	return _u
+	return swhuo
 }
 
 // SetSourceId sets the "sourceId" field.
-func (_u *SensitiveWordHitUpdateOne) SetSourceId(v string) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetSourceId(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetSourceId(s string) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetSourceId(s)
+	return swhuo
 }
 
 // SetNillableSourceId sets the "sourceId" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableSourceId(v *string) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetSourceId(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableSourceId(s *string) *SensitiveWordHitUpdateOne {
+	if s != nil {
+		swhuo.SetSourceId(*s)
 	}
-	return _u
+	return swhuo
 }
 
 // SetContent sets the "content" field.
-func (_u *SensitiveWordHitUpdateOne) SetContent(v string) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetContent(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetContent(s string) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetContent(s)
+	return swhuo
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableContent(v *string) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetContent(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableContent(s *string) *SensitiveWordHitUpdateOne {
+	if s != nil {
+		swhuo.SetContent(*s)
 	}
-	return _u
+	return swhuo
 }
 
 // SetHitWords sets the "hitWords" field.
-func (_u *SensitiveWordHitUpdateOne) SetHitWords(v string) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetHitWords(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetHitWords(s string) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetHitWords(s)
+	return swhuo
 }
 
 // SetNillableHitWords sets the "hitWords" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableHitWords(v *string) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetHitWords(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableHitWords(s *string) *SensitiveWordHitUpdateOne {
+	if s != nil {
+		swhuo.SetHitWords(*s)
 	}
-	return _u
+	return swhuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *SensitiveWordHitUpdateOne) SetUID(v int) *SensitiveWordHitUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetUID(i int) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.ResetUID()
+	swhuo.mutation.SetUID(i)
+	return swhuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableUID(v *int) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableUID(i *int) *SensitiveWordHitUpdateOne {
+	if i != nil {
+		swhuo.SetUID(*i)
 	}
-	return _u
+	return swhuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *SensitiveWordHitUpdateOne) AddUID(v int) *SensitiveWordHitUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (swhuo *SensitiveWordHitUpdateOne) AddUID(i int) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.AddUID(i)
+	return swhuo
 }
 
 // ClearUID clears the value of the "uid" field.
-func (_u *SensitiveWordHitUpdateOne) ClearUID() *SensitiveWordHitUpdateOne {
-	_u.mutation.ClearUID()
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) ClearUID() *SensitiveWordHitUpdateOne {
+	swhuo.mutation.ClearUID()
+	return swhuo
 }
 
 // SetIP sets the "ip" field.
-func (_u *SensitiveWordHitUpdateOne) SetIP(v string) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetIP(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetIP(s string) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetIP(s)
+	return swhuo
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableIP(v *string) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetIP(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableIP(s *string) *SensitiveWordHitUpdateOne {
+	if s != nil {
+		swhuo.SetIP(*s)
 	}
-	return _u
+	return swhuo
 }
 
 // ClearIP clears the value of the "ip" field.
-func (_u *SensitiveWordHitUpdateOne) ClearIP() *SensitiveWordHitUpdateOne {
-	_u.mutation.ClearIP()
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) ClearIP() *SensitiveWordHitUpdateOne {
+	swhuo.mutation.ClearIP()
+	return swhuo
 }
 
 // SetStatus sets the "status" field.
-func (_u *SensitiveWordHitUpdateOne) SetStatus(v string) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetStatus(s string) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetStatus(s)
+	return swhuo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableStatus(v *string) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableStatus(s *string) *SensitiveWordHitUpdateOne {
+	if s != nil {
+		swhuo.SetStatus(*s)
 	}
-	return _u
+	return swhuo
 }
 
 // SetReviewerId sets the "reviewerId" field.
-func (_u *SensitiveWordHitUpdateOne) SetReviewerId(v int) *SensitiveWordHitUpdateOne {
-	_u.mutation.ResetReviewerId()
-	_u.mutation.SetReviewerId(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetReviewerId(i int) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.ResetReviewerId()
+	swhuo.mutation.SetReviewerId(i)
+	return swhuo
 }
 
 // SetNillableReviewerId sets the "reviewerId" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableReviewerId(v *int) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetReviewerId(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableReviewerId(i *int) *SensitiveWordHitUpdateOne {
+	if i != nil {
+		swhuo.SetReviewerId(*i)
 	}
-	return _u
+	return swhuo
 }
 
-// AddReviewerId adds value to the "reviewerId" field.
-func (_u *SensitiveWordHitUpdateOne) AddReviewerId(v int) *SensitiveWordHitUpdateOne {
-	_u.mutation.AddReviewerId(v)
-	return _u
+// AddReviewerId adds i to the "reviewerId" field.
+func (swhuo *SensitiveWordHitUpdateOne) AddReviewerId(i int) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.AddReviewerId(i)
+	return swhuo
 }
 
 // ClearReviewerId clears the value of the "reviewerId" field.
-func (_u *SensitiveWordHitUpdateOne) ClearReviewerId() *SensitiveWordHitUpdateOne {
-	_u.mutation.ClearReviewerId()
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) ClearReviewerId() *SensitiveWordHitUpdateOne {
+	swhuo.mutation.ClearReviewerId()
+	return swhuo
 }
 
 // SetReviewTime sets the "reviewTime" field.
-func (_u *SensitiveWordHitUpdateOne) SetReviewTime(v time.Time) *SensitiveWordHitUpdateOne {
-	_u.mutation.SetReviewTime(v)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) SetReviewTime(t time.Time) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.SetReviewTime(t)
+	return swhuo
 }
 
 // SetNillableReviewTime sets the "reviewTime" field if the given value is not nil.
-func (_u *SensitiveWordHitUpdateOne) SetNillableReviewTime(v *time.Time) *SensitiveWordHitUpdateOne {
-	if v != nil {
-		_u.SetReviewTime(*v)
+func (swhuo *SensitiveWordHitUpdateOne) SetNillableReviewTime(t *time.Time) *SensitiveWordHitUpdateOne {
+	if t != nil {
+		swhuo.SetReviewTime(*t)
 	}
-	return _u
+	return swhuo
 }
 
 // ClearReviewTime clears the value of the "reviewTime" field.
-func (_u *SensitiveWordHitUpdateOne) ClearReviewTime() *SensitiveWordHitUpdateOne {
-	_u.mutation.ClearReviewTime()
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) ClearReviewTime() *SensitiveWordHitUpdateOne {
+	swhuo.mutation.ClearReviewTime()
+	return swhuo
 }
 
 // Mutation returns the SensitiveWordHitMutation object of the builder.
-func (_u *SensitiveWordHitUpdateOne) Mutation() *SensitiveWordHitMutation {
-	return _u.mutation
+func (swhuo *SensitiveWordHitUpdateOne) Mutation() *SensitiveWordHitMutation {
+	return swhuo.mutation
 }
 
 // Where appends a list predicates to the SensitiveWordHitUpdate builder.
-func (_u *SensitiveWordHitUpdateOne) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitUpdateOne {
+	swhuo.mutation.Where(ps...)
+	return swhuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *SensitiveWordHitUpdateOne) Select(field string, fields ...string) *SensitiveWordHitUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (swhuo *SensitiveWordHitUpdateOne) Select(field string, fields ...string) *SensitiveWordHitUpdateOne {
+	swhuo.fields = append([]string{field}, fields...)
+	return swhuo
 }
 
 // Save executes the query and returns the updated SensitiveWordHit entity.
-func (_u *SensitiveWordHitUpdateOne) Save(ctx context.Context) (*SensitiveWordHit, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (swhuo *SensitiveWordHitUpdateOne) Save(ctx context.Context) (*SensitiveWordHit, error) {
+	swhuo.defaults()
+	return withHooks(ctx, swhuo.sqlSave, swhuo.mutation, swhuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *SensitiveWordHitUpdateOne) SaveX(ctx context.Context) *SensitiveWordHit {
-	node, err := _u.Save(ctx)
+func (swhuo *SensitiveWordHitUpdateOne) SaveX(ctx context.Context) *SensitiveWordHit {
+	node, err := swhuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -599,34 +599,34 @@ func (_u *SensitiveWordHitUpdateOne) SaveX(ctx context.Context) *SensitiveWordHi
 }
 
 // Exec executes the query on the entity.
-func (_u *SensitiveWordHitUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (swhuo *SensitiveWordHitUpdateOne) Exec(ctx context.Context) error {
+	_, err := swhuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *SensitiveWordHitUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (swhuo *SensitiveWordHitUpdateOne) ExecX(ctx context.Context) {
+	if err := swhuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *SensitiveWordHitUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (swhuo *SensitiveWordHitUpdateOne) defaults() {
+	if _, ok := swhuo.mutation.UpdateTime(); !ok {
 		v := sensitivewordhit.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		swhuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *SensitiveWordHitUpdateOne) sqlSave(ctx context.Context) (_node *SensitiveWordHit, err error) {
+func (swhuo *SensitiveWordHitUpdateOne) sqlSave(ctx context.Context) (_node *SensitiveWordHit, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sensitivewordhit.Table, sensitivewordhit.Columns, sqlgraph.NewFieldSpec(sensitivewordhit.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := swhuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "SensitiveWordHit.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := swhuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, sensitivewordhit.FieldID)
 		for _, f := range fields {
@@ -638,74 +638,74 @@ func (_u *SensitiveWordHitUpdateOne) sqlSave(ctx context.Context) (_node *Sensit
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := swhuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := swhuo.mutation.UpdateTime(); ok {
 		_spec.SetField(sensitivewordhit.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := swhuo.mutation.IsDelete(); ok {
 		_spec.SetField(sensitivewordhit.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := swhuo.mutation.Version(); ok {
 		_spec.SetField(sensitivewordhit.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := swhuo.mutation.AddedVersion(); ok {
 		_spec.AddField(sensitivewordhit.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.SourceType(); ok {
+	if value, ok := swhuo.mutation.SourceType(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.SourceId(); ok {
+	if value, ok := swhuo.mutation.SourceId(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceId, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Content(); ok {
+	if value, ok := swhuo.mutation.Content(); ok {
 		_spec.SetField(sensitivewordhit.FieldContent, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.HitWords(); ok {
+	if value, ok := swhuo.mutation.HitWords(); ok {
 		_spec.SetField(sensitivewordhit.FieldHitWords, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := swhuo.mutation.UID(); ok {
 		_spec.SetField(sensitivewordhit.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := swhuo.mutation.AddedUID(); ok {
 		_spec.AddField(sensitivewordhit.FieldUID, field.TypeInt, value)
 	}
-	if _u.mutation.UIDCleared() {
+	if swhuo.mutation.UIDCleared() {
 		_spec.ClearField(sensitivewordhit.FieldUID, field.TypeInt)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := swhuo.mutation.IP(); ok {
 		_spec.SetField(sensitivewordhit.FieldIP, field.TypeString, value)
 	}
-	if _u.mutation.IPCleared() {
+	if swhuo.mutation.IPCleared() {
 		_spec.ClearField(sensitivewordhit.FieldIP, field.TypeString)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := swhuo.mutation.Status(); ok {
 		_spec.SetField(sensitivewordhit.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ReviewerId(); ok {
+	if value, ok := swhuo.mutation.ReviewerId(); ok {
 		_spec.SetField(sensitivewordhit.FieldReviewerId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedReviewerId(); ok {
+	if value, ok := swhuo.mutation.AddedReviewerId(); ok {
 		_spec.AddField(sensitivewordhit.FieldReviewerId, field.TypeInt, value)
 	}
-	if _u.mutation.ReviewerIdCleared() {
+	if swhuo.mutation.ReviewerIdCleared() {
 		_spec.ClearField(sensitivewordhit.FieldReviewerId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.ReviewTime(); ok {
+	if value, ok := swhuo.mutation.ReviewTime(); ok {
 		_spec.SetField(sensitivewordhit.FieldReviewTime, field.TypeTime, value)
 	}
-	if _u.mutation.ReviewTimeCleared() {
+	if swhuo.mutation.ReviewTimeCleared() {
 		_spec.ClearField(sensitivewordhit.FieldReviewTime, field.TypeTime)
 	}
-	_node = &SensitiveWordHit{config: _u.config}
+	_node = &SensitiveWordHit{config: swhuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, swhuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{sensitivewordhit.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -713,6 +713,6 @@ func (_u *SensitiveWordHitUpdateOne) sqlSave(ctx context.Context) (_node *Sensit
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	swhuo.mutation.done = true
 	return _node, nil
 }

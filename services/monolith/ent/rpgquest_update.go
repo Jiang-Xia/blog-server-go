@@ -22,254 +22,254 @@ type RpgQuestUpdate struct {
 }
 
 // Where appends a list predicates to the RpgQuestUpdate builder.
-func (_u *RpgQuestUpdate) Where(ps ...predicate.RpgQuest) *RpgQuestUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rqu *RpgQuestUpdate) Where(ps ...predicate.RpgQuest) *RpgQuestUpdate {
+	rqu.mutation.Where(ps...)
+	return rqu
 }
 
 // SetCode sets the "code" field.
-func (_u *RpgQuestUpdate) SetCode(v string) *RpgQuestUpdate {
-	_u.mutation.SetCode(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetCode(s string) *RpgQuestUpdate {
+	rqu.mutation.SetCode(s)
+	return rqu
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableCode(v *string) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetCode(*v)
+func (rqu *RpgQuestUpdate) SetNillableCode(s *string) *RpgQuestUpdate {
+	if s != nil {
+		rqu.SetCode(*s)
 	}
-	return _u
+	return rqu
 }
 
 // SetName sets the "name" field.
-func (_u *RpgQuestUpdate) SetName(v string) *RpgQuestUpdate {
-	_u.mutation.SetName(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetName(s string) *RpgQuestUpdate {
+	rqu.mutation.SetName(s)
+	return rqu
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableName(v *string) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetName(*v)
+func (rqu *RpgQuestUpdate) SetNillableName(s *string) *RpgQuestUpdate {
+	if s != nil {
+		rqu.SetName(*s)
 	}
-	return _u
+	return rqu
 }
 
 // SetDescription sets the "description" field.
-func (_u *RpgQuestUpdate) SetDescription(v string) *RpgQuestUpdate {
-	_u.mutation.SetDescription(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetDescription(s string) *RpgQuestUpdate {
+	rqu.mutation.SetDescription(s)
+	return rqu
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableDescription(v *string) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetDescription(*v)
+func (rqu *RpgQuestUpdate) SetNillableDescription(s *string) *RpgQuestUpdate {
+	if s != nil {
+		rqu.SetDescription(*s)
 	}
-	return _u
+	return rqu
 }
 
 // SetType sets the "type" field.
-func (_u *RpgQuestUpdate) SetType(v string) *RpgQuestUpdate {
-	_u.mutation.SetType(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetType(s string) *RpgQuestUpdate {
+	rqu.mutation.SetType(s)
+	return rqu
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableType(v *string) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetType(*v)
+func (rqu *RpgQuestUpdate) SetNillableType(s *string) *RpgQuestUpdate {
+	if s != nil {
+		rqu.SetType(*s)
 	}
-	return _u
+	return rqu
 }
 
 // SetTargetAction sets the "targetAction" field.
-func (_u *RpgQuestUpdate) SetTargetAction(v string) *RpgQuestUpdate {
-	_u.mutation.SetTargetAction(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetTargetAction(s string) *RpgQuestUpdate {
+	rqu.mutation.SetTargetAction(s)
+	return rqu
 }
 
 // SetNillableTargetAction sets the "targetAction" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableTargetAction(v *string) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetTargetAction(*v)
+func (rqu *RpgQuestUpdate) SetNillableTargetAction(s *string) *RpgQuestUpdate {
+	if s != nil {
+		rqu.SetTargetAction(*s)
 	}
-	return _u
+	return rqu
 }
 
 // SetTargetCount sets the "targetCount" field.
-func (_u *RpgQuestUpdate) SetTargetCount(v int) *RpgQuestUpdate {
-	_u.mutation.ResetTargetCount()
-	_u.mutation.SetTargetCount(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetTargetCount(i int) *RpgQuestUpdate {
+	rqu.mutation.ResetTargetCount()
+	rqu.mutation.SetTargetCount(i)
+	return rqu
 }
 
 // SetNillableTargetCount sets the "targetCount" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableTargetCount(v *int) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetTargetCount(*v)
+func (rqu *RpgQuestUpdate) SetNillableTargetCount(i *int) *RpgQuestUpdate {
+	if i != nil {
+		rqu.SetTargetCount(*i)
 	}
-	return _u
+	return rqu
 }
 
-// AddTargetCount adds value to the "targetCount" field.
-func (_u *RpgQuestUpdate) AddTargetCount(v int) *RpgQuestUpdate {
-	_u.mutation.AddTargetCount(v)
-	return _u
+// AddTargetCount adds i to the "targetCount" field.
+func (rqu *RpgQuestUpdate) AddTargetCount(i int) *RpgQuestUpdate {
+	rqu.mutation.AddTargetCount(i)
+	return rqu
 }
 
 // SetExpReward sets the "expReward" field.
-func (_u *RpgQuestUpdate) SetExpReward(v int) *RpgQuestUpdate {
-	_u.mutation.ResetExpReward()
-	_u.mutation.SetExpReward(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetExpReward(i int) *RpgQuestUpdate {
+	rqu.mutation.ResetExpReward()
+	rqu.mutation.SetExpReward(i)
+	return rqu
 }
 
 // SetNillableExpReward sets the "expReward" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableExpReward(v *int) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetExpReward(*v)
+func (rqu *RpgQuestUpdate) SetNillableExpReward(i *int) *RpgQuestUpdate {
+	if i != nil {
+		rqu.SetExpReward(*i)
 	}
-	return _u
+	return rqu
 }
 
-// AddExpReward adds value to the "expReward" field.
-func (_u *RpgQuestUpdate) AddExpReward(v int) *RpgQuestUpdate {
-	_u.mutation.AddExpReward(v)
-	return _u
+// AddExpReward adds i to the "expReward" field.
+func (rqu *RpgQuestUpdate) AddExpReward(i int) *RpgQuestUpdate {
+	rqu.mutation.AddExpReward(i)
+	return rqu
 }
 
 // SetHpReward sets the "hpReward" field.
-func (_u *RpgQuestUpdate) SetHpReward(v int) *RpgQuestUpdate {
-	_u.mutation.ResetHpReward()
-	_u.mutation.SetHpReward(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetHpReward(i int) *RpgQuestUpdate {
+	rqu.mutation.ResetHpReward()
+	rqu.mutation.SetHpReward(i)
+	return rqu
 }
 
 // SetNillableHpReward sets the "hpReward" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableHpReward(v *int) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetHpReward(*v)
+func (rqu *RpgQuestUpdate) SetNillableHpReward(i *int) *RpgQuestUpdate {
+	if i != nil {
+		rqu.SetHpReward(*i)
 	}
-	return _u
+	return rqu
 }
 
-// AddHpReward adds value to the "hpReward" field.
-func (_u *RpgQuestUpdate) AddHpReward(v int) *RpgQuestUpdate {
-	_u.mutation.AddHpReward(v)
-	return _u
+// AddHpReward adds i to the "hpReward" field.
+func (rqu *RpgQuestUpdate) AddHpReward(i int) *RpgQuestUpdate {
+	rqu.mutation.AddHpReward(i)
+	return rqu
 }
 
 // SetCurrencyReward sets the "currencyReward" field.
-func (_u *RpgQuestUpdate) SetCurrencyReward(v int) *RpgQuestUpdate {
-	_u.mutation.ResetCurrencyReward()
-	_u.mutation.SetCurrencyReward(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetCurrencyReward(i int) *RpgQuestUpdate {
+	rqu.mutation.ResetCurrencyReward()
+	rqu.mutation.SetCurrencyReward(i)
+	return rqu
 }
 
 // SetNillableCurrencyReward sets the "currencyReward" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableCurrencyReward(v *int) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetCurrencyReward(*v)
+func (rqu *RpgQuestUpdate) SetNillableCurrencyReward(i *int) *RpgQuestUpdate {
+	if i != nil {
+		rqu.SetCurrencyReward(*i)
 	}
-	return _u
+	return rqu
 }
 
-// AddCurrencyReward adds value to the "currencyReward" field.
-func (_u *RpgQuestUpdate) AddCurrencyReward(v int) *RpgQuestUpdate {
-	_u.mutation.AddCurrencyReward(v)
-	return _u
+// AddCurrencyReward adds i to the "currencyReward" field.
+func (rqu *RpgQuestUpdate) AddCurrencyReward(i int) *RpgQuestUpdate {
+	rqu.mutation.AddCurrencyReward(i)
+	return rqu
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgQuestUpdate) SetActive(v int) *RpgQuestUpdate {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetActive(i int) *RpgQuestUpdate {
+	rqu.mutation.ResetActive()
+	rqu.mutation.SetActive(i)
+	return rqu
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableActive(v *int) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetActive(*v)
+func (rqu *RpgQuestUpdate) SetNillableActive(i *int) *RpgQuestUpdate {
+	if i != nil {
+		rqu.SetActive(*i)
 	}
-	return _u
+	return rqu
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgQuestUpdate) AddActive(v int) *RpgQuestUpdate {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rqu *RpgQuestUpdate) AddActive(i int) *RpgQuestUpdate {
+	rqu.mutation.AddActive(i)
+	return rqu
 }
 
 // SetSort sets the "sort" field.
-func (_u *RpgQuestUpdate) SetSort(v int) *RpgQuestUpdate {
-	_u.mutation.ResetSort()
-	_u.mutation.SetSort(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetSort(i int) *RpgQuestUpdate {
+	rqu.mutation.ResetSort()
+	rqu.mutation.SetSort(i)
+	return rqu
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableSort(v *int) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetSort(*v)
+func (rqu *RpgQuestUpdate) SetNillableSort(i *int) *RpgQuestUpdate {
+	if i != nil {
+		rqu.SetSort(*i)
 	}
-	return _u
+	return rqu
 }
 
-// AddSort adds value to the "sort" field.
-func (_u *RpgQuestUpdate) AddSort(v int) *RpgQuestUpdate {
-	_u.mutation.AddSort(v)
-	return _u
+// AddSort adds i to the "sort" field.
+func (rqu *RpgQuestUpdate) AddSort(i int) *RpgQuestUpdate {
+	rqu.mutation.AddSort(i)
+	return rqu
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgQuestUpdate) SetEffectJson(v string) *RpgQuestUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetEffectJson(s string) *RpgQuestUpdate {
+	rqu.mutation.SetEffectJson(s)
+	return rqu
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableEffectJson(v *string) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rqu *RpgQuestUpdate) SetNillableEffectJson(s *string) *RpgQuestUpdate {
+	if s != nil {
+		rqu.SetEffectJson(*s)
 	}
-	return _u
+	return rqu
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgQuestUpdate) ClearEffectJson() *RpgQuestUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rqu *RpgQuestUpdate) ClearEffectJson() *RpgQuestUpdate {
+	rqu.mutation.ClearEffectJson()
+	return rqu
 }
 
 // SetQuestSubtype sets the "questSubtype" field.
-func (_u *RpgQuestUpdate) SetQuestSubtype(v string) *RpgQuestUpdate {
-	_u.mutation.SetQuestSubtype(v)
-	return _u
+func (rqu *RpgQuestUpdate) SetQuestSubtype(s string) *RpgQuestUpdate {
+	rqu.mutation.SetQuestSubtype(s)
+	return rqu
 }
 
 // SetNillableQuestSubtype sets the "questSubtype" field if the given value is not nil.
-func (_u *RpgQuestUpdate) SetNillableQuestSubtype(v *string) *RpgQuestUpdate {
-	if v != nil {
-		_u.SetQuestSubtype(*v)
+func (rqu *RpgQuestUpdate) SetNillableQuestSubtype(s *string) *RpgQuestUpdate {
+	if s != nil {
+		rqu.SetQuestSubtype(*s)
 	}
-	return _u
+	return rqu
 }
 
 // Mutation returns the RpgQuestMutation object of the builder.
-func (_u *RpgQuestUpdate) Mutation() *RpgQuestMutation {
-	return _u.mutation
+func (rqu *RpgQuestUpdate) Mutation() *RpgQuestMutation {
+	return rqu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgQuestUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rqu *RpgQuestUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rqu.sqlSave, rqu.mutation, rqu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgQuestUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rqu *RpgQuestUpdate) SaveX(ctx context.Context) int {
+	affected, err := rqu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -277,88 +277,88 @@ func (_u *RpgQuestUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgQuestUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rqu *RpgQuestUpdate) Exec(ctx context.Context) error {
+	_, err := rqu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgQuestUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rqu *RpgQuestUpdate) ExecX(ctx context.Context) {
+	if err := rqu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgQuestUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rqu *RpgQuestUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgquest.Table, rpgquest.Columns, sqlgraph.NewFieldSpec(rpgquest.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rqu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.Code(); ok {
+	if value, ok := rqu.mutation.Code(); ok {
 		_spec.SetField(rpgquest.FieldCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := rqu.mutation.Name(); ok {
 		_spec.SetField(rpgquest.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := rqu.mutation.Description(); ok {
 		_spec.SetField(rpgquest.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.GetType(); ok {
+	if value, ok := rqu.mutation.GetType(); ok {
 		_spec.SetField(rpgquest.FieldType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TargetAction(); ok {
+	if value, ok := rqu.mutation.TargetAction(); ok {
 		_spec.SetField(rpgquest.FieldTargetAction, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TargetCount(); ok {
+	if value, ok := rqu.mutation.TargetCount(); ok {
 		_spec.SetField(rpgquest.FieldTargetCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedTargetCount(); ok {
+	if value, ok := rqu.mutation.AddedTargetCount(); ok {
 		_spec.AddField(rpgquest.FieldTargetCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ExpReward(); ok {
+	if value, ok := rqu.mutation.ExpReward(); ok {
 		_spec.SetField(rpgquest.FieldExpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedExpReward(); ok {
+	if value, ok := rqu.mutation.AddedExpReward(); ok {
 		_spec.AddField(rpgquest.FieldExpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.HpReward(); ok {
+	if value, ok := rqu.mutation.HpReward(); ok {
 		_spec.SetField(rpgquest.FieldHpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedHpReward(); ok {
+	if value, ok := rqu.mutation.AddedHpReward(); ok {
 		_spec.AddField(rpgquest.FieldHpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.CurrencyReward(); ok {
+	if value, ok := rqu.mutation.CurrencyReward(); ok {
 		_spec.SetField(rpgquest.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCurrencyReward(); ok {
+	if value, ok := rqu.mutation.AddedCurrencyReward(); ok {
 		_spec.AddField(rpgquest.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rqu.mutation.Active(); ok {
 		_spec.SetField(rpgquest.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rqu.mutation.AddedActive(); ok {
 		_spec.AddField(rpgquest.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Sort(); ok {
+	if value, ok := rqu.mutation.Sort(); ok {
 		_spec.SetField(rpgquest.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSort(); ok {
+	if value, ok := rqu.mutation.AddedSort(); ok {
 		_spec.AddField(rpgquest.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rqu.mutation.EffectJson(); ok {
 		_spec.SetField(rpgquest.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rqu.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpgquest.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.QuestSubtype(); ok {
+	if value, ok := rqu.mutation.QuestSubtype(); ok {
 		_spec.SetField(rpgquest.FieldQuestSubtype, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rqu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgquest.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -366,8 +366,8 @@ func (_u *RpgQuestUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rqu.mutation.done = true
+	return n, nil
 }
 
 // RpgQuestUpdateOne is the builder for updating a single RpgQuest entity.
@@ -379,261 +379,261 @@ type RpgQuestUpdateOne struct {
 }
 
 // SetCode sets the "code" field.
-func (_u *RpgQuestUpdateOne) SetCode(v string) *RpgQuestUpdateOne {
-	_u.mutation.SetCode(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetCode(s string) *RpgQuestUpdateOne {
+	rquo.mutation.SetCode(s)
+	return rquo
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableCode(v *string) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetCode(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableCode(s *string) *RpgQuestUpdateOne {
+	if s != nil {
+		rquo.SetCode(*s)
 	}
-	return _u
+	return rquo
 }
 
 // SetName sets the "name" field.
-func (_u *RpgQuestUpdateOne) SetName(v string) *RpgQuestUpdateOne {
-	_u.mutation.SetName(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetName(s string) *RpgQuestUpdateOne {
+	rquo.mutation.SetName(s)
+	return rquo
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableName(v *string) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetName(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableName(s *string) *RpgQuestUpdateOne {
+	if s != nil {
+		rquo.SetName(*s)
 	}
-	return _u
+	return rquo
 }
 
 // SetDescription sets the "description" field.
-func (_u *RpgQuestUpdateOne) SetDescription(v string) *RpgQuestUpdateOne {
-	_u.mutation.SetDescription(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetDescription(s string) *RpgQuestUpdateOne {
+	rquo.mutation.SetDescription(s)
+	return rquo
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableDescription(v *string) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetDescription(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableDescription(s *string) *RpgQuestUpdateOne {
+	if s != nil {
+		rquo.SetDescription(*s)
 	}
-	return _u
+	return rquo
 }
 
 // SetType sets the "type" field.
-func (_u *RpgQuestUpdateOne) SetType(v string) *RpgQuestUpdateOne {
-	_u.mutation.SetType(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetType(s string) *RpgQuestUpdateOne {
+	rquo.mutation.SetType(s)
+	return rquo
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableType(v *string) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetType(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableType(s *string) *RpgQuestUpdateOne {
+	if s != nil {
+		rquo.SetType(*s)
 	}
-	return _u
+	return rquo
 }
 
 // SetTargetAction sets the "targetAction" field.
-func (_u *RpgQuestUpdateOne) SetTargetAction(v string) *RpgQuestUpdateOne {
-	_u.mutation.SetTargetAction(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetTargetAction(s string) *RpgQuestUpdateOne {
+	rquo.mutation.SetTargetAction(s)
+	return rquo
 }
 
 // SetNillableTargetAction sets the "targetAction" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableTargetAction(v *string) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetTargetAction(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableTargetAction(s *string) *RpgQuestUpdateOne {
+	if s != nil {
+		rquo.SetTargetAction(*s)
 	}
-	return _u
+	return rquo
 }
 
 // SetTargetCount sets the "targetCount" field.
-func (_u *RpgQuestUpdateOne) SetTargetCount(v int) *RpgQuestUpdateOne {
-	_u.mutation.ResetTargetCount()
-	_u.mutation.SetTargetCount(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetTargetCount(i int) *RpgQuestUpdateOne {
+	rquo.mutation.ResetTargetCount()
+	rquo.mutation.SetTargetCount(i)
+	return rquo
 }
 
 // SetNillableTargetCount sets the "targetCount" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableTargetCount(v *int) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetTargetCount(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableTargetCount(i *int) *RpgQuestUpdateOne {
+	if i != nil {
+		rquo.SetTargetCount(*i)
 	}
-	return _u
+	return rquo
 }
 
-// AddTargetCount adds value to the "targetCount" field.
-func (_u *RpgQuestUpdateOne) AddTargetCount(v int) *RpgQuestUpdateOne {
-	_u.mutation.AddTargetCount(v)
-	return _u
+// AddTargetCount adds i to the "targetCount" field.
+func (rquo *RpgQuestUpdateOne) AddTargetCount(i int) *RpgQuestUpdateOne {
+	rquo.mutation.AddTargetCount(i)
+	return rquo
 }
 
 // SetExpReward sets the "expReward" field.
-func (_u *RpgQuestUpdateOne) SetExpReward(v int) *RpgQuestUpdateOne {
-	_u.mutation.ResetExpReward()
-	_u.mutation.SetExpReward(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetExpReward(i int) *RpgQuestUpdateOne {
+	rquo.mutation.ResetExpReward()
+	rquo.mutation.SetExpReward(i)
+	return rquo
 }
 
 // SetNillableExpReward sets the "expReward" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableExpReward(v *int) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetExpReward(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableExpReward(i *int) *RpgQuestUpdateOne {
+	if i != nil {
+		rquo.SetExpReward(*i)
 	}
-	return _u
+	return rquo
 }
 
-// AddExpReward adds value to the "expReward" field.
-func (_u *RpgQuestUpdateOne) AddExpReward(v int) *RpgQuestUpdateOne {
-	_u.mutation.AddExpReward(v)
-	return _u
+// AddExpReward adds i to the "expReward" field.
+func (rquo *RpgQuestUpdateOne) AddExpReward(i int) *RpgQuestUpdateOne {
+	rquo.mutation.AddExpReward(i)
+	return rquo
 }
 
 // SetHpReward sets the "hpReward" field.
-func (_u *RpgQuestUpdateOne) SetHpReward(v int) *RpgQuestUpdateOne {
-	_u.mutation.ResetHpReward()
-	_u.mutation.SetHpReward(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetHpReward(i int) *RpgQuestUpdateOne {
+	rquo.mutation.ResetHpReward()
+	rquo.mutation.SetHpReward(i)
+	return rquo
 }
 
 // SetNillableHpReward sets the "hpReward" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableHpReward(v *int) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetHpReward(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableHpReward(i *int) *RpgQuestUpdateOne {
+	if i != nil {
+		rquo.SetHpReward(*i)
 	}
-	return _u
+	return rquo
 }
 
-// AddHpReward adds value to the "hpReward" field.
-func (_u *RpgQuestUpdateOne) AddHpReward(v int) *RpgQuestUpdateOne {
-	_u.mutation.AddHpReward(v)
-	return _u
+// AddHpReward adds i to the "hpReward" field.
+func (rquo *RpgQuestUpdateOne) AddHpReward(i int) *RpgQuestUpdateOne {
+	rquo.mutation.AddHpReward(i)
+	return rquo
 }
 
 // SetCurrencyReward sets the "currencyReward" field.
-func (_u *RpgQuestUpdateOne) SetCurrencyReward(v int) *RpgQuestUpdateOne {
-	_u.mutation.ResetCurrencyReward()
-	_u.mutation.SetCurrencyReward(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetCurrencyReward(i int) *RpgQuestUpdateOne {
+	rquo.mutation.ResetCurrencyReward()
+	rquo.mutation.SetCurrencyReward(i)
+	return rquo
 }
 
 // SetNillableCurrencyReward sets the "currencyReward" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableCurrencyReward(v *int) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetCurrencyReward(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableCurrencyReward(i *int) *RpgQuestUpdateOne {
+	if i != nil {
+		rquo.SetCurrencyReward(*i)
 	}
-	return _u
+	return rquo
 }
 
-// AddCurrencyReward adds value to the "currencyReward" field.
-func (_u *RpgQuestUpdateOne) AddCurrencyReward(v int) *RpgQuestUpdateOne {
-	_u.mutation.AddCurrencyReward(v)
-	return _u
+// AddCurrencyReward adds i to the "currencyReward" field.
+func (rquo *RpgQuestUpdateOne) AddCurrencyReward(i int) *RpgQuestUpdateOne {
+	rquo.mutation.AddCurrencyReward(i)
+	return rquo
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgQuestUpdateOne) SetActive(v int) *RpgQuestUpdateOne {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetActive(i int) *RpgQuestUpdateOne {
+	rquo.mutation.ResetActive()
+	rquo.mutation.SetActive(i)
+	return rquo
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableActive(v *int) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetActive(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableActive(i *int) *RpgQuestUpdateOne {
+	if i != nil {
+		rquo.SetActive(*i)
 	}
-	return _u
+	return rquo
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgQuestUpdateOne) AddActive(v int) *RpgQuestUpdateOne {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rquo *RpgQuestUpdateOne) AddActive(i int) *RpgQuestUpdateOne {
+	rquo.mutation.AddActive(i)
+	return rquo
 }
 
 // SetSort sets the "sort" field.
-func (_u *RpgQuestUpdateOne) SetSort(v int) *RpgQuestUpdateOne {
-	_u.mutation.ResetSort()
-	_u.mutation.SetSort(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetSort(i int) *RpgQuestUpdateOne {
+	rquo.mutation.ResetSort()
+	rquo.mutation.SetSort(i)
+	return rquo
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableSort(v *int) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetSort(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableSort(i *int) *RpgQuestUpdateOne {
+	if i != nil {
+		rquo.SetSort(*i)
 	}
-	return _u
+	return rquo
 }
 
-// AddSort adds value to the "sort" field.
-func (_u *RpgQuestUpdateOne) AddSort(v int) *RpgQuestUpdateOne {
-	_u.mutation.AddSort(v)
-	return _u
+// AddSort adds i to the "sort" field.
+func (rquo *RpgQuestUpdateOne) AddSort(i int) *RpgQuestUpdateOne {
+	rquo.mutation.AddSort(i)
+	return rquo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgQuestUpdateOne) SetEffectJson(v string) *RpgQuestUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetEffectJson(s string) *RpgQuestUpdateOne {
+	rquo.mutation.SetEffectJson(s)
+	return rquo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableEffectJson(v *string) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableEffectJson(s *string) *RpgQuestUpdateOne {
+	if s != nil {
+		rquo.SetEffectJson(*s)
 	}
-	return _u
+	return rquo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgQuestUpdateOne) ClearEffectJson() *RpgQuestUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rquo *RpgQuestUpdateOne) ClearEffectJson() *RpgQuestUpdateOne {
+	rquo.mutation.ClearEffectJson()
+	return rquo
 }
 
 // SetQuestSubtype sets the "questSubtype" field.
-func (_u *RpgQuestUpdateOne) SetQuestSubtype(v string) *RpgQuestUpdateOne {
-	_u.mutation.SetQuestSubtype(v)
-	return _u
+func (rquo *RpgQuestUpdateOne) SetQuestSubtype(s string) *RpgQuestUpdateOne {
+	rquo.mutation.SetQuestSubtype(s)
+	return rquo
 }
 
 // SetNillableQuestSubtype sets the "questSubtype" field if the given value is not nil.
-func (_u *RpgQuestUpdateOne) SetNillableQuestSubtype(v *string) *RpgQuestUpdateOne {
-	if v != nil {
-		_u.SetQuestSubtype(*v)
+func (rquo *RpgQuestUpdateOne) SetNillableQuestSubtype(s *string) *RpgQuestUpdateOne {
+	if s != nil {
+		rquo.SetQuestSubtype(*s)
 	}
-	return _u
+	return rquo
 }
 
 // Mutation returns the RpgQuestMutation object of the builder.
-func (_u *RpgQuestUpdateOne) Mutation() *RpgQuestMutation {
-	return _u.mutation
+func (rquo *RpgQuestUpdateOne) Mutation() *RpgQuestMutation {
+	return rquo.mutation
 }
 
 // Where appends a list predicates to the RpgQuestUpdate builder.
-func (_u *RpgQuestUpdateOne) Where(ps ...predicate.RpgQuest) *RpgQuestUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rquo *RpgQuestUpdateOne) Where(ps ...predicate.RpgQuest) *RpgQuestUpdateOne {
+	rquo.mutation.Where(ps...)
+	return rquo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgQuestUpdateOne) Select(field string, fields ...string) *RpgQuestUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rquo *RpgQuestUpdateOne) Select(field string, fields ...string) *RpgQuestUpdateOne {
+	rquo.fields = append([]string{field}, fields...)
+	return rquo
 }
 
 // Save executes the query and returns the updated RpgQuest entity.
-func (_u *RpgQuestUpdateOne) Save(ctx context.Context) (*RpgQuest, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rquo *RpgQuestUpdateOne) Save(ctx context.Context) (*RpgQuest, error) {
+	return withHooks(ctx, rquo.sqlSave, rquo.mutation, rquo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgQuestUpdateOne) SaveX(ctx context.Context) *RpgQuest {
-	node, err := _u.Save(ctx)
+func (rquo *RpgQuestUpdateOne) SaveX(ctx context.Context) *RpgQuest {
+	node, err := rquo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -641,26 +641,26 @@ func (_u *RpgQuestUpdateOne) SaveX(ctx context.Context) *RpgQuest {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgQuestUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rquo *RpgQuestUpdateOne) Exec(ctx context.Context) error {
+	_, err := rquo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgQuestUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rquo *RpgQuestUpdateOne) ExecX(ctx context.Context) {
+	if err := rquo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgQuestUpdateOne) sqlSave(ctx context.Context) (_node *RpgQuest, err error) {
+func (rquo *RpgQuestUpdateOne) sqlSave(ctx context.Context) (_node *RpgQuest, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgquest.Table, rpgquest.Columns, sqlgraph.NewFieldSpec(rpgquest.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rquo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgQuest.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rquo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgquest.FieldID)
 		for _, f := range fields {
@@ -672,77 +672,77 @@ func (_u *RpgQuestUpdateOne) sqlSave(ctx context.Context) (_node *RpgQuest, err 
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rquo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.Code(); ok {
+	if value, ok := rquo.mutation.Code(); ok {
 		_spec.SetField(rpgquest.FieldCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := rquo.mutation.Name(); ok {
 		_spec.SetField(rpgquest.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := rquo.mutation.Description(); ok {
 		_spec.SetField(rpgquest.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.GetType(); ok {
+	if value, ok := rquo.mutation.GetType(); ok {
 		_spec.SetField(rpgquest.FieldType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TargetAction(); ok {
+	if value, ok := rquo.mutation.TargetAction(); ok {
 		_spec.SetField(rpgquest.FieldTargetAction, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TargetCount(); ok {
+	if value, ok := rquo.mutation.TargetCount(); ok {
 		_spec.SetField(rpgquest.FieldTargetCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedTargetCount(); ok {
+	if value, ok := rquo.mutation.AddedTargetCount(); ok {
 		_spec.AddField(rpgquest.FieldTargetCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ExpReward(); ok {
+	if value, ok := rquo.mutation.ExpReward(); ok {
 		_spec.SetField(rpgquest.FieldExpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedExpReward(); ok {
+	if value, ok := rquo.mutation.AddedExpReward(); ok {
 		_spec.AddField(rpgquest.FieldExpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.HpReward(); ok {
+	if value, ok := rquo.mutation.HpReward(); ok {
 		_spec.SetField(rpgquest.FieldHpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedHpReward(); ok {
+	if value, ok := rquo.mutation.AddedHpReward(); ok {
 		_spec.AddField(rpgquest.FieldHpReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.CurrencyReward(); ok {
+	if value, ok := rquo.mutation.CurrencyReward(); ok {
 		_spec.SetField(rpgquest.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCurrencyReward(); ok {
+	if value, ok := rquo.mutation.AddedCurrencyReward(); ok {
 		_spec.AddField(rpgquest.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rquo.mutation.Active(); ok {
 		_spec.SetField(rpgquest.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rquo.mutation.AddedActive(); ok {
 		_spec.AddField(rpgquest.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Sort(); ok {
+	if value, ok := rquo.mutation.Sort(); ok {
 		_spec.SetField(rpgquest.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSort(); ok {
+	if value, ok := rquo.mutation.AddedSort(); ok {
 		_spec.AddField(rpgquest.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rquo.mutation.EffectJson(); ok {
 		_spec.SetField(rpgquest.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rquo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpgquest.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.QuestSubtype(); ok {
+	if value, ok := rquo.mutation.QuestSubtype(); ok {
 		_spec.SetField(rpgquest.FieldQuestSubtype, field.TypeString, value)
 	}
-	_node = &RpgQuest{config: _u.config}
+	_node = &RpgQuest{config: rquo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rquo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgquest.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -750,6 +750,6 @@ func (_u *RpgQuestUpdateOne) sqlSave(ctx context.Context) (_node *RpgQuest, err 
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rquo.mutation.done = true
 	return _node, nil
 }

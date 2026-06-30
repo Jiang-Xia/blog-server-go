@@ -64,7 +64,7 @@ func (*RpgQuest) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgQuest fields.
-func (_m *RpgQuest) assignValues(columns []string, values []any) error {
+func (rq *RpgQuest) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -75,88 +75,88 @@ func (_m *RpgQuest) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rq.ID = int(value.Int64)
 		case rpgquest.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				_m.Code = value.String
+				rq.Code = value.String
 			}
 		case rpgquest.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				rq.Name = value.String
 			}
 		case rpgquest.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				rq.Description = value.String
 			}
 		case rpgquest.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				_m.Type = value.String
+				rq.Type = value.String
 			}
 		case rpgquest.FieldTargetAction:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field targetAction", values[i])
 			} else if value.Valid {
-				_m.TargetAction = value.String
+				rq.TargetAction = value.String
 			}
 		case rpgquest.FieldTargetCount:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field targetCount", values[i])
 			} else if value.Valid {
-				_m.TargetCount = int(value.Int64)
+				rq.TargetCount = int(value.Int64)
 			}
 		case rpgquest.FieldExpReward:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field expReward", values[i])
 			} else if value.Valid {
-				_m.ExpReward = int(value.Int64)
+				rq.ExpReward = int(value.Int64)
 			}
 		case rpgquest.FieldHpReward:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field hpReward", values[i])
 			} else if value.Valid {
-				_m.HpReward = int(value.Int64)
+				rq.HpReward = int(value.Int64)
 			}
 		case rpgquest.FieldCurrencyReward:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field currencyReward", values[i])
 			} else if value.Valid {
-				_m.CurrencyReward = int(value.Int64)
+				rq.CurrencyReward = int(value.Int64)
 			}
 		case rpgquest.FieldActive:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field active", values[i])
 			} else if value.Valid {
-				_m.Active = int(value.Int64)
+				rq.Active = int(value.Int64)
 			}
 		case rpgquest.FieldSort:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sort", values[i])
 			} else if value.Valid {
-				_m.Sort = int(value.Int64)
+				rq.Sort = int(value.Int64)
 			}
 		case rpgquest.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rq.EffectJson = new(string)
+				*rq.EffectJson = value.String
 			}
 		case rpgquest.FieldQuestSubtype:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field questSubtype", values[i])
 			} else if value.Valid {
-				_m.QuestSubtype = value.String
+				rq.QuestSubtype = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rq.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -164,73 +164,73 @@ func (_m *RpgQuest) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgQuest.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgQuest) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rq *RpgQuest) Value(name string) (ent.Value, error) {
+	return rq.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgQuest.
 // Note that you need to call RpgQuest.Unwrap() before calling this method if this RpgQuest
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgQuest) Update() *RpgQuestUpdateOne {
-	return NewRpgQuestClient(_m.config).UpdateOne(_m)
+func (rq *RpgQuest) Update() *RpgQuestUpdateOne {
+	return NewRpgQuestClient(rq.config).UpdateOne(rq)
 }
 
 // Unwrap unwraps the RpgQuest entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgQuest) Unwrap() *RpgQuest {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rq *RpgQuest) Unwrap() *RpgQuest {
+	_tx, ok := rq.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgQuest is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rq.config.driver = _tx.drv
+	return rq
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgQuest) String() string {
+func (rq *RpgQuest) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgQuest(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rq.ID))
 	builder.WriteString("code=")
-	builder.WriteString(_m.Code)
+	builder.WriteString(rq.Code)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(rq.Name)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(rq.Description)
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(_m.Type)
+	builder.WriteString(rq.Type)
 	builder.WriteString(", ")
 	builder.WriteString("targetAction=")
-	builder.WriteString(_m.TargetAction)
+	builder.WriteString(rq.TargetAction)
 	builder.WriteString(", ")
 	builder.WriteString("targetCount=")
-	builder.WriteString(fmt.Sprintf("%v", _m.TargetCount))
+	builder.WriteString(fmt.Sprintf("%v", rq.TargetCount))
 	builder.WriteString(", ")
 	builder.WriteString("expReward=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ExpReward))
+	builder.WriteString(fmt.Sprintf("%v", rq.ExpReward))
 	builder.WriteString(", ")
 	builder.WriteString("hpReward=")
-	builder.WriteString(fmt.Sprintf("%v", _m.HpReward))
+	builder.WriteString(fmt.Sprintf("%v", rq.HpReward))
 	builder.WriteString(", ")
 	builder.WriteString("currencyReward=")
-	builder.WriteString(fmt.Sprintf("%v", _m.CurrencyReward))
+	builder.WriteString(fmt.Sprintf("%v", rq.CurrencyReward))
 	builder.WriteString(", ")
 	builder.WriteString("active=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Active))
+	builder.WriteString(fmt.Sprintf("%v", rq.Active))
 	builder.WriteString(", ")
 	builder.WriteString("sort=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Sort))
+	builder.WriteString(fmt.Sprintf("%v", rq.Sort))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rq.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("questSubtype=")
-	builder.WriteString(_m.QuestSubtype)
+	builder.WriteString(rq.QuestSubtype)
 	builder.WriteByte(')')
 	return builder.String()
 }

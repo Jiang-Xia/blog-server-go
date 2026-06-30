@@ -23,113 +23,113 @@ type SiteNotificationCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *SiteNotificationCreate) SetCreateTime(v time.Time) *SiteNotificationCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (snc *SiteNotificationCreate) SetCreateTime(t time.Time) *SiteNotificationCreate {
+	snc.mutation.SetCreateTime(t)
+	return snc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *SiteNotificationCreate) SetNillableCreateTime(v *time.Time) *SiteNotificationCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (snc *SiteNotificationCreate) SetNillableCreateTime(t *time.Time) *SiteNotificationCreate {
+	if t != nil {
+		snc.SetCreateTime(*t)
 	}
-	return _c
+	return snc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *SiteNotificationCreate) SetUpdateTime(v time.Time) *SiteNotificationCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (snc *SiteNotificationCreate) SetUpdateTime(t time.Time) *SiteNotificationCreate {
+	snc.mutation.SetUpdateTime(t)
+	return snc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *SiteNotificationCreate) SetNillableUpdateTime(v *time.Time) *SiteNotificationCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (snc *SiteNotificationCreate) SetNillableUpdateTime(t *time.Time) *SiteNotificationCreate {
+	if t != nil {
+		snc.SetUpdateTime(*t)
 	}
-	return _c
+	return snc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *SiteNotificationCreate) SetIsDelete(v bool) *SiteNotificationCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (snc *SiteNotificationCreate) SetIsDelete(b bool) *SiteNotificationCreate {
+	snc.mutation.SetIsDelete(b)
+	return snc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *SiteNotificationCreate) SetNillableIsDelete(v *bool) *SiteNotificationCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (snc *SiteNotificationCreate) SetNillableIsDelete(b *bool) *SiteNotificationCreate {
+	if b != nil {
+		snc.SetIsDelete(*b)
 	}
-	return _c
+	return snc
 }
 
 // SetVersion sets the "version" field.
-func (_c *SiteNotificationCreate) SetVersion(v int) *SiteNotificationCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (snc *SiteNotificationCreate) SetVersion(i int) *SiteNotificationCreate {
+	snc.mutation.SetVersion(i)
+	return snc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *SiteNotificationCreate) SetNillableVersion(v *int) *SiteNotificationCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (snc *SiteNotificationCreate) SetNillableVersion(i *int) *SiteNotificationCreate {
+	if i != nil {
+		snc.SetVersion(*i)
 	}
-	return _c
+	return snc
 }
 
 // SetUID sets the "uid" field.
-func (_c *SiteNotificationCreate) SetUID(v int) *SiteNotificationCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (snc *SiteNotificationCreate) SetUID(i int) *SiteNotificationCreate {
+	snc.mutation.SetUID(i)
+	return snc
 }
 
 // SetType sets the "type" field.
-func (_c *SiteNotificationCreate) SetType(v string) *SiteNotificationCreate {
-	_c.mutation.SetType(v)
-	return _c
+func (snc *SiteNotificationCreate) SetType(s string) *SiteNotificationCreate {
+	snc.mutation.SetType(s)
+	return snc
 }
 
 // SetPayload sets the "payload" field.
-func (_c *SiteNotificationCreate) SetPayload(v string) *SiteNotificationCreate {
-	_c.mutation.SetPayload(v)
-	return _c
+func (snc *SiteNotificationCreate) SetPayload(s string) *SiteNotificationCreate {
+	snc.mutation.SetPayload(s)
+	return snc
 }
 
 // SetRead sets the "read" field.
-func (_c *SiteNotificationCreate) SetRead(v int) *SiteNotificationCreate {
-	_c.mutation.SetRead(v)
-	return _c
+func (snc *SiteNotificationCreate) SetRead(i int) *SiteNotificationCreate {
+	snc.mutation.SetRead(i)
+	return snc
 }
 
 // SetNillableRead sets the "read" field if the given value is not nil.
-func (_c *SiteNotificationCreate) SetNillableRead(v *int) *SiteNotificationCreate {
-	if v != nil {
-		_c.SetRead(*v)
+func (snc *SiteNotificationCreate) SetNillableRead(i *int) *SiteNotificationCreate {
+	if i != nil {
+		snc.SetRead(*i)
 	}
-	return _c
+	return snc
 }
 
 // SetID sets the "id" field.
-func (_c *SiteNotificationCreate) SetID(v int) *SiteNotificationCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (snc *SiteNotificationCreate) SetID(i int) *SiteNotificationCreate {
+	snc.mutation.SetID(i)
+	return snc
 }
 
 // Mutation returns the SiteNotificationMutation object of the builder.
-func (_c *SiteNotificationCreate) Mutation() *SiteNotificationMutation {
-	return _c.mutation
+func (snc *SiteNotificationCreate) Mutation() *SiteNotificationMutation {
+	return snc.mutation
 }
 
 // Save creates the SiteNotification in the database.
-func (_c *SiteNotificationCreate) Save(ctx context.Context) (*SiteNotification, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (snc *SiteNotificationCreate) Save(ctx context.Context) (*SiteNotification, error) {
+	snc.defaults()
+	return withHooks(ctx, snc.sqlSave, snc.mutation, snc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *SiteNotificationCreate) SaveX(ctx context.Context) *SiteNotification {
-	v, err := _c.Save(ctx)
+func (snc *SiteNotificationCreate) SaveX(ctx context.Context) *SiteNotification {
+	v, err := snc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -137,77 +137,77 @@ func (_c *SiteNotificationCreate) SaveX(ctx context.Context) *SiteNotification {
 }
 
 // Exec executes the query.
-func (_c *SiteNotificationCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (snc *SiteNotificationCreate) Exec(ctx context.Context) error {
+	_, err := snc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *SiteNotificationCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (snc *SiteNotificationCreate) ExecX(ctx context.Context) {
+	if err := snc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *SiteNotificationCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (snc *SiteNotificationCreate) defaults() {
+	if _, ok := snc.mutation.CreateTime(); !ok {
 		v := sitenotification.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		snc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := snc.mutation.UpdateTime(); !ok {
 		v := sitenotification.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		snc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := snc.mutation.IsDelete(); !ok {
 		v := sitenotification.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		snc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := snc.mutation.Version(); !ok {
 		v := sitenotification.DefaultVersion
-		_c.mutation.SetVersion(v)
+		snc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Read(); !ok {
+	if _, ok := snc.mutation.Read(); !ok {
 		v := sitenotification.DefaultRead
-		_c.mutation.SetRead(v)
+		snc.mutation.SetRead(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *SiteNotificationCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (snc *SiteNotificationCreate) check() error {
+	if _, ok := snc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SiteNotification.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := snc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "SiteNotification.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := snc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "SiteNotification.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := snc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "SiteNotification.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := snc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "SiteNotification.uid"`)}
 	}
-	if _, ok := _c.mutation.GetType(); !ok {
+	if _, ok := snc.mutation.GetType(); !ok {
 		return &ValidationError{Name: "type", err: errors.New(`ent: missing required field "SiteNotification.type"`)}
 	}
-	if _, ok := _c.mutation.Payload(); !ok {
+	if _, ok := snc.mutation.Payload(); !ok {
 		return &ValidationError{Name: "payload", err: errors.New(`ent: missing required field "SiteNotification.payload"`)}
 	}
-	if _, ok := _c.mutation.Read(); !ok {
+	if _, ok := snc.mutation.Read(); !ok {
 		return &ValidationError{Name: "read", err: errors.New(`ent: missing required field "SiteNotification.read"`)}
 	}
 	return nil
 }
 
-func (_c *SiteNotificationCreate) sqlSave(ctx context.Context) (*SiteNotification, error) {
-	if err := _c.check(); err != nil {
+func (snc *SiteNotificationCreate) sqlSave(ctx context.Context) (*SiteNotification, error) {
+	if err := snc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := snc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, snc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -217,50 +217,50 @@ func (_c *SiteNotificationCreate) sqlSave(ctx context.Context) (*SiteNotificatio
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	snc.mutation.id = &_node.ID
+	snc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *SiteNotificationCreate) createSpec() (*SiteNotification, *sqlgraph.CreateSpec) {
+func (snc *SiteNotificationCreate) createSpec() (*SiteNotification, *sqlgraph.CreateSpec) {
 	var (
-		_node = &SiteNotification{config: _c.config}
+		_node = &SiteNotification{config: snc.config}
 		_spec = sqlgraph.NewCreateSpec(sitenotification.Table, sqlgraph.NewFieldSpec(sitenotification.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = snc.conflict
+	if id, ok := snc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := snc.mutation.CreateTime(); ok {
 		_spec.SetField(sitenotification.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := snc.mutation.UpdateTime(); ok {
 		_spec.SetField(sitenotification.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := snc.mutation.IsDelete(); ok {
 		_spec.SetField(sitenotification.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := snc.mutation.Version(); ok {
 		_spec.SetField(sitenotification.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := snc.mutation.UID(); ok {
 		_spec.SetField(sitenotification.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.GetType(); ok {
+	if value, ok := snc.mutation.GetType(); ok {
 		_spec.SetField(sitenotification.FieldType, field.TypeString, value)
 		_node.Type = value
 	}
-	if value, ok := _c.mutation.Payload(); ok {
+	if value, ok := snc.mutation.Payload(); ok {
 		_spec.SetField(sitenotification.FieldPayload, field.TypeString, value)
 		_node.Payload = value
 	}
-	if value, ok := _c.mutation.Read(); ok {
+	if value, ok := snc.mutation.Read(); ok {
 		_spec.SetField(sitenotification.FieldRead, field.TypeInt, value)
 		_node.Read = value
 	}
@@ -283,10 +283,10 @@ func (_c *SiteNotificationCreate) createSpec() (*SiteNotification, *sqlgraph.Cre
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *SiteNotificationCreate) OnConflict(opts ...sql.ConflictOption) *SiteNotificationUpsertOne {
-	_c.conflict = opts
+func (snc *SiteNotificationCreate) OnConflict(opts ...sql.ConflictOption) *SiteNotificationUpsertOne {
+	snc.conflict = opts
 	return &SiteNotificationUpsertOne{
-		create: _c,
+		create: snc,
 	}
 }
 
@@ -296,10 +296,10 @@ func (_c *SiteNotificationCreate) OnConflict(opts ...sql.ConflictOption) *SiteNo
 //	client.SiteNotification.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *SiteNotificationCreate) OnConflictColumns(columns ...string) *SiteNotificationUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (snc *SiteNotificationCreate) OnConflictColumns(columns ...string) *SiteNotificationUpsertOne {
+	snc.conflict = append(snc.conflict, sql.ConflictColumns(columns...))
 	return &SiteNotificationUpsertOne{
-		create: _c,
+		create: snc,
 	}
 }
 
@@ -630,16 +630,16 @@ type SiteNotificationCreateBulk struct {
 }
 
 // Save creates the SiteNotification entities in the database.
-func (_c *SiteNotificationCreateBulk) Save(ctx context.Context) ([]*SiteNotification, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (sncb *SiteNotificationCreateBulk) Save(ctx context.Context) ([]*SiteNotification, error) {
+	if sncb.err != nil {
+		return nil, sncb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*SiteNotification, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(sncb.builders))
+	nodes := make([]*SiteNotification, len(sncb.builders))
+	mutators := make([]Mutator, len(sncb.builders))
+	for i := range sncb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := sncb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*SiteNotificationMutation)
@@ -653,12 +653,12 @@ func (_c *SiteNotificationCreateBulk) Save(ctx context.Context) ([]*SiteNotifica
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, sncb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = sncb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, sncb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -682,7 +682,7 @@ func (_c *SiteNotificationCreateBulk) Save(ctx context.Context) ([]*SiteNotifica
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, sncb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -690,8 +690,8 @@ func (_c *SiteNotificationCreateBulk) Save(ctx context.Context) ([]*SiteNotifica
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *SiteNotificationCreateBulk) SaveX(ctx context.Context) []*SiteNotification {
-	v, err := _c.Save(ctx)
+func (sncb *SiteNotificationCreateBulk) SaveX(ctx context.Context) []*SiteNotification {
+	v, err := sncb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -699,14 +699,14 @@ func (_c *SiteNotificationCreateBulk) SaveX(ctx context.Context) []*SiteNotifica
 }
 
 // Exec executes the query.
-func (_c *SiteNotificationCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (sncb *SiteNotificationCreateBulk) Exec(ctx context.Context) error {
+	_, err := sncb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *SiteNotificationCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (sncb *SiteNotificationCreateBulk) ExecX(ctx context.Context) {
+	if err := sncb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -726,10 +726,10 @@ func (_c *SiteNotificationCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *SiteNotificationCreateBulk) OnConflict(opts ...sql.ConflictOption) *SiteNotificationUpsertBulk {
-	_c.conflict = opts
+func (sncb *SiteNotificationCreateBulk) OnConflict(opts ...sql.ConflictOption) *SiteNotificationUpsertBulk {
+	sncb.conflict = opts
 	return &SiteNotificationUpsertBulk{
-		create: _c,
+		create: sncb,
 	}
 }
 
@@ -739,10 +739,10 @@ func (_c *SiteNotificationCreateBulk) OnConflict(opts ...sql.ConflictOption) *Si
 //	client.SiteNotification.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *SiteNotificationCreateBulk) OnConflictColumns(columns ...string) *SiteNotificationUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (sncb *SiteNotificationCreateBulk) OnConflictColumns(columns ...string) *SiteNotificationUpsertBulk {
+	sncb.conflict = append(sncb.conflict, sql.ConflictColumns(columns...))
 	return &SiteNotificationUpsertBulk{
-		create: _c,
+		create: sncb,
 	}
 }
 

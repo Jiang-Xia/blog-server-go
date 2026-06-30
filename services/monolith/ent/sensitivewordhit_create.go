@@ -23,175 +23,175 @@ type SensitiveWordHitCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *SensitiveWordHitCreate) SetCreateTime(v time.Time) *SensitiveWordHitCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetCreateTime(t time.Time) *SensitiveWordHitCreate {
+	swhc.mutation.SetCreateTime(t)
+	return swhc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableCreateTime(v *time.Time) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableCreateTime(t *time.Time) *SensitiveWordHitCreate {
+	if t != nil {
+		swhc.SetCreateTime(*t)
 	}
-	return _c
+	return swhc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *SensitiveWordHitCreate) SetUpdateTime(v time.Time) *SensitiveWordHitCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetUpdateTime(t time.Time) *SensitiveWordHitCreate {
+	swhc.mutation.SetUpdateTime(t)
+	return swhc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableUpdateTime(v *time.Time) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableUpdateTime(t *time.Time) *SensitiveWordHitCreate {
+	if t != nil {
+		swhc.SetUpdateTime(*t)
 	}
-	return _c
+	return swhc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *SensitiveWordHitCreate) SetIsDelete(v bool) *SensitiveWordHitCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetIsDelete(b bool) *SensitiveWordHitCreate {
+	swhc.mutation.SetIsDelete(b)
+	return swhc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableIsDelete(v *bool) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableIsDelete(b *bool) *SensitiveWordHitCreate {
+	if b != nil {
+		swhc.SetIsDelete(*b)
 	}
-	return _c
+	return swhc
 }
 
 // SetVersion sets the "version" field.
-func (_c *SensitiveWordHitCreate) SetVersion(v int) *SensitiveWordHitCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetVersion(i int) *SensitiveWordHitCreate {
+	swhc.mutation.SetVersion(i)
+	return swhc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableVersion(v *int) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableVersion(i *int) *SensitiveWordHitCreate {
+	if i != nil {
+		swhc.SetVersion(*i)
 	}
-	return _c
+	return swhc
 }
 
 // SetSourceType sets the "sourceType" field.
-func (_c *SensitiveWordHitCreate) SetSourceType(v string) *SensitiveWordHitCreate {
-	_c.mutation.SetSourceType(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetSourceType(s string) *SensitiveWordHitCreate {
+	swhc.mutation.SetSourceType(s)
+	return swhc
 }
 
 // SetSourceId sets the "sourceId" field.
-func (_c *SensitiveWordHitCreate) SetSourceId(v string) *SensitiveWordHitCreate {
-	_c.mutation.SetSourceId(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetSourceId(s string) *SensitiveWordHitCreate {
+	swhc.mutation.SetSourceId(s)
+	return swhc
 }
 
 // SetContent sets the "content" field.
-func (_c *SensitiveWordHitCreate) SetContent(v string) *SensitiveWordHitCreate {
-	_c.mutation.SetContent(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetContent(s string) *SensitiveWordHitCreate {
+	swhc.mutation.SetContent(s)
+	return swhc
 }
 
 // SetHitWords sets the "hitWords" field.
-func (_c *SensitiveWordHitCreate) SetHitWords(v string) *SensitiveWordHitCreate {
-	_c.mutation.SetHitWords(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetHitWords(s string) *SensitiveWordHitCreate {
+	swhc.mutation.SetHitWords(s)
+	return swhc
 }
 
 // SetUID sets the "uid" field.
-func (_c *SensitiveWordHitCreate) SetUID(v int) *SensitiveWordHitCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetUID(i int) *SensitiveWordHitCreate {
+	swhc.mutation.SetUID(i)
+	return swhc
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableUID(v *int) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetUID(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableUID(i *int) *SensitiveWordHitCreate {
+	if i != nil {
+		swhc.SetUID(*i)
 	}
-	return _c
+	return swhc
 }
 
 // SetIP sets the "ip" field.
-func (_c *SensitiveWordHitCreate) SetIP(v string) *SensitiveWordHitCreate {
-	_c.mutation.SetIP(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetIP(s string) *SensitiveWordHitCreate {
+	swhc.mutation.SetIP(s)
+	return swhc
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableIP(v *string) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetIP(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableIP(s *string) *SensitiveWordHitCreate {
+	if s != nil {
+		swhc.SetIP(*s)
 	}
-	return _c
+	return swhc
 }
 
 // SetStatus sets the "status" field.
-func (_c *SensitiveWordHitCreate) SetStatus(v string) *SensitiveWordHitCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetStatus(s string) *SensitiveWordHitCreate {
+	swhc.mutation.SetStatus(s)
+	return swhc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableStatus(v *string) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableStatus(s *string) *SensitiveWordHitCreate {
+	if s != nil {
+		swhc.SetStatus(*s)
 	}
-	return _c
+	return swhc
 }
 
 // SetReviewerId sets the "reviewerId" field.
-func (_c *SensitiveWordHitCreate) SetReviewerId(v int) *SensitiveWordHitCreate {
-	_c.mutation.SetReviewerId(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetReviewerId(i int) *SensitiveWordHitCreate {
+	swhc.mutation.SetReviewerId(i)
+	return swhc
 }
 
 // SetNillableReviewerId sets the "reviewerId" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableReviewerId(v *int) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetReviewerId(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableReviewerId(i *int) *SensitiveWordHitCreate {
+	if i != nil {
+		swhc.SetReviewerId(*i)
 	}
-	return _c
+	return swhc
 }
 
 // SetReviewTime sets the "reviewTime" field.
-func (_c *SensitiveWordHitCreate) SetReviewTime(v time.Time) *SensitiveWordHitCreate {
-	_c.mutation.SetReviewTime(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetReviewTime(t time.Time) *SensitiveWordHitCreate {
+	swhc.mutation.SetReviewTime(t)
+	return swhc
 }
 
 // SetNillableReviewTime sets the "reviewTime" field if the given value is not nil.
-func (_c *SensitiveWordHitCreate) SetNillableReviewTime(v *time.Time) *SensitiveWordHitCreate {
-	if v != nil {
-		_c.SetReviewTime(*v)
+func (swhc *SensitiveWordHitCreate) SetNillableReviewTime(t *time.Time) *SensitiveWordHitCreate {
+	if t != nil {
+		swhc.SetReviewTime(*t)
 	}
-	return _c
+	return swhc
 }
 
 // SetID sets the "id" field.
-func (_c *SensitiveWordHitCreate) SetID(v int) *SensitiveWordHitCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (swhc *SensitiveWordHitCreate) SetID(i int) *SensitiveWordHitCreate {
+	swhc.mutation.SetID(i)
+	return swhc
 }
 
 // Mutation returns the SensitiveWordHitMutation object of the builder.
-func (_c *SensitiveWordHitCreate) Mutation() *SensitiveWordHitMutation {
-	return _c.mutation
+func (swhc *SensitiveWordHitCreate) Mutation() *SensitiveWordHitMutation {
+	return swhc.mutation
 }
 
 // Save creates the SensitiveWordHit in the database.
-func (_c *SensitiveWordHitCreate) Save(ctx context.Context) (*SensitiveWordHit, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (swhc *SensitiveWordHitCreate) Save(ctx context.Context) (*SensitiveWordHit, error) {
+	swhc.defaults()
+	return withHooks(ctx, swhc.sqlSave, swhc.mutation, swhc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *SensitiveWordHitCreate) SaveX(ctx context.Context) *SensitiveWordHit {
-	v, err := _c.Save(ctx)
+func (swhc *SensitiveWordHitCreate) SaveX(ctx context.Context) *SensitiveWordHit {
+	v, err := swhc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,80 +199,80 @@ func (_c *SensitiveWordHitCreate) SaveX(ctx context.Context) *SensitiveWordHit {
 }
 
 // Exec executes the query.
-func (_c *SensitiveWordHitCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (swhc *SensitiveWordHitCreate) Exec(ctx context.Context) error {
+	_, err := swhc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *SensitiveWordHitCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (swhc *SensitiveWordHitCreate) ExecX(ctx context.Context) {
+	if err := swhc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *SensitiveWordHitCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (swhc *SensitiveWordHitCreate) defaults() {
+	if _, ok := swhc.mutation.CreateTime(); !ok {
 		v := sensitivewordhit.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		swhc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := swhc.mutation.UpdateTime(); !ok {
 		v := sensitivewordhit.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		swhc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := swhc.mutation.IsDelete(); !ok {
 		v := sensitivewordhit.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		swhc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := swhc.mutation.Version(); !ok {
 		v := sensitivewordhit.DefaultVersion
-		_c.mutation.SetVersion(v)
+		swhc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := swhc.mutation.Status(); !ok {
 		v := sensitivewordhit.DefaultStatus
-		_c.mutation.SetStatus(v)
+		swhc.mutation.SetStatus(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *SensitiveWordHitCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (swhc *SensitiveWordHitCreate) check() error {
+	if _, ok := swhc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SensitiveWordHit.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := swhc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "SensitiveWordHit.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := swhc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "SensitiveWordHit.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := swhc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "SensitiveWordHit.version"`)}
 	}
-	if _, ok := _c.mutation.SourceType(); !ok {
+	if _, ok := swhc.mutation.SourceType(); !ok {
 		return &ValidationError{Name: "sourceType", err: errors.New(`ent: missing required field "SensitiveWordHit.sourceType"`)}
 	}
-	if _, ok := _c.mutation.SourceId(); !ok {
+	if _, ok := swhc.mutation.SourceId(); !ok {
 		return &ValidationError{Name: "sourceId", err: errors.New(`ent: missing required field "SensitiveWordHit.sourceId"`)}
 	}
-	if _, ok := _c.mutation.Content(); !ok {
+	if _, ok := swhc.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "SensitiveWordHit.content"`)}
 	}
-	if _, ok := _c.mutation.HitWords(); !ok {
+	if _, ok := swhc.mutation.HitWords(); !ok {
 		return &ValidationError{Name: "hitWords", err: errors.New(`ent: missing required field "SensitiveWordHit.hitWords"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := swhc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "SensitiveWordHit.status"`)}
 	}
 	return nil
 }
 
-func (_c *SensitiveWordHitCreate) sqlSave(ctx context.Context) (*SensitiveWordHit, error) {
-	if err := _c.check(); err != nil {
+func (swhc *SensitiveWordHitCreate) sqlSave(ctx context.Context) (*SensitiveWordHit, error) {
+	if err := swhc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := swhc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, swhc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -282,70 +282,70 @@ func (_c *SensitiveWordHitCreate) sqlSave(ctx context.Context) (*SensitiveWordHi
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	swhc.mutation.id = &_node.ID
+	swhc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *SensitiveWordHitCreate) createSpec() (*SensitiveWordHit, *sqlgraph.CreateSpec) {
+func (swhc *SensitiveWordHitCreate) createSpec() (*SensitiveWordHit, *sqlgraph.CreateSpec) {
 	var (
-		_node = &SensitiveWordHit{config: _c.config}
+		_node = &SensitiveWordHit{config: swhc.config}
 		_spec = sqlgraph.NewCreateSpec(sensitivewordhit.Table, sqlgraph.NewFieldSpec(sensitivewordhit.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = swhc.conflict
+	if id, ok := swhc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := swhc.mutation.CreateTime(); ok {
 		_spec.SetField(sensitivewordhit.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := swhc.mutation.UpdateTime(); ok {
 		_spec.SetField(sensitivewordhit.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := swhc.mutation.IsDelete(); ok {
 		_spec.SetField(sensitivewordhit.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := swhc.mutation.Version(); ok {
 		_spec.SetField(sensitivewordhit.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.SourceType(); ok {
+	if value, ok := swhc.mutation.SourceType(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceType, field.TypeString, value)
 		_node.SourceType = value
 	}
-	if value, ok := _c.mutation.SourceId(); ok {
+	if value, ok := swhc.mutation.SourceId(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceId, field.TypeString, value)
 		_node.SourceId = value
 	}
-	if value, ok := _c.mutation.Content(); ok {
+	if value, ok := swhc.mutation.Content(); ok {
 		_spec.SetField(sensitivewordhit.FieldContent, field.TypeString, value)
 		_node.Content = value
 	}
-	if value, ok := _c.mutation.HitWords(); ok {
+	if value, ok := swhc.mutation.HitWords(); ok {
 		_spec.SetField(sensitivewordhit.FieldHitWords, field.TypeString, value)
 		_node.HitWords = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := swhc.mutation.UID(); ok {
 		_spec.SetField(sensitivewordhit.FieldUID, field.TypeInt, value)
 		_node.UID = &value
 	}
-	if value, ok := _c.mutation.IP(); ok {
+	if value, ok := swhc.mutation.IP(); ok {
 		_spec.SetField(sensitivewordhit.FieldIP, field.TypeString, value)
 		_node.IP = &value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := swhc.mutation.Status(); ok {
 		_spec.SetField(sensitivewordhit.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
-	if value, ok := _c.mutation.ReviewerId(); ok {
+	if value, ok := swhc.mutation.ReviewerId(); ok {
 		_spec.SetField(sensitivewordhit.FieldReviewerId, field.TypeInt, value)
 		_node.ReviewerId = &value
 	}
-	if value, ok := _c.mutation.ReviewTime(); ok {
+	if value, ok := swhc.mutation.ReviewTime(); ok {
 		_spec.SetField(sensitivewordhit.FieldReviewTime, field.TypeTime, value)
 		_node.ReviewTime = &value
 	}
@@ -368,10 +368,10 @@ func (_c *SensitiveWordHitCreate) createSpec() (*SensitiveWordHit, *sqlgraph.Cre
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *SensitiveWordHitCreate) OnConflict(opts ...sql.ConflictOption) *SensitiveWordHitUpsertOne {
-	_c.conflict = opts
+func (swhc *SensitiveWordHitCreate) OnConflict(opts ...sql.ConflictOption) *SensitiveWordHitUpsertOne {
+	swhc.conflict = opts
 	return &SensitiveWordHitUpsertOne{
-		create: _c,
+		create: swhc,
 	}
 }
 
@@ -381,10 +381,10 @@ func (_c *SensitiveWordHitCreate) OnConflict(opts ...sql.ConflictOption) *Sensit
 //	client.SensitiveWordHit.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *SensitiveWordHitCreate) OnConflictColumns(columns ...string) *SensitiveWordHitUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (swhc *SensitiveWordHitCreate) OnConflictColumns(columns ...string) *SensitiveWordHitUpsertOne {
+	swhc.conflict = append(swhc.conflict, sql.ConflictColumns(columns...))
 	return &SensitiveWordHitUpsertOne{
-		create: _c,
+		create: swhc,
 	}
 }
 
@@ -897,16 +897,16 @@ type SensitiveWordHitCreateBulk struct {
 }
 
 // Save creates the SensitiveWordHit entities in the database.
-func (_c *SensitiveWordHitCreateBulk) Save(ctx context.Context) ([]*SensitiveWordHit, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (swhcb *SensitiveWordHitCreateBulk) Save(ctx context.Context) ([]*SensitiveWordHit, error) {
+	if swhcb.err != nil {
+		return nil, swhcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*SensitiveWordHit, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(swhcb.builders))
+	nodes := make([]*SensitiveWordHit, len(swhcb.builders))
+	mutators := make([]Mutator, len(swhcb.builders))
+	for i := range swhcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := swhcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*SensitiveWordHitMutation)
@@ -920,12 +920,12 @@ func (_c *SensitiveWordHitCreateBulk) Save(ctx context.Context) ([]*SensitiveWor
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, swhcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = swhcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, swhcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -949,7 +949,7 @@ func (_c *SensitiveWordHitCreateBulk) Save(ctx context.Context) ([]*SensitiveWor
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, swhcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -957,8 +957,8 @@ func (_c *SensitiveWordHitCreateBulk) Save(ctx context.Context) ([]*SensitiveWor
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *SensitiveWordHitCreateBulk) SaveX(ctx context.Context) []*SensitiveWordHit {
-	v, err := _c.Save(ctx)
+func (swhcb *SensitiveWordHitCreateBulk) SaveX(ctx context.Context) []*SensitiveWordHit {
+	v, err := swhcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -966,14 +966,14 @@ func (_c *SensitiveWordHitCreateBulk) SaveX(ctx context.Context) []*SensitiveWor
 }
 
 // Exec executes the query.
-func (_c *SensitiveWordHitCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (swhcb *SensitiveWordHitCreateBulk) Exec(ctx context.Context) error {
+	_, err := swhcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *SensitiveWordHitCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (swhcb *SensitiveWordHitCreateBulk) ExecX(ctx context.Context) {
+	if err := swhcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -993,10 +993,10 @@ func (_c *SensitiveWordHitCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *SensitiveWordHitCreateBulk) OnConflict(opts ...sql.ConflictOption) *SensitiveWordHitUpsertBulk {
-	_c.conflict = opts
+func (swhcb *SensitiveWordHitCreateBulk) OnConflict(opts ...sql.ConflictOption) *SensitiveWordHitUpsertBulk {
+	swhcb.conflict = opts
 	return &SensitiveWordHitUpsertBulk{
-		create: _c,
+		create: swhcb,
 	}
 }
 
@@ -1006,10 +1006,10 @@ func (_c *SensitiveWordHitCreateBulk) OnConflict(opts ...sql.ConflictOption) *Se
 //	client.SensitiveWordHit.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *SensitiveWordHitCreateBulk) OnConflictColumns(columns ...string) *SensitiveWordHitUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (swhcb *SensitiveWordHitCreateBulk) OnConflictColumns(columns ...string) *SensitiveWordHitUpsertBulk {
+	swhcb.conflict = append(swhcb.conflict, sql.ConflictColumns(columns...))
 	return &SensitiveWordHitUpsertBulk{
-		create: _c,
+		create: swhcb,
 	}
 }
 

@@ -28,40 +28,40 @@ type OperationLogQuery struct {
 }
 
 // Where adds a new predicate for the OperationLogQuery builder.
-func (_q *OperationLogQuery) Where(ps ...predicate.OperationLog) *OperationLogQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (olq *OperationLogQuery) Where(ps ...predicate.OperationLog) *OperationLogQuery {
+	olq.predicates = append(olq.predicates, ps...)
+	return olq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *OperationLogQuery) Limit(limit int) *OperationLogQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (olq *OperationLogQuery) Limit(limit int) *OperationLogQuery {
+	olq.ctx.Limit = &limit
+	return olq
 }
 
 // Offset to start from.
-func (_q *OperationLogQuery) Offset(offset int) *OperationLogQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (olq *OperationLogQuery) Offset(offset int) *OperationLogQuery {
+	olq.ctx.Offset = &offset
+	return olq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *OperationLogQuery) Unique(unique bool) *OperationLogQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (olq *OperationLogQuery) Unique(unique bool) *OperationLogQuery {
+	olq.ctx.Unique = &unique
+	return olq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *OperationLogQuery) Order(o ...operationlog.OrderOption) *OperationLogQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (olq *OperationLogQuery) Order(o ...operationlog.OrderOption) *OperationLogQuery {
+	olq.order = append(olq.order, o...)
+	return olq
 }
 
 // First returns the first OperationLog entity from the query.
 // Returns a *NotFoundError when no OperationLog was found.
-func (_q *OperationLogQuery) First(ctx context.Context) (*OperationLog, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (olq *OperationLogQuery) First(ctx context.Context) (*OperationLog, error) {
+	nodes, err := olq.Limit(1).All(setContextOp(ctx, olq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *OperationLogQuery) First(ctx context.Context) (*OperationLog, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *OperationLogQuery) FirstX(ctx context.Context) *OperationLog {
-	node, err := _q.First(ctx)
+func (olq *OperationLogQuery) FirstX(ctx context.Context) *OperationLog {
+	node, err := olq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *OperationLogQuery) FirstX(ctx context.Context) *OperationLog {
 
 // FirstID returns the first OperationLog ID from the query.
 // Returns a *NotFoundError when no OperationLog ID was found.
-func (_q *OperationLogQuery) FirstID(ctx context.Context) (id int, err error) {
+func (olq *OperationLogQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = olq.Limit(1).IDs(setContextOp(ctx, olq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *OperationLogQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *OperationLogQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (olq *OperationLogQuery) FirstIDX(ctx context.Context) int {
+	id, err := olq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *OperationLogQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single OperationLog entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one OperationLog entity is found.
 // Returns a *NotFoundError when no OperationLog entities are found.
-func (_q *OperationLogQuery) Only(ctx context.Context) (*OperationLog, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (olq *OperationLogQuery) Only(ctx context.Context) (*OperationLog, error) {
+	nodes, err := olq.Limit(2).All(setContextOp(ctx, olq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *OperationLogQuery) Only(ctx context.Context) (*OperationLog, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *OperationLogQuery) OnlyX(ctx context.Context) *OperationLog {
-	node, err := _q.Only(ctx)
+func (olq *OperationLogQuery) OnlyX(ctx context.Context) *OperationLog {
+	node, err := olq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *OperationLogQuery) OnlyX(ctx context.Context) *OperationLog {
 // OnlyID is like Only, but returns the only OperationLog ID in the query.
 // Returns a *NotSingularError when more than one OperationLog ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *OperationLogQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (olq *OperationLogQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = olq.Limit(2).IDs(setContextOp(ctx, olq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *OperationLogQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *OperationLogQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (olq *OperationLogQuery) OnlyIDX(ctx context.Context) int {
+	id, err := olq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *OperationLogQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of OperationLogs.
-func (_q *OperationLogQuery) All(ctx context.Context) ([]*OperationLog, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (olq *OperationLogQuery) All(ctx context.Context) ([]*OperationLog, error) {
+	ctx = setContextOp(ctx, olq.ctx, ent.OpQueryAll)
+	if err := olq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*OperationLog, *OperationLogQuery]()
-	return withInterceptors[[]*OperationLog](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*OperationLog](ctx, olq, qr, olq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *OperationLogQuery) AllX(ctx context.Context) []*OperationLog {
-	nodes, err := _q.All(ctx)
+func (olq *OperationLogQuery) AllX(ctx context.Context) []*OperationLog {
+	nodes, err := olq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *OperationLogQuery) AllX(ctx context.Context) []*OperationLog {
 }
 
 // IDs executes the query and returns a list of OperationLog IDs.
-func (_q *OperationLogQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (olq *OperationLogQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if olq.ctx.Unique == nil && olq.path != nil {
+		olq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(operationlog.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, olq.ctx, ent.OpQueryIDs)
+	if err = olq.Select(operationlog.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *OperationLogQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (olq *OperationLogQuery) IDsX(ctx context.Context) []int {
+	ids, err := olq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *OperationLogQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *OperationLogQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (olq *OperationLogQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, olq.ctx, ent.OpQueryCount)
+	if err := olq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*OperationLogQuery](), _q.inters)
+	return withInterceptors[int](ctx, olq, querierCount[*OperationLogQuery](), olq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *OperationLogQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (olq *OperationLogQuery) CountX(ctx context.Context) int {
+	count, err := olq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *OperationLogQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *OperationLogQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (olq *OperationLogQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, olq.ctx, ent.OpQueryExist)
+	switch _, err := olq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *OperationLogQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *OperationLogQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (olq *OperationLogQuery) ExistX(ctx context.Context) bool {
+	exist, err := olq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *OperationLogQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the OperationLogQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *OperationLogQuery) Clone() *OperationLogQuery {
-	if _q == nil {
+func (olq *OperationLogQuery) Clone() *OperationLogQuery {
+	if olq == nil {
 		return nil
 	}
 	return &OperationLogQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]operationlog.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.OperationLog{}, _q.predicates...),
+		config:     olq.config,
+		ctx:        olq.ctx.Clone(),
+		order:      append([]operationlog.OrderOption{}, olq.order...),
+		inters:     append([]Interceptor{}, olq.inters...),
+		predicates: append([]predicate.OperationLog{}, olq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  olq.sql.Clone(),
+		path: olq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *OperationLogQuery) Clone() *OperationLogQuery {
 //		GroupBy(operationlog.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *OperationLogQuery) GroupBy(field string, fields ...string) *OperationLogGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &OperationLogGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (olq *OperationLogQuery) GroupBy(field string, fields ...string) *OperationLogGroupBy {
+	olq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &OperationLogGroupBy{build: olq}
+	grbuild.flds = &olq.ctx.Fields
 	grbuild.label = operationlog.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *OperationLogQuery) GroupBy(field string, fields ...string) *OperationL
 //	client.OperationLog.Query().
 //		Select(operationlog.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *OperationLogQuery) Select(fields ...string) *OperationLogSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &OperationLogSelect{OperationLogQuery: _q}
+func (olq *OperationLogQuery) Select(fields ...string) *OperationLogSelect {
+	olq.ctx.Fields = append(olq.ctx.Fields, fields...)
+	sbuild := &OperationLogSelect{OperationLogQuery: olq}
 	sbuild.label = operationlog.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &olq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a OperationLogSelect configured with the given aggregations.
-func (_q *OperationLogQuery) Aggregate(fns ...AggregateFunc) *OperationLogSelect {
-	return _q.Select().Aggregate(fns...)
+func (olq *OperationLogQuery) Aggregate(fns ...AggregateFunc) *OperationLogSelect {
+	return olq.Select().Aggregate(fns...)
 }
 
-func (_q *OperationLogQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (olq *OperationLogQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range olq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, olq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range olq.ctx.Fields {
 		if !operationlog.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if olq.path != nil {
+		prev, err := olq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		olq.sql = prev
 	}
 	return nil
 }
 
-func (_q *OperationLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*OperationLog, error) {
+func (olq *OperationLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*OperationLog, error) {
 	var (
 		nodes = []*OperationLog{}
-		_spec = _q.querySpec()
+		_spec = olq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*OperationLog).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &OperationLog{config: _q.config}
+		node := &OperationLog{config: olq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, olq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *OperationLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]
 	return nodes, nil
 }
 
-func (_q *OperationLogQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (olq *OperationLogQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := olq.querySpec()
+	_spec.Node.Columns = olq.ctx.Fields
+	if len(olq.ctx.Fields) > 0 {
+		_spec.Unique = olq.ctx.Unique != nil && *olq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, olq.driver, _spec)
 }
 
-func (_q *OperationLogQuery) querySpec() *sqlgraph.QuerySpec {
+func (olq *OperationLogQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(operationlog.Table, operationlog.Columns, sqlgraph.NewFieldSpec(operationlog.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = olq.sql
+	if unique := olq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if olq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := olq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, operationlog.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *OperationLogQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := olq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := olq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := olq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := olq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *OperationLogQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *OperationLogQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (olq *OperationLogQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(olq.driver.Dialect())
 	t1 := builder.Table(operationlog.Table)
-	columns := _q.ctx.Fields
+	columns := olq.ctx.Fields
 	if len(columns) == 0 {
 		columns = operationlog.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if olq.sql != nil {
+		selector = olq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if olq.ctx.Unique != nil && *olq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range olq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range olq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := olq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := olq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type OperationLogGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *OperationLogGroupBy) Aggregate(fns ...AggregateFunc) *OperationLogGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (olgb *OperationLogGroupBy) Aggregate(fns ...AggregateFunc) *OperationLogGroupBy {
+	olgb.fns = append(olgb.fns, fns...)
+	return olgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *OperationLogGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (olgb *OperationLogGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, olgb.build.ctx, ent.OpQueryGroupBy)
+	if err := olgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*OperationLogQuery, *OperationLogGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*OperationLogQuery, *OperationLogGroupBy](ctx, olgb.build, olgb, olgb.build.inters, v)
 }
 
-func (_g *OperationLogGroupBy) sqlScan(ctx context.Context, root *OperationLogQuery, v any) error {
+func (olgb *OperationLogGroupBy) sqlScan(ctx context.Context, root *OperationLogQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(olgb.fns))
+	for _, fn := range olgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*olgb.flds)+len(olgb.fns))
+		for _, f := range *olgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*olgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := olgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type OperationLogSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *OperationLogSelect) Aggregate(fns ...AggregateFunc) *OperationLogSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (ols *OperationLogSelect) Aggregate(fns ...AggregateFunc) *OperationLogSelect {
+	ols.fns = append(ols.fns, fns...)
+	return ols
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *OperationLogSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (ols *OperationLogSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ols.ctx, ent.OpQuerySelect)
+	if err := ols.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*OperationLogQuery, *OperationLogSelect](ctx, _s.OperationLogQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*OperationLogQuery, *OperationLogSelect](ctx, ols.OperationLogQuery, ols, ols.inters, v)
 }
 
-func (_s *OperationLogSelect) sqlScan(ctx context.Context, root *OperationLogQuery, v any) error {
+func (ols *OperationLogSelect) sqlScan(ctx context.Context, root *OperationLogQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(ols.fns))
+	for _, fn := range ols.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*ols.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *OperationLogSelect) sqlScan(ctx context.Context, root *OperationLogQue
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ols.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

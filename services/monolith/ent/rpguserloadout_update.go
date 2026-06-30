@@ -22,132 +22,132 @@ type RpgUserLoadoutUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserLoadoutUpdate builder.
-func (_u *RpgUserLoadoutUpdate) Where(ps ...predicate.RpgUserLoadout) *RpgUserLoadoutUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rulu *RpgUserLoadoutUpdate) Where(ps ...predicate.RpgUserLoadout) *RpgUserLoadoutUpdate {
+	rulu.mutation.Where(ps...)
+	return rulu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserLoadoutUpdate) SetUID(v int) *RpgUserLoadoutUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rulu *RpgUserLoadoutUpdate) SetUID(i int) *RpgUserLoadoutUpdate {
+	rulu.mutation.ResetUID()
+	rulu.mutation.SetUID(i)
+	return rulu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdate) SetNillableUID(v *int) *RpgUserLoadoutUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (rulu *RpgUserLoadoutUpdate) SetNillableUID(i *int) *RpgUserLoadoutUpdate {
+	if i != nil {
+		rulu.SetUID(*i)
 	}
-	return _u
+	return rulu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserLoadoutUpdate) AddUID(v int) *RpgUserLoadoutUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rulu *RpgUserLoadoutUpdate) AddUID(i int) *RpgUserLoadoutUpdate {
+	rulu.mutation.AddUID(i)
+	return rulu
 }
 
 // SetTitleCode sets the "titleCode" field.
-func (_u *RpgUserLoadoutUpdate) SetTitleCode(v string) *RpgUserLoadoutUpdate {
-	_u.mutation.SetTitleCode(v)
-	return _u
+func (rulu *RpgUserLoadoutUpdate) SetTitleCode(s string) *RpgUserLoadoutUpdate {
+	rulu.mutation.SetTitleCode(s)
+	return rulu
 }
 
 // SetNillableTitleCode sets the "titleCode" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdate) SetNillableTitleCode(v *string) *RpgUserLoadoutUpdate {
-	if v != nil {
-		_u.SetTitleCode(*v)
+func (rulu *RpgUserLoadoutUpdate) SetNillableTitleCode(s *string) *RpgUserLoadoutUpdate {
+	if s != nil {
+		rulu.SetTitleCode(*s)
 	}
-	return _u
+	return rulu
 }
 
 // ClearTitleCode clears the value of the "titleCode" field.
-func (_u *RpgUserLoadoutUpdate) ClearTitleCode() *RpgUserLoadoutUpdate {
-	_u.mutation.ClearTitleCode()
-	return _u
+func (rulu *RpgUserLoadoutUpdate) ClearTitleCode() *RpgUserLoadoutUpdate {
+	rulu.mutation.ClearTitleCode()
+	return rulu
 }
 
 // SetAvatarFrameCode sets the "avatarFrameCode" field.
-func (_u *RpgUserLoadoutUpdate) SetAvatarFrameCode(v string) *RpgUserLoadoutUpdate {
-	_u.mutation.SetAvatarFrameCode(v)
-	return _u
+func (rulu *RpgUserLoadoutUpdate) SetAvatarFrameCode(s string) *RpgUserLoadoutUpdate {
+	rulu.mutation.SetAvatarFrameCode(s)
+	return rulu
 }
 
 // SetNillableAvatarFrameCode sets the "avatarFrameCode" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdate) SetNillableAvatarFrameCode(v *string) *RpgUserLoadoutUpdate {
-	if v != nil {
-		_u.SetAvatarFrameCode(*v)
+func (rulu *RpgUserLoadoutUpdate) SetNillableAvatarFrameCode(s *string) *RpgUserLoadoutUpdate {
+	if s != nil {
+		rulu.SetAvatarFrameCode(*s)
 	}
-	return _u
+	return rulu
 }
 
 // ClearAvatarFrameCode clears the value of the "avatarFrameCode" field.
-func (_u *RpgUserLoadoutUpdate) ClearAvatarFrameCode() *RpgUserLoadoutUpdate {
-	_u.mutation.ClearAvatarFrameCode()
-	return _u
+func (rulu *RpgUserLoadoutUpdate) ClearAvatarFrameCode() *RpgUserLoadoutUpdate {
+	rulu.mutation.ClearAvatarFrameCode()
+	return rulu
 }
 
 // SetPetId sets the "petId" field.
-func (_u *RpgUserLoadoutUpdate) SetPetId(v int) *RpgUserLoadoutUpdate {
-	_u.mutation.ResetPetId()
-	_u.mutation.SetPetId(v)
-	return _u
+func (rulu *RpgUserLoadoutUpdate) SetPetId(i int) *RpgUserLoadoutUpdate {
+	rulu.mutation.ResetPetId()
+	rulu.mutation.SetPetId(i)
+	return rulu
 }
 
 // SetNillablePetId sets the "petId" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdate) SetNillablePetId(v *int) *RpgUserLoadoutUpdate {
-	if v != nil {
-		_u.SetPetId(*v)
+func (rulu *RpgUserLoadoutUpdate) SetNillablePetId(i *int) *RpgUserLoadoutUpdate {
+	if i != nil {
+		rulu.SetPetId(*i)
 	}
-	return _u
+	return rulu
 }
 
-// AddPetId adds value to the "petId" field.
-func (_u *RpgUserLoadoutUpdate) AddPetId(v int) *RpgUserLoadoutUpdate {
-	_u.mutation.AddPetId(v)
-	return _u
+// AddPetId adds i to the "petId" field.
+func (rulu *RpgUserLoadoutUpdate) AddPetId(i int) *RpgUserLoadoutUpdate {
+	rulu.mutation.AddPetId(i)
+	return rulu
 }
 
 // ClearPetId clears the value of the "petId" field.
-func (_u *RpgUserLoadoutUpdate) ClearPetId() *RpgUserLoadoutUpdate {
-	_u.mutation.ClearPetId()
-	return _u
+func (rulu *RpgUserLoadoutUpdate) ClearPetId() *RpgUserLoadoutUpdate {
+	rulu.mutation.ClearPetId()
+	return rulu
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserLoadoutUpdate) SetEffectJson(v string) *RpgUserLoadoutUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rulu *RpgUserLoadoutUpdate) SetEffectJson(s string) *RpgUserLoadoutUpdate {
+	rulu.mutation.SetEffectJson(s)
+	return rulu
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdate) SetNillableEffectJson(v *string) *RpgUserLoadoutUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rulu *RpgUserLoadoutUpdate) SetNillableEffectJson(s *string) *RpgUserLoadoutUpdate {
+	if s != nil {
+		rulu.SetEffectJson(*s)
 	}
-	return _u
+	return rulu
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserLoadoutUpdate) ClearEffectJson() *RpgUserLoadoutUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rulu *RpgUserLoadoutUpdate) ClearEffectJson() *RpgUserLoadoutUpdate {
+	rulu.mutation.ClearEffectJson()
+	return rulu
 }
 
 // Mutation returns the RpgUserLoadoutMutation object of the builder.
-func (_u *RpgUserLoadoutUpdate) Mutation() *RpgUserLoadoutMutation {
-	return _u.mutation
+func (rulu *RpgUserLoadoutUpdate) Mutation() *RpgUserLoadoutMutation {
+	return rulu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserLoadoutUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rulu *RpgUserLoadoutUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rulu.sqlSave, rulu.mutation, rulu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserLoadoutUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rulu *RpgUserLoadoutUpdate) SaveX(ctx context.Context) int {
+	affected, err := rulu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -155,61 +155,61 @@ func (_u *RpgUserLoadoutUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserLoadoutUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rulu *RpgUserLoadoutUpdate) Exec(ctx context.Context) error {
+	_, err := rulu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserLoadoutUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rulu *RpgUserLoadoutUpdate) ExecX(ctx context.Context) {
+	if err := rulu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgUserLoadoutUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rulu *RpgUserLoadoutUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserloadout.Table, rpguserloadout.Columns, sqlgraph.NewFieldSpec(rpguserloadout.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rulu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rulu.mutation.UID(); ok {
 		_spec.SetField(rpguserloadout.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rulu.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserloadout.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.TitleCode(); ok {
+	if value, ok := rulu.mutation.TitleCode(); ok {
 		_spec.SetField(rpguserloadout.FieldTitleCode, field.TypeString, value)
 	}
-	if _u.mutation.TitleCodeCleared() {
+	if rulu.mutation.TitleCodeCleared() {
 		_spec.ClearField(rpguserloadout.FieldTitleCode, field.TypeString)
 	}
-	if value, ok := _u.mutation.AvatarFrameCode(); ok {
+	if value, ok := rulu.mutation.AvatarFrameCode(); ok {
 		_spec.SetField(rpguserloadout.FieldAvatarFrameCode, field.TypeString, value)
 	}
-	if _u.mutation.AvatarFrameCodeCleared() {
+	if rulu.mutation.AvatarFrameCodeCleared() {
 		_spec.ClearField(rpguserloadout.FieldAvatarFrameCode, field.TypeString)
 	}
-	if value, ok := _u.mutation.PetId(); ok {
+	if value, ok := rulu.mutation.PetId(); ok {
 		_spec.SetField(rpguserloadout.FieldPetId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedPetId(); ok {
+	if value, ok := rulu.mutation.AddedPetId(); ok {
 		_spec.AddField(rpguserloadout.FieldPetId, field.TypeInt, value)
 	}
-	if _u.mutation.PetIdCleared() {
+	if rulu.mutation.PetIdCleared() {
 		_spec.ClearField(rpguserloadout.FieldPetId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rulu.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserloadout.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rulu.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserloadout.FieldEffectJson, field.TypeString)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rulu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserloadout.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -217,8 +217,8 @@ func (_u *RpgUserLoadoutUpdate) sqlSave(ctx context.Context) (_node int, err err
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rulu.mutation.done = true
+	return n, nil
 }
 
 // RpgUserLoadoutUpdateOne is the builder for updating a single RpgUserLoadout entity.
@@ -230,139 +230,139 @@ type RpgUserLoadoutUpdateOne struct {
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserLoadoutUpdateOne) SetUID(v int) *RpgUserLoadoutUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) SetUID(i int) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.ResetUID()
+	ruluo.mutation.SetUID(i)
+	return ruluo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdateOne) SetNillableUID(v *int) *RpgUserLoadoutUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (ruluo *RpgUserLoadoutUpdateOne) SetNillableUID(i *int) *RpgUserLoadoutUpdateOne {
+	if i != nil {
+		ruluo.SetUID(*i)
 	}
-	return _u
+	return ruluo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserLoadoutUpdateOne) AddUID(v int) *RpgUserLoadoutUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ruluo *RpgUserLoadoutUpdateOne) AddUID(i int) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.AddUID(i)
+	return ruluo
 }
 
 // SetTitleCode sets the "titleCode" field.
-func (_u *RpgUserLoadoutUpdateOne) SetTitleCode(v string) *RpgUserLoadoutUpdateOne {
-	_u.mutation.SetTitleCode(v)
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) SetTitleCode(s string) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.SetTitleCode(s)
+	return ruluo
 }
 
 // SetNillableTitleCode sets the "titleCode" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdateOne) SetNillableTitleCode(v *string) *RpgUserLoadoutUpdateOne {
-	if v != nil {
-		_u.SetTitleCode(*v)
+func (ruluo *RpgUserLoadoutUpdateOne) SetNillableTitleCode(s *string) *RpgUserLoadoutUpdateOne {
+	if s != nil {
+		ruluo.SetTitleCode(*s)
 	}
-	return _u
+	return ruluo
 }
 
 // ClearTitleCode clears the value of the "titleCode" field.
-func (_u *RpgUserLoadoutUpdateOne) ClearTitleCode() *RpgUserLoadoutUpdateOne {
-	_u.mutation.ClearTitleCode()
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) ClearTitleCode() *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.ClearTitleCode()
+	return ruluo
 }
 
 // SetAvatarFrameCode sets the "avatarFrameCode" field.
-func (_u *RpgUserLoadoutUpdateOne) SetAvatarFrameCode(v string) *RpgUserLoadoutUpdateOne {
-	_u.mutation.SetAvatarFrameCode(v)
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) SetAvatarFrameCode(s string) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.SetAvatarFrameCode(s)
+	return ruluo
 }
 
 // SetNillableAvatarFrameCode sets the "avatarFrameCode" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdateOne) SetNillableAvatarFrameCode(v *string) *RpgUserLoadoutUpdateOne {
-	if v != nil {
-		_u.SetAvatarFrameCode(*v)
+func (ruluo *RpgUserLoadoutUpdateOne) SetNillableAvatarFrameCode(s *string) *RpgUserLoadoutUpdateOne {
+	if s != nil {
+		ruluo.SetAvatarFrameCode(*s)
 	}
-	return _u
+	return ruluo
 }
 
 // ClearAvatarFrameCode clears the value of the "avatarFrameCode" field.
-func (_u *RpgUserLoadoutUpdateOne) ClearAvatarFrameCode() *RpgUserLoadoutUpdateOne {
-	_u.mutation.ClearAvatarFrameCode()
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) ClearAvatarFrameCode() *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.ClearAvatarFrameCode()
+	return ruluo
 }
 
 // SetPetId sets the "petId" field.
-func (_u *RpgUserLoadoutUpdateOne) SetPetId(v int) *RpgUserLoadoutUpdateOne {
-	_u.mutation.ResetPetId()
-	_u.mutation.SetPetId(v)
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) SetPetId(i int) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.ResetPetId()
+	ruluo.mutation.SetPetId(i)
+	return ruluo
 }
 
 // SetNillablePetId sets the "petId" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdateOne) SetNillablePetId(v *int) *RpgUserLoadoutUpdateOne {
-	if v != nil {
-		_u.SetPetId(*v)
+func (ruluo *RpgUserLoadoutUpdateOne) SetNillablePetId(i *int) *RpgUserLoadoutUpdateOne {
+	if i != nil {
+		ruluo.SetPetId(*i)
 	}
-	return _u
+	return ruluo
 }
 
-// AddPetId adds value to the "petId" field.
-func (_u *RpgUserLoadoutUpdateOne) AddPetId(v int) *RpgUserLoadoutUpdateOne {
-	_u.mutation.AddPetId(v)
-	return _u
+// AddPetId adds i to the "petId" field.
+func (ruluo *RpgUserLoadoutUpdateOne) AddPetId(i int) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.AddPetId(i)
+	return ruluo
 }
 
 // ClearPetId clears the value of the "petId" field.
-func (_u *RpgUserLoadoutUpdateOne) ClearPetId() *RpgUserLoadoutUpdateOne {
-	_u.mutation.ClearPetId()
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) ClearPetId() *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.ClearPetId()
+	return ruluo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserLoadoutUpdateOne) SetEffectJson(v string) *RpgUserLoadoutUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) SetEffectJson(s string) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.SetEffectJson(s)
+	return ruluo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserLoadoutUpdateOne) SetNillableEffectJson(v *string) *RpgUserLoadoutUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (ruluo *RpgUserLoadoutUpdateOne) SetNillableEffectJson(s *string) *RpgUserLoadoutUpdateOne {
+	if s != nil {
+		ruluo.SetEffectJson(*s)
 	}
-	return _u
+	return ruluo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserLoadoutUpdateOne) ClearEffectJson() *RpgUserLoadoutUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) ClearEffectJson() *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.ClearEffectJson()
+	return ruluo
 }
 
 // Mutation returns the RpgUserLoadoutMutation object of the builder.
-func (_u *RpgUserLoadoutUpdateOne) Mutation() *RpgUserLoadoutMutation {
-	return _u.mutation
+func (ruluo *RpgUserLoadoutUpdateOne) Mutation() *RpgUserLoadoutMutation {
+	return ruluo.mutation
 }
 
 // Where appends a list predicates to the RpgUserLoadoutUpdate builder.
-func (_u *RpgUserLoadoutUpdateOne) Where(ps ...predicate.RpgUserLoadout) *RpgUserLoadoutUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) Where(ps ...predicate.RpgUserLoadout) *RpgUserLoadoutUpdateOne {
+	ruluo.mutation.Where(ps...)
+	return ruluo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserLoadoutUpdateOne) Select(field string, fields ...string) *RpgUserLoadoutUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (ruluo *RpgUserLoadoutUpdateOne) Select(field string, fields ...string) *RpgUserLoadoutUpdateOne {
+	ruluo.fields = append([]string{field}, fields...)
+	return ruluo
 }
 
 // Save executes the query and returns the updated RpgUserLoadout entity.
-func (_u *RpgUserLoadoutUpdateOne) Save(ctx context.Context) (*RpgUserLoadout, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruluo *RpgUserLoadoutUpdateOne) Save(ctx context.Context) (*RpgUserLoadout, error) {
+	return withHooks(ctx, ruluo.sqlSave, ruluo.mutation, ruluo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserLoadoutUpdateOne) SaveX(ctx context.Context) *RpgUserLoadout {
-	node, err := _u.Save(ctx)
+func (ruluo *RpgUserLoadoutUpdateOne) SaveX(ctx context.Context) *RpgUserLoadout {
+	node, err := ruluo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -370,26 +370,26 @@ func (_u *RpgUserLoadoutUpdateOne) SaveX(ctx context.Context) *RpgUserLoadout {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserLoadoutUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruluo *RpgUserLoadoutUpdateOne) Exec(ctx context.Context) error {
+	_, err := ruluo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserLoadoutUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruluo *RpgUserLoadoutUpdateOne) ExecX(ctx context.Context) {
+	if err := ruluo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgUserLoadoutUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserLoadout, err error) {
+func (ruluo *RpgUserLoadoutUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserLoadout, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserloadout.Table, rpguserloadout.Columns, sqlgraph.NewFieldSpec(rpguserloadout.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := ruluo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserLoadout.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := ruluo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserloadout.FieldID)
 		for _, f := range fields {
@@ -401,50 +401,50 @@ func (_u *RpgUserLoadoutUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserL
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruluo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ruluo.mutation.UID(); ok {
 		_spec.SetField(rpguserloadout.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ruluo.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserloadout.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.TitleCode(); ok {
+	if value, ok := ruluo.mutation.TitleCode(); ok {
 		_spec.SetField(rpguserloadout.FieldTitleCode, field.TypeString, value)
 	}
-	if _u.mutation.TitleCodeCleared() {
+	if ruluo.mutation.TitleCodeCleared() {
 		_spec.ClearField(rpguserloadout.FieldTitleCode, field.TypeString)
 	}
-	if value, ok := _u.mutation.AvatarFrameCode(); ok {
+	if value, ok := ruluo.mutation.AvatarFrameCode(); ok {
 		_spec.SetField(rpguserloadout.FieldAvatarFrameCode, field.TypeString, value)
 	}
-	if _u.mutation.AvatarFrameCodeCleared() {
+	if ruluo.mutation.AvatarFrameCodeCleared() {
 		_spec.ClearField(rpguserloadout.FieldAvatarFrameCode, field.TypeString)
 	}
-	if value, ok := _u.mutation.PetId(); ok {
+	if value, ok := ruluo.mutation.PetId(); ok {
 		_spec.SetField(rpguserloadout.FieldPetId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedPetId(); ok {
+	if value, ok := ruluo.mutation.AddedPetId(); ok {
 		_spec.AddField(rpguserloadout.FieldPetId, field.TypeInt, value)
 	}
-	if _u.mutation.PetIdCleared() {
+	if ruluo.mutation.PetIdCleared() {
 		_spec.ClearField(rpguserloadout.FieldPetId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := ruluo.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserloadout.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if ruluo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserloadout.FieldEffectJson, field.TypeString)
 	}
-	_node = &RpgUserLoadout{config: _u.config}
+	_node = &RpgUserLoadout{config: ruluo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, ruluo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserloadout.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -452,6 +452,6 @@ func (_u *RpgUserLoadoutUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserL
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	ruluo.mutation.done = true
 	return _node, nil
 }

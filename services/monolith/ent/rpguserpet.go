@@ -63,7 +63,7 @@ func (*RpgUserPet) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserPet fields.
-func (_m *RpgUserPet) assignValues(columns []string, values []any) error {
+func (rup *RpgUserPet) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -74,70 +74,70 @@ func (_m *RpgUserPet) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rup.ID = int(value.Int64)
 		case rpguserpet.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rup.CreateTime = value.Time
 			}
 		case rpguserpet.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rup.UpdateTime = value.Time
 			}
 		case rpguserpet.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rup.IsDelete = value.Bool
 			}
 		case rpguserpet.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rup.Version = int(value.Int64)
 			}
 		case rpguserpet.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rup.UID = int(value.Int64)
 			}
 		case rpguserpet.FieldPetCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field petCode", values[i])
 			} else if value.Valid {
-				_m.PetCode = value.String
+				rup.PetCode = value.String
 			}
 		case rpguserpet.FieldLevel:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field level", values[i])
 			} else if value.Valid {
-				_m.Level = int(value.Int64)
+				rup.Level = int(value.Int64)
 			}
 		case rpguserpet.FieldExp:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field exp", values[i])
 			} else if value.Valid {
-				_m.Exp = int(value.Int64)
+				rup.Exp = int(value.Int64)
 			}
 		case rpguserpet.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rup.EffectJson = new(string)
+				*rup.EffectJson = value.String
 			}
 		case rpguserpet.FieldNickname:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field nickname", values[i])
 			} else if value.Valid {
-				_m.Nickname = value.String
+				rup.Nickname = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rup.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -145,64 +145,64 @@ func (_m *RpgUserPet) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserPet.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserPet) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rup *RpgUserPet) Value(name string) (ent.Value, error) {
+	return rup.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserPet.
 // Note that you need to call RpgUserPet.Unwrap() before calling this method if this RpgUserPet
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserPet) Update() *RpgUserPetUpdateOne {
-	return NewRpgUserPetClient(_m.config).UpdateOne(_m)
+func (rup *RpgUserPet) Update() *RpgUserPetUpdateOne {
+	return NewRpgUserPetClient(rup.config).UpdateOne(rup)
 }
 
 // Unwrap unwraps the RpgUserPet entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserPet) Unwrap() *RpgUserPet {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rup *RpgUserPet) Unwrap() *RpgUserPet {
+	_tx, ok := rup.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserPet is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rup.config.driver = _tx.drv
+	return rup
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserPet) String() string {
+func (rup *RpgUserPet) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserPet(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rup.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rup.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rup.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rup.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rup.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rup.UID))
 	builder.WriteString(", ")
 	builder.WriteString("petCode=")
-	builder.WriteString(_m.PetCode)
+	builder.WriteString(rup.PetCode)
 	builder.WriteString(", ")
 	builder.WriteString("level=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Level))
+	builder.WriteString(fmt.Sprintf("%v", rup.Level))
 	builder.WriteString(", ")
 	builder.WriteString("exp=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Exp))
+	builder.WriteString(fmt.Sprintf("%v", rup.Exp))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rup.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("nickname=")
-	builder.WriteString(_m.Nickname)
+	builder.WriteString(rup.Nickname)
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -23,213 +23,213 @@ type MsgboardCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *MsgboardCreate) SetCreateTime(v time.Time) *MsgboardCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (mc *MsgboardCreate) SetCreateTime(t time.Time) *MsgboardCreate {
+	mc.mutation.SetCreateTime(t)
+	return mc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableCreateTime(v *time.Time) *MsgboardCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (mc *MsgboardCreate) SetNillableCreateTime(t *time.Time) *MsgboardCreate {
+	if t != nil {
+		mc.SetCreateTime(*t)
 	}
-	return _c
+	return mc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *MsgboardCreate) SetUpdateTime(v time.Time) *MsgboardCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (mc *MsgboardCreate) SetUpdateTime(t time.Time) *MsgboardCreate {
+	mc.mutation.SetUpdateTime(t)
+	return mc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableUpdateTime(v *time.Time) *MsgboardCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (mc *MsgboardCreate) SetNillableUpdateTime(t *time.Time) *MsgboardCreate {
+	if t != nil {
+		mc.SetUpdateTime(*t)
 	}
-	return _c
+	return mc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *MsgboardCreate) SetIsDelete(v bool) *MsgboardCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (mc *MsgboardCreate) SetIsDelete(b bool) *MsgboardCreate {
+	mc.mutation.SetIsDelete(b)
+	return mc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableIsDelete(v *bool) *MsgboardCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (mc *MsgboardCreate) SetNillableIsDelete(b *bool) *MsgboardCreate {
+	if b != nil {
+		mc.SetIsDelete(*b)
 	}
-	return _c
+	return mc
 }
 
 // SetVersion sets the "version" field.
-func (_c *MsgboardCreate) SetVersion(v int) *MsgboardCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (mc *MsgboardCreate) SetVersion(i int) *MsgboardCreate {
+	mc.mutation.SetVersion(i)
+	return mc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableVersion(v *int) *MsgboardCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (mc *MsgboardCreate) SetNillableVersion(i *int) *MsgboardCreate {
+	if i != nil {
+		mc.SetVersion(*i)
 	}
-	return _c
+	return mc
 }
 
 // SetName sets the "name" field.
-func (_c *MsgboardCreate) SetName(v string) *MsgboardCreate {
-	_c.mutation.SetName(v)
-	return _c
+func (mc *MsgboardCreate) SetName(s string) *MsgboardCreate {
+	mc.mutation.SetName(s)
+	return mc
 }
 
 // SetEamil sets the "eamil" field.
-func (_c *MsgboardCreate) SetEamil(v string) *MsgboardCreate {
-	_c.mutation.SetEamil(v)
-	return _c
+func (mc *MsgboardCreate) SetEamil(s string) *MsgboardCreate {
+	mc.mutation.SetEamil(s)
+	return mc
 }
 
 // SetAddress sets the "address" field.
-func (_c *MsgboardCreate) SetAddress(v string) *MsgboardCreate {
-	_c.mutation.SetAddress(v)
-	return _c
+func (mc *MsgboardCreate) SetAddress(s string) *MsgboardCreate {
+	mc.mutation.SetAddress(s)
+	return mc
 }
 
 // SetComment sets the "comment" field.
-func (_c *MsgboardCreate) SetComment(v string) *MsgboardCreate {
-	_c.mutation.SetComment(v)
-	return _c
+func (mc *MsgboardCreate) SetComment(s string) *MsgboardCreate {
+	mc.mutation.SetComment(s)
+	return mc
 }
 
 // SetAvatar sets the "avatar" field.
-func (_c *MsgboardCreate) SetAvatar(v string) *MsgboardCreate {
-	_c.mutation.SetAvatar(v)
-	return _c
+func (mc *MsgboardCreate) SetAvatar(s string) *MsgboardCreate {
+	mc.mutation.SetAvatar(s)
+	return mc
 }
 
 // SetLocation sets the "location" field.
-func (_c *MsgboardCreate) SetLocation(v string) *MsgboardCreate {
-	_c.mutation.SetLocation(v)
-	return _c
+func (mc *MsgboardCreate) SetLocation(s string) *MsgboardCreate {
+	mc.mutation.SetLocation(s)
+	return mc
 }
 
 // SetSystem sets the "system" field.
-func (_c *MsgboardCreate) SetSystem(v string) *MsgboardCreate {
-	_c.mutation.SetSystem(v)
-	return _c
+func (mc *MsgboardCreate) SetSystem(s string) *MsgboardCreate {
+	mc.mutation.SetSystem(s)
+	return mc
 }
 
 // SetBrowser sets the "browser" field.
-func (_c *MsgboardCreate) SetBrowser(v string) *MsgboardCreate {
-	_c.mutation.SetBrowser(v)
-	return _c
+func (mc *MsgboardCreate) SetBrowser(s string) *MsgboardCreate {
+	mc.mutation.SetBrowser(s)
+	return mc
 }
 
 // SetRespondent sets the "respondent" field.
-func (_c *MsgboardCreate) SetRespondent(v string) *MsgboardCreate {
-	_c.mutation.SetRespondent(v)
-	return _c
+func (mc *MsgboardCreate) SetRespondent(s string) *MsgboardCreate {
+	mc.mutation.SetRespondent(s)
+	return mc
 }
 
 // SetNillableRespondent sets the "respondent" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableRespondent(v *string) *MsgboardCreate {
-	if v != nil {
-		_c.SetRespondent(*v)
+func (mc *MsgboardCreate) SetNillableRespondent(s *string) *MsgboardCreate {
+	if s != nil {
+		mc.SetRespondent(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetImgUrl sets the "imgUrl" field.
-func (_c *MsgboardCreate) SetImgUrl(v string) *MsgboardCreate {
-	_c.mutation.SetImgUrl(v)
-	return _c
+func (mc *MsgboardCreate) SetImgUrl(s string) *MsgboardCreate {
+	mc.mutation.SetImgUrl(s)
+	return mc
 }
 
 // SetNillableImgUrl sets the "imgUrl" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableImgUrl(v *string) *MsgboardCreate {
-	if v != nil {
-		_c.SetImgUrl(*v)
+func (mc *MsgboardCreate) SetNillableImgUrl(s *string) *MsgboardCreate {
+	if s != nil {
+		mc.SetImgUrl(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetIP sets the "ip" field.
-func (_c *MsgboardCreate) SetIP(v string) *MsgboardCreate {
-	_c.mutation.SetIP(v)
-	return _c
+func (mc *MsgboardCreate) SetIP(s string) *MsgboardCreate {
+	mc.mutation.SetIP(s)
+	return mc
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableIP(v *string) *MsgboardCreate {
-	if v != nil {
-		_c.SetIP(*v)
+func (mc *MsgboardCreate) SetNillableIP(s *string) *MsgboardCreate {
+	if s != nil {
+		mc.SetIP(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetPId sets the "pId" field.
-func (_c *MsgboardCreate) SetPId(v int) *MsgboardCreate {
-	_c.mutation.SetPId(v)
-	return _c
+func (mc *MsgboardCreate) SetPId(i int) *MsgboardCreate {
+	mc.mutation.SetPId(i)
+	return mc
 }
 
 // SetNillablePId sets the "pId" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillablePId(v *int) *MsgboardCreate {
-	if v != nil {
-		_c.SetPId(*v)
+func (mc *MsgboardCreate) SetNillablePId(i *int) *MsgboardCreate {
+	if i != nil {
+		mc.SetPId(*i)
 	}
-	return _c
+	return mc
 }
 
 // SetReplyId sets the "replyId" field.
-func (_c *MsgboardCreate) SetReplyId(v int) *MsgboardCreate {
-	_c.mutation.SetReplyId(v)
-	return _c
+func (mc *MsgboardCreate) SetReplyId(i int) *MsgboardCreate {
+	mc.mutation.SetReplyId(i)
+	return mc
 }
 
 // SetNillableReplyId sets the "replyId" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableReplyId(v *int) *MsgboardCreate {
-	if v != nil {
-		_c.SetReplyId(*v)
+func (mc *MsgboardCreate) SetNillableReplyId(i *int) *MsgboardCreate {
+	if i != nil {
+		mc.SetReplyId(*i)
 	}
-	return _c
+	return mc
 }
 
 // SetStatus sets the "status" field.
-func (_c *MsgboardCreate) SetStatus(v string) *MsgboardCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (mc *MsgboardCreate) SetStatus(s string) *MsgboardCreate {
+	mc.mutation.SetStatus(s)
+	return mc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *MsgboardCreate) SetNillableStatus(v *string) *MsgboardCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (mc *MsgboardCreate) SetNillableStatus(s *string) *MsgboardCreate {
+	if s != nil {
+		mc.SetStatus(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetID sets the "id" field.
-func (_c *MsgboardCreate) SetID(v int) *MsgboardCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (mc *MsgboardCreate) SetID(i int) *MsgboardCreate {
+	mc.mutation.SetID(i)
+	return mc
 }
 
 // Mutation returns the MsgboardMutation object of the builder.
-func (_c *MsgboardCreate) Mutation() *MsgboardMutation {
-	return _c.mutation
+func (mc *MsgboardCreate) Mutation() *MsgboardMutation {
+	return mc.mutation
 }
 
 // Save creates the Msgboard in the database.
-func (_c *MsgboardCreate) Save(ctx context.Context) (*Msgboard, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (mc *MsgboardCreate) Save(ctx context.Context) (*Msgboard, error) {
+	mc.defaults()
+	return withHooks(ctx, mc.sqlSave, mc.mutation, mc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *MsgboardCreate) SaveX(ctx context.Context) *Msgboard {
-	v, err := _c.Save(ctx)
+func (mc *MsgboardCreate) SaveX(ctx context.Context) *Msgboard {
+	v, err := mc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -237,99 +237,99 @@ func (_c *MsgboardCreate) SaveX(ctx context.Context) *Msgboard {
 }
 
 // Exec executes the query.
-func (_c *MsgboardCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (mc *MsgboardCreate) Exec(ctx context.Context) error {
+	_, err := mc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *MsgboardCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (mc *MsgboardCreate) ExecX(ctx context.Context) {
+	if err := mc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *MsgboardCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (mc *MsgboardCreate) defaults() {
+	if _, ok := mc.mutation.CreateTime(); !ok {
 		v := msgboard.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		mc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := mc.mutation.UpdateTime(); !ok {
 		v := msgboard.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		mc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := mc.mutation.IsDelete(); !ok {
 		v := msgboard.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		mc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := mc.mutation.Version(); !ok {
 		v := msgboard.DefaultVersion
-		_c.mutation.SetVersion(v)
+		mc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.PId(); !ok {
+	if _, ok := mc.mutation.PId(); !ok {
 		v := msgboard.DefaultPId
-		_c.mutation.SetPId(v)
+		mc.mutation.SetPId(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := mc.mutation.Status(); !ok {
 		v := msgboard.DefaultStatus
-		_c.mutation.SetStatus(v)
+		mc.mutation.SetStatus(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *MsgboardCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (mc *MsgboardCreate) check() error {
+	if _, ok := mc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Msgboard.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := mc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Msgboard.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := mc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Msgboard.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := mc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Msgboard.version"`)}
 	}
-	if _, ok := _c.mutation.Name(); !ok {
+	if _, ok := mc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Msgboard.name"`)}
 	}
-	if _, ok := _c.mutation.Eamil(); !ok {
+	if _, ok := mc.mutation.Eamil(); !ok {
 		return &ValidationError{Name: "eamil", err: errors.New(`ent: missing required field "Msgboard.eamil"`)}
 	}
-	if _, ok := _c.mutation.Address(); !ok {
+	if _, ok := mc.mutation.Address(); !ok {
 		return &ValidationError{Name: "address", err: errors.New(`ent: missing required field "Msgboard.address"`)}
 	}
-	if _, ok := _c.mutation.Comment(); !ok {
+	if _, ok := mc.mutation.Comment(); !ok {
 		return &ValidationError{Name: "comment", err: errors.New(`ent: missing required field "Msgboard.comment"`)}
 	}
-	if _, ok := _c.mutation.Avatar(); !ok {
+	if _, ok := mc.mutation.Avatar(); !ok {
 		return &ValidationError{Name: "avatar", err: errors.New(`ent: missing required field "Msgboard.avatar"`)}
 	}
-	if _, ok := _c.mutation.Location(); !ok {
+	if _, ok := mc.mutation.Location(); !ok {
 		return &ValidationError{Name: "location", err: errors.New(`ent: missing required field "Msgboard.location"`)}
 	}
-	if _, ok := _c.mutation.System(); !ok {
+	if _, ok := mc.mutation.System(); !ok {
 		return &ValidationError{Name: "system", err: errors.New(`ent: missing required field "Msgboard.system"`)}
 	}
-	if _, ok := _c.mutation.Browser(); !ok {
+	if _, ok := mc.mutation.Browser(); !ok {
 		return &ValidationError{Name: "browser", err: errors.New(`ent: missing required field "Msgboard.browser"`)}
 	}
-	if _, ok := _c.mutation.PId(); !ok {
+	if _, ok := mc.mutation.PId(); !ok {
 		return &ValidationError{Name: "pId", err: errors.New(`ent: missing required field "Msgboard.pId"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := mc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "Msgboard.status"`)}
 	}
 	return nil
 }
 
-func (_c *MsgboardCreate) sqlSave(ctx context.Context) (*Msgboard, error) {
-	if err := _c.check(); err != nil {
+func (mc *MsgboardCreate) sqlSave(ctx context.Context) (*Msgboard, error) {
+	if err := mc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := mc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, mc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -339,90 +339,90 @@ func (_c *MsgboardCreate) sqlSave(ctx context.Context) (*Msgboard, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	mc.mutation.id = &_node.ID
+	mc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *MsgboardCreate) createSpec() (*Msgboard, *sqlgraph.CreateSpec) {
+func (mc *MsgboardCreate) createSpec() (*Msgboard, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Msgboard{config: _c.config}
+		_node = &Msgboard{config: mc.config}
 		_spec = sqlgraph.NewCreateSpec(msgboard.Table, sqlgraph.NewFieldSpec(msgboard.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = mc.conflict
+	if id, ok := mc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := mc.mutation.CreateTime(); ok {
 		_spec.SetField(msgboard.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := mc.mutation.UpdateTime(); ok {
 		_spec.SetField(msgboard.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := mc.mutation.IsDelete(); ok {
 		_spec.SetField(msgboard.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := mc.mutation.Version(); ok {
 		_spec.SetField(msgboard.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.Name(); ok {
+	if value, ok := mc.mutation.Name(); ok {
 		_spec.SetField(msgboard.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := _c.mutation.Eamil(); ok {
+	if value, ok := mc.mutation.Eamil(); ok {
 		_spec.SetField(msgboard.FieldEamil, field.TypeString, value)
 		_node.Eamil = value
 	}
-	if value, ok := _c.mutation.Address(); ok {
+	if value, ok := mc.mutation.Address(); ok {
 		_spec.SetField(msgboard.FieldAddress, field.TypeString, value)
 		_node.Address = value
 	}
-	if value, ok := _c.mutation.Comment(); ok {
+	if value, ok := mc.mutation.Comment(); ok {
 		_spec.SetField(msgboard.FieldComment, field.TypeString, value)
 		_node.Comment = value
 	}
-	if value, ok := _c.mutation.Avatar(); ok {
+	if value, ok := mc.mutation.Avatar(); ok {
 		_spec.SetField(msgboard.FieldAvatar, field.TypeString, value)
 		_node.Avatar = value
 	}
-	if value, ok := _c.mutation.Location(); ok {
+	if value, ok := mc.mutation.Location(); ok {
 		_spec.SetField(msgboard.FieldLocation, field.TypeString, value)
 		_node.Location = value
 	}
-	if value, ok := _c.mutation.System(); ok {
+	if value, ok := mc.mutation.System(); ok {
 		_spec.SetField(msgboard.FieldSystem, field.TypeString, value)
 		_node.System = value
 	}
-	if value, ok := _c.mutation.Browser(); ok {
+	if value, ok := mc.mutation.Browser(); ok {
 		_spec.SetField(msgboard.FieldBrowser, field.TypeString, value)
 		_node.Browser = value
 	}
-	if value, ok := _c.mutation.Respondent(); ok {
+	if value, ok := mc.mutation.Respondent(); ok {
 		_spec.SetField(msgboard.FieldRespondent, field.TypeString, value)
 		_node.Respondent = &value
 	}
-	if value, ok := _c.mutation.ImgUrl(); ok {
+	if value, ok := mc.mutation.ImgUrl(); ok {
 		_spec.SetField(msgboard.FieldImgUrl, field.TypeString, value)
 		_node.ImgUrl = &value
 	}
-	if value, ok := _c.mutation.IP(); ok {
+	if value, ok := mc.mutation.IP(); ok {
 		_spec.SetField(msgboard.FieldIP, field.TypeString, value)
 		_node.IP = &value
 	}
-	if value, ok := _c.mutation.PId(); ok {
+	if value, ok := mc.mutation.PId(); ok {
 		_spec.SetField(msgboard.FieldPId, field.TypeInt, value)
 		_node.PId = value
 	}
-	if value, ok := _c.mutation.ReplyId(); ok {
+	if value, ok := mc.mutation.ReplyId(); ok {
 		_spec.SetField(msgboard.FieldReplyId, field.TypeInt, value)
 		_node.ReplyId = &value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := mc.mutation.Status(); ok {
 		_spec.SetField(msgboard.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
@@ -445,10 +445,10 @@ func (_c *MsgboardCreate) createSpec() (*Msgboard, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *MsgboardCreate) OnConflict(opts ...sql.ConflictOption) *MsgboardUpsertOne {
-	_c.conflict = opts
+func (mc *MsgboardCreate) OnConflict(opts ...sql.ConflictOption) *MsgboardUpsertOne {
+	mc.conflict = opts
 	return &MsgboardUpsertOne{
-		create: _c,
+		create: mc,
 	}
 }
 
@@ -458,10 +458,10 @@ func (_c *MsgboardCreate) OnConflict(opts ...sql.ConflictOption) *MsgboardUpsert
 //	client.Msgboard.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *MsgboardCreate) OnConflictColumns(columns ...string) *MsgboardUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (mc *MsgboardCreate) OnConflictColumns(columns ...string) *MsgboardUpsertOne {
+	mc.conflict = append(mc.conflict, sql.ConflictColumns(columns...))
 	return &MsgboardUpsertOne{
-		create: _c,
+		create: mc,
 	}
 }
 
@@ -1104,16 +1104,16 @@ type MsgboardCreateBulk struct {
 }
 
 // Save creates the Msgboard entities in the database.
-func (_c *MsgboardCreateBulk) Save(ctx context.Context) ([]*Msgboard, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (mcb *MsgboardCreateBulk) Save(ctx context.Context) ([]*Msgboard, error) {
+	if mcb.err != nil {
+		return nil, mcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Msgboard, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(mcb.builders))
+	nodes := make([]*Msgboard, len(mcb.builders))
+	mutators := make([]Mutator, len(mcb.builders))
+	for i := range mcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := mcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*MsgboardMutation)
@@ -1127,12 +1127,12 @@ func (_c *MsgboardCreateBulk) Save(ctx context.Context) ([]*Msgboard, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, mcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = mcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, mcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1156,7 +1156,7 @@ func (_c *MsgboardCreateBulk) Save(ctx context.Context) ([]*Msgboard, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, mcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1164,8 +1164,8 @@ func (_c *MsgboardCreateBulk) Save(ctx context.Context) ([]*Msgboard, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *MsgboardCreateBulk) SaveX(ctx context.Context) []*Msgboard {
-	v, err := _c.Save(ctx)
+func (mcb *MsgboardCreateBulk) SaveX(ctx context.Context) []*Msgboard {
+	v, err := mcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1173,14 +1173,14 @@ func (_c *MsgboardCreateBulk) SaveX(ctx context.Context) []*Msgboard {
 }
 
 // Exec executes the query.
-func (_c *MsgboardCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (mcb *MsgboardCreateBulk) Exec(ctx context.Context) error {
+	_, err := mcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *MsgboardCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (mcb *MsgboardCreateBulk) ExecX(ctx context.Context) {
+	if err := mcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1200,10 +1200,10 @@ func (_c *MsgboardCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *MsgboardCreateBulk) OnConflict(opts ...sql.ConflictOption) *MsgboardUpsertBulk {
-	_c.conflict = opts
+func (mcb *MsgboardCreateBulk) OnConflict(opts ...sql.ConflictOption) *MsgboardUpsertBulk {
+	mcb.conflict = opts
 	return &MsgboardUpsertBulk{
-		create: _c,
+		create: mcb,
 	}
 }
 
@@ -1213,10 +1213,10 @@ func (_c *MsgboardCreateBulk) OnConflict(opts ...sql.ConflictOption) *MsgboardUp
 //	client.Msgboard.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *MsgboardCreateBulk) OnConflictColumns(columns ...string) *MsgboardUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (mcb *MsgboardCreateBulk) OnConflictColumns(columns ...string) *MsgboardUpsertBulk {
+	mcb.conflict = append(mcb.conflict, sql.ConflictColumns(columns...))
 	return &MsgboardUpsertBulk{
-		create: _c,
+		create: mcb,
 	}
 }
 

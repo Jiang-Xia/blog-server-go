@@ -23,128 +23,128 @@ type RpgUserInventoryUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserInventoryUpdate builder.
-func (_u *RpgUserInventoryUpdate) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruiu *RpgUserInventoryUpdate) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryUpdate {
+	ruiu.mutation.Where(ps...)
+	return ruiu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserInventoryUpdate) SetUID(v int) *RpgUserInventoryUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ruiu *RpgUserInventoryUpdate) SetUID(i int) *RpgUserInventoryUpdate {
+	ruiu.mutation.ResetUID()
+	ruiu.mutation.SetUID(i)
+	return ruiu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdate) SetNillableUID(v *int) *RpgUserInventoryUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (ruiu *RpgUserInventoryUpdate) SetNillableUID(i *int) *RpgUserInventoryUpdate {
+	if i != nil {
+		ruiu.SetUID(*i)
 	}
-	return _u
+	return ruiu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserInventoryUpdate) AddUID(v int) *RpgUserInventoryUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ruiu *RpgUserInventoryUpdate) AddUID(i int) *RpgUserInventoryUpdate {
+	ruiu.mutation.AddUID(i)
+	return ruiu
 }
 
 // SetItemCode sets the "itemCode" field.
-func (_u *RpgUserInventoryUpdate) SetItemCode(v string) *RpgUserInventoryUpdate {
-	_u.mutation.SetItemCode(v)
-	return _u
+func (ruiu *RpgUserInventoryUpdate) SetItemCode(s string) *RpgUserInventoryUpdate {
+	ruiu.mutation.SetItemCode(s)
+	return ruiu
 }
 
 // SetNillableItemCode sets the "itemCode" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdate) SetNillableItemCode(v *string) *RpgUserInventoryUpdate {
-	if v != nil {
-		_u.SetItemCode(*v)
+func (ruiu *RpgUserInventoryUpdate) SetNillableItemCode(s *string) *RpgUserInventoryUpdate {
+	if s != nil {
+		ruiu.SetItemCode(*s)
 	}
-	return _u
+	return ruiu
 }
 
 // SetQuantity sets the "quantity" field.
-func (_u *RpgUserInventoryUpdate) SetQuantity(v int) *RpgUserInventoryUpdate {
-	_u.mutation.ResetQuantity()
-	_u.mutation.SetQuantity(v)
-	return _u
+func (ruiu *RpgUserInventoryUpdate) SetQuantity(i int) *RpgUserInventoryUpdate {
+	ruiu.mutation.ResetQuantity()
+	ruiu.mutation.SetQuantity(i)
+	return ruiu
 }
 
 // SetNillableQuantity sets the "quantity" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdate) SetNillableQuantity(v *int) *RpgUserInventoryUpdate {
-	if v != nil {
-		_u.SetQuantity(*v)
+func (ruiu *RpgUserInventoryUpdate) SetNillableQuantity(i *int) *RpgUserInventoryUpdate {
+	if i != nil {
+		ruiu.SetQuantity(*i)
 	}
-	return _u
+	return ruiu
 }
 
-// AddQuantity adds value to the "quantity" field.
-func (_u *RpgUserInventoryUpdate) AddQuantity(v int) *RpgUserInventoryUpdate {
-	_u.mutation.AddQuantity(v)
-	return _u
+// AddQuantity adds i to the "quantity" field.
+func (ruiu *RpgUserInventoryUpdate) AddQuantity(i int) *RpgUserInventoryUpdate {
+	ruiu.mutation.AddQuantity(i)
+	return ruiu
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserInventoryUpdate) SetEffectJson(v string) *RpgUserInventoryUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (ruiu *RpgUserInventoryUpdate) SetEffectJson(s string) *RpgUserInventoryUpdate {
+	ruiu.mutation.SetEffectJson(s)
+	return ruiu
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdate) SetNillableEffectJson(v *string) *RpgUserInventoryUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (ruiu *RpgUserInventoryUpdate) SetNillableEffectJson(s *string) *RpgUserInventoryUpdate {
+	if s != nil {
+		ruiu.SetEffectJson(*s)
 	}
-	return _u
+	return ruiu
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserInventoryUpdate) ClearEffectJson() *RpgUserInventoryUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (ruiu *RpgUserInventoryUpdate) ClearEffectJson() *RpgUserInventoryUpdate {
+	ruiu.mutation.ClearEffectJson()
+	return ruiu
 }
 
 // SetAcquiredAt sets the "acquiredAt" field.
-func (_u *RpgUserInventoryUpdate) SetAcquiredAt(v time.Time) *RpgUserInventoryUpdate {
-	_u.mutation.SetAcquiredAt(v)
-	return _u
+func (ruiu *RpgUserInventoryUpdate) SetAcquiredAt(t time.Time) *RpgUserInventoryUpdate {
+	ruiu.mutation.SetAcquiredAt(t)
+	return ruiu
 }
 
 // SetNillableAcquiredAt sets the "acquiredAt" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdate) SetNillableAcquiredAt(v *time.Time) *RpgUserInventoryUpdate {
-	if v != nil {
-		_u.SetAcquiredAt(*v)
+func (ruiu *RpgUserInventoryUpdate) SetNillableAcquiredAt(t *time.Time) *RpgUserInventoryUpdate {
+	if t != nil {
+		ruiu.SetAcquiredAt(*t)
 	}
-	return _u
+	return ruiu
 }
 
 // SetSource sets the "source" field.
-func (_u *RpgUserInventoryUpdate) SetSource(v string) *RpgUserInventoryUpdate {
-	_u.mutation.SetSource(v)
-	return _u
+func (ruiu *RpgUserInventoryUpdate) SetSource(s string) *RpgUserInventoryUpdate {
+	ruiu.mutation.SetSource(s)
+	return ruiu
 }
 
 // SetNillableSource sets the "source" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdate) SetNillableSource(v *string) *RpgUserInventoryUpdate {
-	if v != nil {
-		_u.SetSource(*v)
+func (ruiu *RpgUserInventoryUpdate) SetNillableSource(s *string) *RpgUserInventoryUpdate {
+	if s != nil {
+		ruiu.SetSource(*s)
 	}
-	return _u
+	return ruiu
 }
 
 // Mutation returns the RpgUserInventoryMutation object of the builder.
-func (_u *RpgUserInventoryUpdate) Mutation() *RpgUserInventoryMutation {
-	return _u.mutation
+func (ruiu *RpgUserInventoryUpdate) Mutation() *RpgUserInventoryMutation {
+	return ruiu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserInventoryUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruiu *RpgUserInventoryUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, ruiu.sqlSave, ruiu.mutation, ruiu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserInventoryUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (ruiu *RpgUserInventoryUpdate) SaveX(ctx context.Context) int {
+	affected, err := ruiu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -152,55 +152,55 @@ func (_u *RpgUserInventoryUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserInventoryUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruiu *RpgUserInventoryUpdate) Exec(ctx context.Context) error {
+	_, err := ruiu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserInventoryUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruiu *RpgUserInventoryUpdate) ExecX(ctx context.Context) {
+	if err := ruiu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgUserInventoryUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (ruiu *RpgUserInventoryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserinventory.Table, rpguserinventory.Columns, sqlgraph.NewFieldSpec(rpguserinventory.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruiu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ruiu.mutation.UID(); ok {
 		_spec.SetField(rpguserinventory.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ruiu.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserinventory.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ItemCode(); ok {
+	if value, ok := ruiu.mutation.ItemCode(); ok {
 		_spec.SetField(rpguserinventory.FieldItemCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Quantity(); ok {
+	if value, ok := ruiu.mutation.Quantity(); ok {
 		_spec.SetField(rpguserinventory.FieldQuantity, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedQuantity(); ok {
+	if value, ok := ruiu.mutation.AddedQuantity(); ok {
 		_spec.AddField(rpguserinventory.FieldQuantity, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := ruiu.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserinventory.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if ruiu.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserinventory.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.AcquiredAt(); ok {
+	if value, ok := ruiu.mutation.AcquiredAt(); ok {
 		_spec.SetField(rpguserinventory.FieldAcquiredAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.Source(); ok {
+	if value, ok := ruiu.mutation.Source(); ok {
 		_spec.SetField(rpguserinventory.FieldSource, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, ruiu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserinventory.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -208,8 +208,8 @@ func (_u *RpgUserInventoryUpdate) sqlSave(ctx context.Context) (_node int, err e
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	ruiu.mutation.done = true
+	return n, nil
 }
 
 // RpgUserInventoryUpdateOne is the builder for updating a single RpgUserInventory entity.
@@ -221,135 +221,135 @@ type RpgUserInventoryUpdateOne struct {
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserInventoryUpdateOne) SetUID(v int) *RpgUserInventoryUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) SetUID(i int) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.ResetUID()
+	ruiuo.mutation.SetUID(i)
+	return ruiuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdateOne) SetNillableUID(v *int) *RpgUserInventoryUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (ruiuo *RpgUserInventoryUpdateOne) SetNillableUID(i *int) *RpgUserInventoryUpdateOne {
+	if i != nil {
+		ruiuo.SetUID(*i)
 	}
-	return _u
+	return ruiuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserInventoryUpdateOne) AddUID(v int) *RpgUserInventoryUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ruiuo *RpgUserInventoryUpdateOne) AddUID(i int) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.AddUID(i)
+	return ruiuo
 }
 
 // SetItemCode sets the "itemCode" field.
-func (_u *RpgUserInventoryUpdateOne) SetItemCode(v string) *RpgUserInventoryUpdateOne {
-	_u.mutation.SetItemCode(v)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) SetItemCode(s string) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.SetItemCode(s)
+	return ruiuo
 }
 
 // SetNillableItemCode sets the "itemCode" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdateOne) SetNillableItemCode(v *string) *RpgUserInventoryUpdateOne {
-	if v != nil {
-		_u.SetItemCode(*v)
+func (ruiuo *RpgUserInventoryUpdateOne) SetNillableItemCode(s *string) *RpgUserInventoryUpdateOne {
+	if s != nil {
+		ruiuo.SetItemCode(*s)
 	}
-	return _u
+	return ruiuo
 }
 
 // SetQuantity sets the "quantity" field.
-func (_u *RpgUserInventoryUpdateOne) SetQuantity(v int) *RpgUserInventoryUpdateOne {
-	_u.mutation.ResetQuantity()
-	_u.mutation.SetQuantity(v)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) SetQuantity(i int) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.ResetQuantity()
+	ruiuo.mutation.SetQuantity(i)
+	return ruiuo
 }
 
 // SetNillableQuantity sets the "quantity" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdateOne) SetNillableQuantity(v *int) *RpgUserInventoryUpdateOne {
-	if v != nil {
-		_u.SetQuantity(*v)
+func (ruiuo *RpgUserInventoryUpdateOne) SetNillableQuantity(i *int) *RpgUserInventoryUpdateOne {
+	if i != nil {
+		ruiuo.SetQuantity(*i)
 	}
-	return _u
+	return ruiuo
 }
 
-// AddQuantity adds value to the "quantity" field.
-func (_u *RpgUserInventoryUpdateOne) AddQuantity(v int) *RpgUserInventoryUpdateOne {
-	_u.mutation.AddQuantity(v)
-	return _u
+// AddQuantity adds i to the "quantity" field.
+func (ruiuo *RpgUserInventoryUpdateOne) AddQuantity(i int) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.AddQuantity(i)
+	return ruiuo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserInventoryUpdateOne) SetEffectJson(v string) *RpgUserInventoryUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) SetEffectJson(s string) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.SetEffectJson(s)
+	return ruiuo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdateOne) SetNillableEffectJson(v *string) *RpgUserInventoryUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (ruiuo *RpgUserInventoryUpdateOne) SetNillableEffectJson(s *string) *RpgUserInventoryUpdateOne {
+	if s != nil {
+		ruiuo.SetEffectJson(*s)
 	}
-	return _u
+	return ruiuo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserInventoryUpdateOne) ClearEffectJson() *RpgUserInventoryUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) ClearEffectJson() *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.ClearEffectJson()
+	return ruiuo
 }
 
 // SetAcquiredAt sets the "acquiredAt" field.
-func (_u *RpgUserInventoryUpdateOne) SetAcquiredAt(v time.Time) *RpgUserInventoryUpdateOne {
-	_u.mutation.SetAcquiredAt(v)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) SetAcquiredAt(t time.Time) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.SetAcquiredAt(t)
+	return ruiuo
 }
 
 // SetNillableAcquiredAt sets the "acquiredAt" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdateOne) SetNillableAcquiredAt(v *time.Time) *RpgUserInventoryUpdateOne {
-	if v != nil {
-		_u.SetAcquiredAt(*v)
+func (ruiuo *RpgUserInventoryUpdateOne) SetNillableAcquiredAt(t *time.Time) *RpgUserInventoryUpdateOne {
+	if t != nil {
+		ruiuo.SetAcquiredAt(*t)
 	}
-	return _u
+	return ruiuo
 }
 
 // SetSource sets the "source" field.
-func (_u *RpgUserInventoryUpdateOne) SetSource(v string) *RpgUserInventoryUpdateOne {
-	_u.mutation.SetSource(v)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) SetSource(s string) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.SetSource(s)
+	return ruiuo
 }
 
 // SetNillableSource sets the "source" field if the given value is not nil.
-func (_u *RpgUserInventoryUpdateOne) SetNillableSource(v *string) *RpgUserInventoryUpdateOne {
-	if v != nil {
-		_u.SetSource(*v)
+func (ruiuo *RpgUserInventoryUpdateOne) SetNillableSource(s *string) *RpgUserInventoryUpdateOne {
+	if s != nil {
+		ruiuo.SetSource(*s)
 	}
-	return _u
+	return ruiuo
 }
 
 // Mutation returns the RpgUserInventoryMutation object of the builder.
-func (_u *RpgUserInventoryUpdateOne) Mutation() *RpgUserInventoryMutation {
-	return _u.mutation
+func (ruiuo *RpgUserInventoryUpdateOne) Mutation() *RpgUserInventoryMutation {
+	return ruiuo.mutation
 }
 
 // Where appends a list predicates to the RpgUserInventoryUpdate builder.
-func (_u *RpgUserInventoryUpdateOne) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryUpdateOne {
+	ruiuo.mutation.Where(ps...)
+	return ruiuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserInventoryUpdateOne) Select(field string, fields ...string) *RpgUserInventoryUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (ruiuo *RpgUserInventoryUpdateOne) Select(field string, fields ...string) *RpgUserInventoryUpdateOne {
+	ruiuo.fields = append([]string{field}, fields...)
+	return ruiuo
 }
 
 // Save executes the query and returns the updated RpgUserInventory entity.
-func (_u *RpgUserInventoryUpdateOne) Save(ctx context.Context) (*RpgUserInventory, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruiuo *RpgUserInventoryUpdateOne) Save(ctx context.Context) (*RpgUserInventory, error) {
+	return withHooks(ctx, ruiuo.sqlSave, ruiuo.mutation, ruiuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserInventoryUpdateOne) SaveX(ctx context.Context) *RpgUserInventory {
-	node, err := _u.Save(ctx)
+func (ruiuo *RpgUserInventoryUpdateOne) SaveX(ctx context.Context) *RpgUserInventory {
+	node, err := ruiuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -357,26 +357,26 @@ func (_u *RpgUserInventoryUpdateOne) SaveX(ctx context.Context) *RpgUserInventor
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserInventoryUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruiuo *RpgUserInventoryUpdateOne) Exec(ctx context.Context) error {
+	_, err := ruiuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserInventoryUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruiuo *RpgUserInventoryUpdateOne) ExecX(ctx context.Context) {
+	if err := ruiuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgUserInventoryUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserInventory, err error) {
+func (ruiuo *RpgUserInventoryUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserInventory, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserinventory.Table, rpguserinventory.Columns, sqlgraph.NewFieldSpec(rpguserinventory.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := ruiuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserInventory.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := ruiuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserinventory.FieldID)
 		for _, f := range fields {
@@ -388,44 +388,44 @@ func (_u *RpgUserInventoryUpdateOne) sqlSave(ctx context.Context) (_node *RpgUse
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruiuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ruiuo.mutation.UID(); ok {
 		_spec.SetField(rpguserinventory.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ruiuo.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserinventory.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ItemCode(); ok {
+	if value, ok := ruiuo.mutation.ItemCode(); ok {
 		_spec.SetField(rpguserinventory.FieldItemCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Quantity(); ok {
+	if value, ok := ruiuo.mutation.Quantity(); ok {
 		_spec.SetField(rpguserinventory.FieldQuantity, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedQuantity(); ok {
+	if value, ok := ruiuo.mutation.AddedQuantity(); ok {
 		_spec.AddField(rpguserinventory.FieldQuantity, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := ruiuo.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserinventory.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if ruiuo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserinventory.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.AcquiredAt(); ok {
+	if value, ok := ruiuo.mutation.AcquiredAt(); ok {
 		_spec.SetField(rpguserinventory.FieldAcquiredAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.Source(); ok {
+	if value, ok := ruiuo.mutation.Source(); ok {
 		_spec.SetField(rpguserinventory.FieldSource, field.TypeString, value)
 	}
-	_node = &RpgUserInventory{config: _u.config}
+	_node = &RpgUserInventory{config: ruiuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, ruiuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserinventory.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -433,6 +433,6 @@ func (_u *RpgUserInventoryUpdateOne) sqlSave(ctx context.Context) (_node *RpgUse
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	ruiuo.mutation.done = true
 	return _node, nil
 }

@@ -22,85 +22,85 @@ type RpgLotteryPoolCreate struct {
 }
 
 // SetItemCode sets the "itemCode" field.
-func (_c *RpgLotteryPoolCreate) SetItemCode(v string) *RpgLotteryPoolCreate {
-	_c.mutation.SetItemCode(v)
-	return _c
+func (rlpc *RpgLotteryPoolCreate) SetItemCode(s string) *RpgLotteryPoolCreate {
+	rlpc.mutation.SetItemCode(s)
+	return rlpc
 }
 
 // SetProbability sets the "probability" field.
-func (_c *RpgLotteryPoolCreate) SetProbability(v float64) *RpgLotteryPoolCreate {
-	_c.mutation.SetProbability(v)
-	return _c
+func (rlpc *RpgLotteryPoolCreate) SetProbability(f float64) *RpgLotteryPoolCreate {
+	rlpc.mutation.SetProbability(f)
+	return rlpc
 }
 
 // SetActive sets the "active" field.
-func (_c *RpgLotteryPoolCreate) SetActive(v int) *RpgLotteryPoolCreate {
-	_c.mutation.SetActive(v)
-	return _c
+func (rlpc *RpgLotteryPoolCreate) SetActive(i int) *RpgLotteryPoolCreate {
+	rlpc.mutation.SetActive(i)
+	return rlpc
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_c *RpgLotteryPoolCreate) SetNillableActive(v *int) *RpgLotteryPoolCreate {
-	if v != nil {
-		_c.SetActive(*v)
+func (rlpc *RpgLotteryPoolCreate) SetNillableActive(i *int) *RpgLotteryPoolCreate {
+	if i != nil {
+		rlpc.SetActive(*i)
 	}
-	return _c
+	return rlpc
 }
 
 // SetSort sets the "sort" field.
-func (_c *RpgLotteryPoolCreate) SetSort(v int) *RpgLotteryPoolCreate {
-	_c.mutation.SetSort(v)
-	return _c
+func (rlpc *RpgLotteryPoolCreate) SetSort(i int) *RpgLotteryPoolCreate {
+	rlpc.mutation.SetSort(i)
+	return rlpc
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_c *RpgLotteryPoolCreate) SetNillableSort(v *int) *RpgLotteryPoolCreate {
-	if v != nil {
-		_c.SetSort(*v)
+func (rlpc *RpgLotteryPoolCreate) SetNillableSort(i *int) *RpgLotteryPoolCreate {
+	if i != nil {
+		rlpc.SetSort(*i)
 	}
-	return _c
+	return rlpc
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgLotteryPoolCreate) SetEffectJson(v string) *RpgLotteryPoolCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (rlpc *RpgLotteryPoolCreate) SetEffectJson(s string) *RpgLotteryPoolCreate {
+	rlpc.mutation.SetEffectJson(s)
+	return rlpc
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgLotteryPoolCreate) SetNillableEffectJson(v *string) *RpgLotteryPoolCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (rlpc *RpgLotteryPoolCreate) SetNillableEffectJson(s *string) *RpgLotteryPoolCreate {
+	if s != nil {
+		rlpc.SetEffectJson(*s)
 	}
-	return _c
+	return rlpc
 }
 
 // SetRarity sets the "rarity" field.
-func (_c *RpgLotteryPoolCreate) SetRarity(v string) *RpgLotteryPoolCreate {
-	_c.mutation.SetRarity(v)
-	return _c
+func (rlpc *RpgLotteryPoolCreate) SetRarity(s string) *RpgLotteryPoolCreate {
+	rlpc.mutation.SetRarity(s)
+	return rlpc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgLotteryPoolCreate) SetID(v int) *RpgLotteryPoolCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rlpc *RpgLotteryPoolCreate) SetID(i int) *RpgLotteryPoolCreate {
+	rlpc.mutation.SetID(i)
+	return rlpc
 }
 
 // Mutation returns the RpgLotteryPoolMutation object of the builder.
-func (_c *RpgLotteryPoolCreate) Mutation() *RpgLotteryPoolMutation {
-	return _c.mutation
+func (rlpc *RpgLotteryPoolCreate) Mutation() *RpgLotteryPoolMutation {
+	return rlpc.mutation
 }
 
 // Save creates the RpgLotteryPool in the database.
-func (_c *RpgLotteryPoolCreate) Save(ctx context.Context) (*RpgLotteryPool, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rlpc *RpgLotteryPoolCreate) Save(ctx context.Context) (*RpgLotteryPool, error) {
+	rlpc.defaults()
+	return withHooks(ctx, rlpc.sqlSave, rlpc.mutation, rlpc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgLotteryPoolCreate) SaveX(ctx context.Context) *RpgLotteryPool {
-	v, err := _c.Save(ctx)
+func (rlpc *RpgLotteryPoolCreate) SaveX(ctx context.Context) *RpgLotteryPool {
+	v, err := rlpc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -108,56 +108,56 @@ func (_c *RpgLotteryPoolCreate) SaveX(ctx context.Context) *RpgLotteryPool {
 }
 
 // Exec executes the query.
-func (_c *RpgLotteryPoolCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rlpc *RpgLotteryPoolCreate) Exec(ctx context.Context) error {
+	_, err := rlpc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgLotteryPoolCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rlpc *RpgLotteryPoolCreate) ExecX(ctx context.Context) {
+	if err := rlpc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgLotteryPoolCreate) defaults() {
-	if _, ok := _c.mutation.Active(); !ok {
+func (rlpc *RpgLotteryPoolCreate) defaults() {
+	if _, ok := rlpc.mutation.Active(); !ok {
 		v := rpglotterypool.DefaultActive
-		_c.mutation.SetActive(v)
+		rlpc.mutation.SetActive(v)
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := rlpc.mutation.Sort(); !ok {
 		v := rpglotterypool.DefaultSort
-		_c.mutation.SetSort(v)
+		rlpc.mutation.SetSort(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgLotteryPoolCreate) check() error {
-	if _, ok := _c.mutation.ItemCode(); !ok {
+func (rlpc *RpgLotteryPoolCreate) check() error {
+	if _, ok := rlpc.mutation.ItemCode(); !ok {
 		return &ValidationError{Name: "itemCode", err: errors.New(`ent: missing required field "RpgLotteryPool.itemCode"`)}
 	}
-	if _, ok := _c.mutation.Probability(); !ok {
+	if _, ok := rlpc.mutation.Probability(); !ok {
 		return &ValidationError{Name: "probability", err: errors.New(`ent: missing required field "RpgLotteryPool.probability"`)}
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := rlpc.mutation.Active(); !ok {
 		return &ValidationError{Name: "active", err: errors.New(`ent: missing required field "RpgLotteryPool.active"`)}
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := rlpc.mutation.Sort(); !ok {
 		return &ValidationError{Name: "sort", err: errors.New(`ent: missing required field "RpgLotteryPool.sort"`)}
 	}
-	if _, ok := _c.mutation.Rarity(); !ok {
+	if _, ok := rlpc.mutation.Rarity(); !ok {
 		return &ValidationError{Name: "rarity", err: errors.New(`ent: missing required field "RpgLotteryPool.rarity"`)}
 	}
 	return nil
 }
 
-func (_c *RpgLotteryPoolCreate) sqlSave(ctx context.Context) (*RpgLotteryPool, error) {
-	if err := _c.check(); err != nil {
+func (rlpc *RpgLotteryPoolCreate) sqlSave(ctx context.Context) (*RpgLotteryPool, error) {
+	if err := rlpc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rlpc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rlpc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -167,42 +167,42 @@ func (_c *RpgLotteryPoolCreate) sqlSave(ctx context.Context) (*RpgLotteryPool, e
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rlpc.mutation.id = &_node.ID
+	rlpc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgLotteryPoolCreate) createSpec() (*RpgLotteryPool, *sqlgraph.CreateSpec) {
+func (rlpc *RpgLotteryPoolCreate) createSpec() (*RpgLotteryPool, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgLotteryPool{config: _c.config}
+		_node = &RpgLotteryPool{config: rlpc.config}
 		_spec = sqlgraph.NewCreateSpec(rpglotterypool.Table, sqlgraph.NewFieldSpec(rpglotterypool.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rlpc.conflict
+	if id, ok := rlpc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.ItemCode(); ok {
+	if value, ok := rlpc.mutation.ItemCode(); ok {
 		_spec.SetField(rpglotterypool.FieldItemCode, field.TypeString, value)
 		_node.ItemCode = value
 	}
-	if value, ok := _c.mutation.Probability(); ok {
+	if value, ok := rlpc.mutation.Probability(); ok {
 		_spec.SetField(rpglotterypool.FieldProbability, field.TypeFloat64, value)
 		_node.Probability = value
 	}
-	if value, ok := _c.mutation.Active(); ok {
+	if value, ok := rlpc.mutation.Active(); ok {
 		_spec.SetField(rpglotterypool.FieldActive, field.TypeInt, value)
 		_node.Active = value
 	}
-	if value, ok := _c.mutation.Sort(); ok {
+	if value, ok := rlpc.mutation.Sort(); ok {
 		_spec.SetField(rpglotterypool.FieldSort, field.TypeInt, value)
 		_node.Sort = value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := rlpc.mutation.EffectJson(); ok {
 		_spec.SetField(rpglotterypool.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.Rarity(); ok {
+	if value, ok := rlpc.mutation.Rarity(); ok {
 		_spec.SetField(rpglotterypool.FieldRarity, field.TypeString, value)
 		_node.Rarity = value
 	}
@@ -225,10 +225,10 @@ func (_c *RpgLotteryPoolCreate) createSpec() (*RpgLotteryPool, *sqlgraph.CreateS
 //			SetItemCode(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgLotteryPoolCreate) OnConflict(opts ...sql.ConflictOption) *RpgLotteryPoolUpsertOne {
-	_c.conflict = opts
+func (rlpc *RpgLotteryPoolCreate) OnConflict(opts ...sql.ConflictOption) *RpgLotteryPoolUpsertOne {
+	rlpc.conflict = opts
 	return &RpgLotteryPoolUpsertOne{
-		create: _c,
+		create: rlpc,
 	}
 }
 
@@ -238,10 +238,10 @@ func (_c *RpgLotteryPoolCreate) OnConflict(opts ...sql.ConflictOption) *RpgLotte
 //	client.RpgLotteryPool.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgLotteryPoolCreate) OnConflictColumns(columns ...string) *RpgLotteryPoolUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rlpc *RpgLotteryPoolCreate) OnConflictColumns(columns ...string) *RpgLotteryPoolUpsertOne {
+	rlpc.conflict = append(rlpc.conflict, sql.ConflictColumns(columns...))
 	return &RpgLotteryPoolUpsertOne{
-		create: _c,
+		create: rlpc,
 	}
 }
 
@@ -556,16 +556,16 @@ type RpgLotteryPoolCreateBulk struct {
 }
 
 // Save creates the RpgLotteryPool entities in the database.
-func (_c *RpgLotteryPoolCreateBulk) Save(ctx context.Context) ([]*RpgLotteryPool, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rlpcb *RpgLotteryPoolCreateBulk) Save(ctx context.Context) ([]*RpgLotteryPool, error) {
+	if rlpcb.err != nil {
+		return nil, rlpcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgLotteryPool, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rlpcb.builders))
+	nodes := make([]*RpgLotteryPool, len(rlpcb.builders))
+	mutators := make([]Mutator, len(rlpcb.builders))
+	for i := range rlpcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rlpcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgLotteryPoolMutation)
@@ -579,12 +579,12 @@ func (_c *RpgLotteryPoolCreateBulk) Save(ctx context.Context) ([]*RpgLotteryPool
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rlpcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rlpcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rlpcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -608,7 +608,7 @@ func (_c *RpgLotteryPoolCreateBulk) Save(ctx context.Context) ([]*RpgLotteryPool
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rlpcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -616,8 +616,8 @@ func (_c *RpgLotteryPoolCreateBulk) Save(ctx context.Context) ([]*RpgLotteryPool
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgLotteryPoolCreateBulk) SaveX(ctx context.Context) []*RpgLotteryPool {
-	v, err := _c.Save(ctx)
+func (rlpcb *RpgLotteryPoolCreateBulk) SaveX(ctx context.Context) []*RpgLotteryPool {
+	v, err := rlpcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -625,14 +625,14 @@ func (_c *RpgLotteryPoolCreateBulk) SaveX(ctx context.Context) []*RpgLotteryPool
 }
 
 // Exec executes the query.
-func (_c *RpgLotteryPoolCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rlpcb *RpgLotteryPoolCreateBulk) Exec(ctx context.Context) error {
+	_, err := rlpcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgLotteryPoolCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rlpcb *RpgLotteryPoolCreateBulk) ExecX(ctx context.Context) {
+	if err := rlpcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -652,10 +652,10 @@ func (_c *RpgLotteryPoolCreateBulk) ExecX(ctx context.Context) {
 //			SetItemCode(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgLotteryPoolCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgLotteryPoolUpsertBulk {
-	_c.conflict = opts
+func (rlpcb *RpgLotteryPoolCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgLotteryPoolUpsertBulk {
+	rlpcb.conflict = opts
 	return &RpgLotteryPoolUpsertBulk{
-		create: _c,
+		create: rlpcb,
 	}
 }
 
@@ -665,10 +665,10 @@ func (_c *RpgLotteryPoolCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgL
 //	client.RpgLotteryPool.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgLotteryPoolCreateBulk) OnConflictColumns(columns ...string) *RpgLotteryPoolUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rlpcb *RpgLotteryPoolCreateBulk) OnConflictColumns(columns ...string) *RpgLotteryPoolUpsertBulk {
+	rlpcb.conflict = append(rlpcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgLotteryPoolUpsertBulk{
-		create: _c,
+		create: rlpcb,
 	}
 }
 

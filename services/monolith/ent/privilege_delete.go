@@ -20,56 +20,56 @@ type PrivilegeDelete struct {
 }
 
 // Where appends a list predicates to the PrivilegeDelete builder.
-func (_d *PrivilegeDelete) Where(ps ...predicate.Privilege) *PrivilegeDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (pd *PrivilegeDelete) Where(ps ...predicate.Privilege) *PrivilegeDelete {
+	pd.mutation.Where(ps...)
+	return pd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *PrivilegeDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (pd *PrivilegeDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, pd.sqlExec, pd.mutation, pd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *PrivilegeDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (pd *PrivilegeDelete) ExecX(ctx context.Context) int {
+	n, err := pd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *PrivilegeDelete) sqlExec(ctx context.Context) (int, error) {
+func (pd *PrivilegeDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(privilege.Table, sqlgraph.NewFieldSpec(privilege.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := pd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, pd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	pd.mutation.done = true
 	return affected, err
 }
 
 // PrivilegeDeleteOne is the builder for deleting a single Privilege entity.
 type PrivilegeDeleteOne struct {
-	_d *PrivilegeDelete
+	pd *PrivilegeDelete
 }
 
 // Where appends a list predicates to the PrivilegeDelete builder.
-func (_d *PrivilegeDeleteOne) Where(ps ...predicate.Privilege) *PrivilegeDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (pdo *PrivilegeDeleteOne) Where(ps ...predicate.Privilege) *PrivilegeDeleteOne {
+	pdo.pd.mutation.Where(ps...)
+	return pdo
 }
 
 // Exec executes the deletion query.
-func (_d *PrivilegeDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (pdo *PrivilegeDeleteOne) Exec(ctx context.Context) error {
+	n, err := pdo.pd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *PrivilegeDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *PrivilegeDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (pdo *PrivilegeDeleteOne) ExecX(ctx context.Context) {
+	if err := pdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

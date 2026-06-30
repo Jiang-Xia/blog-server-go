@@ -23,91 +23,91 @@ type RagQueryLogCreate struct {
 }
 
 // SetUID sets the "uid" field.
-func (_c *RagQueryLogCreate) SetUID(v int) *RagQueryLogCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetUID(i int) *RagQueryLogCreate {
+	rqlc.mutation.SetUID(i)
+	return rqlc
 }
 
 // SetQuestion sets the "question" field.
-func (_c *RagQueryLogCreate) SetQuestion(v string) *RagQueryLogCreate {
-	_c.mutation.SetQuestion(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetQuestion(s string) *RagQueryLogCreate {
+	rqlc.mutation.SetQuestion(s)
+	return rqlc
 }
 
 // SetAnswerPreview sets the "answer_preview" field.
-func (_c *RagQueryLogCreate) SetAnswerPreview(v string) *RagQueryLogCreate {
-	_c.mutation.SetAnswerPreview(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetAnswerPreview(s string) *RagQueryLogCreate {
+	rqlc.mutation.SetAnswerPreview(s)
+	return rqlc
 }
 
 // SetNillableAnswerPreview sets the "answer_preview" field if the given value is not nil.
-func (_c *RagQueryLogCreate) SetNillableAnswerPreview(v *string) *RagQueryLogCreate {
-	if v != nil {
-		_c.SetAnswerPreview(*v)
+func (rqlc *RagQueryLogCreate) SetNillableAnswerPreview(s *string) *RagQueryLogCreate {
+	if s != nil {
+		rqlc.SetAnswerPreview(*s)
 	}
-	return _c
+	return rqlc
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (_c *RagQueryLogCreate) SetCitationsJSON(v map[string]interface{}) *RagQueryLogCreate {
-	_c.mutation.SetCitationsJSON(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetCitationsJSON(m map[string]interface{}) *RagQueryLogCreate {
+	rqlc.mutation.SetCitationsJSON(m)
+	return rqlc
 }
 
 // SetLatencyMs sets the "latency_ms" field.
-func (_c *RagQueryLogCreate) SetLatencyMs(v int) *RagQueryLogCreate {
-	_c.mutation.SetLatencyMs(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetLatencyMs(i int) *RagQueryLogCreate {
+	rqlc.mutation.SetLatencyMs(i)
+	return rqlc
 }
 
 // SetNillableLatencyMs sets the "latency_ms" field if the given value is not nil.
-func (_c *RagQueryLogCreate) SetNillableLatencyMs(v *int) *RagQueryLogCreate {
-	if v != nil {
-		_c.SetLatencyMs(*v)
+func (rqlc *RagQueryLogCreate) SetNillableLatencyMs(i *int) *RagQueryLogCreate {
+	if i != nil {
+		rqlc.SetLatencyMs(*i)
 	}
-	return _c
+	return rqlc
 }
 
 // SetStatus sets the "status" field.
-func (_c *RagQueryLogCreate) SetStatus(v string) *RagQueryLogCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetStatus(s string) *RagQueryLogCreate {
+	rqlc.mutation.SetStatus(s)
+	return rqlc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *RagQueryLogCreate) SetNillableStatus(v *string) *RagQueryLogCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (rqlc *RagQueryLogCreate) SetNillableStatus(s *string) *RagQueryLogCreate {
+	if s != nil {
+		rqlc.SetStatus(*s)
 	}
-	return _c
+	return rqlc
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_c *RagQueryLogCreate) SetCreateAt(v time.Time) *RagQueryLogCreate {
-	_c.mutation.SetCreateAt(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetCreateAt(t time.Time) *RagQueryLogCreate {
+	rqlc.mutation.SetCreateAt(t)
+	return rqlc
 }
 
 // SetID sets the "id" field.
-func (_c *RagQueryLogCreate) SetID(v int) *RagQueryLogCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rqlc *RagQueryLogCreate) SetID(i int) *RagQueryLogCreate {
+	rqlc.mutation.SetID(i)
+	return rqlc
 }
 
 // Mutation returns the RagQueryLogMutation object of the builder.
-func (_c *RagQueryLogCreate) Mutation() *RagQueryLogMutation {
-	return _c.mutation
+func (rqlc *RagQueryLogCreate) Mutation() *RagQueryLogMutation {
+	return rqlc.mutation
 }
 
 // Save creates the RagQueryLog in the database.
-func (_c *RagQueryLogCreate) Save(ctx context.Context) (*RagQueryLog, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rqlc *RagQueryLogCreate) Save(ctx context.Context) (*RagQueryLog, error) {
+	rqlc.defaults()
+	return withHooks(ctx, rqlc.sqlSave, rqlc.mutation, rqlc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RagQueryLogCreate) SaveX(ctx context.Context) *RagQueryLog {
-	v, err := _c.Save(ctx)
+func (rqlc *RagQueryLogCreate) SaveX(ctx context.Context) *RagQueryLog {
+	v, err := rqlc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -115,56 +115,56 @@ func (_c *RagQueryLogCreate) SaveX(ctx context.Context) *RagQueryLog {
 }
 
 // Exec executes the query.
-func (_c *RagQueryLogCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rqlc *RagQueryLogCreate) Exec(ctx context.Context) error {
+	_, err := rqlc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RagQueryLogCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rqlc *RagQueryLogCreate) ExecX(ctx context.Context) {
+	if err := rqlc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RagQueryLogCreate) defaults() {
-	if _, ok := _c.mutation.LatencyMs(); !ok {
+func (rqlc *RagQueryLogCreate) defaults() {
+	if _, ok := rqlc.mutation.LatencyMs(); !ok {
 		v := ragquerylog.DefaultLatencyMs
-		_c.mutation.SetLatencyMs(v)
+		rqlc.mutation.SetLatencyMs(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := rqlc.mutation.Status(); !ok {
 		v := ragquerylog.DefaultStatus
-		_c.mutation.SetStatus(v)
+		rqlc.mutation.SetStatus(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RagQueryLogCreate) check() error {
-	if _, ok := _c.mutation.UID(); !ok {
+func (rqlc *RagQueryLogCreate) check() error {
+	if _, ok := rqlc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RagQueryLog.uid"`)}
 	}
-	if _, ok := _c.mutation.Question(); !ok {
+	if _, ok := rqlc.mutation.Question(); !ok {
 		return &ValidationError{Name: "question", err: errors.New(`ent: missing required field "RagQueryLog.question"`)}
 	}
-	if _, ok := _c.mutation.LatencyMs(); !ok {
+	if _, ok := rqlc.mutation.LatencyMs(); !ok {
 		return &ValidationError{Name: "latency_ms", err: errors.New(`ent: missing required field "RagQueryLog.latency_ms"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := rqlc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "RagQueryLog.status"`)}
 	}
-	if _, ok := _c.mutation.CreateAt(); !ok {
+	if _, ok := rqlc.mutation.CreateAt(); !ok {
 		return &ValidationError{Name: "create_at", err: errors.New(`ent: missing required field "RagQueryLog.create_at"`)}
 	}
 	return nil
 }
 
-func (_c *RagQueryLogCreate) sqlSave(ctx context.Context) (*RagQueryLog, error) {
-	if err := _c.check(); err != nil {
+func (rqlc *RagQueryLogCreate) sqlSave(ctx context.Context) (*RagQueryLog, error) {
+	if err := rqlc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rqlc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rqlc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -174,46 +174,46 @@ func (_c *RagQueryLogCreate) sqlSave(ctx context.Context) (*RagQueryLog, error) 
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rqlc.mutation.id = &_node.ID
+	rqlc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RagQueryLogCreate) createSpec() (*RagQueryLog, *sqlgraph.CreateSpec) {
+func (rqlc *RagQueryLogCreate) createSpec() (*RagQueryLog, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RagQueryLog{config: _c.config}
+		_node = &RagQueryLog{config: rqlc.config}
 		_spec = sqlgraph.NewCreateSpec(ragquerylog.Table, sqlgraph.NewFieldSpec(ragquerylog.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rqlc.conflict
+	if id, ok := rqlc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rqlc.mutation.UID(); ok {
 		_spec.SetField(ragquerylog.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.Question(); ok {
+	if value, ok := rqlc.mutation.Question(); ok {
 		_spec.SetField(ragquerylog.FieldQuestion, field.TypeString, value)
 		_node.Question = value
 	}
-	if value, ok := _c.mutation.AnswerPreview(); ok {
+	if value, ok := rqlc.mutation.AnswerPreview(); ok {
 		_spec.SetField(ragquerylog.FieldAnswerPreview, field.TypeString, value)
 		_node.AnswerPreview = &value
 	}
-	if value, ok := _c.mutation.CitationsJSON(); ok {
+	if value, ok := rqlc.mutation.CitationsJSON(); ok {
 		_spec.SetField(ragquerylog.FieldCitationsJSON, field.TypeJSON, value)
 		_node.CitationsJSON = value
 	}
-	if value, ok := _c.mutation.LatencyMs(); ok {
+	if value, ok := rqlc.mutation.LatencyMs(); ok {
 		_spec.SetField(ragquerylog.FieldLatencyMs, field.TypeInt, value)
 		_node.LatencyMs = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := rqlc.mutation.Status(); ok {
 		_spec.SetField(ragquerylog.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
-	if value, ok := _c.mutation.CreateAt(); ok {
+	if value, ok := rqlc.mutation.CreateAt(); ok {
 		_spec.SetField(ragquerylog.FieldCreateAt, field.TypeTime, value)
 		_node.CreateAt = value
 	}
@@ -236,10 +236,10 @@ func (_c *RagQueryLogCreate) createSpec() (*RagQueryLog, *sqlgraph.CreateSpec) {
 //			SetUID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RagQueryLogCreate) OnConflict(opts ...sql.ConflictOption) *RagQueryLogUpsertOne {
-	_c.conflict = opts
+func (rqlc *RagQueryLogCreate) OnConflict(opts ...sql.ConflictOption) *RagQueryLogUpsertOne {
+	rqlc.conflict = opts
 	return &RagQueryLogUpsertOne{
-		create: _c,
+		create: rqlc,
 	}
 }
 
@@ -249,10 +249,10 @@ func (_c *RagQueryLogCreate) OnConflict(opts ...sql.ConflictOption) *RagQueryLog
 //	client.RagQueryLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RagQueryLogCreate) OnConflictColumns(columns ...string) *RagQueryLogUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rqlc *RagQueryLogCreate) OnConflictColumns(columns ...string) *RagQueryLogUpsertOne {
+	rqlc.conflict = append(rqlc.conflict, sql.ConflictColumns(columns...))
 	return &RagQueryLogUpsertOne{
-		create: _c,
+		create: rqlc,
 	}
 }
 
@@ -593,16 +593,16 @@ type RagQueryLogCreateBulk struct {
 }
 
 // Save creates the RagQueryLog entities in the database.
-func (_c *RagQueryLogCreateBulk) Save(ctx context.Context) ([]*RagQueryLog, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rqlcb *RagQueryLogCreateBulk) Save(ctx context.Context) ([]*RagQueryLog, error) {
+	if rqlcb.err != nil {
+		return nil, rqlcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RagQueryLog, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rqlcb.builders))
+	nodes := make([]*RagQueryLog, len(rqlcb.builders))
+	mutators := make([]Mutator, len(rqlcb.builders))
+	for i := range rqlcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rqlcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RagQueryLogMutation)
@@ -616,12 +616,12 @@ func (_c *RagQueryLogCreateBulk) Save(ctx context.Context) ([]*RagQueryLog, erro
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rqlcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rqlcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rqlcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -645,7 +645,7 @@ func (_c *RagQueryLogCreateBulk) Save(ctx context.Context) ([]*RagQueryLog, erro
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rqlcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -653,8 +653,8 @@ func (_c *RagQueryLogCreateBulk) Save(ctx context.Context) ([]*RagQueryLog, erro
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RagQueryLogCreateBulk) SaveX(ctx context.Context) []*RagQueryLog {
-	v, err := _c.Save(ctx)
+func (rqlcb *RagQueryLogCreateBulk) SaveX(ctx context.Context) []*RagQueryLog {
+	v, err := rqlcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -662,14 +662,14 @@ func (_c *RagQueryLogCreateBulk) SaveX(ctx context.Context) []*RagQueryLog {
 }
 
 // Exec executes the query.
-func (_c *RagQueryLogCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rqlcb *RagQueryLogCreateBulk) Exec(ctx context.Context) error {
+	_, err := rqlcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RagQueryLogCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rqlcb *RagQueryLogCreateBulk) ExecX(ctx context.Context) {
+	if err := rqlcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -689,10 +689,10 @@ func (_c *RagQueryLogCreateBulk) ExecX(ctx context.Context) {
 //			SetUID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RagQueryLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *RagQueryLogUpsertBulk {
-	_c.conflict = opts
+func (rqlcb *RagQueryLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *RagQueryLogUpsertBulk {
+	rqlcb.conflict = opts
 	return &RagQueryLogUpsertBulk{
-		create: _c,
+		create: rqlcb,
 	}
 }
 
@@ -702,10 +702,10 @@ func (_c *RagQueryLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *RagQuer
 //	client.RagQueryLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RagQueryLogCreateBulk) OnConflictColumns(columns ...string) *RagQueryLogUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rqlcb *RagQueryLogCreateBulk) OnConflictColumns(columns ...string) *RagQueryLogUpsertBulk {
+	rqlcb.conflict = append(rqlcb.conflict, sql.ConflictColumns(columns...))
 	return &RagQueryLogUpsertBulk{
-		create: _c,
+		create: rqlcb,
 	}
 }
 

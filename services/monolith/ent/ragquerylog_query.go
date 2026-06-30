@@ -28,40 +28,40 @@ type RagQueryLogQuery struct {
 }
 
 // Where adds a new predicate for the RagQueryLogQuery builder.
-func (_q *RagQueryLogQuery) Where(ps ...predicate.RagQueryLog) *RagQueryLogQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rqlq *RagQueryLogQuery) Where(ps ...predicate.RagQueryLog) *RagQueryLogQuery {
+	rqlq.predicates = append(rqlq.predicates, ps...)
+	return rqlq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RagQueryLogQuery) Limit(limit int) *RagQueryLogQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rqlq *RagQueryLogQuery) Limit(limit int) *RagQueryLogQuery {
+	rqlq.ctx.Limit = &limit
+	return rqlq
 }
 
 // Offset to start from.
-func (_q *RagQueryLogQuery) Offset(offset int) *RagQueryLogQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rqlq *RagQueryLogQuery) Offset(offset int) *RagQueryLogQuery {
+	rqlq.ctx.Offset = &offset
+	return rqlq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RagQueryLogQuery) Unique(unique bool) *RagQueryLogQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rqlq *RagQueryLogQuery) Unique(unique bool) *RagQueryLogQuery {
+	rqlq.ctx.Unique = &unique
+	return rqlq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RagQueryLogQuery) Order(o ...ragquerylog.OrderOption) *RagQueryLogQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rqlq *RagQueryLogQuery) Order(o ...ragquerylog.OrderOption) *RagQueryLogQuery {
+	rqlq.order = append(rqlq.order, o...)
+	return rqlq
 }
 
 // First returns the first RagQueryLog entity from the query.
 // Returns a *NotFoundError when no RagQueryLog was found.
-func (_q *RagQueryLogQuery) First(ctx context.Context) (*RagQueryLog, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rqlq *RagQueryLogQuery) First(ctx context.Context) (*RagQueryLog, error) {
+	nodes, err := rqlq.Limit(1).All(setContextOp(ctx, rqlq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RagQueryLogQuery) First(ctx context.Context) (*RagQueryLog, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RagQueryLogQuery) FirstX(ctx context.Context) *RagQueryLog {
-	node, err := _q.First(ctx)
+func (rqlq *RagQueryLogQuery) FirstX(ctx context.Context) *RagQueryLog {
+	node, err := rqlq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RagQueryLogQuery) FirstX(ctx context.Context) *RagQueryLog {
 
 // FirstID returns the first RagQueryLog ID from the query.
 // Returns a *NotFoundError when no RagQueryLog ID was found.
-func (_q *RagQueryLogQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rqlq *RagQueryLogQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rqlq.Limit(1).IDs(setContextOp(ctx, rqlq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RagQueryLogQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RagQueryLogQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rqlq *RagQueryLogQuery) FirstIDX(ctx context.Context) int {
+	id, err := rqlq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RagQueryLogQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RagQueryLog entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RagQueryLog entity is found.
 // Returns a *NotFoundError when no RagQueryLog entities are found.
-func (_q *RagQueryLogQuery) Only(ctx context.Context) (*RagQueryLog, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rqlq *RagQueryLogQuery) Only(ctx context.Context) (*RagQueryLog, error) {
+	nodes, err := rqlq.Limit(2).All(setContextOp(ctx, rqlq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RagQueryLogQuery) Only(ctx context.Context) (*RagQueryLog, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RagQueryLogQuery) OnlyX(ctx context.Context) *RagQueryLog {
-	node, err := _q.Only(ctx)
+func (rqlq *RagQueryLogQuery) OnlyX(ctx context.Context) *RagQueryLog {
+	node, err := rqlq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RagQueryLogQuery) OnlyX(ctx context.Context) *RagQueryLog {
 // OnlyID is like Only, but returns the only RagQueryLog ID in the query.
 // Returns a *NotSingularError when more than one RagQueryLog ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RagQueryLogQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rqlq *RagQueryLogQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rqlq.Limit(2).IDs(setContextOp(ctx, rqlq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RagQueryLogQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RagQueryLogQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rqlq *RagQueryLogQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rqlq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RagQueryLogQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RagQueryLogs.
-func (_q *RagQueryLogQuery) All(ctx context.Context) ([]*RagQueryLog, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rqlq *RagQueryLogQuery) All(ctx context.Context) ([]*RagQueryLog, error) {
+	ctx = setContextOp(ctx, rqlq.ctx, ent.OpQueryAll)
+	if err := rqlq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RagQueryLog, *RagQueryLogQuery]()
-	return withInterceptors[[]*RagQueryLog](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RagQueryLog](ctx, rqlq, qr, rqlq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RagQueryLogQuery) AllX(ctx context.Context) []*RagQueryLog {
-	nodes, err := _q.All(ctx)
+func (rqlq *RagQueryLogQuery) AllX(ctx context.Context) []*RagQueryLog {
+	nodes, err := rqlq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RagQueryLogQuery) AllX(ctx context.Context) []*RagQueryLog {
 }
 
 // IDs executes the query and returns a list of RagQueryLog IDs.
-func (_q *RagQueryLogQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rqlq *RagQueryLogQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rqlq.ctx.Unique == nil && rqlq.path != nil {
+		rqlq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(ragquerylog.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rqlq.ctx, ent.OpQueryIDs)
+	if err = rqlq.Select(ragquerylog.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RagQueryLogQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rqlq *RagQueryLogQuery) IDsX(ctx context.Context) []int {
+	ids, err := rqlq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RagQueryLogQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RagQueryLogQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rqlq *RagQueryLogQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rqlq.ctx, ent.OpQueryCount)
+	if err := rqlq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RagQueryLogQuery](), _q.inters)
+	return withInterceptors[int](ctx, rqlq, querierCount[*RagQueryLogQuery](), rqlq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RagQueryLogQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rqlq *RagQueryLogQuery) CountX(ctx context.Context) int {
+	count, err := rqlq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RagQueryLogQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RagQueryLogQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rqlq *RagQueryLogQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rqlq.ctx, ent.OpQueryExist)
+	switch _, err := rqlq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RagQueryLogQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RagQueryLogQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rqlq *RagQueryLogQuery) ExistX(ctx context.Context) bool {
+	exist, err := rqlq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RagQueryLogQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RagQueryLogQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RagQueryLogQuery) Clone() *RagQueryLogQuery {
-	if _q == nil {
+func (rqlq *RagQueryLogQuery) Clone() *RagQueryLogQuery {
+	if rqlq == nil {
 		return nil
 	}
 	return &RagQueryLogQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]ragquerylog.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RagQueryLog{}, _q.predicates...),
+		config:     rqlq.config,
+		ctx:        rqlq.ctx.Clone(),
+		order:      append([]ragquerylog.OrderOption{}, rqlq.order...),
+		inters:     append([]Interceptor{}, rqlq.inters...),
+		predicates: append([]predicate.RagQueryLog{}, rqlq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rqlq.sql.Clone(),
+		path: rqlq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RagQueryLogQuery) Clone() *RagQueryLogQuery {
 //		GroupBy(ragquerylog.FieldUID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RagQueryLogQuery) GroupBy(field string, fields ...string) *RagQueryLogGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RagQueryLogGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rqlq *RagQueryLogQuery) GroupBy(field string, fields ...string) *RagQueryLogGroupBy {
+	rqlq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RagQueryLogGroupBy{build: rqlq}
+	grbuild.flds = &rqlq.ctx.Fields
 	grbuild.label = ragquerylog.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RagQueryLogQuery) GroupBy(field string, fields ...string) *RagQueryLog
 //	client.RagQueryLog.Query().
 //		Select(ragquerylog.FieldUID).
 //		Scan(ctx, &v)
-func (_q *RagQueryLogQuery) Select(fields ...string) *RagQueryLogSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RagQueryLogSelect{RagQueryLogQuery: _q}
+func (rqlq *RagQueryLogQuery) Select(fields ...string) *RagQueryLogSelect {
+	rqlq.ctx.Fields = append(rqlq.ctx.Fields, fields...)
+	sbuild := &RagQueryLogSelect{RagQueryLogQuery: rqlq}
 	sbuild.label = ragquerylog.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rqlq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RagQueryLogSelect configured with the given aggregations.
-func (_q *RagQueryLogQuery) Aggregate(fns ...AggregateFunc) *RagQueryLogSelect {
-	return _q.Select().Aggregate(fns...)
+func (rqlq *RagQueryLogQuery) Aggregate(fns ...AggregateFunc) *RagQueryLogSelect {
+	return rqlq.Select().Aggregate(fns...)
 }
 
-func (_q *RagQueryLogQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rqlq *RagQueryLogQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rqlq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rqlq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rqlq.ctx.Fields {
 		if !ragquerylog.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rqlq.path != nil {
+		prev, err := rqlq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rqlq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RagQueryLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RagQueryLog, error) {
+func (rqlq *RagQueryLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RagQueryLog, error) {
 	var (
 		nodes = []*RagQueryLog{}
-		_spec = _q.querySpec()
+		_spec = rqlq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RagQueryLog).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RagQueryLog{config: _q.config}
+		node := &RagQueryLog{config: rqlq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rqlq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RagQueryLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 	return nodes, nil
 }
 
-func (_q *RagQueryLogQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rqlq *RagQueryLogQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rqlq.querySpec()
+	_spec.Node.Columns = rqlq.ctx.Fields
+	if len(rqlq.ctx.Fields) > 0 {
+		_spec.Unique = rqlq.ctx.Unique != nil && *rqlq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rqlq.driver, _spec)
 }
 
-func (_q *RagQueryLogQuery) querySpec() *sqlgraph.QuerySpec {
+func (rqlq *RagQueryLogQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(ragquerylog.Table, ragquerylog.Columns, sqlgraph.NewFieldSpec(ragquerylog.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rqlq.sql
+	if unique := rqlq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rqlq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rqlq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, ragquerylog.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RagQueryLogQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rqlq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rqlq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rqlq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rqlq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RagQueryLogQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RagQueryLogQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rqlq *RagQueryLogQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rqlq.driver.Dialect())
 	t1 := builder.Table(ragquerylog.Table)
-	columns := _q.ctx.Fields
+	columns := rqlq.ctx.Fields
 	if len(columns) == 0 {
 		columns = ragquerylog.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rqlq.sql != nil {
+		selector = rqlq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rqlq.ctx.Unique != nil && *rqlq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rqlq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rqlq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rqlq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rqlq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RagQueryLogGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RagQueryLogGroupBy) Aggregate(fns ...AggregateFunc) *RagQueryLogGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rqlgb *RagQueryLogGroupBy) Aggregate(fns ...AggregateFunc) *RagQueryLogGroupBy {
+	rqlgb.fns = append(rqlgb.fns, fns...)
+	return rqlgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RagQueryLogGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rqlgb *RagQueryLogGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rqlgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rqlgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RagQueryLogQuery, *RagQueryLogGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RagQueryLogQuery, *RagQueryLogGroupBy](ctx, rqlgb.build, rqlgb, rqlgb.build.inters, v)
 }
 
-func (_g *RagQueryLogGroupBy) sqlScan(ctx context.Context, root *RagQueryLogQuery, v any) error {
+func (rqlgb *RagQueryLogGroupBy) sqlScan(ctx context.Context, root *RagQueryLogQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rqlgb.fns))
+	for _, fn := range rqlgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rqlgb.flds)+len(rqlgb.fns))
+		for _, f := range *rqlgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rqlgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rqlgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RagQueryLogSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RagQueryLogSelect) Aggregate(fns ...AggregateFunc) *RagQueryLogSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rqls *RagQueryLogSelect) Aggregate(fns ...AggregateFunc) *RagQueryLogSelect {
+	rqls.fns = append(rqls.fns, fns...)
+	return rqls
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RagQueryLogSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rqls *RagQueryLogSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rqls.ctx, ent.OpQuerySelect)
+	if err := rqls.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RagQueryLogQuery, *RagQueryLogSelect](ctx, _s.RagQueryLogQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RagQueryLogQuery, *RagQueryLogSelect](ctx, rqls.RagQueryLogQuery, rqls, rqls.inters, v)
 }
 
-func (_s *RagQueryLogSelect) sqlScan(ctx context.Context, root *RagQueryLogQuery, v any) error {
+func (rqls *RagQueryLogSelect) sqlScan(ctx context.Context, root *RagQueryLogQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rqls.fns))
+	for _, fn := range rqls.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rqls.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RagQueryLogSelect) sqlScan(ctx context.Context, root *RagQueryLogQuery
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rqls.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

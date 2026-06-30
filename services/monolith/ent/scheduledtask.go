@@ -65,7 +65,7 @@ func (*ScheduledTask) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the ScheduledTask fields.
-func (_m *ScheduledTask) assignValues(columns []string, values []any) error {
+func (st *ScheduledTask) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -76,75 +76,75 @@ func (_m *ScheduledTask) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			st.ID = int(value.Int64)
 		case scheduledtask.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				st.CreateTime = value.Time
 			}
 		case scheduledtask.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				st.UpdateTime = value.Time
 			}
 		case scheduledtask.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				st.IsDelete = value.Bool
 			}
 		case scheduledtask.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				st.Version = int(value.Int64)
 			}
 		case scheduledtask.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				st.Name = value.String
 			}
 		case scheduledtask.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				st.Description = value.String
 			}
 		case scheduledtask.FieldCron:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field cron", values[i])
 			} else if value.Valid {
-				_m.Cron = value.String
+				st.Cron = value.String
 			}
 		case scheduledtask.FieldCronHuman:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field cronHuman", values[i])
 			} else if value.Valid {
-				_m.CronHuman = value.String
+				st.CronHuman = value.String
 			}
 		case scheduledtask.FieldEnabled:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field enabled", values[i])
 			} else if value.Valid {
-				_m.Enabled = int(value.Int64)
+				st.Enabled = int(value.Int64)
 			}
 		case scheduledtask.FieldLogRecording:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field logRecording", values[i])
 			} else if value.Valid {
-				_m.LogRecording = int(value.Int64)
+				st.LogRecording = int(value.Int64)
 			}
 		case scheduledtask.FieldSortOrder:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sortOrder", values[i])
 			} else if value.Valid {
-				_m.SortOrder = int(value.Int64)
+				st.SortOrder = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			st.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -152,65 +152,65 @@ func (_m *ScheduledTask) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the ScheduledTask.
 // This includes values selected through modifiers, order, etc.
-func (_m *ScheduledTask) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (st *ScheduledTask) Value(name string) (ent.Value, error) {
+	return st.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this ScheduledTask.
 // Note that you need to call ScheduledTask.Unwrap() before calling this method if this ScheduledTask
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *ScheduledTask) Update() *ScheduledTaskUpdateOne {
-	return NewScheduledTaskClient(_m.config).UpdateOne(_m)
+func (st *ScheduledTask) Update() *ScheduledTaskUpdateOne {
+	return NewScheduledTaskClient(st.config).UpdateOne(st)
 }
 
 // Unwrap unwraps the ScheduledTask entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *ScheduledTask) Unwrap() *ScheduledTask {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (st *ScheduledTask) Unwrap() *ScheduledTask {
+	_tx, ok := st.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: ScheduledTask is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	st.config.driver = _tx.drv
+	return st
 }
 
 // String implements the fmt.Stringer.
-func (_m *ScheduledTask) String() string {
+func (st *ScheduledTask) String() string {
 	var builder strings.Builder
 	builder.WriteString("ScheduledTask(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", st.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(st.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(st.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", st.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", st.Version))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(st.Name)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(st.Description)
 	builder.WriteString(", ")
 	builder.WriteString("cron=")
-	builder.WriteString(_m.Cron)
+	builder.WriteString(st.Cron)
 	builder.WriteString(", ")
 	builder.WriteString("cronHuman=")
-	builder.WriteString(_m.CronHuman)
+	builder.WriteString(st.CronHuman)
 	builder.WriteString(", ")
 	builder.WriteString("enabled=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Enabled))
+	builder.WriteString(fmt.Sprintf("%v", st.Enabled))
 	builder.WriteString(", ")
 	builder.WriteString("logRecording=")
-	builder.WriteString(fmt.Sprintf("%v", _m.LogRecording))
+	builder.WriteString(fmt.Sprintf("%v", st.LogRecording))
 	builder.WriteString(", ")
 	builder.WriteString("sortOrder=")
-	builder.WriteString(fmt.Sprintf("%v", _m.SortOrder))
+	builder.WriteString(fmt.Sprintf("%v", st.SortOrder))
 	builder.WriteByte(')')
 	return builder.String()
 }

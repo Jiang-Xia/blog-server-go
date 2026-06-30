@@ -23,226 +23,226 @@ type RpgActivityUpdate struct {
 }
 
 // Where appends a list predicates to the RpgActivityUpdate builder.
-func (_u *RpgActivityUpdate) Where(ps ...predicate.RpgActivity) *RpgActivityUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rau *RpgActivityUpdate) Where(ps ...predicate.RpgActivity) *RpgActivityUpdate {
+	rau.mutation.Where(ps...)
+	return rau
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgActivityUpdate) SetUpdateTime(v time.Time) *RpgActivityUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rau *RpgActivityUpdate) SetUpdateTime(t time.Time) *RpgActivityUpdate {
+	rau.mutation.SetUpdateTime(t)
+	return rau
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgActivityUpdate) SetIsDelete(v bool) *RpgActivityUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rau *RpgActivityUpdate) SetIsDelete(b bool) *RpgActivityUpdate {
+	rau.mutation.SetIsDelete(b)
+	return rau
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableIsDelete(v *bool) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rau *RpgActivityUpdate) SetNillableIsDelete(b *bool) *RpgActivityUpdate {
+	if b != nil {
+		rau.SetIsDelete(*b)
 	}
-	return _u
+	return rau
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgActivityUpdate) SetVersion(v int) *RpgActivityUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rau *RpgActivityUpdate) SetVersion(i int) *RpgActivityUpdate {
+	rau.mutation.ResetVersion()
+	rau.mutation.SetVersion(i)
+	return rau
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableVersion(v *int) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rau *RpgActivityUpdate) SetNillableVersion(i *int) *RpgActivityUpdate {
+	if i != nil {
+		rau.SetVersion(*i)
 	}
-	return _u
+	return rau
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgActivityUpdate) AddVersion(v int) *RpgActivityUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rau *RpgActivityUpdate) AddVersion(i int) *RpgActivityUpdate {
+	rau.mutation.AddVersion(i)
+	return rau
 }
 
 // SetCode sets the "code" field.
-func (_u *RpgActivityUpdate) SetCode(v string) *RpgActivityUpdate {
-	_u.mutation.SetCode(v)
-	return _u
+func (rau *RpgActivityUpdate) SetCode(s string) *RpgActivityUpdate {
+	rau.mutation.SetCode(s)
+	return rau
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableCode(v *string) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetCode(*v)
+func (rau *RpgActivityUpdate) SetNillableCode(s *string) *RpgActivityUpdate {
+	if s != nil {
+		rau.SetCode(*s)
 	}
-	return _u
+	return rau
 }
 
 // SetName sets the "name" field.
-func (_u *RpgActivityUpdate) SetName(v string) *RpgActivityUpdate {
-	_u.mutation.SetName(v)
-	return _u
+func (rau *RpgActivityUpdate) SetName(s string) *RpgActivityUpdate {
+	rau.mutation.SetName(s)
+	return rau
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableName(v *string) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetName(*v)
+func (rau *RpgActivityUpdate) SetNillableName(s *string) *RpgActivityUpdate {
+	if s != nil {
+		rau.SetName(*s)
 	}
-	return _u
+	return rau
 }
 
 // SetStartTime sets the "startTime" field.
-func (_u *RpgActivityUpdate) SetStartTime(v time.Time) *RpgActivityUpdate {
-	_u.mutation.SetStartTime(v)
-	return _u
+func (rau *RpgActivityUpdate) SetStartTime(t time.Time) *RpgActivityUpdate {
+	rau.mutation.SetStartTime(t)
+	return rau
 }
 
 // SetNillableStartTime sets the "startTime" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableStartTime(v *time.Time) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetStartTime(*v)
+func (rau *RpgActivityUpdate) SetNillableStartTime(t *time.Time) *RpgActivityUpdate {
+	if t != nil {
+		rau.SetStartTime(*t)
 	}
-	return _u
+	return rau
 }
 
 // SetEndTime sets the "endTime" field.
-func (_u *RpgActivityUpdate) SetEndTime(v time.Time) *RpgActivityUpdate {
-	_u.mutation.SetEndTime(v)
-	return _u
+func (rau *RpgActivityUpdate) SetEndTime(t time.Time) *RpgActivityUpdate {
+	rau.mutation.SetEndTime(t)
+	return rau
 }
 
 // SetNillableEndTime sets the "endTime" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableEndTime(v *time.Time) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetEndTime(*v)
+func (rau *RpgActivityUpdate) SetNillableEndTime(t *time.Time) *RpgActivityUpdate {
+	if t != nil {
+		rau.SetEndTime(*t)
 	}
-	return _u
+	return rau
 }
 
 // SetExpBuffRate sets the "expBuffRate" field.
-func (_u *RpgActivityUpdate) SetExpBuffRate(v float64) *RpgActivityUpdate {
-	_u.mutation.ResetExpBuffRate()
-	_u.mutation.SetExpBuffRate(v)
-	return _u
+func (rau *RpgActivityUpdate) SetExpBuffRate(f float64) *RpgActivityUpdate {
+	rau.mutation.ResetExpBuffRate()
+	rau.mutation.SetExpBuffRate(f)
+	return rau
 }
 
 // SetNillableExpBuffRate sets the "expBuffRate" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableExpBuffRate(v *float64) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetExpBuffRate(*v)
+func (rau *RpgActivityUpdate) SetNillableExpBuffRate(f *float64) *RpgActivityUpdate {
+	if f != nil {
+		rau.SetExpBuffRate(*f)
 	}
-	return _u
+	return rau
 }
 
-// AddExpBuffRate adds value to the "expBuffRate" field.
-func (_u *RpgActivityUpdate) AddExpBuffRate(v float64) *RpgActivityUpdate {
-	_u.mutation.AddExpBuffRate(v)
-	return _u
+// AddExpBuffRate adds f to the "expBuffRate" field.
+func (rau *RpgActivityUpdate) AddExpBuffRate(f float64) *RpgActivityUpdate {
+	rau.mutation.AddExpBuffRate(f)
+	return rau
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgActivityUpdate) SetActive(v int) *RpgActivityUpdate {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rau *RpgActivityUpdate) SetActive(i int) *RpgActivityUpdate {
+	rau.mutation.ResetActive()
+	rau.mutation.SetActive(i)
+	return rau
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableActive(v *int) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetActive(*v)
+func (rau *RpgActivityUpdate) SetNillableActive(i *int) *RpgActivityUpdate {
+	if i != nil {
+		rau.SetActive(*i)
 	}
-	return _u
+	return rau
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgActivityUpdate) AddActive(v int) *RpgActivityUpdate {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rau *RpgActivityUpdate) AddActive(i int) *RpgActivityUpdate {
+	rau.mutation.AddActive(i)
+	return rau
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgActivityUpdate) SetEffectJson(v string) *RpgActivityUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rau *RpgActivityUpdate) SetEffectJson(s string) *RpgActivityUpdate {
+	rau.mutation.SetEffectJson(s)
+	return rau
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableEffectJson(v *string) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rau *RpgActivityUpdate) SetNillableEffectJson(s *string) *RpgActivityUpdate {
+	if s != nil {
+		rau.SetEffectJson(*s)
 	}
-	return _u
+	return rau
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgActivityUpdate) ClearEffectJson() *RpgActivityUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rau *RpgActivityUpdate) ClearEffectJson() *RpgActivityUpdate {
+	rau.mutation.ClearEffectJson()
+	return rau
 }
 
 // SetDescription sets the "description" field.
-func (_u *RpgActivityUpdate) SetDescription(v string) *RpgActivityUpdate {
-	_u.mutation.SetDescription(v)
-	return _u
+func (rau *RpgActivityUpdate) SetDescription(s string) *RpgActivityUpdate {
+	rau.mutation.SetDescription(s)
+	return rau
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableDescription(v *string) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetDescription(*v)
+func (rau *RpgActivityUpdate) SetNillableDescription(s *string) *RpgActivityUpdate {
+	if s != nil {
+		rau.SetDescription(*s)
 	}
-	return _u
+	return rau
 }
 
 // SetActivityType sets the "activityType" field.
-func (_u *RpgActivityUpdate) SetActivityType(v string) *RpgActivityUpdate {
-	_u.mutation.SetActivityType(v)
-	return _u
+func (rau *RpgActivityUpdate) SetActivityType(s string) *RpgActivityUpdate {
+	rau.mutation.SetActivityType(s)
+	return rau
 }
 
 // SetNillableActivityType sets the "activityType" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillableActivityType(v *string) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetActivityType(*v)
+func (rau *RpgActivityUpdate) SetNillableActivityType(s *string) *RpgActivityUpdate {
+	if s != nil {
+		rau.SetActivityType(*s)
 	}
-	return _u
+	return rau
 }
 
 // SetPosterUrl sets the "posterUrl" field.
-func (_u *RpgActivityUpdate) SetPosterUrl(v string) *RpgActivityUpdate {
-	_u.mutation.SetPosterUrl(v)
-	return _u
+func (rau *RpgActivityUpdate) SetPosterUrl(s string) *RpgActivityUpdate {
+	rau.mutation.SetPosterUrl(s)
+	return rau
 }
 
 // SetNillablePosterUrl sets the "posterUrl" field if the given value is not nil.
-func (_u *RpgActivityUpdate) SetNillablePosterUrl(v *string) *RpgActivityUpdate {
-	if v != nil {
-		_u.SetPosterUrl(*v)
+func (rau *RpgActivityUpdate) SetNillablePosterUrl(s *string) *RpgActivityUpdate {
+	if s != nil {
+		rau.SetPosterUrl(*s)
 	}
-	return _u
+	return rau
 }
 
 // Mutation returns the RpgActivityMutation object of the builder.
-func (_u *RpgActivityUpdate) Mutation() *RpgActivityMutation {
-	return _u.mutation
+func (rau *RpgActivityUpdate) Mutation() *RpgActivityMutation {
+	return rau.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgActivityUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rau *RpgActivityUpdate) Save(ctx context.Context) (int, error) {
+	rau.defaults()
+	return withHooks(ctx, rau.sqlSave, rau.mutation, rau.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgActivityUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rau *RpgActivityUpdate) SaveX(ctx context.Context) int {
+	affected, err := rau.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -250,87 +250,87 @@ func (_u *RpgActivityUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgActivityUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rau *RpgActivityUpdate) Exec(ctx context.Context) error {
+	_, err := rau.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgActivityUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rau *RpgActivityUpdate) ExecX(ctx context.Context) {
+	if err := rau.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgActivityUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rau *RpgActivityUpdate) defaults() {
+	if _, ok := rau.mutation.UpdateTime(); !ok {
 		v := rpgactivity.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rau.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgActivityUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rau *RpgActivityUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgactivity.Table, rpgactivity.Columns, sqlgraph.NewFieldSpec(rpgactivity.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rau.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rau.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgactivity.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rau.mutation.IsDelete(); ok {
 		_spec.SetField(rpgactivity.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rau.mutation.Version(); ok {
 		_spec.SetField(rpgactivity.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rau.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgactivity.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Code(); ok {
+	if value, ok := rau.mutation.Code(); ok {
 		_spec.SetField(rpgactivity.FieldCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := rau.mutation.Name(); ok {
 		_spec.SetField(rpgactivity.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.StartTime(); ok {
+	if value, ok := rau.mutation.StartTime(); ok {
 		_spec.SetField(rpgactivity.FieldStartTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.EndTime(); ok {
+	if value, ok := rau.mutation.EndTime(); ok {
 		_spec.SetField(rpgactivity.FieldEndTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.ExpBuffRate(); ok {
+	if value, ok := rau.mutation.ExpBuffRate(); ok {
 		_spec.SetField(rpgactivity.FieldExpBuffRate, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedExpBuffRate(); ok {
+	if value, ok := rau.mutation.AddedExpBuffRate(); ok {
 		_spec.AddField(rpgactivity.FieldExpBuffRate, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rau.mutation.Active(); ok {
 		_spec.SetField(rpgactivity.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rau.mutation.AddedActive(); ok {
 		_spec.AddField(rpgactivity.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rau.mutation.EffectJson(); ok {
 		_spec.SetField(rpgactivity.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rau.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpgactivity.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := rau.mutation.Description(); ok {
 		_spec.SetField(rpgactivity.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ActivityType(); ok {
+	if value, ok := rau.mutation.ActivityType(); ok {
 		_spec.SetField(rpgactivity.FieldActivityType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PosterUrl(); ok {
+	if value, ok := rau.mutation.PosterUrl(); ok {
 		_spec.SetField(rpgactivity.FieldPosterUrl, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rau.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgactivity.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -338,8 +338,8 @@ func (_u *RpgActivityUpdate) sqlSave(ctx context.Context) (_node int, err error)
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rau.mutation.done = true
+	return n, nil
 }
 
 // RpgActivityUpdateOne is the builder for updating a single RpgActivity entity.
@@ -351,233 +351,233 @@ type RpgActivityUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgActivityUpdateOne) SetUpdateTime(v time.Time) *RpgActivityUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetUpdateTime(t time.Time) *RpgActivityUpdateOne {
+	rauo.mutation.SetUpdateTime(t)
+	return rauo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgActivityUpdateOne) SetIsDelete(v bool) *RpgActivityUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetIsDelete(b bool) *RpgActivityUpdateOne {
+	rauo.mutation.SetIsDelete(b)
+	return rauo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableIsDelete(v *bool) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableIsDelete(b *bool) *RpgActivityUpdateOne {
+	if b != nil {
+		rauo.SetIsDelete(*b)
 	}
-	return _u
+	return rauo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgActivityUpdateOne) SetVersion(v int) *RpgActivityUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetVersion(i int) *RpgActivityUpdateOne {
+	rauo.mutation.ResetVersion()
+	rauo.mutation.SetVersion(i)
+	return rauo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableVersion(v *int) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableVersion(i *int) *RpgActivityUpdateOne {
+	if i != nil {
+		rauo.SetVersion(*i)
 	}
-	return _u
+	return rauo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgActivityUpdateOne) AddVersion(v int) *RpgActivityUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rauo *RpgActivityUpdateOne) AddVersion(i int) *RpgActivityUpdateOne {
+	rauo.mutation.AddVersion(i)
+	return rauo
 }
 
 // SetCode sets the "code" field.
-func (_u *RpgActivityUpdateOne) SetCode(v string) *RpgActivityUpdateOne {
-	_u.mutation.SetCode(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetCode(s string) *RpgActivityUpdateOne {
+	rauo.mutation.SetCode(s)
+	return rauo
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableCode(v *string) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetCode(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableCode(s *string) *RpgActivityUpdateOne {
+	if s != nil {
+		rauo.SetCode(*s)
 	}
-	return _u
+	return rauo
 }
 
 // SetName sets the "name" field.
-func (_u *RpgActivityUpdateOne) SetName(v string) *RpgActivityUpdateOne {
-	_u.mutation.SetName(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetName(s string) *RpgActivityUpdateOne {
+	rauo.mutation.SetName(s)
+	return rauo
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableName(v *string) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetName(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableName(s *string) *RpgActivityUpdateOne {
+	if s != nil {
+		rauo.SetName(*s)
 	}
-	return _u
+	return rauo
 }
 
 // SetStartTime sets the "startTime" field.
-func (_u *RpgActivityUpdateOne) SetStartTime(v time.Time) *RpgActivityUpdateOne {
-	_u.mutation.SetStartTime(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetStartTime(t time.Time) *RpgActivityUpdateOne {
+	rauo.mutation.SetStartTime(t)
+	return rauo
 }
 
 // SetNillableStartTime sets the "startTime" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableStartTime(v *time.Time) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetStartTime(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableStartTime(t *time.Time) *RpgActivityUpdateOne {
+	if t != nil {
+		rauo.SetStartTime(*t)
 	}
-	return _u
+	return rauo
 }
 
 // SetEndTime sets the "endTime" field.
-func (_u *RpgActivityUpdateOne) SetEndTime(v time.Time) *RpgActivityUpdateOne {
-	_u.mutation.SetEndTime(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetEndTime(t time.Time) *RpgActivityUpdateOne {
+	rauo.mutation.SetEndTime(t)
+	return rauo
 }
 
 // SetNillableEndTime sets the "endTime" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableEndTime(v *time.Time) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetEndTime(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableEndTime(t *time.Time) *RpgActivityUpdateOne {
+	if t != nil {
+		rauo.SetEndTime(*t)
 	}
-	return _u
+	return rauo
 }
 
 // SetExpBuffRate sets the "expBuffRate" field.
-func (_u *RpgActivityUpdateOne) SetExpBuffRate(v float64) *RpgActivityUpdateOne {
-	_u.mutation.ResetExpBuffRate()
-	_u.mutation.SetExpBuffRate(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetExpBuffRate(f float64) *RpgActivityUpdateOne {
+	rauo.mutation.ResetExpBuffRate()
+	rauo.mutation.SetExpBuffRate(f)
+	return rauo
 }
 
 // SetNillableExpBuffRate sets the "expBuffRate" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableExpBuffRate(v *float64) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetExpBuffRate(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableExpBuffRate(f *float64) *RpgActivityUpdateOne {
+	if f != nil {
+		rauo.SetExpBuffRate(*f)
 	}
-	return _u
+	return rauo
 }
 
-// AddExpBuffRate adds value to the "expBuffRate" field.
-func (_u *RpgActivityUpdateOne) AddExpBuffRate(v float64) *RpgActivityUpdateOne {
-	_u.mutation.AddExpBuffRate(v)
-	return _u
+// AddExpBuffRate adds f to the "expBuffRate" field.
+func (rauo *RpgActivityUpdateOne) AddExpBuffRate(f float64) *RpgActivityUpdateOne {
+	rauo.mutation.AddExpBuffRate(f)
+	return rauo
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgActivityUpdateOne) SetActive(v int) *RpgActivityUpdateOne {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetActive(i int) *RpgActivityUpdateOne {
+	rauo.mutation.ResetActive()
+	rauo.mutation.SetActive(i)
+	return rauo
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableActive(v *int) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetActive(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableActive(i *int) *RpgActivityUpdateOne {
+	if i != nil {
+		rauo.SetActive(*i)
 	}
-	return _u
+	return rauo
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgActivityUpdateOne) AddActive(v int) *RpgActivityUpdateOne {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rauo *RpgActivityUpdateOne) AddActive(i int) *RpgActivityUpdateOne {
+	rauo.mutation.AddActive(i)
+	return rauo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgActivityUpdateOne) SetEffectJson(v string) *RpgActivityUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetEffectJson(s string) *RpgActivityUpdateOne {
+	rauo.mutation.SetEffectJson(s)
+	return rauo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableEffectJson(v *string) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableEffectJson(s *string) *RpgActivityUpdateOne {
+	if s != nil {
+		rauo.SetEffectJson(*s)
 	}
-	return _u
+	return rauo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgActivityUpdateOne) ClearEffectJson() *RpgActivityUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rauo *RpgActivityUpdateOne) ClearEffectJson() *RpgActivityUpdateOne {
+	rauo.mutation.ClearEffectJson()
+	return rauo
 }
 
 // SetDescription sets the "description" field.
-func (_u *RpgActivityUpdateOne) SetDescription(v string) *RpgActivityUpdateOne {
-	_u.mutation.SetDescription(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetDescription(s string) *RpgActivityUpdateOne {
+	rauo.mutation.SetDescription(s)
+	return rauo
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableDescription(v *string) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetDescription(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableDescription(s *string) *RpgActivityUpdateOne {
+	if s != nil {
+		rauo.SetDescription(*s)
 	}
-	return _u
+	return rauo
 }
 
 // SetActivityType sets the "activityType" field.
-func (_u *RpgActivityUpdateOne) SetActivityType(v string) *RpgActivityUpdateOne {
-	_u.mutation.SetActivityType(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetActivityType(s string) *RpgActivityUpdateOne {
+	rauo.mutation.SetActivityType(s)
+	return rauo
 }
 
 // SetNillableActivityType sets the "activityType" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillableActivityType(v *string) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetActivityType(*v)
+func (rauo *RpgActivityUpdateOne) SetNillableActivityType(s *string) *RpgActivityUpdateOne {
+	if s != nil {
+		rauo.SetActivityType(*s)
 	}
-	return _u
+	return rauo
 }
 
 // SetPosterUrl sets the "posterUrl" field.
-func (_u *RpgActivityUpdateOne) SetPosterUrl(v string) *RpgActivityUpdateOne {
-	_u.mutation.SetPosterUrl(v)
-	return _u
+func (rauo *RpgActivityUpdateOne) SetPosterUrl(s string) *RpgActivityUpdateOne {
+	rauo.mutation.SetPosterUrl(s)
+	return rauo
 }
 
 // SetNillablePosterUrl sets the "posterUrl" field if the given value is not nil.
-func (_u *RpgActivityUpdateOne) SetNillablePosterUrl(v *string) *RpgActivityUpdateOne {
-	if v != nil {
-		_u.SetPosterUrl(*v)
+func (rauo *RpgActivityUpdateOne) SetNillablePosterUrl(s *string) *RpgActivityUpdateOne {
+	if s != nil {
+		rauo.SetPosterUrl(*s)
 	}
-	return _u
+	return rauo
 }
 
 // Mutation returns the RpgActivityMutation object of the builder.
-func (_u *RpgActivityUpdateOne) Mutation() *RpgActivityMutation {
-	return _u.mutation
+func (rauo *RpgActivityUpdateOne) Mutation() *RpgActivityMutation {
+	return rauo.mutation
 }
 
 // Where appends a list predicates to the RpgActivityUpdate builder.
-func (_u *RpgActivityUpdateOne) Where(ps ...predicate.RpgActivity) *RpgActivityUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rauo *RpgActivityUpdateOne) Where(ps ...predicate.RpgActivity) *RpgActivityUpdateOne {
+	rauo.mutation.Where(ps...)
+	return rauo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgActivityUpdateOne) Select(field string, fields ...string) *RpgActivityUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rauo *RpgActivityUpdateOne) Select(field string, fields ...string) *RpgActivityUpdateOne {
+	rauo.fields = append([]string{field}, fields...)
+	return rauo
 }
 
 // Save executes the query and returns the updated RpgActivity entity.
-func (_u *RpgActivityUpdateOne) Save(ctx context.Context) (*RpgActivity, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rauo *RpgActivityUpdateOne) Save(ctx context.Context) (*RpgActivity, error) {
+	rauo.defaults()
+	return withHooks(ctx, rauo.sqlSave, rauo.mutation, rauo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgActivityUpdateOne) SaveX(ctx context.Context) *RpgActivity {
-	node, err := _u.Save(ctx)
+func (rauo *RpgActivityUpdateOne) SaveX(ctx context.Context) *RpgActivity {
+	node, err := rauo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -585,34 +585,34 @@ func (_u *RpgActivityUpdateOne) SaveX(ctx context.Context) *RpgActivity {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgActivityUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rauo *RpgActivityUpdateOne) Exec(ctx context.Context) error {
+	_, err := rauo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgActivityUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rauo *RpgActivityUpdateOne) ExecX(ctx context.Context) {
+	if err := rauo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgActivityUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rauo *RpgActivityUpdateOne) defaults() {
+	if _, ok := rauo.mutation.UpdateTime(); !ok {
 		v := rpgactivity.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rauo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgActivityUpdateOne) sqlSave(ctx context.Context) (_node *RpgActivity, err error) {
+func (rauo *RpgActivityUpdateOne) sqlSave(ctx context.Context) (_node *RpgActivity, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgactivity.Table, rpgactivity.Columns, sqlgraph.NewFieldSpec(rpgactivity.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rauo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgActivity.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rauo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgactivity.FieldID)
 		for _, f := range fields {
@@ -624,68 +624,68 @@ func (_u *RpgActivityUpdateOne) sqlSave(ctx context.Context) (_node *RpgActivity
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rauo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rauo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgactivity.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rauo.mutation.IsDelete(); ok {
 		_spec.SetField(rpgactivity.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rauo.mutation.Version(); ok {
 		_spec.SetField(rpgactivity.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rauo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgactivity.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Code(); ok {
+	if value, ok := rauo.mutation.Code(); ok {
 		_spec.SetField(rpgactivity.FieldCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := rauo.mutation.Name(); ok {
 		_spec.SetField(rpgactivity.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.StartTime(); ok {
+	if value, ok := rauo.mutation.StartTime(); ok {
 		_spec.SetField(rpgactivity.FieldStartTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.EndTime(); ok {
+	if value, ok := rauo.mutation.EndTime(); ok {
 		_spec.SetField(rpgactivity.FieldEndTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.ExpBuffRate(); ok {
+	if value, ok := rauo.mutation.ExpBuffRate(); ok {
 		_spec.SetField(rpgactivity.FieldExpBuffRate, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedExpBuffRate(); ok {
+	if value, ok := rauo.mutation.AddedExpBuffRate(); ok {
 		_spec.AddField(rpgactivity.FieldExpBuffRate, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rauo.mutation.Active(); ok {
 		_spec.SetField(rpgactivity.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rauo.mutation.AddedActive(); ok {
 		_spec.AddField(rpgactivity.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rauo.mutation.EffectJson(); ok {
 		_spec.SetField(rpgactivity.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rauo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpgactivity.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := rauo.mutation.Description(); ok {
 		_spec.SetField(rpgactivity.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ActivityType(); ok {
+	if value, ok := rauo.mutation.ActivityType(); ok {
 		_spec.SetField(rpgactivity.FieldActivityType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PosterUrl(); ok {
+	if value, ok := rauo.mutation.PosterUrl(); ok {
 		_spec.SetField(rpgactivity.FieldPosterUrl, field.TypeString, value)
 	}
-	_node = &RpgActivity{config: _u.config}
+	_node = &RpgActivity{config: rauo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rauo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgactivity.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -693,6 +693,6 @@ func (_u *RpgActivityUpdateOne) sqlSave(ctx context.Context) (_node *RpgActivity
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rauo.mutation.done = true
 	return _node, nil
 }

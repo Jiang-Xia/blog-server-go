@@ -23,128 +23,128 @@ type RagIndexJobUpdate struct {
 }
 
 // Where appends a list predicates to the RagIndexJobUpdate builder.
-func (_u *RagIndexJobUpdate) Where(ps ...predicate.RagIndexJob) *RagIndexJobUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (riju *RagIndexJobUpdate) Where(ps ...predicate.RagIndexJob) *RagIndexJobUpdate {
+	riju.mutation.Where(ps...)
+	return riju
 }
 
 // SetArticleID sets the "article_id" field.
-func (_u *RagIndexJobUpdate) SetArticleID(v int) *RagIndexJobUpdate {
-	_u.mutation.ResetArticleID()
-	_u.mutation.SetArticleID(v)
-	return _u
+func (riju *RagIndexJobUpdate) SetArticleID(i int) *RagIndexJobUpdate {
+	riju.mutation.ResetArticleID()
+	riju.mutation.SetArticleID(i)
+	return riju
 }
 
 // SetNillableArticleID sets the "article_id" field if the given value is not nil.
-func (_u *RagIndexJobUpdate) SetNillableArticleID(v *int) *RagIndexJobUpdate {
-	if v != nil {
-		_u.SetArticleID(*v)
+func (riju *RagIndexJobUpdate) SetNillableArticleID(i *int) *RagIndexJobUpdate {
+	if i != nil {
+		riju.SetArticleID(*i)
 	}
-	return _u
+	return riju
 }
 
-// AddArticleID adds value to the "article_id" field.
-func (_u *RagIndexJobUpdate) AddArticleID(v int) *RagIndexJobUpdate {
-	_u.mutation.AddArticleID(v)
-	return _u
+// AddArticleID adds i to the "article_id" field.
+func (riju *RagIndexJobUpdate) AddArticleID(i int) *RagIndexJobUpdate {
+	riju.mutation.AddArticleID(i)
+	return riju
 }
 
 // SetStatus sets the "status" field.
-func (_u *RagIndexJobUpdate) SetStatus(v string) *RagIndexJobUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (riju *RagIndexJobUpdate) SetStatus(s string) *RagIndexJobUpdate {
+	riju.mutation.SetStatus(s)
+	return riju
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *RagIndexJobUpdate) SetNillableStatus(v *string) *RagIndexJobUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (riju *RagIndexJobUpdate) SetNillableStatus(s *string) *RagIndexJobUpdate {
+	if s != nil {
+		riju.SetStatus(*s)
 	}
-	return _u
+	return riju
 }
 
 // SetChunkCount sets the "chunk_count" field.
-func (_u *RagIndexJobUpdate) SetChunkCount(v int) *RagIndexJobUpdate {
-	_u.mutation.ResetChunkCount()
-	_u.mutation.SetChunkCount(v)
-	return _u
+func (riju *RagIndexJobUpdate) SetChunkCount(i int) *RagIndexJobUpdate {
+	riju.mutation.ResetChunkCount()
+	riju.mutation.SetChunkCount(i)
+	return riju
 }
 
 // SetNillableChunkCount sets the "chunk_count" field if the given value is not nil.
-func (_u *RagIndexJobUpdate) SetNillableChunkCount(v *int) *RagIndexJobUpdate {
-	if v != nil {
-		_u.SetChunkCount(*v)
+func (riju *RagIndexJobUpdate) SetNillableChunkCount(i *int) *RagIndexJobUpdate {
+	if i != nil {
+		riju.SetChunkCount(*i)
 	}
-	return _u
+	return riju
 }
 
-// AddChunkCount adds value to the "chunk_count" field.
-func (_u *RagIndexJobUpdate) AddChunkCount(v int) *RagIndexJobUpdate {
-	_u.mutation.AddChunkCount(v)
-	return _u
+// AddChunkCount adds i to the "chunk_count" field.
+func (riju *RagIndexJobUpdate) AddChunkCount(i int) *RagIndexJobUpdate {
+	riju.mutation.AddChunkCount(i)
+	return riju
 }
 
 // SetErrorMsg sets the "error_msg" field.
-func (_u *RagIndexJobUpdate) SetErrorMsg(v string) *RagIndexJobUpdate {
-	_u.mutation.SetErrorMsg(v)
-	return _u
+func (riju *RagIndexJobUpdate) SetErrorMsg(s string) *RagIndexJobUpdate {
+	riju.mutation.SetErrorMsg(s)
+	return riju
 }
 
 // SetNillableErrorMsg sets the "error_msg" field if the given value is not nil.
-func (_u *RagIndexJobUpdate) SetNillableErrorMsg(v *string) *RagIndexJobUpdate {
-	if v != nil {
-		_u.SetErrorMsg(*v)
+func (riju *RagIndexJobUpdate) SetNillableErrorMsg(s *string) *RagIndexJobUpdate {
+	if s != nil {
+		riju.SetErrorMsg(*s)
 	}
-	return _u
+	return riju
 }
 
 // ClearErrorMsg clears the value of the "error_msg" field.
-func (_u *RagIndexJobUpdate) ClearErrorMsg() *RagIndexJobUpdate {
-	_u.mutation.ClearErrorMsg()
-	return _u
+func (riju *RagIndexJobUpdate) ClearErrorMsg() *RagIndexJobUpdate {
+	riju.mutation.ClearErrorMsg()
+	return riju
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *RagIndexJobUpdate) SetCreateAt(v time.Time) *RagIndexJobUpdate {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (riju *RagIndexJobUpdate) SetCreateAt(t time.Time) *RagIndexJobUpdate {
+	riju.mutation.SetCreateAt(t)
+	return riju
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *RagIndexJobUpdate) SetNillableCreateAt(v *time.Time) *RagIndexJobUpdate {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (riju *RagIndexJobUpdate) SetNillableCreateAt(t *time.Time) *RagIndexJobUpdate {
+	if t != nil {
+		riju.SetCreateAt(*t)
 	}
-	return _u
+	return riju
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_u *RagIndexJobUpdate) SetUpdateAt(v time.Time) *RagIndexJobUpdate {
-	_u.mutation.SetUpdateAt(v)
-	return _u
+func (riju *RagIndexJobUpdate) SetUpdateAt(t time.Time) *RagIndexJobUpdate {
+	riju.mutation.SetUpdateAt(t)
+	return riju
 }
 
 // SetNillableUpdateAt sets the "update_at" field if the given value is not nil.
-func (_u *RagIndexJobUpdate) SetNillableUpdateAt(v *time.Time) *RagIndexJobUpdate {
-	if v != nil {
-		_u.SetUpdateAt(*v)
+func (riju *RagIndexJobUpdate) SetNillableUpdateAt(t *time.Time) *RagIndexJobUpdate {
+	if t != nil {
+		riju.SetUpdateAt(*t)
 	}
-	return _u
+	return riju
 }
 
 // Mutation returns the RagIndexJobMutation object of the builder.
-func (_u *RagIndexJobUpdate) Mutation() *RagIndexJobMutation {
-	return _u.mutation
+func (riju *RagIndexJobUpdate) Mutation() *RagIndexJobMutation {
+	return riju.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RagIndexJobUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (riju *RagIndexJobUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, riju.sqlSave, riju.mutation, riju.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RagIndexJobUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (riju *RagIndexJobUpdate) SaveX(ctx context.Context) int {
+	affected, err := riju.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -152,55 +152,55 @@ func (_u *RagIndexJobUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RagIndexJobUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (riju *RagIndexJobUpdate) Exec(ctx context.Context) error {
+	_, err := riju.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RagIndexJobUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (riju *RagIndexJobUpdate) ExecX(ctx context.Context) {
+	if err := riju.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RagIndexJobUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (riju *RagIndexJobUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(ragindexjob.Table, ragindexjob.Columns, sqlgraph.NewFieldSpec(ragindexjob.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := riju.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ArticleID(); ok {
+	if value, ok := riju.mutation.ArticleID(); ok {
 		_spec.SetField(ragindexjob.FieldArticleID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleID(); ok {
+	if value, ok := riju.mutation.AddedArticleID(); ok {
 		_spec.AddField(ragindexjob.FieldArticleID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := riju.mutation.Status(); ok {
 		_spec.SetField(ragindexjob.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ChunkCount(); ok {
+	if value, ok := riju.mutation.ChunkCount(); ok {
 		_spec.SetField(ragindexjob.FieldChunkCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedChunkCount(); ok {
+	if value, ok := riju.mutation.AddedChunkCount(); ok {
 		_spec.AddField(ragindexjob.FieldChunkCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ErrorMsg(); ok {
+	if value, ok := riju.mutation.ErrorMsg(); ok {
 		_spec.SetField(ragindexjob.FieldErrorMsg, field.TypeString, value)
 	}
-	if _u.mutation.ErrorMsgCleared() {
+	if riju.mutation.ErrorMsgCleared() {
 		_spec.ClearField(ragindexjob.FieldErrorMsg, field.TypeString)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := riju.mutation.CreateAt(); ok {
 		_spec.SetField(ragindexjob.FieldCreateAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.UpdateAt(); ok {
+	if value, ok := riju.mutation.UpdateAt(); ok {
 		_spec.SetField(ragindexjob.FieldUpdateAt, field.TypeTime, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, riju.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{ragindexjob.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -208,8 +208,8 @@ func (_u *RagIndexJobUpdate) sqlSave(ctx context.Context) (_node int, err error)
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	riju.mutation.done = true
+	return n, nil
 }
 
 // RagIndexJobUpdateOne is the builder for updating a single RagIndexJob entity.
@@ -221,135 +221,135 @@ type RagIndexJobUpdateOne struct {
 }
 
 // SetArticleID sets the "article_id" field.
-func (_u *RagIndexJobUpdateOne) SetArticleID(v int) *RagIndexJobUpdateOne {
-	_u.mutation.ResetArticleID()
-	_u.mutation.SetArticleID(v)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) SetArticleID(i int) *RagIndexJobUpdateOne {
+	rijuo.mutation.ResetArticleID()
+	rijuo.mutation.SetArticleID(i)
+	return rijuo
 }
 
 // SetNillableArticleID sets the "article_id" field if the given value is not nil.
-func (_u *RagIndexJobUpdateOne) SetNillableArticleID(v *int) *RagIndexJobUpdateOne {
-	if v != nil {
-		_u.SetArticleID(*v)
+func (rijuo *RagIndexJobUpdateOne) SetNillableArticleID(i *int) *RagIndexJobUpdateOne {
+	if i != nil {
+		rijuo.SetArticleID(*i)
 	}
-	return _u
+	return rijuo
 }
 
-// AddArticleID adds value to the "article_id" field.
-func (_u *RagIndexJobUpdateOne) AddArticleID(v int) *RagIndexJobUpdateOne {
-	_u.mutation.AddArticleID(v)
-	return _u
+// AddArticleID adds i to the "article_id" field.
+func (rijuo *RagIndexJobUpdateOne) AddArticleID(i int) *RagIndexJobUpdateOne {
+	rijuo.mutation.AddArticleID(i)
+	return rijuo
 }
 
 // SetStatus sets the "status" field.
-func (_u *RagIndexJobUpdateOne) SetStatus(v string) *RagIndexJobUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) SetStatus(s string) *RagIndexJobUpdateOne {
+	rijuo.mutation.SetStatus(s)
+	return rijuo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *RagIndexJobUpdateOne) SetNillableStatus(v *string) *RagIndexJobUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (rijuo *RagIndexJobUpdateOne) SetNillableStatus(s *string) *RagIndexJobUpdateOne {
+	if s != nil {
+		rijuo.SetStatus(*s)
 	}
-	return _u
+	return rijuo
 }
 
 // SetChunkCount sets the "chunk_count" field.
-func (_u *RagIndexJobUpdateOne) SetChunkCount(v int) *RagIndexJobUpdateOne {
-	_u.mutation.ResetChunkCount()
-	_u.mutation.SetChunkCount(v)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) SetChunkCount(i int) *RagIndexJobUpdateOne {
+	rijuo.mutation.ResetChunkCount()
+	rijuo.mutation.SetChunkCount(i)
+	return rijuo
 }
 
 // SetNillableChunkCount sets the "chunk_count" field if the given value is not nil.
-func (_u *RagIndexJobUpdateOne) SetNillableChunkCount(v *int) *RagIndexJobUpdateOne {
-	if v != nil {
-		_u.SetChunkCount(*v)
+func (rijuo *RagIndexJobUpdateOne) SetNillableChunkCount(i *int) *RagIndexJobUpdateOne {
+	if i != nil {
+		rijuo.SetChunkCount(*i)
 	}
-	return _u
+	return rijuo
 }
 
-// AddChunkCount adds value to the "chunk_count" field.
-func (_u *RagIndexJobUpdateOne) AddChunkCount(v int) *RagIndexJobUpdateOne {
-	_u.mutation.AddChunkCount(v)
-	return _u
+// AddChunkCount adds i to the "chunk_count" field.
+func (rijuo *RagIndexJobUpdateOne) AddChunkCount(i int) *RagIndexJobUpdateOne {
+	rijuo.mutation.AddChunkCount(i)
+	return rijuo
 }
 
 // SetErrorMsg sets the "error_msg" field.
-func (_u *RagIndexJobUpdateOne) SetErrorMsg(v string) *RagIndexJobUpdateOne {
-	_u.mutation.SetErrorMsg(v)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) SetErrorMsg(s string) *RagIndexJobUpdateOne {
+	rijuo.mutation.SetErrorMsg(s)
+	return rijuo
 }
 
 // SetNillableErrorMsg sets the "error_msg" field if the given value is not nil.
-func (_u *RagIndexJobUpdateOne) SetNillableErrorMsg(v *string) *RagIndexJobUpdateOne {
-	if v != nil {
-		_u.SetErrorMsg(*v)
+func (rijuo *RagIndexJobUpdateOne) SetNillableErrorMsg(s *string) *RagIndexJobUpdateOne {
+	if s != nil {
+		rijuo.SetErrorMsg(*s)
 	}
-	return _u
+	return rijuo
 }
 
 // ClearErrorMsg clears the value of the "error_msg" field.
-func (_u *RagIndexJobUpdateOne) ClearErrorMsg() *RagIndexJobUpdateOne {
-	_u.mutation.ClearErrorMsg()
-	return _u
+func (rijuo *RagIndexJobUpdateOne) ClearErrorMsg() *RagIndexJobUpdateOne {
+	rijuo.mutation.ClearErrorMsg()
+	return rijuo
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *RagIndexJobUpdateOne) SetCreateAt(v time.Time) *RagIndexJobUpdateOne {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) SetCreateAt(t time.Time) *RagIndexJobUpdateOne {
+	rijuo.mutation.SetCreateAt(t)
+	return rijuo
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *RagIndexJobUpdateOne) SetNillableCreateAt(v *time.Time) *RagIndexJobUpdateOne {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (rijuo *RagIndexJobUpdateOne) SetNillableCreateAt(t *time.Time) *RagIndexJobUpdateOne {
+	if t != nil {
+		rijuo.SetCreateAt(*t)
 	}
-	return _u
+	return rijuo
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_u *RagIndexJobUpdateOne) SetUpdateAt(v time.Time) *RagIndexJobUpdateOne {
-	_u.mutation.SetUpdateAt(v)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) SetUpdateAt(t time.Time) *RagIndexJobUpdateOne {
+	rijuo.mutation.SetUpdateAt(t)
+	return rijuo
 }
 
 // SetNillableUpdateAt sets the "update_at" field if the given value is not nil.
-func (_u *RagIndexJobUpdateOne) SetNillableUpdateAt(v *time.Time) *RagIndexJobUpdateOne {
-	if v != nil {
-		_u.SetUpdateAt(*v)
+func (rijuo *RagIndexJobUpdateOne) SetNillableUpdateAt(t *time.Time) *RagIndexJobUpdateOne {
+	if t != nil {
+		rijuo.SetUpdateAt(*t)
 	}
-	return _u
+	return rijuo
 }
 
 // Mutation returns the RagIndexJobMutation object of the builder.
-func (_u *RagIndexJobUpdateOne) Mutation() *RagIndexJobMutation {
-	return _u.mutation
+func (rijuo *RagIndexJobUpdateOne) Mutation() *RagIndexJobMutation {
+	return rijuo.mutation
 }
 
 // Where appends a list predicates to the RagIndexJobUpdate builder.
-func (_u *RagIndexJobUpdateOne) Where(ps ...predicate.RagIndexJob) *RagIndexJobUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) Where(ps ...predicate.RagIndexJob) *RagIndexJobUpdateOne {
+	rijuo.mutation.Where(ps...)
+	return rijuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RagIndexJobUpdateOne) Select(field string, fields ...string) *RagIndexJobUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rijuo *RagIndexJobUpdateOne) Select(field string, fields ...string) *RagIndexJobUpdateOne {
+	rijuo.fields = append([]string{field}, fields...)
+	return rijuo
 }
 
 // Save executes the query and returns the updated RagIndexJob entity.
-func (_u *RagIndexJobUpdateOne) Save(ctx context.Context) (*RagIndexJob, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rijuo *RagIndexJobUpdateOne) Save(ctx context.Context) (*RagIndexJob, error) {
+	return withHooks(ctx, rijuo.sqlSave, rijuo.mutation, rijuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RagIndexJobUpdateOne) SaveX(ctx context.Context) *RagIndexJob {
-	node, err := _u.Save(ctx)
+func (rijuo *RagIndexJobUpdateOne) SaveX(ctx context.Context) *RagIndexJob {
+	node, err := rijuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -357,26 +357,26 @@ func (_u *RagIndexJobUpdateOne) SaveX(ctx context.Context) *RagIndexJob {
 }
 
 // Exec executes the query on the entity.
-func (_u *RagIndexJobUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rijuo *RagIndexJobUpdateOne) Exec(ctx context.Context) error {
+	_, err := rijuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RagIndexJobUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rijuo *RagIndexJobUpdateOne) ExecX(ctx context.Context) {
+	if err := rijuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RagIndexJobUpdateOne) sqlSave(ctx context.Context) (_node *RagIndexJob, err error) {
+func (rijuo *RagIndexJobUpdateOne) sqlSave(ctx context.Context) (_node *RagIndexJob, err error) {
 	_spec := sqlgraph.NewUpdateSpec(ragindexjob.Table, ragindexjob.Columns, sqlgraph.NewFieldSpec(ragindexjob.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rijuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RagIndexJob.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rijuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, ragindexjob.FieldID)
 		for _, f := range fields {
@@ -388,44 +388,44 @@ func (_u *RagIndexJobUpdateOne) sqlSave(ctx context.Context) (_node *RagIndexJob
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rijuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ArticleID(); ok {
+	if value, ok := rijuo.mutation.ArticleID(); ok {
 		_spec.SetField(ragindexjob.FieldArticleID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleID(); ok {
+	if value, ok := rijuo.mutation.AddedArticleID(); ok {
 		_spec.AddField(ragindexjob.FieldArticleID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := rijuo.mutation.Status(); ok {
 		_spec.SetField(ragindexjob.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ChunkCount(); ok {
+	if value, ok := rijuo.mutation.ChunkCount(); ok {
 		_spec.SetField(ragindexjob.FieldChunkCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedChunkCount(); ok {
+	if value, ok := rijuo.mutation.AddedChunkCount(); ok {
 		_spec.AddField(ragindexjob.FieldChunkCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ErrorMsg(); ok {
+	if value, ok := rijuo.mutation.ErrorMsg(); ok {
 		_spec.SetField(ragindexjob.FieldErrorMsg, field.TypeString, value)
 	}
-	if _u.mutation.ErrorMsgCleared() {
+	if rijuo.mutation.ErrorMsgCleared() {
 		_spec.ClearField(ragindexjob.FieldErrorMsg, field.TypeString)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := rijuo.mutation.CreateAt(); ok {
 		_spec.SetField(ragindexjob.FieldCreateAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.UpdateAt(); ok {
+	if value, ok := rijuo.mutation.UpdateAt(); ok {
 		_spec.SetField(ragindexjob.FieldUpdateAt, field.TypeTime, value)
 	}
-	_node = &RagIndexJob{config: _u.config}
+	_node = &RagIndexJob{config: rijuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rijuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{ragindexjob.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -433,6 +433,6 @@ func (_u *RagIndexJobUpdateOne) sqlSave(ctx context.Context) (_node *RagIndexJob
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rijuo.mutation.done = true
 	return _node, nil
 }

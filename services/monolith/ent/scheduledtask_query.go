@@ -28,40 +28,40 @@ type ScheduledTaskQuery struct {
 }
 
 // Where adds a new predicate for the ScheduledTaskQuery builder.
-func (_q *ScheduledTaskQuery) Where(ps ...predicate.ScheduledTask) *ScheduledTaskQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (stq *ScheduledTaskQuery) Where(ps ...predicate.ScheduledTask) *ScheduledTaskQuery {
+	stq.predicates = append(stq.predicates, ps...)
+	return stq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *ScheduledTaskQuery) Limit(limit int) *ScheduledTaskQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (stq *ScheduledTaskQuery) Limit(limit int) *ScheduledTaskQuery {
+	stq.ctx.Limit = &limit
+	return stq
 }
 
 // Offset to start from.
-func (_q *ScheduledTaskQuery) Offset(offset int) *ScheduledTaskQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (stq *ScheduledTaskQuery) Offset(offset int) *ScheduledTaskQuery {
+	stq.ctx.Offset = &offset
+	return stq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *ScheduledTaskQuery) Unique(unique bool) *ScheduledTaskQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (stq *ScheduledTaskQuery) Unique(unique bool) *ScheduledTaskQuery {
+	stq.ctx.Unique = &unique
+	return stq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *ScheduledTaskQuery) Order(o ...scheduledtask.OrderOption) *ScheduledTaskQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (stq *ScheduledTaskQuery) Order(o ...scheduledtask.OrderOption) *ScheduledTaskQuery {
+	stq.order = append(stq.order, o...)
+	return stq
 }
 
 // First returns the first ScheduledTask entity from the query.
 // Returns a *NotFoundError when no ScheduledTask was found.
-func (_q *ScheduledTaskQuery) First(ctx context.Context) (*ScheduledTask, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (stq *ScheduledTaskQuery) First(ctx context.Context) (*ScheduledTask, error) {
+	nodes, err := stq.Limit(1).All(setContextOp(ctx, stq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *ScheduledTaskQuery) First(ctx context.Context) (*ScheduledTask, error)
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) FirstX(ctx context.Context) *ScheduledTask {
-	node, err := _q.First(ctx)
+func (stq *ScheduledTaskQuery) FirstX(ctx context.Context) *ScheduledTask {
+	node, err := stq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *ScheduledTaskQuery) FirstX(ctx context.Context) *ScheduledTask {
 
 // FirstID returns the first ScheduledTask ID from the query.
 // Returns a *NotFoundError when no ScheduledTask ID was found.
-func (_q *ScheduledTaskQuery) FirstID(ctx context.Context) (id int, err error) {
+func (stq *ScheduledTaskQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = stq.Limit(1).IDs(setContextOp(ctx, stq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *ScheduledTaskQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (stq *ScheduledTaskQuery) FirstIDX(ctx context.Context) int {
+	id, err := stq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *ScheduledTaskQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single ScheduledTask entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one ScheduledTask entity is found.
 // Returns a *NotFoundError when no ScheduledTask entities are found.
-func (_q *ScheduledTaskQuery) Only(ctx context.Context) (*ScheduledTask, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (stq *ScheduledTaskQuery) Only(ctx context.Context) (*ScheduledTask, error) {
+	nodes, err := stq.Limit(2).All(setContextOp(ctx, stq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *ScheduledTaskQuery) Only(ctx context.Context) (*ScheduledTask, error) 
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) OnlyX(ctx context.Context) *ScheduledTask {
-	node, err := _q.Only(ctx)
+func (stq *ScheduledTaskQuery) OnlyX(ctx context.Context) *ScheduledTask {
+	node, err := stq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *ScheduledTaskQuery) OnlyX(ctx context.Context) *ScheduledTask {
 // OnlyID is like Only, but returns the only ScheduledTask ID in the query.
 // Returns a *NotSingularError when more than one ScheduledTask ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *ScheduledTaskQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (stq *ScheduledTaskQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = stq.Limit(2).IDs(setContextOp(ctx, stq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *ScheduledTaskQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (stq *ScheduledTaskQuery) OnlyIDX(ctx context.Context) int {
+	id, err := stq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *ScheduledTaskQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of ScheduledTasks.
-func (_q *ScheduledTaskQuery) All(ctx context.Context) ([]*ScheduledTask, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (stq *ScheduledTaskQuery) All(ctx context.Context) ([]*ScheduledTask, error) {
+	ctx = setContextOp(ctx, stq.ctx, ent.OpQueryAll)
+	if err := stq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*ScheduledTask, *ScheduledTaskQuery]()
-	return withInterceptors[[]*ScheduledTask](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*ScheduledTask](ctx, stq, qr, stq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) AllX(ctx context.Context) []*ScheduledTask {
-	nodes, err := _q.All(ctx)
+func (stq *ScheduledTaskQuery) AllX(ctx context.Context) []*ScheduledTask {
+	nodes, err := stq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *ScheduledTaskQuery) AllX(ctx context.Context) []*ScheduledTask {
 }
 
 // IDs executes the query and returns a list of ScheduledTask IDs.
-func (_q *ScheduledTaskQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (stq *ScheduledTaskQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if stq.ctx.Unique == nil && stq.path != nil {
+		stq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(scheduledtask.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, stq.ctx, ent.OpQueryIDs)
+	if err = stq.Select(scheduledtask.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (stq *ScheduledTaskQuery) IDsX(ctx context.Context) []int {
+	ids, err := stq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *ScheduledTaskQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *ScheduledTaskQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (stq *ScheduledTaskQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, stq.ctx, ent.OpQueryCount)
+	if err := stq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*ScheduledTaskQuery](), _q.inters)
+	return withInterceptors[int](ctx, stq, querierCount[*ScheduledTaskQuery](), stq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (stq *ScheduledTaskQuery) CountX(ctx context.Context) int {
+	count, err := stq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *ScheduledTaskQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *ScheduledTaskQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (stq *ScheduledTaskQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, stq.ctx, ent.OpQueryExist)
+	switch _, err := stq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *ScheduledTaskQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *ScheduledTaskQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (stq *ScheduledTaskQuery) ExistX(ctx context.Context) bool {
+	exist, err := stq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *ScheduledTaskQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the ScheduledTaskQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *ScheduledTaskQuery) Clone() *ScheduledTaskQuery {
-	if _q == nil {
+func (stq *ScheduledTaskQuery) Clone() *ScheduledTaskQuery {
+	if stq == nil {
 		return nil
 	}
 	return &ScheduledTaskQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]scheduledtask.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.ScheduledTask{}, _q.predicates...),
+		config:     stq.config,
+		ctx:        stq.ctx.Clone(),
+		order:      append([]scheduledtask.OrderOption{}, stq.order...),
+		inters:     append([]Interceptor{}, stq.inters...),
+		predicates: append([]predicate.ScheduledTask{}, stq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  stq.sql.Clone(),
+		path: stq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *ScheduledTaskQuery) Clone() *ScheduledTaskQuery {
 //		GroupBy(scheduledtask.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *ScheduledTaskQuery) GroupBy(field string, fields ...string) *ScheduledTaskGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &ScheduledTaskGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (stq *ScheduledTaskQuery) GroupBy(field string, fields ...string) *ScheduledTaskGroupBy {
+	stq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &ScheduledTaskGroupBy{build: stq}
+	grbuild.flds = &stq.ctx.Fields
 	grbuild.label = scheduledtask.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *ScheduledTaskQuery) GroupBy(field string, fields ...string) *Scheduled
 //	client.ScheduledTask.Query().
 //		Select(scheduledtask.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *ScheduledTaskQuery) Select(fields ...string) *ScheduledTaskSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &ScheduledTaskSelect{ScheduledTaskQuery: _q}
+func (stq *ScheduledTaskQuery) Select(fields ...string) *ScheduledTaskSelect {
+	stq.ctx.Fields = append(stq.ctx.Fields, fields...)
+	sbuild := &ScheduledTaskSelect{ScheduledTaskQuery: stq}
 	sbuild.label = scheduledtask.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &stq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a ScheduledTaskSelect configured with the given aggregations.
-func (_q *ScheduledTaskQuery) Aggregate(fns ...AggregateFunc) *ScheduledTaskSelect {
-	return _q.Select().Aggregate(fns...)
+func (stq *ScheduledTaskQuery) Aggregate(fns ...AggregateFunc) *ScheduledTaskSelect {
+	return stq.Select().Aggregate(fns...)
 }
 
-func (_q *ScheduledTaskQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (stq *ScheduledTaskQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range stq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, stq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range stq.ctx.Fields {
 		if !scheduledtask.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if stq.path != nil {
+		prev, err := stq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		stq.sql = prev
 	}
 	return nil
 }
 
-func (_q *ScheduledTaskQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*ScheduledTask, error) {
+func (stq *ScheduledTaskQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*ScheduledTask, error) {
 	var (
 		nodes = []*ScheduledTask{}
-		_spec = _q.querySpec()
+		_spec = stq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*ScheduledTask).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &ScheduledTask{config: _q.config}
+		node := &ScheduledTask{config: stq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, stq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *ScheduledTaskQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([
 	return nodes, nil
 }
 
-func (_q *ScheduledTaskQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (stq *ScheduledTaskQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := stq.querySpec()
+	_spec.Node.Columns = stq.ctx.Fields
+	if len(stq.ctx.Fields) > 0 {
+		_spec.Unique = stq.ctx.Unique != nil && *stq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, stq.driver, _spec)
 }
 
-func (_q *ScheduledTaskQuery) querySpec() *sqlgraph.QuerySpec {
+func (stq *ScheduledTaskQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(scheduledtask.Table, scheduledtask.Columns, sqlgraph.NewFieldSpec(scheduledtask.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = stq.sql
+	if unique := stq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if stq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := stq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, scheduledtask.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *ScheduledTaskQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := stq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := stq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := stq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := stq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *ScheduledTaskQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *ScheduledTaskQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (stq *ScheduledTaskQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(stq.driver.Dialect())
 	t1 := builder.Table(scheduledtask.Table)
-	columns := _q.ctx.Fields
+	columns := stq.ctx.Fields
 	if len(columns) == 0 {
 		columns = scheduledtask.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if stq.sql != nil {
+		selector = stq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if stq.ctx.Unique != nil && *stq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range stq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range stq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := stq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := stq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type ScheduledTaskGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *ScheduledTaskGroupBy) Aggregate(fns ...AggregateFunc) *ScheduledTaskGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (stgb *ScheduledTaskGroupBy) Aggregate(fns ...AggregateFunc) *ScheduledTaskGroupBy {
+	stgb.fns = append(stgb.fns, fns...)
+	return stgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *ScheduledTaskGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (stgb *ScheduledTaskGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, stgb.build.ctx, ent.OpQueryGroupBy)
+	if err := stgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*ScheduledTaskQuery, *ScheduledTaskGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*ScheduledTaskQuery, *ScheduledTaskGroupBy](ctx, stgb.build, stgb, stgb.build.inters, v)
 }
 
-func (_g *ScheduledTaskGroupBy) sqlScan(ctx context.Context, root *ScheduledTaskQuery, v any) error {
+func (stgb *ScheduledTaskGroupBy) sqlScan(ctx context.Context, root *ScheduledTaskQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(stgb.fns))
+	for _, fn := range stgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*stgb.flds)+len(stgb.fns))
+		for _, f := range *stgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*stgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := stgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type ScheduledTaskSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *ScheduledTaskSelect) Aggregate(fns ...AggregateFunc) *ScheduledTaskSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (sts *ScheduledTaskSelect) Aggregate(fns ...AggregateFunc) *ScheduledTaskSelect {
+	sts.fns = append(sts.fns, fns...)
+	return sts
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *ScheduledTaskSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (sts *ScheduledTaskSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, sts.ctx, ent.OpQuerySelect)
+	if err := sts.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*ScheduledTaskQuery, *ScheduledTaskSelect](ctx, _s.ScheduledTaskQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*ScheduledTaskQuery, *ScheduledTaskSelect](ctx, sts.ScheduledTaskQuery, sts, sts.inters, v)
 }
 
-func (_s *ScheduledTaskSelect) sqlScan(ctx context.Context, root *ScheduledTaskQuery, v any) error {
+func (sts *ScheduledTaskSelect) sqlScan(ctx context.Context, root *ScheduledTaskQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(sts.fns))
+	for _, fn := range sts.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*sts.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *ScheduledTaskSelect) sqlScan(ctx context.Context, root *ScheduledTaskQ
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := sts.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

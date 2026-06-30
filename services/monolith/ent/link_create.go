@@ -23,147 +23,147 @@ type LinkCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *LinkCreate) SetCreateTime(v time.Time) *LinkCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (lc *LinkCreate) SetCreateTime(t time.Time) *LinkCreate {
+	lc.mutation.SetCreateTime(t)
+	return lc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *LinkCreate) SetNillableCreateTime(v *time.Time) *LinkCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (lc *LinkCreate) SetNillableCreateTime(t *time.Time) *LinkCreate {
+	if t != nil {
+		lc.SetCreateTime(*t)
 	}
-	return _c
+	return lc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *LinkCreate) SetUpdateTime(v time.Time) *LinkCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (lc *LinkCreate) SetUpdateTime(t time.Time) *LinkCreate {
+	lc.mutation.SetUpdateTime(t)
+	return lc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *LinkCreate) SetNillableUpdateTime(v *time.Time) *LinkCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (lc *LinkCreate) SetNillableUpdateTime(t *time.Time) *LinkCreate {
+	if t != nil {
+		lc.SetUpdateTime(*t)
 	}
-	return _c
+	return lc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *LinkCreate) SetIsDelete(v bool) *LinkCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (lc *LinkCreate) SetIsDelete(b bool) *LinkCreate {
+	lc.mutation.SetIsDelete(b)
+	return lc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *LinkCreate) SetNillableIsDelete(v *bool) *LinkCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (lc *LinkCreate) SetNillableIsDelete(b *bool) *LinkCreate {
+	if b != nil {
+		lc.SetIsDelete(*b)
 	}
-	return _c
+	return lc
 }
 
 // SetVersion sets the "version" field.
-func (_c *LinkCreate) SetVersion(v int) *LinkCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (lc *LinkCreate) SetVersion(i int) *LinkCreate {
+	lc.mutation.SetVersion(i)
+	return lc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *LinkCreate) SetNillableVersion(v *int) *LinkCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (lc *LinkCreate) SetNillableVersion(i *int) *LinkCreate {
+	if i != nil {
+		lc.SetVersion(*i)
 	}
-	return _c
+	return lc
 }
 
 // SetIcon sets the "icon" field.
-func (_c *LinkCreate) SetIcon(v string) *LinkCreate {
-	_c.mutation.SetIcon(v)
-	return _c
+func (lc *LinkCreate) SetIcon(s string) *LinkCreate {
+	lc.mutation.SetIcon(s)
+	return lc
 }
 
 // SetURL sets the "url" field.
-func (_c *LinkCreate) SetURL(v string) *LinkCreate {
-	_c.mutation.SetURL(v)
-	return _c
+func (lc *LinkCreate) SetURL(s string) *LinkCreate {
+	lc.mutation.SetURL(s)
+	return lc
 }
 
 // SetTitle sets the "title" field.
-func (_c *LinkCreate) SetTitle(v string) *LinkCreate {
-	_c.mutation.SetTitle(v)
-	return _c
+func (lc *LinkCreate) SetTitle(s string) *LinkCreate {
+	lc.mutation.SetTitle(s)
+	return lc
 }
 
 // SetDesp sets the "desp" field.
-func (_c *LinkCreate) SetDesp(v string) *LinkCreate {
-	_c.mutation.SetDesp(v)
-	return _c
+func (lc *LinkCreate) SetDesp(s string) *LinkCreate {
+	lc.mutation.SetDesp(s)
+	return lc
 }
 
 // SetAgreed sets the "agreed" field.
-func (_c *LinkCreate) SetAgreed(v int) *LinkCreate {
-	_c.mutation.SetAgreed(v)
-	return _c
+func (lc *LinkCreate) SetAgreed(i int) *LinkCreate {
+	lc.mutation.SetAgreed(i)
+	return lc
 }
 
 // SetNillableAgreed sets the "agreed" field if the given value is not nil.
-func (_c *LinkCreate) SetNillableAgreed(v *int) *LinkCreate {
-	if v != nil {
-		_c.SetAgreed(*v)
+func (lc *LinkCreate) SetNillableAgreed(i *int) *LinkCreate {
+	if i != nil {
+		lc.SetAgreed(*i)
 	}
-	return _c
+	return lc
 }
 
 // SetLastCheckStatus sets the "lastCheckStatus" field.
-func (_c *LinkCreate) SetLastCheckStatus(v string) *LinkCreate {
-	_c.mutation.SetLastCheckStatus(v)
-	return _c
+func (lc *LinkCreate) SetLastCheckStatus(s string) *LinkCreate {
+	lc.mutation.SetLastCheckStatus(s)
+	return lc
 }
 
 // SetNillableLastCheckStatus sets the "lastCheckStatus" field if the given value is not nil.
-func (_c *LinkCreate) SetNillableLastCheckStatus(v *string) *LinkCreate {
-	if v != nil {
-		_c.SetLastCheckStatus(*v)
+func (lc *LinkCreate) SetNillableLastCheckStatus(s *string) *LinkCreate {
+	if s != nil {
+		lc.SetLastCheckStatus(*s)
 	}
-	return _c
+	return lc
 }
 
 // SetLastCheckTime sets the "lastCheckTime" field.
-func (_c *LinkCreate) SetLastCheckTime(v time.Time) *LinkCreate {
-	_c.mutation.SetLastCheckTime(v)
-	return _c
+func (lc *LinkCreate) SetLastCheckTime(t time.Time) *LinkCreate {
+	lc.mutation.SetLastCheckTime(t)
+	return lc
 }
 
 // SetNillableLastCheckTime sets the "lastCheckTime" field if the given value is not nil.
-func (_c *LinkCreate) SetNillableLastCheckTime(v *time.Time) *LinkCreate {
-	if v != nil {
-		_c.SetLastCheckTime(*v)
+func (lc *LinkCreate) SetNillableLastCheckTime(t *time.Time) *LinkCreate {
+	if t != nil {
+		lc.SetLastCheckTime(*t)
 	}
-	return _c
+	return lc
 }
 
 // SetID sets the "id" field.
-func (_c *LinkCreate) SetID(v int) *LinkCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (lc *LinkCreate) SetID(i int) *LinkCreate {
+	lc.mutation.SetID(i)
+	return lc
 }
 
 // Mutation returns the LinkMutation object of the builder.
-func (_c *LinkCreate) Mutation() *LinkMutation {
-	return _c.mutation
+func (lc *LinkCreate) Mutation() *LinkMutation {
+	return lc.mutation
 }
 
 // Save creates the Link in the database.
-func (_c *LinkCreate) Save(ctx context.Context) (*Link, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (lc *LinkCreate) Save(ctx context.Context) (*Link, error) {
+	lc.defaults()
+	return withHooks(ctx, lc.sqlSave, lc.mutation, lc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *LinkCreate) SaveX(ctx context.Context) *Link {
-	v, err := _c.Save(ctx)
+func (lc *LinkCreate) SaveX(ctx context.Context) *Link {
+	v, err := lc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -171,87 +171,87 @@ func (_c *LinkCreate) SaveX(ctx context.Context) *Link {
 }
 
 // Exec executes the query.
-func (_c *LinkCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (lc *LinkCreate) Exec(ctx context.Context) error {
+	_, err := lc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *LinkCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (lc *LinkCreate) ExecX(ctx context.Context) {
+	if err := lc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *LinkCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (lc *LinkCreate) defaults() {
+	if _, ok := lc.mutation.CreateTime(); !ok {
 		v := link.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		lc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := lc.mutation.UpdateTime(); !ok {
 		v := link.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		lc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := lc.mutation.IsDelete(); !ok {
 		v := link.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		lc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := lc.mutation.Version(); !ok {
 		v := link.DefaultVersion
-		_c.mutation.SetVersion(v)
+		lc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Agreed(); !ok {
+	if _, ok := lc.mutation.Agreed(); !ok {
 		v := link.DefaultAgreed
-		_c.mutation.SetAgreed(v)
+		lc.mutation.SetAgreed(v)
 	}
-	if _, ok := _c.mutation.LastCheckStatus(); !ok {
+	if _, ok := lc.mutation.LastCheckStatus(); !ok {
 		v := link.DefaultLastCheckStatus
-		_c.mutation.SetLastCheckStatus(v)
+		lc.mutation.SetLastCheckStatus(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *LinkCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (lc *LinkCreate) check() error {
+	if _, ok := lc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Link.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := lc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Link.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := lc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Link.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := lc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Link.version"`)}
 	}
-	if _, ok := _c.mutation.Icon(); !ok {
+	if _, ok := lc.mutation.Icon(); !ok {
 		return &ValidationError{Name: "icon", err: errors.New(`ent: missing required field "Link.icon"`)}
 	}
-	if _, ok := _c.mutation.URL(); !ok {
+	if _, ok := lc.mutation.URL(); !ok {
 		return &ValidationError{Name: "url", err: errors.New(`ent: missing required field "Link.url"`)}
 	}
-	if _, ok := _c.mutation.Title(); !ok {
+	if _, ok := lc.mutation.Title(); !ok {
 		return &ValidationError{Name: "title", err: errors.New(`ent: missing required field "Link.title"`)}
 	}
-	if _, ok := _c.mutation.Desp(); !ok {
+	if _, ok := lc.mutation.Desp(); !ok {
 		return &ValidationError{Name: "desp", err: errors.New(`ent: missing required field "Link.desp"`)}
 	}
-	if _, ok := _c.mutation.Agreed(); !ok {
+	if _, ok := lc.mutation.Agreed(); !ok {
 		return &ValidationError{Name: "agreed", err: errors.New(`ent: missing required field "Link.agreed"`)}
 	}
-	if _, ok := _c.mutation.LastCheckStatus(); !ok {
+	if _, ok := lc.mutation.LastCheckStatus(); !ok {
 		return &ValidationError{Name: "lastCheckStatus", err: errors.New(`ent: missing required field "Link.lastCheckStatus"`)}
 	}
 	return nil
 }
 
-func (_c *LinkCreate) sqlSave(ctx context.Context) (*Link, error) {
-	if err := _c.check(); err != nil {
+func (lc *LinkCreate) sqlSave(ctx context.Context) (*Link, error) {
+	if err := lc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := lc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, lc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -261,62 +261,62 @@ func (_c *LinkCreate) sqlSave(ctx context.Context) (*Link, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	lc.mutation.id = &_node.ID
+	lc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *LinkCreate) createSpec() (*Link, *sqlgraph.CreateSpec) {
+func (lc *LinkCreate) createSpec() (*Link, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Link{config: _c.config}
+		_node = &Link{config: lc.config}
 		_spec = sqlgraph.NewCreateSpec(link.Table, sqlgraph.NewFieldSpec(link.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = lc.conflict
+	if id, ok := lc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := lc.mutation.CreateTime(); ok {
 		_spec.SetField(link.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := lc.mutation.UpdateTime(); ok {
 		_spec.SetField(link.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := lc.mutation.IsDelete(); ok {
 		_spec.SetField(link.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := lc.mutation.Version(); ok {
 		_spec.SetField(link.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.Icon(); ok {
+	if value, ok := lc.mutation.Icon(); ok {
 		_spec.SetField(link.FieldIcon, field.TypeString, value)
 		_node.Icon = value
 	}
-	if value, ok := _c.mutation.URL(); ok {
+	if value, ok := lc.mutation.URL(); ok {
 		_spec.SetField(link.FieldURL, field.TypeString, value)
 		_node.URL = value
 	}
-	if value, ok := _c.mutation.Title(); ok {
+	if value, ok := lc.mutation.Title(); ok {
 		_spec.SetField(link.FieldTitle, field.TypeString, value)
 		_node.Title = value
 	}
-	if value, ok := _c.mutation.Desp(); ok {
+	if value, ok := lc.mutation.Desp(); ok {
 		_spec.SetField(link.FieldDesp, field.TypeString, value)
 		_node.Desp = value
 	}
-	if value, ok := _c.mutation.Agreed(); ok {
+	if value, ok := lc.mutation.Agreed(); ok {
 		_spec.SetField(link.FieldAgreed, field.TypeInt, value)
 		_node.Agreed = value
 	}
-	if value, ok := _c.mutation.LastCheckStatus(); ok {
+	if value, ok := lc.mutation.LastCheckStatus(); ok {
 		_spec.SetField(link.FieldLastCheckStatus, field.TypeString, value)
 		_node.LastCheckStatus = value
 	}
-	if value, ok := _c.mutation.LastCheckTime(); ok {
+	if value, ok := lc.mutation.LastCheckTime(); ok {
 		_spec.SetField(link.FieldLastCheckTime, field.TypeTime, value)
 		_node.LastCheckTime = &value
 	}
@@ -339,10 +339,10 @@ func (_c *LinkCreate) createSpec() (*Link, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *LinkCreate) OnConflict(opts ...sql.ConflictOption) *LinkUpsertOne {
-	_c.conflict = opts
+func (lc *LinkCreate) OnConflict(opts ...sql.ConflictOption) *LinkUpsertOne {
+	lc.conflict = opts
 	return &LinkUpsertOne{
-		create: _c,
+		create: lc,
 	}
 }
 
@@ -352,10 +352,10 @@ func (_c *LinkCreate) OnConflict(opts ...sql.ConflictOption) *LinkUpsertOne {
 //	client.Link.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *LinkCreate) OnConflictColumns(columns ...string) *LinkUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (lc *LinkCreate) OnConflictColumns(columns ...string) *LinkUpsertOne {
+	lc.conflict = append(lc.conflict, sql.ConflictColumns(columns...))
 	return &LinkUpsertOne{
-		create: _c,
+		create: lc,
 	}
 }
 
@@ -764,16 +764,16 @@ type LinkCreateBulk struct {
 }
 
 // Save creates the Link entities in the database.
-func (_c *LinkCreateBulk) Save(ctx context.Context) ([]*Link, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (lcb *LinkCreateBulk) Save(ctx context.Context) ([]*Link, error) {
+	if lcb.err != nil {
+		return nil, lcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Link, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(lcb.builders))
+	nodes := make([]*Link, len(lcb.builders))
+	mutators := make([]Mutator, len(lcb.builders))
+	for i := range lcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := lcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*LinkMutation)
@@ -787,12 +787,12 @@ func (_c *LinkCreateBulk) Save(ctx context.Context) ([]*Link, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, lcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = lcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, lcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -816,7 +816,7 @@ func (_c *LinkCreateBulk) Save(ctx context.Context) ([]*Link, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, lcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -824,8 +824,8 @@ func (_c *LinkCreateBulk) Save(ctx context.Context) ([]*Link, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *LinkCreateBulk) SaveX(ctx context.Context) []*Link {
-	v, err := _c.Save(ctx)
+func (lcb *LinkCreateBulk) SaveX(ctx context.Context) []*Link {
+	v, err := lcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -833,14 +833,14 @@ func (_c *LinkCreateBulk) SaveX(ctx context.Context) []*Link {
 }
 
 // Exec executes the query.
-func (_c *LinkCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (lcb *LinkCreateBulk) Exec(ctx context.Context) error {
+	_, err := lcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *LinkCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (lcb *LinkCreateBulk) ExecX(ctx context.Context) {
+	if err := lcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -860,10 +860,10 @@ func (_c *LinkCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *LinkCreateBulk) OnConflict(opts ...sql.ConflictOption) *LinkUpsertBulk {
-	_c.conflict = opts
+func (lcb *LinkCreateBulk) OnConflict(opts ...sql.ConflictOption) *LinkUpsertBulk {
+	lcb.conflict = opts
 	return &LinkUpsertBulk{
-		create: _c,
+		create: lcb,
 	}
 }
 
@@ -873,10 +873,10 @@ func (_c *LinkCreateBulk) OnConflict(opts ...sql.ConflictOption) *LinkUpsertBulk
 //	client.Link.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *LinkCreateBulk) OnConflictColumns(columns ...string) *LinkUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (lcb *LinkCreateBulk) OnConflictColumns(columns ...string) *LinkUpsertBulk {
+	lcb.conflict = append(lcb.conflict, sql.ConflictColumns(columns...))
 	return &LinkUpsertBulk{
-		create: _c,
+		create: lcb,
 	}
 }
 

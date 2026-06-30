@@ -28,40 +28,40 @@ type RoleMenusMenuQuery struct {
 }
 
 // Where adds a new predicate for the RoleMenusMenuQuery builder.
-func (_q *RoleMenusMenuQuery) Where(ps ...predicate.RoleMenusMenu) *RoleMenusMenuQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rmmq *RoleMenusMenuQuery) Where(ps ...predicate.RoleMenusMenu) *RoleMenusMenuQuery {
+	rmmq.predicates = append(rmmq.predicates, ps...)
+	return rmmq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RoleMenusMenuQuery) Limit(limit int) *RoleMenusMenuQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rmmq *RoleMenusMenuQuery) Limit(limit int) *RoleMenusMenuQuery {
+	rmmq.ctx.Limit = &limit
+	return rmmq
 }
 
 // Offset to start from.
-func (_q *RoleMenusMenuQuery) Offset(offset int) *RoleMenusMenuQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rmmq *RoleMenusMenuQuery) Offset(offset int) *RoleMenusMenuQuery {
+	rmmq.ctx.Offset = &offset
+	return rmmq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RoleMenusMenuQuery) Unique(unique bool) *RoleMenusMenuQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rmmq *RoleMenusMenuQuery) Unique(unique bool) *RoleMenusMenuQuery {
+	rmmq.ctx.Unique = &unique
+	return rmmq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RoleMenusMenuQuery) Order(o ...rolemenusmenu.OrderOption) *RoleMenusMenuQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rmmq *RoleMenusMenuQuery) Order(o ...rolemenusmenu.OrderOption) *RoleMenusMenuQuery {
+	rmmq.order = append(rmmq.order, o...)
+	return rmmq
 }
 
 // First returns the first RoleMenusMenu entity from the query.
 // Returns a *NotFoundError when no RoleMenusMenu was found.
-func (_q *RoleMenusMenuQuery) First(ctx context.Context) (*RoleMenusMenu, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rmmq *RoleMenusMenuQuery) First(ctx context.Context) (*RoleMenusMenu, error) {
+	nodes, err := rmmq.Limit(1).All(setContextOp(ctx, rmmq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RoleMenusMenuQuery) First(ctx context.Context) (*RoleMenusMenu, error)
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) FirstX(ctx context.Context) *RoleMenusMenu {
-	node, err := _q.First(ctx)
+func (rmmq *RoleMenusMenuQuery) FirstX(ctx context.Context) *RoleMenusMenu {
+	node, err := rmmq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RoleMenusMenuQuery) FirstX(ctx context.Context) *RoleMenusMenu {
 
 // FirstID returns the first RoleMenusMenu ID from the query.
 // Returns a *NotFoundError when no RoleMenusMenu ID was found.
-func (_q *RoleMenusMenuQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rmmq *RoleMenusMenuQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rmmq.Limit(1).IDs(setContextOp(ctx, rmmq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RoleMenusMenuQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rmmq *RoleMenusMenuQuery) FirstIDX(ctx context.Context) int {
+	id, err := rmmq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RoleMenusMenuQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RoleMenusMenu entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RoleMenusMenu entity is found.
 // Returns a *NotFoundError when no RoleMenusMenu entities are found.
-func (_q *RoleMenusMenuQuery) Only(ctx context.Context) (*RoleMenusMenu, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rmmq *RoleMenusMenuQuery) Only(ctx context.Context) (*RoleMenusMenu, error) {
+	nodes, err := rmmq.Limit(2).All(setContextOp(ctx, rmmq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RoleMenusMenuQuery) Only(ctx context.Context) (*RoleMenusMenu, error) 
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) OnlyX(ctx context.Context) *RoleMenusMenu {
-	node, err := _q.Only(ctx)
+func (rmmq *RoleMenusMenuQuery) OnlyX(ctx context.Context) *RoleMenusMenu {
+	node, err := rmmq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RoleMenusMenuQuery) OnlyX(ctx context.Context) *RoleMenusMenu {
 // OnlyID is like Only, but returns the only RoleMenusMenu ID in the query.
 // Returns a *NotSingularError when more than one RoleMenusMenu ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RoleMenusMenuQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rmmq *RoleMenusMenuQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rmmq.Limit(2).IDs(setContextOp(ctx, rmmq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RoleMenusMenuQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rmmq *RoleMenusMenuQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rmmq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RoleMenusMenuQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RoleMenusMenus.
-func (_q *RoleMenusMenuQuery) All(ctx context.Context) ([]*RoleMenusMenu, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rmmq *RoleMenusMenuQuery) All(ctx context.Context) ([]*RoleMenusMenu, error) {
+	ctx = setContextOp(ctx, rmmq.ctx, ent.OpQueryAll)
+	if err := rmmq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RoleMenusMenu, *RoleMenusMenuQuery]()
-	return withInterceptors[[]*RoleMenusMenu](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RoleMenusMenu](ctx, rmmq, qr, rmmq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) AllX(ctx context.Context) []*RoleMenusMenu {
-	nodes, err := _q.All(ctx)
+func (rmmq *RoleMenusMenuQuery) AllX(ctx context.Context) []*RoleMenusMenu {
+	nodes, err := rmmq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RoleMenusMenuQuery) AllX(ctx context.Context) []*RoleMenusMenu {
 }
 
 // IDs executes the query and returns a list of RoleMenusMenu IDs.
-func (_q *RoleMenusMenuQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rmmq *RoleMenusMenuQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rmmq.ctx.Unique == nil && rmmq.path != nil {
+		rmmq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rolemenusmenu.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rmmq.ctx, ent.OpQueryIDs)
+	if err = rmmq.Select(rolemenusmenu.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rmmq *RoleMenusMenuQuery) IDsX(ctx context.Context) []int {
+	ids, err := rmmq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RoleMenusMenuQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RoleMenusMenuQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rmmq *RoleMenusMenuQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rmmq.ctx, ent.OpQueryCount)
+	if err := rmmq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RoleMenusMenuQuery](), _q.inters)
+	return withInterceptors[int](ctx, rmmq, querierCount[*RoleMenusMenuQuery](), rmmq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rmmq *RoleMenusMenuQuery) CountX(ctx context.Context) int {
+	count, err := rmmq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RoleMenusMenuQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RoleMenusMenuQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rmmq *RoleMenusMenuQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rmmq.ctx, ent.OpQueryExist)
+	switch _, err := rmmq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RoleMenusMenuQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RoleMenusMenuQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rmmq *RoleMenusMenuQuery) ExistX(ctx context.Context) bool {
+	exist, err := rmmq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RoleMenusMenuQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RoleMenusMenuQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RoleMenusMenuQuery) Clone() *RoleMenusMenuQuery {
-	if _q == nil {
+func (rmmq *RoleMenusMenuQuery) Clone() *RoleMenusMenuQuery {
+	if rmmq == nil {
 		return nil
 	}
 	return &RoleMenusMenuQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rolemenusmenu.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RoleMenusMenu{}, _q.predicates...),
+		config:     rmmq.config,
+		ctx:        rmmq.ctx.Clone(),
+		order:      append([]rolemenusmenu.OrderOption{}, rmmq.order...),
+		inters:     append([]Interceptor{}, rmmq.inters...),
+		predicates: append([]predicate.RoleMenusMenu{}, rmmq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rmmq.sql.Clone(),
+		path: rmmq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RoleMenusMenuQuery) Clone() *RoleMenusMenuQuery {
 //		GroupBy(rolemenusmenu.FieldRoleId).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RoleMenusMenuQuery) GroupBy(field string, fields ...string) *RoleMenusMenuGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RoleMenusMenuGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rmmq *RoleMenusMenuQuery) GroupBy(field string, fields ...string) *RoleMenusMenuGroupBy {
+	rmmq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RoleMenusMenuGroupBy{build: rmmq}
+	grbuild.flds = &rmmq.ctx.Fields
 	grbuild.label = rolemenusmenu.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RoleMenusMenuQuery) GroupBy(field string, fields ...string) *RoleMenus
 //	client.RoleMenusMenu.Query().
 //		Select(rolemenusmenu.FieldRoleId).
 //		Scan(ctx, &v)
-func (_q *RoleMenusMenuQuery) Select(fields ...string) *RoleMenusMenuSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RoleMenusMenuSelect{RoleMenusMenuQuery: _q}
+func (rmmq *RoleMenusMenuQuery) Select(fields ...string) *RoleMenusMenuSelect {
+	rmmq.ctx.Fields = append(rmmq.ctx.Fields, fields...)
+	sbuild := &RoleMenusMenuSelect{RoleMenusMenuQuery: rmmq}
 	sbuild.label = rolemenusmenu.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rmmq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RoleMenusMenuSelect configured with the given aggregations.
-func (_q *RoleMenusMenuQuery) Aggregate(fns ...AggregateFunc) *RoleMenusMenuSelect {
-	return _q.Select().Aggregate(fns...)
+func (rmmq *RoleMenusMenuQuery) Aggregate(fns ...AggregateFunc) *RoleMenusMenuSelect {
+	return rmmq.Select().Aggregate(fns...)
 }
 
-func (_q *RoleMenusMenuQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rmmq *RoleMenusMenuQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rmmq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rmmq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rmmq.ctx.Fields {
 		if !rolemenusmenu.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rmmq.path != nil {
+		prev, err := rmmq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rmmq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RoleMenusMenuQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RoleMenusMenu, error) {
+func (rmmq *RoleMenusMenuQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RoleMenusMenu, error) {
 	var (
 		nodes = []*RoleMenusMenu{}
-		_spec = _q.querySpec()
+		_spec = rmmq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RoleMenusMenu).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RoleMenusMenu{config: _q.config}
+		node := &RoleMenusMenu{config: rmmq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rmmq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RoleMenusMenuQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([
 	return nodes, nil
 }
 
-func (_q *RoleMenusMenuQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rmmq *RoleMenusMenuQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rmmq.querySpec()
+	_spec.Node.Columns = rmmq.ctx.Fields
+	if len(rmmq.ctx.Fields) > 0 {
+		_spec.Unique = rmmq.ctx.Unique != nil && *rmmq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rmmq.driver, _spec)
 }
 
-func (_q *RoleMenusMenuQuery) querySpec() *sqlgraph.QuerySpec {
+func (rmmq *RoleMenusMenuQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rolemenusmenu.Table, rolemenusmenu.Columns, sqlgraph.NewFieldSpec(rolemenusmenu.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rmmq.sql
+	if unique := rmmq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rmmq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rmmq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rolemenusmenu.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RoleMenusMenuQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rmmq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rmmq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rmmq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rmmq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RoleMenusMenuQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RoleMenusMenuQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rmmq *RoleMenusMenuQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rmmq.driver.Dialect())
 	t1 := builder.Table(rolemenusmenu.Table)
-	columns := _q.ctx.Fields
+	columns := rmmq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rolemenusmenu.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rmmq.sql != nil {
+		selector = rmmq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rmmq.ctx.Unique != nil && *rmmq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rmmq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rmmq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rmmq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rmmq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RoleMenusMenuGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RoleMenusMenuGroupBy) Aggregate(fns ...AggregateFunc) *RoleMenusMenuGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rmmgb *RoleMenusMenuGroupBy) Aggregate(fns ...AggregateFunc) *RoleMenusMenuGroupBy {
+	rmmgb.fns = append(rmmgb.fns, fns...)
+	return rmmgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RoleMenusMenuGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rmmgb *RoleMenusMenuGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rmmgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rmmgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RoleMenusMenuQuery, *RoleMenusMenuGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RoleMenusMenuQuery, *RoleMenusMenuGroupBy](ctx, rmmgb.build, rmmgb, rmmgb.build.inters, v)
 }
 
-func (_g *RoleMenusMenuGroupBy) sqlScan(ctx context.Context, root *RoleMenusMenuQuery, v any) error {
+func (rmmgb *RoleMenusMenuGroupBy) sqlScan(ctx context.Context, root *RoleMenusMenuQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rmmgb.fns))
+	for _, fn := range rmmgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rmmgb.flds)+len(rmmgb.fns))
+		for _, f := range *rmmgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rmmgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rmmgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RoleMenusMenuSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RoleMenusMenuSelect) Aggregate(fns ...AggregateFunc) *RoleMenusMenuSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rmms *RoleMenusMenuSelect) Aggregate(fns ...AggregateFunc) *RoleMenusMenuSelect {
+	rmms.fns = append(rmms.fns, fns...)
+	return rmms
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RoleMenusMenuSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rmms *RoleMenusMenuSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rmms.ctx, ent.OpQuerySelect)
+	if err := rmms.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RoleMenusMenuQuery, *RoleMenusMenuSelect](ctx, _s.RoleMenusMenuQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RoleMenusMenuQuery, *RoleMenusMenuSelect](ctx, rmms.RoleMenusMenuQuery, rmms, rmms.inters, v)
 }
 
-func (_s *RoleMenusMenuSelect) sqlScan(ctx context.Context, root *RoleMenusMenuQuery, v any) error {
+func (rmms *RoleMenusMenuSelect) sqlScan(ctx context.Context, root *RoleMenusMenuQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rmms.fns))
+	for _, fn := range rmms.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rmms.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RoleMenusMenuSelect) sqlScan(ctx context.Context, root *RoleMenusMenuQ
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rmms.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

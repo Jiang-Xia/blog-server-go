@@ -20,56 +20,56 @@ type SiteNotificationDelete struct {
 }
 
 // Where appends a list predicates to the SiteNotificationDelete builder.
-func (_d *SiteNotificationDelete) Where(ps ...predicate.SiteNotification) *SiteNotificationDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (snd *SiteNotificationDelete) Where(ps ...predicate.SiteNotification) *SiteNotificationDelete {
+	snd.mutation.Where(ps...)
+	return snd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *SiteNotificationDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (snd *SiteNotificationDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, snd.sqlExec, snd.mutation, snd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *SiteNotificationDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (snd *SiteNotificationDelete) ExecX(ctx context.Context) int {
+	n, err := snd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *SiteNotificationDelete) sqlExec(ctx context.Context) (int, error) {
+func (snd *SiteNotificationDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(sitenotification.Table, sqlgraph.NewFieldSpec(sitenotification.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := snd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, snd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	snd.mutation.done = true
 	return affected, err
 }
 
 // SiteNotificationDeleteOne is the builder for deleting a single SiteNotification entity.
 type SiteNotificationDeleteOne struct {
-	_d *SiteNotificationDelete
+	snd *SiteNotificationDelete
 }
 
 // Where appends a list predicates to the SiteNotificationDelete builder.
-func (_d *SiteNotificationDeleteOne) Where(ps ...predicate.SiteNotification) *SiteNotificationDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (sndo *SiteNotificationDeleteOne) Where(ps ...predicate.SiteNotification) *SiteNotificationDeleteOne {
+	sndo.snd.mutation.Where(ps...)
+	return sndo
 }
 
 // Exec executes the deletion query.
-func (_d *SiteNotificationDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (sndo *SiteNotificationDeleteOne) Exec(ctx context.Context) error {
+	n, err := sndo.snd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *SiteNotificationDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *SiteNotificationDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (sndo *SiteNotificationDeleteOne) ExecX(ctx context.Context) {
+	if err := sndo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

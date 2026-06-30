@@ -20,56 +20,56 @@ type RpgUserGuildMemberDelete struct {
 }
 
 // Where appends a list predicates to the RpgUserGuildMemberDelete builder.
-func (_d *RpgUserGuildMemberDelete) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rugmd *RpgUserGuildMemberDelete) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberDelete {
+	rugmd.mutation.Where(ps...)
+	return rugmd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgUserGuildMemberDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rugmd *RpgUserGuildMemberDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rugmd.sqlExec, rugmd.mutation, rugmd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserGuildMemberDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rugmd *RpgUserGuildMemberDelete) ExecX(ctx context.Context) int {
+	n, err := rugmd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgUserGuildMemberDelete) sqlExec(ctx context.Context) (int, error) {
+func (rugmd *RpgUserGuildMemberDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpguserguildmember.Table, sqlgraph.NewFieldSpec(rpguserguildmember.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rugmd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rugmd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rugmd.mutation.done = true
 	return affected, err
 }
 
 // RpgUserGuildMemberDeleteOne is the builder for deleting a single RpgUserGuildMember entity.
 type RpgUserGuildMemberDeleteOne struct {
-	_d *RpgUserGuildMemberDelete
+	rugmd *RpgUserGuildMemberDelete
 }
 
 // Where appends a list predicates to the RpgUserGuildMemberDelete builder.
-func (_d *RpgUserGuildMemberDeleteOne) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rugmdo *RpgUserGuildMemberDeleteOne) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberDeleteOne {
+	rugmdo.rugmd.mutation.Where(ps...)
+	return rugmdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgUserGuildMemberDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rugmdo *RpgUserGuildMemberDeleteOne) Exec(ctx context.Context) error {
+	n, err := rugmdo.rugmd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgUserGuildMemberDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserGuildMemberDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rugmdo *RpgUserGuildMemberDeleteOne) ExecX(ctx context.Context) {
+	if err := rugmdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

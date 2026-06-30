@@ -23,149 +23,149 @@ type RpgUserLotteryRecordUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserLotteryRecordUpdate builder.
-func (_u *RpgUserLotteryRecordUpdate) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.Where(ps...)
+	return rulru
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserLotteryRecordUpdate) SetUpdateTime(v time.Time) *RpgUserLotteryRecordUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetUpdateTime(t time.Time) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.SetUpdateTime(t)
+	return rulru
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserLotteryRecordUpdate) SetIsDelete(v bool) *RpgUserLotteryRecordUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetIsDelete(b bool) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.SetIsDelete(b)
+	return rulru
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdate) SetNillableIsDelete(v *bool) *RpgUserLotteryRecordUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rulru *RpgUserLotteryRecordUpdate) SetNillableIsDelete(b *bool) *RpgUserLotteryRecordUpdate {
+	if b != nil {
+		rulru.SetIsDelete(*b)
 	}
-	return _u
+	return rulru
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserLotteryRecordUpdate) SetVersion(v int) *RpgUserLotteryRecordUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetVersion(i int) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.ResetVersion()
+	rulru.mutation.SetVersion(i)
+	return rulru
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdate) SetNillableVersion(v *int) *RpgUserLotteryRecordUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rulru *RpgUserLotteryRecordUpdate) SetNillableVersion(i *int) *RpgUserLotteryRecordUpdate {
+	if i != nil {
+		rulru.SetVersion(*i)
 	}
-	return _u
+	return rulru
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserLotteryRecordUpdate) AddVersion(v int) *RpgUserLotteryRecordUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rulru *RpgUserLotteryRecordUpdate) AddVersion(i int) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.AddVersion(i)
+	return rulru
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserLotteryRecordUpdate) SetUID(v int) *RpgUserLotteryRecordUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetUID(i int) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.ResetUID()
+	rulru.mutation.SetUID(i)
+	return rulru
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdate) SetNillableUID(v *int) *RpgUserLotteryRecordUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (rulru *RpgUserLotteryRecordUpdate) SetNillableUID(i *int) *RpgUserLotteryRecordUpdate {
+	if i != nil {
+		rulru.SetUID(*i)
 	}
-	return _u
+	return rulru
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserLotteryRecordUpdate) AddUID(v int) *RpgUserLotteryRecordUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rulru *RpgUserLotteryRecordUpdate) AddUID(i int) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.AddUID(i)
+	return rulru
 }
 
 // SetPoolItemCode sets the "poolItemCode" field.
-func (_u *RpgUserLotteryRecordUpdate) SetPoolItemCode(v string) *RpgUserLotteryRecordUpdate {
-	_u.mutation.SetPoolItemCode(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetPoolItemCode(s string) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.SetPoolItemCode(s)
+	return rulru
 }
 
 // SetNillablePoolItemCode sets the "poolItemCode" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdate) SetNillablePoolItemCode(v *string) *RpgUserLotteryRecordUpdate {
-	if v != nil {
-		_u.SetPoolItemCode(*v)
+func (rulru *RpgUserLotteryRecordUpdate) SetNillablePoolItemCode(s *string) *RpgUserLotteryRecordUpdate {
+	if s != nil {
+		rulru.SetPoolItemCode(*s)
 	}
-	return _u
+	return rulru
 }
 
 // SetItemName sets the "itemName" field.
-func (_u *RpgUserLotteryRecordUpdate) SetItemName(v string) *RpgUserLotteryRecordUpdate {
-	_u.mutation.SetItemName(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetItemName(s string) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.SetItemName(s)
+	return rulru
 }
 
 // SetNillableItemName sets the "itemName" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdate) SetNillableItemName(v *string) *RpgUserLotteryRecordUpdate {
-	if v != nil {
-		_u.SetItemName(*v)
+func (rulru *RpgUserLotteryRecordUpdate) SetNillableItemName(s *string) *RpgUserLotteryRecordUpdate {
+	if s != nil {
+		rulru.SetItemName(*s)
 	}
-	return _u
+	return rulru
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserLotteryRecordUpdate) SetEffectJson(v string) *RpgUserLotteryRecordUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetEffectJson(s string) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.SetEffectJson(s)
+	return rulru
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdate) SetNillableEffectJson(v *string) *RpgUserLotteryRecordUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rulru *RpgUserLotteryRecordUpdate) SetNillableEffectJson(s *string) *RpgUserLotteryRecordUpdate {
+	if s != nil {
+		rulru.SetEffectJson(*s)
 	}
-	return _u
+	return rulru
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserLotteryRecordUpdate) ClearEffectJson() *RpgUserLotteryRecordUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) ClearEffectJson() *RpgUserLotteryRecordUpdate {
+	rulru.mutation.ClearEffectJson()
+	return rulru
 }
 
 // SetRarity sets the "rarity" field.
-func (_u *RpgUserLotteryRecordUpdate) SetRarity(v string) *RpgUserLotteryRecordUpdate {
-	_u.mutation.SetRarity(v)
-	return _u
+func (rulru *RpgUserLotteryRecordUpdate) SetRarity(s string) *RpgUserLotteryRecordUpdate {
+	rulru.mutation.SetRarity(s)
+	return rulru
 }
 
 // SetNillableRarity sets the "rarity" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdate) SetNillableRarity(v *string) *RpgUserLotteryRecordUpdate {
-	if v != nil {
-		_u.SetRarity(*v)
+func (rulru *RpgUserLotteryRecordUpdate) SetNillableRarity(s *string) *RpgUserLotteryRecordUpdate {
+	if s != nil {
+		rulru.SetRarity(*s)
 	}
-	return _u
+	return rulru
 }
 
 // Mutation returns the RpgUserLotteryRecordMutation object of the builder.
-func (_u *RpgUserLotteryRecordUpdate) Mutation() *RpgUserLotteryRecordMutation {
-	return _u.mutation
+func (rulru *RpgUserLotteryRecordUpdate) Mutation() *RpgUserLotteryRecordMutation {
+	return rulru.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserLotteryRecordUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rulru *RpgUserLotteryRecordUpdate) Save(ctx context.Context) (int, error) {
+	rulru.defaults()
+	return withHooks(ctx, rulru.sqlSave, rulru.mutation, rulru.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserLotteryRecordUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rulru *RpgUserLotteryRecordUpdate) SaveX(ctx context.Context) int {
+	affected, err := rulru.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -173,69 +173,69 @@ func (_u *RpgUserLotteryRecordUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserLotteryRecordUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rulru *RpgUserLotteryRecordUpdate) Exec(ctx context.Context) error {
+	_, err := rulru.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserLotteryRecordUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rulru *RpgUserLotteryRecordUpdate) ExecX(ctx context.Context) {
+	if err := rulru.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserLotteryRecordUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rulru *RpgUserLotteryRecordUpdate) defaults() {
+	if _, ok := rulru.mutation.UpdateTime(); !ok {
 		v := rpguserlotteryrecord.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rulru.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserLotteryRecordUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rulru *RpgUserLotteryRecordUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserlotteryrecord.Table, rpguserlotteryrecord.Columns, sqlgraph.NewFieldSpec(rpguserlotteryrecord.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rulru.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rulru.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rulru.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rulru.mutation.Version(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rulru.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rulru.mutation.UID(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rulru.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserlotteryrecord.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PoolItemCode(); ok {
+	if value, ok := rulru.mutation.PoolItemCode(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldPoolItemCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ItemName(); ok {
+	if value, ok := rulru.mutation.ItemName(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldItemName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rulru.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rulru.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserlotteryrecord.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Rarity(); ok {
+	if value, ok := rulru.mutation.Rarity(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldRarity, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rulru.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserlotteryrecord.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -243,8 +243,8 @@ func (_u *RpgUserLotteryRecordUpdate) sqlSave(ctx context.Context) (_node int, e
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rulru.mutation.done = true
+	return n, nil
 }
 
 // RpgUserLotteryRecordUpdateOne is the builder for updating a single RpgUserLotteryRecord entity.
@@ -256,156 +256,156 @@ type RpgUserLotteryRecordUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetUpdateTime(v time.Time) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetUpdateTime(t time.Time) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.SetUpdateTime(t)
+	return rulruo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetIsDelete(v bool) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetIsDelete(b bool) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.SetIsDelete(b)
+	return rulruo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdateOne) SetNillableIsDelete(v *bool) *RpgUserLotteryRecordUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableIsDelete(b *bool) *RpgUserLotteryRecordUpdateOne {
+	if b != nil {
+		rulruo.SetIsDelete(*b)
 	}
-	return _u
+	return rulruo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetVersion(v int) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetVersion(i int) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.ResetVersion()
+	rulruo.mutation.SetVersion(i)
+	return rulruo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdateOne) SetNillableVersion(v *int) *RpgUserLotteryRecordUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableVersion(i *int) *RpgUserLotteryRecordUpdateOne {
+	if i != nil {
+		rulruo.SetVersion(*i)
 	}
-	return _u
+	return rulruo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserLotteryRecordUpdateOne) AddVersion(v int) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rulruo *RpgUserLotteryRecordUpdateOne) AddVersion(i int) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.AddVersion(i)
+	return rulruo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetUID(v int) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetUID(i int) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.ResetUID()
+	rulruo.mutation.SetUID(i)
+	return rulruo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdateOne) SetNillableUID(v *int) *RpgUserLotteryRecordUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableUID(i *int) *RpgUserLotteryRecordUpdateOne {
+	if i != nil {
+		rulruo.SetUID(*i)
 	}
-	return _u
+	return rulruo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserLotteryRecordUpdateOne) AddUID(v int) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rulruo *RpgUserLotteryRecordUpdateOne) AddUID(i int) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.AddUID(i)
+	return rulruo
 }
 
 // SetPoolItemCode sets the "poolItemCode" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetPoolItemCode(v string) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.SetPoolItemCode(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetPoolItemCode(s string) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.SetPoolItemCode(s)
+	return rulruo
 }
 
 // SetNillablePoolItemCode sets the "poolItemCode" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdateOne) SetNillablePoolItemCode(v *string) *RpgUserLotteryRecordUpdateOne {
-	if v != nil {
-		_u.SetPoolItemCode(*v)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillablePoolItemCode(s *string) *RpgUserLotteryRecordUpdateOne {
+	if s != nil {
+		rulruo.SetPoolItemCode(*s)
 	}
-	return _u
+	return rulruo
 }
 
 // SetItemName sets the "itemName" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetItemName(v string) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.SetItemName(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetItemName(s string) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.SetItemName(s)
+	return rulruo
 }
 
 // SetNillableItemName sets the "itemName" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdateOne) SetNillableItemName(v *string) *RpgUserLotteryRecordUpdateOne {
-	if v != nil {
-		_u.SetItemName(*v)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableItemName(s *string) *RpgUserLotteryRecordUpdateOne {
+	if s != nil {
+		rulruo.SetItemName(*s)
 	}
-	return _u
+	return rulruo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetEffectJson(v string) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetEffectJson(s string) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.SetEffectJson(s)
+	return rulruo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdateOne) SetNillableEffectJson(v *string) *RpgUserLotteryRecordUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableEffectJson(s *string) *RpgUserLotteryRecordUpdateOne {
+	if s != nil {
+		rulruo.SetEffectJson(*s)
 	}
-	return _u
+	return rulruo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserLotteryRecordUpdateOne) ClearEffectJson() *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) ClearEffectJson() *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.ClearEffectJson()
+	return rulruo
 }
 
 // SetRarity sets the "rarity" field.
-func (_u *RpgUserLotteryRecordUpdateOne) SetRarity(v string) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.SetRarity(v)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetRarity(s string) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.SetRarity(s)
+	return rulruo
 }
 
 // SetNillableRarity sets the "rarity" field if the given value is not nil.
-func (_u *RpgUserLotteryRecordUpdateOne) SetNillableRarity(v *string) *RpgUserLotteryRecordUpdateOne {
-	if v != nil {
-		_u.SetRarity(*v)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableRarity(s *string) *RpgUserLotteryRecordUpdateOne {
+	if s != nil {
+		rulruo.SetRarity(*s)
 	}
-	return _u
+	return rulruo
 }
 
 // Mutation returns the RpgUserLotteryRecordMutation object of the builder.
-func (_u *RpgUserLotteryRecordUpdateOne) Mutation() *RpgUserLotteryRecordMutation {
-	return _u.mutation
+func (rulruo *RpgUserLotteryRecordUpdateOne) Mutation() *RpgUserLotteryRecordMutation {
+	return rulruo.mutation
 }
 
 // Where appends a list predicates to the RpgUserLotteryRecordUpdate builder.
-func (_u *RpgUserLotteryRecordUpdateOne) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordUpdateOne {
+	rulruo.mutation.Where(ps...)
+	return rulruo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserLotteryRecordUpdateOne) Select(field string, fields ...string) *RpgUserLotteryRecordUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rulruo *RpgUserLotteryRecordUpdateOne) Select(field string, fields ...string) *RpgUserLotteryRecordUpdateOne {
+	rulruo.fields = append([]string{field}, fields...)
+	return rulruo
 }
 
 // Save executes the query and returns the updated RpgUserLotteryRecord entity.
-func (_u *RpgUserLotteryRecordUpdateOne) Save(ctx context.Context) (*RpgUserLotteryRecord, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rulruo *RpgUserLotteryRecordUpdateOne) Save(ctx context.Context) (*RpgUserLotteryRecord, error) {
+	rulruo.defaults()
+	return withHooks(ctx, rulruo.sqlSave, rulruo.mutation, rulruo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserLotteryRecordUpdateOne) SaveX(ctx context.Context) *RpgUserLotteryRecord {
-	node, err := _u.Save(ctx)
+func (rulruo *RpgUserLotteryRecordUpdateOne) SaveX(ctx context.Context) *RpgUserLotteryRecord {
+	node, err := rulruo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -413,34 +413,34 @@ func (_u *RpgUserLotteryRecordUpdateOne) SaveX(ctx context.Context) *RpgUserLott
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserLotteryRecordUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rulruo *RpgUserLotteryRecordUpdateOne) Exec(ctx context.Context) error {
+	_, err := rulruo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserLotteryRecordUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rulruo *RpgUserLotteryRecordUpdateOne) ExecX(ctx context.Context) {
+	if err := rulruo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserLotteryRecordUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rulruo *RpgUserLotteryRecordUpdateOne) defaults() {
+	if _, ok := rulruo.mutation.UpdateTime(); !ok {
 		v := rpguserlotteryrecord.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rulruo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserLotteryRecordUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserLotteryRecord, err error) {
+func (rulruo *RpgUserLotteryRecordUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserLotteryRecord, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserlotteryrecord.Table, rpguserlotteryrecord.Columns, sqlgraph.NewFieldSpec(rpguserlotteryrecord.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rulruo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserLotteryRecord.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rulruo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserlotteryrecord.FieldID)
 		for _, f := range fields {
@@ -452,50 +452,50 @@ func (_u *RpgUserLotteryRecordUpdateOne) sqlSave(ctx context.Context) (_node *Rp
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rulruo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rulruo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rulruo.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rulruo.mutation.Version(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rulruo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rulruo.mutation.UID(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rulruo.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserlotteryrecord.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PoolItemCode(); ok {
+	if value, ok := rulruo.mutation.PoolItemCode(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldPoolItemCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ItemName(); ok {
+	if value, ok := rulruo.mutation.ItemName(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldItemName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rulruo.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rulruo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserlotteryrecord.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Rarity(); ok {
+	if value, ok := rulruo.mutation.Rarity(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldRarity, field.TypeString, value)
 	}
-	_node = &RpgUserLotteryRecord{config: _u.config}
+	_node = &RpgUserLotteryRecord{config: rulruo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rulruo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserlotteryrecord.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -503,6 +503,6 @@ func (_u *RpgUserLotteryRecordUpdateOne) sqlSave(ctx context.Context) (_node *Rp
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rulruo.mutation.done = true
 	return _node, nil
 }

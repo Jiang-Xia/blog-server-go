@@ -28,40 +28,40 @@ type RpgActivityQuery struct {
 }
 
 // Where adds a new predicate for the RpgActivityQuery builder.
-func (_q *RpgActivityQuery) Where(ps ...predicate.RpgActivity) *RpgActivityQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (raq *RpgActivityQuery) Where(ps ...predicate.RpgActivity) *RpgActivityQuery {
+	raq.predicates = append(raq.predicates, ps...)
+	return raq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgActivityQuery) Limit(limit int) *RpgActivityQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (raq *RpgActivityQuery) Limit(limit int) *RpgActivityQuery {
+	raq.ctx.Limit = &limit
+	return raq
 }
 
 // Offset to start from.
-func (_q *RpgActivityQuery) Offset(offset int) *RpgActivityQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (raq *RpgActivityQuery) Offset(offset int) *RpgActivityQuery {
+	raq.ctx.Offset = &offset
+	return raq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgActivityQuery) Unique(unique bool) *RpgActivityQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (raq *RpgActivityQuery) Unique(unique bool) *RpgActivityQuery {
+	raq.ctx.Unique = &unique
+	return raq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgActivityQuery) Order(o ...rpgactivity.OrderOption) *RpgActivityQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (raq *RpgActivityQuery) Order(o ...rpgactivity.OrderOption) *RpgActivityQuery {
+	raq.order = append(raq.order, o...)
+	return raq
 }
 
 // First returns the first RpgActivity entity from the query.
 // Returns a *NotFoundError when no RpgActivity was found.
-func (_q *RpgActivityQuery) First(ctx context.Context) (*RpgActivity, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (raq *RpgActivityQuery) First(ctx context.Context) (*RpgActivity, error) {
+	nodes, err := raq.Limit(1).All(setContextOp(ctx, raq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgActivityQuery) First(ctx context.Context) (*RpgActivity, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgActivityQuery) FirstX(ctx context.Context) *RpgActivity {
-	node, err := _q.First(ctx)
+func (raq *RpgActivityQuery) FirstX(ctx context.Context) *RpgActivity {
+	node, err := raq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgActivityQuery) FirstX(ctx context.Context) *RpgActivity {
 
 // FirstID returns the first RpgActivity ID from the query.
 // Returns a *NotFoundError when no RpgActivity ID was found.
-func (_q *RpgActivityQuery) FirstID(ctx context.Context) (id int, err error) {
+func (raq *RpgActivityQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = raq.Limit(1).IDs(setContextOp(ctx, raq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgActivityQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgActivityQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (raq *RpgActivityQuery) FirstIDX(ctx context.Context) int {
+	id, err := raq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgActivityQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgActivity entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgActivity entity is found.
 // Returns a *NotFoundError when no RpgActivity entities are found.
-func (_q *RpgActivityQuery) Only(ctx context.Context) (*RpgActivity, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (raq *RpgActivityQuery) Only(ctx context.Context) (*RpgActivity, error) {
+	nodes, err := raq.Limit(2).All(setContextOp(ctx, raq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgActivityQuery) Only(ctx context.Context) (*RpgActivity, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgActivityQuery) OnlyX(ctx context.Context) *RpgActivity {
-	node, err := _q.Only(ctx)
+func (raq *RpgActivityQuery) OnlyX(ctx context.Context) *RpgActivity {
+	node, err := raq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgActivityQuery) OnlyX(ctx context.Context) *RpgActivity {
 // OnlyID is like Only, but returns the only RpgActivity ID in the query.
 // Returns a *NotSingularError when more than one RpgActivity ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgActivityQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (raq *RpgActivityQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = raq.Limit(2).IDs(setContextOp(ctx, raq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgActivityQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgActivityQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (raq *RpgActivityQuery) OnlyIDX(ctx context.Context) int {
+	id, err := raq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgActivityQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgActivities.
-func (_q *RpgActivityQuery) All(ctx context.Context) ([]*RpgActivity, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (raq *RpgActivityQuery) All(ctx context.Context) ([]*RpgActivity, error) {
+	ctx = setContextOp(ctx, raq.ctx, ent.OpQueryAll)
+	if err := raq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgActivity, *RpgActivityQuery]()
-	return withInterceptors[[]*RpgActivity](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgActivity](ctx, raq, qr, raq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgActivityQuery) AllX(ctx context.Context) []*RpgActivity {
-	nodes, err := _q.All(ctx)
+func (raq *RpgActivityQuery) AllX(ctx context.Context) []*RpgActivity {
+	nodes, err := raq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgActivityQuery) AllX(ctx context.Context) []*RpgActivity {
 }
 
 // IDs executes the query and returns a list of RpgActivity IDs.
-func (_q *RpgActivityQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (raq *RpgActivityQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if raq.ctx.Unique == nil && raq.path != nil {
+		raq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpgactivity.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, raq.ctx, ent.OpQueryIDs)
+	if err = raq.Select(rpgactivity.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgActivityQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (raq *RpgActivityQuery) IDsX(ctx context.Context) []int {
+	ids, err := raq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgActivityQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgActivityQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (raq *RpgActivityQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, raq.ctx, ent.OpQueryCount)
+	if err := raq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgActivityQuery](), _q.inters)
+	return withInterceptors[int](ctx, raq, querierCount[*RpgActivityQuery](), raq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgActivityQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (raq *RpgActivityQuery) CountX(ctx context.Context) int {
+	count, err := raq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgActivityQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgActivityQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (raq *RpgActivityQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, raq.ctx, ent.OpQueryExist)
+	switch _, err := raq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgActivityQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgActivityQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (raq *RpgActivityQuery) ExistX(ctx context.Context) bool {
+	exist, err := raq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgActivityQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgActivityQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgActivityQuery) Clone() *RpgActivityQuery {
-	if _q == nil {
+func (raq *RpgActivityQuery) Clone() *RpgActivityQuery {
+	if raq == nil {
 		return nil
 	}
 	return &RpgActivityQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpgactivity.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgActivity{}, _q.predicates...),
+		config:     raq.config,
+		ctx:        raq.ctx.Clone(),
+		order:      append([]rpgactivity.OrderOption{}, raq.order...),
+		inters:     append([]Interceptor{}, raq.inters...),
+		predicates: append([]predicate.RpgActivity{}, raq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  raq.sql.Clone(),
+		path: raq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgActivityQuery) Clone() *RpgActivityQuery {
 //		GroupBy(rpgactivity.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgActivityQuery) GroupBy(field string, fields ...string) *RpgActivityGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgActivityGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (raq *RpgActivityQuery) GroupBy(field string, fields ...string) *RpgActivityGroupBy {
+	raq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgActivityGroupBy{build: raq}
+	grbuild.flds = &raq.ctx.Fields
 	grbuild.label = rpgactivity.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgActivityQuery) GroupBy(field string, fields ...string) *RpgActivity
 //	client.RpgActivity.Query().
 //		Select(rpgactivity.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RpgActivityQuery) Select(fields ...string) *RpgActivitySelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgActivitySelect{RpgActivityQuery: _q}
+func (raq *RpgActivityQuery) Select(fields ...string) *RpgActivitySelect {
+	raq.ctx.Fields = append(raq.ctx.Fields, fields...)
+	sbuild := &RpgActivitySelect{RpgActivityQuery: raq}
 	sbuild.label = rpgactivity.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &raq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgActivitySelect configured with the given aggregations.
-func (_q *RpgActivityQuery) Aggregate(fns ...AggregateFunc) *RpgActivitySelect {
-	return _q.Select().Aggregate(fns...)
+func (raq *RpgActivityQuery) Aggregate(fns ...AggregateFunc) *RpgActivitySelect {
+	return raq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgActivityQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (raq *RpgActivityQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range raq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, raq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range raq.ctx.Fields {
 		if !rpgactivity.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if raq.path != nil {
+		prev, err := raq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		raq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgActivityQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgActivity, error) {
+func (raq *RpgActivityQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgActivity, error) {
 	var (
 		nodes = []*RpgActivity{}
-		_spec = _q.querySpec()
+		_spec = raq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgActivity).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgActivity{config: _q.config}
+		node := &RpgActivity{config: raq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, raq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgActivityQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 	return nodes, nil
 }
 
-func (_q *RpgActivityQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (raq *RpgActivityQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := raq.querySpec()
+	_spec.Node.Columns = raq.ctx.Fields
+	if len(raq.ctx.Fields) > 0 {
+		_spec.Unique = raq.ctx.Unique != nil && *raq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, raq.driver, _spec)
 }
 
-func (_q *RpgActivityQuery) querySpec() *sqlgraph.QuerySpec {
+func (raq *RpgActivityQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpgactivity.Table, rpgactivity.Columns, sqlgraph.NewFieldSpec(rpgactivity.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = raq.sql
+	if unique := raq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if raq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := raq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgactivity.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgActivityQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := raq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := raq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := raq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := raq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgActivityQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgActivityQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (raq *RpgActivityQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(raq.driver.Dialect())
 	t1 := builder.Table(rpgactivity.Table)
-	columns := _q.ctx.Fields
+	columns := raq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpgactivity.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if raq.sql != nil {
+		selector = raq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if raq.ctx.Unique != nil && *raq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range raq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range raq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := raq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := raq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgActivityGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgActivityGroupBy) Aggregate(fns ...AggregateFunc) *RpgActivityGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (ragb *RpgActivityGroupBy) Aggregate(fns ...AggregateFunc) *RpgActivityGroupBy {
+	ragb.fns = append(ragb.fns, fns...)
+	return ragb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgActivityGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (ragb *RpgActivityGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ragb.build.ctx, ent.OpQueryGroupBy)
+	if err := ragb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgActivityQuery, *RpgActivityGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgActivityQuery, *RpgActivityGroupBy](ctx, ragb.build, ragb, ragb.build.inters, v)
 }
 
-func (_g *RpgActivityGroupBy) sqlScan(ctx context.Context, root *RpgActivityQuery, v any) error {
+func (ragb *RpgActivityGroupBy) sqlScan(ctx context.Context, root *RpgActivityQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(ragb.fns))
+	for _, fn := range ragb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*ragb.flds)+len(ragb.fns))
+		for _, f := range *ragb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*ragb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ragb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgActivitySelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgActivitySelect) Aggregate(fns ...AggregateFunc) *RpgActivitySelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (ras *RpgActivitySelect) Aggregate(fns ...AggregateFunc) *RpgActivitySelect {
+	ras.fns = append(ras.fns, fns...)
+	return ras
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgActivitySelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (ras *RpgActivitySelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ras.ctx, ent.OpQuerySelect)
+	if err := ras.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgActivityQuery, *RpgActivitySelect](ctx, _s.RpgActivityQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgActivityQuery, *RpgActivitySelect](ctx, ras.RpgActivityQuery, ras, ras.inters, v)
 }
 
-func (_s *RpgActivitySelect) sqlScan(ctx context.Context, root *RpgActivityQuery, v any) error {
+func (ras *RpgActivitySelect) sqlScan(ctx context.Context, root *RpgActivityQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(ras.fns))
+	for _, fn := range ras.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*ras.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgActivitySelect) sqlScan(ctx context.Context, root *RpgActivityQuery
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ras.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

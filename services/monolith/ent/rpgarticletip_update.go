@@ -23,150 +23,150 @@ type RpgArticleTipUpdate struct {
 }
 
 // Where appends a list predicates to the RpgArticleTipUpdate builder.
-func (_u *RpgArticleTipUpdate) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (ratu *RpgArticleTipUpdate) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipUpdate {
+	ratu.mutation.Where(ps...)
+	return ratu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgArticleTipUpdate) SetUpdateTime(v time.Time) *RpgArticleTipUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ratu *RpgArticleTipUpdate) SetUpdateTime(t time.Time) *RpgArticleTipUpdate {
+	ratu.mutation.SetUpdateTime(t)
+	return ratu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgArticleTipUpdate) SetIsDelete(v bool) *RpgArticleTipUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ratu *RpgArticleTipUpdate) SetIsDelete(b bool) *RpgArticleTipUpdate {
+	ratu.mutation.SetIsDelete(b)
+	return ratu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgArticleTipUpdate) SetNillableIsDelete(v *bool) *RpgArticleTipUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ratu *RpgArticleTipUpdate) SetNillableIsDelete(b *bool) *RpgArticleTipUpdate {
+	if b != nil {
+		ratu.SetIsDelete(*b)
 	}
-	return _u
+	return ratu
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgArticleTipUpdate) SetVersion(v int) *RpgArticleTipUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ratu *RpgArticleTipUpdate) SetVersion(i int) *RpgArticleTipUpdate {
+	ratu.mutation.ResetVersion()
+	ratu.mutation.SetVersion(i)
+	return ratu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgArticleTipUpdate) SetNillableVersion(v *int) *RpgArticleTipUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ratu *RpgArticleTipUpdate) SetNillableVersion(i *int) *RpgArticleTipUpdate {
+	if i != nil {
+		ratu.SetVersion(*i)
 	}
-	return _u
+	return ratu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgArticleTipUpdate) AddVersion(v int) *RpgArticleTipUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ratu *RpgArticleTipUpdate) AddVersion(i int) *RpgArticleTipUpdate {
+	ratu.mutation.AddVersion(i)
+	return ratu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgArticleTipUpdate) SetUID(v int) *RpgArticleTipUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ratu *RpgArticleTipUpdate) SetUID(i int) *RpgArticleTipUpdate {
+	ratu.mutation.ResetUID()
+	ratu.mutation.SetUID(i)
+	return ratu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgArticleTipUpdate) SetNillableUID(v *int) *RpgArticleTipUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (ratu *RpgArticleTipUpdate) SetNillableUID(i *int) *RpgArticleTipUpdate {
+	if i != nil {
+		ratu.SetUID(*i)
 	}
-	return _u
+	return ratu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgArticleTipUpdate) AddUID(v int) *RpgArticleTipUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ratu *RpgArticleTipUpdate) AddUID(i int) *RpgArticleTipUpdate {
+	ratu.mutation.AddUID(i)
+	return ratu
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *RpgArticleTipUpdate) SetArticleId(v int) *RpgArticleTipUpdate {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (ratu *RpgArticleTipUpdate) SetArticleId(i int) *RpgArticleTipUpdate {
+	ratu.mutation.ResetArticleId()
+	ratu.mutation.SetArticleId(i)
+	return ratu
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *RpgArticleTipUpdate) SetNillableArticleId(v *int) *RpgArticleTipUpdate {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (ratu *RpgArticleTipUpdate) SetNillableArticleId(i *int) *RpgArticleTipUpdate {
+	if i != nil {
+		ratu.SetArticleId(*i)
 	}
-	return _u
+	return ratu
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *RpgArticleTipUpdate) AddArticleId(v int) *RpgArticleTipUpdate {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (ratu *RpgArticleTipUpdate) AddArticleId(i int) *RpgArticleTipUpdate {
+	ratu.mutation.AddArticleId(i)
+	return ratu
 }
 
 // SetAuthorUid sets the "authorUid" field.
-func (_u *RpgArticleTipUpdate) SetAuthorUid(v int) *RpgArticleTipUpdate {
-	_u.mutation.ResetAuthorUid()
-	_u.mutation.SetAuthorUid(v)
-	return _u
+func (ratu *RpgArticleTipUpdate) SetAuthorUid(i int) *RpgArticleTipUpdate {
+	ratu.mutation.ResetAuthorUid()
+	ratu.mutation.SetAuthorUid(i)
+	return ratu
 }
 
 // SetNillableAuthorUid sets the "authorUid" field if the given value is not nil.
-func (_u *RpgArticleTipUpdate) SetNillableAuthorUid(v *int) *RpgArticleTipUpdate {
-	if v != nil {
-		_u.SetAuthorUid(*v)
+func (ratu *RpgArticleTipUpdate) SetNillableAuthorUid(i *int) *RpgArticleTipUpdate {
+	if i != nil {
+		ratu.SetAuthorUid(*i)
 	}
-	return _u
+	return ratu
 }
 
-// AddAuthorUid adds value to the "authorUid" field.
-func (_u *RpgArticleTipUpdate) AddAuthorUid(v int) *RpgArticleTipUpdate {
-	_u.mutation.AddAuthorUid(v)
-	return _u
+// AddAuthorUid adds i to the "authorUid" field.
+func (ratu *RpgArticleTipUpdate) AddAuthorUid(i int) *RpgArticleTipUpdate {
+	ratu.mutation.AddAuthorUid(i)
+	return ratu
 }
 
 // SetAmount sets the "amount" field.
-func (_u *RpgArticleTipUpdate) SetAmount(v int) *RpgArticleTipUpdate {
-	_u.mutation.ResetAmount()
-	_u.mutation.SetAmount(v)
-	return _u
+func (ratu *RpgArticleTipUpdate) SetAmount(i int) *RpgArticleTipUpdate {
+	ratu.mutation.ResetAmount()
+	ratu.mutation.SetAmount(i)
+	return ratu
 }
 
 // SetNillableAmount sets the "amount" field if the given value is not nil.
-func (_u *RpgArticleTipUpdate) SetNillableAmount(v *int) *RpgArticleTipUpdate {
-	if v != nil {
-		_u.SetAmount(*v)
+func (ratu *RpgArticleTipUpdate) SetNillableAmount(i *int) *RpgArticleTipUpdate {
+	if i != nil {
+		ratu.SetAmount(*i)
 	}
-	return _u
+	return ratu
 }
 
-// AddAmount adds value to the "amount" field.
-func (_u *RpgArticleTipUpdate) AddAmount(v int) *RpgArticleTipUpdate {
-	_u.mutation.AddAmount(v)
-	return _u
+// AddAmount adds i to the "amount" field.
+func (ratu *RpgArticleTipUpdate) AddAmount(i int) *RpgArticleTipUpdate {
+	ratu.mutation.AddAmount(i)
+	return ratu
 }
 
 // Mutation returns the RpgArticleTipMutation object of the builder.
-func (_u *RpgArticleTipUpdate) Mutation() *RpgArticleTipMutation {
-	return _u.mutation
+func (ratu *RpgArticleTipUpdate) Mutation() *RpgArticleTipMutation {
+	return ratu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgArticleTipUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ratu *RpgArticleTipUpdate) Save(ctx context.Context) (int, error) {
+	ratu.defaults()
+	return withHooks(ctx, ratu.sqlSave, ratu.mutation, ratu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgArticleTipUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (ratu *RpgArticleTipUpdate) SaveX(ctx context.Context) int {
+	affected, err := ratu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -174,72 +174,72 @@ func (_u *RpgArticleTipUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgArticleTipUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ratu *RpgArticleTipUpdate) Exec(ctx context.Context) error {
+	_, err := ratu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgArticleTipUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ratu *RpgArticleTipUpdate) ExecX(ctx context.Context) {
+	if err := ratu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgArticleTipUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ratu *RpgArticleTipUpdate) defaults() {
+	if _, ok := ratu.mutation.UpdateTime(); !ok {
 		v := rpgarticletip.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ratu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgArticleTipUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (ratu *RpgArticleTipUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgarticletip.Table, rpgarticletip.Columns, sqlgraph.NewFieldSpec(rpgarticletip.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ratu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ratu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgarticletip.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ratu.mutation.IsDelete(); ok {
 		_spec.SetField(rpgarticletip.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ratu.mutation.Version(); ok {
 		_spec.SetField(rpgarticletip.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ratu.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgarticletip.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ratu.mutation.UID(); ok {
 		_spec.SetField(rpgarticletip.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ratu.mutation.AddedUID(); ok {
 		_spec.AddField(rpgarticletip.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := ratu.mutation.ArticleId(); ok {
 		_spec.SetField(rpgarticletip.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := ratu.mutation.AddedArticleId(); ok {
 		_spec.AddField(rpgarticletip.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AuthorUid(); ok {
+	if value, ok := ratu.mutation.AuthorUid(); ok {
 		_spec.SetField(rpgarticletip.FieldAuthorUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAuthorUid(); ok {
+	if value, ok := ratu.mutation.AddedAuthorUid(); ok {
 		_spec.AddField(rpgarticletip.FieldAuthorUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Amount(); ok {
+	if value, ok := ratu.mutation.Amount(); ok {
 		_spec.SetField(rpgarticletip.FieldAmount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAmount(); ok {
+	if value, ok := ratu.mutation.AddedAmount(); ok {
 		_spec.AddField(rpgarticletip.FieldAmount, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, ratu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgarticletip.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -247,8 +247,8 @@ func (_u *RpgArticleTipUpdate) sqlSave(ctx context.Context) (_node int, err erro
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	ratu.mutation.done = true
+	return n, nil
 }
 
 // RpgArticleTipUpdateOne is the builder for updating a single RpgArticleTip entity.
@@ -260,157 +260,157 @@ type RpgArticleTipUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgArticleTipUpdateOne) SetUpdateTime(v time.Time) *RpgArticleTipUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) SetUpdateTime(t time.Time) *RpgArticleTipUpdateOne {
+	ratuo.mutation.SetUpdateTime(t)
+	return ratuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgArticleTipUpdateOne) SetIsDelete(v bool) *RpgArticleTipUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) SetIsDelete(b bool) *RpgArticleTipUpdateOne {
+	ratuo.mutation.SetIsDelete(b)
+	return ratuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgArticleTipUpdateOne) SetNillableIsDelete(v *bool) *RpgArticleTipUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ratuo *RpgArticleTipUpdateOne) SetNillableIsDelete(b *bool) *RpgArticleTipUpdateOne {
+	if b != nil {
+		ratuo.SetIsDelete(*b)
 	}
-	return _u
+	return ratuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgArticleTipUpdateOne) SetVersion(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) SetVersion(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.ResetVersion()
+	ratuo.mutation.SetVersion(i)
+	return ratuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgArticleTipUpdateOne) SetNillableVersion(v *int) *RpgArticleTipUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ratuo *RpgArticleTipUpdateOne) SetNillableVersion(i *int) *RpgArticleTipUpdateOne {
+	if i != nil {
+		ratuo.SetVersion(*i)
 	}
-	return _u
+	return ratuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgArticleTipUpdateOne) AddVersion(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ratuo *RpgArticleTipUpdateOne) AddVersion(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.AddVersion(i)
+	return ratuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgArticleTipUpdateOne) SetUID(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) SetUID(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.ResetUID()
+	ratuo.mutation.SetUID(i)
+	return ratuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgArticleTipUpdateOne) SetNillableUID(v *int) *RpgArticleTipUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (ratuo *RpgArticleTipUpdateOne) SetNillableUID(i *int) *RpgArticleTipUpdateOne {
+	if i != nil {
+		ratuo.SetUID(*i)
 	}
-	return _u
+	return ratuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgArticleTipUpdateOne) AddUID(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ratuo *RpgArticleTipUpdateOne) AddUID(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.AddUID(i)
+	return ratuo
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *RpgArticleTipUpdateOne) SetArticleId(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) SetArticleId(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.ResetArticleId()
+	ratuo.mutation.SetArticleId(i)
+	return ratuo
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *RpgArticleTipUpdateOne) SetNillableArticleId(v *int) *RpgArticleTipUpdateOne {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (ratuo *RpgArticleTipUpdateOne) SetNillableArticleId(i *int) *RpgArticleTipUpdateOne {
+	if i != nil {
+		ratuo.SetArticleId(*i)
 	}
-	return _u
+	return ratuo
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *RpgArticleTipUpdateOne) AddArticleId(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (ratuo *RpgArticleTipUpdateOne) AddArticleId(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.AddArticleId(i)
+	return ratuo
 }
 
 // SetAuthorUid sets the "authorUid" field.
-func (_u *RpgArticleTipUpdateOne) SetAuthorUid(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.ResetAuthorUid()
-	_u.mutation.SetAuthorUid(v)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) SetAuthorUid(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.ResetAuthorUid()
+	ratuo.mutation.SetAuthorUid(i)
+	return ratuo
 }
 
 // SetNillableAuthorUid sets the "authorUid" field if the given value is not nil.
-func (_u *RpgArticleTipUpdateOne) SetNillableAuthorUid(v *int) *RpgArticleTipUpdateOne {
-	if v != nil {
-		_u.SetAuthorUid(*v)
+func (ratuo *RpgArticleTipUpdateOne) SetNillableAuthorUid(i *int) *RpgArticleTipUpdateOne {
+	if i != nil {
+		ratuo.SetAuthorUid(*i)
 	}
-	return _u
+	return ratuo
 }
 
-// AddAuthorUid adds value to the "authorUid" field.
-func (_u *RpgArticleTipUpdateOne) AddAuthorUid(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.AddAuthorUid(v)
-	return _u
+// AddAuthorUid adds i to the "authorUid" field.
+func (ratuo *RpgArticleTipUpdateOne) AddAuthorUid(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.AddAuthorUid(i)
+	return ratuo
 }
 
 // SetAmount sets the "amount" field.
-func (_u *RpgArticleTipUpdateOne) SetAmount(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.ResetAmount()
-	_u.mutation.SetAmount(v)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) SetAmount(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.ResetAmount()
+	ratuo.mutation.SetAmount(i)
+	return ratuo
 }
 
 // SetNillableAmount sets the "amount" field if the given value is not nil.
-func (_u *RpgArticleTipUpdateOne) SetNillableAmount(v *int) *RpgArticleTipUpdateOne {
-	if v != nil {
-		_u.SetAmount(*v)
+func (ratuo *RpgArticleTipUpdateOne) SetNillableAmount(i *int) *RpgArticleTipUpdateOne {
+	if i != nil {
+		ratuo.SetAmount(*i)
 	}
-	return _u
+	return ratuo
 }
 
-// AddAmount adds value to the "amount" field.
-func (_u *RpgArticleTipUpdateOne) AddAmount(v int) *RpgArticleTipUpdateOne {
-	_u.mutation.AddAmount(v)
-	return _u
+// AddAmount adds i to the "amount" field.
+func (ratuo *RpgArticleTipUpdateOne) AddAmount(i int) *RpgArticleTipUpdateOne {
+	ratuo.mutation.AddAmount(i)
+	return ratuo
 }
 
 // Mutation returns the RpgArticleTipMutation object of the builder.
-func (_u *RpgArticleTipUpdateOne) Mutation() *RpgArticleTipMutation {
-	return _u.mutation
+func (ratuo *RpgArticleTipUpdateOne) Mutation() *RpgArticleTipMutation {
+	return ratuo.mutation
 }
 
 // Where appends a list predicates to the RpgArticleTipUpdate builder.
-func (_u *RpgArticleTipUpdateOne) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipUpdateOne {
+	ratuo.mutation.Where(ps...)
+	return ratuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgArticleTipUpdateOne) Select(field string, fields ...string) *RpgArticleTipUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (ratuo *RpgArticleTipUpdateOne) Select(field string, fields ...string) *RpgArticleTipUpdateOne {
+	ratuo.fields = append([]string{field}, fields...)
+	return ratuo
 }
 
 // Save executes the query and returns the updated RpgArticleTip entity.
-func (_u *RpgArticleTipUpdateOne) Save(ctx context.Context) (*RpgArticleTip, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ratuo *RpgArticleTipUpdateOne) Save(ctx context.Context) (*RpgArticleTip, error) {
+	ratuo.defaults()
+	return withHooks(ctx, ratuo.sqlSave, ratuo.mutation, ratuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgArticleTipUpdateOne) SaveX(ctx context.Context) *RpgArticleTip {
-	node, err := _u.Save(ctx)
+func (ratuo *RpgArticleTipUpdateOne) SaveX(ctx context.Context) *RpgArticleTip {
+	node, err := ratuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -418,34 +418,34 @@ func (_u *RpgArticleTipUpdateOne) SaveX(ctx context.Context) *RpgArticleTip {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgArticleTipUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ratuo *RpgArticleTipUpdateOne) Exec(ctx context.Context) error {
+	_, err := ratuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgArticleTipUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ratuo *RpgArticleTipUpdateOne) ExecX(ctx context.Context) {
+	if err := ratuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgArticleTipUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ratuo *RpgArticleTipUpdateOne) defaults() {
+	if _, ok := ratuo.mutation.UpdateTime(); !ok {
 		v := rpgarticletip.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ratuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgArticleTipUpdateOne) sqlSave(ctx context.Context) (_node *RpgArticleTip, err error) {
+func (ratuo *RpgArticleTipUpdateOne) sqlSave(ctx context.Context) (_node *RpgArticleTip, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgarticletip.Table, rpgarticletip.Columns, sqlgraph.NewFieldSpec(rpgarticletip.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := ratuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgArticleTip.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := ratuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgarticletip.FieldID)
 		for _, f := range fields {
@@ -457,53 +457,53 @@ func (_u *RpgArticleTipUpdateOne) sqlSave(ctx context.Context) (_node *RpgArticl
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ratuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ratuo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgarticletip.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ratuo.mutation.IsDelete(); ok {
 		_spec.SetField(rpgarticletip.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ratuo.mutation.Version(); ok {
 		_spec.SetField(rpgarticletip.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ratuo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgarticletip.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ratuo.mutation.UID(); ok {
 		_spec.SetField(rpgarticletip.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ratuo.mutation.AddedUID(); ok {
 		_spec.AddField(rpgarticletip.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := ratuo.mutation.ArticleId(); ok {
 		_spec.SetField(rpgarticletip.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := ratuo.mutation.AddedArticleId(); ok {
 		_spec.AddField(rpgarticletip.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AuthorUid(); ok {
+	if value, ok := ratuo.mutation.AuthorUid(); ok {
 		_spec.SetField(rpgarticletip.FieldAuthorUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAuthorUid(); ok {
+	if value, ok := ratuo.mutation.AddedAuthorUid(); ok {
 		_spec.AddField(rpgarticletip.FieldAuthorUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Amount(); ok {
+	if value, ok := ratuo.mutation.Amount(); ok {
 		_spec.SetField(rpgarticletip.FieldAmount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAmount(); ok {
+	if value, ok := ratuo.mutation.AddedAmount(); ok {
 		_spec.AddField(rpgarticletip.FieldAmount, field.TypeInt, value)
 	}
-	_node = &RpgArticleTip{config: _u.config}
+	_node = &RpgArticleTip{config: ratuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, ratuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgarticletip.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -511,6 +511,6 @@ func (_u *RpgArticleTipUpdateOne) sqlSave(ctx context.Context) (_node *RpgArticl
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	ratuo.mutation.done = true
 	return _node, nil
 }

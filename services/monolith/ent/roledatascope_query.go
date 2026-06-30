@@ -28,40 +28,40 @@ type RoleDataScopeQuery struct {
 }
 
 // Where adds a new predicate for the RoleDataScopeQuery builder.
-func (_q *RoleDataScopeQuery) Where(ps ...predicate.RoleDataScope) *RoleDataScopeQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rdsq *RoleDataScopeQuery) Where(ps ...predicate.RoleDataScope) *RoleDataScopeQuery {
+	rdsq.predicates = append(rdsq.predicates, ps...)
+	return rdsq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RoleDataScopeQuery) Limit(limit int) *RoleDataScopeQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rdsq *RoleDataScopeQuery) Limit(limit int) *RoleDataScopeQuery {
+	rdsq.ctx.Limit = &limit
+	return rdsq
 }
 
 // Offset to start from.
-func (_q *RoleDataScopeQuery) Offset(offset int) *RoleDataScopeQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rdsq *RoleDataScopeQuery) Offset(offset int) *RoleDataScopeQuery {
+	rdsq.ctx.Offset = &offset
+	return rdsq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RoleDataScopeQuery) Unique(unique bool) *RoleDataScopeQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rdsq *RoleDataScopeQuery) Unique(unique bool) *RoleDataScopeQuery {
+	rdsq.ctx.Unique = &unique
+	return rdsq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RoleDataScopeQuery) Order(o ...roledatascope.OrderOption) *RoleDataScopeQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rdsq *RoleDataScopeQuery) Order(o ...roledatascope.OrderOption) *RoleDataScopeQuery {
+	rdsq.order = append(rdsq.order, o...)
+	return rdsq
 }
 
 // First returns the first RoleDataScope entity from the query.
 // Returns a *NotFoundError when no RoleDataScope was found.
-func (_q *RoleDataScopeQuery) First(ctx context.Context) (*RoleDataScope, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rdsq *RoleDataScopeQuery) First(ctx context.Context) (*RoleDataScope, error) {
+	nodes, err := rdsq.Limit(1).All(setContextOp(ctx, rdsq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RoleDataScopeQuery) First(ctx context.Context) (*RoleDataScope, error)
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) FirstX(ctx context.Context) *RoleDataScope {
-	node, err := _q.First(ctx)
+func (rdsq *RoleDataScopeQuery) FirstX(ctx context.Context) *RoleDataScope {
+	node, err := rdsq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RoleDataScopeQuery) FirstX(ctx context.Context) *RoleDataScope {
 
 // FirstID returns the first RoleDataScope ID from the query.
 // Returns a *NotFoundError when no RoleDataScope ID was found.
-func (_q *RoleDataScopeQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rdsq *RoleDataScopeQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rdsq.Limit(1).IDs(setContextOp(ctx, rdsq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RoleDataScopeQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rdsq *RoleDataScopeQuery) FirstIDX(ctx context.Context) int {
+	id, err := rdsq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RoleDataScopeQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RoleDataScope entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RoleDataScope entity is found.
 // Returns a *NotFoundError when no RoleDataScope entities are found.
-func (_q *RoleDataScopeQuery) Only(ctx context.Context) (*RoleDataScope, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rdsq *RoleDataScopeQuery) Only(ctx context.Context) (*RoleDataScope, error) {
+	nodes, err := rdsq.Limit(2).All(setContextOp(ctx, rdsq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RoleDataScopeQuery) Only(ctx context.Context) (*RoleDataScope, error) 
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) OnlyX(ctx context.Context) *RoleDataScope {
-	node, err := _q.Only(ctx)
+func (rdsq *RoleDataScopeQuery) OnlyX(ctx context.Context) *RoleDataScope {
+	node, err := rdsq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RoleDataScopeQuery) OnlyX(ctx context.Context) *RoleDataScope {
 // OnlyID is like Only, but returns the only RoleDataScope ID in the query.
 // Returns a *NotSingularError when more than one RoleDataScope ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RoleDataScopeQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rdsq *RoleDataScopeQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rdsq.Limit(2).IDs(setContextOp(ctx, rdsq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RoleDataScopeQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rdsq *RoleDataScopeQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rdsq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RoleDataScopeQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RoleDataScopes.
-func (_q *RoleDataScopeQuery) All(ctx context.Context) ([]*RoleDataScope, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rdsq *RoleDataScopeQuery) All(ctx context.Context) ([]*RoleDataScope, error) {
+	ctx = setContextOp(ctx, rdsq.ctx, ent.OpQueryAll)
+	if err := rdsq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RoleDataScope, *RoleDataScopeQuery]()
-	return withInterceptors[[]*RoleDataScope](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RoleDataScope](ctx, rdsq, qr, rdsq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) AllX(ctx context.Context) []*RoleDataScope {
-	nodes, err := _q.All(ctx)
+func (rdsq *RoleDataScopeQuery) AllX(ctx context.Context) []*RoleDataScope {
+	nodes, err := rdsq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RoleDataScopeQuery) AllX(ctx context.Context) []*RoleDataScope {
 }
 
 // IDs executes the query and returns a list of RoleDataScope IDs.
-func (_q *RoleDataScopeQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rdsq *RoleDataScopeQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rdsq.ctx.Unique == nil && rdsq.path != nil {
+		rdsq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(roledatascope.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rdsq.ctx, ent.OpQueryIDs)
+	if err = rdsq.Select(roledatascope.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rdsq *RoleDataScopeQuery) IDsX(ctx context.Context) []int {
+	ids, err := rdsq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RoleDataScopeQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RoleDataScopeQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rdsq *RoleDataScopeQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rdsq.ctx, ent.OpQueryCount)
+	if err := rdsq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RoleDataScopeQuery](), _q.inters)
+	return withInterceptors[int](ctx, rdsq, querierCount[*RoleDataScopeQuery](), rdsq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rdsq *RoleDataScopeQuery) CountX(ctx context.Context) int {
+	count, err := rdsq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RoleDataScopeQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RoleDataScopeQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rdsq *RoleDataScopeQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rdsq.ctx, ent.OpQueryExist)
+	switch _, err := rdsq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RoleDataScopeQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RoleDataScopeQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rdsq *RoleDataScopeQuery) ExistX(ctx context.Context) bool {
+	exist, err := rdsq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RoleDataScopeQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RoleDataScopeQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RoleDataScopeQuery) Clone() *RoleDataScopeQuery {
-	if _q == nil {
+func (rdsq *RoleDataScopeQuery) Clone() *RoleDataScopeQuery {
+	if rdsq == nil {
 		return nil
 	}
 	return &RoleDataScopeQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]roledatascope.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RoleDataScope{}, _q.predicates...),
+		config:     rdsq.config,
+		ctx:        rdsq.ctx.Clone(),
+		order:      append([]roledatascope.OrderOption{}, rdsq.order...),
+		inters:     append([]Interceptor{}, rdsq.inters...),
+		predicates: append([]predicate.RoleDataScope{}, rdsq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rdsq.sql.Clone(),
+		path: rdsq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RoleDataScopeQuery) Clone() *RoleDataScopeQuery {
 //		GroupBy(roledatascope.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RoleDataScopeQuery) GroupBy(field string, fields ...string) *RoleDataScopeGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RoleDataScopeGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rdsq *RoleDataScopeQuery) GroupBy(field string, fields ...string) *RoleDataScopeGroupBy {
+	rdsq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RoleDataScopeGroupBy{build: rdsq}
+	grbuild.flds = &rdsq.ctx.Fields
 	grbuild.label = roledatascope.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RoleDataScopeQuery) GroupBy(field string, fields ...string) *RoleDataS
 //	client.RoleDataScope.Query().
 //		Select(roledatascope.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RoleDataScopeQuery) Select(fields ...string) *RoleDataScopeSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RoleDataScopeSelect{RoleDataScopeQuery: _q}
+func (rdsq *RoleDataScopeQuery) Select(fields ...string) *RoleDataScopeSelect {
+	rdsq.ctx.Fields = append(rdsq.ctx.Fields, fields...)
+	sbuild := &RoleDataScopeSelect{RoleDataScopeQuery: rdsq}
 	sbuild.label = roledatascope.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rdsq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RoleDataScopeSelect configured with the given aggregations.
-func (_q *RoleDataScopeQuery) Aggregate(fns ...AggregateFunc) *RoleDataScopeSelect {
-	return _q.Select().Aggregate(fns...)
+func (rdsq *RoleDataScopeQuery) Aggregate(fns ...AggregateFunc) *RoleDataScopeSelect {
+	return rdsq.Select().Aggregate(fns...)
 }
 
-func (_q *RoleDataScopeQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rdsq *RoleDataScopeQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rdsq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rdsq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rdsq.ctx.Fields {
 		if !roledatascope.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rdsq.path != nil {
+		prev, err := rdsq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rdsq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RoleDataScopeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RoleDataScope, error) {
+func (rdsq *RoleDataScopeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RoleDataScope, error) {
 	var (
 		nodes = []*RoleDataScope{}
-		_spec = _q.querySpec()
+		_spec = rdsq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RoleDataScope).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RoleDataScope{config: _q.config}
+		node := &RoleDataScope{config: rdsq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rdsq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RoleDataScopeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([
 	return nodes, nil
 }
 
-func (_q *RoleDataScopeQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rdsq *RoleDataScopeQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rdsq.querySpec()
+	_spec.Node.Columns = rdsq.ctx.Fields
+	if len(rdsq.ctx.Fields) > 0 {
+		_spec.Unique = rdsq.ctx.Unique != nil && *rdsq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rdsq.driver, _spec)
 }
 
-func (_q *RoleDataScopeQuery) querySpec() *sqlgraph.QuerySpec {
+func (rdsq *RoleDataScopeQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(roledatascope.Table, roledatascope.Columns, sqlgraph.NewFieldSpec(roledatascope.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rdsq.sql
+	if unique := rdsq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rdsq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rdsq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, roledatascope.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RoleDataScopeQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rdsq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rdsq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rdsq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rdsq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RoleDataScopeQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RoleDataScopeQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rdsq *RoleDataScopeQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rdsq.driver.Dialect())
 	t1 := builder.Table(roledatascope.Table)
-	columns := _q.ctx.Fields
+	columns := rdsq.ctx.Fields
 	if len(columns) == 0 {
 		columns = roledatascope.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rdsq.sql != nil {
+		selector = rdsq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rdsq.ctx.Unique != nil && *rdsq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rdsq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rdsq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rdsq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rdsq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RoleDataScopeGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RoleDataScopeGroupBy) Aggregate(fns ...AggregateFunc) *RoleDataScopeGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rdsgb *RoleDataScopeGroupBy) Aggregate(fns ...AggregateFunc) *RoleDataScopeGroupBy {
+	rdsgb.fns = append(rdsgb.fns, fns...)
+	return rdsgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RoleDataScopeGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rdsgb *RoleDataScopeGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rdsgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rdsgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RoleDataScopeQuery, *RoleDataScopeGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RoleDataScopeQuery, *RoleDataScopeGroupBy](ctx, rdsgb.build, rdsgb, rdsgb.build.inters, v)
 }
 
-func (_g *RoleDataScopeGroupBy) sqlScan(ctx context.Context, root *RoleDataScopeQuery, v any) error {
+func (rdsgb *RoleDataScopeGroupBy) sqlScan(ctx context.Context, root *RoleDataScopeQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rdsgb.fns))
+	for _, fn := range rdsgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rdsgb.flds)+len(rdsgb.fns))
+		for _, f := range *rdsgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rdsgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rdsgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RoleDataScopeSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RoleDataScopeSelect) Aggregate(fns ...AggregateFunc) *RoleDataScopeSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rdss *RoleDataScopeSelect) Aggregate(fns ...AggregateFunc) *RoleDataScopeSelect {
+	rdss.fns = append(rdss.fns, fns...)
+	return rdss
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RoleDataScopeSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rdss *RoleDataScopeSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rdss.ctx, ent.OpQuerySelect)
+	if err := rdss.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RoleDataScopeQuery, *RoleDataScopeSelect](ctx, _s.RoleDataScopeQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RoleDataScopeQuery, *RoleDataScopeSelect](ctx, rdss.RoleDataScopeQuery, rdss, rdss.inters, v)
 }
 
-func (_s *RoleDataScopeSelect) sqlScan(ctx context.Context, root *RoleDataScopeQuery, v any) error {
+func (rdss *RoleDataScopeSelect) sqlScan(ctx context.Context, root *RoleDataScopeQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rdss.fns))
+	for _, fn := range rdss.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rdss.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RoleDataScopeSelect) sqlScan(ctx context.Context, root *RoleDataScopeQ
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rdss.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

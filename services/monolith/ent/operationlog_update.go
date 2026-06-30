@@ -23,226 +23,226 @@ type OperationLogUpdate struct {
 }
 
 // Where appends a list predicates to the OperationLogUpdate builder.
-func (_u *OperationLogUpdate) Where(ps ...predicate.OperationLog) *OperationLogUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (olu *OperationLogUpdate) Where(ps ...predicate.OperationLog) *OperationLogUpdate {
+	olu.mutation.Where(ps...)
+	return olu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *OperationLogUpdate) SetUpdateTime(v time.Time) *OperationLogUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (olu *OperationLogUpdate) SetUpdateTime(t time.Time) *OperationLogUpdate {
+	olu.mutation.SetUpdateTime(t)
+	return olu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *OperationLogUpdate) SetIsDelete(v bool) *OperationLogUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (olu *OperationLogUpdate) SetIsDelete(b bool) *OperationLogUpdate {
+	olu.mutation.SetIsDelete(b)
+	return olu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableIsDelete(v *bool) *OperationLogUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (olu *OperationLogUpdate) SetNillableIsDelete(b *bool) *OperationLogUpdate {
+	if b != nil {
+		olu.SetIsDelete(*b)
 	}
-	return _u
+	return olu
 }
 
 // SetVersion sets the "version" field.
-func (_u *OperationLogUpdate) SetVersion(v int) *OperationLogUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (olu *OperationLogUpdate) SetVersion(i int) *OperationLogUpdate {
+	olu.mutation.ResetVersion()
+	olu.mutation.SetVersion(i)
+	return olu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableVersion(v *int) *OperationLogUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (olu *OperationLogUpdate) SetNillableVersion(i *int) *OperationLogUpdate {
+	if i != nil {
+		olu.SetVersion(*i)
 	}
-	return _u
+	return olu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *OperationLogUpdate) AddVersion(v int) *OperationLogUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (olu *OperationLogUpdate) AddVersion(i int) *OperationLogUpdate {
+	olu.mutation.AddVersion(i)
+	return olu
 }
 
 // SetUserId sets the "userId" field.
-func (_u *OperationLogUpdate) SetUserId(v int) *OperationLogUpdate {
-	_u.mutation.ResetUserId()
-	_u.mutation.SetUserId(v)
-	return _u
+func (olu *OperationLogUpdate) SetUserId(i int) *OperationLogUpdate {
+	olu.mutation.ResetUserId()
+	olu.mutation.SetUserId(i)
+	return olu
 }
 
 // SetNillableUserId sets the "userId" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableUserId(v *int) *OperationLogUpdate {
-	if v != nil {
-		_u.SetUserId(*v)
+func (olu *OperationLogUpdate) SetNillableUserId(i *int) *OperationLogUpdate {
+	if i != nil {
+		olu.SetUserId(*i)
 	}
-	return _u
+	return olu
 }
 
-// AddUserId adds value to the "userId" field.
-func (_u *OperationLogUpdate) AddUserId(v int) *OperationLogUpdate {
-	_u.mutation.AddUserId(v)
-	return _u
+// AddUserId adds i to the "userId" field.
+func (olu *OperationLogUpdate) AddUserId(i int) *OperationLogUpdate {
+	olu.mutation.AddUserId(i)
+	return olu
 }
 
 // SetUsername sets the "username" field.
-func (_u *OperationLogUpdate) SetUsername(v string) *OperationLogUpdate {
-	_u.mutation.SetUsername(v)
-	return _u
+func (olu *OperationLogUpdate) SetUsername(s string) *OperationLogUpdate {
+	olu.mutation.SetUsername(s)
+	return olu
 }
 
 // SetNillableUsername sets the "username" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableUsername(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetUsername(*v)
+func (olu *OperationLogUpdate) SetNillableUsername(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetUsername(*s)
 	}
-	return _u
+	return olu
 }
 
 // SetModule sets the "module" field.
-func (_u *OperationLogUpdate) SetModule(v string) *OperationLogUpdate {
-	_u.mutation.SetModule(v)
-	return _u
+func (olu *OperationLogUpdate) SetModule(s string) *OperationLogUpdate {
+	olu.mutation.SetModule(s)
+	return olu
 }
 
 // SetNillableModule sets the "module" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableModule(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetModule(*v)
+func (olu *OperationLogUpdate) SetNillableModule(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetModule(*s)
 	}
-	return _u
+	return olu
 }
 
 // SetAction sets the "action" field.
-func (_u *OperationLogUpdate) SetAction(v string) *OperationLogUpdate {
-	_u.mutation.SetAction(v)
-	return _u
+func (olu *OperationLogUpdate) SetAction(s string) *OperationLogUpdate {
+	olu.mutation.SetAction(s)
+	return olu
 }
 
 // SetNillableAction sets the "action" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableAction(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetAction(*v)
+func (olu *OperationLogUpdate) SetNillableAction(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetAction(*s)
 	}
-	return _u
+	return olu
 }
 
 // SetMethod sets the "method" field.
-func (_u *OperationLogUpdate) SetMethod(v string) *OperationLogUpdate {
-	_u.mutation.SetMethod(v)
-	return _u
+func (olu *OperationLogUpdate) SetMethod(s string) *OperationLogUpdate {
+	olu.mutation.SetMethod(s)
+	return olu
 }
 
 // SetNillableMethod sets the "method" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableMethod(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetMethod(*v)
+func (olu *OperationLogUpdate) SetNillableMethod(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetMethod(*s)
 	}
-	return _u
+	return olu
 }
 
 // SetPath sets the "path" field.
-func (_u *OperationLogUpdate) SetPath(v string) *OperationLogUpdate {
-	_u.mutation.SetPath(v)
-	return _u
+func (olu *OperationLogUpdate) SetPath(s string) *OperationLogUpdate {
+	olu.mutation.SetPath(s)
+	return olu
 }
 
 // SetNillablePath sets the "path" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillablePath(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetPath(*v)
+func (olu *OperationLogUpdate) SetNillablePath(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetPath(*s)
 	}
-	return _u
+	return olu
 }
 
 // SetDescription sets the "description" field.
-func (_u *OperationLogUpdate) SetDescription(v string) *OperationLogUpdate {
-	_u.mutation.SetDescription(v)
-	return _u
+func (olu *OperationLogUpdate) SetDescription(s string) *OperationLogUpdate {
+	olu.mutation.SetDescription(s)
+	return olu
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableDescription(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetDescription(*v)
+func (olu *OperationLogUpdate) SetNillableDescription(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetDescription(*s)
 	}
-	return _u
+	return olu
 }
 
 // SetIP sets the "ip" field.
-func (_u *OperationLogUpdate) SetIP(v string) *OperationLogUpdate {
-	_u.mutation.SetIP(v)
-	return _u
+func (olu *OperationLogUpdate) SetIP(s string) *OperationLogUpdate {
+	olu.mutation.SetIP(s)
+	return olu
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableIP(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetIP(*v)
+func (olu *OperationLogUpdate) SetNillableIP(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetIP(*s)
 	}
-	return _u
+	return olu
 }
 
 // SetRequestBody sets the "requestBody" field.
-func (_u *OperationLogUpdate) SetRequestBody(v string) *OperationLogUpdate {
-	_u.mutation.SetRequestBody(v)
-	return _u
+func (olu *OperationLogUpdate) SetRequestBody(s string) *OperationLogUpdate {
+	olu.mutation.SetRequestBody(s)
+	return olu
 }
 
 // SetNillableRequestBody sets the "requestBody" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableRequestBody(v *string) *OperationLogUpdate {
-	if v != nil {
-		_u.SetRequestBody(*v)
+func (olu *OperationLogUpdate) SetNillableRequestBody(s *string) *OperationLogUpdate {
+	if s != nil {
+		olu.SetRequestBody(*s)
 	}
-	return _u
+	return olu
 }
 
 // ClearRequestBody clears the value of the "requestBody" field.
-func (_u *OperationLogUpdate) ClearRequestBody() *OperationLogUpdate {
-	_u.mutation.ClearRequestBody()
-	return _u
+func (olu *OperationLogUpdate) ClearRequestBody() *OperationLogUpdate {
+	olu.mutation.ClearRequestBody()
+	return olu
 }
 
 // SetStatusCode sets the "statusCode" field.
-func (_u *OperationLogUpdate) SetStatusCode(v int) *OperationLogUpdate {
-	_u.mutation.ResetStatusCode()
-	_u.mutation.SetStatusCode(v)
-	return _u
+func (olu *OperationLogUpdate) SetStatusCode(i int) *OperationLogUpdate {
+	olu.mutation.ResetStatusCode()
+	olu.mutation.SetStatusCode(i)
+	return olu
 }
 
 // SetNillableStatusCode sets the "statusCode" field if the given value is not nil.
-func (_u *OperationLogUpdate) SetNillableStatusCode(v *int) *OperationLogUpdate {
-	if v != nil {
-		_u.SetStatusCode(*v)
+func (olu *OperationLogUpdate) SetNillableStatusCode(i *int) *OperationLogUpdate {
+	if i != nil {
+		olu.SetStatusCode(*i)
 	}
-	return _u
+	return olu
 }
 
-// AddStatusCode adds value to the "statusCode" field.
-func (_u *OperationLogUpdate) AddStatusCode(v int) *OperationLogUpdate {
-	_u.mutation.AddStatusCode(v)
-	return _u
+// AddStatusCode adds i to the "statusCode" field.
+func (olu *OperationLogUpdate) AddStatusCode(i int) *OperationLogUpdate {
+	olu.mutation.AddStatusCode(i)
+	return olu
 }
 
 // Mutation returns the OperationLogMutation object of the builder.
-func (_u *OperationLogUpdate) Mutation() *OperationLogMutation {
-	return _u.mutation
+func (olu *OperationLogUpdate) Mutation() *OperationLogMutation {
+	return olu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *OperationLogUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (olu *OperationLogUpdate) Save(ctx context.Context) (int, error) {
+	olu.defaults()
+	return withHooks(ctx, olu.sqlSave, olu.mutation, olu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *OperationLogUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (olu *OperationLogUpdate) SaveX(ctx context.Context) int {
+	affected, err := olu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -250,87 +250,87 @@ func (_u *OperationLogUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *OperationLogUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (olu *OperationLogUpdate) Exec(ctx context.Context) error {
+	_, err := olu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *OperationLogUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (olu *OperationLogUpdate) ExecX(ctx context.Context) {
+	if err := olu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *OperationLogUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (olu *OperationLogUpdate) defaults() {
+	if _, ok := olu.mutation.UpdateTime(); !ok {
 		v := operationlog.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		olu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *OperationLogUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (olu *OperationLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(operationlog.Table, operationlog.Columns, sqlgraph.NewFieldSpec(operationlog.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := olu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := olu.mutation.UpdateTime(); ok {
 		_spec.SetField(operationlog.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := olu.mutation.IsDelete(); ok {
 		_spec.SetField(operationlog.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := olu.mutation.Version(); ok {
 		_spec.SetField(operationlog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := olu.mutation.AddedVersion(); ok {
 		_spec.AddField(operationlog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UserId(); ok {
+	if value, ok := olu.mutation.UserId(); ok {
 		_spec.SetField(operationlog.FieldUserId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUserId(); ok {
+	if value, ok := olu.mutation.AddedUserId(); ok {
 		_spec.AddField(operationlog.FieldUserId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Username(); ok {
+	if value, ok := olu.mutation.Username(); ok {
 		_spec.SetField(operationlog.FieldUsername, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Module(); ok {
+	if value, ok := olu.mutation.Module(); ok {
 		_spec.SetField(operationlog.FieldModule, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Action(); ok {
+	if value, ok := olu.mutation.Action(); ok {
 		_spec.SetField(operationlog.FieldAction, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Method(); ok {
+	if value, ok := olu.mutation.Method(); ok {
 		_spec.SetField(operationlog.FieldMethod, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Path(); ok {
+	if value, ok := olu.mutation.Path(); ok {
 		_spec.SetField(operationlog.FieldPath, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := olu.mutation.Description(); ok {
 		_spec.SetField(operationlog.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := olu.mutation.IP(); ok {
 		_spec.SetField(operationlog.FieldIP, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.RequestBody(); ok {
+	if value, ok := olu.mutation.RequestBody(); ok {
 		_spec.SetField(operationlog.FieldRequestBody, field.TypeString, value)
 	}
-	if _u.mutation.RequestBodyCleared() {
+	if olu.mutation.RequestBodyCleared() {
 		_spec.ClearField(operationlog.FieldRequestBody, field.TypeString)
 	}
-	if value, ok := _u.mutation.StatusCode(); ok {
+	if value, ok := olu.mutation.StatusCode(); ok {
 		_spec.SetField(operationlog.FieldStatusCode, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedStatusCode(); ok {
+	if value, ok := olu.mutation.AddedStatusCode(); ok {
 		_spec.AddField(operationlog.FieldStatusCode, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, olu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{operationlog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -338,8 +338,8 @@ func (_u *OperationLogUpdate) sqlSave(ctx context.Context) (_node int, err error
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	olu.mutation.done = true
+	return n, nil
 }
 
 // OperationLogUpdateOne is the builder for updating a single OperationLog entity.
@@ -351,233 +351,233 @@ type OperationLogUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *OperationLogUpdateOne) SetUpdateTime(v time.Time) *OperationLogUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetUpdateTime(t time.Time) *OperationLogUpdateOne {
+	oluo.mutation.SetUpdateTime(t)
+	return oluo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *OperationLogUpdateOne) SetIsDelete(v bool) *OperationLogUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetIsDelete(b bool) *OperationLogUpdateOne {
+	oluo.mutation.SetIsDelete(b)
+	return oluo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableIsDelete(v *bool) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (oluo *OperationLogUpdateOne) SetNillableIsDelete(b *bool) *OperationLogUpdateOne {
+	if b != nil {
+		oluo.SetIsDelete(*b)
 	}
-	return _u
+	return oluo
 }
 
 // SetVersion sets the "version" field.
-func (_u *OperationLogUpdateOne) SetVersion(v int) *OperationLogUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetVersion(i int) *OperationLogUpdateOne {
+	oluo.mutation.ResetVersion()
+	oluo.mutation.SetVersion(i)
+	return oluo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableVersion(v *int) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (oluo *OperationLogUpdateOne) SetNillableVersion(i *int) *OperationLogUpdateOne {
+	if i != nil {
+		oluo.SetVersion(*i)
 	}
-	return _u
+	return oluo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *OperationLogUpdateOne) AddVersion(v int) *OperationLogUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (oluo *OperationLogUpdateOne) AddVersion(i int) *OperationLogUpdateOne {
+	oluo.mutation.AddVersion(i)
+	return oluo
 }
 
 // SetUserId sets the "userId" field.
-func (_u *OperationLogUpdateOne) SetUserId(v int) *OperationLogUpdateOne {
-	_u.mutation.ResetUserId()
-	_u.mutation.SetUserId(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetUserId(i int) *OperationLogUpdateOne {
+	oluo.mutation.ResetUserId()
+	oluo.mutation.SetUserId(i)
+	return oluo
 }
 
 // SetNillableUserId sets the "userId" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableUserId(v *int) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetUserId(*v)
+func (oluo *OperationLogUpdateOne) SetNillableUserId(i *int) *OperationLogUpdateOne {
+	if i != nil {
+		oluo.SetUserId(*i)
 	}
-	return _u
+	return oluo
 }
 
-// AddUserId adds value to the "userId" field.
-func (_u *OperationLogUpdateOne) AddUserId(v int) *OperationLogUpdateOne {
-	_u.mutation.AddUserId(v)
-	return _u
+// AddUserId adds i to the "userId" field.
+func (oluo *OperationLogUpdateOne) AddUserId(i int) *OperationLogUpdateOne {
+	oluo.mutation.AddUserId(i)
+	return oluo
 }
 
 // SetUsername sets the "username" field.
-func (_u *OperationLogUpdateOne) SetUsername(v string) *OperationLogUpdateOne {
-	_u.mutation.SetUsername(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetUsername(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetUsername(s)
+	return oluo
 }
 
 // SetNillableUsername sets the "username" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableUsername(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetUsername(*v)
+func (oluo *OperationLogUpdateOne) SetNillableUsername(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetUsername(*s)
 	}
-	return _u
+	return oluo
 }
 
 // SetModule sets the "module" field.
-func (_u *OperationLogUpdateOne) SetModule(v string) *OperationLogUpdateOne {
-	_u.mutation.SetModule(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetModule(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetModule(s)
+	return oluo
 }
 
 // SetNillableModule sets the "module" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableModule(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetModule(*v)
+func (oluo *OperationLogUpdateOne) SetNillableModule(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetModule(*s)
 	}
-	return _u
+	return oluo
 }
 
 // SetAction sets the "action" field.
-func (_u *OperationLogUpdateOne) SetAction(v string) *OperationLogUpdateOne {
-	_u.mutation.SetAction(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetAction(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetAction(s)
+	return oluo
 }
 
 // SetNillableAction sets the "action" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableAction(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetAction(*v)
+func (oluo *OperationLogUpdateOne) SetNillableAction(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetAction(*s)
 	}
-	return _u
+	return oluo
 }
 
 // SetMethod sets the "method" field.
-func (_u *OperationLogUpdateOne) SetMethod(v string) *OperationLogUpdateOne {
-	_u.mutation.SetMethod(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetMethod(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetMethod(s)
+	return oluo
 }
 
 // SetNillableMethod sets the "method" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableMethod(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetMethod(*v)
+func (oluo *OperationLogUpdateOne) SetNillableMethod(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetMethod(*s)
 	}
-	return _u
+	return oluo
 }
 
 // SetPath sets the "path" field.
-func (_u *OperationLogUpdateOne) SetPath(v string) *OperationLogUpdateOne {
-	_u.mutation.SetPath(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetPath(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetPath(s)
+	return oluo
 }
 
 // SetNillablePath sets the "path" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillablePath(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetPath(*v)
+func (oluo *OperationLogUpdateOne) SetNillablePath(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetPath(*s)
 	}
-	return _u
+	return oluo
 }
 
 // SetDescription sets the "description" field.
-func (_u *OperationLogUpdateOne) SetDescription(v string) *OperationLogUpdateOne {
-	_u.mutation.SetDescription(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetDescription(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetDescription(s)
+	return oluo
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableDescription(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetDescription(*v)
+func (oluo *OperationLogUpdateOne) SetNillableDescription(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetDescription(*s)
 	}
-	return _u
+	return oluo
 }
 
 // SetIP sets the "ip" field.
-func (_u *OperationLogUpdateOne) SetIP(v string) *OperationLogUpdateOne {
-	_u.mutation.SetIP(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetIP(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetIP(s)
+	return oluo
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableIP(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetIP(*v)
+func (oluo *OperationLogUpdateOne) SetNillableIP(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetIP(*s)
 	}
-	return _u
+	return oluo
 }
 
 // SetRequestBody sets the "requestBody" field.
-func (_u *OperationLogUpdateOne) SetRequestBody(v string) *OperationLogUpdateOne {
-	_u.mutation.SetRequestBody(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetRequestBody(s string) *OperationLogUpdateOne {
+	oluo.mutation.SetRequestBody(s)
+	return oluo
 }
 
 // SetNillableRequestBody sets the "requestBody" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableRequestBody(v *string) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetRequestBody(*v)
+func (oluo *OperationLogUpdateOne) SetNillableRequestBody(s *string) *OperationLogUpdateOne {
+	if s != nil {
+		oluo.SetRequestBody(*s)
 	}
-	return _u
+	return oluo
 }
 
 // ClearRequestBody clears the value of the "requestBody" field.
-func (_u *OperationLogUpdateOne) ClearRequestBody() *OperationLogUpdateOne {
-	_u.mutation.ClearRequestBody()
-	return _u
+func (oluo *OperationLogUpdateOne) ClearRequestBody() *OperationLogUpdateOne {
+	oluo.mutation.ClearRequestBody()
+	return oluo
 }
 
 // SetStatusCode sets the "statusCode" field.
-func (_u *OperationLogUpdateOne) SetStatusCode(v int) *OperationLogUpdateOne {
-	_u.mutation.ResetStatusCode()
-	_u.mutation.SetStatusCode(v)
-	return _u
+func (oluo *OperationLogUpdateOne) SetStatusCode(i int) *OperationLogUpdateOne {
+	oluo.mutation.ResetStatusCode()
+	oluo.mutation.SetStatusCode(i)
+	return oluo
 }
 
 // SetNillableStatusCode sets the "statusCode" field if the given value is not nil.
-func (_u *OperationLogUpdateOne) SetNillableStatusCode(v *int) *OperationLogUpdateOne {
-	if v != nil {
-		_u.SetStatusCode(*v)
+func (oluo *OperationLogUpdateOne) SetNillableStatusCode(i *int) *OperationLogUpdateOne {
+	if i != nil {
+		oluo.SetStatusCode(*i)
 	}
-	return _u
+	return oluo
 }
 
-// AddStatusCode adds value to the "statusCode" field.
-func (_u *OperationLogUpdateOne) AddStatusCode(v int) *OperationLogUpdateOne {
-	_u.mutation.AddStatusCode(v)
-	return _u
+// AddStatusCode adds i to the "statusCode" field.
+func (oluo *OperationLogUpdateOne) AddStatusCode(i int) *OperationLogUpdateOne {
+	oluo.mutation.AddStatusCode(i)
+	return oluo
 }
 
 // Mutation returns the OperationLogMutation object of the builder.
-func (_u *OperationLogUpdateOne) Mutation() *OperationLogMutation {
-	return _u.mutation
+func (oluo *OperationLogUpdateOne) Mutation() *OperationLogMutation {
+	return oluo.mutation
 }
 
 // Where appends a list predicates to the OperationLogUpdate builder.
-func (_u *OperationLogUpdateOne) Where(ps ...predicate.OperationLog) *OperationLogUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (oluo *OperationLogUpdateOne) Where(ps ...predicate.OperationLog) *OperationLogUpdateOne {
+	oluo.mutation.Where(ps...)
+	return oluo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *OperationLogUpdateOne) Select(field string, fields ...string) *OperationLogUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (oluo *OperationLogUpdateOne) Select(field string, fields ...string) *OperationLogUpdateOne {
+	oluo.fields = append([]string{field}, fields...)
+	return oluo
 }
 
 // Save executes the query and returns the updated OperationLog entity.
-func (_u *OperationLogUpdateOne) Save(ctx context.Context) (*OperationLog, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (oluo *OperationLogUpdateOne) Save(ctx context.Context) (*OperationLog, error) {
+	oluo.defaults()
+	return withHooks(ctx, oluo.sqlSave, oluo.mutation, oluo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *OperationLogUpdateOne) SaveX(ctx context.Context) *OperationLog {
-	node, err := _u.Save(ctx)
+func (oluo *OperationLogUpdateOne) SaveX(ctx context.Context) *OperationLog {
+	node, err := oluo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -585,34 +585,34 @@ func (_u *OperationLogUpdateOne) SaveX(ctx context.Context) *OperationLog {
 }
 
 // Exec executes the query on the entity.
-func (_u *OperationLogUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (oluo *OperationLogUpdateOne) Exec(ctx context.Context) error {
+	_, err := oluo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *OperationLogUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (oluo *OperationLogUpdateOne) ExecX(ctx context.Context) {
+	if err := oluo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *OperationLogUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (oluo *OperationLogUpdateOne) defaults() {
+	if _, ok := oluo.mutation.UpdateTime(); !ok {
 		v := operationlog.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		oluo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *OperationLogUpdateOne) sqlSave(ctx context.Context) (_node *OperationLog, err error) {
+func (oluo *OperationLogUpdateOne) sqlSave(ctx context.Context) (_node *OperationLog, err error) {
 	_spec := sqlgraph.NewUpdateSpec(operationlog.Table, operationlog.Columns, sqlgraph.NewFieldSpec(operationlog.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := oluo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "OperationLog.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := oluo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, operationlog.FieldID)
 		for _, f := range fields {
@@ -624,68 +624,68 @@ func (_u *OperationLogUpdateOne) sqlSave(ctx context.Context) (_node *OperationL
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := oluo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := oluo.mutation.UpdateTime(); ok {
 		_spec.SetField(operationlog.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := oluo.mutation.IsDelete(); ok {
 		_spec.SetField(operationlog.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := oluo.mutation.Version(); ok {
 		_spec.SetField(operationlog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := oluo.mutation.AddedVersion(); ok {
 		_spec.AddField(operationlog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UserId(); ok {
+	if value, ok := oluo.mutation.UserId(); ok {
 		_spec.SetField(operationlog.FieldUserId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUserId(); ok {
+	if value, ok := oluo.mutation.AddedUserId(); ok {
 		_spec.AddField(operationlog.FieldUserId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Username(); ok {
+	if value, ok := oluo.mutation.Username(); ok {
 		_spec.SetField(operationlog.FieldUsername, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Module(); ok {
+	if value, ok := oluo.mutation.Module(); ok {
 		_spec.SetField(operationlog.FieldModule, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Action(); ok {
+	if value, ok := oluo.mutation.Action(); ok {
 		_spec.SetField(operationlog.FieldAction, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Method(); ok {
+	if value, ok := oluo.mutation.Method(); ok {
 		_spec.SetField(operationlog.FieldMethod, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Path(); ok {
+	if value, ok := oluo.mutation.Path(); ok {
 		_spec.SetField(operationlog.FieldPath, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := oluo.mutation.Description(); ok {
 		_spec.SetField(operationlog.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := oluo.mutation.IP(); ok {
 		_spec.SetField(operationlog.FieldIP, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.RequestBody(); ok {
+	if value, ok := oluo.mutation.RequestBody(); ok {
 		_spec.SetField(operationlog.FieldRequestBody, field.TypeString, value)
 	}
-	if _u.mutation.RequestBodyCleared() {
+	if oluo.mutation.RequestBodyCleared() {
 		_spec.ClearField(operationlog.FieldRequestBody, field.TypeString)
 	}
-	if value, ok := _u.mutation.StatusCode(); ok {
+	if value, ok := oluo.mutation.StatusCode(); ok {
 		_spec.SetField(operationlog.FieldStatusCode, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedStatusCode(); ok {
+	if value, ok := oluo.mutation.AddedStatusCode(); ok {
 		_spec.AddField(operationlog.FieldStatusCode, field.TypeInt, value)
 	}
-	_node = &OperationLog{config: _u.config}
+	_node = &OperationLog{config: oluo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, oluo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{operationlog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -693,6 +693,6 @@ func (_u *OperationLogUpdateOne) sqlSave(ctx context.Context) (_node *OperationL
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	oluo.mutation.done = true
 	return _node, nil
 }

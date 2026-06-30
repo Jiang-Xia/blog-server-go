@@ -50,7 +50,7 @@ func (*RpgLevelReward) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgLevelReward fields.
-func (_m *RpgLevelReward) assignValues(columns []string, values []any) error {
+func (rlr *RpgLevelReward) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -61,45 +61,45 @@ func (_m *RpgLevelReward) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rlr.ID = int(value.Int64)
 		case rpglevelreward.FieldLevel:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field level", values[i])
 			} else if value.Valid {
-				_m.Level = int(value.Int64)
+				rlr.Level = int(value.Int64)
 			}
 		case rpglevelreward.FieldAvatarFrame:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field avatarFrame", values[i])
 			} else if value.Valid {
-				_m.AvatarFrame = value.String
+				rlr.AvatarFrame = value.String
 			}
 		case rpglevelreward.FieldTitle:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field title", values[i])
 			} else if value.Valid {
-				_m.Title = value.String
+				rlr.Title = value.String
 			}
 		case rpglevelreward.FieldCurrencyReward:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field currencyReward", values[i])
 			} else if value.Valid {
-				_m.CurrencyReward = int(value.Int64)
+				rlr.CurrencyReward = int(value.Int64)
 			}
 		case rpglevelreward.FieldActive:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field active", values[i])
 			} else if value.Valid {
-				_m.Active = int(value.Int64)
+				rlr.Active = int(value.Int64)
 			}
 		case rpglevelreward.FieldSort:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sort", values[i])
 			} else if value.Valid {
-				_m.Sort = int(value.Int64)
+				rlr.Sort = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rlr.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -107,50 +107,50 @@ func (_m *RpgLevelReward) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgLevelReward.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgLevelReward) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rlr *RpgLevelReward) Value(name string) (ent.Value, error) {
+	return rlr.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgLevelReward.
 // Note that you need to call RpgLevelReward.Unwrap() before calling this method if this RpgLevelReward
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgLevelReward) Update() *RpgLevelRewardUpdateOne {
-	return NewRpgLevelRewardClient(_m.config).UpdateOne(_m)
+func (rlr *RpgLevelReward) Update() *RpgLevelRewardUpdateOne {
+	return NewRpgLevelRewardClient(rlr.config).UpdateOne(rlr)
 }
 
 // Unwrap unwraps the RpgLevelReward entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgLevelReward) Unwrap() *RpgLevelReward {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rlr *RpgLevelReward) Unwrap() *RpgLevelReward {
+	_tx, ok := rlr.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgLevelReward is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rlr.config.driver = _tx.drv
+	return rlr
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgLevelReward) String() string {
+func (rlr *RpgLevelReward) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgLevelReward(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rlr.ID))
 	builder.WriteString("level=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Level))
+	builder.WriteString(fmt.Sprintf("%v", rlr.Level))
 	builder.WriteString(", ")
 	builder.WriteString("avatarFrame=")
-	builder.WriteString(_m.AvatarFrame)
+	builder.WriteString(rlr.AvatarFrame)
 	builder.WriteString(", ")
 	builder.WriteString("title=")
-	builder.WriteString(_m.Title)
+	builder.WriteString(rlr.Title)
 	builder.WriteString(", ")
 	builder.WriteString("currencyReward=")
-	builder.WriteString(fmt.Sprintf("%v", _m.CurrencyReward))
+	builder.WriteString(fmt.Sprintf("%v", rlr.CurrencyReward))
 	builder.WriteString(", ")
 	builder.WriteString("active=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Active))
+	builder.WriteString(fmt.Sprintf("%v", rlr.Active))
 	builder.WriteString(", ")
 	builder.WriteString("sort=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Sort))
+	builder.WriteString(fmt.Sprintf("%v", rlr.Sort))
 	builder.WriteByte(')')
 	return builder.String()
 }

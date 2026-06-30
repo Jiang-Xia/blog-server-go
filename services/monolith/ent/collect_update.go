@@ -23,108 +23,108 @@ type CollectUpdate struct {
 }
 
 // Where appends a list predicates to the CollectUpdate builder.
-func (_u *CollectUpdate) Where(ps ...predicate.Collect) *CollectUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (cu *CollectUpdate) Where(ps ...predicate.Collect) *CollectUpdate {
+	cu.mutation.Where(ps...)
+	return cu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *CollectUpdate) SetUpdateTime(v time.Time) *CollectUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (cu *CollectUpdate) SetUpdateTime(t time.Time) *CollectUpdate {
+	cu.mutation.SetUpdateTime(t)
+	return cu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *CollectUpdate) SetIsDelete(v bool) *CollectUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (cu *CollectUpdate) SetIsDelete(b bool) *CollectUpdate {
+	cu.mutation.SetIsDelete(b)
+	return cu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *CollectUpdate) SetNillableIsDelete(v *bool) *CollectUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (cu *CollectUpdate) SetNillableIsDelete(b *bool) *CollectUpdate {
+	if b != nil {
+		cu.SetIsDelete(*b)
 	}
-	return _u
+	return cu
 }
 
 // SetVersion sets the "version" field.
-func (_u *CollectUpdate) SetVersion(v int) *CollectUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (cu *CollectUpdate) SetVersion(i int) *CollectUpdate {
+	cu.mutation.ResetVersion()
+	cu.mutation.SetVersion(i)
+	return cu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *CollectUpdate) SetNillableVersion(v *int) *CollectUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (cu *CollectUpdate) SetNillableVersion(i *int) *CollectUpdate {
+	if i != nil {
+		cu.SetVersion(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *CollectUpdate) AddVersion(v int) *CollectUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (cu *CollectUpdate) AddVersion(i int) *CollectUpdate {
+	cu.mutation.AddVersion(i)
+	return cu
 }
 
 // SetUID sets the "uid" field.
-func (_u *CollectUpdate) SetUID(v int) *CollectUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (cu *CollectUpdate) SetUID(i int) *CollectUpdate {
+	cu.mutation.ResetUID()
+	cu.mutation.SetUID(i)
+	return cu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *CollectUpdate) SetNillableUID(v *int) *CollectUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (cu *CollectUpdate) SetNillableUID(i *int) *CollectUpdate {
+	if i != nil {
+		cu.SetUID(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *CollectUpdate) AddUID(v int) *CollectUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (cu *CollectUpdate) AddUID(i int) *CollectUpdate {
+	cu.mutation.AddUID(i)
+	return cu
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *CollectUpdate) SetArticleId(v int) *CollectUpdate {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (cu *CollectUpdate) SetArticleId(i int) *CollectUpdate {
+	cu.mutation.ResetArticleId()
+	cu.mutation.SetArticleId(i)
+	return cu
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *CollectUpdate) SetNillableArticleId(v *int) *CollectUpdate {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (cu *CollectUpdate) SetNillableArticleId(i *int) *CollectUpdate {
+	if i != nil {
+		cu.SetArticleId(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *CollectUpdate) AddArticleId(v int) *CollectUpdate {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (cu *CollectUpdate) AddArticleId(i int) *CollectUpdate {
+	cu.mutation.AddArticleId(i)
+	return cu
 }
 
 // Mutation returns the CollectMutation object of the builder.
-func (_u *CollectUpdate) Mutation() *CollectMutation {
-	return _u.mutation
+func (cu *CollectUpdate) Mutation() *CollectMutation {
+	return cu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *CollectUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cu *CollectUpdate) Save(ctx context.Context) (int, error) {
+	cu.defaults()
+	return withHooks(ctx, cu.sqlSave, cu.mutation, cu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CollectUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (cu *CollectUpdate) SaveX(ctx context.Context) int {
+	affected, err := cu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -132,60 +132,60 @@ func (_u *CollectUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *CollectUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cu *CollectUpdate) Exec(ctx context.Context) error {
+	_, err := cu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CollectUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cu *CollectUpdate) ExecX(ctx context.Context) {
+	if err := cu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CollectUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (cu *CollectUpdate) defaults() {
+	if _, ok := cu.mutation.UpdateTime(); !ok {
 		v := collect.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		cu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *CollectUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (cu *CollectUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(collect.Table, collect.Columns, sqlgraph.NewFieldSpec(collect.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := cu.mutation.UpdateTime(); ok {
 		_spec.SetField(collect.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := cu.mutation.IsDelete(); ok {
 		_spec.SetField(collect.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := cu.mutation.Version(); ok {
 		_spec.SetField(collect.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := cu.mutation.AddedVersion(); ok {
 		_spec.AddField(collect.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := cu.mutation.UID(); ok {
 		_spec.SetField(collect.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := cu.mutation.AddedUID(); ok {
 		_spec.AddField(collect.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := cu.mutation.ArticleId(); ok {
 		_spec.SetField(collect.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := cu.mutation.AddedArticleId(); ok {
 		_spec.AddField(collect.FieldArticleId, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, cu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{collect.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -193,8 +193,8 @@ func (_u *CollectUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	cu.mutation.done = true
+	return n, nil
 }
 
 // CollectUpdateOne is the builder for updating a single Collect entity.
@@ -206,115 +206,115 @@ type CollectUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *CollectUpdateOne) SetUpdateTime(v time.Time) *CollectUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (cuo *CollectUpdateOne) SetUpdateTime(t time.Time) *CollectUpdateOne {
+	cuo.mutation.SetUpdateTime(t)
+	return cuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *CollectUpdateOne) SetIsDelete(v bool) *CollectUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (cuo *CollectUpdateOne) SetIsDelete(b bool) *CollectUpdateOne {
+	cuo.mutation.SetIsDelete(b)
+	return cuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *CollectUpdateOne) SetNillableIsDelete(v *bool) *CollectUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (cuo *CollectUpdateOne) SetNillableIsDelete(b *bool) *CollectUpdateOne {
+	if b != nil {
+		cuo.SetIsDelete(*b)
 	}
-	return _u
+	return cuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *CollectUpdateOne) SetVersion(v int) *CollectUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (cuo *CollectUpdateOne) SetVersion(i int) *CollectUpdateOne {
+	cuo.mutation.ResetVersion()
+	cuo.mutation.SetVersion(i)
+	return cuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *CollectUpdateOne) SetNillableVersion(v *int) *CollectUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (cuo *CollectUpdateOne) SetNillableVersion(i *int) *CollectUpdateOne {
+	if i != nil {
+		cuo.SetVersion(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *CollectUpdateOne) AddVersion(v int) *CollectUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (cuo *CollectUpdateOne) AddVersion(i int) *CollectUpdateOne {
+	cuo.mutation.AddVersion(i)
+	return cuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *CollectUpdateOne) SetUID(v int) *CollectUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (cuo *CollectUpdateOne) SetUID(i int) *CollectUpdateOne {
+	cuo.mutation.ResetUID()
+	cuo.mutation.SetUID(i)
+	return cuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *CollectUpdateOne) SetNillableUID(v *int) *CollectUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (cuo *CollectUpdateOne) SetNillableUID(i *int) *CollectUpdateOne {
+	if i != nil {
+		cuo.SetUID(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *CollectUpdateOne) AddUID(v int) *CollectUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (cuo *CollectUpdateOne) AddUID(i int) *CollectUpdateOne {
+	cuo.mutation.AddUID(i)
+	return cuo
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *CollectUpdateOne) SetArticleId(v int) *CollectUpdateOne {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (cuo *CollectUpdateOne) SetArticleId(i int) *CollectUpdateOne {
+	cuo.mutation.ResetArticleId()
+	cuo.mutation.SetArticleId(i)
+	return cuo
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *CollectUpdateOne) SetNillableArticleId(v *int) *CollectUpdateOne {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (cuo *CollectUpdateOne) SetNillableArticleId(i *int) *CollectUpdateOne {
+	if i != nil {
+		cuo.SetArticleId(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *CollectUpdateOne) AddArticleId(v int) *CollectUpdateOne {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (cuo *CollectUpdateOne) AddArticleId(i int) *CollectUpdateOne {
+	cuo.mutation.AddArticleId(i)
+	return cuo
 }
 
 // Mutation returns the CollectMutation object of the builder.
-func (_u *CollectUpdateOne) Mutation() *CollectMutation {
-	return _u.mutation
+func (cuo *CollectUpdateOne) Mutation() *CollectMutation {
+	return cuo.mutation
 }
 
 // Where appends a list predicates to the CollectUpdate builder.
-func (_u *CollectUpdateOne) Where(ps ...predicate.Collect) *CollectUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (cuo *CollectUpdateOne) Where(ps ...predicate.Collect) *CollectUpdateOne {
+	cuo.mutation.Where(ps...)
+	return cuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *CollectUpdateOne) Select(field string, fields ...string) *CollectUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (cuo *CollectUpdateOne) Select(field string, fields ...string) *CollectUpdateOne {
+	cuo.fields = append([]string{field}, fields...)
+	return cuo
 }
 
 // Save executes the query and returns the updated Collect entity.
-func (_u *CollectUpdateOne) Save(ctx context.Context) (*Collect, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cuo *CollectUpdateOne) Save(ctx context.Context) (*Collect, error) {
+	cuo.defaults()
+	return withHooks(ctx, cuo.sqlSave, cuo.mutation, cuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CollectUpdateOne) SaveX(ctx context.Context) *Collect {
-	node, err := _u.Save(ctx)
+func (cuo *CollectUpdateOne) SaveX(ctx context.Context) *Collect {
+	node, err := cuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -322,34 +322,34 @@ func (_u *CollectUpdateOne) SaveX(ctx context.Context) *Collect {
 }
 
 // Exec executes the query on the entity.
-func (_u *CollectUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cuo *CollectUpdateOne) Exec(ctx context.Context) error {
+	_, err := cuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CollectUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cuo *CollectUpdateOne) ExecX(ctx context.Context) {
+	if err := cuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CollectUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (cuo *CollectUpdateOne) defaults() {
+	if _, ok := cuo.mutation.UpdateTime(); !ok {
 		v := collect.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		cuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *CollectUpdateOne) sqlSave(ctx context.Context) (_node *Collect, err error) {
+func (cuo *CollectUpdateOne) sqlSave(ctx context.Context) (_node *Collect, err error) {
 	_spec := sqlgraph.NewUpdateSpec(collect.Table, collect.Columns, sqlgraph.NewFieldSpec(collect.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := cuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Collect.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := cuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, collect.FieldID)
 		for _, f := range fields {
@@ -361,41 +361,41 @@ func (_u *CollectUpdateOne) sqlSave(ctx context.Context) (_node *Collect, err er
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := cuo.mutation.UpdateTime(); ok {
 		_spec.SetField(collect.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := cuo.mutation.IsDelete(); ok {
 		_spec.SetField(collect.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := cuo.mutation.Version(); ok {
 		_spec.SetField(collect.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := cuo.mutation.AddedVersion(); ok {
 		_spec.AddField(collect.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := cuo.mutation.UID(); ok {
 		_spec.SetField(collect.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := cuo.mutation.AddedUID(); ok {
 		_spec.AddField(collect.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := cuo.mutation.ArticleId(); ok {
 		_spec.SetField(collect.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := cuo.mutation.AddedArticleId(); ok {
 		_spec.AddField(collect.FieldArticleId, field.TypeInt, value)
 	}
-	_node = &Collect{config: _u.config}
+	_node = &Collect{config: cuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, cuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{collect.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -403,6 +403,6 @@ func (_u *CollectUpdateOne) sqlSave(ctx context.Context) (_node *Collect, err er
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	cuo.mutation.done = true
 	return _node, nil
 }

@@ -20,56 +20,56 @@ type SensitiveWordDelete struct {
 }
 
 // Where appends a list predicates to the SensitiveWordDelete builder.
-func (_d *SensitiveWordDelete) Where(ps ...predicate.SensitiveWord) *SensitiveWordDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (swd *SensitiveWordDelete) Where(ps ...predicate.SensitiveWord) *SensitiveWordDelete {
+	swd.mutation.Where(ps...)
+	return swd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *SensitiveWordDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (swd *SensitiveWordDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, swd.sqlExec, swd.mutation, swd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *SensitiveWordDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (swd *SensitiveWordDelete) ExecX(ctx context.Context) int {
+	n, err := swd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *SensitiveWordDelete) sqlExec(ctx context.Context) (int, error) {
+func (swd *SensitiveWordDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(sensitiveword.Table, sqlgraph.NewFieldSpec(sensitiveword.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := swd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, swd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	swd.mutation.done = true
 	return affected, err
 }
 
 // SensitiveWordDeleteOne is the builder for deleting a single SensitiveWord entity.
 type SensitiveWordDeleteOne struct {
-	_d *SensitiveWordDelete
+	swd *SensitiveWordDelete
 }
 
 // Where appends a list predicates to the SensitiveWordDelete builder.
-func (_d *SensitiveWordDeleteOne) Where(ps ...predicate.SensitiveWord) *SensitiveWordDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (swdo *SensitiveWordDeleteOne) Where(ps ...predicate.SensitiveWord) *SensitiveWordDeleteOne {
+	swdo.swd.mutation.Where(ps...)
+	return swdo
 }
 
 // Exec executes the deletion query.
-func (_d *SensitiveWordDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (swdo *SensitiveWordDeleteOne) Exec(ctx context.Context) error {
+	n, err := swdo.swd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *SensitiveWordDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *SensitiveWordDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (swdo *SensitiveWordDeleteOne) ExecX(ctx context.Context) {
+	if err := swdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

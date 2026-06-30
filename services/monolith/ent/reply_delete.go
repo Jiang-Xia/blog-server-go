@@ -20,56 +20,56 @@ type ReplyDelete struct {
 }
 
 // Where appends a list predicates to the ReplyDelete builder.
-func (_d *ReplyDelete) Where(ps ...predicate.Reply) *ReplyDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rd *ReplyDelete) Where(ps ...predicate.Reply) *ReplyDelete {
+	rd.mutation.Where(ps...)
+	return rd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *ReplyDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rd *ReplyDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rd.sqlExec, rd.mutation, rd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *ReplyDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rd *ReplyDelete) ExecX(ctx context.Context) int {
+	n, err := rd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *ReplyDelete) sqlExec(ctx context.Context) (int, error) {
+func (rd *ReplyDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(reply.Table, sqlgraph.NewFieldSpec(reply.FieldID, field.TypeString))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rd.mutation.done = true
 	return affected, err
 }
 
 // ReplyDeleteOne is the builder for deleting a single Reply entity.
 type ReplyDeleteOne struct {
-	_d *ReplyDelete
+	rd *ReplyDelete
 }
 
 // Where appends a list predicates to the ReplyDelete builder.
-func (_d *ReplyDeleteOne) Where(ps ...predicate.Reply) *ReplyDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rdo *ReplyDeleteOne) Where(ps ...predicate.Reply) *ReplyDeleteOne {
+	rdo.rd.mutation.Where(ps...)
+	return rdo
 }
 
 // Exec executes the deletion query.
-func (_d *ReplyDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rdo *ReplyDeleteOne) Exec(ctx context.Context) error {
+	n, err := rdo.rd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *ReplyDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *ReplyDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rdo *ReplyDeleteOne) ExecX(ctx context.Context) {
+	if err := rdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

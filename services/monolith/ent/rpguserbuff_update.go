@@ -23,301 +23,301 @@ type RpgUserBuffUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserBuffUpdate builder.
-func (_u *RpgUserBuffUpdate) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rubu *RpgUserBuffUpdate) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffUpdate {
+	rubu.mutation.Where(ps...)
+	return rubu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserBuffUpdate) SetUpdateTime(v time.Time) *RpgUserBuffUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetUpdateTime(t time.Time) *RpgUserBuffUpdate {
+	rubu.mutation.SetUpdateTime(t)
+	return rubu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserBuffUpdate) SetIsDelete(v bool) *RpgUserBuffUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetIsDelete(b bool) *RpgUserBuffUpdate {
+	rubu.mutation.SetIsDelete(b)
+	return rubu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableIsDelete(v *bool) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableIsDelete(b *bool) *RpgUserBuffUpdate {
+	if b != nil {
+		rubu.SetIsDelete(*b)
 	}
-	return _u
+	return rubu
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserBuffUpdate) SetVersion(v int) *RpgUserBuffUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetVersion(i int) *RpgUserBuffUpdate {
+	rubu.mutation.ResetVersion()
+	rubu.mutation.SetVersion(i)
+	return rubu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableVersion(v *int) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableVersion(i *int) *RpgUserBuffUpdate {
+	if i != nil {
+		rubu.SetVersion(*i)
 	}
-	return _u
+	return rubu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserBuffUpdate) AddVersion(v int) *RpgUserBuffUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rubu *RpgUserBuffUpdate) AddVersion(i int) *RpgUserBuffUpdate {
+	rubu.mutation.AddVersion(i)
+	return rubu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserBuffUpdate) SetUID(v int) *RpgUserBuffUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetUID(i int) *RpgUserBuffUpdate {
+	rubu.mutation.ResetUID()
+	rubu.mutation.SetUID(i)
+	return rubu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableUID(v *int) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableUID(i *int) *RpgUserBuffUpdate {
+	if i != nil {
+		rubu.SetUID(*i)
 	}
-	return _u
+	return rubu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserBuffUpdate) AddUID(v int) *RpgUserBuffUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rubu *RpgUserBuffUpdate) AddUID(i int) *RpgUserBuffUpdate {
+	rubu.mutation.AddUID(i)
+	return rubu
 }
 
 // SetBuffCode sets the "buffCode" field.
-func (_u *RpgUserBuffUpdate) SetBuffCode(v string) *RpgUserBuffUpdate {
-	_u.mutation.SetBuffCode(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetBuffCode(s string) *RpgUserBuffUpdate {
+	rubu.mutation.SetBuffCode(s)
+	return rubu
 }
 
 // SetNillableBuffCode sets the "buffCode" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableBuffCode(v *string) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetBuffCode(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableBuffCode(s *string) *RpgUserBuffUpdate {
+	if s != nil {
+		rubu.SetBuffCode(*s)
 	}
-	return _u
+	return rubu
 }
 
 // SetBuffType sets the "buffType" field.
-func (_u *RpgUserBuffUpdate) SetBuffType(v string) *RpgUserBuffUpdate {
-	_u.mutation.SetBuffType(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetBuffType(s string) *RpgUserBuffUpdate {
+	rubu.mutation.SetBuffType(s)
+	return rubu
 }
 
 // SetNillableBuffType sets the "buffType" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableBuffType(v *string) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetBuffType(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableBuffType(s *string) *RpgUserBuffUpdate {
+	if s != nil {
+		rubu.SetBuffType(*s)
 	}
-	return _u
+	return rubu
 }
 
 // SetName sets the "name" field.
-func (_u *RpgUserBuffUpdate) SetName(v string) *RpgUserBuffUpdate {
-	_u.mutation.SetName(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetName(s string) *RpgUserBuffUpdate {
+	rubu.mutation.SetName(s)
+	return rubu
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableName(v *string) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetName(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableName(s *string) *RpgUserBuffUpdate {
+	if s != nil {
+		rubu.SetName(*s)
 	}
-	return _u
+	return rubu
 }
 
 // SetDescription sets the "description" field.
-func (_u *RpgUserBuffUpdate) SetDescription(v string) *RpgUserBuffUpdate {
-	_u.mutation.SetDescription(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetDescription(s string) *RpgUserBuffUpdate {
+	rubu.mutation.SetDescription(s)
+	return rubu
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableDescription(v *string) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetDescription(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableDescription(s *string) *RpgUserBuffUpdate {
+	if s != nil {
+		rubu.SetDescription(*s)
 	}
-	return _u
+	return rubu
 }
 
 // SetValue sets the "value" field.
-func (_u *RpgUserBuffUpdate) SetValue(v float64) *RpgUserBuffUpdate {
-	_u.mutation.ResetValue()
-	_u.mutation.SetValue(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetValue(f float64) *RpgUserBuffUpdate {
+	rubu.mutation.ResetValue()
+	rubu.mutation.SetValue(f)
+	return rubu
 }
 
 // SetNillableValue sets the "value" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableValue(v *float64) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetValue(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableValue(f *float64) *RpgUserBuffUpdate {
+	if f != nil {
+		rubu.SetValue(*f)
 	}
-	return _u
+	return rubu
 }
 
-// AddValue adds value to the "value" field.
-func (_u *RpgUserBuffUpdate) AddValue(v float64) *RpgUserBuffUpdate {
-	_u.mutation.AddValue(v)
-	return _u
+// AddValue adds f to the "value" field.
+func (rubu *RpgUserBuffUpdate) AddValue(f float64) *RpgUserBuffUpdate {
+	rubu.mutation.AddValue(f)
+	return rubu
 }
 
 // SetExpireAt sets the "expireAt" field.
-func (_u *RpgUserBuffUpdate) SetExpireAt(v time.Time) *RpgUserBuffUpdate {
-	_u.mutation.SetExpireAt(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetExpireAt(t time.Time) *RpgUserBuffUpdate {
+	rubu.mutation.SetExpireAt(t)
+	return rubu
 }
 
 // SetNillableExpireAt sets the "expireAt" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableExpireAt(v *time.Time) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetExpireAt(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableExpireAt(t *time.Time) *RpgUserBuffUpdate {
+	if t != nil {
+		rubu.SetExpireAt(*t)
 	}
-	return _u
+	return rubu
 }
 
 // SetRemainingUses sets the "remainingUses" field.
-func (_u *RpgUserBuffUpdate) SetRemainingUses(v int) *RpgUserBuffUpdate {
-	_u.mutation.ResetRemainingUses()
-	_u.mutation.SetRemainingUses(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetRemainingUses(i int) *RpgUserBuffUpdate {
+	rubu.mutation.ResetRemainingUses()
+	rubu.mutation.SetRemainingUses(i)
+	return rubu
 }
 
 // SetNillableRemainingUses sets the "remainingUses" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableRemainingUses(v *int) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetRemainingUses(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableRemainingUses(i *int) *RpgUserBuffUpdate {
+	if i != nil {
+		rubu.SetRemainingUses(*i)
 	}
-	return _u
+	return rubu
 }
 
-// AddRemainingUses adds value to the "remainingUses" field.
-func (_u *RpgUserBuffUpdate) AddRemainingUses(v int) *RpgUserBuffUpdate {
-	_u.mutation.AddRemainingUses(v)
-	return _u
+// AddRemainingUses adds i to the "remainingUses" field.
+func (rubu *RpgUserBuffUpdate) AddRemainingUses(i int) *RpgUserBuffUpdate {
+	rubu.mutation.AddRemainingUses(i)
+	return rubu
 }
 
 // SetIsActive sets the "isActive" field.
-func (_u *RpgUserBuffUpdate) SetIsActive(v int) *RpgUserBuffUpdate {
-	_u.mutation.ResetIsActive()
-	_u.mutation.SetIsActive(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetIsActive(i int) *RpgUserBuffUpdate {
+	rubu.mutation.ResetIsActive()
+	rubu.mutation.SetIsActive(i)
+	return rubu
 }
 
 // SetNillableIsActive sets the "isActive" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableIsActive(v *int) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetIsActive(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableIsActive(i *int) *RpgUserBuffUpdate {
+	if i != nil {
+		rubu.SetIsActive(*i)
 	}
-	return _u
+	return rubu
 }
 
-// AddIsActive adds value to the "isActive" field.
-func (_u *RpgUserBuffUpdate) AddIsActive(v int) *RpgUserBuffUpdate {
-	_u.mutation.AddIsActive(v)
-	return _u
+// AddIsActive adds i to the "isActive" field.
+func (rubu *RpgUserBuffUpdate) AddIsActive(i int) *RpgUserBuffUpdate {
+	rubu.mutation.AddIsActive(i)
+	return rubu
 }
 
 // SetSourceType sets the "sourceType" field.
-func (_u *RpgUserBuffUpdate) SetSourceType(v string) *RpgUserBuffUpdate {
-	_u.mutation.SetSourceType(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetSourceType(s string) *RpgUserBuffUpdate {
+	rubu.mutation.SetSourceType(s)
+	return rubu
 }
 
 // SetNillableSourceType sets the "sourceType" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableSourceType(v *string) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetSourceType(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableSourceType(s *string) *RpgUserBuffUpdate {
+	if s != nil {
+		rubu.SetSourceType(*s)
 	}
-	return _u
+	return rubu
 }
 
 // ClearSourceType clears the value of the "sourceType" field.
-func (_u *RpgUserBuffUpdate) ClearSourceType() *RpgUserBuffUpdate {
-	_u.mutation.ClearSourceType()
-	return _u
+func (rubu *RpgUserBuffUpdate) ClearSourceType() *RpgUserBuffUpdate {
+	rubu.mutation.ClearSourceType()
+	return rubu
 }
 
 // SetSourceId sets the "sourceId" field.
-func (_u *RpgUserBuffUpdate) SetSourceId(v int) *RpgUserBuffUpdate {
-	_u.mutation.ResetSourceId()
-	_u.mutation.SetSourceId(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetSourceId(i int) *RpgUserBuffUpdate {
+	rubu.mutation.ResetSourceId()
+	rubu.mutation.SetSourceId(i)
+	return rubu
 }
 
 // SetNillableSourceId sets the "sourceId" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableSourceId(v *int) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetSourceId(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableSourceId(i *int) *RpgUserBuffUpdate {
+	if i != nil {
+		rubu.SetSourceId(*i)
 	}
-	return _u
+	return rubu
 }
 
-// AddSourceId adds value to the "sourceId" field.
-func (_u *RpgUserBuffUpdate) AddSourceId(v int) *RpgUserBuffUpdate {
-	_u.mutation.AddSourceId(v)
-	return _u
+// AddSourceId adds i to the "sourceId" field.
+func (rubu *RpgUserBuffUpdate) AddSourceId(i int) *RpgUserBuffUpdate {
+	rubu.mutation.AddSourceId(i)
+	return rubu
 }
 
 // ClearSourceId clears the value of the "sourceId" field.
-func (_u *RpgUserBuffUpdate) ClearSourceId() *RpgUserBuffUpdate {
-	_u.mutation.ClearSourceId()
-	return _u
+func (rubu *RpgUserBuffUpdate) ClearSourceId() *RpgUserBuffUpdate {
+	rubu.mutation.ClearSourceId()
+	return rubu
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserBuffUpdate) SetEffectJson(v string) *RpgUserBuffUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetEffectJson(s string) *RpgUserBuffUpdate {
+	rubu.mutation.SetEffectJson(s)
+	return rubu
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableEffectJson(v *string) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableEffectJson(s *string) *RpgUserBuffUpdate {
+	if s != nil {
+		rubu.SetEffectJson(*s)
 	}
-	return _u
+	return rubu
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserBuffUpdate) ClearEffectJson() *RpgUserBuffUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rubu *RpgUserBuffUpdate) ClearEffectJson() *RpgUserBuffUpdate {
+	rubu.mutation.ClearEffectJson()
+	return rubu
 }
 
 // SetTriggerMode sets the "triggerMode" field.
-func (_u *RpgUserBuffUpdate) SetTriggerMode(v string) *RpgUserBuffUpdate {
-	_u.mutation.SetTriggerMode(v)
-	return _u
+func (rubu *RpgUserBuffUpdate) SetTriggerMode(s string) *RpgUserBuffUpdate {
+	rubu.mutation.SetTriggerMode(s)
+	return rubu
 }
 
 // SetNillableTriggerMode sets the "triggerMode" field if the given value is not nil.
-func (_u *RpgUserBuffUpdate) SetNillableTriggerMode(v *string) *RpgUserBuffUpdate {
-	if v != nil {
-		_u.SetTriggerMode(*v)
+func (rubu *RpgUserBuffUpdate) SetNillableTriggerMode(s *string) *RpgUserBuffUpdate {
+	if s != nil {
+		rubu.SetTriggerMode(*s)
 	}
-	return _u
+	return rubu
 }
 
 // Mutation returns the RpgUserBuffMutation object of the builder.
-func (_u *RpgUserBuffUpdate) Mutation() *RpgUserBuffMutation {
-	return _u.mutation
+func (rubu *RpgUserBuffUpdate) Mutation() *RpgUserBuffMutation {
+	return rubu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserBuffUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rubu *RpgUserBuffUpdate) Save(ctx context.Context) (int, error) {
+	rubu.defaults()
+	return withHooks(ctx, rubu.sqlSave, rubu.mutation, rubu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserBuffUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rubu *RpgUserBuffUpdate) SaveX(ctx context.Context) int {
+	affected, err := rubu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -325,111 +325,111 @@ func (_u *RpgUserBuffUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserBuffUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rubu *RpgUserBuffUpdate) Exec(ctx context.Context) error {
+	_, err := rubu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserBuffUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rubu *RpgUserBuffUpdate) ExecX(ctx context.Context) {
+	if err := rubu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserBuffUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rubu *RpgUserBuffUpdate) defaults() {
+	if _, ok := rubu.mutation.UpdateTime(); !ok {
 		v := rpguserbuff.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rubu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserBuffUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rubu *RpgUserBuffUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserbuff.Table, rpguserbuff.Columns, sqlgraph.NewFieldSpec(rpguserbuff.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rubu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rubu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserbuff.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rubu.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserbuff.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rubu.mutation.Version(); ok {
 		_spec.SetField(rpguserbuff.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rubu.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserbuff.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rubu.mutation.UID(); ok {
 		_spec.SetField(rpguserbuff.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rubu.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserbuff.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.BuffCode(); ok {
+	if value, ok := rubu.mutation.BuffCode(); ok {
 		_spec.SetField(rpguserbuff.FieldBuffCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.BuffType(); ok {
+	if value, ok := rubu.mutation.BuffType(); ok {
 		_spec.SetField(rpguserbuff.FieldBuffType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := rubu.mutation.Name(); ok {
 		_spec.SetField(rpguserbuff.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := rubu.mutation.Description(); ok {
 		_spec.SetField(rpguserbuff.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Value(); ok {
+	if value, ok := rubu.mutation.Value(); ok {
 		_spec.SetField(rpguserbuff.FieldValue, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedValue(); ok {
+	if value, ok := rubu.mutation.AddedValue(); ok {
 		_spec.AddField(rpguserbuff.FieldValue, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.ExpireAt(); ok {
+	if value, ok := rubu.mutation.ExpireAt(); ok {
 		_spec.SetField(rpguserbuff.FieldExpireAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.RemainingUses(); ok {
+	if value, ok := rubu.mutation.RemainingUses(); ok {
 		_spec.SetField(rpguserbuff.FieldRemainingUses, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRemainingUses(); ok {
+	if value, ok := rubu.mutation.AddedRemainingUses(); ok {
 		_spec.AddField(rpguserbuff.FieldRemainingUses, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.IsActive(); ok {
+	if value, ok := rubu.mutation.IsActive(); ok {
 		_spec.SetField(rpguserbuff.FieldIsActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedIsActive(); ok {
+	if value, ok := rubu.mutation.AddedIsActive(); ok {
 		_spec.AddField(rpguserbuff.FieldIsActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.SourceType(); ok {
+	if value, ok := rubu.mutation.SourceType(); ok {
 		_spec.SetField(rpguserbuff.FieldSourceType, field.TypeString, value)
 	}
-	if _u.mutation.SourceTypeCleared() {
+	if rubu.mutation.SourceTypeCleared() {
 		_spec.ClearField(rpguserbuff.FieldSourceType, field.TypeString)
 	}
-	if value, ok := _u.mutation.SourceId(); ok {
+	if value, ok := rubu.mutation.SourceId(); ok {
 		_spec.SetField(rpguserbuff.FieldSourceId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSourceId(); ok {
+	if value, ok := rubu.mutation.AddedSourceId(); ok {
 		_spec.AddField(rpguserbuff.FieldSourceId, field.TypeInt, value)
 	}
-	if _u.mutation.SourceIdCleared() {
+	if rubu.mutation.SourceIdCleared() {
 		_spec.ClearField(rpguserbuff.FieldSourceId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rubu.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserbuff.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rubu.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserbuff.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.TriggerMode(); ok {
+	if value, ok := rubu.mutation.TriggerMode(); ok {
 		_spec.SetField(rpguserbuff.FieldTriggerMode, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rubu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserbuff.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -437,8 +437,8 @@ func (_u *RpgUserBuffUpdate) sqlSave(ctx context.Context) (_node int, err error)
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rubu.mutation.done = true
+	return n, nil
 }
 
 // RpgUserBuffUpdateOne is the builder for updating a single RpgUserBuff entity.
@@ -450,308 +450,308 @@ type RpgUserBuffUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserBuffUpdateOne) SetUpdateTime(v time.Time) *RpgUserBuffUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetUpdateTime(t time.Time) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetUpdateTime(t)
+	return rubuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserBuffUpdateOne) SetIsDelete(v bool) *RpgUserBuffUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetIsDelete(b bool) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetIsDelete(b)
+	return rubuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableIsDelete(v *bool) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableIsDelete(b *bool) *RpgUserBuffUpdateOne {
+	if b != nil {
+		rubuo.SetIsDelete(*b)
 	}
-	return _u
+	return rubuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserBuffUpdateOne) SetVersion(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetVersion(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.ResetVersion()
+	rubuo.mutation.SetVersion(i)
+	return rubuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableVersion(v *int) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableVersion(i *int) *RpgUserBuffUpdateOne {
+	if i != nil {
+		rubuo.SetVersion(*i)
 	}
-	return _u
+	return rubuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserBuffUpdateOne) AddVersion(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rubuo *RpgUserBuffUpdateOne) AddVersion(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.AddVersion(i)
+	return rubuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserBuffUpdateOne) SetUID(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetUID(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.ResetUID()
+	rubuo.mutation.SetUID(i)
+	return rubuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableUID(v *int) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableUID(i *int) *RpgUserBuffUpdateOne {
+	if i != nil {
+		rubuo.SetUID(*i)
 	}
-	return _u
+	return rubuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserBuffUpdateOne) AddUID(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rubuo *RpgUserBuffUpdateOne) AddUID(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.AddUID(i)
+	return rubuo
 }
 
 // SetBuffCode sets the "buffCode" field.
-func (_u *RpgUserBuffUpdateOne) SetBuffCode(v string) *RpgUserBuffUpdateOne {
-	_u.mutation.SetBuffCode(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetBuffCode(s string) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetBuffCode(s)
+	return rubuo
 }
 
 // SetNillableBuffCode sets the "buffCode" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableBuffCode(v *string) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetBuffCode(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableBuffCode(s *string) *RpgUserBuffUpdateOne {
+	if s != nil {
+		rubuo.SetBuffCode(*s)
 	}
-	return _u
+	return rubuo
 }
 
 // SetBuffType sets the "buffType" field.
-func (_u *RpgUserBuffUpdateOne) SetBuffType(v string) *RpgUserBuffUpdateOne {
-	_u.mutation.SetBuffType(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetBuffType(s string) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetBuffType(s)
+	return rubuo
 }
 
 // SetNillableBuffType sets the "buffType" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableBuffType(v *string) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetBuffType(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableBuffType(s *string) *RpgUserBuffUpdateOne {
+	if s != nil {
+		rubuo.SetBuffType(*s)
 	}
-	return _u
+	return rubuo
 }
 
 // SetName sets the "name" field.
-func (_u *RpgUserBuffUpdateOne) SetName(v string) *RpgUserBuffUpdateOne {
-	_u.mutation.SetName(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetName(s string) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetName(s)
+	return rubuo
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableName(v *string) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetName(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableName(s *string) *RpgUserBuffUpdateOne {
+	if s != nil {
+		rubuo.SetName(*s)
 	}
-	return _u
+	return rubuo
 }
 
 // SetDescription sets the "description" field.
-func (_u *RpgUserBuffUpdateOne) SetDescription(v string) *RpgUserBuffUpdateOne {
-	_u.mutation.SetDescription(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetDescription(s string) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetDescription(s)
+	return rubuo
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableDescription(v *string) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetDescription(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableDescription(s *string) *RpgUserBuffUpdateOne {
+	if s != nil {
+		rubuo.SetDescription(*s)
 	}
-	return _u
+	return rubuo
 }
 
 // SetValue sets the "value" field.
-func (_u *RpgUserBuffUpdateOne) SetValue(v float64) *RpgUserBuffUpdateOne {
-	_u.mutation.ResetValue()
-	_u.mutation.SetValue(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetValue(f float64) *RpgUserBuffUpdateOne {
+	rubuo.mutation.ResetValue()
+	rubuo.mutation.SetValue(f)
+	return rubuo
 }
 
 // SetNillableValue sets the "value" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableValue(v *float64) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetValue(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableValue(f *float64) *RpgUserBuffUpdateOne {
+	if f != nil {
+		rubuo.SetValue(*f)
 	}
-	return _u
+	return rubuo
 }
 
-// AddValue adds value to the "value" field.
-func (_u *RpgUserBuffUpdateOne) AddValue(v float64) *RpgUserBuffUpdateOne {
-	_u.mutation.AddValue(v)
-	return _u
+// AddValue adds f to the "value" field.
+func (rubuo *RpgUserBuffUpdateOne) AddValue(f float64) *RpgUserBuffUpdateOne {
+	rubuo.mutation.AddValue(f)
+	return rubuo
 }
 
 // SetExpireAt sets the "expireAt" field.
-func (_u *RpgUserBuffUpdateOne) SetExpireAt(v time.Time) *RpgUserBuffUpdateOne {
-	_u.mutation.SetExpireAt(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetExpireAt(t time.Time) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetExpireAt(t)
+	return rubuo
 }
 
 // SetNillableExpireAt sets the "expireAt" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableExpireAt(v *time.Time) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetExpireAt(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableExpireAt(t *time.Time) *RpgUserBuffUpdateOne {
+	if t != nil {
+		rubuo.SetExpireAt(*t)
 	}
-	return _u
+	return rubuo
 }
 
 // SetRemainingUses sets the "remainingUses" field.
-func (_u *RpgUserBuffUpdateOne) SetRemainingUses(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.ResetRemainingUses()
-	_u.mutation.SetRemainingUses(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetRemainingUses(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.ResetRemainingUses()
+	rubuo.mutation.SetRemainingUses(i)
+	return rubuo
 }
 
 // SetNillableRemainingUses sets the "remainingUses" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableRemainingUses(v *int) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetRemainingUses(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableRemainingUses(i *int) *RpgUserBuffUpdateOne {
+	if i != nil {
+		rubuo.SetRemainingUses(*i)
 	}
-	return _u
+	return rubuo
 }
 
-// AddRemainingUses adds value to the "remainingUses" field.
-func (_u *RpgUserBuffUpdateOne) AddRemainingUses(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.AddRemainingUses(v)
-	return _u
+// AddRemainingUses adds i to the "remainingUses" field.
+func (rubuo *RpgUserBuffUpdateOne) AddRemainingUses(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.AddRemainingUses(i)
+	return rubuo
 }
 
 // SetIsActive sets the "isActive" field.
-func (_u *RpgUserBuffUpdateOne) SetIsActive(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.ResetIsActive()
-	_u.mutation.SetIsActive(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetIsActive(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.ResetIsActive()
+	rubuo.mutation.SetIsActive(i)
+	return rubuo
 }
 
 // SetNillableIsActive sets the "isActive" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableIsActive(v *int) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetIsActive(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableIsActive(i *int) *RpgUserBuffUpdateOne {
+	if i != nil {
+		rubuo.SetIsActive(*i)
 	}
-	return _u
+	return rubuo
 }
 
-// AddIsActive adds value to the "isActive" field.
-func (_u *RpgUserBuffUpdateOne) AddIsActive(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.AddIsActive(v)
-	return _u
+// AddIsActive adds i to the "isActive" field.
+func (rubuo *RpgUserBuffUpdateOne) AddIsActive(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.AddIsActive(i)
+	return rubuo
 }
 
 // SetSourceType sets the "sourceType" field.
-func (_u *RpgUserBuffUpdateOne) SetSourceType(v string) *RpgUserBuffUpdateOne {
-	_u.mutation.SetSourceType(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetSourceType(s string) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetSourceType(s)
+	return rubuo
 }
 
 // SetNillableSourceType sets the "sourceType" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableSourceType(v *string) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetSourceType(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableSourceType(s *string) *RpgUserBuffUpdateOne {
+	if s != nil {
+		rubuo.SetSourceType(*s)
 	}
-	return _u
+	return rubuo
 }
 
 // ClearSourceType clears the value of the "sourceType" field.
-func (_u *RpgUserBuffUpdateOne) ClearSourceType() *RpgUserBuffUpdateOne {
-	_u.mutation.ClearSourceType()
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) ClearSourceType() *RpgUserBuffUpdateOne {
+	rubuo.mutation.ClearSourceType()
+	return rubuo
 }
 
 // SetSourceId sets the "sourceId" field.
-func (_u *RpgUserBuffUpdateOne) SetSourceId(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.ResetSourceId()
-	_u.mutation.SetSourceId(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetSourceId(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.ResetSourceId()
+	rubuo.mutation.SetSourceId(i)
+	return rubuo
 }
 
 // SetNillableSourceId sets the "sourceId" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableSourceId(v *int) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetSourceId(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableSourceId(i *int) *RpgUserBuffUpdateOne {
+	if i != nil {
+		rubuo.SetSourceId(*i)
 	}
-	return _u
+	return rubuo
 }
 
-// AddSourceId adds value to the "sourceId" field.
-func (_u *RpgUserBuffUpdateOne) AddSourceId(v int) *RpgUserBuffUpdateOne {
-	_u.mutation.AddSourceId(v)
-	return _u
+// AddSourceId adds i to the "sourceId" field.
+func (rubuo *RpgUserBuffUpdateOne) AddSourceId(i int) *RpgUserBuffUpdateOne {
+	rubuo.mutation.AddSourceId(i)
+	return rubuo
 }
 
 // ClearSourceId clears the value of the "sourceId" field.
-func (_u *RpgUserBuffUpdateOne) ClearSourceId() *RpgUserBuffUpdateOne {
-	_u.mutation.ClearSourceId()
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) ClearSourceId() *RpgUserBuffUpdateOne {
+	rubuo.mutation.ClearSourceId()
+	return rubuo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUserBuffUpdateOne) SetEffectJson(v string) *RpgUserBuffUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetEffectJson(s string) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetEffectJson(s)
+	return rubuo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableEffectJson(v *string) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableEffectJson(s *string) *RpgUserBuffUpdateOne {
+	if s != nil {
+		rubuo.SetEffectJson(*s)
 	}
-	return _u
+	return rubuo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUserBuffUpdateOne) ClearEffectJson() *RpgUserBuffUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) ClearEffectJson() *RpgUserBuffUpdateOne {
+	rubuo.mutation.ClearEffectJson()
+	return rubuo
 }
 
 // SetTriggerMode sets the "triggerMode" field.
-func (_u *RpgUserBuffUpdateOne) SetTriggerMode(v string) *RpgUserBuffUpdateOne {
-	_u.mutation.SetTriggerMode(v)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) SetTriggerMode(s string) *RpgUserBuffUpdateOne {
+	rubuo.mutation.SetTriggerMode(s)
+	return rubuo
 }
 
 // SetNillableTriggerMode sets the "triggerMode" field if the given value is not nil.
-func (_u *RpgUserBuffUpdateOne) SetNillableTriggerMode(v *string) *RpgUserBuffUpdateOne {
-	if v != nil {
-		_u.SetTriggerMode(*v)
+func (rubuo *RpgUserBuffUpdateOne) SetNillableTriggerMode(s *string) *RpgUserBuffUpdateOne {
+	if s != nil {
+		rubuo.SetTriggerMode(*s)
 	}
-	return _u
+	return rubuo
 }
 
 // Mutation returns the RpgUserBuffMutation object of the builder.
-func (_u *RpgUserBuffUpdateOne) Mutation() *RpgUserBuffMutation {
-	return _u.mutation
+func (rubuo *RpgUserBuffUpdateOne) Mutation() *RpgUserBuffMutation {
+	return rubuo.mutation
 }
 
 // Where appends a list predicates to the RpgUserBuffUpdate builder.
-func (_u *RpgUserBuffUpdateOne) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffUpdateOne {
+	rubuo.mutation.Where(ps...)
+	return rubuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserBuffUpdateOne) Select(field string, fields ...string) *RpgUserBuffUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rubuo *RpgUserBuffUpdateOne) Select(field string, fields ...string) *RpgUserBuffUpdateOne {
+	rubuo.fields = append([]string{field}, fields...)
+	return rubuo
 }
 
 // Save executes the query and returns the updated RpgUserBuff entity.
-func (_u *RpgUserBuffUpdateOne) Save(ctx context.Context) (*RpgUserBuff, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rubuo *RpgUserBuffUpdateOne) Save(ctx context.Context) (*RpgUserBuff, error) {
+	rubuo.defaults()
+	return withHooks(ctx, rubuo.sqlSave, rubuo.mutation, rubuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserBuffUpdateOne) SaveX(ctx context.Context) *RpgUserBuff {
-	node, err := _u.Save(ctx)
+func (rubuo *RpgUserBuffUpdateOne) SaveX(ctx context.Context) *RpgUserBuff {
+	node, err := rubuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -759,34 +759,34 @@ func (_u *RpgUserBuffUpdateOne) SaveX(ctx context.Context) *RpgUserBuff {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserBuffUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rubuo *RpgUserBuffUpdateOne) Exec(ctx context.Context) error {
+	_, err := rubuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserBuffUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rubuo *RpgUserBuffUpdateOne) ExecX(ctx context.Context) {
+	if err := rubuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserBuffUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rubuo *RpgUserBuffUpdateOne) defaults() {
+	if _, ok := rubuo.mutation.UpdateTime(); !ok {
 		v := rpguserbuff.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rubuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserBuffUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserBuff, err error) {
+func (rubuo *RpgUserBuffUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserBuff, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserbuff.Table, rpguserbuff.Columns, sqlgraph.NewFieldSpec(rpguserbuff.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rubuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserBuff.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rubuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserbuff.FieldID)
 		for _, f := range fields {
@@ -798,92 +798,92 @@ func (_u *RpgUserBuffUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserBuff
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rubuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rubuo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserbuff.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rubuo.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserbuff.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rubuo.mutation.Version(); ok {
 		_spec.SetField(rpguserbuff.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rubuo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpguserbuff.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rubuo.mutation.UID(); ok {
 		_spec.SetField(rpguserbuff.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rubuo.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserbuff.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.BuffCode(); ok {
+	if value, ok := rubuo.mutation.BuffCode(); ok {
 		_spec.SetField(rpguserbuff.FieldBuffCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.BuffType(); ok {
+	if value, ok := rubuo.mutation.BuffType(); ok {
 		_spec.SetField(rpguserbuff.FieldBuffType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := rubuo.mutation.Name(); ok {
 		_spec.SetField(rpguserbuff.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := rubuo.mutation.Description(); ok {
 		_spec.SetField(rpguserbuff.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Value(); ok {
+	if value, ok := rubuo.mutation.Value(); ok {
 		_spec.SetField(rpguserbuff.FieldValue, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedValue(); ok {
+	if value, ok := rubuo.mutation.AddedValue(); ok {
 		_spec.AddField(rpguserbuff.FieldValue, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.ExpireAt(); ok {
+	if value, ok := rubuo.mutation.ExpireAt(); ok {
 		_spec.SetField(rpguserbuff.FieldExpireAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.RemainingUses(); ok {
+	if value, ok := rubuo.mutation.RemainingUses(); ok {
 		_spec.SetField(rpguserbuff.FieldRemainingUses, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRemainingUses(); ok {
+	if value, ok := rubuo.mutation.AddedRemainingUses(); ok {
 		_spec.AddField(rpguserbuff.FieldRemainingUses, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.IsActive(); ok {
+	if value, ok := rubuo.mutation.IsActive(); ok {
 		_spec.SetField(rpguserbuff.FieldIsActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedIsActive(); ok {
+	if value, ok := rubuo.mutation.AddedIsActive(); ok {
 		_spec.AddField(rpguserbuff.FieldIsActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.SourceType(); ok {
+	if value, ok := rubuo.mutation.SourceType(); ok {
 		_spec.SetField(rpguserbuff.FieldSourceType, field.TypeString, value)
 	}
-	if _u.mutation.SourceTypeCleared() {
+	if rubuo.mutation.SourceTypeCleared() {
 		_spec.ClearField(rpguserbuff.FieldSourceType, field.TypeString)
 	}
-	if value, ok := _u.mutation.SourceId(); ok {
+	if value, ok := rubuo.mutation.SourceId(); ok {
 		_spec.SetField(rpguserbuff.FieldSourceId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSourceId(); ok {
+	if value, ok := rubuo.mutation.AddedSourceId(); ok {
 		_spec.AddField(rpguserbuff.FieldSourceId, field.TypeInt, value)
 	}
-	if _u.mutation.SourceIdCleared() {
+	if rubuo.mutation.SourceIdCleared() {
 		_spec.ClearField(rpguserbuff.FieldSourceId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rubuo.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserbuff.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rubuo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpguserbuff.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.TriggerMode(); ok {
+	if value, ok := rubuo.mutation.TriggerMode(); ok {
 		_spec.SetField(rpguserbuff.FieldTriggerMode, field.TypeString, value)
 	}
-	_node = &RpgUserBuff{config: _u.config}
+	_node = &RpgUserBuff{config: rubuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rubuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserbuff.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -891,6 +891,6 @@ func (_u *RpgUserBuffUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserBuff
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rubuo.mutation.done = true
 	return _node, nil
 }

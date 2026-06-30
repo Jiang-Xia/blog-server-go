@@ -61,7 +61,7 @@ func (*RpgUserLotteryRecord) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserLotteryRecord fields.
-func (_m *RpgUserLotteryRecord) assignValues(columns []string, values []any) error {
+func (rulr *RpgUserLotteryRecord) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -72,64 +72,64 @@ func (_m *RpgUserLotteryRecord) assignValues(columns []string, values []any) err
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rulr.ID = int(value.Int64)
 		case rpguserlotteryrecord.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rulr.CreateTime = value.Time
 			}
 		case rpguserlotteryrecord.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rulr.UpdateTime = value.Time
 			}
 		case rpguserlotteryrecord.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rulr.IsDelete = value.Bool
 			}
 		case rpguserlotteryrecord.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rulr.Version = int(value.Int64)
 			}
 		case rpguserlotteryrecord.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rulr.UID = int(value.Int64)
 			}
 		case rpguserlotteryrecord.FieldPoolItemCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field poolItemCode", values[i])
 			} else if value.Valid {
-				_m.PoolItemCode = value.String
+				rulr.PoolItemCode = value.String
 			}
 		case rpguserlotteryrecord.FieldItemName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field itemName", values[i])
 			} else if value.Valid {
-				_m.ItemName = value.String
+				rulr.ItemName = value.String
 			}
 		case rpguserlotteryrecord.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rulr.EffectJson = new(string)
+				*rulr.EffectJson = value.String
 			}
 		case rpguserlotteryrecord.FieldRarity:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field rarity", values[i])
 			} else if value.Valid {
-				_m.Rarity = value.String
+				rulr.Rarity = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rulr.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -137,61 +137,61 @@ func (_m *RpgUserLotteryRecord) assignValues(columns []string, values []any) err
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserLotteryRecord.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserLotteryRecord) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rulr *RpgUserLotteryRecord) Value(name string) (ent.Value, error) {
+	return rulr.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserLotteryRecord.
 // Note that you need to call RpgUserLotteryRecord.Unwrap() before calling this method if this RpgUserLotteryRecord
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserLotteryRecord) Update() *RpgUserLotteryRecordUpdateOne {
-	return NewRpgUserLotteryRecordClient(_m.config).UpdateOne(_m)
+func (rulr *RpgUserLotteryRecord) Update() *RpgUserLotteryRecordUpdateOne {
+	return NewRpgUserLotteryRecordClient(rulr.config).UpdateOne(rulr)
 }
 
 // Unwrap unwraps the RpgUserLotteryRecord entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserLotteryRecord) Unwrap() *RpgUserLotteryRecord {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rulr *RpgUserLotteryRecord) Unwrap() *RpgUserLotteryRecord {
+	_tx, ok := rulr.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserLotteryRecord is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rulr.config.driver = _tx.drv
+	return rulr
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserLotteryRecord) String() string {
+func (rulr *RpgUserLotteryRecord) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserLotteryRecord(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rulr.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rulr.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rulr.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rulr.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rulr.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rulr.UID))
 	builder.WriteString(", ")
 	builder.WriteString("poolItemCode=")
-	builder.WriteString(_m.PoolItemCode)
+	builder.WriteString(rulr.PoolItemCode)
 	builder.WriteString(", ")
 	builder.WriteString("itemName=")
-	builder.WriteString(_m.ItemName)
+	builder.WriteString(rulr.ItemName)
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rulr.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("rarity=")
-	builder.WriteString(_m.Rarity)
+	builder.WriteString(rulr.Rarity)
 	builder.WriteByte(')')
 	return builder.String()
 }

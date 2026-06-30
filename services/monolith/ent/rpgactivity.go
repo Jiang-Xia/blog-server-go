@@ -73,7 +73,7 @@ func (*RpgActivity) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgActivity fields.
-func (_m *RpgActivity) assignValues(columns []string, values []any) error {
+func (ra *RpgActivity) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -84,94 +84,94 @@ func (_m *RpgActivity) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			ra.ID = int(value.Int64)
 		case rpgactivity.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				ra.CreateTime = value.Time
 			}
 		case rpgactivity.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				ra.UpdateTime = value.Time
 			}
 		case rpgactivity.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				ra.IsDelete = value.Bool
 			}
 		case rpgactivity.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				ra.Version = int(value.Int64)
 			}
 		case rpgactivity.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				_m.Code = value.String
+				ra.Code = value.String
 			}
 		case rpgactivity.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				ra.Name = value.String
 			}
 		case rpgactivity.FieldStartTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field startTime", values[i])
 			} else if value.Valid {
-				_m.StartTime = value.Time
+				ra.StartTime = value.Time
 			}
 		case rpgactivity.FieldEndTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field endTime", values[i])
 			} else if value.Valid {
-				_m.EndTime = value.Time
+				ra.EndTime = value.Time
 			}
 		case rpgactivity.FieldExpBuffRate:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field expBuffRate", values[i])
 			} else if value.Valid {
-				_m.ExpBuffRate = value.Float64
+				ra.ExpBuffRate = value.Float64
 			}
 		case rpgactivity.FieldActive:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field active", values[i])
 			} else if value.Valid {
-				_m.Active = int(value.Int64)
+				ra.Active = int(value.Int64)
 			}
 		case rpgactivity.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				ra.EffectJson = new(string)
+				*ra.EffectJson = value.String
 			}
 		case rpgactivity.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				ra.Description = value.String
 			}
 		case rpgactivity.FieldActivityType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field activityType", values[i])
 			} else if value.Valid {
-				_m.ActivityType = value.String
+				ra.ActivityType = value.String
 			}
 		case rpgactivity.FieldPosterUrl:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field posterUrl", values[i])
 			} else if value.Valid {
-				_m.PosterUrl = value.String
+				ra.PosterUrl = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			ra.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -179,76 +179,76 @@ func (_m *RpgActivity) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgActivity.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgActivity) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (ra *RpgActivity) Value(name string) (ent.Value, error) {
+	return ra.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgActivity.
 // Note that you need to call RpgActivity.Unwrap() before calling this method if this RpgActivity
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgActivity) Update() *RpgActivityUpdateOne {
-	return NewRpgActivityClient(_m.config).UpdateOne(_m)
+func (ra *RpgActivity) Update() *RpgActivityUpdateOne {
+	return NewRpgActivityClient(ra.config).UpdateOne(ra)
 }
 
 // Unwrap unwraps the RpgActivity entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgActivity) Unwrap() *RpgActivity {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (ra *RpgActivity) Unwrap() *RpgActivity {
+	_tx, ok := ra.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgActivity is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	ra.config.driver = _tx.drv
+	return ra
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgActivity) String() string {
+func (ra *RpgActivity) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgActivity(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", ra.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(ra.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(ra.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", ra.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", ra.Version))
 	builder.WriteString(", ")
 	builder.WriteString("code=")
-	builder.WriteString(_m.Code)
+	builder.WriteString(ra.Code)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(ra.Name)
 	builder.WriteString(", ")
 	builder.WriteString("startTime=")
-	builder.WriteString(_m.StartTime.Format(time.ANSIC))
+	builder.WriteString(ra.StartTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("endTime=")
-	builder.WriteString(_m.EndTime.Format(time.ANSIC))
+	builder.WriteString(ra.EndTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("expBuffRate=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ExpBuffRate))
+	builder.WriteString(fmt.Sprintf("%v", ra.ExpBuffRate))
 	builder.WriteString(", ")
 	builder.WriteString("active=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Active))
+	builder.WriteString(fmt.Sprintf("%v", ra.Active))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := ra.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(ra.Description)
 	builder.WriteString(", ")
 	builder.WriteString("activityType=")
-	builder.WriteString(_m.ActivityType)
+	builder.WriteString(ra.ActivityType)
 	builder.WriteString(", ")
 	builder.WriteString("posterUrl=")
-	builder.WriteString(_m.PosterUrl)
+	builder.WriteString(ra.PosterUrl)
 	builder.WriteByte(')')
 	return builder.String()
 }

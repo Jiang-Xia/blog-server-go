@@ -23,219 +23,219 @@ type PrivilegeUpdate struct {
 }
 
 // Where appends a list predicates to the PrivilegeUpdate builder.
-func (_u *PrivilegeUpdate) Where(ps ...predicate.Privilege) *PrivilegeUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (pu *PrivilegeUpdate) Where(ps ...predicate.Privilege) *PrivilegeUpdate {
+	pu.mutation.Where(ps...)
+	return pu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *PrivilegeUpdate) SetUpdateTime(v time.Time) *PrivilegeUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (pu *PrivilegeUpdate) SetUpdateTime(t time.Time) *PrivilegeUpdate {
+	pu.mutation.SetUpdateTime(t)
+	return pu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *PrivilegeUpdate) SetIsDelete(v bool) *PrivilegeUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (pu *PrivilegeUpdate) SetIsDelete(b bool) *PrivilegeUpdate {
+	pu.mutation.SetIsDelete(b)
+	return pu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillableIsDelete(v *bool) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (pu *PrivilegeUpdate) SetNillableIsDelete(b *bool) *PrivilegeUpdate {
+	if b != nil {
+		pu.SetIsDelete(*b)
 	}
-	return _u
+	return pu
 }
 
 // SetVersion sets the "version" field.
-func (_u *PrivilegeUpdate) SetVersion(v int) *PrivilegeUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (pu *PrivilegeUpdate) SetVersion(i int) *PrivilegeUpdate {
+	pu.mutation.ResetVersion()
+	pu.mutation.SetVersion(i)
+	return pu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillableVersion(v *int) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (pu *PrivilegeUpdate) SetNillableVersion(i *int) *PrivilegeUpdate {
+	if i != nil {
+		pu.SetVersion(*i)
 	}
-	return _u
+	return pu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *PrivilegeUpdate) AddVersion(v int) *PrivilegeUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (pu *PrivilegeUpdate) AddVersion(i int) *PrivilegeUpdate {
+	pu.mutation.AddVersion(i)
+	return pu
 }
 
 // SetPrivilegeName sets the "privilegeName" field.
-func (_u *PrivilegeUpdate) SetPrivilegeName(v string) *PrivilegeUpdate {
-	_u.mutation.SetPrivilegeName(v)
-	return _u
+func (pu *PrivilegeUpdate) SetPrivilegeName(s string) *PrivilegeUpdate {
+	pu.mutation.SetPrivilegeName(s)
+	return pu
 }
 
 // SetNillablePrivilegeName sets the "privilegeName" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillablePrivilegeName(v *string) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetPrivilegeName(*v)
+func (pu *PrivilegeUpdate) SetNillablePrivilegeName(s *string) *PrivilegeUpdate {
+	if s != nil {
+		pu.SetPrivilegeName(*s)
 	}
-	return _u
+	return pu
 }
 
 // SetPrivilegeCode sets the "privilegeCode" field.
-func (_u *PrivilegeUpdate) SetPrivilegeCode(v string) *PrivilegeUpdate {
-	_u.mutation.SetPrivilegeCode(v)
-	return _u
+func (pu *PrivilegeUpdate) SetPrivilegeCode(s string) *PrivilegeUpdate {
+	pu.mutation.SetPrivilegeCode(s)
+	return pu
 }
 
 // SetNillablePrivilegeCode sets the "privilegeCode" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillablePrivilegeCode(v *string) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetPrivilegeCode(*v)
+func (pu *PrivilegeUpdate) SetNillablePrivilegeCode(s *string) *PrivilegeUpdate {
+	if s != nil {
+		pu.SetPrivilegeCode(*s)
 	}
-	return _u
+	return pu
 }
 
 // SetPrivilegePage sets the "privilegePage" field.
-func (_u *PrivilegeUpdate) SetPrivilegePage(v string) *PrivilegeUpdate {
-	_u.mutation.SetPrivilegePage(v)
-	return _u
+func (pu *PrivilegeUpdate) SetPrivilegePage(s string) *PrivilegeUpdate {
+	pu.mutation.SetPrivilegePage(s)
+	return pu
 }
 
 // SetNillablePrivilegePage sets the "privilegePage" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillablePrivilegePage(v *string) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetPrivilegePage(*v)
+func (pu *PrivilegeUpdate) SetNillablePrivilegePage(s *string) *PrivilegeUpdate {
+	if s != nil {
+		pu.SetPrivilegePage(*s)
 	}
-	return _u
+	return pu
 }
 
 // SetIsVisible sets the "isVisible" field.
-func (_u *PrivilegeUpdate) SetIsVisible(v int) *PrivilegeUpdate {
-	_u.mutation.ResetIsVisible()
-	_u.mutation.SetIsVisible(v)
-	return _u
+func (pu *PrivilegeUpdate) SetIsVisible(i int) *PrivilegeUpdate {
+	pu.mutation.ResetIsVisible()
+	pu.mutation.SetIsVisible(i)
+	return pu
 }
 
 // SetNillableIsVisible sets the "isVisible" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillableIsVisible(v *int) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetIsVisible(*v)
+func (pu *PrivilegeUpdate) SetNillableIsVisible(i *int) *PrivilegeUpdate {
+	if i != nil {
+		pu.SetIsVisible(*i)
 	}
-	return _u
+	return pu
 }
 
-// AddIsVisible adds value to the "isVisible" field.
-func (_u *PrivilegeUpdate) AddIsVisible(v int) *PrivilegeUpdate {
-	_u.mutation.AddIsVisible(v)
-	return _u
+// AddIsVisible adds i to the "isVisible" field.
+func (pu *PrivilegeUpdate) AddIsVisible(i int) *PrivilegeUpdate {
+	pu.mutation.AddIsVisible(i)
+	return pu
 }
 
 // SetPathPattern sets the "pathPattern" field.
-func (_u *PrivilegeUpdate) SetPathPattern(v string) *PrivilegeUpdate {
-	_u.mutation.SetPathPattern(v)
-	return _u
+func (pu *PrivilegeUpdate) SetPathPattern(s string) *PrivilegeUpdate {
+	pu.mutation.SetPathPattern(s)
+	return pu
 }
 
 // SetNillablePathPattern sets the "pathPattern" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillablePathPattern(v *string) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetPathPattern(*v)
+func (pu *PrivilegeUpdate) SetNillablePathPattern(s *string) *PrivilegeUpdate {
+	if s != nil {
+		pu.SetPathPattern(*s)
 	}
-	return _u
+	return pu
 }
 
 // SetHttpMethod sets the "httpMethod" field.
-func (_u *PrivilegeUpdate) SetHttpMethod(v string) *PrivilegeUpdate {
-	_u.mutation.SetHttpMethod(v)
-	return _u
+func (pu *PrivilegeUpdate) SetHttpMethod(s string) *PrivilegeUpdate {
+	pu.mutation.SetHttpMethod(s)
+	return pu
 }
 
 // SetNillableHttpMethod sets the "httpMethod" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillableHttpMethod(v *string) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetHttpMethod(*v)
+func (pu *PrivilegeUpdate) SetNillableHttpMethod(s *string) *PrivilegeUpdate {
+	if s != nil {
+		pu.SetHttpMethod(*s)
 	}
-	return _u
+	return pu
 }
 
 // SetIsPublic sets the "isPublic" field.
-func (_u *PrivilegeUpdate) SetIsPublic(v int) *PrivilegeUpdate {
-	_u.mutation.ResetIsPublic()
-	_u.mutation.SetIsPublic(v)
-	return _u
+func (pu *PrivilegeUpdate) SetIsPublic(i int) *PrivilegeUpdate {
+	pu.mutation.ResetIsPublic()
+	pu.mutation.SetIsPublic(i)
+	return pu
 }
 
 // SetNillableIsPublic sets the "isPublic" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillableIsPublic(v *int) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetIsPublic(*v)
+func (pu *PrivilegeUpdate) SetNillableIsPublic(i *int) *PrivilegeUpdate {
+	if i != nil {
+		pu.SetIsPublic(*i)
 	}
-	return _u
+	return pu
 }
 
-// AddIsPublic adds value to the "isPublic" field.
-func (_u *PrivilegeUpdate) AddIsPublic(v int) *PrivilegeUpdate {
-	_u.mutation.AddIsPublic(v)
-	return _u
+// AddIsPublic adds i to the "isPublic" field.
+func (pu *PrivilegeUpdate) AddIsPublic(i int) *PrivilegeUpdate {
+	pu.mutation.AddIsPublic(i)
+	return pu
 }
 
 // SetRequireOwnership sets the "requireOwnership" field.
-func (_u *PrivilegeUpdate) SetRequireOwnership(v int) *PrivilegeUpdate {
-	_u.mutation.ResetRequireOwnership()
-	_u.mutation.SetRequireOwnership(v)
-	return _u
+func (pu *PrivilegeUpdate) SetRequireOwnership(i int) *PrivilegeUpdate {
+	pu.mutation.ResetRequireOwnership()
+	pu.mutation.SetRequireOwnership(i)
+	return pu
 }
 
 // SetNillableRequireOwnership sets the "requireOwnership" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillableRequireOwnership(v *int) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetRequireOwnership(*v)
+func (pu *PrivilegeUpdate) SetNillableRequireOwnership(i *int) *PrivilegeUpdate {
+	if i != nil {
+		pu.SetRequireOwnership(*i)
 	}
-	return _u
+	return pu
 }
 
-// AddRequireOwnership adds value to the "requireOwnership" field.
-func (_u *PrivilegeUpdate) AddRequireOwnership(v int) *PrivilegeUpdate {
-	_u.mutation.AddRequireOwnership(v)
-	return _u
+// AddRequireOwnership adds i to the "requireOwnership" field.
+func (pu *PrivilegeUpdate) AddRequireOwnership(i int) *PrivilegeUpdate {
+	pu.mutation.AddRequireOwnership(i)
+	return pu
 }
 
 // SetDescription sets the "description" field.
-func (_u *PrivilegeUpdate) SetDescription(v string) *PrivilegeUpdate {
-	_u.mutation.SetDescription(v)
-	return _u
+func (pu *PrivilegeUpdate) SetDescription(s string) *PrivilegeUpdate {
+	pu.mutation.SetDescription(s)
+	return pu
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *PrivilegeUpdate) SetNillableDescription(v *string) *PrivilegeUpdate {
-	if v != nil {
-		_u.SetDescription(*v)
+func (pu *PrivilegeUpdate) SetNillableDescription(s *string) *PrivilegeUpdate {
+	if s != nil {
+		pu.SetDescription(*s)
 	}
-	return _u
+	return pu
 }
 
 // ClearDescription clears the value of the "description" field.
-func (_u *PrivilegeUpdate) ClearDescription() *PrivilegeUpdate {
-	_u.mutation.ClearDescription()
-	return _u
+func (pu *PrivilegeUpdate) ClearDescription() *PrivilegeUpdate {
+	pu.mutation.ClearDescription()
+	return pu
 }
 
 // Mutation returns the PrivilegeMutation object of the builder.
-func (_u *PrivilegeUpdate) Mutation() *PrivilegeMutation {
-	return _u.mutation
+func (pu *PrivilegeUpdate) Mutation() *PrivilegeMutation {
+	return pu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *PrivilegeUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (pu *PrivilegeUpdate) Save(ctx context.Context) (int, error) {
+	pu.defaults()
+	return withHooks(ctx, pu.sqlSave, pu.mutation, pu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *PrivilegeUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (pu *PrivilegeUpdate) SaveX(ctx context.Context) int {
+	affected, err := pu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,87 +243,87 @@ func (_u *PrivilegeUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *PrivilegeUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (pu *PrivilegeUpdate) Exec(ctx context.Context) error {
+	_, err := pu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *PrivilegeUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (pu *PrivilegeUpdate) ExecX(ctx context.Context) {
+	if err := pu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *PrivilegeUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (pu *PrivilegeUpdate) defaults() {
+	if _, ok := pu.mutation.UpdateTime(); !ok {
 		v := privilege.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		pu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *PrivilegeUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (pu *PrivilegeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(privilege.Table, privilege.Columns, sqlgraph.NewFieldSpec(privilege.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := pu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := pu.mutation.UpdateTime(); ok {
 		_spec.SetField(privilege.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := pu.mutation.IsDelete(); ok {
 		_spec.SetField(privilege.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := pu.mutation.Version(); ok {
 		_spec.SetField(privilege.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := pu.mutation.AddedVersion(); ok {
 		_spec.AddField(privilege.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PrivilegeName(); ok {
+	if value, ok := pu.mutation.PrivilegeName(); ok {
 		_spec.SetField(privilege.FieldPrivilegeName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PrivilegeCode(); ok {
+	if value, ok := pu.mutation.PrivilegeCode(); ok {
 		_spec.SetField(privilege.FieldPrivilegeCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PrivilegePage(); ok {
+	if value, ok := pu.mutation.PrivilegePage(); ok {
 		_spec.SetField(privilege.FieldPrivilegePage, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.IsVisible(); ok {
+	if value, ok := pu.mutation.IsVisible(); ok {
 		_spec.SetField(privilege.FieldIsVisible, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedIsVisible(); ok {
+	if value, ok := pu.mutation.AddedIsVisible(); ok {
 		_spec.AddField(privilege.FieldIsVisible, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PathPattern(); ok {
+	if value, ok := pu.mutation.PathPattern(); ok {
 		_spec.SetField(privilege.FieldPathPattern, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.HttpMethod(); ok {
+	if value, ok := pu.mutation.HttpMethod(); ok {
 		_spec.SetField(privilege.FieldHttpMethod, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.IsPublic(); ok {
+	if value, ok := pu.mutation.IsPublic(); ok {
 		_spec.SetField(privilege.FieldIsPublic, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedIsPublic(); ok {
+	if value, ok := pu.mutation.AddedIsPublic(); ok {
 		_spec.AddField(privilege.FieldIsPublic, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.RequireOwnership(); ok {
+	if value, ok := pu.mutation.RequireOwnership(); ok {
 		_spec.SetField(privilege.FieldRequireOwnership, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRequireOwnership(); ok {
+	if value, ok := pu.mutation.AddedRequireOwnership(); ok {
 		_spec.AddField(privilege.FieldRequireOwnership, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := pu.mutation.Description(); ok {
 		_spec.SetField(privilege.FieldDescription, field.TypeString, value)
 	}
-	if _u.mutation.DescriptionCleared() {
+	if pu.mutation.DescriptionCleared() {
 		_spec.ClearField(privilege.FieldDescription, field.TypeString)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, pu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{privilege.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -331,8 +331,8 @@ func (_u *PrivilegeUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	pu.mutation.done = true
+	return n, nil
 }
 
 // PrivilegeUpdateOne is the builder for updating a single Privilege entity.
@@ -344,226 +344,226 @@ type PrivilegeUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *PrivilegeUpdateOne) SetUpdateTime(v time.Time) *PrivilegeUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetUpdateTime(t time.Time) *PrivilegeUpdateOne {
+	puo.mutation.SetUpdateTime(t)
+	return puo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *PrivilegeUpdateOne) SetIsDelete(v bool) *PrivilegeUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetIsDelete(b bool) *PrivilegeUpdateOne {
+	puo.mutation.SetIsDelete(b)
+	return puo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillableIsDelete(v *bool) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (puo *PrivilegeUpdateOne) SetNillableIsDelete(b *bool) *PrivilegeUpdateOne {
+	if b != nil {
+		puo.SetIsDelete(*b)
 	}
-	return _u
+	return puo
 }
 
 // SetVersion sets the "version" field.
-func (_u *PrivilegeUpdateOne) SetVersion(v int) *PrivilegeUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetVersion(i int) *PrivilegeUpdateOne {
+	puo.mutation.ResetVersion()
+	puo.mutation.SetVersion(i)
+	return puo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillableVersion(v *int) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (puo *PrivilegeUpdateOne) SetNillableVersion(i *int) *PrivilegeUpdateOne {
+	if i != nil {
+		puo.SetVersion(*i)
 	}
-	return _u
+	return puo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *PrivilegeUpdateOne) AddVersion(v int) *PrivilegeUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (puo *PrivilegeUpdateOne) AddVersion(i int) *PrivilegeUpdateOne {
+	puo.mutation.AddVersion(i)
+	return puo
 }
 
 // SetPrivilegeName sets the "privilegeName" field.
-func (_u *PrivilegeUpdateOne) SetPrivilegeName(v string) *PrivilegeUpdateOne {
-	_u.mutation.SetPrivilegeName(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetPrivilegeName(s string) *PrivilegeUpdateOne {
+	puo.mutation.SetPrivilegeName(s)
+	return puo
 }
 
 // SetNillablePrivilegeName sets the "privilegeName" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillablePrivilegeName(v *string) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetPrivilegeName(*v)
+func (puo *PrivilegeUpdateOne) SetNillablePrivilegeName(s *string) *PrivilegeUpdateOne {
+	if s != nil {
+		puo.SetPrivilegeName(*s)
 	}
-	return _u
+	return puo
 }
 
 // SetPrivilegeCode sets the "privilegeCode" field.
-func (_u *PrivilegeUpdateOne) SetPrivilegeCode(v string) *PrivilegeUpdateOne {
-	_u.mutation.SetPrivilegeCode(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetPrivilegeCode(s string) *PrivilegeUpdateOne {
+	puo.mutation.SetPrivilegeCode(s)
+	return puo
 }
 
 // SetNillablePrivilegeCode sets the "privilegeCode" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillablePrivilegeCode(v *string) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetPrivilegeCode(*v)
+func (puo *PrivilegeUpdateOne) SetNillablePrivilegeCode(s *string) *PrivilegeUpdateOne {
+	if s != nil {
+		puo.SetPrivilegeCode(*s)
 	}
-	return _u
+	return puo
 }
 
 // SetPrivilegePage sets the "privilegePage" field.
-func (_u *PrivilegeUpdateOne) SetPrivilegePage(v string) *PrivilegeUpdateOne {
-	_u.mutation.SetPrivilegePage(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetPrivilegePage(s string) *PrivilegeUpdateOne {
+	puo.mutation.SetPrivilegePage(s)
+	return puo
 }
 
 // SetNillablePrivilegePage sets the "privilegePage" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillablePrivilegePage(v *string) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetPrivilegePage(*v)
+func (puo *PrivilegeUpdateOne) SetNillablePrivilegePage(s *string) *PrivilegeUpdateOne {
+	if s != nil {
+		puo.SetPrivilegePage(*s)
 	}
-	return _u
+	return puo
 }
 
 // SetIsVisible sets the "isVisible" field.
-func (_u *PrivilegeUpdateOne) SetIsVisible(v int) *PrivilegeUpdateOne {
-	_u.mutation.ResetIsVisible()
-	_u.mutation.SetIsVisible(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetIsVisible(i int) *PrivilegeUpdateOne {
+	puo.mutation.ResetIsVisible()
+	puo.mutation.SetIsVisible(i)
+	return puo
 }
 
 // SetNillableIsVisible sets the "isVisible" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillableIsVisible(v *int) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetIsVisible(*v)
+func (puo *PrivilegeUpdateOne) SetNillableIsVisible(i *int) *PrivilegeUpdateOne {
+	if i != nil {
+		puo.SetIsVisible(*i)
 	}
-	return _u
+	return puo
 }
 
-// AddIsVisible adds value to the "isVisible" field.
-func (_u *PrivilegeUpdateOne) AddIsVisible(v int) *PrivilegeUpdateOne {
-	_u.mutation.AddIsVisible(v)
-	return _u
+// AddIsVisible adds i to the "isVisible" field.
+func (puo *PrivilegeUpdateOne) AddIsVisible(i int) *PrivilegeUpdateOne {
+	puo.mutation.AddIsVisible(i)
+	return puo
 }
 
 // SetPathPattern sets the "pathPattern" field.
-func (_u *PrivilegeUpdateOne) SetPathPattern(v string) *PrivilegeUpdateOne {
-	_u.mutation.SetPathPattern(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetPathPattern(s string) *PrivilegeUpdateOne {
+	puo.mutation.SetPathPattern(s)
+	return puo
 }
 
 // SetNillablePathPattern sets the "pathPattern" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillablePathPattern(v *string) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetPathPattern(*v)
+func (puo *PrivilegeUpdateOne) SetNillablePathPattern(s *string) *PrivilegeUpdateOne {
+	if s != nil {
+		puo.SetPathPattern(*s)
 	}
-	return _u
+	return puo
 }
 
 // SetHttpMethod sets the "httpMethod" field.
-func (_u *PrivilegeUpdateOne) SetHttpMethod(v string) *PrivilegeUpdateOne {
-	_u.mutation.SetHttpMethod(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetHttpMethod(s string) *PrivilegeUpdateOne {
+	puo.mutation.SetHttpMethod(s)
+	return puo
 }
 
 // SetNillableHttpMethod sets the "httpMethod" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillableHttpMethod(v *string) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetHttpMethod(*v)
+func (puo *PrivilegeUpdateOne) SetNillableHttpMethod(s *string) *PrivilegeUpdateOne {
+	if s != nil {
+		puo.SetHttpMethod(*s)
 	}
-	return _u
+	return puo
 }
 
 // SetIsPublic sets the "isPublic" field.
-func (_u *PrivilegeUpdateOne) SetIsPublic(v int) *PrivilegeUpdateOne {
-	_u.mutation.ResetIsPublic()
-	_u.mutation.SetIsPublic(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetIsPublic(i int) *PrivilegeUpdateOne {
+	puo.mutation.ResetIsPublic()
+	puo.mutation.SetIsPublic(i)
+	return puo
 }
 
 // SetNillableIsPublic sets the "isPublic" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillableIsPublic(v *int) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetIsPublic(*v)
+func (puo *PrivilegeUpdateOne) SetNillableIsPublic(i *int) *PrivilegeUpdateOne {
+	if i != nil {
+		puo.SetIsPublic(*i)
 	}
-	return _u
+	return puo
 }
 
-// AddIsPublic adds value to the "isPublic" field.
-func (_u *PrivilegeUpdateOne) AddIsPublic(v int) *PrivilegeUpdateOne {
-	_u.mutation.AddIsPublic(v)
-	return _u
+// AddIsPublic adds i to the "isPublic" field.
+func (puo *PrivilegeUpdateOne) AddIsPublic(i int) *PrivilegeUpdateOne {
+	puo.mutation.AddIsPublic(i)
+	return puo
 }
 
 // SetRequireOwnership sets the "requireOwnership" field.
-func (_u *PrivilegeUpdateOne) SetRequireOwnership(v int) *PrivilegeUpdateOne {
-	_u.mutation.ResetRequireOwnership()
-	_u.mutation.SetRequireOwnership(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetRequireOwnership(i int) *PrivilegeUpdateOne {
+	puo.mutation.ResetRequireOwnership()
+	puo.mutation.SetRequireOwnership(i)
+	return puo
 }
 
 // SetNillableRequireOwnership sets the "requireOwnership" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillableRequireOwnership(v *int) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetRequireOwnership(*v)
+func (puo *PrivilegeUpdateOne) SetNillableRequireOwnership(i *int) *PrivilegeUpdateOne {
+	if i != nil {
+		puo.SetRequireOwnership(*i)
 	}
-	return _u
+	return puo
 }
 
-// AddRequireOwnership adds value to the "requireOwnership" field.
-func (_u *PrivilegeUpdateOne) AddRequireOwnership(v int) *PrivilegeUpdateOne {
-	_u.mutation.AddRequireOwnership(v)
-	return _u
+// AddRequireOwnership adds i to the "requireOwnership" field.
+func (puo *PrivilegeUpdateOne) AddRequireOwnership(i int) *PrivilegeUpdateOne {
+	puo.mutation.AddRequireOwnership(i)
+	return puo
 }
 
 // SetDescription sets the "description" field.
-func (_u *PrivilegeUpdateOne) SetDescription(v string) *PrivilegeUpdateOne {
-	_u.mutation.SetDescription(v)
-	return _u
+func (puo *PrivilegeUpdateOne) SetDescription(s string) *PrivilegeUpdateOne {
+	puo.mutation.SetDescription(s)
+	return puo
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_u *PrivilegeUpdateOne) SetNillableDescription(v *string) *PrivilegeUpdateOne {
-	if v != nil {
-		_u.SetDescription(*v)
+func (puo *PrivilegeUpdateOne) SetNillableDescription(s *string) *PrivilegeUpdateOne {
+	if s != nil {
+		puo.SetDescription(*s)
 	}
-	return _u
+	return puo
 }
 
 // ClearDescription clears the value of the "description" field.
-func (_u *PrivilegeUpdateOne) ClearDescription() *PrivilegeUpdateOne {
-	_u.mutation.ClearDescription()
-	return _u
+func (puo *PrivilegeUpdateOne) ClearDescription() *PrivilegeUpdateOne {
+	puo.mutation.ClearDescription()
+	return puo
 }
 
 // Mutation returns the PrivilegeMutation object of the builder.
-func (_u *PrivilegeUpdateOne) Mutation() *PrivilegeMutation {
-	return _u.mutation
+func (puo *PrivilegeUpdateOne) Mutation() *PrivilegeMutation {
+	return puo.mutation
 }
 
 // Where appends a list predicates to the PrivilegeUpdate builder.
-func (_u *PrivilegeUpdateOne) Where(ps ...predicate.Privilege) *PrivilegeUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (puo *PrivilegeUpdateOne) Where(ps ...predicate.Privilege) *PrivilegeUpdateOne {
+	puo.mutation.Where(ps...)
+	return puo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *PrivilegeUpdateOne) Select(field string, fields ...string) *PrivilegeUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (puo *PrivilegeUpdateOne) Select(field string, fields ...string) *PrivilegeUpdateOne {
+	puo.fields = append([]string{field}, fields...)
+	return puo
 }
 
 // Save executes the query and returns the updated Privilege entity.
-func (_u *PrivilegeUpdateOne) Save(ctx context.Context) (*Privilege, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (puo *PrivilegeUpdateOne) Save(ctx context.Context) (*Privilege, error) {
+	puo.defaults()
+	return withHooks(ctx, puo.sqlSave, puo.mutation, puo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *PrivilegeUpdateOne) SaveX(ctx context.Context) *Privilege {
-	node, err := _u.Save(ctx)
+func (puo *PrivilegeUpdateOne) SaveX(ctx context.Context) *Privilege {
+	node, err := puo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -571,34 +571,34 @@ func (_u *PrivilegeUpdateOne) SaveX(ctx context.Context) *Privilege {
 }
 
 // Exec executes the query on the entity.
-func (_u *PrivilegeUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (puo *PrivilegeUpdateOne) Exec(ctx context.Context) error {
+	_, err := puo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *PrivilegeUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (puo *PrivilegeUpdateOne) ExecX(ctx context.Context) {
+	if err := puo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *PrivilegeUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (puo *PrivilegeUpdateOne) defaults() {
+	if _, ok := puo.mutation.UpdateTime(); !ok {
 		v := privilege.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		puo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *PrivilegeUpdateOne) sqlSave(ctx context.Context) (_node *Privilege, err error) {
+func (puo *PrivilegeUpdateOne) sqlSave(ctx context.Context) (_node *Privilege, err error) {
 	_spec := sqlgraph.NewUpdateSpec(privilege.Table, privilege.Columns, sqlgraph.NewFieldSpec(privilege.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := puo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Privilege.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := puo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, privilege.FieldID)
 		for _, f := range fields {
@@ -610,68 +610,68 @@ func (_u *PrivilegeUpdateOne) sqlSave(ctx context.Context) (_node *Privilege, er
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := puo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := puo.mutation.UpdateTime(); ok {
 		_spec.SetField(privilege.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := puo.mutation.IsDelete(); ok {
 		_spec.SetField(privilege.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := puo.mutation.Version(); ok {
 		_spec.SetField(privilege.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := puo.mutation.AddedVersion(); ok {
 		_spec.AddField(privilege.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PrivilegeName(); ok {
+	if value, ok := puo.mutation.PrivilegeName(); ok {
 		_spec.SetField(privilege.FieldPrivilegeName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PrivilegeCode(); ok {
+	if value, ok := puo.mutation.PrivilegeCode(); ok {
 		_spec.SetField(privilege.FieldPrivilegeCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PrivilegePage(); ok {
+	if value, ok := puo.mutation.PrivilegePage(); ok {
 		_spec.SetField(privilege.FieldPrivilegePage, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.IsVisible(); ok {
+	if value, ok := puo.mutation.IsVisible(); ok {
 		_spec.SetField(privilege.FieldIsVisible, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedIsVisible(); ok {
+	if value, ok := puo.mutation.AddedIsVisible(); ok {
 		_spec.AddField(privilege.FieldIsVisible, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PathPattern(); ok {
+	if value, ok := puo.mutation.PathPattern(); ok {
 		_spec.SetField(privilege.FieldPathPattern, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.HttpMethod(); ok {
+	if value, ok := puo.mutation.HttpMethod(); ok {
 		_spec.SetField(privilege.FieldHttpMethod, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.IsPublic(); ok {
+	if value, ok := puo.mutation.IsPublic(); ok {
 		_spec.SetField(privilege.FieldIsPublic, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedIsPublic(); ok {
+	if value, ok := puo.mutation.AddedIsPublic(); ok {
 		_spec.AddField(privilege.FieldIsPublic, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.RequireOwnership(); ok {
+	if value, ok := puo.mutation.RequireOwnership(); ok {
 		_spec.SetField(privilege.FieldRequireOwnership, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRequireOwnership(); ok {
+	if value, ok := puo.mutation.AddedRequireOwnership(); ok {
 		_spec.AddField(privilege.FieldRequireOwnership, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Description(); ok {
+	if value, ok := puo.mutation.Description(); ok {
 		_spec.SetField(privilege.FieldDescription, field.TypeString, value)
 	}
-	if _u.mutation.DescriptionCleared() {
+	if puo.mutation.DescriptionCleared() {
 		_spec.ClearField(privilege.FieldDescription, field.TypeString)
 	}
-	_node = &Privilege{config: _u.config}
+	_node = &Privilege{config: puo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, puo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{privilege.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -679,6 +679,6 @@ func (_u *PrivilegeUpdateOne) sqlSave(ctx context.Context) (_node *Privilege, er
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	puo.mutation.done = true
 	return _node, nil
 }

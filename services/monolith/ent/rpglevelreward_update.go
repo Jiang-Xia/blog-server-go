@@ -22,136 +22,136 @@ type RpgLevelRewardUpdate struct {
 }
 
 // Where appends a list predicates to the RpgLevelRewardUpdate builder.
-func (_u *RpgLevelRewardUpdate) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rlru *RpgLevelRewardUpdate) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardUpdate {
+	rlru.mutation.Where(ps...)
+	return rlru
 }
 
 // SetLevel sets the "level" field.
-func (_u *RpgLevelRewardUpdate) SetLevel(v int) *RpgLevelRewardUpdate {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (rlru *RpgLevelRewardUpdate) SetLevel(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.ResetLevel()
+	rlru.mutation.SetLevel(i)
+	return rlru
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdate) SetNillableLevel(v *int) *RpgLevelRewardUpdate {
-	if v != nil {
-		_u.SetLevel(*v)
+func (rlru *RpgLevelRewardUpdate) SetNillableLevel(i *int) *RpgLevelRewardUpdate {
+	if i != nil {
+		rlru.SetLevel(*i)
 	}
-	return _u
+	return rlru
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *RpgLevelRewardUpdate) AddLevel(v int) *RpgLevelRewardUpdate {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (rlru *RpgLevelRewardUpdate) AddLevel(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.AddLevel(i)
+	return rlru
 }
 
 // SetAvatarFrame sets the "avatarFrame" field.
-func (_u *RpgLevelRewardUpdate) SetAvatarFrame(v string) *RpgLevelRewardUpdate {
-	_u.mutation.SetAvatarFrame(v)
-	return _u
+func (rlru *RpgLevelRewardUpdate) SetAvatarFrame(s string) *RpgLevelRewardUpdate {
+	rlru.mutation.SetAvatarFrame(s)
+	return rlru
 }
 
 // SetNillableAvatarFrame sets the "avatarFrame" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdate) SetNillableAvatarFrame(v *string) *RpgLevelRewardUpdate {
-	if v != nil {
-		_u.SetAvatarFrame(*v)
+func (rlru *RpgLevelRewardUpdate) SetNillableAvatarFrame(s *string) *RpgLevelRewardUpdate {
+	if s != nil {
+		rlru.SetAvatarFrame(*s)
 	}
-	return _u
+	return rlru
 }
 
 // SetTitle sets the "title" field.
-func (_u *RpgLevelRewardUpdate) SetTitle(v string) *RpgLevelRewardUpdate {
-	_u.mutation.SetTitle(v)
-	return _u
+func (rlru *RpgLevelRewardUpdate) SetTitle(s string) *RpgLevelRewardUpdate {
+	rlru.mutation.SetTitle(s)
+	return rlru
 }
 
 // SetNillableTitle sets the "title" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdate) SetNillableTitle(v *string) *RpgLevelRewardUpdate {
-	if v != nil {
-		_u.SetTitle(*v)
+func (rlru *RpgLevelRewardUpdate) SetNillableTitle(s *string) *RpgLevelRewardUpdate {
+	if s != nil {
+		rlru.SetTitle(*s)
 	}
-	return _u
+	return rlru
 }
 
 // SetCurrencyReward sets the "currencyReward" field.
-func (_u *RpgLevelRewardUpdate) SetCurrencyReward(v int) *RpgLevelRewardUpdate {
-	_u.mutation.ResetCurrencyReward()
-	_u.mutation.SetCurrencyReward(v)
-	return _u
+func (rlru *RpgLevelRewardUpdate) SetCurrencyReward(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.ResetCurrencyReward()
+	rlru.mutation.SetCurrencyReward(i)
+	return rlru
 }
 
 // SetNillableCurrencyReward sets the "currencyReward" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdate) SetNillableCurrencyReward(v *int) *RpgLevelRewardUpdate {
-	if v != nil {
-		_u.SetCurrencyReward(*v)
+func (rlru *RpgLevelRewardUpdate) SetNillableCurrencyReward(i *int) *RpgLevelRewardUpdate {
+	if i != nil {
+		rlru.SetCurrencyReward(*i)
 	}
-	return _u
+	return rlru
 }
 
-// AddCurrencyReward adds value to the "currencyReward" field.
-func (_u *RpgLevelRewardUpdate) AddCurrencyReward(v int) *RpgLevelRewardUpdate {
-	_u.mutation.AddCurrencyReward(v)
-	return _u
+// AddCurrencyReward adds i to the "currencyReward" field.
+func (rlru *RpgLevelRewardUpdate) AddCurrencyReward(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.AddCurrencyReward(i)
+	return rlru
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgLevelRewardUpdate) SetActive(v int) *RpgLevelRewardUpdate {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rlru *RpgLevelRewardUpdate) SetActive(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.ResetActive()
+	rlru.mutation.SetActive(i)
+	return rlru
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdate) SetNillableActive(v *int) *RpgLevelRewardUpdate {
-	if v != nil {
-		_u.SetActive(*v)
+func (rlru *RpgLevelRewardUpdate) SetNillableActive(i *int) *RpgLevelRewardUpdate {
+	if i != nil {
+		rlru.SetActive(*i)
 	}
-	return _u
+	return rlru
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgLevelRewardUpdate) AddActive(v int) *RpgLevelRewardUpdate {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rlru *RpgLevelRewardUpdate) AddActive(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.AddActive(i)
+	return rlru
 }
 
 // SetSort sets the "sort" field.
-func (_u *RpgLevelRewardUpdate) SetSort(v int) *RpgLevelRewardUpdate {
-	_u.mutation.ResetSort()
-	_u.mutation.SetSort(v)
-	return _u
+func (rlru *RpgLevelRewardUpdate) SetSort(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.ResetSort()
+	rlru.mutation.SetSort(i)
+	return rlru
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdate) SetNillableSort(v *int) *RpgLevelRewardUpdate {
-	if v != nil {
-		_u.SetSort(*v)
+func (rlru *RpgLevelRewardUpdate) SetNillableSort(i *int) *RpgLevelRewardUpdate {
+	if i != nil {
+		rlru.SetSort(*i)
 	}
-	return _u
+	return rlru
 }
 
-// AddSort adds value to the "sort" field.
-func (_u *RpgLevelRewardUpdate) AddSort(v int) *RpgLevelRewardUpdate {
-	_u.mutation.AddSort(v)
-	return _u
+// AddSort adds i to the "sort" field.
+func (rlru *RpgLevelRewardUpdate) AddSort(i int) *RpgLevelRewardUpdate {
+	rlru.mutation.AddSort(i)
+	return rlru
 }
 
 // Mutation returns the RpgLevelRewardMutation object of the builder.
-func (_u *RpgLevelRewardUpdate) Mutation() *RpgLevelRewardMutation {
-	return _u.mutation
+func (rlru *RpgLevelRewardUpdate) Mutation() *RpgLevelRewardMutation {
+	return rlru.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgLevelRewardUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rlru *RpgLevelRewardUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rlru.sqlSave, rlru.mutation, rlru.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgLevelRewardUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rlru *RpgLevelRewardUpdate) SaveX(ctx context.Context) int {
+	affected, err := rlru.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,58 +159,58 @@ func (_u *RpgLevelRewardUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgLevelRewardUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rlru *RpgLevelRewardUpdate) Exec(ctx context.Context) error {
+	_, err := rlru.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgLevelRewardUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rlru *RpgLevelRewardUpdate) ExecX(ctx context.Context) {
+	if err := rlru.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgLevelRewardUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rlru *RpgLevelRewardUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpglevelreward.Table, rpglevelreward.Columns, sqlgraph.NewFieldSpec(rpglevelreward.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rlru.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := rlru.mutation.Level(); ok {
 		_spec.SetField(rpglevelreward.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := rlru.mutation.AddedLevel(); ok {
 		_spec.AddField(rpglevelreward.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AvatarFrame(); ok {
+	if value, ok := rlru.mutation.AvatarFrame(); ok {
 		_spec.SetField(rpglevelreward.FieldAvatarFrame, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Title(); ok {
+	if value, ok := rlru.mutation.Title(); ok {
 		_spec.SetField(rpglevelreward.FieldTitle, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CurrencyReward(); ok {
+	if value, ok := rlru.mutation.CurrencyReward(); ok {
 		_spec.SetField(rpglevelreward.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCurrencyReward(); ok {
+	if value, ok := rlru.mutation.AddedCurrencyReward(); ok {
 		_spec.AddField(rpglevelreward.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rlru.mutation.Active(); ok {
 		_spec.SetField(rpglevelreward.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rlru.mutation.AddedActive(); ok {
 		_spec.AddField(rpglevelreward.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Sort(); ok {
+	if value, ok := rlru.mutation.Sort(); ok {
 		_spec.SetField(rpglevelreward.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSort(); ok {
+	if value, ok := rlru.mutation.AddedSort(); ok {
 		_spec.AddField(rpglevelreward.FieldSort, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rlru.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpglevelreward.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -218,8 +218,8 @@ func (_u *RpgLevelRewardUpdate) sqlSave(ctx context.Context) (_node int, err err
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rlru.mutation.done = true
+	return n, nil
 }
 
 // RpgLevelRewardUpdateOne is the builder for updating a single RpgLevelReward entity.
@@ -231,143 +231,143 @@ type RpgLevelRewardUpdateOne struct {
 }
 
 // SetLevel sets the "level" field.
-func (_u *RpgLevelRewardUpdateOne) SetLevel(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) SetLevel(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.ResetLevel()
+	rlruo.mutation.SetLevel(i)
+	return rlruo
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdateOne) SetNillableLevel(v *int) *RpgLevelRewardUpdateOne {
-	if v != nil {
-		_u.SetLevel(*v)
+func (rlruo *RpgLevelRewardUpdateOne) SetNillableLevel(i *int) *RpgLevelRewardUpdateOne {
+	if i != nil {
+		rlruo.SetLevel(*i)
 	}
-	return _u
+	return rlruo
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *RpgLevelRewardUpdateOne) AddLevel(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (rlruo *RpgLevelRewardUpdateOne) AddLevel(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.AddLevel(i)
+	return rlruo
 }
 
 // SetAvatarFrame sets the "avatarFrame" field.
-func (_u *RpgLevelRewardUpdateOne) SetAvatarFrame(v string) *RpgLevelRewardUpdateOne {
-	_u.mutation.SetAvatarFrame(v)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) SetAvatarFrame(s string) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.SetAvatarFrame(s)
+	return rlruo
 }
 
 // SetNillableAvatarFrame sets the "avatarFrame" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdateOne) SetNillableAvatarFrame(v *string) *RpgLevelRewardUpdateOne {
-	if v != nil {
-		_u.SetAvatarFrame(*v)
+func (rlruo *RpgLevelRewardUpdateOne) SetNillableAvatarFrame(s *string) *RpgLevelRewardUpdateOne {
+	if s != nil {
+		rlruo.SetAvatarFrame(*s)
 	}
-	return _u
+	return rlruo
 }
 
 // SetTitle sets the "title" field.
-func (_u *RpgLevelRewardUpdateOne) SetTitle(v string) *RpgLevelRewardUpdateOne {
-	_u.mutation.SetTitle(v)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) SetTitle(s string) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.SetTitle(s)
+	return rlruo
 }
 
 // SetNillableTitle sets the "title" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdateOne) SetNillableTitle(v *string) *RpgLevelRewardUpdateOne {
-	if v != nil {
-		_u.SetTitle(*v)
+func (rlruo *RpgLevelRewardUpdateOne) SetNillableTitle(s *string) *RpgLevelRewardUpdateOne {
+	if s != nil {
+		rlruo.SetTitle(*s)
 	}
-	return _u
+	return rlruo
 }
 
 // SetCurrencyReward sets the "currencyReward" field.
-func (_u *RpgLevelRewardUpdateOne) SetCurrencyReward(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.ResetCurrencyReward()
-	_u.mutation.SetCurrencyReward(v)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) SetCurrencyReward(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.ResetCurrencyReward()
+	rlruo.mutation.SetCurrencyReward(i)
+	return rlruo
 }
 
 // SetNillableCurrencyReward sets the "currencyReward" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdateOne) SetNillableCurrencyReward(v *int) *RpgLevelRewardUpdateOne {
-	if v != nil {
-		_u.SetCurrencyReward(*v)
+func (rlruo *RpgLevelRewardUpdateOne) SetNillableCurrencyReward(i *int) *RpgLevelRewardUpdateOne {
+	if i != nil {
+		rlruo.SetCurrencyReward(*i)
 	}
-	return _u
+	return rlruo
 }
 
-// AddCurrencyReward adds value to the "currencyReward" field.
-func (_u *RpgLevelRewardUpdateOne) AddCurrencyReward(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.AddCurrencyReward(v)
-	return _u
+// AddCurrencyReward adds i to the "currencyReward" field.
+func (rlruo *RpgLevelRewardUpdateOne) AddCurrencyReward(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.AddCurrencyReward(i)
+	return rlruo
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgLevelRewardUpdateOne) SetActive(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) SetActive(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.ResetActive()
+	rlruo.mutation.SetActive(i)
+	return rlruo
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdateOne) SetNillableActive(v *int) *RpgLevelRewardUpdateOne {
-	if v != nil {
-		_u.SetActive(*v)
+func (rlruo *RpgLevelRewardUpdateOne) SetNillableActive(i *int) *RpgLevelRewardUpdateOne {
+	if i != nil {
+		rlruo.SetActive(*i)
 	}
-	return _u
+	return rlruo
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgLevelRewardUpdateOne) AddActive(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rlruo *RpgLevelRewardUpdateOne) AddActive(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.AddActive(i)
+	return rlruo
 }
 
 // SetSort sets the "sort" field.
-func (_u *RpgLevelRewardUpdateOne) SetSort(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.ResetSort()
-	_u.mutation.SetSort(v)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) SetSort(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.ResetSort()
+	rlruo.mutation.SetSort(i)
+	return rlruo
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_u *RpgLevelRewardUpdateOne) SetNillableSort(v *int) *RpgLevelRewardUpdateOne {
-	if v != nil {
-		_u.SetSort(*v)
+func (rlruo *RpgLevelRewardUpdateOne) SetNillableSort(i *int) *RpgLevelRewardUpdateOne {
+	if i != nil {
+		rlruo.SetSort(*i)
 	}
-	return _u
+	return rlruo
 }
 
-// AddSort adds value to the "sort" field.
-func (_u *RpgLevelRewardUpdateOne) AddSort(v int) *RpgLevelRewardUpdateOne {
-	_u.mutation.AddSort(v)
-	return _u
+// AddSort adds i to the "sort" field.
+func (rlruo *RpgLevelRewardUpdateOne) AddSort(i int) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.AddSort(i)
+	return rlruo
 }
 
 // Mutation returns the RpgLevelRewardMutation object of the builder.
-func (_u *RpgLevelRewardUpdateOne) Mutation() *RpgLevelRewardMutation {
-	return _u.mutation
+func (rlruo *RpgLevelRewardUpdateOne) Mutation() *RpgLevelRewardMutation {
+	return rlruo.mutation
 }
 
 // Where appends a list predicates to the RpgLevelRewardUpdate builder.
-func (_u *RpgLevelRewardUpdateOne) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardUpdateOne {
+	rlruo.mutation.Where(ps...)
+	return rlruo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgLevelRewardUpdateOne) Select(field string, fields ...string) *RpgLevelRewardUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rlruo *RpgLevelRewardUpdateOne) Select(field string, fields ...string) *RpgLevelRewardUpdateOne {
+	rlruo.fields = append([]string{field}, fields...)
+	return rlruo
 }
 
 // Save executes the query and returns the updated RpgLevelReward entity.
-func (_u *RpgLevelRewardUpdateOne) Save(ctx context.Context) (*RpgLevelReward, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rlruo *RpgLevelRewardUpdateOne) Save(ctx context.Context) (*RpgLevelReward, error) {
+	return withHooks(ctx, rlruo.sqlSave, rlruo.mutation, rlruo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgLevelRewardUpdateOne) SaveX(ctx context.Context) *RpgLevelReward {
-	node, err := _u.Save(ctx)
+func (rlruo *RpgLevelRewardUpdateOne) SaveX(ctx context.Context) *RpgLevelReward {
+	node, err := rlruo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -375,26 +375,26 @@ func (_u *RpgLevelRewardUpdateOne) SaveX(ctx context.Context) *RpgLevelReward {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgLevelRewardUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rlruo *RpgLevelRewardUpdateOne) Exec(ctx context.Context) error {
+	_, err := rlruo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgLevelRewardUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rlruo *RpgLevelRewardUpdateOne) ExecX(ctx context.Context) {
+	if err := rlruo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgLevelRewardUpdateOne) sqlSave(ctx context.Context) (_node *RpgLevelReward, err error) {
+func (rlruo *RpgLevelRewardUpdateOne) sqlSave(ctx context.Context) (_node *RpgLevelReward, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpglevelreward.Table, rpglevelreward.Columns, sqlgraph.NewFieldSpec(rpglevelreward.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rlruo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgLevelReward.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rlruo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpglevelreward.FieldID)
 		for _, f := range fields {
@@ -406,47 +406,47 @@ func (_u *RpgLevelRewardUpdateOne) sqlSave(ctx context.Context) (_node *RpgLevel
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rlruo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := rlruo.mutation.Level(); ok {
 		_spec.SetField(rpglevelreward.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := rlruo.mutation.AddedLevel(); ok {
 		_spec.AddField(rpglevelreward.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AvatarFrame(); ok {
+	if value, ok := rlruo.mutation.AvatarFrame(); ok {
 		_spec.SetField(rpglevelreward.FieldAvatarFrame, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Title(); ok {
+	if value, ok := rlruo.mutation.Title(); ok {
 		_spec.SetField(rpglevelreward.FieldTitle, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CurrencyReward(); ok {
+	if value, ok := rlruo.mutation.CurrencyReward(); ok {
 		_spec.SetField(rpglevelreward.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCurrencyReward(); ok {
+	if value, ok := rlruo.mutation.AddedCurrencyReward(); ok {
 		_spec.AddField(rpglevelreward.FieldCurrencyReward, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rlruo.mutation.Active(); ok {
 		_spec.SetField(rpglevelreward.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rlruo.mutation.AddedActive(); ok {
 		_spec.AddField(rpglevelreward.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Sort(); ok {
+	if value, ok := rlruo.mutation.Sort(); ok {
 		_spec.SetField(rpglevelreward.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSort(); ok {
+	if value, ok := rlruo.mutation.AddedSort(); ok {
 		_spec.AddField(rpglevelreward.FieldSort, field.TypeInt, value)
 	}
-	_node = &RpgLevelReward{config: _u.config}
+	_node = &RpgLevelReward{config: rlruo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rlruo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpglevelreward.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -454,6 +454,6 @@ func (_u *RpgLevelRewardUpdateOne) sqlSave(ctx context.Context) (_node *RpgLevel
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rlruo.mutation.done = true
 	return _node, nil
 }

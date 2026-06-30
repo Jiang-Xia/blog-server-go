@@ -23,398 +23,398 @@ type RpgUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUpdate builder.
-func (_u *RpgUpdate) Where(ps ...predicate.Rpg) *RpgUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (ru *RpgUpdate) Where(ps ...predicate.Rpg) *RpgUpdate {
+	ru.mutation.Where(ps...)
+	return ru
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUpdate) SetUpdateTime(v time.Time) *RpgUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ru *RpgUpdate) SetUpdateTime(t time.Time) *RpgUpdate {
+	ru.mutation.SetUpdateTime(t)
+	return ru
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUpdate) SetIsDelete(v bool) *RpgUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ru *RpgUpdate) SetIsDelete(b bool) *RpgUpdate {
+	ru.mutation.SetIsDelete(b)
+	return ru
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableIsDelete(v *bool) *RpgUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ru *RpgUpdate) SetNillableIsDelete(b *bool) *RpgUpdate {
+	if b != nil {
+		ru.SetIsDelete(*b)
 	}
-	return _u
+	return ru
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUpdate) SetVersion(v int) *RpgUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ru *RpgUpdate) SetVersion(i int) *RpgUpdate {
+	ru.mutation.ResetVersion()
+	ru.mutation.SetVersion(i)
+	return ru
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableVersion(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ru *RpgUpdate) SetNillableVersion(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetVersion(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUpdate) AddVersion(v int) *RpgUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ru *RpgUpdate) AddVersion(i int) *RpgUpdate {
+	ru.mutation.AddVersion(i)
+	return ru
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUpdate) SetUID(v int) *RpgUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ru *RpgUpdate) SetUID(i int) *RpgUpdate {
+	ru.mutation.ResetUID()
+	ru.mutation.SetUID(i)
+	return ru
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableUID(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (ru *RpgUpdate) SetNillableUID(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetUID(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUpdate) AddUID(v int) *RpgUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ru *RpgUpdate) AddUID(i int) *RpgUpdate {
+	ru.mutation.AddUID(i)
+	return ru
 }
 
 // SetExp sets the "exp" field.
-func (_u *RpgUpdate) SetExp(v int) *RpgUpdate {
-	_u.mutation.ResetExp()
-	_u.mutation.SetExp(v)
-	return _u
+func (ru *RpgUpdate) SetExp(i int) *RpgUpdate {
+	ru.mutation.ResetExp()
+	ru.mutation.SetExp(i)
+	return ru
 }
 
 // SetNillableExp sets the "exp" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableExp(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetExp(*v)
+func (ru *RpgUpdate) SetNillableExp(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetExp(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddExp adds value to the "exp" field.
-func (_u *RpgUpdate) AddExp(v int) *RpgUpdate {
-	_u.mutation.AddExp(v)
-	return _u
+// AddExp adds i to the "exp" field.
+func (ru *RpgUpdate) AddExp(i int) *RpgUpdate {
+	ru.mutation.AddExp(i)
+	return ru
 }
 
 // SetLevel sets the "level" field.
-func (_u *RpgUpdate) SetLevel(v int) *RpgUpdate {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (ru *RpgUpdate) SetLevel(i int) *RpgUpdate {
+	ru.mutation.ResetLevel()
+	ru.mutation.SetLevel(i)
+	return ru
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableLevel(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetLevel(*v)
+func (ru *RpgUpdate) SetNillableLevel(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetLevel(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *RpgUpdate) AddLevel(v int) *RpgUpdate {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (ru *RpgUpdate) AddLevel(i int) *RpgUpdate {
+	ru.mutation.AddLevel(i)
+	return ru
 }
 
 // SetLifeValue sets the "lifeValue" field.
-func (_u *RpgUpdate) SetLifeValue(v int) *RpgUpdate {
-	_u.mutation.ResetLifeValue()
-	_u.mutation.SetLifeValue(v)
-	return _u
+func (ru *RpgUpdate) SetLifeValue(i int) *RpgUpdate {
+	ru.mutation.ResetLifeValue()
+	ru.mutation.SetLifeValue(i)
+	return ru
 }
 
 // SetNillableLifeValue sets the "lifeValue" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableLifeValue(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetLifeValue(*v)
+func (ru *RpgUpdate) SetNillableLifeValue(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetLifeValue(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddLifeValue adds value to the "lifeValue" field.
-func (_u *RpgUpdate) AddLifeValue(v int) *RpgUpdate {
-	_u.mutation.AddLifeValue(v)
-	return _u
+// AddLifeValue adds i to the "lifeValue" field.
+func (ru *RpgUpdate) AddLifeValue(i int) *RpgUpdate {
+	ru.mutation.AddLifeValue(i)
+	return ru
 }
 
 // SetLastSignDate sets the "lastSignDate" field.
-func (_u *RpgUpdate) SetLastSignDate(v time.Time) *RpgUpdate {
-	_u.mutation.SetLastSignDate(v)
-	return _u
+func (ru *RpgUpdate) SetLastSignDate(t time.Time) *RpgUpdate {
+	ru.mutation.SetLastSignDate(t)
+	return ru
 }
 
 // SetNillableLastSignDate sets the "lastSignDate" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableLastSignDate(v *time.Time) *RpgUpdate {
-	if v != nil {
-		_u.SetLastSignDate(*v)
+func (ru *RpgUpdate) SetNillableLastSignDate(t *time.Time) *RpgUpdate {
+	if t != nil {
+		ru.SetLastSignDate(*t)
 	}
-	return _u
+	return ru
 }
 
 // ClearLastSignDate clears the value of the "lastSignDate" field.
-func (_u *RpgUpdate) ClearLastSignDate() *RpgUpdate {
-	_u.mutation.ClearLastSignDate()
-	return _u
+func (ru *RpgUpdate) ClearLastSignDate() *RpgUpdate {
+	ru.mutation.ClearLastSignDate()
+	return ru
 }
 
 // SetTotalSignDays sets the "totalSignDays" field.
-func (_u *RpgUpdate) SetTotalSignDays(v int) *RpgUpdate {
-	_u.mutation.ResetTotalSignDays()
-	_u.mutation.SetTotalSignDays(v)
-	return _u
+func (ru *RpgUpdate) SetTotalSignDays(i int) *RpgUpdate {
+	ru.mutation.ResetTotalSignDays()
+	ru.mutation.SetTotalSignDays(i)
+	return ru
 }
 
 // SetNillableTotalSignDays sets the "totalSignDays" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableTotalSignDays(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetTotalSignDays(*v)
+func (ru *RpgUpdate) SetNillableTotalSignDays(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetTotalSignDays(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddTotalSignDays adds value to the "totalSignDays" field.
-func (_u *RpgUpdate) AddTotalSignDays(v int) *RpgUpdate {
-	_u.mutation.AddTotalSignDays(v)
-	return _u
+// AddTotalSignDays adds i to the "totalSignDays" field.
+func (ru *RpgUpdate) AddTotalSignDays(i int) *RpgUpdate {
+	ru.mutation.AddTotalSignDays(i)
+	return ru
 }
 
 // SetConsecutiveSignDays sets the "consecutiveSignDays" field.
-func (_u *RpgUpdate) SetConsecutiveSignDays(v int) *RpgUpdate {
-	_u.mutation.ResetConsecutiveSignDays()
-	_u.mutation.SetConsecutiveSignDays(v)
-	return _u
+func (ru *RpgUpdate) SetConsecutiveSignDays(i int) *RpgUpdate {
+	ru.mutation.ResetConsecutiveSignDays()
+	ru.mutation.SetConsecutiveSignDays(i)
+	return ru
 }
 
 // SetNillableConsecutiveSignDays sets the "consecutiveSignDays" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableConsecutiveSignDays(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetConsecutiveSignDays(*v)
+func (ru *RpgUpdate) SetNillableConsecutiveSignDays(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetConsecutiveSignDays(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddConsecutiveSignDays adds value to the "consecutiveSignDays" field.
-func (_u *RpgUpdate) AddConsecutiveSignDays(v int) *RpgUpdate {
-	_u.mutation.AddConsecutiveSignDays(v)
-	return _u
+// AddConsecutiveSignDays adds i to the "consecutiveSignDays" field.
+func (ru *RpgUpdate) AddConsecutiveSignDays(i int) *RpgUpdate {
+	ru.mutation.AddConsecutiveSignDays(i)
+	return ru
 }
 
 // SetBanStartTime sets the "banStartTime" field.
-func (_u *RpgUpdate) SetBanStartTime(v time.Time) *RpgUpdate {
-	_u.mutation.SetBanStartTime(v)
-	return _u
+func (ru *RpgUpdate) SetBanStartTime(t time.Time) *RpgUpdate {
+	ru.mutation.SetBanStartTime(t)
+	return ru
 }
 
 // SetNillableBanStartTime sets the "banStartTime" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableBanStartTime(v *time.Time) *RpgUpdate {
-	if v != nil {
-		_u.SetBanStartTime(*v)
+func (ru *RpgUpdate) SetNillableBanStartTime(t *time.Time) *RpgUpdate {
+	if t != nil {
+		ru.SetBanStartTime(*t)
 	}
-	return _u
+	return ru
 }
 
 // ClearBanStartTime clears the value of the "banStartTime" field.
-func (_u *RpgUpdate) ClearBanStartTime() *RpgUpdate {
-	_u.mutation.ClearBanStartTime()
-	return _u
+func (ru *RpgUpdate) ClearBanStartTime() *RpgUpdate {
+	ru.mutation.ClearBanStartTime()
+	return ru
 }
 
 // SetBanEndTime sets the "banEndTime" field.
-func (_u *RpgUpdate) SetBanEndTime(v time.Time) *RpgUpdate {
-	_u.mutation.SetBanEndTime(v)
-	return _u
+func (ru *RpgUpdate) SetBanEndTime(t time.Time) *RpgUpdate {
+	ru.mutation.SetBanEndTime(t)
+	return ru
 }
 
 // SetNillableBanEndTime sets the "banEndTime" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableBanEndTime(v *time.Time) *RpgUpdate {
-	if v != nil {
-		_u.SetBanEndTime(*v)
+func (ru *RpgUpdate) SetNillableBanEndTime(t *time.Time) *RpgUpdate {
+	if t != nil {
+		ru.SetBanEndTime(*t)
 	}
-	return _u
+	return ru
 }
 
 // ClearBanEndTime clears the value of the "banEndTime" field.
-func (_u *RpgUpdate) ClearBanEndTime() *RpgUpdate {
-	_u.mutation.ClearBanEndTime()
-	return _u
+func (ru *RpgUpdate) ClearBanEndTime() *RpgUpdate {
+	ru.mutation.ClearBanEndTime()
+	return ru
 }
 
 // SetSensitiveHitsCount sets the "sensitiveHitsCount" field.
-func (_u *RpgUpdate) SetSensitiveHitsCount(v int) *RpgUpdate {
-	_u.mutation.ResetSensitiveHitsCount()
-	_u.mutation.SetSensitiveHitsCount(v)
-	return _u
+func (ru *RpgUpdate) SetSensitiveHitsCount(i int) *RpgUpdate {
+	ru.mutation.ResetSensitiveHitsCount()
+	ru.mutation.SetSensitiveHitsCount(i)
+	return ru
 }
 
 // SetNillableSensitiveHitsCount sets the "sensitiveHitsCount" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableSensitiveHitsCount(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetSensitiveHitsCount(*v)
+func (ru *RpgUpdate) SetNillableSensitiveHitsCount(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetSensitiveHitsCount(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddSensitiveHitsCount adds value to the "sensitiveHitsCount" field.
-func (_u *RpgUpdate) AddSensitiveHitsCount(v int) *RpgUpdate {
-	_u.mutation.AddSensitiveHitsCount(v)
-	return _u
+// AddSensitiveHitsCount adds i to the "sensitiveHitsCount" field.
+func (ru *RpgUpdate) AddSensitiveHitsCount(i int) *RpgUpdate {
+	ru.mutation.AddSensitiveHitsCount(i)
+	return ru
 }
 
 // SetZeroLifeCount sets the "zeroLifeCount" field.
-func (_u *RpgUpdate) SetZeroLifeCount(v int) *RpgUpdate {
-	_u.mutation.ResetZeroLifeCount()
-	_u.mutation.SetZeroLifeCount(v)
-	return _u
+func (ru *RpgUpdate) SetZeroLifeCount(i int) *RpgUpdate {
+	ru.mutation.ResetZeroLifeCount()
+	ru.mutation.SetZeroLifeCount(i)
+	return ru
 }
 
 // SetNillableZeroLifeCount sets the "zeroLifeCount" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableZeroLifeCount(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetZeroLifeCount(*v)
+func (ru *RpgUpdate) SetNillableZeroLifeCount(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetZeroLifeCount(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddZeroLifeCount adds value to the "zeroLifeCount" field.
-func (_u *RpgUpdate) AddZeroLifeCount(v int) *RpgUpdate {
-	_u.mutation.AddZeroLifeCount(v)
-	return _u
+// AddZeroLifeCount adds i to the "zeroLifeCount" field.
+func (ru *RpgUpdate) AddZeroLifeCount(i int) *RpgUpdate {
+	ru.mutation.AddZeroLifeCount(i)
+	return ru
 }
 
 // SetLotteryTickets sets the "lotteryTickets" field.
-func (_u *RpgUpdate) SetLotteryTickets(v int) *RpgUpdate {
-	_u.mutation.ResetLotteryTickets()
-	_u.mutation.SetLotteryTickets(v)
-	return _u
+func (ru *RpgUpdate) SetLotteryTickets(i int) *RpgUpdate {
+	ru.mutation.ResetLotteryTickets()
+	ru.mutation.SetLotteryTickets(i)
+	return ru
 }
 
 // SetNillableLotteryTickets sets the "lotteryTickets" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableLotteryTickets(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetLotteryTickets(*v)
+func (ru *RpgUpdate) SetNillableLotteryTickets(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetLotteryTickets(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddLotteryTickets adds value to the "lotteryTickets" field.
-func (_u *RpgUpdate) AddLotteryTickets(v int) *RpgUpdate {
-	_u.mutation.AddLotteryTickets(v)
-	return _u
+// AddLotteryTickets adds i to the "lotteryTickets" field.
+func (ru *RpgUpdate) AddLotteryTickets(i int) *RpgUpdate {
+	ru.mutation.AddLotteryTickets(i)
+	return ru
 }
 
 // SetReputation sets the "reputation" field.
-func (_u *RpgUpdate) SetReputation(v int) *RpgUpdate {
-	_u.mutation.ResetReputation()
-	_u.mutation.SetReputation(v)
-	return _u
+func (ru *RpgUpdate) SetReputation(i int) *RpgUpdate {
+	ru.mutation.ResetReputation()
+	ru.mutation.SetReputation(i)
+	return ru
 }
 
 // SetNillableReputation sets the "reputation" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableReputation(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetReputation(*v)
+func (ru *RpgUpdate) SetNillableReputation(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetReputation(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddReputation adds value to the "reputation" field.
-func (_u *RpgUpdate) AddReputation(v int) *RpgUpdate {
-	_u.mutation.AddReputation(v)
-	return _u
+// AddReputation adds i to the "reputation" field.
+func (ru *RpgUpdate) AddReputation(i int) *RpgUpdate {
+	ru.mutation.AddReputation(i)
+	return ru
 }
 
 // SetLotteryPityCounter sets the "lotteryPityCounter" field.
-func (_u *RpgUpdate) SetLotteryPityCounter(v int) *RpgUpdate {
-	_u.mutation.ResetLotteryPityCounter()
-	_u.mutation.SetLotteryPityCounter(v)
-	return _u
+func (ru *RpgUpdate) SetLotteryPityCounter(i int) *RpgUpdate {
+	ru.mutation.ResetLotteryPityCounter()
+	ru.mutation.SetLotteryPityCounter(i)
+	return ru
 }
 
 // SetNillableLotteryPityCounter sets the "lotteryPityCounter" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableLotteryPityCounter(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetLotteryPityCounter(*v)
+func (ru *RpgUpdate) SetNillableLotteryPityCounter(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetLotteryPityCounter(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddLotteryPityCounter adds value to the "lotteryPityCounter" field.
-func (_u *RpgUpdate) AddLotteryPityCounter(v int) *RpgUpdate {
-	_u.mutation.AddLotteryPityCounter(v)
-	return _u
+// AddLotteryPityCounter adds i to the "lotteryPityCounter" field.
+func (ru *RpgUpdate) AddLotteryPityCounter(i int) *RpgUpdate {
+	ru.mutation.AddLotteryPityCounter(i)
+	return ru
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUpdate) SetEffectJson(v string) *RpgUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (ru *RpgUpdate) SetEffectJson(s string) *RpgUpdate {
+	ru.mutation.SetEffectJson(s)
+	return ru
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableEffectJson(v *string) *RpgUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (ru *RpgUpdate) SetNillableEffectJson(s *string) *RpgUpdate {
+	if s != nil {
+		ru.SetEffectJson(*s)
 	}
-	return _u
+	return ru
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUpdate) ClearEffectJson() *RpgUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (ru *RpgUpdate) ClearEffectJson() *RpgUpdate {
+	ru.mutation.ClearEffectJson()
+	return ru
 }
 
 // SetLotteryLegendaryPityCounter sets the "lotteryLegendaryPityCounter" field.
-func (_u *RpgUpdate) SetLotteryLegendaryPityCounter(v int) *RpgUpdate {
-	_u.mutation.ResetLotteryLegendaryPityCounter()
-	_u.mutation.SetLotteryLegendaryPityCounter(v)
-	return _u
+func (ru *RpgUpdate) SetLotteryLegendaryPityCounter(i int) *RpgUpdate {
+	ru.mutation.ResetLotteryLegendaryPityCounter()
+	ru.mutation.SetLotteryLegendaryPityCounter(i)
+	return ru
 }
 
 // SetNillableLotteryLegendaryPityCounter sets the "lotteryLegendaryPityCounter" field if the given value is not nil.
-func (_u *RpgUpdate) SetNillableLotteryLegendaryPityCounter(v *int) *RpgUpdate {
-	if v != nil {
-		_u.SetLotteryLegendaryPityCounter(*v)
+func (ru *RpgUpdate) SetNillableLotteryLegendaryPityCounter(i *int) *RpgUpdate {
+	if i != nil {
+		ru.SetLotteryLegendaryPityCounter(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddLotteryLegendaryPityCounter adds value to the "lotteryLegendaryPityCounter" field.
-func (_u *RpgUpdate) AddLotteryLegendaryPityCounter(v int) *RpgUpdate {
-	_u.mutation.AddLotteryLegendaryPityCounter(v)
-	return _u
+// AddLotteryLegendaryPityCounter adds i to the "lotteryLegendaryPityCounter" field.
+func (ru *RpgUpdate) AddLotteryLegendaryPityCounter(i int) *RpgUpdate {
+	ru.mutation.AddLotteryLegendaryPityCounter(i)
+	return ru
 }
 
 // Mutation returns the RpgMutation object of the builder.
-func (_u *RpgUpdate) Mutation() *RpgMutation {
-	return _u.mutation
+func (ru *RpgUpdate) Mutation() *RpgMutation {
+	return ru.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ru *RpgUpdate) Save(ctx context.Context) (int, error) {
+	ru.defaults()
+	return withHooks(ctx, ru.sqlSave, ru.mutation, ru.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (ru *RpgUpdate) SaveX(ctx context.Context) int {
+	affected, err := ru.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -422,144 +422,144 @@ func (_u *RpgUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ru *RpgUpdate) Exec(ctx context.Context) error {
+	_, err := ru.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ru *RpgUpdate) ExecX(ctx context.Context) {
+	if err := ru.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ru *RpgUpdate) defaults() {
+	if _, ok := ru.mutation.UpdateTime(); !ok {
 		v := rpg.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ru.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (ru *RpgUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpg.Table, rpg.Columns, sqlgraph.NewFieldSpec(rpg.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ru.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ru.mutation.UpdateTime(); ok {
 		_spec.SetField(rpg.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ru.mutation.IsDelete(); ok {
 		_spec.SetField(rpg.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ru.mutation.Version(); ok {
 		_spec.SetField(rpg.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ru.mutation.AddedVersion(); ok {
 		_spec.AddField(rpg.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ru.mutation.UID(); ok {
 		_spec.SetField(rpg.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ru.mutation.AddedUID(); ok {
 		_spec.AddField(rpg.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Exp(); ok {
+	if value, ok := ru.mutation.Exp(); ok {
 		_spec.SetField(rpg.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedExp(); ok {
+	if value, ok := ru.mutation.AddedExp(); ok {
 		_spec.AddField(rpg.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := ru.mutation.Level(); ok {
 		_spec.SetField(rpg.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := ru.mutation.AddedLevel(); ok {
 		_spec.AddField(rpg.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LifeValue(); ok {
+	if value, ok := ru.mutation.LifeValue(); ok {
 		_spec.SetField(rpg.FieldLifeValue, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLifeValue(); ok {
+	if value, ok := ru.mutation.AddedLifeValue(); ok {
 		_spec.AddField(rpg.FieldLifeValue, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LastSignDate(); ok {
+	if value, ok := ru.mutation.LastSignDate(); ok {
 		_spec.SetField(rpg.FieldLastSignDate, field.TypeTime, value)
 	}
-	if _u.mutation.LastSignDateCleared() {
+	if ru.mutation.LastSignDateCleared() {
 		_spec.ClearField(rpg.FieldLastSignDate, field.TypeTime)
 	}
-	if value, ok := _u.mutation.TotalSignDays(); ok {
+	if value, ok := ru.mutation.TotalSignDays(); ok {
 		_spec.SetField(rpg.FieldTotalSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedTotalSignDays(); ok {
+	if value, ok := ru.mutation.AddedTotalSignDays(); ok {
 		_spec.AddField(rpg.FieldTotalSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ConsecutiveSignDays(); ok {
+	if value, ok := ru.mutation.ConsecutiveSignDays(); ok {
 		_spec.SetField(rpg.FieldConsecutiveSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedConsecutiveSignDays(); ok {
+	if value, ok := ru.mutation.AddedConsecutiveSignDays(); ok {
 		_spec.AddField(rpg.FieldConsecutiveSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.BanStartTime(); ok {
+	if value, ok := ru.mutation.BanStartTime(); ok {
 		_spec.SetField(rpg.FieldBanStartTime, field.TypeTime, value)
 	}
-	if _u.mutation.BanStartTimeCleared() {
+	if ru.mutation.BanStartTimeCleared() {
 		_spec.ClearField(rpg.FieldBanStartTime, field.TypeTime)
 	}
-	if value, ok := _u.mutation.BanEndTime(); ok {
+	if value, ok := ru.mutation.BanEndTime(); ok {
 		_spec.SetField(rpg.FieldBanEndTime, field.TypeTime, value)
 	}
-	if _u.mutation.BanEndTimeCleared() {
+	if ru.mutation.BanEndTimeCleared() {
 		_spec.ClearField(rpg.FieldBanEndTime, field.TypeTime)
 	}
-	if value, ok := _u.mutation.SensitiveHitsCount(); ok {
+	if value, ok := ru.mutation.SensitiveHitsCount(); ok {
 		_spec.SetField(rpg.FieldSensitiveHitsCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSensitiveHitsCount(); ok {
+	if value, ok := ru.mutation.AddedSensitiveHitsCount(); ok {
 		_spec.AddField(rpg.FieldSensitiveHitsCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ZeroLifeCount(); ok {
+	if value, ok := ru.mutation.ZeroLifeCount(); ok {
 		_spec.SetField(rpg.FieldZeroLifeCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedZeroLifeCount(); ok {
+	if value, ok := ru.mutation.AddedZeroLifeCount(); ok {
 		_spec.AddField(rpg.FieldZeroLifeCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LotteryTickets(); ok {
+	if value, ok := ru.mutation.LotteryTickets(); ok {
 		_spec.SetField(rpg.FieldLotteryTickets, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLotteryTickets(); ok {
+	if value, ok := ru.mutation.AddedLotteryTickets(); ok {
 		_spec.AddField(rpg.FieldLotteryTickets, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Reputation(); ok {
+	if value, ok := ru.mutation.Reputation(); ok {
 		_spec.SetField(rpg.FieldReputation, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedReputation(); ok {
+	if value, ok := ru.mutation.AddedReputation(); ok {
 		_spec.AddField(rpg.FieldReputation, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LotteryPityCounter(); ok {
+	if value, ok := ru.mutation.LotteryPityCounter(); ok {
 		_spec.SetField(rpg.FieldLotteryPityCounter, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLotteryPityCounter(); ok {
+	if value, ok := ru.mutation.AddedLotteryPityCounter(); ok {
 		_spec.AddField(rpg.FieldLotteryPityCounter, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := ru.mutation.EffectJson(); ok {
 		_spec.SetField(rpg.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if ru.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpg.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.LotteryLegendaryPityCounter(); ok {
+	if value, ok := ru.mutation.LotteryLegendaryPityCounter(); ok {
 		_spec.SetField(rpg.FieldLotteryLegendaryPityCounter, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLotteryLegendaryPityCounter(); ok {
+	if value, ok := ru.mutation.AddedLotteryLegendaryPityCounter(); ok {
 		_spec.AddField(rpg.FieldLotteryLegendaryPityCounter, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, ru.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpg.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -567,8 +567,8 @@ func (_u *RpgUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	ru.mutation.done = true
+	return n, nil
 }
 
 // RpgUpdateOne is the builder for updating a single Rpg entity.
@@ -580,405 +580,405 @@ type RpgUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUpdateOne) SetUpdateTime(v time.Time) *RpgUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ruo *RpgUpdateOne) SetUpdateTime(t time.Time) *RpgUpdateOne {
+	ruo.mutation.SetUpdateTime(t)
+	return ruo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUpdateOne) SetIsDelete(v bool) *RpgUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ruo *RpgUpdateOne) SetIsDelete(b bool) *RpgUpdateOne {
+	ruo.mutation.SetIsDelete(b)
+	return ruo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableIsDelete(v *bool) *RpgUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ruo *RpgUpdateOne) SetNillableIsDelete(b *bool) *RpgUpdateOne {
+	if b != nil {
+		ruo.SetIsDelete(*b)
 	}
-	return _u
+	return ruo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUpdateOne) SetVersion(v int) *RpgUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ruo *RpgUpdateOne) SetVersion(i int) *RpgUpdateOne {
+	ruo.mutation.ResetVersion()
+	ruo.mutation.SetVersion(i)
+	return ruo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableVersion(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ruo *RpgUpdateOne) SetNillableVersion(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetVersion(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUpdateOne) AddVersion(v int) *RpgUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ruo *RpgUpdateOne) AddVersion(i int) *RpgUpdateOne {
+	ruo.mutation.AddVersion(i)
+	return ruo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUpdateOne) SetUID(v int) *RpgUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ruo *RpgUpdateOne) SetUID(i int) *RpgUpdateOne {
+	ruo.mutation.ResetUID()
+	ruo.mutation.SetUID(i)
+	return ruo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableUID(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (ruo *RpgUpdateOne) SetNillableUID(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetUID(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUpdateOne) AddUID(v int) *RpgUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ruo *RpgUpdateOne) AddUID(i int) *RpgUpdateOne {
+	ruo.mutation.AddUID(i)
+	return ruo
 }
 
 // SetExp sets the "exp" field.
-func (_u *RpgUpdateOne) SetExp(v int) *RpgUpdateOne {
-	_u.mutation.ResetExp()
-	_u.mutation.SetExp(v)
-	return _u
+func (ruo *RpgUpdateOne) SetExp(i int) *RpgUpdateOne {
+	ruo.mutation.ResetExp()
+	ruo.mutation.SetExp(i)
+	return ruo
 }
 
 // SetNillableExp sets the "exp" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableExp(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetExp(*v)
+func (ruo *RpgUpdateOne) SetNillableExp(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetExp(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddExp adds value to the "exp" field.
-func (_u *RpgUpdateOne) AddExp(v int) *RpgUpdateOne {
-	_u.mutation.AddExp(v)
-	return _u
+// AddExp adds i to the "exp" field.
+func (ruo *RpgUpdateOne) AddExp(i int) *RpgUpdateOne {
+	ruo.mutation.AddExp(i)
+	return ruo
 }
 
 // SetLevel sets the "level" field.
-func (_u *RpgUpdateOne) SetLevel(v int) *RpgUpdateOne {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (ruo *RpgUpdateOne) SetLevel(i int) *RpgUpdateOne {
+	ruo.mutation.ResetLevel()
+	ruo.mutation.SetLevel(i)
+	return ruo
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableLevel(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetLevel(*v)
+func (ruo *RpgUpdateOne) SetNillableLevel(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetLevel(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *RpgUpdateOne) AddLevel(v int) *RpgUpdateOne {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (ruo *RpgUpdateOne) AddLevel(i int) *RpgUpdateOne {
+	ruo.mutation.AddLevel(i)
+	return ruo
 }
 
 // SetLifeValue sets the "lifeValue" field.
-func (_u *RpgUpdateOne) SetLifeValue(v int) *RpgUpdateOne {
-	_u.mutation.ResetLifeValue()
-	_u.mutation.SetLifeValue(v)
-	return _u
+func (ruo *RpgUpdateOne) SetLifeValue(i int) *RpgUpdateOne {
+	ruo.mutation.ResetLifeValue()
+	ruo.mutation.SetLifeValue(i)
+	return ruo
 }
 
 // SetNillableLifeValue sets the "lifeValue" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableLifeValue(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetLifeValue(*v)
+func (ruo *RpgUpdateOne) SetNillableLifeValue(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetLifeValue(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddLifeValue adds value to the "lifeValue" field.
-func (_u *RpgUpdateOne) AddLifeValue(v int) *RpgUpdateOne {
-	_u.mutation.AddLifeValue(v)
-	return _u
+// AddLifeValue adds i to the "lifeValue" field.
+func (ruo *RpgUpdateOne) AddLifeValue(i int) *RpgUpdateOne {
+	ruo.mutation.AddLifeValue(i)
+	return ruo
 }
 
 // SetLastSignDate sets the "lastSignDate" field.
-func (_u *RpgUpdateOne) SetLastSignDate(v time.Time) *RpgUpdateOne {
-	_u.mutation.SetLastSignDate(v)
-	return _u
+func (ruo *RpgUpdateOne) SetLastSignDate(t time.Time) *RpgUpdateOne {
+	ruo.mutation.SetLastSignDate(t)
+	return ruo
 }
 
 // SetNillableLastSignDate sets the "lastSignDate" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableLastSignDate(v *time.Time) *RpgUpdateOne {
-	if v != nil {
-		_u.SetLastSignDate(*v)
+func (ruo *RpgUpdateOne) SetNillableLastSignDate(t *time.Time) *RpgUpdateOne {
+	if t != nil {
+		ruo.SetLastSignDate(*t)
 	}
-	return _u
+	return ruo
 }
 
 // ClearLastSignDate clears the value of the "lastSignDate" field.
-func (_u *RpgUpdateOne) ClearLastSignDate() *RpgUpdateOne {
-	_u.mutation.ClearLastSignDate()
-	return _u
+func (ruo *RpgUpdateOne) ClearLastSignDate() *RpgUpdateOne {
+	ruo.mutation.ClearLastSignDate()
+	return ruo
 }
 
 // SetTotalSignDays sets the "totalSignDays" field.
-func (_u *RpgUpdateOne) SetTotalSignDays(v int) *RpgUpdateOne {
-	_u.mutation.ResetTotalSignDays()
-	_u.mutation.SetTotalSignDays(v)
-	return _u
+func (ruo *RpgUpdateOne) SetTotalSignDays(i int) *RpgUpdateOne {
+	ruo.mutation.ResetTotalSignDays()
+	ruo.mutation.SetTotalSignDays(i)
+	return ruo
 }
 
 // SetNillableTotalSignDays sets the "totalSignDays" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableTotalSignDays(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetTotalSignDays(*v)
+func (ruo *RpgUpdateOne) SetNillableTotalSignDays(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetTotalSignDays(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddTotalSignDays adds value to the "totalSignDays" field.
-func (_u *RpgUpdateOne) AddTotalSignDays(v int) *RpgUpdateOne {
-	_u.mutation.AddTotalSignDays(v)
-	return _u
+// AddTotalSignDays adds i to the "totalSignDays" field.
+func (ruo *RpgUpdateOne) AddTotalSignDays(i int) *RpgUpdateOne {
+	ruo.mutation.AddTotalSignDays(i)
+	return ruo
 }
 
 // SetConsecutiveSignDays sets the "consecutiveSignDays" field.
-func (_u *RpgUpdateOne) SetConsecutiveSignDays(v int) *RpgUpdateOne {
-	_u.mutation.ResetConsecutiveSignDays()
-	_u.mutation.SetConsecutiveSignDays(v)
-	return _u
+func (ruo *RpgUpdateOne) SetConsecutiveSignDays(i int) *RpgUpdateOne {
+	ruo.mutation.ResetConsecutiveSignDays()
+	ruo.mutation.SetConsecutiveSignDays(i)
+	return ruo
 }
 
 // SetNillableConsecutiveSignDays sets the "consecutiveSignDays" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableConsecutiveSignDays(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetConsecutiveSignDays(*v)
+func (ruo *RpgUpdateOne) SetNillableConsecutiveSignDays(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetConsecutiveSignDays(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddConsecutiveSignDays adds value to the "consecutiveSignDays" field.
-func (_u *RpgUpdateOne) AddConsecutiveSignDays(v int) *RpgUpdateOne {
-	_u.mutation.AddConsecutiveSignDays(v)
-	return _u
+// AddConsecutiveSignDays adds i to the "consecutiveSignDays" field.
+func (ruo *RpgUpdateOne) AddConsecutiveSignDays(i int) *RpgUpdateOne {
+	ruo.mutation.AddConsecutiveSignDays(i)
+	return ruo
 }
 
 // SetBanStartTime sets the "banStartTime" field.
-func (_u *RpgUpdateOne) SetBanStartTime(v time.Time) *RpgUpdateOne {
-	_u.mutation.SetBanStartTime(v)
-	return _u
+func (ruo *RpgUpdateOne) SetBanStartTime(t time.Time) *RpgUpdateOne {
+	ruo.mutation.SetBanStartTime(t)
+	return ruo
 }
 
 // SetNillableBanStartTime sets the "banStartTime" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableBanStartTime(v *time.Time) *RpgUpdateOne {
-	if v != nil {
-		_u.SetBanStartTime(*v)
+func (ruo *RpgUpdateOne) SetNillableBanStartTime(t *time.Time) *RpgUpdateOne {
+	if t != nil {
+		ruo.SetBanStartTime(*t)
 	}
-	return _u
+	return ruo
 }
 
 // ClearBanStartTime clears the value of the "banStartTime" field.
-func (_u *RpgUpdateOne) ClearBanStartTime() *RpgUpdateOne {
-	_u.mutation.ClearBanStartTime()
-	return _u
+func (ruo *RpgUpdateOne) ClearBanStartTime() *RpgUpdateOne {
+	ruo.mutation.ClearBanStartTime()
+	return ruo
 }
 
 // SetBanEndTime sets the "banEndTime" field.
-func (_u *RpgUpdateOne) SetBanEndTime(v time.Time) *RpgUpdateOne {
-	_u.mutation.SetBanEndTime(v)
-	return _u
+func (ruo *RpgUpdateOne) SetBanEndTime(t time.Time) *RpgUpdateOne {
+	ruo.mutation.SetBanEndTime(t)
+	return ruo
 }
 
 // SetNillableBanEndTime sets the "banEndTime" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableBanEndTime(v *time.Time) *RpgUpdateOne {
-	if v != nil {
-		_u.SetBanEndTime(*v)
+func (ruo *RpgUpdateOne) SetNillableBanEndTime(t *time.Time) *RpgUpdateOne {
+	if t != nil {
+		ruo.SetBanEndTime(*t)
 	}
-	return _u
+	return ruo
 }
 
 // ClearBanEndTime clears the value of the "banEndTime" field.
-func (_u *RpgUpdateOne) ClearBanEndTime() *RpgUpdateOne {
-	_u.mutation.ClearBanEndTime()
-	return _u
+func (ruo *RpgUpdateOne) ClearBanEndTime() *RpgUpdateOne {
+	ruo.mutation.ClearBanEndTime()
+	return ruo
 }
 
 // SetSensitiveHitsCount sets the "sensitiveHitsCount" field.
-func (_u *RpgUpdateOne) SetSensitiveHitsCount(v int) *RpgUpdateOne {
-	_u.mutation.ResetSensitiveHitsCount()
-	_u.mutation.SetSensitiveHitsCount(v)
-	return _u
+func (ruo *RpgUpdateOne) SetSensitiveHitsCount(i int) *RpgUpdateOne {
+	ruo.mutation.ResetSensitiveHitsCount()
+	ruo.mutation.SetSensitiveHitsCount(i)
+	return ruo
 }
 
 // SetNillableSensitiveHitsCount sets the "sensitiveHitsCount" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableSensitiveHitsCount(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetSensitiveHitsCount(*v)
+func (ruo *RpgUpdateOne) SetNillableSensitiveHitsCount(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetSensitiveHitsCount(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddSensitiveHitsCount adds value to the "sensitiveHitsCount" field.
-func (_u *RpgUpdateOne) AddSensitiveHitsCount(v int) *RpgUpdateOne {
-	_u.mutation.AddSensitiveHitsCount(v)
-	return _u
+// AddSensitiveHitsCount adds i to the "sensitiveHitsCount" field.
+func (ruo *RpgUpdateOne) AddSensitiveHitsCount(i int) *RpgUpdateOne {
+	ruo.mutation.AddSensitiveHitsCount(i)
+	return ruo
 }
 
 // SetZeroLifeCount sets the "zeroLifeCount" field.
-func (_u *RpgUpdateOne) SetZeroLifeCount(v int) *RpgUpdateOne {
-	_u.mutation.ResetZeroLifeCount()
-	_u.mutation.SetZeroLifeCount(v)
-	return _u
+func (ruo *RpgUpdateOne) SetZeroLifeCount(i int) *RpgUpdateOne {
+	ruo.mutation.ResetZeroLifeCount()
+	ruo.mutation.SetZeroLifeCount(i)
+	return ruo
 }
 
 // SetNillableZeroLifeCount sets the "zeroLifeCount" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableZeroLifeCount(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetZeroLifeCount(*v)
+func (ruo *RpgUpdateOne) SetNillableZeroLifeCount(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetZeroLifeCount(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddZeroLifeCount adds value to the "zeroLifeCount" field.
-func (_u *RpgUpdateOne) AddZeroLifeCount(v int) *RpgUpdateOne {
-	_u.mutation.AddZeroLifeCount(v)
-	return _u
+// AddZeroLifeCount adds i to the "zeroLifeCount" field.
+func (ruo *RpgUpdateOne) AddZeroLifeCount(i int) *RpgUpdateOne {
+	ruo.mutation.AddZeroLifeCount(i)
+	return ruo
 }
 
 // SetLotteryTickets sets the "lotteryTickets" field.
-func (_u *RpgUpdateOne) SetLotteryTickets(v int) *RpgUpdateOne {
-	_u.mutation.ResetLotteryTickets()
-	_u.mutation.SetLotteryTickets(v)
-	return _u
+func (ruo *RpgUpdateOne) SetLotteryTickets(i int) *RpgUpdateOne {
+	ruo.mutation.ResetLotteryTickets()
+	ruo.mutation.SetLotteryTickets(i)
+	return ruo
 }
 
 // SetNillableLotteryTickets sets the "lotteryTickets" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableLotteryTickets(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetLotteryTickets(*v)
+func (ruo *RpgUpdateOne) SetNillableLotteryTickets(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetLotteryTickets(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddLotteryTickets adds value to the "lotteryTickets" field.
-func (_u *RpgUpdateOne) AddLotteryTickets(v int) *RpgUpdateOne {
-	_u.mutation.AddLotteryTickets(v)
-	return _u
+// AddLotteryTickets adds i to the "lotteryTickets" field.
+func (ruo *RpgUpdateOne) AddLotteryTickets(i int) *RpgUpdateOne {
+	ruo.mutation.AddLotteryTickets(i)
+	return ruo
 }
 
 // SetReputation sets the "reputation" field.
-func (_u *RpgUpdateOne) SetReputation(v int) *RpgUpdateOne {
-	_u.mutation.ResetReputation()
-	_u.mutation.SetReputation(v)
-	return _u
+func (ruo *RpgUpdateOne) SetReputation(i int) *RpgUpdateOne {
+	ruo.mutation.ResetReputation()
+	ruo.mutation.SetReputation(i)
+	return ruo
 }
 
 // SetNillableReputation sets the "reputation" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableReputation(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetReputation(*v)
+func (ruo *RpgUpdateOne) SetNillableReputation(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetReputation(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddReputation adds value to the "reputation" field.
-func (_u *RpgUpdateOne) AddReputation(v int) *RpgUpdateOne {
-	_u.mutation.AddReputation(v)
-	return _u
+// AddReputation adds i to the "reputation" field.
+func (ruo *RpgUpdateOne) AddReputation(i int) *RpgUpdateOne {
+	ruo.mutation.AddReputation(i)
+	return ruo
 }
 
 // SetLotteryPityCounter sets the "lotteryPityCounter" field.
-func (_u *RpgUpdateOne) SetLotteryPityCounter(v int) *RpgUpdateOne {
-	_u.mutation.ResetLotteryPityCounter()
-	_u.mutation.SetLotteryPityCounter(v)
-	return _u
+func (ruo *RpgUpdateOne) SetLotteryPityCounter(i int) *RpgUpdateOne {
+	ruo.mutation.ResetLotteryPityCounter()
+	ruo.mutation.SetLotteryPityCounter(i)
+	return ruo
 }
 
 // SetNillableLotteryPityCounter sets the "lotteryPityCounter" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableLotteryPityCounter(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetLotteryPityCounter(*v)
+func (ruo *RpgUpdateOne) SetNillableLotteryPityCounter(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetLotteryPityCounter(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddLotteryPityCounter adds value to the "lotteryPityCounter" field.
-func (_u *RpgUpdateOne) AddLotteryPityCounter(v int) *RpgUpdateOne {
-	_u.mutation.AddLotteryPityCounter(v)
-	return _u
+// AddLotteryPityCounter adds i to the "lotteryPityCounter" field.
+func (ruo *RpgUpdateOne) AddLotteryPityCounter(i int) *RpgUpdateOne {
+	ruo.mutation.AddLotteryPityCounter(i)
+	return ruo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgUpdateOne) SetEffectJson(v string) *RpgUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (ruo *RpgUpdateOne) SetEffectJson(s string) *RpgUpdateOne {
+	ruo.mutation.SetEffectJson(s)
+	return ruo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableEffectJson(v *string) *RpgUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (ruo *RpgUpdateOne) SetNillableEffectJson(s *string) *RpgUpdateOne {
+	if s != nil {
+		ruo.SetEffectJson(*s)
 	}
-	return _u
+	return ruo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgUpdateOne) ClearEffectJson() *RpgUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (ruo *RpgUpdateOne) ClearEffectJson() *RpgUpdateOne {
+	ruo.mutation.ClearEffectJson()
+	return ruo
 }
 
 // SetLotteryLegendaryPityCounter sets the "lotteryLegendaryPityCounter" field.
-func (_u *RpgUpdateOne) SetLotteryLegendaryPityCounter(v int) *RpgUpdateOne {
-	_u.mutation.ResetLotteryLegendaryPityCounter()
-	_u.mutation.SetLotteryLegendaryPityCounter(v)
-	return _u
+func (ruo *RpgUpdateOne) SetLotteryLegendaryPityCounter(i int) *RpgUpdateOne {
+	ruo.mutation.ResetLotteryLegendaryPityCounter()
+	ruo.mutation.SetLotteryLegendaryPityCounter(i)
+	return ruo
 }
 
 // SetNillableLotteryLegendaryPityCounter sets the "lotteryLegendaryPityCounter" field if the given value is not nil.
-func (_u *RpgUpdateOne) SetNillableLotteryLegendaryPityCounter(v *int) *RpgUpdateOne {
-	if v != nil {
-		_u.SetLotteryLegendaryPityCounter(*v)
+func (ruo *RpgUpdateOne) SetNillableLotteryLegendaryPityCounter(i *int) *RpgUpdateOne {
+	if i != nil {
+		ruo.SetLotteryLegendaryPityCounter(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddLotteryLegendaryPityCounter adds value to the "lotteryLegendaryPityCounter" field.
-func (_u *RpgUpdateOne) AddLotteryLegendaryPityCounter(v int) *RpgUpdateOne {
-	_u.mutation.AddLotteryLegendaryPityCounter(v)
-	return _u
+// AddLotteryLegendaryPityCounter adds i to the "lotteryLegendaryPityCounter" field.
+func (ruo *RpgUpdateOne) AddLotteryLegendaryPityCounter(i int) *RpgUpdateOne {
+	ruo.mutation.AddLotteryLegendaryPityCounter(i)
+	return ruo
 }
 
 // Mutation returns the RpgMutation object of the builder.
-func (_u *RpgUpdateOne) Mutation() *RpgMutation {
-	return _u.mutation
+func (ruo *RpgUpdateOne) Mutation() *RpgMutation {
+	return ruo.mutation
 }
 
 // Where appends a list predicates to the RpgUpdate builder.
-func (_u *RpgUpdateOne) Where(ps ...predicate.Rpg) *RpgUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruo *RpgUpdateOne) Where(ps ...predicate.Rpg) *RpgUpdateOne {
+	ruo.mutation.Where(ps...)
+	return ruo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUpdateOne) Select(field string, fields ...string) *RpgUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (ruo *RpgUpdateOne) Select(field string, fields ...string) *RpgUpdateOne {
+	ruo.fields = append([]string{field}, fields...)
+	return ruo
 }
 
 // Save executes the query and returns the updated Rpg entity.
-func (_u *RpgUpdateOne) Save(ctx context.Context) (*Rpg, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruo *RpgUpdateOne) Save(ctx context.Context) (*Rpg, error) {
+	ruo.defaults()
+	return withHooks(ctx, ruo.sqlSave, ruo.mutation, ruo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUpdateOne) SaveX(ctx context.Context) *Rpg {
-	node, err := _u.Save(ctx)
+func (ruo *RpgUpdateOne) SaveX(ctx context.Context) *Rpg {
+	node, err := ruo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -986,34 +986,34 @@ func (_u *RpgUpdateOne) SaveX(ctx context.Context) *Rpg {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruo *RpgUpdateOne) Exec(ctx context.Context) error {
+	_, err := ruo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruo *RpgUpdateOne) ExecX(ctx context.Context) {
+	if err := ruo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ruo *RpgUpdateOne) defaults() {
+	if _, ok := ruo.mutation.UpdateTime(); !ok {
 		v := rpg.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ruo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUpdateOne) sqlSave(ctx context.Context) (_node *Rpg, err error) {
+func (ruo *RpgUpdateOne) sqlSave(ctx context.Context) (_node *Rpg, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpg.Table, rpg.Columns, sqlgraph.NewFieldSpec(rpg.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := ruo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Rpg.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := ruo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpg.FieldID)
 		for _, f := range fields {
@@ -1025,125 +1025,125 @@ func (_u *RpgUpdateOne) sqlSave(ctx context.Context) (_node *Rpg, err error) {
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ruo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpg.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ruo.mutation.IsDelete(); ok {
 		_spec.SetField(rpg.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ruo.mutation.Version(); ok {
 		_spec.SetField(rpg.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ruo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpg.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ruo.mutation.UID(); ok {
 		_spec.SetField(rpg.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ruo.mutation.AddedUID(); ok {
 		_spec.AddField(rpg.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Exp(); ok {
+	if value, ok := ruo.mutation.Exp(); ok {
 		_spec.SetField(rpg.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedExp(); ok {
+	if value, ok := ruo.mutation.AddedExp(); ok {
 		_spec.AddField(rpg.FieldExp, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := ruo.mutation.Level(); ok {
 		_spec.SetField(rpg.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := ruo.mutation.AddedLevel(); ok {
 		_spec.AddField(rpg.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LifeValue(); ok {
+	if value, ok := ruo.mutation.LifeValue(); ok {
 		_spec.SetField(rpg.FieldLifeValue, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLifeValue(); ok {
+	if value, ok := ruo.mutation.AddedLifeValue(); ok {
 		_spec.AddField(rpg.FieldLifeValue, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LastSignDate(); ok {
+	if value, ok := ruo.mutation.LastSignDate(); ok {
 		_spec.SetField(rpg.FieldLastSignDate, field.TypeTime, value)
 	}
-	if _u.mutation.LastSignDateCleared() {
+	if ruo.mutation.LastSignDateCleared() {
 		_spec.ClearField(rpg.FieldLastSignDate, field.TypeTime)
 	}
-	if value, ok := _u.mutation.TotalSignDays(); ok {
+	if value, ok := ruo.mutation.TotalSignDays(); ok {
 		_spec.SetField(rpg.FieldTotalSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedTotalSignDays(); ok {
+	if value, ok := ruo.mutation.AddedTotalSignDays(); ok {
 		_spec.AddField(rpg.FieldTotalSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ConsecutiveSignDays(); ok {
+	if value, ok := ruo.mutation.ConsecutiveSignDays(); ok {
 		_spec.SetField(rpg.FieldConsecutiveSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedConsecutiveSignDays(); ok {
+	if value, ok := ruo.mutation.AddedConsecutiveSignDays(); ok {
 		_spec.AddField(rpg.FieldConsecutiveSignDays, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.BanStartTime(); ok {
+	if value, ok := ruo.mutation.BanStartTime(); ok {
 		_spec.SetField(rpg.FieldBanStartTime, field.TypeTime, value)
 	}
-	if _u.mutation.BanStartTimeCleared() {
+	if ruo.mutation.BanStartTimeCleared() {
 		_spec.ClearField(rpg.FieldBanStartTime, field.TypeTime)
 	}
-	if value, ok := _u.mutation.BanEndTime(); ok {
+	if value, ok := ruo.mutation.BanEndTime(); ok {
 		_spec.SetField(rpg.FieldBanEndTime, field.TypeTime, value)
 	}
-	if _u.mutation.BanEndTimeCleared() {
+	if ruo.mutation.BanEndTimeCleared() {
 		_spec.ClearField(rpg.FieldBanEndTime, field.TypeTime)
 	}
-	if value, ok := _u.mutation.SensitiveHitsCount(); ok {
+	if value, ok := ruo.mutation.SensitiveHitsCount(); ok {
 		_spec.SetField(rpg.FieldSensitiveHitsCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSensitiveHitsCount(); ok {
+	if value, ok := ruo.mutation.AddedSensitiveHitsCount(); ok {
 		_spec.AddField(rpg.FieldSensitiveHitsCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ZeroLifeCount(); ok {
+	if value, ok := ruo.mutation.ZeroLifeCount(); ok {
 		_spec.SetField(rpg.FieldZeroLifeCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedZeroLifeCount(); ok {
+	if value, ok := ruo.mutation.AddedZeroLifeCount(); ok {
 		_spec.AddField(rpg.FieldZeroLifeCount, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LotteryTickets(); ok {
+	if value, ok := ruo.mutation.LotteryTickets(); ok {
 		_spec.SetField(rpg.FieldLotteryTickets, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLotteryTickets(); ok {
+	if value, ok := ruo.mutation.AddedLotteryTickets(); ok {
 		_spec.AddField(rpg.FieldLotteryTickets, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Reputation(); ok {
+	if value, ok := ruo.mutation.Reputation(); ok {
 		_spec.SetField(rpg.FieldReputation, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedReputation(); ok {
+	if value, ok := ruo.mutation.AddedReputation(); ok {
 		_spec.AddField(rpg.FieldReputation, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LotteryPityCounter(); ok {
+	if value, ok := ruo.mutation.LotteryPityCounter(); ok {
 		_spec.SetField(rpg.FieldLotteryPityCounter, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLotteryPityCounter(); ok {
+	if value, ok := ruo.mutation.AddedLotteryPityCounter(); ok {
 		_spec.AddField(rpg.FieldLotteryPityCounter, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := ruo.mutation.EffectJson(); ok {
 		_spec.SetField(rpg.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if ruo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpg.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.LotteryLegendaryPityCounter(); ok {
+	if value, ok := ruo.mutation.LotteryLegendaryPityCounter(); ok {
 		_spec.SetField(rpg.FieldLotteryLegendaryPityCounter, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLotteryLegendaryPityCounter(); ok {
+	if value, ok := ruo.mutation.AddedLotteryLegendaryPityCounter(); ok {
 		_spec.AddField(rpg.FieldLotteryLegendaryPityCounter, field.TypeInt, value)
 	}
-	_node = &Rpg{config: _u.config}
+	_node = &Rpg{config: ruo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, ruo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpg.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -1151,6 +1151,6 @@ func (_u *RpgUpdateOne) sqlSave(ctx context.Context) (_node *Rpg, err error) {
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	ruo.mutation.done = true
 	return _node, nil
 }

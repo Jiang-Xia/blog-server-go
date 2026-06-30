@@ -23,305 +23,305 @@ type ArticleCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *ArticleCreate) SetCreateTime(v time.Time) *ArticleCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (ac *ArticleCreate) SetCreateTime(t time.Time) *ArticleCreate {
+	ac.mutation.SetCreateTime(t)
+	return ac
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableCreateTime(v *time.Time) *ArticleCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (ac *ArticleCreate) SetNillableCreateTime(t *time.Time) *ArticleCreate {
+	if t != nil {
+		ac.SetCreateTime(*t)
 	}
-	return _c
+	return ac
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *ArticleCreate) SetUpdateTime(v time.Time) *ArticleCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (ac *ArticleCreate) SetUpdateTime(t time.Time) *ArticleCreate {
+	ac.mutation.SetUpdateTime(t)
+	return ac
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableUpdateTime(v *time.Time) *ArticleCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (ac *ArticleCreate) SetNillableUpdateTime(t *time.Time) *ArticleCreate {
+	if t != nil {
+		ac.SetUpdateTime(*t)
 	}
-	return _c
+	return ac
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *ArticleCreate) SetIsDelete(v bool) *ArticleCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (ac *ArticleCreate) SetIsDelete(b bool) *ArticleCreate {
+	ac.mutation.SetIsDelete(b)
+	return ac
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableIsDelete(v *bool) *ArticleCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (ac *ArticleCreate) SetNillableIsDelete(b *bool) *ArticleCreate {
+	if b != nil {
+		ac.SetIsDelete(*b)
 	}
-	return _c
+	return ac
 }
 
 // SetVersion sets the "version" field.
-func (_c *ArticleCreate) SetVersion(v int) *ArticleCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (ac *ArticleCreate) SetVersion(i int) *ArticleCreate {
+	ac.mutation.SetVersion(i)
+	return ac
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableVersion(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (ac *ArticleCreate) SetNillableVersion(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetVersion(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetUTime sets the "uTime" field.
-func (_c *ArticleCreate) SetUTime(v string) *ArticleCreate {
-	_c.mutation.SetUTime(v)
-	return _c
+func (ac *ArticleCreate) SetUTime(s string) *ArticleCreate {
+	ac.mutation.SetUTime(s)
+	return ac
 }
 
 // SetUID sets the "uid" field.
-func (_c *ArticleCreate) SetUID(v int) *ArticleCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (ac *ArticleCreate) SetUID(i int) *ArticleCreate {
+	ac.mutation.SetUID(i)
+	return ac
 }
 
 // SetDeptId sets the "deptId" field.
-func (_c *ArticleCreate) SetDeptId(v int) *ArticleCreate {
-	_c.mutation.SetDeptId(v)
-	return _c
+func (ac *ArticleCreate) SetDeptId(i int) *ArticleCreate {
+	ac.mutation.SetDeptId(i)
+	return ac
 }
 
 // SetNillableDeptId sets the "deptId" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableDeptId(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetDeptId(*v)
+func (ac *ArticleCreate) SetNillableDeptId(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetDeptId(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetTopping sets the "topping" field.
-func (_c *ArticleCreate) SetTopping(v int) *ArticleCreate {
-	_c.mutation.SetTopping(v)
-	return _c
+func (ac *ArticleCreate) SetTopping(i int) *ArticleCreate {
+	ac.mutation.SetTopping(i)
+	return ac
 }
 
 // SetNillableTopping sets the "topping" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableTopping(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetTopping(*v)
+func (ac *ArticleCreate) SetNillableTopping(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetTopping(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetTitle sets the "title" field.
-func (_c *ArticleCreate) SetTitle(v string) *ArticleCreate {
-	_c.mutation.SetTitle(v)
-	return _c
+func (ac *ArticleCreate) SetTitle(s string) *ArticleCreate {
+	ac.mutation.SetTitle(s)
+	return ac
 }
 
 // SetCover sets the "cover" field.
-func (_c *ArticleCreate) SetCover(v string) *ArticleCreate {
-	_c.mutation.SetCover(v)
-	return _c
+func (ac *ArticleCreate) SetCover(s string) *ArticleCreate {
+	ac.mutation.SetCover(s)
+	return ac
 }
 
 // SetLikes sets the "likes" field.
-func (_c *ArticleCreate) SetLikes(v int) *ArticleCreate {
-	_c.mutation.SetLikes(v)
-	return _c
+func (ac *ArticleCreate) SetLikes(i int) *ArticleCreate {
+	ac.mutation.SetLikes(i)
+	return ac
 }
 
 // SetNillableLikes sets the "likes" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableLikes(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetLikes(*v)
+func (ac *ArticleCreate) SetNillableLikes(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetLikes(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetViews sets the "views" field.
-func (_c *ArticleCreate) SetViews(v int) *ArticleCreate {
-	_c.mutation.SetViews(v)
-	return _c
+func (ac *ArticleCreate) SetViews(i int) *ArticleCreate {
+	ac.mutation.SetViews(i)
+	return ac
 }
 
 // SetNillableViews sets the "views" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableViews(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetViews(*v)
+func (ac *ArticleCreate) SetNillableViews(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetViews(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetArticleExp sets the "articleExp" field.
-func (_c *ArticleCreate) SetArticleExp(v int) *ArticleCreate {
-	_c.mutation.SetArticleExp(v)
-	return _c
+func (ac *ArticleCreate) SetArticleExp(i int) *ArticleCreate {
+	ac.mutation.SetArticleExp(i)
+	return ac
 }
 
 // SetNillableArticleExp sets the "articleExp" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableArticleExp(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetArticleExp(*v)
+func (ac *ArticleCreate) SetNillableArticleExp(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetArticleExp(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetArticleLevel sets the "articleLevel" field.
-func (_c *ArticleCreate) SetArticleLevel(v int) *ArticleCreate {
-	_c.mutation.SetArticleLevel(v)
-	return _c
+func (ac *ArticleCreate) SetArticleLevel(i int) *ArticleCreate {
+	ac.mutation.SetArticleLevel(i)
+	return ac
 }
 
 // SetNillableArticleLevel sets the "articleLevel" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableArticleLevel(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetArticleLevel(*v)
+func (ac *ArticleCreate) SetNillableArticleLevel(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetArticleLevel(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetReputationGained sets the "reputationGained" field.
-func (_c *ArticleCreate) SetReputationGained(v int) *ArticleCreate {
-	_c.mutation.SetReputationGained(v)
-	return _c
+func (ac *ArticleCreate) SetReputationGained(i int) *ArticleCreate {
+	ac.mutation.SetReputationGained(i)
+	return ac
 }
 
 // SetNillableReputationGained sets the "reputationGained" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableReputationGained(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetReputationGained(*v)
+func (ac *ArticleCreate) SetNillableReputationGained(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetReputationGained(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetIsMasterpiece sets the "isMasterpiece" field.
-func (_c *ArticleCreate) SetIsMasterpiece(v int) *ArticleCreate {
-	_c.mutation.SetIsMasterpiece(v)
-	return _c
+func (ac *ArticleCreate) SetIsMasterpiece(i int) *ArticleCreate {
+	ac.mutation.SetIsMasterpiece(i)
+	return ac
 }
 
 // SetNillableIsMasterpiece sets the "isMasterpiece" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableIsMasterpiece(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetIsMasterpiece(*v)
+func (ac *ArticleCreate) SetNillableIsMasterpiece(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetIsMasterpiece(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetTipTotal sets the "tipTotal" field.
-func (_c *ArticleCreate) SetTipTotal(v int) *ArticleCreate {
-	_c.mutation.SetTipTotal(v)
-	return _c
+func (ac *ArticleCreate) SetTipTotal(i int) *ArticleCreate {
+	ac.mutation.SetTipTotal(i)
+	return ac
 }
 
 // SetNillableTipTotal sets the "tipTotal" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableTipTotal(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetTipTotal(*v)
+func (ac *ArticleCreate) SetNillableTipTotal(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetTipTotal(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetStatus sets the "status" field.
-func (_c *ArticleCreate) SetStatus(v string) *ArticleCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (ac *ArticleCreate) SetStatus(s string) *ArticleCreate {
+	ac.mutation.SetStatus(s)
+	return ac
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableStatus(v *string) *ArticleCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (ac *ArticleCreate) SetNillableStatus(s *string) *ArticleCreate {
+	if s != nil {
+		ac.SetStatus(*s)
 	}
-	return _c
+	return ac
 }
 
 // SetDescription sets the "description" field.
-func (_c *ArticleCreate) SetDescription(v string) *ArticleCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (ac *ArticleCreate) SetDescription(s string) *ArticleCreate {
+	ac.mutation.SetDescription(s)
+	return ac
 }
 
 // SetContentHtml sets the "contentHtml" field.
-func (_c *ArticleCreate) SetContentHtml(v string) *ArticleCreate {
-	_c.mutation.SetContentHtml(v)
-	return _c
+func (ac *ArticleCreate) SetContentHtml(s string) *ArticleCreate {
+	ac.mutation.SetContentHtml(s)
+	return ac
 }
 
 // SetUseArticles sets the "useArticles" field.
-func (_c *ArticleCreate) SetUseArticles(v int) *ArticleCreate {
-	_c.mutation.SetUseArticles(v)
-	return _c
+func (ac *ArticleCreate) SetUseArticles(i int) *ArticleCreate {
+	ac.mutation.SetUseArticles(i)
+	return ac
 }
 
 // SetNillableUseArticles sets the "useArticles" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableUseArticles(v *int) *ArticleCreate {
-	if v != nil {
-		_c.SetUseArticles(*v)
+func (ac *ArticleCreate) SetNillableUseArticles(i *int) *ArticleCreate {
+	if i != nil {
+		ac.SetUseArticles(*i)
 	}
-	return _c
+	return ac
 }
 
 // SetArticles sets the "articles" field.
-func (_c *ArticleCreate) SetArticles(v string) *ArticleCreate {
-	_c.mutation.SetArticles(v)
-	return _c
+func (ac *ArticleCreate) SetArticles(s string) *ArticleCreate {
+	ac.mutation.SetArticles(s)
+	return ac
 }
 
 // SetNillableArticles sets the "articles" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableArticles(v *string) *ArticleCreate {
-	if v != nil {
-		_c.SetArticles(*v)
+func (ac *ArticleCreate) SetNillableArticles(s *string) *ArticleCreate {
+	if s != nil {
+		ac.SetArticles(*s)
 	}
-	return _c
+	return ac
 }
 
 // SetContent sets the "content" field.
-func (_c *ArticleCreate) SetContent(v string) *ArticleCreate {
-	_c.mutation.SetContent(v)
-	return _c
+func (ac *ArticleCreate) SetContent(s string) *ArticleCreate {
+	ac.mutation.SetContent(s)
+	return ac
 }
 
 // SetScheduledPublishAt sets the "scheduledPublishAt" field.
-func (_c *ArticleCreate) SetScheduledPublishAt(v time.Time) *ArticleCreate {
-	_c.mutation.SetScheduledPublishAt(v)
-	return _c
+func (ac *ArticleCreate) SetScheduledPublishAt(t time.Time) *ArticleCreate {
+	ac.mutation.SetScheduledPublishAt(t)
+	return ac
 }
 
 // SetNillableScheduledPublishAt sets the "scheduledPublishAt" field if the given value is not nil.
-func (_c *ArticleCreate) SetNillableScheduledPublishAt(v *time.Time) *ArticleCreate {
-	if v != nil {
-		_c.SetScheduledPublishAt(*v)
+func (ac *ArticleCreate) SetNillableScheduledPublishAt(t *time.Time) *ArticleCreate {
+	if t != nil {
+		ac.SetScheduledPublishAt(*t)
 	}
-	return _c
+	return ac
 }
 
 // SetID sets the "id" field.
-func (_c *ArticleCreate) SetID(v int) *ArticleCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ac *ArticleCreate) SetID(i int) *ArticleCreate {
+	ac.mutation.SetID(i)
+	return ac
 }
 
 // Mutation returns the ArticleMutation object of the builder.
-func (_c *ArticleCreate) Mutation() *ArticleMutation {
-	return _c.mutation
+func (ac *ArticleCreate) Mutation() *ArticleMutation {
+	return ac.mutation
 }
 
 // Save creates the Article in the database.
-func (_c *ArticleCreate) Save(ctx context.Context) (*Article, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ac *ArticleCreate) Save(ctx context.Context) (*Article, error) {
+	ac.defaults()
+	return withHooks(ctx, ac.sqlSave, ac.mutation, ac.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *ArticleCreate) SaveX(ctx context.Context) *Article {
-	v, err := _c.Save(ctx)
+func (ac *ArticleCreate) SaveX(ctx context.Context) *Article {
+	v, err := ac.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -329,145 +329,145 @@ func (_c *ArticleCreate) SaveX(ctx context.Context) *Article {
 }
 
 // Exec executes the query.
-func (_c *ArticleCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ac *ArticleCreate) Exec(ctx context.Context) error {
+	_, err := ac.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ArticleCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ac *ArticleCreate) ExecX(ctx context.Context) {
+	if err := ac.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *ArticleCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ac *ArticleCreate) defaults() {
+	if _, ok := ac.mutation.CreateTime(); !ok {
 		v := article.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		ac.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ac.mutation.UpdateTime(); !ok {
 		v := article.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		ac.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ac.mutation.IsDelete(); !ok {
 		v := article.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		ac.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ac.mutation.Version(); !ok {
 		v := article.DefaultVersion
-		_c.mutation.SetVersion(v)
+		ac.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Topping(); !ok {
+	if _, ok := ac.mutation.Topping(); !ok {
 		v := article.DefaultTopping
-		_c.mutation.SetTopping(v)
+		ac.mutation.SetTopping(v)
 	}
-	if _, ok := _c.mutation.Likes(); !ok {
+	if _, ok := ac.mutation.Likes(); !ok {
 		v := article.DefaultLikes
-		_c.mutation.SetLikes(v)
+		ac.mutation.SetLikes(v)
 	}
-	if _, ok := _c.mutation.Views(); !ok {
+	if _, ok := ac.mutation.Views(); !ok {
 		v := article.DefaultViews
-		_c.mutation.SetViews(v)
+		ac.mutation.SetViews(v)
 	}
-	if _, ok := _c.mutation.ArticleExp(); !ok {
+	if _, ok := ac.mutation.ArticleExp(); !ok {
 		v := article.DefaultArticleExp
-		_c.mutation.SetArticleExp(v)
+		ac.mutation.SetArticleExp(v)
 	}
-	if _, ok := _c.mutation.ArticleLevel(); !ok {
+	if _, ok := ac.mutation.ArticleLevel(); !ok {
 		v := article.DefaultArticleLevel
-		_c.mutation.SetArticleLevel(v)
+		ac.mutation.SetArticleLevel(v)
 	}
-	if _, ok := _c.mutation.ReputationGained(); !ok {
+	if _, ok := ac.mutation.ReputationGained(); !ok {
 		v := article.DefaultReputationGained
-		_c.mutation.SetReputationGained(v)
+		ac.mutation.SetReputationGained(v)
 	}
-	if _, ok := _c.mutation.IsMasterpiece(); !ok {
+	if _, ok := ac.mutation.IsMasterpiece(); !ok {
 		v := article.DefaultIsMasterpiece
-		_c.mutation.SetIsMasterpiece(v)
+		ac.mutation.SetIsMasterpiece(v)
 	}
-	if _, ok := _c.mutation.TipTotal(); !ok {
+	if _, ok := ac.mutation.TipTotal(); !ok {
 		v := article.DefaultTipTotal
-		_c.mutation.SetTipTotal(v)
+		ac.mutation.SetTipTotal(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := ac.mutation.Status(); !ok {
 		v := article.DefaultStatus
-		_c.mutation.SetStatus(v)
+		ac.mutation.SetStatus(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *ArticleCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ac *ArticleCreate) check() error {
+	if _, ok := ac.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Article.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ac.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Article.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ac.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Article.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ac.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Article.version"`)}
 	}
-	if _, ok := _c.mutation.UTime(); !ok {
+	if _, ok := ac.mutation.UTime(); !ok {
 		return &ValidationError{Name: "uTime", err: errors.New(`ent: missing required field "Article.uTime"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := ac.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "Article.uid"`)}
 	}
-	if _, ok := _c.mutation.Topping(); !ok {
+	if _, ok := ac.mutation.Topping(); !ok {
 		return &ValidationError{Name: "topping", err: errors.New(`ent: missing required field "Article.topping"`)}
 	}
-	if _, ok := _c.mutation.Title(); !ok {
+	if _, ok := ac.mutation.Title(); !ok {
 		return &ValidationError{Name: "title", err: errors.New(`ent: missing required field "Article.title"`)}
 	}
-	if _, ok := _c.mutation.Cover(); !ok {
+	if _, ok := ac.mutation.Cover(); !ok {
 		return &ValidationError{Name: "cover", err: errors.New(`ent: missing required field "Article.cover"`)}
 	}
-	if _, ok := _c.mutation.Likes(); !ok {
+	if _, ok := ac.mutation.Likes(); !ok {
 		return &ValidationError{Name: "likes", err: errors.New(`ent: missing required field "Article.likes"`)}
 	}
-	if _, ok := _c.mutation.Views(); !ok {
+	if _, ok := ac.mutation.Views(); !ok {
 		return &ValidationError{Name: "views", err: errors.New(`ent: missing required field "Article.views"`)}
 	}
-	if _, ok := _c.mutation.ArticleExp(); !ok {
+	if _, ok := ac.mutation.ArticleExp(); !ok {
 		return &ValidationError{Name: "articleExp", err: errors.New(`ent: missing required field "Article.articleExp"`)}
 	}
-	if _, ok := _c.mutation.ArticleLevel(); !ok {
+	if _, ok := ac.mutation.ArticleLevel(); !ok {
 		return &ValidationError{Name: "articleLevel", err: errors.New(`ent: missing required field "Article.articleLevel"`)}
 	}
-	if _, ok := _c.mutation.ReputationGained(); !ok {
+	if _, ok := ac.mutation.ReputationGained(); !ok {
 		return &ValidationError{Name: "reputationGained", err: errors.New(`ent: missing required field "Article.reputationGained"`)}
 	}
-	if _, ok := _c.mutation.IsMasterpiece(); !ok {
+	if _, ok := ac.mutation.IsMasterpiece(); !ok {
 		return &ValidationError{Name: "isMasterpiece", err: errors.New(`ent: missing required field "Article.isMasterpiece"`)}
 	}
-	if _, ok := _c.mutation.TipTotal(); !ok {
+	if _, ok := ac.mutation.TipTotal(); !ok {
 		return &ValidationError{Name: "tipTotal", err: errors.New(`ent: missing required field "Article.tipTotal"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := ac.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "Article.status"`)}
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := ac.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "Article.description"`)}
 	}
-	if _, ok := _c.mutation.ContentHtml(); !ok {
+	if _, ok := ac.mutation.ContentHtml(); !ok {
 		return &ValidationError{Name: "contentHtml", err: errors.New(`ent: missing required field "Article.contentHtml"`)}
 	}
-	if _, ok := _c.mutation.Content(); !ok {
+	if _, ok := ac.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "Article.content"`)}
 	}
 	return nil
 }
 
-func (_c *ArticleCreate) sqlSave(ctx context.Context) (*Article, error) {
-	if err := _c.check(); err != nil {
+func (ac *ArticleCreate) sqlSave(ctx context.Context) (*Article, error) {
+	if err := ac.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ac.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ac.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -477,114 +477,114 @@ func (_c *ArticleCreate) sqlSave(ctx context.Context) (*Article, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ac.mutation.id = &_node.ID
+	ac.mutation.done = true
 	return _node, nil
 }
 
-func (_c *ArticleCreate) createSpec() (*Article, *sqlgraph.CreateSpec) {
+func (ac *ArticleCreate) createSpec() (*Article, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Article{config: _c.config}
+		_node = &Article{config: ac.config}
 		_spec = sqlgraph.NewCreateSpec(article.Table, sqlgraph.NewFieldSpec(article.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = ac.conflict
+	if id, ok := ac.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := ac.mutation.CreateTime(); ok {
 		_spec.SetField(article.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := ac.mutation.UpdateTime(); ok {
 		_spec.SetField(article.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := ac.mutation.IsDelete(); ok {
 		_spec.SetField(article.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := ac.mutation.Version(); ok {
 		_spec.SetField(article.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UTime(); ok {
+	if value, ok := ac.mutation.UTime(); ok {
 		_spec.SetField(article.FieldUTime, field.TypeString, value)
 		_node.UTime = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := ac.mutation.UID(); ok {
 		_spec.SetField(article.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.DeptId(); ok {
+	if value, ok := ac.mutation.DeptId(); ok {
 		_spec.SetField(article.FieldDeptId, field.TypeInt, value)
 		_node.DeptId = &value
 	}
-	if value, ok := _c.mutation.Topping(); ok {
+	if value, ok := ac.mutation.Topping(); ok {
 		_spec.SetField(article.FieldTopping, field.TypeInt, value)
 		_node.Topping = value
 	}
-	if value, ok := _c.mutation.Title(); ok {
+	if value, ok := ac.mutation.Title(); ok {
 		_spec.SetField(article.FieldTitle, field.TypeString, value)
 		_node.Title = value
 	}
-	if value, ok := _c.mutation.Cover(); ok {
+	if value, ok := ac.mutation.Cover(); ok {
 		_spec.SetField(article.FieldCover, field.TypeString, value)
 		_node.Cover = value
 	}
-	if value, ok := _c.mutation.Likes(); ok {
+	if value, ok := ac.mutation.Likes(); ok {
 		_spec.SetField(article.FieldLikes, field.TypeInt, value)
 		_node.Likes = value
 	}
-	if value, ok := _c.mutation.Views(); ok {
+	if value, ok := ac.mutation.Views(); ok {
 		_spec.SetField(article.FieldViews, field.TypeInt, value)
 		_node.Views = value
 	}
-	if value, ok := _c.mutation.ArticleExp(); ok {
+	if value, ok := ac.mutation.ArticleExp(); ok {
 		_spec.SetField(article.FieldArticleExp, field.TypeInt, value)
 		_node.ArticleExp = value
 	}
-	if value, ok := _c.mutation.ArticleLevel(); ok {
+	if value, ok := ac.mutation.ArticleLevel(); ok {
 		_spec.SetField(article.FieldArticleLevel, field.TypeInt, value)
 		_node.ArticleLevel = value
 	}
-	if value, ok := _c.mutation.ReputationGained(); ok {
+	if value, ok := ac.mutation.ReputationGained(); ok {
 		_spec.SetField(article.FieldReputationGained, field.TypeInt, value)
 		_node.ReputationGained = value
 	}
-	if value, ok := _c.mutation.IsMasterpiece(); ok {
+	if value, ok := ac.mutation.IsMasterpiece(); ok {
 		_spec.SetField(article.FieldIsMasterpiece, field.TypeInt, value)
 		_node.IsMasterpiece = value
 	}
-	if value, ok := _c.mutation.TipTotal(); ok {
+	if value, ok := ac.mutation.TipTotal(); ok {
 		_spec.SetField(article.FieldTipTotal, field.TypeInt, value)
 		_node.TipTotal = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := ac.mutation.Status(); ok {
 		_spec.SetField(article.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := ac.mutation.Description(); ok {
 		_spec.SetField(article.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.ContentHtml(); ok {
+	if value, ok := ac.mutation.ContentHtml(); ok {
 		_spec.SetField(article.FieldContentHtml, field.TypeString, value)
 		_node.ContentHtml = value
 	}
-	if value, ok := _c.mutation.UseArticles(); ok {
+	if value, ok := ac.mutation.UseArticles(); ok {
 		_spec.SetField(article.FieldUseArticles, field.TypeInt, value)
 		_node.UseArticles = &value
 	}
-	if value, ok := _c.mutation.Articles(); ok {
+	if value, ok := ac.mutation.Articles(); ok {
 		_spec.SetField(article.FieldArticles, field.TypeString, value)
 		_node.Articles = &value
 	}
-	if value, ok := _c.mutation.Content(); ok {
+	if value, ok := ac.mutation.Content(); ok {
 		_spec.SetField(article.FieldContent, field.TypeString, value)
 		_node.Content = value
 	}
-	if value, ok := _c.mutation.ScheduledPublishAt(); ok {
+	if value, ok := ac.mutation.ScheduledPublishAt(); ok {
 		_spec.SetField(article.FieldScheduledPublishAt, field.TypeTime, value)
 		_node.ScheduledPublishAt = &value
 	}
@@ -607,10 +607,10 @@ func (_c *ArticleCreate) createSpec() (*Article, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ArticleCreate) OnConflict(opts ...sql.ConflictOption) *ArticleUpsertOne {
-	_c.conflict = opts
+func (ac *ArticleCreate) OnConflict(opts ...sql.ConflictOption) *ArticleUpsertOne {
+	ac.conflict = opts
 	return &ArticleUpsertOne{
-		create: _c,
+		create: ac,
 	}
 }
 
@@ -620,10 +620,10 @@ func (_c *ArticleCreate) OnConflict(opts ...sql.ConflictOption) *ArticleUpsertOn
 //	client.Article.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ArticleCreate) OnConflictColumns(columns ...string) *ArticleUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ac *ArticleCreate) OnConflictColumns(columns ...string) *ArticleUpsertOne {
+	ac.conflict = append(ac.conflict, sql.ConflictColumns(columns...))
 	return &ArticleUpsertOne{
-		create: _c,
+		create: ac,
 	}
 }
 
@@ -1539,16 +1539,16 @@ type ArticleCreateBulk struct {
 }
 
 // Save creates the Article entities in the database.
-func (_c *ArticleCreateBulk) Save(ctx context.Context) ([]*Article, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (acb *ArticleCreateBulk) Save(ctx context.Context) ([]*Article, error) {
+	if acb.err != nil {
+		return nil, acb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Article, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(acb.builders))
+	nodes := make([]*Article, len(acb.builders))
+	mutators := make([]Mutator, len(acb.builders))
+	for i := range acb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := acb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ArticleMutation)
@@ -1562,12 +1562,12 @@ func (_c *ArticleCreateBulk) Save(ctx context.Context) ([]*Article, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, acb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = acb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, acb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1591,7 +1591,7 @@ func (_c *ArticleCreateBulk) Save(ctx context.Context) ([]*Article, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, acb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1599,8 +1599,8 @@ func (_c *ArticleCreateBulk) Save(ctx context.Context) ([]*Article, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *ArticleCreateBulk) SaveX(ctx context.Context) []*Article {
-	v, err := _c.Save(ctx)
+func (acb *ArticleCreateBulk) SaveX(ctx context.Context) []*Article {
+	v, err := acb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1608,14 +1608,14 @@ func (_c *ArticleCreateBulk) SaveX(ctx context.Context) []*Article {
 }
 
 // Exec executes the query.
-func (_c *ArticleCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (acb *ArticleCreateBulk) Exec(ctx context.Context) error {
+	_, err := acb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ArticleCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (acb *ArticleCreateBulk) ExecX(ctx context.Context) {
+	if err := acb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1635,10 +1635,10 @@ func (_c *ArticleCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ArticleCreateBulk) OnConflict(opts ...sql.ConflictOption) *ArticleUpsertBulk {
-	_c.conflict = opts
+func (acb *ArticleCreateBulk) OnConflict(opts ...sql.ConflictOption) *ArticleUpsertBulk {
+	acb.conflict = opts
 	return &ArticleUpsertBulk{
-		create: _c,
+		create: acb,
 	}
 }
 
@@ -1648,10 +1648,10 @@ func (_c *ArticleCreateBulk) OnConflict(opts ...sql.ConflictOption) *ArticleUpse
 //	client.Article.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ArticleCreateBulk) OnConflictColumns(columns ...string) *ArticleUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (acb *ArticleCreateBulk) OnConflictColumns(columns ...string) *ArticleUpsertBulk {
+	acb.conflict = append(acb.conflict, sql.ConflictColumns(columns...))
 	return &ArticleUpsertBulk{
-		create: _c,
+		create: acb,
 	}
 }
 

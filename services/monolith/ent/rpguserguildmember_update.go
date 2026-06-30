@@ -23,94 +23,94 @@ type RpgUserGuildMemberUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserGuildMemberUpdate builder.
-func (_u *RpgUserGuildMemberUpdate) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rugmu *RpgUserGuildMemberUpdate) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberUpdate {
+	rugmu.mutation.Where(ps...)
+	return rugmu
 }
 
 // SetGuildId sets the "guildId" field.
-func (_u *RpgUserGuildMemberUpdate) SetGuildId(v int) *RpgUserGuildMemberUpdate {
-	_u.mutation.ResetGuildId()
-	_u.mutation.SetGuildId(v)
-	return _u
+func (rugmu *RpgUserGuildMemberUpdate) SetGuildId(i int) *RpgUserGuildMemberUpdate {
+	rugmu.mutation.ResetGuildId()
+	rugmu.mutation.SetGuildId(i)
+	return rugmu
 }
 
 // SetNillableGuildId sets the "guildId" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdate) SetNillableGuildId(v *int) *RpgUserGuildMemberUpdate {
-	if v != nil {
-		_u.SetGuildId(*v)
+func (rugmu *RpgUserGuildMemberUpdate) SetNillableGuildId(i *int) *RpgUserGuildMemberUpdate {
+	if i != nil {
+		rugmu.SetGuildId(*i)
 	}
-	return _u
+	return rugmu
 }
 
-// AddGuildId adds value to the "guildId" field.
-func (_u *RpgUserGuildMemberUpdate) AddGuildId(v int) *RpgUserGuildMemberUpdate {
-	_u.mutation.AddGuildId(v)
-	return _u
+// AddGuildId adds i to the "guildId" field.
+func (rugmu *RpgUserGuildMemberUpdate) AddGuildId(i int) *RpgUserGuildMemberUpdate {
+	rugmu.mutation.AddGuildId(i)
+	return rugmu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserGuildMemberUpdate) SetUID(v int) *RpgUserGuildMemberUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rugmu *RpgUserGuildMemberUpdate) SetUID(i int) *RpgUserGuildMemberUpdate {
+	rugmu.mutation.ResetUID()
+	rugmu.mutation.SetUID(i)
+	return rugmu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdate) SetNillableUID(v *int) *RpgUserGuildMemberUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (rugmu *RpgUserGuildMemberUpdate) SetNillableUID(i *int) *RpgUserGuildMemberUpdate {
+	if i != nil {
+		rugmu.SetUID(*i)
 	}
-	return _u
+	return rugmu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserGuildMemberUpdate) AddUID(v int) *RpgUserGuildMemberUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rugmu *RpgUserGuildMemberUpdate) AddUID(i int) *RpgUserGuildMemberUpdate {
+	rugmu.mutation.AddUID(i)
+	return rugmu
 }
 
 // SetJoinTime sets the "joinTime" field.
-func (_u *RpgUserGuildMemberUpdate) SetJoinTime(v time.Time) *RpgUserGuildMemberUpdate {
-	_u.mutation.SetJoinTime(v)
-	return _u
+func (rugmu *RpgUserGuildMemberUpdate) SetJoinTime(t time.Time) *RpgUserGuildMemberUpdate {
+	rugmu.mutation.SetJoinTime(t)
+	return rugmu
 }
 
 // SetNillableJoinTime sets the "joinTime" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdate) SetNillableJoinTime(v *time.Time) *RpgUserGuildMemberUpdate {
-	if v != nil {
-		_u.SetJoinTime(*v)
+func (rugmu *RpgUserGuildMemberUpdate) SetNillableJoinTime(t *time.Time) *RpgUserGuildMemberUpdate {
+	if t != nil {
+		rugmu.SetJoinTime(*t)
 	}
-	return _u
+	return rugmu
 }
 
 // SetRole sets the "role" field.
-func (_u *RpgUserGuildMemberUpdate) SetRole(v string) *RpgUserGuildMemberUpdate {
-	_u.mutation.SetRole(v)
-	return _u
+func (rugmu *RpgUserGuildMemberUpdate) SetRole(s string) *RpgUserGuildMemberUpdate {
+	rugmu.mutation.SetRole(s)
+	return rugmu
 }
 
 // SetNillableRole sets the "role" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdate) SetNillableRole(v *string) *RpgUserGuildMemberUpdate {
-	if v != nil {
-		_u.SetRole(*v)
+func (rugmu *RpgUserGuildMemberUpdate) SetNillableRole(s *string) *RpgUserGuildMemberUpdate {
+	if s != nil {
+		rugmu.SetRole(*s)
 	}
-	return _u
+	return rugmu
 }
 
 // Mutation returns the RpgUserGuildMemberMutation object of the builder.
-func (_u *RpgUserGuildMemberUpdate) Mutation() *RpgUserGuildMemberMutation {
-	return _u.mutation
+func (rugmu *RpgUserGuildMemberUpdate) Mutation() *RpgUserGuildMemberMutation {
+	return rugmu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserGuildMemberUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rugmu *RpgUserGuildMemberUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rugmu.sqlSave, rugmu.mutation, rugmu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserGuildMemberUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rugmu *RpgUserGuildMemberUpdate) SaveX(ctx context.Context) int {
+	affected, err := rugmu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -118,46 +118,46 @@ func (_u *RpgUserGuildMemberUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserGuildMemberUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rugmu *RpgUserGuildMemberUpdate) Exec(ctx context.Context) error {
+	_, err := rugmu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserGuildMemberUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rugmu *RpgUserGuildMemberUpdate) ExecX(ctx context.Context) {
+	if err := rugmu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgUserGuildMemberUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rugmu *RpgUserGuildMemberUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserguildmember.Table, rpguserguildmember.Columns, sqlgraph.NewFieldSpec(rpguserguildmember.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rugmu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.GuildId(); ok {
+	if value, ok := rugmu.mutation.GuildId(); ok {
 		_spec.SetField(rpguserguildmember.FieldGuildId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedGuildId(); ok {
+	if value, ok := rugmu.mutation.AddedGuildId(); ok {
 		_spec.AddField(rpguserguildmember.FieldGuildId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rugmu.mutation.UID(); ok {
 		_spec.SetField(rpguserguildmember.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rugmu.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserguildmember.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.JoinTime(); ok {
+	if value, ok := rugmu.mutation.JoinTime(); ok {
 		_spec.SetField(rpguserguildmember.FieldJoinTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.Role(); ok {
+	if value, ok := rugmu.mutation.Role(); ok {
 		_spec.SetField(rpguserguildmember.FieldRole, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rugmu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserguildmember.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -165,8 +165,8 @@ func (_u *RpgUserGuildMemberUpdate) sqlSave(ctx context.Context) (_node int, err
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rugmu.mutation.done = true
+	return n, nil
 }
 
 // RpgUserGuildMemberUpdateOne is the builder for updating a single RpgUserGuildMember entity.
@@ -178,101 +178,101 @@ type RpgUserGuildMemberUpdateOne struct {
 }
 
 // SetGuildId sets the "guildId" field.
-func (_u *RpgUserGuildMemberUpdateOne) SetGuildId(v int) *RpgUserGuildMemberUpdateOne {
-	_u.mutation.ResetGuildId()
-	_u.mutation.SetGuildId(v)
-	return _u
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetGuildId(i int) *RpgUserGuildMemberUpdateOne {
+	rugmuo.mutation.ResetGuildId()
+	rugmuo.mutation.SetGuildId(i)
+	return rugmuo
 }
 
 // SetNillableGuildId sets the "guildId" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdateOne) SetNillableGuildId(v *int) *RpgUserGuildMemberUpdateOne {
-	if v != nil {
-		_u.SetGuildId(*v)
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetNillableGuildId(i *int) *RpgUserGuildMemberUpdateOne {
+	if i != nil {
+		rugmuo.SetGuildId(*i)
 	}
-	return _u
+	return rugmuo
 }
 
-// AddGuildId adds value to the "guildId" field.
-func (_u *RpgUserGuildMemberUpdateOne) AddGuildId(v int) *RpgUserGuildMemberUpdateOne {
-	_u.mutation.AddGuildId(v)
-	return _u
+// AddGuildId adds i to the "guildId" field.
+func (rugmuo *RpgUserGuildMemberUpdateOne) AddGuildId(i int) *RpgUserGuildMemberUpdateOne {
+	rugmuo.mutation.AddGuildId(i)
+	return rugmuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgUserGuildMemberUpdateOne) SetUID(v int) *RpgUserGuildMemberUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetUID(i int) *RpgUserGuildMemberUpdateOne {
+	rugmuo.mutation.ResetUID()
+	rugmuo.mutation.SetUID(i)
+	return rugmuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdateOne) SetNillableUID(v *int) *RpgUserGuildMemberUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetNillableUID(i *int) *RpgUserGuildMemberUpdateOne {
+	if i != nil {
+		rugmuo.SetUID(*i)
 	}
-	return _u
+	return rugmuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgUserGuildMemberUpdateOne) AddUID(v int) *RpgUserGuildMemberUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rugmuo *RpgUserGuildMemberUpdateOne) AddUID(i int) *RpgUserGuildMemberUpdateOne {
+	rugmuo.mutation.AddUID(i)
+	return rugmuo
 }
 
 // SetJoinTime sets the "joinTime" field.
-func (_u *RpgUserGuildMemberUpdateOne) SetJoinTime(v time.Time) *RpgUserGuildMemberUpdateOne {
-	_u.mutation.SetJoinTime(v)
-	return _u
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetJoinTime(t time.Time) *RpgUserGuildMemberUpdateOne {
+	rugmuo.mutation.SetJoinTime(t)
+	return rugmuo
 }
 
 // SetNillableJoinTime sets the "joinTime" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdateOne) SetNillableJoinTime(v *time.Time) *RpgUserGuildMemberUpdateOne {
-	if v != nil {
-		_u.SetJoinTime(*v)
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetNillableJoinTime(t *time.Time) *RpgUserGuildMemberUpdateOne {
+	if t != nil {
+		rugmuo.SetJoinTime(*t)
 	}
-	return _u
+	return rugmuo
 }
 
 // SetRole sets the "role" field.
-func (_u *RpgUserGuildMemberUpdateOne) SetRole(v string) *RpgUserGuildMemberUpdateOne {
-	_u.mutation.SetRole(v)
-	return _u
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetRole(s string) *RpgUserGuildMemberUpdateOne {
+	rugmuo.mutation.SetRole(s)
+	return rugmuo
 }
 
 // SetNillableRole sets the "role" field if the given value is not nil.
-func (_u *RpgUserGuildMemberUpdateOne) SetNillableRole(v *string) *RpgUserGuildMemberUpdateOne {
-	if v != nil {
-		_u.SetRole(*v)
+func (rugmuo *RpgUserGuildMemberUpdateOne) SetNillableRole(s *string) *RpgUserGuildMemberUpdateOne {
+	if s != nil {
+		rugmuo.SetRole(*s)
 	}
-	return _u
+	return rugmuo
 }
 
 // Mutation returns the RpgUserGuildMemberMutation object of the builder.
-func (_u *RpgUserGuildMemberUpdateOne) Mutation() *RpgUserGuildMemberMutation {
-	return _u.mutation
+func (rugmuo *RpgUserGuildMemberUpdateOne) Mutation() *RpgUserGuildMemberMutation {
+	return rugmuo.mutation
 }
 
 // Where appends a list predicates to the RpgUserGuildMemberUpdate builder.
-func (_u *RpgUserGuildMemberUpdateOne) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rugmuo *RpgUserGuildMemberUpdateOne) Where(ps ...predicate.RpgUserGuildMember) *RpgUserGuildMemberUpdateOne {
+	rugmuo.mutation.Where(ps...)
+	return rugmuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserGuildMemberUpdateOne) Select(field string, fields ...string) *RpgUserGuildMemberUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rugmuo *RpgUserGuildMemberUpdateOne) Select(field string, fields ...string) *RpgUserGuildMemberUpdateOne {
+	rugmuo.fields = append([]string{field}, fields...)
+	return rugmuo
 }
 
 // Save executes the query and returns the updated RpgUserGuildMember entity.
-func (_u *RpgUserGuildMemberUpdateOne) Save(ctx context.Context) (*RpgUserGuildMember, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rugmuo *RpgUserGuildMemberUpdateOne) Save(ctx context.Context) (*RpgUserGuildMember, error) {
+	return withHooks(ctx, rugmuo.sqlSave, rugmuo.mutation, rugmuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserGuildMemberUpdateOne) SaveX(ctx context.Context) *RpgUserGuildMember {
-	node, err := _u.Save(ctx)
+func (rugmuo *RpgUserGuildMemberUpdateOne) SaveX(ctx context.Context) *RpgUserGuildMember {
+	node, err := rugmuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -280,26 +280,26 @@ func (_u *RpgUserGuildMemberUpdateOne) SaveX(ctx context.Context) *RpgUserGuildM
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserGuildMemberUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rugmuo *RpgUserGuildMemberUpdateOne) Exec(ctx context.Context) error {
+	_, err := rugmuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserGuildMemberUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rugmuo *RpgUserGuildMemberUpdateOne) ExecX(ctx context.Context) {
+	if err := rugmuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgUserGuildMemberUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserGuildMember, err error) {
+func (rugmuo *RpgUserGuildMemberUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserGuildMember, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserguildmember.Table, rpguserguildmember.Columns, sqlgraph.NewFieldSpec(rpguserguildmember.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rugmuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserGuildMember.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rugmuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserguildmember.FieldID)
 		for _, f := range fields {
@@ -311,35 +311,35 @@ func (_u *RpgUserGuildMemberUpdateOne) sqlSave(ctx context.Context) (_node *RpgU
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rugmuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.GuildId(); ok {
+	if value, ok := rugmuo.mutation.GuildId(); ok {
 		_spec.SetField(rpguserguildmember.FieldGuildId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedGuildId(); ok {
+	if value, ok := rugmuo.mutation.AddedGuildId(); ok {
 		_spec.AddField(rpguserguildmember.FieldGuildId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rugmuo.mutation.UID(); ok {
 		_spec.SetField(rpguserguildmember.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rugmuo.mutation.AddedUID(); ok {
 		_spec.AddField(rpguserguildmember.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.JoinTime(); ok {
+	if value, ok := rugmuo.mutation.JoinTime(); ok {
 		_spec.SetField(rpguserguildmember.FieldJoinTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.Role(); ok {
+	if value, ok := rugmuo.mutation.Role(); ok {
 		_spec.SetField(rpguserguildmember.FieldRole, field.TypeString, value)
 	}
-	_node = &RpgUserGuildMember{config: _u.config}
+	_node = &RpgUserGuildMember{config: rugmuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rugmuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpguserguildmember.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -347,6 +347,6 @@ func (_u *RpgUserGuildMemberUpdateOne) sqlSave(ctx context.Context) (_node *RpgU
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rugmuo.mutation.done = true
 	return _node, nil
 }

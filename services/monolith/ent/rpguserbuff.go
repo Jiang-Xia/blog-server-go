@@ -79,7 +79,7 @@ func (*RpgUserBuff) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserBuff fields.
-func (_m *RpgUserBuff) assignValues(columns []string, values []any) error {
+func (rub *RpgUserBuff) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -90,114 +90,114 @@ func (_m *RpgUserBuff) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rub.ID = int(value.Int64)
 		case rpguserbuff.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rub.CreateTime = value.Time
 			}
 		case rpguserbuff.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rub.UpdateTime = value.Time
 			}
 		case rpguserbuff.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rub.IsDelete = value.Bool
 			}
 		case rpguserbuff.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rub.Version = int(value.Int64)
 			}
 		case rpguserbuff.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rub.UID = int(value.Int64)
 			}
 		case rpguserbuff.FieldBuffCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field buffCode", values[i])
 			} else if value.Valid {
-				_m.BuffCode = value.String
+				rub.BuffCode = value.String
 			}
 		case rpguserbuff.FieldBuffType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field buffType", values[i])
 			} else if value.Valid {
-				_m.BuffType = value.String
+				rub.BuffType = value.String
 			}
 		case rpguserbuff.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				rub.Name = value.String
 			}
 		case rpguserbuff.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				rub.Description = value.String
 			}
 		case rpguserbuff.FieldValue:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field value", values[i])
 			} else if value.Valid {
-				_m.Value = value.Float64
+				rub.Value = value.Float64
 			}
 		case rpguserbuff.FieldExpireAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field expireAt", values[i])
 			} else if value.Valid {
-				_m.ExpireAt = value.Time
+				rub.ExpireAt = value.Time
 			}
 		case rpguserbuff.FieldRemainingUses:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field remainingUses", values[i])
 			} else if value.Valid {
-				_m.RemainingUses = int(value.Int64)
+				rub.RemainingUses = int(value.Int64)
 			}
 		case rpguserbuff.FieldIsActive:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field isActive", values[i])
 			} else if value.Valid {
-				_m.IsActive = int(value.Int64)
+				rub.IsActive = int(value.Int64)
 			}
 		case rpguserbuff.FieldSourceType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field sourceType", values[i])
 			} else if value.Valid {
-				_m.SourceType = new(string)
-				*_m.SourceType = value.String
+				rub.SourceType = new(string)
+				*rub.SourceType = value.String
 			}
 		case rpguserbuff.FieldSourceId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sourceId", values[i])
 			} else if value.Valid {
-				_m.SourceId = new(int)
-				*_m.SourceId = int(value.Int64)
+				rub.SourceId = new(int)
+				*rub.SourceId = int(value.Int64)
 			}
 		case rpguserbuff.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rub.EffectJson = new(string)
+				*rub.EffectJson = value.String
 			}
 		case rpguserbuff.FieldTriggerMode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field triggerMode", values[i])
 			} else if value.Valid {
-				_m.TriggerMode = value.String
+				rub.TriggerMode = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rub.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -205,89 +205,89 @@ func (_m *RpgUserBuff) assignValues(columns []string, values []any) error {
 
 // GetValue returns the ent.Value that was dynamically selected and assigned to the RpgUserBuff.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserBuff) GetValue(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rub *RpgUserBuff) GetValue(name string) (ent.Value, error) {
+	return rub.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserBuff.
 // Note that you need to call RpgUserBuff.Unwrap() before calling this method if this RpgUserBuff
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserBuff) Update() *RpgUserBuffUpdateOne {
-	return NewRpgUserBuffClient(_m.config).UpdateOne(_m)
+func (rub *RpgUserBuff) Update() *RpgUserBuffUpdateOne {
+	return NewRpgUserBuffClient(rub.config).UpdateOne(rub)
 }
 
 // Unwrap unwraps the RpgUserBuff entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserBuff) Unwrap() *RpgUserBuff {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rub *RpgUserBuff) Unwrap() *RpgUserBuff {
+	_tx, ok := rub.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserBuff is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rub.config.driver = _tx.drv
+	return rub
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserBuff) String() string {
+func (rub *RpgUserBuff) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserBuff(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rub.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rub.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rub.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rub.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rub.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rub.UID))
 	builder.WriteString(", ")
 	builder.WriteString("buffCode=")
-	builder.WriteString(_m.BuffCode)
+	builder.WriteString(rub.BuffCode)
 	builder.WriteString(", ")
 	builder.WriteString("buffType=")
-	builder.WriteString(_m.BuffType)
+	builder.WriteString(rub.BuffType)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(rub.Name)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(rub.Description)
 	builder.WriteString(", ")
 	builder.WriteString("value=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Value))
+	builder.WriteString(fmt.Sprintf("%v", rub.Value))
 	builder.WriteString(", ")
 	builder.WriteString("expireAt=")
-	builder.WriteString(_m.ExpireAt.Format(time.ANSIC))
+	builder.WriteString(rub.ExpireAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("remainingUses=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RemainingUses))
+	builder.WriteString(fmt.Sprintf("%v", rub.RemainingUses))
 	builder.WriteString(", ")
 	builder.WriteString("isActive=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsActive))
+	builder.WriteString(fmt.Sprintf("%v", rub.IsActive))
 	builder.WriteString(", ")
-	if v := _m.SourceType; v != nil {
+	if v := rub.SourceType; v != nil {
 		builder.WriteString("sourceType=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.SourceId; v != nil {
+	if v := rub.SourceId; v != nil {
 		builder.WriteString("sourceId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rub.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("triggerMode=")
-	builder.WriteString(_m.TriggerMode)
+	builder.WriteString(rub.TriggerMode)
 	builder.WriteByte(')')
 	return builder.String()
 }

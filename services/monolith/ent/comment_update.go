@@ -23,169 +23,169 @@ type CommentUpdate struct {
 }
 
 // Where appends a list predicates to the CommentUpdate builder.
-func (_u *CommentUpdate) Where(ps ...predicate.Comment) *CommentUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (cu *CommentUpdate) Where(ps ...predicate.Comment) *CommentUpdate {
+	cu.mutation.Where(ps...)
+	return cu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *CommentUpdate) SetUpdateTime(v time.Time) *CommentUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (cu *CommentUpdate) SetUpdateTime(t time.Time) *CommentUpdate {
+	cu.mutation.SetUpdateTime(t)
+	return cu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *CommentUpdate) SetIsDelete(v bool) *CommentUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (cu *CommentUpdate) SetIsDelete(b bool) *CommentUpdate {
+	cu.mutation.SetIsDelete(b)
+	return cu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *CommentUpdate) SetNillableIsDelete(v *bool) *CommentUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (cu *CommentUpdate) SetNillableIsDelete(b *bool) *CommentUpdate {
+	if b != nil {
+		cu.SetIsDelete(*b)
 	}
-	return _u
+	return cu
 }
 
 // SetVersion sets the "version" field.
-func (_u *CommentUpdate) SetVersion(v int) *CommentUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (cu *CommentUpdate) SetVersion(i int) *CommentUpdate {
+	cu.mutation.ResetVersion()
+	cu.mutation.SetVersion(i)
+	return cu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *CommentUpdate) SetNillableVersion(v *int) *CommentUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (cu *CommentUpdate) SetNillableVersion(i *int) *CommentUpdate {
+	if i != nil {
+		cu.SetVersion(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *CommentUpdate) AddVersion(v int) *CommentUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (cu *CommentUpdate) AddVersion(i int) *CommentUpdate {
+	cu.mutation.AddVersion(i)
+	return cu
 }
 
 // SetContent sets the "content" field.
-func (_u *CommentUpdate) SetContent(v string) *CommentUpdate {
-	_u.mutation.SetContent(v)
-	return _u
+func (cu *CommentUpdate) SetContent(s string) *CommentUpdate {
+	cu.mutation.SetContent(s)
+	return cu
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (_u *CommentUpdate) SetNillableContent(v *string) *CommentUpdate {
-	if v != nil {
-		_u.SetContent(*v)
+func (cu *CommentUpdate) SetNillableContent(s *string) *CommentUpdate {
+	if s != nil {
+		cu.SetContent(*s)
 	}
-	return _u
+	return cu
 }
 
 // SetUID sets the "uid" field.
-func (_u *CommentUpdate) SetUID(v int) *CommentUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (cu *CommentUpdate) SetUID(i int) *CommentUpdate {
+	cu.mutation.ResetUID()
+	cu.mutation.SetUID(i)
+	return cu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *CommentUpdate) SetNillableUID(v *int) *CommentUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (cu *CommentUpdate) SetNillableUID(i *int) *CommentUpdate {
+	if i != nil {
+		cu.SetUID(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *CommentUpdate) AddUID(v int) *CommentUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (cu *CommentUpdate) AddUID(i int) *CommentUpdate {
+	cu.mutation.AddUID(i)
+	return cu
 }
 
 // SetUserId sets the "userId" field.
-func (_u *CommentUpdate) SetUserId(v int) *CommentUpdate {
-	_u.mutation.ResetUserId()
-	_u.mutation.SetUserId(v)
-	return _u
+func (cu *CommentUpdate) SetUserId(i int) *CommentUpdate {
+	cu.mutation.ResetUserId()
+	cu.mutation.SetUserId(i)
+	return cu
 }
 
 // SetNillableUserId sets the "userId" field if the given value is not nil.
-func (_u *CommentUpdate) SetNillableUserId(v *int) *CommentUpdate {
-	if v != nil {
-		_u.SetUserId(*v)
+func (cu *CommentUpdate) SetNillableUserId(i *int) *CommentUpdate {
+	if i != nil {
+		cu.SetUserId(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddUserId adds value to the "userId" field.
-func (_u *CommentUpdate) AddUserId(v int) *CommentUpdate {
-	_u.mutation.AddUserId(v)
-	return _u
+// AddUserId adds i to the "userId" field.
+func (cu *CommentUpdate) AddUserId(i int) *CommentUpdate {
+	cu.mutation.AddUserId(i)
+	return cu
 }
 
 // ClearUserId clears the value of the "userId" field.
-func (_u *CommentUpdate) ClearUserId() *CommentUpdate {
-	_u.mutation.ClearUserId()
-	return _u
+func (cu *CommentUpdate) ClearUserId() *CommentUpdate {
+	cu.mutation.ClearUserId()
+	return cu
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *CommentUpdate) SetArticleId(v int) *CommentUpdate {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (cu *CommentUpdate) SetArticleId(i int) *CommentUpdate {
+	cu.mutation.ResetArticleId()
+	cu.mutation.SetArticleId(i)
+	return cu
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *CommentUpdate) SetNillableArticleId(v *int) *CommentUpdate {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (cu *CommentUpdate) SetNillableArticleId(i *int) *CommentUpdate {
+	if i != nil {
+		cu.SetArticleId(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *CommentUpdate) AddArticleId(v int) *CommentUpdate {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (cu *CommentUpdate) AddArticleId(i int) *CommentUpdate {
+	cu.mutation.AddArticleId(i)
+	return cu
 }
 
 // ClearArticleId clears the value of the "articleId" field.
-func (_u *CommentUpdate) ClearArticleId() *CommentUpdate {
-	_u.mutation.ClearArticleId()
-	return _u
+func (cu *CommentUpdate) ClearArticleId() *CommentUpdate {
+	cu.mutation.ClearArticleId()
+	return cu
 }
 
 // SetStatus sets the "status" field.
-func (_u *CommentUpdate) SetStatus(v string) *CommentUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (cu *CommentUpdate) SetStatus(s string) *CommentUpdate {
+	cu.mutation.SetStatus(s)
+	return cu
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *CommentUpdate) SetNillableStatus(v *string) *CommentUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (cu *CommentUpdate) SetNillableStatus(s *string) *CommentUpdate {
+	if s != nil {
+		cu.SetStatus(*s)
 	}
-	return _u
+	return cu
 }
 
 // Mutation returns the CommentMutation object of the builder.
-func (_u *CommentUpdate) Mutation() *CommentMutation {
-	return _u.mutation
+func (cu *CommentUpdate) Mutation() *CommentMutation {
+	return cu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *CommentUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cu *CommentUpdate) Save(ctx context.Context) (int, error) {
+	cu.defaults()
+	return withHooks(ctx, cu.sqlSave, cu.mutation, cu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CommentUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (cu *CommentUpdate) SaveX(ctx context.Context) int {
+	affected, err := cu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -193,78 +193,78 @@ func (_u *CommentUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *CommentUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cu *CommentUpdate) Exec(ctx context.Context) error {
+	_, err := cu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CommentUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cu *CommentUpdate) ExecX(ctx context.Context) {
+	if err := cu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CommentUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (cu *CommentUpdate) defaults() {
+	if _, ok := cu.mutation.UpdateTime(); !ok {
 		v := comment.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		cu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *CommentUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (cu *CommentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(comment.Table, comment.Columns, sqlgraph.NewFieldSpec(comment.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := cu.mutation.UpdateTime(); ok {
 		_spec.SetField(comment.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := cu.mutation.IsDelete(); ok {
 		_spec.SetField(comment.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := cu.mutation.Version(); ok {
 		_spec.SetField(comment.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := cu.mutation.AddedVersion(); ok {
 		_spec.AddField(comment.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Content(); ok {
+	if value, ok := cu.mutation.Content(); ok {
 		_spec.SetField(comment.FieldContent, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := cu.mutation.UID(); ok {
 		_spec.SetField(comment.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := cu.mutation.AddedUID(); ok {
 		_spec.AddField(comment.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UserId(); ok {
+	if value, ok := cu.mutation.UserId(); ok {
 		_spec.SetField(comment.FieldUserId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUserId(); ok {
+	if value, ok := cu.mutation.AddedUserId(); ok {
 		_spec.AddField(comment.FieldUserId, field.TypeInt, value)
 	}
-	if _u.mutation.UserIdCleared() {
+	if cu.mutation.UserIdCleared() {
 		_spec.ClearField(comment.FieldUserId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := cu.mutation.ArticleId(); ok {
 		_spec.SetField(comment.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := cu.mutation.AddedArticleId(); ok {
 		_spec.AddField(comment.FieldArticleId, field.TypeInt, value)
 	}
-	if _u.mutation.ArticleIdCleared() {
+	if cu.mutation.ArticleIdCleared() {
 		_spec.ClearField(comment.FieldArticleId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := cu.mutation.Status(); ok {
 		_spec.SetField(comment.FieldStatus, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, cu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{comment.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -272,8 +272,8 @@ func (_u *CommentUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	cu.mutation.done = true
+	return n, nil
 }
 
 // CommentUpdateOne is the builder for updating a single Comment entity.
@@ -285,176 +285,176 @@ type CommentUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *CommentUpdateOne) SetUpdateTime(v time.Time) *CommentUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (cuo *CommentUpdateOne) SetUpdateTime(t time.Time) *CommentUpdateOne {
+	cuo.mutation.SetUpdateTime(t)
+	return cuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *CommentUpdateOne) SetIsDelete(v bool) *CommentUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (cuo *CommentUpdateOne) SetIsDelete(b bool) *CommentUpdateOne {
+	cuo.mutation.SetIsDelete(b)
+	return cuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *CommentUpdateOne) SetNillableIsDelete(v *bool) *CommentUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (cuo *CommentUpdateOne) SetNillableIsDelete(b *bool) *CommentUpdateOne {
+	if b != nil {
+		cuo.SetIsDelete(*b)
 	}
-	return _u
+	return cuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *CommentUpdateOne) SetVersion(v int) *CommentUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (cuo *CommentUpdateOne) SetVersion(i int) *CommentUpdateOne {
+	cuo.mutation.ResetVersion()
+	cuo.mutation.SetVersion(i)
+	return cuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *CommentUpdateOne) SetNillableVersion(v *int) *CommentUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (cuo *CommentUpdateOne) SetNillableVersion(i *int) *CommentUpdateOne {
+	if i != nil {
+		cuo.SetVersion(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *CommentUpdateOne) AddVersion(v int) *CommentUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (cuo *CommentUpdateOne) AddVersion(i int) *CommentUpdateOne {
+	cuo.mutation.AddVersion(i)
+	return cuo
 }
 
 // SetContent sets the "content" field.
-func (_u *CommentUpdateOne) SetContent(v string) *CommentUpdateOne {
-	_u.mutation.SetContent(v)
-	return _u
+func (cuo *CommentUpdateOne) SetContent(s string) *CommentUpdateOne {
+	cuo.mutation.SetContent(s)
+	return cuo
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (_u *CommentUpdateOne) SetNillableContent(v *string) *CommentUpdateOne {
-	if v != nil {
-		_u.SetContent(*v)
+func (cuo *CommentUpdateOne) SetNillableContent(s *string) *CommentUpdateOne {
+	if s != nil {
+		cuo.SetContent(*s)
 	}
-	return _u
+	return cuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *CommentUpdateOne) SetUID(v int) *CommentUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (cuo *CommentUpdateOne) SetUID(i int) *CommentUpdateOne {
+	cuo.mutation.ResetUID()
+	cuo.mutation.SetUID(i)
+	return cuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *CommentUpdateOne) SetNillableUID(v *int) *CommentUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (cuo *CommentUpdateOne) SetNillableUID(i *int) *CommentUpdateOne {
+	if i != nil {
+		cuo.SetUID(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *CommentUpdateOne) AddUID(v int) *CommentUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (cuo *CommentUpdateOne) AddUID(i int) *CommentUpdateOne {
+	cuo.mutation.AddUID(i)
+	return cuo
 }
 
 // SetUserId sets the "userId" field.
-func (_u *CommentUpdateOne) SetUserId(v int) *CommentUpdateOne {
-	_u.mutation.ResetUserId()
-	_u.mutation.SetUserId(v)
-	return _u
+func (cuo *CommentUpdateOne) SetUserId(i int) *CommentUpdateOne {
+	cuo.mutation.ResetUserId()
+	cuo.mutation.SetUserId(i)
+	return cuo
 }
 
 // SetNillableUserId sets the "userId" field if the given value is not nil.
-func (_u *CommentUpdateOne) SetNillableUserId(v *int) *CommentUpdateOne {
-	if v != nil {
-		_u.SetUserId(*v)
+func (cuo *CommentUpdateOne) SetNillableUserId(i *int) *CommentUpdateOne {
+	if i != nil {
+		cuo.SetUserId(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddUserId adds value to the "userId" field.
-func (_u *CommentUpdateOne) AddUserId(v int) *CommentUpdateOne {
-	_u.mutation.AddUserId(v)
-	return _u
+// AddUserId adds i to the "userId" field.
+func (cuo *CommentUpdateOne) AddUserId(i int) *CommentUpdateOne {
+	cuo.mutation.AddUserId(i)
+	return cuo
 }
 
 // ClearUserId clears the value of the "userId" field.
-func (_u *CommentUpdateOne) ClearUserId() *CommentUpdateOne {
-	_u.mutation.ClearUserId()
-	return _u
+func (cuo *CommentUpdateOne) ClearUserId() *CommentUpdateOne {
+	cuo.mutation.ClearUserId()
+	return cuo
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *CommentUpdateOne) SetArticleId(v int) *CommentUpdateOne {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (cuo *CommentUpdateOne) SetArticleId(i int) *CommentUpdateOne {
+	cuo.mutation.ResetArticleId()
+	cuo.mutation.SetArticleId(i)
+	return cuo
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *CommentUpdateOne) SetNillableArticleId(v *int) *CommentUpdateOne {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (cuo *CommentUpdateOne) SetNillableArticleId(i *int) *CommentUpdateOne {
+	if i != nil {
+		cuo.SetArticleId(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *CommentUpdateOne) AddArticleId(v int) *CommentUpdateOne {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (cuo *CommentUpdateOne) AddArticleId(i int) *CommentUpdateOne {
+	cuo.mutation.AddArticleId(i)
+	return cuo
 }
 
 // ClearArticleId clears the value of the "articleId" field.
-func (_u *CommentUpdateOne) ClearArticleId() *CommentUpdateOne {
-	_u.mutation.ClearArticleId()
-	return _u
+func (cuo *CommentUpdateOne) ClearArticleId() *CommentUpdateOne {
+	cuo.mutation.ClearArticleId()
+	return cuo
 }
 
 // SetStatus sets the "status" field.
-func (_u *CommentUpdateOne) SetStatus(v string) *CommentUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (cuo *CommentUpdateOne) SetStatus(s string) *CommentUpdateOne {
+	cuo.mutation.SetStatus(s)
+	return cuo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *CommentUpdateOne) SetNillableStatus(v *string) *CommentUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (cuo *CommentUpdateOne) SetNillableStatus(s *string) *CommentUpdateOne {
+	if s != nil {
+		cuo.SetStatus(*s)
 	}
-	return _u
+	return cuo
 }
 
 // Mutation returns the CommentMutation object of the builder.
-func (_u *CommentUpdateOne) Mutation() *CommentMutation {
-	return _u.mutation
+func (cuo *CommentUpdateOne) Mutation() *CommentMutation {
+	return cuo.mutation
 }
 
 // Where appends a list predicates to the CommentUpdate builder.
-func (_u *CommentUpdateOne) Where(ps ...predicate.Comment) *CommentUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (cuo *CommentUpdateOne) Where(ps ...predicate.Comment) *CommentUpdateOne {
+	cuo.mutation.Where(ps...)
+	return cuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *CommentUpdateOne) Select(field string, fields ...string) *CommentUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (cuo *CommentUpdateOne) Select(field string, fields ...string) *CommentUpdateOne {
+	cuo.fields = append([]string{field}, fields...)
+	return cuo
 }
 
 // Save executes the query and returns the updated Comment entity.
-func (_u *CommentUpdateOne) Save(ctx context.Context) (*Comment, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cuo *CommentUpdateOne) Save(ctx context.Context) (*Comment, error) {
+	cuo.defaults()
+	return withHooks(ctx, cuo.sqlSave, cuo.mutation, cuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CommentUpdateOne) SaveX(ctx context.Context) *Comment {
-	node, err := _u.Save(ctx)
+func (cuo *CommentUpdateOne) SaveX(ctx context.Context) *Comment {
+	node, err := cuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -462,34 +462,34 @@ func (_u *CommentUpdateOne) SaveX(ctx context.Context) *Comment {
 }
 
 // Exec executes the query on the entity.
-func (_u *CommentUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cuo *CommentUpdateOne) Exec(ctx context.Context) error {
+	_, err := cuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CommentUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cuo *CommentUpdateOne) ExecX(ctx context.Context) {
+	if err := cuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *CommentUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (cuo *CommentUpdateOne) defaults() {
+	if _, ok := cuo.mutation.UpdateTime(); !ok {
 		v := comment.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		cuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *CommentUpdateOne) sqlSave(ctx context.Context) (_node *Comment, err error) {
+func (cuo *CommentUpdateOne) sqlSave(ctx context.Context) (_node *Comment, err error) {
 	_spec := sqlgraph.NewUpdateSpec(comment.Table, comment.Columns, sqlgraph.NewFieldSpec(comment.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := cuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Comment.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := cuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, comment.FieldID)
 		for _, f := range fields {
@@ -501,59 +501,59 @@ func (_u *CommentUpdateOne) sqlSave(ctx context.Context) (_node *Comment, err er
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := cuo.mutation.UpdateTime(); ok {
 		_spec.SetField(comment.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := cuo.mutation.IsDelete(); ok {
 		_spec.SetField(comment.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := cuo.mutation.Version(); ok {
 		_spec.SetField(comment.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := cuo.mutation.AddedVersion(); ok {
 		_spec.AddField(comment.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Content(); ok {
+	if value, ok := cuo.mutation.Content(); ok {
 		_spec.SetField(comment.FieldContent, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := cuo.mutation.UID(); ok {
 		_spec.SetField(comment.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := cuo.mutation.AddedUID(); ok {
 		_spec.AddField(comment.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UserId(); ok {
+	if value, ok := cuo.mutation.UserId(); ok {
 		_spec.SetField(comment.FieldUserId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUserId(); ok {
+	if value, ok := cuo.mutation.AddedUserId(); ok {
 		_spec.AddField(comment.FieldUserId, field.TypeInt, value)
 	}
-	if _u.mutation.UserIdCleared() {
+	if cuo.mutation.UserIdCleared() {
 		_spec.ClearField(comment.FieldUserId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := cuo.mutation.ArticleId(); ok {
 		_spec.SetField(comment.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := cuo.mutation.AddedArticleId(); ok {
 		_spec.AddField(comment.FieldArticleId, field.TypeInt, value)
 	}
-	if _u.mutation.ArticleIdCleared() {
+	if cuo.mutation.ArticleIdCleared() {
 		_spec.ClearField(comment.FieldArticleId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := cuo.mutation.Status(); ok {
 		_spec.SetField(comment.FieldStatus, field.TypeString, value)
 	}
-	_node = &Comment{config: _u.config}
+	_node = &Comment{config: cuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, cuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{comment.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -561,6 +561,6 @@ func (_u *CommentUpdateOne) sqlSave(ctx context.Context) (_node *Comment, err er
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	cuo.mutation.done = true
 	return _node, nil
 }

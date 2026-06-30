@@ -23,297 +23,297 @@ type RpgCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgCreate) SetCreateTime(v time.Time) *RpgCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (rc *RpgCreate) SetCreateTime(t time.Time) *RpgCreate {
+	rc.mutation.SetCreateTime(t)
+	return rc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableCreateTime(v *time.Time) *RpgCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (rc *RpgCreate) SetNillableCreateTime(t *time.Time) *RpgCreate {
+	if t != nil {
+		rc.SetCreateTime(*t)
 	}
-	return _c
+	return rc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgCreate) SetUpdateTime(v time.Time) *RpgCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (rc *RpgCreate) SetUpdateTime(t time.Time) *RpgCreate {
+	rc.mutation.SetUpdateTime(t)
+	return rc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableUpdateTime(v *time.Time) *RpgCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (rc *RpgCreate) SetNillableUpdateTime(t *time.Time) *RpgCreate {
+	if t != nil {
+		rc.SetUpdateTime(*t)
 	}
-	return _c
+	return rc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgCreate) SetIsDelete(v bool) *RpgCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (rc *RpgCreate) SetIsDelete(b bool) *RpgCreate {
+	rc.mutation.SetIsDelete(b)
+	return rc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableIsDelete(v *bool) *RpgCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (rc *RpgCreate) SetNillableIsDelete(b *bool) *RpgCreate {
+	if b != nil {
+		rc.SetIsDelete(*b)
 	}
-	return _c
+	return rc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgCreate) SetVersion(v int) *RpgCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (rc *RpgCreate) SetVersion(i int) *RpgCreate {
+	rc.mutation.SetVersion(i)
+	return rc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableVersion(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (rc *RpgCreate) SetNillableVersion(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetVersion(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgCreate) SetUID(v int) *RpgCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rc *RpgCreate) SetUID(i int) *RpgCreate {
+	rc.mutation.SetUID(i)
+	return rc
 }
 
 // SetExp sets the "exp" field.
-func (_c *RpgCreate) SetExp(v int) *RpgCreate {
-	_c.mutation.SetExp(v)
-	return _c
+func (rc *RpgCreate) SetExp(i int) *RpgCreate {
+	rc.mutation.SetExp(i)
+	return rc
 }
 
 // SetNillableExp sets the "exp" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableExp(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetExp(*v)
+func (rc *RpgCreate) SetNillableExp(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetExp(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetLevel sets the "level" field.
-func (_c *RpgCreate) SetLevel(v int) *RpgCreate {
-	_c.mutation.SetLevel(v)
-	return _c
+func (rc *RpgCreate) SetLevel(i int) *RpgCreate {
+	rc.mutation.SetLevel(i)
+	return rc
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableLevel(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetLevel(*v)
+func (rc *RpgCreate) SetNillableLevel(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetLevel(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetLifeValue sets the "lifeValue" field.
-func (_c *RpgCreate) SetLifeValue(v int) *RpgCreate {
-	_c.mutation.SetLifeValue(v)
-	return _c
+func (rc *RpgCreate) SetLifeValue(i int) *RpgCreate {
+	rc.mutation.SetLifeValue(i)
+	return rc
 }
 
 // SetNillableLifeValue sets the "lifeValue" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableLifeValue(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetLifeValue(*v)
+func (rc *RpgCreate) SetNillableLifeValue(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetLifeValue(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetLastSignDate sets the "lastSignDate" field.
-func (_c *RpgCreate) SetLastSignDate(v time.Time) *RpgCreate {
-	_c.mutation.SetLastSignDate(v)
-	return _c
+func (rc *RpgCreate) SetLastSignDate(t time.Time) *RpgCreate {
+	rc.mutation.SetLastSignDate(t)
+	return rc
 }
 
 // SetNillableLastSignDate sets the "lastSignDate" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableLastSignDate(v *time.Time) *RpgCreate {
-	if v != nil {
-		_c.SetLastSignDate(*v)
+func (rc *RpgCreate) SetNillableLastSignDate(t *time.Time) *RpgCreate {
+	if t != nil {
+		rc.SetLastSignDate(*t)
 	}
-	return _c
+	return rc
 }
 
 // SetTotalSignDays sets the "totalSignDays" field.
-func (_c *RpgCreate) SetTotalSignDays(v int) *RpgCreate {
-	_c.mutation.SetTotalSignDays(v)
-	return _c
+func (rc *RpgCreate) SetTotalSignDays(i int) *RpgCreate {
+	rc.mutation.SetTotalSignDays(i)
+	return rc
 }
 
 // SetNillableTotalSignDays sets the "totalSignDays" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableTotalSignDays(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetTotalSignDays(*v)
+func (rc *RpgCreate) SetNillableTotalSignDays(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetTotalSignDays(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetConsecutiveSignDays sets the "consecutiveSignDays" field.
-func (_c *RpgCreate) SetConsecutiveSignDays(v int) *RpgCreate {
-	_c.mutation.SetConsecutiveSignDays(v)
-	return _c
+func (rc *RpgCreate) SetConsecutiveSignDays(i int) *RpgCreate {
+	rc.mutation.SetConsecutiveSignDays(i)
+	return rc
 }
 
 // SetNillableConsecutiveSignDays sets the "consecutiveSignDays" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableConsecutiveSignDays(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetConsecutiveSignDays(*v)
+func (rc *RpgCreate) SetNillableConsecutiveSignDays(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetConsecutiveSignDays(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetBanStartTime sets the "banStartTime" field.
-func (_c *RpgCreate) SetBanStartTime(v time.Time) *RpgCreate {
-	_c.mutation.SetBanStartTime(v)
-	return _c
+func (rc *RpgCreate) SetBanStartTime(t time.Time) *RpgCreate {
+	rc.mutation.SetBanStartTime(t)
+	return rc
 }
 
 // SetNillableBanStartTime sets the "banStartTime" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableBanStartTime(v *time.Time) *RpgCreate {
-	if v != nil {
-		_c.SetBanStartTime(*v)
+func (rc *RpgCreate) SetNillableBanStartTime(t *time.Time) *RpgCreate {
+	if t != nil {
+		rc.SetBanStartTime(*t)
 	}
-	return _c
+	return rc
 }
 
 // SetBanEndTime sets the "banEndTime" field.
-func (_c *RpgCreate) SetBanEndTime(v time.Time) *RpgCreate {
-	_c.mutation.SetBanEndTime(v)
-	return _c
+func (rc *RpgCreate) SetBanEndTime(t time.Time) *RpgCreate {
+	rc.mutation.SetBanEndTime(t)
+	return rc
 }
 
 // SetNillableBanEndTime sets the "banEndTime" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableBanEndTime(v *time.Time) *RpgCreate {
-	if v != nil {
-		_c.SetBanEndTime(*v)
+func (rc *RpgCreate) SetNillableBanEndTime(t *time.Time) *RpgCreate {
+	if t != nil {
+		rc.SetBanEndTime(*t)
 	}
-	return _c
+	return rc
 }
 
 // SetSensitiveHitsCount sets the "sensitiveHitsCount" field.
-func (_c *RpgCreate) SetSensitiveHitsCount(v int) *RpgCreate {
-	_c.mutation.SetSensitiveHitsCount(v)
-	return _c
+func (rc *RpgCreate) SetSensitiveHitsCount(i int) *RpgCreate {
+	rc.mutation.SetSensitiveHitsCount(i)
+	return rc
 }
 
 // SetNillableSensitiveHitsCount sets the "sensitiveHitsCount" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableSensitiveHitsCount(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetSensitiveHitsCount(*v)
+func (rc *RpgCreate) SetNillableSensitiveHitsCount(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetSensitiveHitsCount(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetZeroLifeCount sets the "zeroLifeCount" field.
-func (_c *RpgCreate) SetZeroLifeCount(v int) *RpgCreate {
-	_c.mutation.SetZeroLifeCount(v)
-	return _c
+func (rc *RpgCreate) SetZeroLifeCount(i int) *RpgCreate {
+	rc.mutation.SetZeroLifeCount(i)
+	return rc
 }
 
 // SetNillableZeroLifeCount sets the "zeroLifeCount" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableZeroLifeCount(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetZeroLifeCount(*v)
+func (rc *RpgCreate) SetNillableZeroLifeCount(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetZeroLifeCount(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetLotteryTickets sets the "lotteryTickets" field.
-func (_c *RpgCreate) SetLotteryTickets(v int) *RpgCreate {
-	_c.mutation.SetLotteryTickets(v)
-	return _c
+func (rc *RpgCreate) SetLotteryTickets(i int) *RpgCreate {
+	rc.mutation.SetLotteryTickets(i)
+	return rc
 }
 
 // SetNillableLotteryTickets sets the "lotteryTickets" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableLotteryTickets(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetLotteryTickets(*v)
+func (rc *RpgCreate) SetNillableLotteryTickets(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetLotteryTickets(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetReputation sets the "reputation" field.
-func (_c *RpgCreate) SetReputation(v int) *RpgCreate {
-	_c.mutation.SetReputation(v)
-	return _c
+func (rc *RpgCreate) SetReputation(i int) *RpgCreate {
+	rc.mutation.SetReputation(i)
+	return rc
 }
 
 // SetNillableReputation sets the "reputation" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableReputation(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetReputation(*v)
+func (rc *RpgCreate) SetNillableReputation(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetReputation(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetLotteryPityCounter sets the "lotteryPityCounter" field.
-func (_c *RpgCreate) SetLotteryPityCounter(v int) *RpgCreate {
-	_c.mutation.SetLotteryPityCounter(v)
-	return _c
+func (rc *RpgCreate) SetLotteryPityCounter(i int) *RpgCreate {
+	rc.mutation.SetLotteryPityCounter(i)
+	return rc
 }
 
 // SetNillableLotteryPityCounter sets the "lotteryPityCounter" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableLotteryPityCounter(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetLotteryPityCounter(*v)
+func (rc *RpgCreate) SetNillableLotteryPityCounter(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetLotteryPityCounter(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgCreate) SetEffectJson(v string) *RpgCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (rc *RpgCreate) SetEffectJson(s string) *RpgCreate {
+	rc.mutation.SetEffectJson(s)
+	return rc
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableEffectJson(v *string) *RpgCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (rc *RpgCreate) SetNillableEffectJson(s *string) *RpgCreate {
+	if s != nil {
+		rc.SetEffectJson(*s)
 	}
-	return _c
+	return rc
 }
 
 // SetLotteryLegendaryPityCounter sets the "lotteryLegendaryPityCounter" field.
-func (_c *RpgCreate) SetLotteryLegendaryPityCounter(v int) *RpgCreate {
-	_c.mutation.SetLotteryLegendaryPityCounter(v)
-	return _c
+func (rc *RpgCreate) SetLotteryLegendaryPityCounter(i int) *RpgCreate {
+	rc.mutation.SetLotteryLegendaryPityCounter(i)
+	return rc
 }
 
 // SetNillableLotteryLegendaryPityCounter sets the "lotteryLegendaryPityCounter" field if the given value is not nil.
-func (_c *RpgCreate) SetNillableLotteryLegendaryPityCounter(v *int) *RpgCreate {
-	if v != nil {
-		_c.SetLotteryLegendaryPityCounter(*v)
+func (rc *RpgCreate) SetNillableLotteryLegendaryPityCounter(i *int) *RpgCreate {
+	if i != nil {
+		rc.SetLotteryLegendaryPityCounter(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgCreate) SetID(v int) *RpgCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rc *RpgCreate) SetID(i int) *RpgCreate {
+	rc.mutation.SetID(i)
+	return rc
 }
 
 // Mutation returns the RpgMutation object of the builder.
-func (_c *RpgCreate) Mutation() *RpgMutation {
-	return _c.mutation
+func (rc *RpgCreate) Mutation() *RpgMutation {
+	return rc.mutation
 }
 
 // Save creates the Rpg in the database.
-func (_c *RpgCreate) Save(ctx context.Context) (*Rpg, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rc *RpgCreate) Save(ctx context.Context) (*Rpg, error) {
+	rc.defaults()
+	return withHooks(ctx, rc.sqlSave, rc.mutation, rc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgCreate) SaveX(ctx context.Context) *Rpg {
-	v, err := _c.Save(ctx)
+func (rc *RpgCreate) SaveX(ctx context.Context) *Rpg {
+	v, err := rc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -321,141 +321,141 @@ func (_c *RpgCreate) SaveX(ctx context.Context) *Rpg {
 }
 
 // Exec executes the query.
-func (_c *RpgCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rc *RpgCreate) Exec(ctx context.Context) error {
+	_, err := rc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rc *RpgCreate) ExecX(ctx context.Context) {
+	if err := rc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rc *RpgCreate) defaults() {
+	if _, ok := rc.mutation.CreateTime(); !ok {
 		v := rpg.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		rc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rc.mutation.UpdateTime(); !ok {
 		v := rpg.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		rc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rc.mutation.IsDelete(); !ok {
 		v := rpg.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		rc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rc.mutation.Version(); !ok {
 		v := rpg.DefaultVersion
-		_c.mutation.SetVersion(v)
+		rc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Exp(); !ok {
+	if _, ok := rc.mutation.Exp(); !ok {
 		v := rpg.DefaultExp
-		_c.mutation.SetExp(v)
+		rc.mutation.SetExp(v)
 	}
-	if _, ok := _c.mutation.Level(); !ok {
+	if _, ok := rc.mutation.Level(); !ok {
 		v := rpg.DefaultLevel
-		_c.mutation.SetLevel(v)
+		rc.mutation.SetLevel(v)
 	}
-	if _, ok := _c.mutation.LifeValue(); !ok {
+	if _, ok := rc.mutation.LifeValue(); !ok {
 		v := rpg.DefaultLifeValue
-		_c.mutation.SetLifeValue(v)
+		rc.mutation.SetLifeValue(v)
 	}
-	if _, ok := _c.mutation.TotalSignDays(); !ok {
+	if _, ok := rc.mutation.TotalSignDays(); !ok {
 		v := rpg.DefaultTotalSignDays
-		_c.mutation.SetTotalSignDays(v)
+		rc.mutation.SetTotalSignDays(v)
 	}
-	if _, ok := _c.mutation.ConsecutiveSignDays(); !ok {
+	if _, ok := rc.mutation.ConsecutiveSignDays(); !ok {
 		v := rpg.DefaultConsecutiveSignDays
-		_c.mutation.SetConsecutiveSignDays(v)
+		rc.mutation.SetConsecutiveSignDays(v)
 	}
-	if _, ok := _c.mutation.SensitiveHitsCount(); !ok {
+	if _, ok := rc.mutation.SensitiveHitsCount(); !ok {
 		v := rpg.DefaultSensitiveHitsCount
-		_c.mutation.SetSensitiveHitsCount(v)
+		rc.mutation.SetSensitiveHitsCount(v)
 	}
-	if _, ok := _c.mutation.ZeroLifeCount(); !ok {
+	if _, ok := rc.mutation.ZeroLifeCount(); !ok {
 		v := rpg.DefaultZeroLifeCount
-		_c.mutation.SetZeroLifeCount(v)
+		rc.mutation.SetZeroLifeCount(v)
 	}
-	if _, ok := _c.mutation.LotteryTickets(); !ok {
+	if _, ok := rc.mutation.LotteryTickets(); !ok {
 		v := rpg.DefaultLotteryTickets
-		_c.mutation.SetLotteryTickets(v)
+		rc.mutation.SetLotteryTickets(v)
 	}
-	if _, ok := _c.mutation.Reputation(); !ok {
+	if _, ok := rc.mutation.Reputation(); !ok {
 		v := rpg.DefaultReputation
-		_c.mutation.SetReputation(v)
+		rc.mutation.SetReputation(v)
 	}
-	if _, ok := _c.mutation.LotteryPityCounter(); !ok {
+	if _, ok := rc.mutation.LotteryPityCounter(); !ok {
 		v := rpg.DefaultLotteryPityCounter
-		_c.mutation.SetLotteryPityCounter(v)
+		rc.mutation.SetLotteryPityCounter(v)
 	}
-	if _, ok := _c.mutation.LotteryLegendaryPityCounter(); !ok {
+	if _, ok := rc.mutation.LotteryLegendaryPityCounter(); !ok {
 		v := rpg.DefaultLotteryLegendaryPityCounter
-		_c.mutation.SetLotteryLegendaryPityCounter(v)
+		rc.mutation.SetLotteryLegendaryPityCounter(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rc *RpgCreate) check() error {
+	if _, ok := rc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Rpg.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Rpg.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Rpg.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Rpg.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := rc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "Rpg.uid"`)}
 	}
-	if _, ok := _c.mutation.Exp(); !ok {
+	if _, ok := rc.mutation.Exp(); !ok {
 		return &ValidationError{Name: "exp", err: errors.New(`ent: missing required field "Rpg.exp"`)}
 	}
-	if _, ok := _c.mutation.Level(); !ok {
+	if _, ok := rc.mutation.Level(); !ok {
 		return &ValidationError{Name: "level", err: errors.New(`ent: missing required field "Rpg.level"`)}
 	}
-	if _, ok := _c.mutation.LifeValue(); !ok {
+	if _, ok := rc.mutation.LifeValue(); !ok {
 		return &ValidationError{Name: "lifeValue", err: errors.New(`ent: missing required field "Rpg.lifeValue"`)}
 	}
-	if _, ok := _c.mutation.TotalSignDays(); !ok {
+	if _, ok := rc.mutation.TotalSignDays(); !ok {
 		return &ValidationError{Name: "totalSignDays", err: errors.New(`ent: missing required field "Rpg.totalSignDays"`)}
 	}
-	if _, ok := _c.mutation.ConsecutiveSignDays(); !ok {
+	if _, ok := rc.mutation.ConsecutiveSignDays(); !ok {
 		return &ValidationError{Name: "consecutiveSignDays", err: errors.New(`ent: missing required field "Rpg.consecutiveSignDays"`)}
 	}
-	if _, ok := _c.mutation.SensitiveHitsCount(); !ok {
+	if _, ok := rc.mutation.SensitiveHitsCount(); !ok {
 		return &ValidationError{Name: "sensitiveHitsCount", err: errors.New(`ent: missing required field "Rpg.sensitiveHitsCount"`)}
 	}
-	if _, ok := _c.mutation.ZeroLifeCount(); !ok {
+	if _, ok := rc.mutation.ZeroLifeCount(); !ok {
 		return &ValidationError{Name: "zeroLifeCount", err: errors.New(`ent: missing required field "Rpg.zeroLifeCount"`)}
 	}
-	if _, ok := _c.mutation.LotteryTickets(); !ok {
+	if _, ok := rc.mutation.LotteryTickets(); !ok {
 		return &ValidationError{Name: "lotteryTickets", err: errors.New(`ent: missing required field "Rpg.lotteryTickets"`)}
 	}
-	if _, ok := _c.mutation.Reputation(); !ok {
+	if _, ok := rc.mutation.Reputation(); !ok {
 		return &ValidationError{Name: "reputation", err: errors.New(`ent: missing required field "Rpg.reputation"`)}
 	}
-	if _, ok := _c.mutation.LotteryPityCounter(); !ok {
+	if _, ok := rc.mutation.LotteryPityCounter(); !ok {
 		return &ValidationError{Name: "lotteryPityCounter", err: errors.New(`ent: missing required field "Rpg.lotteryPityCounter"`)}
 	}
-	if _, ok := _c.mutation.LotteryLegendaryPityCounter(); !ok {
+	if _, ok := rc.mutation.LotteryLegendaryPityCounter(); !ok {
 		return &ValidationError{Name: "lotteryLegendaryPityCounter", err: errors.New(`ent: missing required field "Rpg.lotteryLegendaryPityCounter"`)}
 	}
 	return nil
 }
 
-func (_c *RpgCreate) sqlSave(ctx context.Context) (*Rpg, error) {
-	if err := _c.check(); err != nil {
+func (rc *RpgCreate) sqlSave(ctx context.Context) (*Rpg, error) {
+	if err := rc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -465,98 +465,98 @@ func (_c *RpgCreate) sqlSave(ctx context.Context) (*Rpg, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rc.mutation.id = &_node.ID
+	rc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgCreate) createSpec() (*Rpg, *sqlgraph.CreateSpec) {
+func (rc *RpgCreate) createSpec() (*Rpg, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Rpg{config: _c.config}
+		_node = &Rpg{config: rc.config}
 		_spec = sqlgraph.NewCreateSpec(rpg.Table, sqlgraph.NewFieldSpec(rpg.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rc.conflict
+	if id, ok := rc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := rc.mutation.CreateTime(); ok {
 		_spec.SetField(rpg.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := rc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpg.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := rc.mutation.IsDelete(); ok {
 		_spec.SetField(rpg.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := rc.mutation.Version(); ok {
 		_spec.SetField(rpg.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rc.mutation.UID(); ok {
 		_spec.SetField(rpg.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.Exp(); ok {
+	if value, ok := rc.mutation.Exp(); ok {
 		_spec.SetField(rpg.FieldExp, field.TypeInt, value)
 		_node.Exp = value
 	}
-	if value, ok := _c.mutation.Level(); ok {
+	if value, ok := rc.mutation.Level(); ok {
 		_spec.SetField(rpg.FieldLevel, field.TypeInt, value)
 		_node.Level = value
 	}
-	if value, ok := _c.mutation.LifeValue(); ok {
+	if value, ok := rc.mutation.LifeValue(); ok {
 		_spec.SetField(rpg.FieldLifeValue, field.TypeInt, value)
 		_node.LifeValue = value
 	}
-	if value, ok := _c.mutation.LastSignDate(); ok {
+	if value, ok := rc.mutation.LastSignDate(); ok {
 		_spec.SetField(rpg.FieldLastSignDate, field.TypeTime, value)
 		_node.LastSignDate = &value
 	}
-	if value, ok := _c.mutation.TotalSignDays(); ok {
+	if value, ok := rc.mutation.TotalSignDays(); ok {
 		_spec.SetField(rpg.FieldTotalSignDays, field.TypeInt, value)
 		_node.TotalSignDays = value
 	}
-	if value, ok := _c.mutation.ConsecutiveSignDays(); ok {
+	if value, ok := rc.mutation.ConsecutiveSignDays(); ok {
 		_spec.SetField(rpg.FieldConsecutiveSignDays, field.TypeInt, value)
 		_node.ConsecutiveSignDays = value
 	}
-	if value, ok := _c.mutation.BanStartTime(); ok {
+	if value, ok := rc.mutation.BanStartTime(); ok {
 		_spec.SetField(rpg.FieldBanStartTime, field.TypeTime, value)
 		_node.BanStartTime = &value
 	}
-	if value, ok := _c.mutation.BanEndTime(); ok {
+	if value, ok := rc.mutation.BanEndTime(); ok {
 		_spec.SetField(rpg.FieldBanEndTime, field.TypeTime, value)
 		_node.BanEndTime = &value
 	}
-	if value, ok := _c.mutation.SensitiveHitsCount(); ok {
+	if value, ok := rc.mutation.SensitiveHitsCount(); ok {
 		_spec.SetField(rpg.FieldSensitiveHitsCount, field.TypeInt, value)
 		_node.SensitiveHitsCount = value
 	}
-	if value, ok := _c.mutation.ZeroLifeCount(); ok {
+	if value, ok := rc.mutation.ZeroLifeCount(); ok {
 		_spec.SetField(rpg.FieldZeroLifeCount, field.TypeInt, value)
 		_node.ZeroLifeCount = value
 	}
-	if value, ok := _c.mutation.LotteryTickets(); ok {
+	if value, ok := rc.mutation.LotteryTickets(); ok {
 		_spec.SetField(rpg.FieldLotteryTickets, field.TypeInt, value)
 		_node.LotteryTickets = value
 	}
-	if value, ok := _c.mutation.Reputation(); ok {
+	if value, ok := rc.mutation.Reputation(); ok {
 		_spec.SetField(rpg.FieldReputation, field.TypeInt, value)
 		_node.Reputation = value
 	}
-	if value, ok := _c.mutation.LotteryPityCounter(); ok {
+	if value, ok := rc.mutation.LotteryPityCounter(); ok {
 		_spec.SetField(rpg.FieldLotteryPityCounter, field.TypeInt, value)
 		_node.LotteryPityCounter = value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := rc.mutation.EffectJson(); ok {
 		_spec.SetField(rpg.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.LotteryLegendaryPityCounter(); ok {
+	if value, ok := rc.mutation.LotteryLegendaryPityCounter(); ok {
 		_spec.SetField(rpg.FieldLotteryLegendaryPityCounter, field.TypeInt, value)
 		_node.LotteryLegendaryPityCounter = value
 	}
@@ -579,10 +579,10 @@ func (_c *RpgCreate) createSpec() (*Rpg, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgCreate) OnConflict(opts ...sql.ConflictOption) *RpgUpsertOne {
-	_c.conflict = opts
+func (rc *RpgCreate) OnConflict(opts ...sql.ConflictOption) *RpgUpsertOne {
+	rc.conflict = opts
 	return &RpgUpsertOne{
-		create: _c,
+		create: rc,
 	}
 }
 
@@ -592,10 +592,10 @@ func (_c *RpgCreate) OnConflict(opts ...sql.ConflictOption) *RpgUpsertOne {
 //	client.Rpg.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgCreate) OnConflictColumns(columns ...string) *RpgUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rc *RpgCreate) OnConflictColumns(columns ...string) *RpgUpsertOne {
+	rc.conflict = append(rc.conflict, sql.ConflictColumns(columns...))
 	return &RpgUpsertOne{
-		create: _c,
+		create: rc,
 	}
 }
 
@@ -1420,16 +1420,16 @@ type RpgCreateBulk struct {
 }
 
 // Save creates the Rpg entities in the database.
-func (_c *RpgCreateBulk) Save(ctx context.Context) ([]*Rpg, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rcb *RpgCreateBulk) Save(ctx context.Context) ([]*Rpg, error) {
+	if rcb.err != nil {
+		return nil, rcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Rpg, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rcb.builders))
+	nodes := make([]*Rpg, len(rcb.builders))
+	mutators := make([]Mutator, len(rcb.builders))
+	for i := range rcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgMutation)
@@ -1443,12 +1443,12 @@ func (_c *RpgCreateBulk) Save(ctx context.Context) ([]*Rpg, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1472,7 +1472,7 @@ func (_c *RpgCreateBulk) Save(ctx context.Context) ([]*Rpg, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1480,8 +1480,8 @@ func (_c *RpgCreateBulk) Save(ctx context.Context) ([]*Rpg, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgCreateBulk) SaveX(ctx context.Context) []*Rpg {
-	v, err := _c.Save(ctx)
+func (rcb *RpgCreateBulk) SaveX(ctx context.Context) []*Rpg {
+	v, err := rcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1489,14 +1489,14 @@ func (_c *RpgCreateBulk) SaveX(ctx context.Context) []*Rpg {
 }
 
 // Exec executes the query.
-func (_c *RpgCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rcb *RpgCreateBulk) Exec(ctx context.Context) error {
+	_, err := rcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rcb *RpgCreateBulk) ExecX(ctx context.Context) {
+	if err := rcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1516,10 +1516,10 @@ func (_c *RpgCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUpsertBulk {
-	_c.conflict = opts
+func (rcb *RpgCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUpsertBulk {
+	rcb.conflict = opts
 	return &RpgUpsertBulk{
-		create: _c,
+		create: rcb,
 	}
 }
 
@@ -1529,10 +1529,10 @@ func (_c *RpgCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUpsertBulk {
 //	client.Rpg.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgCreateBulk) OnConflictColumns(columns ...string) *RpgUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rcb *RpgCreateBulk) OnConflictColumns(columns ...string) *RpgUpsertBulk {
+	rcb.conflict = append(rcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUpsertBulk{
-		create: _c,
+		create: rcb,
 	}
 }
 

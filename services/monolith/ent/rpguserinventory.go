@@ -53,7 +53,7 @@ func (*RpgUserInventory) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserInventory fields.
-func (_m *RpgUserInventory) assignValues(columns []string, values []any) error {
+func (rui *RpgUserInventory) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -64,46 +64,46 @@ func (_m *RpgUserInventory) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rui.ID = int(value.Int64)
 		case rpguserinventory.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rui.UID = int(value.Int64)
 			}
 		case rpguserinventory.FieldItemCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field itemCode", values[i])
 			} else if value.Valid {
-				_m.ItemCode = value.String
+				rui.ItemCode = value.String
 			}
 		case rpguserinventory.FieldQuantity:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field quantity", values[i])
 			} else if value.Valid {
-				_m.Quantity = int(value.Int64)
+				rui.Quantity = int(value.Int64)
 			}
 		case rpguserinventory.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rui.EffectJson = new(string)
+				*rui.EffectJson = value.String
 			}
 		case rpguserinventory.FieldAcquiredAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field acquiredAt", values[i])
 			} else if value.Valid {
-				_m.AcquiredAt = value.Time
+				rui.AcquiredAt = value.Time
 			}
 		case rpguserinventory.FieldSource:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field source", values[i])
 			} else if value.Valid {
-				_m.Source = value.String
+				rui.Source = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rui.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -111,52 +111,52 @@ func (_m *RpgUserInventory) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserInventory.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserInventory) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rui *RpgUserInventory) Value(name string) (ent.Value, error) {
+	return rui.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserInventory.
 // Note that you need to call RpgUserInventory.Unwrap() before calling this method if this RpgUserInventory
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserInventory) Update() *RpgUserInventoryUpdateOne {
-	return NewRpgUserInventoryClient(_m.config).UpdateOne(_m)
+func (rui *RpgUserInventory) Update() *RpgUserInventoryUpdateOne {
+	return NewRpgUserInventoryClient(rui.config).UpdateOne(rui)
 }
 
 // Unwrap unwraps the RpgUserInventory entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserInventory) Unwrap() *RpgUserInventory {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rui *RpgUserInventory) Unwrap() *RpgUserInventory {
+	_tx, ok := rui.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserInventory is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rui.config.driver = _tx.drv
+	return rui
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserInventory) String() string {
+func (rui *RpgUserInventory) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserInventory(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rui.ID))
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rui.UID))
 	builder.WriteString(", ")
 	builder.WriteString("itemCode=")
-	builder.WriteString(_m.ItemCode)
+	builder.WriteString(rui.ItemCode)
 	builder.WriteString(", ")
 	builder.WriteString("quantity=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Quantity))
+	builder.WriteString(fmt.Sprintf("%v", rui.Quantity))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rui.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("acquiredAt=")
-	builder.WriteString(_m.AcquiredAt.Format(time.ANSIC))
+	builder.WriteString(rui.AcquiredAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("source=")
-	builder.WriteString(_m.Source)
+	builder.WriteString(rui.Source)
 	builder.WriteByte(')')
 	return builder.String()
 }

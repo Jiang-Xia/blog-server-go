@@ -28,40 +28,40 @@ type RpgLeaderboardSnapshotQuery struct {
 }
 
 // Where adds a new predicate for the RpgLeaderboardSnapshotQuery builder.
-func (_q *RpgLeaderboardSnapshotQuery) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rlsq *RpgLeaderboardSnapshotQuery) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotQuery {
+	rlsq.predicates = append(rlsq.predicates, ps...)
+	return rlsq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgLeaderboardSnapshotQuery) Limit(limit int) *RpgLeaderboardSnapshotQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rlsq *RpgLeaderboardSnapshotQuery) Limit(limit int) *RpgLeaderboardSnapshotQuery {
+	rlsq.ctx.Limit = &limit
+	return rlsq
 }
 
 // Offset to start from.
-func (_q *RpgLeaderboardSnapshotQuery) Offset(offset int) *RpgLeaderboardSnapshotQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rlsq *RpgLeaderboardSnapshotQuery) Offset(offset int) *RpgLeaderboardSnapshotQuery {
+	rlsq.ctx.Offset = &offset
+	return rlsq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgLeaderboardSnapshotQuery) Unique(unique bool) *RpgLeaderboardSnapshotQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rlsq *RpgLeaderboardSnapshotQuery) Unique(unique bool) *RpgLeaderboardSnapshotQuery {
+	rlsq.ctx.Unique = &unique
+	return rlsq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgLeaderboardSnapshotQuery) Order(o ...rpgleaderboardsnapshot.OrderOption) *RpgLeaderboardSnapshotQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rlsq *RpgLeaderboardSnapshotQuery) Order(o ...rpgleaderboardsnapshot.OrderOption) *RpgLeaderboardSnapshotQuery {
+	rlsq.order = append(rlsq.order, o...)
+	return rlsq
 }
 
 // First returns the first RpgLeaderboardSnapshot entity from the query.
 // Returns a *NotFoundError when no RpgLeaderboardSnapshot was found.
-func (_q *RpgLeaderboardSnapshotQuery) First(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rlsq *RpgLeaderboardSnapshotQuery) First(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
+	nodes, err := rlsq.Limit(1).All(setContextOp(ctx, rlsq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgLeaderboardSnapshotQuery) First(ctx context.Context) (*RpgLeaderboa
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) FirstX(ctx context.Context) *RpgLeaderboardSnapshot {
-	node, err := _q.First(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) FirstX(ctx context.Context) *RpgLeaderboardSnapshot {
+	node, err := rlsq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgLeaderboardSnapshotQuery) FirstX(ctx context.Context) *RpgLeaderboa
 
 // FirstID returns the first RpgLeaderboardSnapshot ID from the query.
 // Returns a *NotFoundError when no RpgLeaderboardSnapshot ID was found.
-func (_q *RpgLeaderboardSnapshotQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rlsq *RpgLeaderboardSnapshotQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rlsq.Limit(1).IDs(setContextOp(ctx, rlsq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgLeaderboardSnapshotQuery) FirstID(ctx context.Context) (id int, err
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) FirstIDX(ctx context.Context) int {
+	id, err := rlsq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgLeaderboardSnapshotQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgLeaderboardSnapshot entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgLeaderboardSnapshot entity is found.
 // Returns a *NotFoundError when no RpgLeaderboardSnapshot entities are found.
-func (_q *RpgLeaderboardSnapshotQuery) Only(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rlsq *RpgLeaderboardSnapshotQuery) Only(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
+	nodes, err := rlsq.Limit(2).All(setContextOp(ctx, rlsq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgLeaderboardSnapshotQuery) Only(ctx context.Context) (*RpgLeaderboar
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) OnlyX(ctx context.Context) *RpgLeaderboardSnapshot {
-	node, err := _q.Only(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) OnlyX(ctx context.Context) *RpgLeaderboardSnapshot {
+	node, err := rlsq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgLeaderboardSnapshotQuery) OnlyX(ctx context.Context) *RpgLeaderboar
 // OnlyID is like Only, but returns the only RpgLeaderboardSnapshot ID in the query.
 // Returns a *NotSingularError when more than one RpgLeaderboardSnapshot ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgLeaderboardSnapshotQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rlsq *RpgLeaderboardSnapshotQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rlsq.Limit(2).IDs(setContextOp(ctx, rlsq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgLeaderboardSnapshotQuery) OnlyID(ctx context.Context) (id int, err 
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rlsq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgLeaderboardSnapshotQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgLeaderboardSnapshots.
-func (_q *RpgLeaderboardSnapshotQuery) All(ctx context.Context) ([]*RpgLeaderboardSnapshot, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rlsq *RpgLeaderboardSnapshotQuery) All(ctx context.Context) ([]*RpgLeaderboardSnapshot, error) {
+	ctx = setContextOp(ctx, rlsq.ctx, ent.OpQueryAll)
+	if err := rlsq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgLeaderboardSnapshot, *RpgLeaderboardSnapshotQuery]()
-	return withInterceptors[[]*RpgLeaderboardSnapshot](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgLeaderboardSnapshot](ctx, rlsq, qr, rlsq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) AllX(ctx context.Context) []*RpgLeaderboardSnapshot {
-	nodes, err := _q.All(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) AllX(ctx context.Context) []*RpgLeaderboardSnapshot {
+	nodes, err := rlsq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgLeaderboardSnapshotQuery) AllX(ctx context.Context) []*RpgLeaderboa
 }
 
 // IDs executes the query and returns a list of RpgLeaderboardSnapshot IDs.
-func (_q *RpgLeaderboardSnapshotQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rlsq *RpgLeaderboardSnapshotQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rlsq.ctx.Unique == nil && rlsq.path != nil {
+		rlsq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpgleaderboardsnapshot.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rlsq.ctx, ent.OpQueryIDs)
+	if err = rlsq.Select(rpgleaderboardsnapshot.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) IDsX(ctx context.Context) []int {
+	ids, err := rlsq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgLeaderboardSnapshotQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgLeaderboardSnapshotQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rlsq *RpgLeaderboardSnapshotQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rlsq.ctx, ent.OpQueryCount)
+	if err := rlsq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgLeaderboardSnapshotQuery](), _q.inters)
+	return withInterceptors[int](ctx, rlsq, querierCount[*RpgLeaderboardSnapshotQuery](), rlsq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) CountX(ctx context.Context) int {
+	count, err := rlsq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgLeaderboardSnapshotQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgLeaderboardSnapshotQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rlsq *RpgLeaderboardSnapshotQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rlsq.ctx, ent.OpQueryExist)
+	switch _, err := rlsq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgLeaderboardSnapshotQuery) Exist(ctx context.Context) (bool, error) 
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgLeaderboardSnapshotQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rlsq *RpgLeaderboardSnapshotQuery) ExistX(ctx context.Context) bool {
+	exist, err := rlsq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgLeaderboardSnapshotQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgLeaderboardSnapshotQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgLeaderboardSnapshotQuery) Clone() *RpgLeaderboardSnapshotQuery {
-	if _q == nil {
+func (rlsq *RpgLeaderboardSnapshotQuery) Clone() *RpgLeaderboardSnapshotQuery {
+	if rlsq == nil {
 		return nil
 	}
 	return &RpgLeaderboardSnapshotQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpgleaderboardsnapshot.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgLeaderboardSnapshot{}, _q.predicates...),
+		config:     rlsq.config,
+		ctx:        rlsq.ctx.Clone(),
+		order:      append([]rpgleaderboardsnapshot.OrderOption{}, rlsq.order...),
+		inters:     append([]Interceptor{}, rlsq.inters...),
+		predicates: append([]predicate.RpgLeaderboardSnapshot{}, rlsq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rlsq.sql.Clone(),
+		path: rlsq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgLeaderboardSnapshotQuery) Clone() *RpgLeaderboardSnapshotQuery {
 //		GroupBy(rpgleaderboardsnapshot.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgLeaderboardSnapshotQuery) GroupBy(field string, fields ...string) *RpgLeaderboardSnapshotGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgLeaderboardSnapshotGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rlsq *RpgLeaderboardSnapshotQuery) GroupBy(field string, fields ...string) *RpgLeaderboardSnapshotGroupBy {
+	rlsq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgLeaderboardSnapshotGroupBy{build: rlsq}
+	grbuild.flds = &rlsq.ctx.Fields
 	grbuild.label = rpgleaderboardsnapshot.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgLeaderboardSnapshotQuery) GroupBy(field string, fields ...string) *
 //	client.RpgLeaderboardSnapshot.Query().
 //		Select(rpgleaderboardsnapshot.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RpgLeaderboardSnapshotQuery) Select(fields ...string) *RpgLeaderboardSnapshotSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgLeaderboardSnapshotSelect{RpgLeaderboardSnapshotQuery: _q}
+func (rlsq *RpgLeaderboardSnapshotQuery) Select(fields ...string) *RpgLeaderboardSnapshotSelect {
+	rlsq.ctx.Fields = append(rlsq.ctx.Fields, fields...)
+	sbuild := &RpgLeaderboardSnapshotSelect{RpgLeaderboardSnapshotQuery: rlsq}
 	sbuild.label = rpgleaderboardsnapshot.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rlsq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgLeaderboardSnapshotSelect configured with the given aggregations.
-func (_q *RpgLeaderboardSnapshotQuery) Aggregate(fns ...AggregateFunc) *RpgLeaderboardSnapshotSelect {
-	return _q.Select().Aggregate(fns...)
+func (rlsq *RpgLeaderboardSnapshotQuery) Aggregate(fns ...AggregateFunc) *RpgLeaderboardSnapshotSelect {
+	return rlsq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgLeaderboardSnapshotQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rlsq *RpgLeaderboardSnapshotQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rlsq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rlsq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rlsq.ctx.Fields {
 		if !rpgleaderboardsnapshot.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rlsq.path != nil {
+		prev, err := rlsq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rlsq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgLeaderboardSnapshotQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgLeaderboardSnapshot, error) {
+func (rlsq *RpgLeaderboardSnapshotQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgLeaderboardSnapshot, error) {
 	var (
 		nodes = []*RpgLeaderboardSnapshot{}
-		_spec = _q.querySpec()
+		_spec = rlsq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgLeaderboardSnapshot).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgLeaderboardSnapshot{config: _q.config}
+		node := &RpgLeaderboardSnapshot{config: rlsq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rlsq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgLeaderboardSnapshotQuery) sqlAll(ctx context.Context, hooks ...quer
 	return nodes, nil
 }
 
-func (_q *RpgLeaderboardSnapshotQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rlsq *RpgLeaderboardSnapshotQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rlsq.querySpec()
+	_spec.Node.Columns = rlsq.ctx.Fields
+	if len(rlsq.ctx.Fields) > 0 {
+		_spec.Unique = rlsq.ctx.Unique != nil && *rlsq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rlsq.driver, _spec)
 }
 
-func (_q *RpgLeaderboardSnapshotQuery) querySpec() *sqlgraph.QuerySpec {
+func (rlsq *RpgLeaderboardSnapshotQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpgleaderboardsnapshot.Table, rpgleaderboardsnapshot.Columns, sqlgraph.NewFieldSpec(rpgleaderboardsnapshot.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rlsq.sql
+	if unique := rlsq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rlsq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rlsq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgleaderboardsnapshot.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgLeaderboardSnapshotQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rlsq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rlsq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rlsq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rlsq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgLeaderboardSnapshotQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgLeaderboardSnapshotQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rlsq *RpgLeaderboardSnapshotQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rlsq.driver.Dialect())
 	t1 := builder.Table(rpgleaderboardsnapshot.Table)
-	columns := _q.ctx.Fields
+	columns := rlsq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpgleaderboardsnapshot.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rlsq.sql != nil {
+		selector = rlsq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rlsq.ctx.Unique != nil && *rlsq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rlsq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rlsq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rlsq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rlsq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgLeaderboardSnapshotGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgLeaderboardSnapshotGroupBy) Aggregate(fns ...AggregateFunc) *RpgLeaderboardSnapshotGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rlsgb *RpgLeaderboardSnapshotGroupBy) Aggregate(fns ...AggregateFunc) *RpgLeaderboardSnapshotGroupBy {
+	rlsgb.fns = append(rlsgb.fns, fns...)
+	return rlsgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgLeaderboardSnapshotGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rlsgb *RpgLeaderboardSnapshotGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rlsgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rlsgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgLeaderboardSnapshotQuery, *RpgLeaderboardSnapshotGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgLeaderboardSnapshotQuery, *RpgLeaderboardSnapshotGroupBy](ctx, rlsgb.build, rlsgb, rlsgb.build.inters, v)
 }
 
-func (_g *RpgLeaderboardSnapshotGroupBy) sqlScan(ctx context.Context, root *RpgLeaderboardSnapshotQuery, v any) error {
+func (rlsgb *RpgLeaderboardSnapshotGroupBy) sqlScan(ctx context.Context, root *RpgLeaderboardSnapshotQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rlsgb.fns))
+	for _, fn := range rlsgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rlsgb.flds)+len(rlsgb.fns))
+		for _, f := range *rlsgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rlsgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rlsgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgLeaderboardSnapshotSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgLeaderboardSnapshotSelect) Aggregate(fns ...AggregateFunc) *RpgLeaderboardSnapshotSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rlss *RpgLeaderboardSnapshotSelect) Aggregate(fns ...AggregateFunc) *RpgLeaderboardSnapshotSelect {
+	rlss.fns = append(rlss.fns, fns...)
+	return rlss
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgLeaderboardSnapshotSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rlss *RpgLeaderboardSnapshotSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rlss.ctx, ent.OpQuerySelect)
+	if err := rlss.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgLeaderboardSnapshotQuery, *RpgLeaderboardSnapshotSelect](ctx, _s.RpgLeaderboardSnapshotQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgLeaderboardSnapshotQuery, *RpgLeaderboardSnapshotSelect](ctx, rlss.RpgLeaderboardSnapshotQuery, rlss, rlss.inters, v)
 }
 
-func (_s *RpgLeaderboardSnapshotSelect) sqlScan(ctx context.Context, root *RpgLeaderboardSnapshotQuery, v any) error {
+func (rlss *RpgLeaderboardSnapshotSelect) sqlScan(ctx context.Context, root *RpgLeaderboardSnapshotQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rlss.fns))
+	for _, fn := range rlss.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rlss.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgLeaderboardSnapshotSelect) sqlScan(ctx context.Context, root *RpgLe
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rlss.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

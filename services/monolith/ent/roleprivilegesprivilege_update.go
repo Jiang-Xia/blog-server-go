@@ -22,66 +22,66 @@ type RolePrivilegesPrivilegeUpdate struct {
 }
 
 // Where appends a list predicates to the RolePrivilegesPrivilegeUpdate builder.
-func (_u *RolePrivilegesPrivilegeUpdate) Where(ps ...predicate.RolePrivilegesPrivilege) *RolePrivilegesPrivilegeUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rppu *RolePrivilegesPrivilegeUpdate) Where(ps ...predicate.RolePrivilegesPrivilege) *RolePrivilegesPrivilegeUpdate {
+	rppu.mutation.Where(ps...)
+	return rppu
 }
 
 // SetRoleId sets the "roleId" field.
-func (_u *RolePrivilegesPrivilegeUpdate) SetRoleId(v int) *RolePrivilegesPrivilegeUpdate {
-	_u.mutation.ResetRoleId()
-	_u.mutation.SetRoleId(v)
-	return _u
+func (rppu *RolePrivilegesPrivilegeUpdate) SetRoleId(i int) *RolePrivilegesPrivilegeUpdate {
+	rppu.mutation.ResetRoleId()
+	rppu.mutation.SetRoleId(i)
+	return rppu
 }
 
 // SetNillableRoleId sets the "roleId" field if the given value is not nil.
-func (_u *RolePrivilegesPrivilegeUpdate) SetNillableRoleId(v *int) *RolePrivilegesPrivilegeUpdate {
-	if v != nil {
-		_u.SetRoleId(*v)
+func (rppu *RolePrivilegesPrivilegeUpdate) SetNillableRoleId(i *int) *RolePrivilegesPrivilegeUpdate {
+	if i != nil {
+		rppu.SetRoleId(*i)
 	}
-	return _u
+	return rppu
 }
 
-// AddRoleId adds value to the "roleId" field.
-func (_u *RolePrivilegesPrivilegeUpdate) AddRoleId(v int) *RolePrivilegesPrivilegeUpdate {
-	_u.mutation.AddRoleId(v)
-	return _u
+// AddRoleId adds i to the "roleId" field.
+func (rppu *RolePrivilegesPrivilegeUpdate) AddRoleId(i int) *RolePrivilegesPrivilegeUpdate {
+	rppu.mutation.AddRoleId(i)
+	return rppu
 }
 
 // SetPrivilegeId sets the "privilegeId" field.
-func (_u *RolePrivilegesPrivilegeUpdate) SetPrivilegeId(v int) *RolePrivilegesPrivilegeUpdate {
-	_u.mutation.ResetPrivilegeId()
-	_u.mutation.SetPrivilegeId(v)
-	return _u
+func (rppu *RolePrivilegesPrivilegeUpdate) SetPrivilegeId(i int) *RolePrivilegesPrivilegeUpdate {
+	rppu.mutation.ResetPrivilegeId()
+	rppu.mutation.SetPrivilegeId(i)
+	return rppu
 }
 
 // SetNillablePrivilegeId sets the "privilegeId" field if the given value is not nil.
-func (_u *RolePrivilegesPrivilegeUpdate) SetNillablePrivilegeId(v *int) *RolePrivilegesPrivilegeUpdate {
-	if v != nil {
-		_u.SetPrivilegeId(*v)
+func (rppu *RolePrivilegesPrivilegeUpdate) SetNillablePrivilegeId(i *int) *RolePrivilegesPrivilegeUpdate {
+	if i != nil {
+		rppu.SetPrivilegeId(*i)
 	}
-	return _u
+	return rppu
 }
 
-// AddPrivilegeId adds value to the "privilegeId" field.
-func (_u *RolePrivilegesPrivilegeUpdate) AddPrivilegeId(v int) *RolePrivilegesPrivilegeUpdate {
-	_u.mutation.AddPrivilegeId(v)
-	return _u
+// AddPrivilegeId adds i to the "privilegeId" field.
+func (rppu *RolePrivilegesPrivilegeUpdate) AddPrivilegeId(i int) *RolePrivilegesPrivilegeUpdate {
+	rppu.mutation.AddPrivilegeId(i)
+	return rppu
 }
 
 // Mutation returns the RolePrivilegesPrivilegeMutation object of the builder.
-func (_u *RolePrivilegesPrivilegeUpdate) Mutation() *RolePrivilegesPrivilegeMutation {
-	return _u.mutation
+func (rppu *RolePrivilegesPrivilegeUpdate) Mutation() *RolePrivilegesPrivilegeMutation {
+	return rppu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RolePrivilegesPrivilegeUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rppu *RolePrivilegesPrivilegeUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rppu.sqlSave, rppu.mutation, rppu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RolePrivilegesPrivilegeUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rppu *RolePrivilegesPrivilegeUpdate) SaveX(ctx context.Context) int {
+	affected, err := rppu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -89,40 +89,40 @@ func (_u *RolePrivilegesPrivilegeUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RolePrivilegesPrivilegeUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rppu *RolePrivilegesPrivilegeUpdate) Exec(ctx context.Context) error {
+	_, err := rppu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RolePrivilegesPrivilegeUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rppu *RolePrivilegesPrivilegeUpdate) ExecX(ctx context.Context) {
+	if err := rppu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RolePrivilegesPrivilegeUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rppu *RolePrivilegesPrivilegeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(roleprivilegesprivilege.Table, roleprivilegesprivilege.Columns, sqlgraph.NewFieldSpec(roleprivilegesprivilege.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rppu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.RoleId(); ok {
+	if value, ok := rppu.mutation.RoleId(); ok {
 		_spec.SetField(roleprivilegesprivilege.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRoleId(); ok {
+	if value, ok := rppu.mutation.AddedRoleId(); ok {
 		_spec.AddField(roleprivilegesprivilege.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PrivilegeId(); ok {
+	if value, ok := rppu.mutation.PrivilegeId(); ok {
 		_spec.SetField(roleprivilegesprivilege.FieldPrivilegeId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedPrivilegeId(); ok {
+	if value, ok := rppu.mutation.AddedPrivilegeId(); ok {
 		_spec.AddField(roleprivilegesprivilege.FieldPrivilegeId, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rppu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{roleprivilegesprivilege.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -130,8 +130,8 @@ func (_u *RolePrivilegesPrivilegeUpdate) sqlSave(ctx context.Context) (_node int
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rppu.mutation.done = true
+	return n, nil
 }
 
 // RolePrivilegesPrivilegeUpdateOne is the builder for updating a single RolePrivilegesPrivilege entity.
@@ -143,73 +143,73 @@ type RolePrivilegesPrivilegeUpdateOne struct {
 }
 
 // SetRoleId sets the "roleId" field.
-func (_u *RolePrivilegesPrivilegeUpdateOne) SetRoleId(v int) *RolePrivilegesPrivilegeUpdateOne {
-	_u.mutation.ResetRoleId()
-	_u.mutation.SetRoleId(v)
-	return _u
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) SetRoleId(i int) *RolePrivilegesPrivilegeUpdateOne {
+	rppuo.mutation.ResetRoleId()
+	rppuo.mutation.SetRoleId(i)
+	return rppuo
 }
 
 // SetNillableRoleId sets the "roleId" field if the given value is not nil.
-func (_u *RolePrivilegesPrivilegeUpdateOne) SetNillableRoleId(v *int) *RolePrivilegesPrivilegeUpdateOne {
-	if v != nil {
-		_u.SetRoleId(*v)
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) SetNillableRoleId(i *int) *RolePrivilegesPrivilegeUpdateOne {
+	if i != nil {
+		rppuo.SetRoleId(*i)
 	}
-	return _u
+	return rppuo
 }
 
-// AddRoleId adds value to the "roleId" field.
-func (_u *RolePrivilegesPrivilegeUpdateOne) AddRoleId(v int) *RolePrivilegesPrivilegeUpdateOne {
-	_u.mutation.AddRoleId(v)
-	return _u
+// AddRoleId adds i to the "roleId" field.
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) AddRoleId(i int) *RolePrivilegesPrivilegeUpdateOne {
+	rppuo.mutation.AddRoleId(i)
+	return rppuo
 }
 
 // SetPrivilegeId sets the "privilegeId" field.
-func (_u *RolePrivilegesPrivilegeUpdateOne) SetPrivilegeId(v int) *RolePrivilegesPrivilegeUpdateOne {
-	_u.mutation.ResetPrivilegeId()
-	_u.mutation.SetPrivilegeId(v)
-	return _u
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) SetPrivilegeId(i int) *RolePrivilegesPrivilegeUpdateOne {
+	rppuo.mutation.ResetPrivilegeId()
+	rppuo.mutation.SetPrivilegeId(i)
+	return rppuo
 }
 
 // SetNillablePrivilegeId sets the "privilegeId" field if the given value is not nil.
-func (_u *RolePrivilegesPrivilegeUpdateOne) SetNillablePrivilegeId(v *int) *RolePrivilegesPrivilegeUpdateOne {
-	if v != nil {
-		_u.SetPrivilegeId(*v)
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) SetNillablePrivilegeId(i *int) *RolePrivilegesPrivilegeUpdateOne {
+	if i != nil {
+		rppuo.SetPrivilegeId(*i)
 	}
-	return _u
+	return rppuo
 }
 
-// AddPrivilegeId adds value to the "privilegeId" field.
-func (_u *RolePrivilegesPrivilegeUpdateOne) AddPrivilegeId(v int) *RolePrivilegesPrivilegeUpdateOne {
-	_u.mutation.AddPrivilegeId(v)
-	return _u
+// AddPrivilegeId adds i to the "privilegeId" field.
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) AddPrivilegeId(i int) *RolePrivilegesPrivilegeUpdateOne {
+	rppuo.mutation.AddPrivilegeId(i)
+	return rppuo
 }
 
 // Mutation returns the RolePrivilegesPrivilegeMutation object of the builder.
-func (_u *RolePrivilegesPrivilegeUpdateOne) Mutation() *RolePrivilegesPrivilegeMutation {
-	return _u.mutation
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) Mutation() *RolePrivilegesPrivilegeMutation {
+	return rppuo.mutation
 }
 
 // Where appends a list predicates to the RolePrivilegesPrivilegeUpdate builder.
-func (_u *RolePrivilegesPrivilegeUpdateOne) Where(ps ...predicate.RolePrivilegesPrivilege) *RolePrivilegesPrivilegeUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) Where(ps ...predicate.RolePrivilegesPrivilege) *RolePrivilegesPrivilegeUpdateOne {
+	rppuo.mutation.Where(ps...)
+	return rppuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RolePrivilegesPrivilegeUpdateOne) Select(field string, fields ...string) *RolePrivilegesPrivilegeUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) Select(field string, fields ...string) *RolePrivilegesPrivilegeUpdateOne {
+	rppuo.fields = append([]string{field}, fields...)
+	return rppuo
 }
 
 // Save executes the query and returns the updated RolePrivilegesPrivilege entity.
-func (_u *RolePrivilegesPrivilegeUpdateOne) Save(ctx context.Context) (*RolePrivilegesPrivilege, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) Save(ctx context.Context) (*RolePrivilegesPrivilege, error) {
+	return withHooks(ctx, rppuo.sqlSave, rppuo.mutation, rppuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RolePrivilegesPrivilegeUpdateOne) SaveX(ctx context.Context) *RolePrivilegesPrivilege {
-	node, err := _u.Save(ctx)
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) SaveX(ctx context.Context) *RolePrivilegesPrivilege {
+	node, err := rppuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,26 +217,26 @@ func (_u *RolePrivilegesPrivilegeUpdateOne) SaveX(ctx context.Context) *RolePriv
 }
 
 // Exec executes the query on the entity.
-func (_u *RolePrivilegesPrivilegeUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) Exec(ctx context.Context) error {
+	_, err := rppuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RolePrivilegesPrivilegeUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) ExecX(ctx context.Context) {
+	if err := rppuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RolePrivilegesPrivilegeUpdateOne) sqlSave(ctx context.Context) (_node *RolePrivilegesPrivilege, err error) {
+func (rppuo *RolePrivilegesPrivilegeUpdateOne) sqlSave(ctx context.Context) (_node *RolePrivilegesPrivilege, err error) {
 	_spec := sqlgraph.NewUpdateSpec(roleprivilegesprivilege.Table, roleprivilegesprivilege.Columns, sqlgraph.NewFieldSpec(roleprivilegesprivilege.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rppuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RolePrivilegesPrivilege.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rppuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, roleprivilegesprivilege.FieldID)
 		for _, f := range fields {
@@ -248,29 +248,29 @@ func (_u *RolePrivilegesPrivilegeUpdateOne) sqlSave(ctx context.Context) (_node 
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rppuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.RoleId(); ok {
+	if value, ok := rppuo.mutation.RoleId(); ok {
 		_spec.SetField(roleprivilegesprivilege.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRoleId(); ok {
+	if value, ok := rppuo.mutation.AddedRoleId(); ok {
 		_spec.AddField(roleprivilegesprivilege.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PrivilegeId(); ok {
+	if value, ok := rppuo.mutation.PrivilegeId(); ok {
 		_spec.SetField(roleprivilegesprivilege.FieldPrivilegeId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedPrivilegeId(); ok {
+	if value, ok := rppuo.mutation.AddedPrivilegeId(); ok {
 		_spec.AddField(roleprivilegesprivilege.FieldPrivilegeId, field.TypeInt, value)
 	}
-	_node = &RolePrivilegesPrivilege{config: _u.config}
+	_node = &RolePrivilegesPrivilege{config: rppuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rppuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{roleprivilegesprivilege.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -278,6 +278,6 @@ func (_u *RolePrivilegesPrivilegeUpdateOne) sqlSave(ctx context.Context) (_node 
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rppuo.mutation.done = true
 	return _node, nil
 }

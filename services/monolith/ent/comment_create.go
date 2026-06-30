@@ -24,135 +24,135 @@ type CommentCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *CommentCreate) SetCreateTime(v time.Time) *CommentCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (cc *CommentCreate) SetCreateTime(t time.Time) *CommentCreate {
+	cc.mutation.SetCreateTime(t)
+	return cc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *CommentCreate) SetNillableCreateTime(v *time.Time) *CommentCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (cc *CommentCreate) SetNillableCreateTime(t *time.Time) *CommentCreate {
+	if t != nil {
+		cc.SetCreateTime(*t)
 	}
-	return _c
+	return cc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *CommentCreate) SetUpdateTime(v time.Time) *CommentCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (cc *CommentCreate) SetUpdateTime(t time.Time) *CommentCreate {
+	cc.mutation.SetUpdateTime(t)
+	return cc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *CommentCreate) SetNillableUpdateTime(v *time.Time) *CommentCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (cc *CommentCreate) SetNillableUpdateTime(t *time.Time) *CommentCreate {
+	if t != nil {
+		cc.SetUpdateTime(*t)
 	}
-	return _c
+	return cc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *CommentCreate) SetIsDelete(v bool) *CommentCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (cc *CommentCreate) SetIsDelete(b bool) *CommentCreate {
+	cc.mutation.SetIsDelete(b)
+	return cc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *CommentCreate) SetNillableIsDelete(v *bool) *CommentCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (cc *CommentCreate) SetNillableIsDelete(b *bool) *CommentCreate {
+	if b != nil {
+		cc.SetIsDelete(*b)
 	}
-	return _c
+	return cc
 }
 
 // SetVersion sets the "version" field.
-func (_c *CommentCreate) SetVersion(v int) *CommentCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (cc *CommentCreate) SetVersion(i int) *CommentCreate {
+	cc.mutation.SetVersion(i)
+	return cc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *CommentCreate) SetNillableVersion(v *int) *CommentCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (cc *CommentCreate) SetNillableVersion(i *int) *CommentCreate {
+	if i != nil {
+		cc.SetVersion(*i)
 	}
-	return _c
+	return cc
 }
 
 // SetContent sets the "content" field.
-func (_c *CommentCreate) SetContent(v string) *CommentCreate {
-	_c.mutation.SetContent(v)
-	return _c
+func (cc *CommentCreate) SetContent(s string) *CommentCreate {
+	cc.mutation.SetContent(s)
+	return cc
 }
 
 // SetUID sets the "uid" field.
-func (_c *CommentCreate) SetUID(v int) *CommentCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (cc *CommentCreate) SetUID(i int) *CommentCreate {
+	cc.mutation.SetUID(i)
+	return cc
 }
 
 // SetUserId sets the "userId" field.
-func (_c *CommentCreate) SetUserId(v int) *CommentCreate {
-	_c.mutation.SetUserId(v)
-	return _c
+func (cc *CommentCreate) SetUserId(i int) *CommentCreate {
+	cc.mutation.SetUserId(i)
+	return cc
 }
 
 // SetNillableUserId sets the "userId" field if the given value is not nil.
-func (_c *CommentCreate) SetNillableUserId(v *int) *CommentCreate {
-	if v != nil {
-		_c.SetUserId(*v)
+func (cc *CommentCreate) SetNillableUserId(i *int) *CommentCreate {
+	if i != nil {
+		cc.SetUserId(*i)
 	}
-	return _c
+	return cc
 }
 
 // SetArticleId sets the "articleId" field.
-func (_c *CommentCreate) SetArticleId(v int) *CommentCreate {
-	_c.mutation.SetArticleId(v)
-	return _c
+func (cc *CommentCreate) SetArticleId(i int) *CommentCreate {
+	cc.mutation.SetArticleId(i)
+	return cc
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_c *CommentCreate) SetNillableArticleId(v *int) *CommentCreate {
-	if v != nil {
-		_c.SetArticleId(*v)
+func (cc *CommentCreate) SetNillableArticleId(i *int) *CommentCreate {
+	if i != nil {
+		cc.SetArticleId(*i)
 	}
-	return _c
+	return cc
 }
 
 // SetStatus sets the "status" field.
-func (_c *CommentCreate) SetStatus(v string) *CommentCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (cc *CommentCreate) SetStatus(s string) *CommentCreate {
+	cc.mutation.SetStatus(s)
+	return cc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *CommentCreate) SetNillableStatus(v *string) *CommentCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (cc *CommentCreate) SetNillableStatus(s *string) *CommentCreate {
+	if s != nil {
+		cc.SetStatus(*s)
 	}
-	return _c
+	return cc
 }
 
 // SetID sets the "id" field.
-func (_c *CommentCreate) SetID(v string) *CommentCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (cc *CommentCreate) SetID(s string) *CommentCreate {
+	cc.mutation.SetID(s)
+	return cc
 }
 
 // Mutation returns the CommentMutation object of the builder.
-func (_c *CommentCreate) Mutation() *CommentMutation {
-	return _c.mutation
+func (cc *CommentCreate) Mutation() *CommentMutation {
+	return cc.mutation
 }
 
 // Save creates the Comment in the database.
-func (_c *CommentCreate) Save(ctx context.Context) (*Comment, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (cc *CommentCreate) Save(ctx context.Context) (*Comment, error) {
+	cc.defaults()
+	return withHooks(ctx, cc.sqlSave, cc.mutation, cc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *CommentCreate) SaveX(ctx context.Context) *Comment {
-	v, err := _c.Save(ctx)
+func (cc *CommentCreate) SaveX(ctx context.Context) *Comment {
+	v, err := cc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -160,74 +160,74 @@ func (_c *CommentCreate) SaveX(ctx context.Context) *Comment {
 }
 
 // Exec executes the query.
-func (_c *CommentCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (cc *CommentCreate) Exec(ctx context.Context) error {
+	_, err := cc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *CommentCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (cc *CommentCreate) ExecX(ctx context.Context) {
+	if err := cc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *CommentCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (cc *CommentCreate) defaults() {
+	if _, ok := cc.mutation.CreateTime(); !ok {
 		v := comment.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		cc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := cc.mutation.UpdateTime(); !ok {
 		v := comment.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		cc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := cc.mutation.IsDelete(); !ok {
 		v := comment.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		cc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := cc.mutation.Version(); !ok {
 		v := comment.DefaultVersion
-		_c.mutation.SetVersion(v)
+		cc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := cc.mutation.Status(); !ok {
 		v := comment.DefaultStatus
-		_c.mutation.SetStatus(v)
+		cc.mutation.SetStatus(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *CommentCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (cc *CommentCreate) check() error {
+	if _, ok := cc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Comment.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := cc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Comment.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := cc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Comment.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := cc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Comment.version"`)}
 	}
-	if _, ok := _c.mutation.Content(); !ok {
+	if _, ok := cc.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "Comment.content"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := cc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "Comment.uid"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := cc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "Comment.status"`)}
 	}
 	return nil
 }
 
-func (_c *CommentCreate) sqlSave(ctx context.Context) (*Comment, error) {
-	if err := _c.check(); err != nil {
+func (cc *CommentCreate) sqlSave(ctx context.Context) (*Comment, error) {
+	if err := cc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := cc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, cc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -240,54 +240,54 @@ func (_c *CommentCreate) sqlSave(ctx context.Context) (*Comment, error) {
 			return nil, fmt.Errorf("unexpected Comment.ID type: %T", _spec.ID.Value)
 		}
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	cc.mutation.id = &_node.ID
+	cc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *CommentCreate) createSpec() (*Comment, *sqlgraph.CreateSpec) {
+func (cc *CommentCreate) createSpec() (*Comment, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Comment{config: _c.config}
+		_node = &Comment{config: cc.config}
 		_spec = sqlgraph.NewCreateSpec(comment.Table, sqlgraph.NewFieldSpec(comment.FieldID, field.TypeString))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = cc.conflict
+	if id, ok := cc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := cc.mutation.CreateTime(); ok {
 		_spec.SetField(comment.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := cc.mutation.UpdateTime(); ok {
 		_spec.SetField(comment.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := cc.mutation.IsDelete(); ok {
 		_spec.SetField(comment.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := cc.mutation.Version(); ok {
 		_spec.SetField(comment.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.Content(); ok {
+	if value, ok := cc.mutation.Content(); ok {
 		_spec.SetField(comment.FieldContent, field.TypeString, value)
 		_node.Content = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := cc.mutation.UID(); ok {
 		_spec.SetField(comment.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.UserId(); ok {
+	if value, ok := cc.mutation.UserId(); ok {
 		_spec.SetField(comment.FieldUserId, field.TypeInt, value)
 		_node.UserId = &value
 	}
-	if value, ok := _c.mutation.ArticleId(); ok {
+	if value, ok := cc.mutation.ArticleId(); ok {
 		_spec.SetField(comment.FieldArticleId, field.TypeInt, value)
 		_node.ArticleId = &value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := cc.mutation.Status(); ok {
 		_spec.SetField(comment.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
@@ -310,10 +310,10 @@ func (_c *CommentCreate) createSpec() (*Comment, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *CommentCreate) OnConflict(opts ...sql.ConflictOption) *CommentUpsertOne {
-	_c.conflict = opts
+func (cc *CommentCreate) OnConflict(opts ...sql.ConflictOption) *CommentUpsertOne {
+	cc.conflict = opts
 	return &CommentUpsertOne{
-		create: _c,
+		create: cc,
 	}
 }
 
@@ -323,10 +323,10 @@ func (_c *CommentCreate) OnConflict(opts ...sql.ConflictOption) *CommentUpsertOn
 //	client.Comment.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *CommentCreate) OnConflictColumns(columns ...string) *CommentUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (cc *CommentCreate) OnConflictColumns(columns ...string) *CommentUpsertOne {
+	cc.conflict = append(cc.conflict, sql.ConflictColumns(columns...))
 	return &CommentUpsertOne{
-		create: _c,
+		create: cc,
 	}
 }
 
@@ -727,16 +727,16 @@ type CommentCreateBulk struct {
 }
 
 // Save creates the Comment entities in the database.
-func (_c *CommentCreateBulk) Save(ctx context.Context) ([]*Comment, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ccb *CommentCreateBulk) Save(ctx context.Context) ([]*Comment, error) {
+	if ccb.err != nil {
+		return nil, ccb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Comment, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ccb.builders))
+	nodes := make([]*Comment, len(ccb.builders))
+	mutators := make([]Mutator, len(ccb.builders))
+	for i := range ccb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ccb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*CommentMutation)
@@ -750,12 +750,12 @@ func (_c *CommentCreateBulk) Save(ctx context.Context) ([]*Comment, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ccb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ccb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ccb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -775,7 +775,7 @@ func (_c *CommentCreateBulk) Save(ctx context.Context) ([]*Comment, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ccb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -783,8 +783,8 @@ func (_c *CommentCreateBulk) Save(ctx context.Context) ([]*Comment, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *CommentCreateBulk) SaveX(ctx context.Context) []*Comment {
-	v, err := _c.Save(ctx)
+func (ccb *CommentCreateBulk) SaveX(ctx context.Context) []*Comment {
+	v, err := ccb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -792,14 +792,14 @@ func (_c *CommentCreateBulk) SaveX(ctx context.Context) []*Comment {
 }
 
 // Exec executes the query.
-func (_c *CommentCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ccb *CommentCreateBulk) Exec(ctx context.Context) error {
+	_, err := ccb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *CommentCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ccb *CommentCreateBulk) ExecX(ctx context.Context) {
+	if err := ccb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -819,10 +819,10 @@ func (_c *CommentCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *CommentCreateBulk) OnConflict(opts ...sql.ConflictOption) *CommentUpsertBulk {
-	_c.conflict = opts
+func (ccb *CommentCreateBulk) OnConflict(opts ...sql.ConflictOption) *CommentUpsertBulk {
+	ccb.conflict = opts
 	return &CommentUpsertBulk{
-		create: _c,
+		create: ccb,
 	}
 }
 
@@ -832,10 +832,10 @@ func (_c *CommentCreateBulk) OnConflict(opts ...sql.ConflictOption) *CommentUpse
 //	client.Comment.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *CommentCreateBulk) OnConflictColumns(columns ...string) *CommentUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ccb *CommentCreateBulk) OnConflictColumns(columns ...string) *CommentUpsertBulk {
+	ccb.conflict = append(ccb.conflict, sql.ConflictColumns(columns...))
 	return &CommentUpsertBulk{
-		create: _c,
+		create: ccb,
 	}
 }
 

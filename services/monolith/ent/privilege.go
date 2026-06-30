@@ -69,7 +69,7 @@ func (*Privilege) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Privilege fields.
-func (_m *Privilege) assignValues(columns []string, values []any) error {
+func (pr *Privilege) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -80,88 +80,88 @@ func (_m *Privilege) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			pr.ID = int(value.Int64)
 		case privilege.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				pr.CreateTime = value.Time
 			}
 		case privilege.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				pr.UpdateTime = value.Time
 			}
 		case privilege.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				pr.IsDelete = value.Bool
 			}
 		case privilege.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				pr.Version = int(value.Int64)
 			}
 		case privilege.FieldPrivilegeName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field privilegeName", values[i])
 			} else if value.Valid {
-				_m.PrivilegeName = value.String
+				pr.PrivilegeName = value.String
 			}
 		case privilege.FieldPrivilegeCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field privilegeCode", values[i])
 			} else if value.Valid {
-				_m.PrivilegeCode = value.String
+				pr.PrivilegeCode = value.String
 			}
 		case privilege.FieldPrivilegePage:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field privilegePage", values[i])
 			} else if value.Valid {
-				_m.PrivilegePage = value.String
+				pr.PrivilegePage = value.String
 			}
 		case privilege.FieldIsVisible:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field isVisible", values[i])
 			} else if value.Valid {
-				_m.IsVisible = int(value.Int64)
+				pr.IsVisible = int(value.Int64)
 			}
 		case privilege.FieldPathPattern:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field pathPattern", values[i])
 			} else if value.Valid {
-				_m.PathPattern = value.String
+				pr.PathPattern = value.String
 			}
 		case privilege.FieldHttpMethod:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field httpMethod", values[i])
 			} else if value.Valid {
-				_m.HttpMethod = value.String
+				pr.HttpMethod = value.String
 			}
 		case privilege.FieldIsPublic:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field isPublic", values[i])
 			} else if value.Valid {
-				_m.IsPublic = int(value.Int64)
+				pr.IsPublic = int(value.Int64)
 			}
 		case privilege.FieldRequireOwnership:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field requireOwnership", values[i])
 			} else if value.Valid {
-				_m.RequireOwnership = int(value.Int64)
+				pr.RequireOwnership = int(value.Int64)
 			}
 		case privilege.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = new(string)
-				*_m.Description = value.String
+				pr.Description = new(string)
+				*pr.Description = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			pr.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -169,70 +169,70 @@ func (_m *Privilege) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Privilege.
 // This includes values selected through modifiers, order, etc.
-func (_m *Privilege) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (pr *Privilege) Value(name string) (ent.Value, error) {
+	return pr.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Privilege.
 // Note that you need to call Privilege.Unwrap() before calling this method if this Privilege
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Privilege) Update() *PrivilegeUpdateOne {
-	return NewPrivilegeClient(_m.config).UpdateOne(_m)
+func (pr *Privilege) Update() *PrivilegeUpdateOne {
+	return NewPrivilegeClient(pr.config).UpdateOne(pr)
 }
 
 // Unwrap unwraps the Privilege entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Privilege) Unwrap() *Privilege {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (pr *Privilege) Unwrap() *Privilege {
+	_tx, ok := pr.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Privilege is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	pr.config.driver = _tx.drv
+	return pr
 }
 
 // String implements the fmt.Stringer.
-func (_m *Privilege) String() string {
+func (pr *Privilege) String() string {
 	var builder strings.Builder
 	builder.WriteString("Privilege(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", pr.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(pr.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(pr.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", pr.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", pr.Version))
 	builder.WriteString(", ")
 	builder.WriteString("privilegeName=")
-	builder.WriteString(_m.PrivilegeName)
+	builder.WriteString(pr.PrivilegeName)
 	builder.WriteString(", ")
 	builder.WriteString("privilegeCode=")
-	builder.WriteString(_m.PrivilegeCode)
+	builder.WriteString(pr.PrivilegeCode)
 	builder.WriteString(", ")
 	builder.WriteString("privilegePage=")
-	builder.WriteString(_m.PrivilegePage)
+	builder.WriteString(pr.PrivilegePage)
 	builder.WriteString(", ")
 	builder.WriteString("isVisible=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsVisible))
+	builder.WriteString(fmt.Sprintf("%v", pr.IsVisible))
 	builder.WriteString(", ")
 	builder.WriteString("pathPattern=")
-	builder.WriteString(_m.PathPattern)
+	builder.WriteString(pr.PathPattern)
 	builder.WriteString(", ")
 	builder.WriteString("httpMethod=")
-	builder.WriteString(_m.HttpMethod)
+	builder.WriteString(pr.HttpMethod)
 	builder.WriteString(", ")
 	builder.WriteString("isPublic=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsPublic))
+	builder.WriteString(fmt.Sprintf("%v", pr.IsPublic))
 	builder.WriteString(", ")
 	builder.WriteString("requireOwnership=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RequireOwnership))
+	builder.WriteString(fmt.Sprintf("%v", pr.RequireOwnership))
 	builder.WriteString(", ")
-	if v := _m.Description; v != nil {
+	if v := pr.Description; v != nil {
 		builder.WriteString("description=")
 		builder.WriteString(*v)
 	}

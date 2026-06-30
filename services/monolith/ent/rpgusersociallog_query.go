@@ -28,40 +28,40 @@ type RpgUserSocialLogQuery struct {
 }
 
 // Where adds a new predicate for the RpgUserSocialLogQuery builder.
-func (_q *RpgUserSocialLogQuery) Where(ps ...predicate.RpgUserSocialLog) *RpgUserSocialLogQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (ruslq *RpgUserSocialLogQuery) Where(ps ...predicate.RpgUserSocialLog) *RpgUserSocialLogQuery {
+	ruslq.predicates = append(ruslq.predicates, ps...)
+	return ruslq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgUserSocialLogQuery) Limit(limit int) *RpgUserSocialLogQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (ruslq *RpgUserSocialLogQuery) Limit(limit int) *RpgUserSocialLogQuery {
+	ruslq.ctx.Limit = &limit
+	return ruslq
 }
 
 // Offset to start from.
-func (_q *RpgUserSocialLogQuery) Offset(offset int) *RpgUserSocialLogQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (ruslq *RpgUserSocialLogQuery) Offset(offset int) *RpgUserSocialLogQuery {
+	ruslq.ctx.Offset = &offset
+	return ruslq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgUserSocialLogQuery) Unique(unique bool) *RpgUserSocialLogQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (ruslq *RpgUserSocialLogQuery) Unique(unique bool) *RpgUserSocialLogQuery {
+	ruslq.ctx.Unique = &unique
+	return ruslq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgUserSocialLogQuery) Order(o ...rpgusersociallog.OrderOption) *RpgUserSocialLogQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (ruslq *RpgUserSocialLogQuery) Order(o ...rpgusersociallog.OrderOption) *RpgUserSocialLogQuery {
+	ruslq.order = append(ruslq.order, o...)
+	return ruslq
 }
 
 // First returns the first RpgUserSocialLog entity from the query.
 // Returns a *NotFoundError when no RpgUserSocialLog was found.
-func (_q *RpgUserSocialLogQuery) First(ctx context.Context) (*RpgUserSocialLog, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (ruslq *RpgUserSocialLogQuery) First(ctx context.Context) (*RpgUserSocialLog, error) {
+	nodes, err := ruslq.Limit(1).All(setContextOp(ctx, ruslq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgUserSocialLogQuery) First(ctx context.Context) (*RpgUserSocialLog, 
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) FirstX(ctx context.Context) *RpgUserSocialLog {
-	node, err := _q.First(ctx)
+func (ruslq *RpgUserSocialLogQuery) FirstX(ctx context.Context) *RpgUserSocialLog {
+	node, err := ruslq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgUserSocialLogQuery) FirstX(ctx context.Context) *RpgUserSocialLog {
 
 // FirstID returns the first RpgUserSocialLog ID from the query.
 // Returns a *NotFoundError when no RpgUserSocialLog ID was found.
-func (_q *RpgUserSocialLogQuery) FirstID(ctx context.Context) (id int, err error) {
+func (ruslq *RpgUserSocialLogQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = ruslq.Limit(1).IDs(setContextOp(ctx, ruslq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgUserSocialLogQuery) FirstID(ctx context.Context) (id int, err error
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (ruslq *RpgUserSocialLogQuery) FirstIDX(ctx context.Context) int {
+	id, err := ruslq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgUserSocialLogQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgUserSocialLog entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgUserSocialLog entity is found.
 // Returns a *NotFoundError when no RpgUserSocialLog entities are found.
-func (_q *RpgUserSocialLogQuery) Only(ctx context.Context) (*RpgUserSocialLog, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (ruslq *RpgUserSocialLogQuery) Only(ctx context.Context) (*RpgUserSocialLog, error) {
+	nodes, err := ruslq.Limit(2).All(setContextOp(ctx, ruslq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgUserSocialLogQuery) Only(ctx context.Context) (*RpgUserSocialLog, e
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) OnlyX(ctx context.Context) *RpgUserSocialLog {
-	node, err := _q.Only(ctx)
+func (ruslq *RpgUserSocialLogQuery) OnlyX(ctx context.Context) *RpgUserSocialLog {
+	node, err := ruslq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgUserSocialLogQuery) OnlyX(ctx context.Context) *RpgUserSocialLog {
 // OnlyID is like Only, but returns the only RpgUserSocialLog ID in the query.
 // Returns a *NotSingularError when more than one RpgUserSocialLog ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgUserSocialLogQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (ruslq *RpgUserSocialLogQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = ruslq.Limit(2).IDs(setContextOp(ctx, ruslq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgUserSocialLogQuery) OnlyID(ctx context.Context) (id int, err error)
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (ruslq *RpgUserSocialLogQuery) OnlyIDX(ctx context.Context) int {
+	id, err := ruslq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgUserSocialLogQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgUserSocialLogs.
-func (_q *RpgUserSocialLogQuery) All(ctx context.Context) ([]*RpgUserSocialLog, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruslq *RpgUserSocialLogQuery) All(ctx context.Context) ([]*RpgUserSocialLog, error) {
+	ctx = setContextOp(ctx, ruslq.ctx, ent.OpQueryAll)
+	if err := ruslq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgUserSocialLog, *RpgUserSocialLogQuery]()
-	return withInterceptors[[]*RpgUserSocialLog](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgUserSocialLog](ctx, ruslq, qr, ruslq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) AllX(ctx context.Context) []*RpgUserSocialLog {
-	nodes, err := _q.All(ctx)
+func (ruslq *RpgUserSocialLogQuery) AllX(ctx context.Context) []*RpgUserSocialLog {
+	nodes, err := ruslq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgUserSocialLogQuery) AllX(ctx context.Context) []*RpgUserSocialLog {
 }
 
 // IDs executes the query and returns a list of RpgUserSocialLog IDs.
-func (_q *RpgUserSocialLogQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (ruslq *RpgUserSocialLogQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if ruslq.ctx.Unique == nil && ruslq.path != nil {
+		ruslq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpgusersociallog.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, ruslq.ctx, ent.OpQueryIDs)
+	if err = ruslq.Select(rpgusersociallog.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (ruslq *RpgUserSocialLogQuery) IDsX(ctx context.Context) []int {
+	ids, err := ruslq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgUserSocialLogQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgUserSocialLogQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruslq *RpgUserSocialLogQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, ruslq.ctx, ent.OpQueryCount)
+	if err := ruslq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgUserSocialLogQuery](), _q.inters)
+	return withInterceptors[int](ctx, ruslq, querierCount[*RpgUserSocialLogQuery](), ruslq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (ruslq *RpgUserSocialLogQuery) CountX(ctx context.Context) int {
+	count, err := ruslq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgUserSocialLogQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgUserSocialLogQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (ruslq *RpgUserSocialLogQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, ruslq.ctx, ent.OpQueryExist)
+	switch _, err := ruslq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgUserSocialLogQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgUserSocialLogQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (ruslq *RpgUserSocialLogQuery) ExistX(ctx context.Context) bool {
+	exist, err := ruslq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgUserSocialLogQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgUserSocialLogQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgUserSocialLogQuery) Clone() *RpgUserSocialLogQuery {
-	if _q == nil {
+func (ruslq *RpgUserSocialLogQuery) Clone() *RpgUserSocialLogQuery {
+	if ruslq == nil {
 		return nil
 	}
 	return &RpgUserSocialLogQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpgusersociallog.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgUserSocialLog{}, _q.predicates...),
+		config:     ruslq.config,
+		ctx:        ruslq.ctx.Clone(),
+		order:      append([]rpgusersociallog.OrderOption{}, ruslq.order...),
+		inters:     append([]Interceptor{}, ruslq.inters...),
+		predicates: append([]predicate.RpgUserSocialLog{}, ruslq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  ruslq.sql.Clone(),
+		path: ruslq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgUserSocialLogQuery) Clone() *RpgUserSocialLogQuery {
 //		GroupBy(rpgusersociallog.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgUserSocialLogQuery) GroupBy(field string, fields ...string) *RpgUserSocialLogGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgUserSocialLogGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (ruslq *RpgUserSocialLogQuery) GroupBy(field string, fields ...string) *RpgUserSocialLogGroupBy {
+	ruslq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgUserSocialLogGroupBy{build: ruslq}
+	grbuild.flds = &ruslq.ctx.Fields
 	grbuild.label = rpgusersociallog.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgUserSocialLogQuery) GroupBy(field string, fields ...string) *RpgUse
 //	client.RpgUserSocialLog.Query().
 //		Select(rpgusersociallog.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RpgUserSocialLogQuery) Select(fields ...string) *RpgUserSocialLogSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgUserSocialLogSelect{RpgUserSocialLogQuery: _q}
+func (ruslq *RpgUserSocialLogQuery) Select(fields ...string) *RpgUserSocialLogSelect {
+	ruslq.ctx.Fields = append(ruslq.ctx.Fields, fields...)
+	sbuild := &RpgUserSocialLogSelect{RpgUserSocialLogQuery: ruslq}
 	sbuild.label = rpgusersociallog.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &ruslq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgUserSocialLogSelect configured with the given aggregations.
-func (_q *RpgUserSocialLogQuery) Aggregate(fns ...AggregateFunc) *RpgUserSocialLogSelect {
-	return _q.Select().Aggregate(fns...)
+func (ruslq *RpgUserSocialLogQuery) Aggregate(fns ...AggregateFunc) *RpgUserSocialLogSelect {
+	return ruslq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgUserSocialLogQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (ruslq *RpgUserSocialLogQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range ruslq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, ruslq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range ruslq.ctx.Fields {
 		if !rpgusersociallog.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if ruslq.path != nil {
+		prev, err := ruslq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		ruslq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgUserSocialLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserSocialLog, error) {
+func (ruslq *RpgUserSocialLogQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserSocialLog, error) {
 	var (
 		nodes = []*RpgUserSocialLog{}
-		_spec = _q.querySpec()
+		_spec = ruslq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgUserSocialLog).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgUserSocialLog{config: _q.config}
+		node := &RpgUserSocialLog{config: ruslq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, ruslq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgUserSocialLogQuery) sqlAll(ctx context.Context, hooks ...queryHook)
 	return nodes, nil
 }
 
-func (_q *RpgUserSocialLogQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (ruslq *RpgUserSocialLogQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := ruslq.querySpec()
+	_spec.Node.Columns = ruslq.ctx.Fields
+	if len(ruslq.ctx.Fields) > 0 {
+		_spec.Unique = ruslq.ctx.Unique != nil && *ruslq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, ruslq.driver, _spec)
 }
 
-func (_q *RpgUserSocialLogQuery) querySpec() *sqlgraph.QuerySpec {
+func (ruslq *RpgUserSocialLogQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpgusersociallog.Table, rpgusersociallog.Columns, sqlgraph.NewFieldSpec(rpgusersociallog.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = ruslq.sql
+	if unique := ruslq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if ruslq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := ruslq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgusersociallog.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgUserSocialLogQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := ruslq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruslq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruslq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := ruslq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgUserSocialLogQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgUserSocialLogQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (ruslq *RpgUserSocialLogQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(ruslq.driver.Dialect())
 	t1 := builder.Table(rpgusersociallog.Table)
-	columns := _q.ctx.Fields
+	columns := ruslq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpgusersociallog.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if ruslq.sql != nil {
+		selector = ruslq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if ruslq.ctx.Unique != nil && *ruslq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range ruslq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range ruslq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruslq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruslq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgUserSocialLogGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgUserSocialLogGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserSocialLogGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (ruslgb *RpgUserSocialLogGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserSocialLogGroupBy {
+	ruslgb.fns = append(ruslgb.fns, fns...)
+	return ruslgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgUserSocialLogGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (ruslgb *RpgUserSocialLogGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruslgb.build.ctx, ent.OpQueryGroupBy)
+	if err := ruslgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserSocialLogQuery, *RpgUserSocialLogGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgUserSocialLogQuery, *RpgUserSocialLogGroupBy](ctx, ruslgb.build, ruslgb, ruslgb.build.inters, v)
 }
 
-func (_g *RpgUserSocialLogGroupBy) sqlScan(ctx context.Context, root *RpgUserSocialLogQuery, v any) error {
+func (ruslgb *RpgUserSocialLogGroupBy) sqlScan(ctx context.Context, root *RpgUserSocialLogQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(ruslgb.fns))
+	for _, fn := range ruslgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*ruslgb.flds)+len(ruslgb.fns))
+		for _, f := range *ruslgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*ruslgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruslgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgUserSocialLogSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgUserSocialLogSelect) Aggregate(fns ...AggregateFunc) *RpgUserSocialLogSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rusls *RpgUserSocialLogSelect) Aggregate(fns ...AggregateFunc) *RpgUserSocialLogSelect {
+	rusls.fns = append(rusls.fns, fns...)
+	return rusls
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgUserSocialLogSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rusls *RpgUserSocialLogSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rusls.ctx, ent.OpQuerySelect)
+	if err := rusls.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserSocialLogQuery, *RpgUserSocialLogSelect](ctx, _s.RpgUserSocialLogQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgUserSocialLogQuery, *RpgUserSocialLogSelect](ctx, rusls.RpgUserSocialLogQuery, rusls, rusls.inters, v)
 }
 
-func (_s *RpgUserSocialLogSelect) sqlScan(ctx context.Context, root *RpgUserSocialLogQuery, v any) error {
+func (rusls *RpgUserSocialLogSelect) sqlScan(ctx context.Context, root *RpgUserSocialLogQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rusls.fns))
+	for _, fn := range rusls.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rusls.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgUserSocialLogSelect) sqlScan(ctx context.Context, root *RpgUserSoci
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rusls.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

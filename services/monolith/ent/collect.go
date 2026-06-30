@@ -55,7 +55,7 @@ func (*Collect) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Collect fields.
-func (_m *Collect) assignValues(columns []string, values []any) error {
+func (c *Collect) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -65,46 +65,46 @@ func (_m *Collect) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				c.ID = value.String
 			}
 		case collect.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				c.CreateTime = value.Time
 			}
 		case collect.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				c.UpdateTime = value.Time
 			}
 		case collect.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				c.IsDelete = value.Bool
 			}
 		case collect.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				c.Version = int(value.Int64)
 			}
 		case collect.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				c.UID = int(value.Int64)
 			}
 		case collect.FieldArticleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field articleId", values[i])
 			} else if value.Valid {
-				_m.ArticleId = int(value.Int64)
+				c.ArticleId = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			c.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -112,50 +112,50 @@ func (_m *Collect) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Collect.
 // This includes values selected through modifiers, order, etc.
-func (_m *Collect) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (c *Collect) Value(name string) (ent.Value, error) {
+	return c.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Collect.
 // Note that you need to call Collect.Unwrap() before calling this method if this Collect
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Collect) Update() *CollectUpdateOne {
-	return NewCollectClient(_m.config).UpdateOne(_m)
+func (c *Collect) Update() *CollectUpdateOne {
+	return NewCollectClient(c.config).UpdateOne(c)
 }
 
 // Unwrap unwraps the Collect entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Collect) Unwrap() *Collect {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (c *Collect) Unwrap() *Collect {
+	_tx, ok := c.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Collect is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	c.config.driver = _tx.drv
+	return c
 }
 
 // String implements the fmt.Stringer.
-func (_m *Collect) String() string {
+func (c *Collect) String() string {
 	var builder strings.Builder
 	builder.WriteString("Collect(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", c.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(c.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(c.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", c.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", c.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", c.UID))
 	builder.WriteString(", ")
 	builder.WriteString("articleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleId))
+	builder.WriteString(fmt.Sprintf("%v", c.ArticleId))
 	builder.WriteByte(')')
 	return builder.String()
 }

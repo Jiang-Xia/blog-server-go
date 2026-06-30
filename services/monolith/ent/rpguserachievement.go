@@ -61,7 +61,7 @@ func (*RpgUserAchievement) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserAchievement fields.
-func (_m *RpgUserAchievement) assignValues(columns []string, values []any) error {
+func (rua *RpgUserAchievement) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -72,64 +72,64 @@ func (_m *RpgUserAchievement) assignValues(columns []string, values []any) error
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rua.ID = int(value.Int64)
 		case rpguserachievement.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rua.CreateTime = value.Time
 			}
 		case rpguserachievement.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rua.UpdateTime = value.Time
 			}
 		case rpguserachievement.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rua.IsDelete = value.Bool
 			}
 		case rpguserachievement.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rua.Version = int(value.Int64)
 			}
 		case rpguserachievement.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rua.UID = int(value.Int64)
 			}
 		case rpguserachievement.FieldAchievementCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field achievementCode", values[i])
 			} else if value.Valid {
-				_m.AchievementCode = value.String
+				rua.AchievementCode = value.String
 			}
 		case rpguserachievement.FieldProgress:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field progress", values[i])
 			} else if value.Valid {
-				_m.Progress = int(value.Int64)
+				rua.Progress = int(value.Int64)
 			}
 		case rpguserachievement.FieldCompleted:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field completed", values[i])
 			} else if value.Valid {
-				_m.Completed = int(value.Int64)
+				rua.Completed = int(value.Int64)
 			}
 		case rpguserachievement.FieldCompletedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field completedAt", values[i])
 			} else if value.Valid {
-				_m.CompletedAt = new(time.Time)
-				*_m.CompletedAt = value.Time
+				rua.CompletedAt = new(time.Time)
+				*rua.CompletedAt = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rua.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -137,58 +137,58 @@ func (_m *RpgUserAchievement) assignValues(columns []string, values []any) error
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserAchievement.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserAchievement) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rua *RpgUserAchievement) Value(name string) (ent.Value, error) {
+	return rua.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserAchievement.
 // Note that you need to call RpgUserAchievement.Unwrap() before calling this method if this RpgUserAchievement
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserAchievement) Update() *RpgUserAchievementUpdateOne {
-	return NewRpgUserAchievementClient(_m.config).UpdateOne(_m)
+func (rua *RpgUserAchievement) Update() *RpgUserAchievementUpdateOne {
+	return NewRpgUserAchievementClient(rua.config).UpdateOne(rua)
 }
 
 // Unwrap unwraps the RpgUserAchievement entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserAchievement) Unwrap() *RpgUserAchievement {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rua *RpgUserAchievement) Unwrap() *RpgUserAchievement {
+	_tx, ok := rua.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserAchievement is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rua.config.driver = _tx.drv
+	return rua
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserAchievement) String() string {
+func (rua *RpgUserAchievement) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserAchievement(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rua.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rua.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rua.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rua.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rua.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rua.UID))
 	builder.WriteString(", ")
 	builder.WriteString("achievementCode=")
-	builder.WriteString(_m.AchievementCode)
+	builder.WriteString(rua.AchievementCode)
 	builder.WriteString(", ")
 	builder.WriteString("progress=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Progress))
+	builder.WriteString(fmt.Sprintf("%v", rua.Progress))
 	builder.WriteString(", ")
 	builder.WriteString("completed=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Completed))
+	builder.WriteString(fmt.Sprintf("%v", rua.Completed))
 	builder.WriteString(", ")
-	if v := _m.CompletedAt; v != nil {
+	if v := rua.CompletedAt; v != nil {
 		builder.WriteString("completedAt=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}

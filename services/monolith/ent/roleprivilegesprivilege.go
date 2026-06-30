@@ -39,7 +39,7 @@ func (*RolePrivilegesPrivilege) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RolePrivilegesPrivilege fields.
-func (_m *RolePrivilegesPrivilege) assignValues(columns []string, values []any) error {
+func (rpp *RolePrivilegesPrivilege) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -50,21 +50,21 @@ func (_m *RolePrivilegesPrivilege) assignValues(columns []string, values []any) 
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rpp.ID = int(value.Int64)
 		case roleprivilegesprivilege.FieldRoleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field roleId", values[i])
 			} else if value.Valid {
-				_m.RoleId = int(value.Int64)
+				rpp.RoleId = int(value.Int64)
 			}
 		case roleprivilegesprivilege.FieldPrivilegeId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field privilegeId", values[i])
 			} else if value.Valid {
-				_m.PrivilegeId = int(value.Int64)
+				rpp.PrivilegeId = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rpp.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -72,38 +72,38 @@ func (_m *RolePrivilegesPrivilege) assignValues(columns []string, values []any) 
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RolePrivilegesPrivilege.
 // This includes values selected through modifiers, order, etc.
-func (_m *RolePrivilegesPrivilege) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rpp *RolePrivilegesPrivilege) Value(name string) (ent.Value, error) {
+	return rpp.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RolePrivilegesPrivilege.
 // Note that you need to call RolePrivilegesPrivilege.Unwrap() before calling this method if this RolePrivilegesPrivilege
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RolePrivilegesPrivilege) Update() *RolePrivilegesPrivilegeUpdateOne {
-	return NewRolePrivilegesPrivilegeClient(_m.config).UpdateOne(_m)
+func (rpp *RolePrivilegesPrivilege) Update() *RolePrivilegesPrivilegeUpdateOne {
+	return NewRolePrivilegesPrivilegeClient(rpp.config).UpdateOne(rpp)
 }
 
 // Unwrap unwraps the RolePrivilegesPrivilege entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RolePrivilegesPrivilege) Unwrap() *RolePrivilegesPrivilege {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rpp *RolePrivilegesPrivilege) Unwrap() *RolePrivilegesPrivilege {
+	_tx, ok := rpp.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RolePrivilegesPrivilege is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rpp.config.driver = _tx.drv
+	return rpp
 }
 
 // String implements the fmt.Stringer.
-func (_m *RolePrivilegesPrivilege) String() string {
+func (rpp *RolePrivilegesPrivilege) String() string {
 	var builder strings.Builder
 	builder.WriteString("RolePrivilegesPrivilege(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rpp.ID))
 	builder.WriteString("roleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RoleId))
+	builder.WriteString(fmt.Sprintf("%v", rpp.RoleId))
 	builder.WriteString(", ")
 	builder.WriteString("privilegeId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.PrivilegeId))
+	builder.WriteString(fmt.Sprintf("%v", rpp.PrivilegeId))
 	builder.WriteByte(')')
 	return builder.String()
 }

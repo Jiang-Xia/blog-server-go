@@ -23,171 +23,171 @@ type RpgLeaderboardSnapshotUpdate struct {
 }
 
 // Where appends a list predicates to the RpgLeaderboardSnapshotUpdate builder.
-func (_u *RpgLeaderboardSnapshotUpdate) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.Where(ps...)
+	return rlsu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetUpdateTime(v time.Time) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetUpdateTime(t time.Time) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.SetUpdateTime(t)
+	return rlsu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetIsDelete(v bool) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetIsDelete(b bool) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.SetIsDelete(b)
+	return rlsu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillableIsDelete(v *bool) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableIsDelete(b *bool) *RpgLeaderboardSnapshotUpdate {
+	if b != nil {
+		rlsu.SetIsDelete(*b)
 	}
-	return _u
+	return rlsu
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetVersion(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetVersion(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.ResetVersion()
+	rlsu.mutation.SetVersion(i)
+	return rlsu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillableVersion(v *int) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableVersion(i *int) *RpgLeaderboardSnapshotUpdate {
+	if i != nil {
+		rlsu.SetVersion(*i)
 	}
-	return _u
+	return rlsu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgLeaderboardSnapshotUpdate) AddVersion(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rlsu *RpgLeaderboardSnapshotUpdate) AddVersion(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.AddVersion(i)
+	return rlsu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetUID(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetUID(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.ResetUID()
+	rlsu.mutation.SetUID(i)
+	return rlsu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillableUID(v *int) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableUID(i *int) *RpgLeaderboardSnapshotUpdate {
+	if i != nil {
+		rlsu.SetUID(*i)
 	}
-	return _u
+	return rlsu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgLeaderboardSnapshotUpdate) AddUID(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rlsu *RpgLeaderboardSnapshotUpdate) AddUID(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.AddUID(i)
+	return rlsu
 }
 
 // SetScore sets the "score" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetScore(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.ResetScore()
-	_u.mutation.SetScore(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetScore(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.ResetScore()
+	rlsu.mutation.SetScore(i)
+	return rlsu
 }
 
 // SetNillableScore sets the "score" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillableScore(v *int) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetScore(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableScore(i *int) *RpgLeaderboardSnapshotUpdate {
+	if i != nil {
+		rlsu.SetScore(*i)
 	}
-	return _u
+	return rlsu
 }
 
-// AddScore adds value to the "score" field.
-func (_u *RpgLeaderboardSnapshotUpdate) AddScore(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.AddScore(v)
-	return _u
+// AddScore adds i to the "score" field.
+func (rlsu *RpgLeaderboardSnapshotUpdate) AddScore(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.AddScore(i)
+	return rlsu
 }
 
 // SetRank sets the "rank" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetRank(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.ResetRank()
-	_u.mutation.SetRank(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetRank(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.ResetRank()
+	rlsu.mutation.SetRank(i)
+	return rlsu
 }
 
 // SetNillableRank sets the "rank" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillableRank(v *int) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetRank(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableRank(i *int) *RpgLeaderboardSnapshotUpdate {
+	if i != nil {
+		rlsu.SetRank(*i)
 	}
-	return _u
+	return rlsu
 }
 
-// AddRank adds value to the "rank" field.
-func (_u *RpgLeaderboardSnapshotUpdate) AddRank(v int) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.AddRank(v)
-	return _u
+// AddRank adds i to the "rank" field.
+func (rlsu *RpgLeaderboardSnapshotUpdate) AddRank(i int) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.AddRank(i)
+	return rlsu
 }
 
 // SetPeriodType sets the "periodType" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetPeriodType(v string) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.SetPeriodType(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetPeriodType(s string) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.SetPeriodType(s)
+	return rlsu
 }
 
 // SetNillablePeriodType sets the "periodType" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillablePeriodType(v *string) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetPeriodType(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillablePeriodType(s *string) *RpgLeaderboardSnapshotUpdate {
+	if s != nil {
+		rlsu.SetPeriodType(*s)
 	}
-	return _u
+	return rlsu
 }
 
 // SetPeriodKey sets the "periodKey" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetPeriodKey(v string) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.SetPeriodKey(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetPeriodKey(s string) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.SetPeriodKey(s)
+	return rlsu
 }
 
 // SetNillablePeriodKey sets the "periodKey" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillablePeriodKey(v *string) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetPeriodKey(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillablePeriodKey(s *string) *RpgLeaderboardSnapshotUpdate {
+	if s != nil {
+		rlsu.SetPeriodKey(*s)
 	}
-	return _u
+	return rlsu
 }
 
 // SetScoreType sets the "scoreType" field.
-func (_u *RpgLeaderboardSnapshotUpdate) SetScoreType(v string) *RpgLeaderboardSnapshotUpdate {
-	_u.mutation.SetScoreType(v)
-	return _u
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetScoreType(s string) *RpgLeaderboardSnapshotUpdate {
+	rlsu.mutation.SetScoreType(s)
+	return rlsu
 }
 
 // SetNillableScoreType sets the "scoreType" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdate) SetNillableScoreType(v *string) *RpgLeaderboardSnapshotUpdate {
-	if v != nil {
-		_u.SetScoreType(*v)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableScoreType(s *string) *RpgLeaderboardSnapshotUpdate {
+	if s != nil {
+		rlsu.SetScoreType(*s)
 	}
-	return _u
+	return rlsu
 }
 
 // Mutation returns the RpgLeaderboardSnapshotMutation object of the builder.
-func (_u *RpgLeaderboardSnapshotUpdate) Mutation() *RpgLeaderboardSnapshotMutation {
-	return _u.mutation
+func (rlsu *RpgLeaderboardSnapshotUpdate) Mutation() *RpgLeaderboardSnapshotMutation {
+	return rlsu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgLeaderboardSnapshotUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rlsu *RpgLeaderboardSnapshotUpdate) Save(ctx context.Context) (int, error) {
+	rlsu.defaults()
+	return withHooks(ctx, rlsu.sqlSave, rlsu.mutation, rlsu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgLeaderboardSnapshotUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rlsu *RpgLeaderboardSnapshotUpdate) SaveX(ctx context.Context) int {
+	affected, err := rlsu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -195,75 +195,75 @@ func (_u *RpgLeaderboardSnapshotUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgLeaderboardSnapshotUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rlsu *RpgLeaderboardSnapshotUpdate) Exec(ctx context.Context) error {
+	_, err := rlsu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgLeaderboardSnapshotUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rlsu *RpgLeaderboardSnapshotUpdate) ExecX(ctx context.Context) {
+	if err := rlsu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgLeaderboardSnapshotUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rlsu *RpgLeaderboardSnapshotUpdate) defaults() {
+	if _, ok := rlsu.mutation.UpdateTime(); !ok {
 		v := rpgleaderboardsnapshot.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rlsu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgLeaderboardSnapshotUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rlsu *RpgLeaderboardSnapshotUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgleaderboardsnapshot.Table, rpgleaderboardsnapshot.Columns, sqlgraph.NewFieldSpec(rpgleaderboardsnapshot.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rlsu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rlsu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rlsu.mutation.IsDelete(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rlsu.mutation.Version(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rlsu.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rlsu.mutation.UID(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rlsu.mutation.AddedUID(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Score(); ok {
+	if value, ok := rlsu.mutation.Score(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldScore, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedScore(); ok {
+	if value, ok := rlsu.mutation.AddedScore(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldScore, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Rank(); ok {
+	if value, ok := rlsu.mutation.Rank(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldRank, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRank(); ok {
+	if value, ok := rlsu.mutation.AddedRank(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldRank, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PeriodType(); ok {
+	if value, ok := rlsu.mutation.PeriodType(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldPeriodType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PeriodKey(); ok {
+	if value, ok := rlsu.mutation.PeriodKey(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldPeriodKey, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ScoreType(); ok {
+	if value, ok := rlsu.mutation.ScoreType(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldScoreType, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rlsu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgleaderboardsnapshot.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -271,8 +271,8 @@ func (_u *RpgLeaderboardSnapshotUpdate) sqlSave(ctx context.Context) (_node int,
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rlsu.mutation.done = true
+	return n, nil
 }
 
 // RpgLeaderboardSnapshotUpdateOne is the builder for updating a single RpgLeaderboardSnapshot entity.
@@ -284,178 +284,178 @@ type RpgLeaderboardSnapshotUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetUpdateTime(v time.Time) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetUpdateTime(t time.Time) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.SetUpdateTime(t)
+	return rlsuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetIsDelete(v bool) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetIsDelete(b bool) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.SetIsDelete(b)
+	return rlsuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillableIsDelete(v *bool) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableIsDelete(b *bool) *RpgLeaderboardSnapshotUpdateOne {
+	if b != nil {
+		rlsuo.SetIsDelete(*b)
 	}
-	return _u
+	return rlsuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetVersion(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetVersion(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.ResetVersion()
+	rlsuo.mutation.SetVersion(i)
+	return rlsuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillableVersion(v *int) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableVersion(i *int) *RpgLeaderboardSnapshotUpdateOne {
+	if i != nil {
+		rlsuo.SetVersion(*i)
 	}
-	return _u
+	return rlsuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) AddVersion(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) AddVersion(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.AddVersion(i)
+	return rlsuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetUID(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetUID(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.ResetUID()
+	rlsuo.mutation.SetUID(i)
+	return rlsuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillableUID(v *int) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableUID(i *int) *RpgLeaderboardSnapshotUpdateOne {
+	if i != nil {
+		rlsuo.SetUID(*i)
 	}
-	return _u
+	return rlsuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) AddUID(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) AddUID(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.AddUID(i)
+	return rlsuo
 }
 
 // SetScore sets the "score" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetScore(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.ResetScore()
-	_u.mutation.SetScore(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetScore(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.ResetScore()
+	rlsuo.mutation.SetScore(i)
+	return rlsuo
 }
 
 // SetNillableScore sets the "score" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillableScore(v *int) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetScore(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableScore(i *int) *RpgLeaderboardSnapshotUpdateOne {
+	if i != nil {
+		rlsuo.SetScore(*i)
 	}
-	return _u
+	return rlsuo
 }
 
-// AddScore adds value to the "score" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) AddScore(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.AddScore(v)
-	return _u
+// AddScore adds i to the "score" field.
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) AddScore(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.AddScore(i)
+	return rlsuo
 }
 
 // SetRank sets the "rank" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetRank(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.ResetRank()
-	_u.mutation.SetRank(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetRank(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.ResetRank()
+	rlsuo.mutation.SetRank(i)
+	return rlsuo
 }
 
 // SetNillableRank sets the "rank" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillableRank(v *int) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetRank(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableRank(i *int) *RpgLeaderboardSnapshotUpdateOne {
+	if i != nil {
+		rlsuo.SetRank(*i)
 	}
-	return _u
+	return rlsuo
 }
 
-// AddRank adds value to the "rank" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) AddRank(v int) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.AddRank(v)
-	return _u
+// AddRank adds i to the "rank" field.
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) AddRank(i int) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.AddRank(i)
+	return rlsuo
 }
 
 // SetPeriodType sets the "periodType" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetPeriodType(v string) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.SetPeriodType(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetPeriodType(s string) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.SetPeriodType(s)
+	return rlsuo
 }
 
 // SetNillablePeriodType sets the "periodType" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillablePeriodType(v *string) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetPeriodType(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillablePeriodType(s *string) *RpgLeaderboardSnapshotUpdateOne {
+	if s != nil {
+		rlsuo.SetPeriodType(*s)
 	}
-	return _u
+	return rlsuo
 }
 
 // SetPeriodKey sets the "periodKey" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetPeriodKey(v string) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.SetPeriodKey(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetPeriodKey(s string) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.SetPeriodKey(s)
+	return rlsuo
 }
 
 // SetNillablePeriodKey sets the "periodKey" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillablePeriodKey(v *string) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetPeriodKey(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillablePeriodKey(s *string) *RpgLeaderboardSnapshotUpdateOne {
+	if s != nil {
+		rlsuo.SetPeriodKey(*s)
 	}
-	return _u
+	return rlsuo
 }
 
 // SetScoreType sets the "scoreType" field.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetScoreType(v string) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.SetScoreType(v)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetScoreType(s string) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.SetScoreType(s)
+	return rlsuo
 }
 
 // SetNillableScoreType sets the "scoreType" field if the given value is not nil.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SetNillableScoreType(v *string) *RpgLeaderboardSnapshotUpdateOne {
-	if v != nil {
-		_u.SetScoreType(*v)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableScoreType(s *string) *RpgLeaderboardSnapshotUpdateOne {
+	if s != nil {
+		rlsuo.SetScoreType(*s)
 	}
-	return _u
+	return rlsuo
 }
 
 // Mutation returns the RpgLeaderboardSnapshotMutation object of the builder.
-func (_u *RpgLeaderboardSnapshotUpdateOne) Mutation() *RpgLeaderboardSnapshotMutation {
-	return _u.mutation
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Mutation() *RpgLeaderboardSnapshotMutation {
+	return rlsuo.mutation
 }
 
 // Where appends a list predicates to the RpgLeaderboardSnapshotUpdate builder.
-func (_u *RpgLeaderboardSnapshotUpdateOne) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.mutation.Where(ps...)
+	return rlsuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgLeaderboardSnapshotUpdateOne) Select(field string, fields ...string) *RpgLeaderboardSnapshotUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Select(field string, fields ...string) *RpgLeaderboardSnapshotUpdateOne {
+	rlsuo.fields = append([]string{field}, fields...)
+	return rlsuo
 }
 
 // Save executes the query and returns the updated RpgLeaderboardSnapshot entity.
-func (_u *RpgLeaderboardSnapshotUpdateOne) Save(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Save(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
+	rlsuo.defaults()
+	return withHooks(ctx, rlsuo.sqlSave, rlsuo.mutation, rlsuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgLeaderboardSnapshotUpdateOne) SaveX(ctx context.Context) *RpgLeaderboardSnapshot {
-	node, err := _u.Save(ctx)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SaveX(ctx context.Context) *RpgLeaderboardSnapshot {
+	node, err := rlsuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -463,34 +463,34 @@ func (_u *RpgLeaderboardSnapshotUpdateOne) SaveX(ctx context.Context) *RpgLeader
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgLeaderboardSnapshotUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Exec(ctx context.Context) error {
+	_, err := rlsuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgLeaderboardSnapshotUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) ExecX(ctx context.Context) {
+	if err := rlsuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgLeaderboardSnapshotUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) defaults() {
+	if _, ok := rlsuo.mutation.UpdateTime(); !ok {
 		v := rpgleaderboardsnapshot.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rlsuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgLeaderboardSnapshotUpdateOne) sqlSave(ctx context.Context) (_node *RpgLeaderboardSnapshot, err error) {
+func (rlsuo *RpgLeaderboardSnapshotUpdateOne) sqlSave(ctx context.Context) (_node *RpgLeaderboardSnapshot, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgleaderboardsnapshot.Table, rpgleaderboardsnapshot.Columns, sqlgraph.NewFieldSpec(rpgleaderboardsnapshot.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rlsuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgLeaderboardSnapshot.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rlsuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgleaderboardsnapshot.FieldID)
 		for _, f := range fields {
@@ -502,56 +502,56 @@ func (_u *RpgLeaderboardSnapshotUpdateOne) sqlSave(ctx context.Context) (_node *
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rlsuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rlsuo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rlsuo.mutation.IsDelete(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rlsuo.mutation.Version(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rlsuo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rlsuo.mutation.UID(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rlsuo.mutation.AddedUID(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Score(); ok {
+	if value, ok := rlsuo.mutation.Score(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldScore, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedScore(); ok {
+	if value, ok := rlsuo.mutation.AddedScore(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldScore, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Rank(); ok {
+	if value, ok := rlsuo.mutation.Rank(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldRank, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRank(); ok {
+	if value, ok := rlsuo.mutation.AddedRank(); ok {
 		_spec.AddField(rpgleaderboardsnapshot.FieldRank, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.PeriodType(); ok {
+	if value, ok := rlsuo.mutation.PeriodType(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldPeriodType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.PeriodKey(); ok {
+	if value, ok := rlsuo.mutation.PeriodKey(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldPeriodKey, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ScoreType(); ok {
+	if value, ok := rlsuo.mutation.ScoreType(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldScoreType, field.TypeString, value)
 	}
-	_node = &RpgLeaderboardSnapshot{config: _u.config}
+	_node = &RpgLeaderboardSnapshot{config: rlsuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rlsuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgleaderboardsnapshot.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -559,6 +559,6 @@ func (_u *RpgLeaderboardSnapshotUpdateOne) sqlSave(ctx context.Context) (_node *
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rlsuo.mutation.done = true
 	return _node, nil
 }

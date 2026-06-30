@@ -53,7 +53,7 @@ func (*RagIndexJob) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RagIndexJob fields.
-func (_m *RagIndexJob) assignValues(columns []string, values []any) error {
+func (rij *RagIndexJob) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -64,46 +64,46 @@ func (_m *RagIndexJob) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rij.ID = int(value.Int64)
 		case ragindexjob.FieldArticleID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field article_id", values[i])
 			} else if value.Valid {
-				_m.ArticleID = int(value.Int64)
+				rij.ArticleID = int(value.Int64)
 			}
 		case ragindexjob.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				rij.Status = value.String
 			}
 		case ragindexjob.FieldChunkCount:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field chunk_count", values[i])
 			} else if value.Valid {
-				_m.ChunkCount = int(value.Int64)
+				rij.ChunkCount = int(value.Int64)
 			}
 		case ragindexjob.FieldErrorMsg:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field error_msg", values[i])
 			} else if value.Valid {
-				_m.ErrorMsg = new(string)
-				*_m.ErrorMsg = value.String
+				rij.ErrorMsg = new(string)
+				*rij.ErrorMsg = value.String
 			}
 		case ragindexjob.FieldCreateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field create_at", values[i])
 			} else if value.Valid {
-				_m.CreateAt = value.Time
+				rij.CreateAt = value.Time
 			}
 		case ragindexjob.FieldUpdateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field update_at", values[i])
 			} else if value.Valid {
-				_m.UpdateAt = value.Time
+				rij.UpdateAt = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rij.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -111,52 +111,52 @@ func (_m *RagIndexJob) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RagIndexJob.
 // This includes values selected through modifiers, order, etc.
-func (_m *RagIndexJob) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rij *RagIndexJob) Value(name string) (ent.Value, error) {
+	return rij.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RagIndexJob.
 // Note that you need to call RagIndexJob.Unwrap() before calling this method if this RagIndexJob
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RagIndexJob) Update() *RagIndexJobUpdateOne {
-	return NewRagIndexJobClient(_m.config).UpdateOne(_m)
+func (rij *RagIndexJob) Update() *RagIndexJobUpdateOne {
+	return NewRagIndexJobClient(rij.config).UpdateOne(rij)
 }
 
 // Unwrap unwraps the RagIndexJob entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RagIndexJob) Unwrap() *RagIndexJob {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rij *RagIndexJob) Unwrap() *RagIndexJob {
+	_tx, ok := rij.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RagIndexJob is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rij.config.driver = _tx.drv
+	return rij
 }
 
 // String implements the fmt.Stringer.
-func (_m *RagIndexJob) String() string {
+func (rij *RagIndexJob) String() string {
 	var builder strings.Builder
 	builder.WriteString("RagIndexJob(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rij.ID))
 	builder.WriteString("article_id=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleID))
+	builder.WriteString(fmt.Sprintf("%v", rij.ArticleID))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(rij.Status)
 	builder.WriteString(", ")
 	builder.WriteString("chunk_count=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ChunkCount))
+	builder.WriteString(fmt.Sprintf("%v", rij.ChunkCount))
 	builder.WriteString(", ")
-	if v := _m.ErrorMsg; v != nil {
+	if v := rij.ErrorMsg; v != nil {
 		builder.WriteString("error_msg=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("create_at=")
-	builder.WriteString(_m.CreateAt.Format(time.ANSIC))
+	builder.WriteString(rij.CreateAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("update_at=")
-	builder.WriteString(_m.UpdateAt.Format(time.ANSIC))
+	builder.WriteString(rij.UpdateAt.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

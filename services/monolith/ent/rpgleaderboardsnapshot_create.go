@@ -23,133 +23,133 @@ type RpgLeaderboardSnapshotCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetCreateTime(v time.Time) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetCreateTime(t time.Time) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetCreateTime(t)
+	return rlsc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgLeaderboardSnapshotCreate) SetNillableCreateTime(v *time.Time) *RpgLeaderboardSnapshotCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableCreateTime(t *time.Time) *RpgLeaderboardSnapshotCreate {
+	if t != nil {
+		rlsc.SetCreateTime(*t)
 	}
-	return _c
+	return rlsc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetUpdateTime(v time.Time) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetUpdateTime(t time.Time) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetUpdateTime(t)
+	return rlsc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgLeaderboardSnapshotCreate) SetNillableUpdateTime(v *time.Time) *RpgLeaderboardSnapshotCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableUpdateTime(t *time.Time) *RpgLeaderboardSnapshotCreate {
+	if t != nil {
+		rlsc.SetUpdateTime(*t)
 	}
-	return _c
+	return rlsc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetIsDelete(v bool) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetIsDelete(b bool) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetIsDelete(b)
+	return rlsc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgLeaderboardSnapshotCreate) SetNillableIsDelete(v *bool) *RpgLeaderboardSnapshotCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableIsDelete(b *bool) *RpgLeaderboardSnapshotCreate {
+	if b != nil {
+		rlsc.SetIsDelete(*b)
 	}
-	return _c
+	return rlsc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetVersion(v int) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetVersion(i int) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetVersion(i)
+	return rlsc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgLeaderboardSnapshotCreate) SetNillableVersion(v *int) *RpgLeaderboardSnapshotCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableVersion(i *int) *RpgLeaderboardSnapshotCreate {
+	if i != nil {
+		rlsc.SetVersion(*i)
 	}
-	return _c
+	return rlsc
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetUID(v int) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetUID(i int) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetUID(i)
+	return rlsc
 }
 
 // SetScore sets the "score" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetScore(v int) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetScore(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetScore(i int) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetScore(i)
+	return rlsc
 }
 
 // SetNillableScore sets the "score" field if the given value is not nil.
-func (_c *RpgLeaderboardSnapshotCreate) SetNillableScore(v *int) *RpgLeaderboardSnapshotCreate {
-	if v != nil {
-		_c.SetScore(*v)
+func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableScore(i *int) *RpgLeaderboardSnapshotCreate {
+	if i != nil {
+		rlsc.SetScore(*i)
 	}
-	return _c
+	return rlsc
 }
 
 // SetRank sets the "rank" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetRank(v int) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetRank(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetRank(i int) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetRank(i)
+	return rlsc
 }
 
 // SetNillableRank sets the "rank" field if the given value is not nil.
-func (_c *RpgLeaderboardSnapshotCreate) SetNillableRank(v *int) *RpgLeaderboardSnapshotCreate {
-	if v != nil {
-		_c.SetRank(*v)
+func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableRank(i *int) *RpgLeaderboardSnapshotCreate {
+	if i != nil {
+		rlsc.SetRank(*i)
 	}
-	return _c
+	return rlsc
 }
 
 // SetPeriodType sets the "periodType" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetPeriodType(v string) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetPeriodType(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetPeriodType(s string) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetPeriodType(s)
+	return rlsc
 }
 
 // SetPeriodKey sets the "periodKey" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetPeriodKey(v string) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetPeriodKey(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetPeriodKey(s string) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetPeriodKey(s)
+	return rlsc
 }
 
 // SetScoreType sets the "scoreType" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetScoreType(v string) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetScoreType(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetScoreType(s string) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetScoreType(s)
+	return rlsc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgLeaderboardSnapshotCreate) SetID(v int) *RpgLeaderboardSnapshotCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rlsc *RpgLeaderboardSnapshotCreate) SetID(i int) *RpgLeaderboardSnapshotCreate {
+	rlsc.mutation.SetID(i)
+	return rlsc
 }
 
 // Mutation returns the RpgLeaderboardSnapshotMutation object of the builder.
-func (_c *RpgLeaderboardSnapshotCreate) Mutation() *RpgLeaderboardSnapshotMutation {
-	return _c.mutation
+func (rlsc *RpgLeaderboardSnapshotCreate) Mutation() *RpgLeaderboardSnapshotMutation {
+	return rlsc.mutation
 }
 
 // Save creates the RpgLeaderboardSnapshot in the database.
-func (_c *RpgLeaderboardSnapshotCreate) Save(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rlsc *RpgLeaderboardSnapshotCreate) Save(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
+	rlsc.defaults()
+	return withHooks(ctx, rlsc.sqlSave, rlsc.mutation, rlsc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgLeaderboardSnapshotCreate) SaveX(ctx context.Context) *RpgLeaderboardSnapshot {
-	v, err := _c.Save(ctx)
+func (rlsc *RpgLeaderboardSnapshotCreate) SaveX(ctx context.Context) *RpgLeaderboardSnapshot {
+	v, err := rlsc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -157,87 +157,87 @@ func (_c *RpgLeaderboardSnapshotCreate) SaveX(ctx context.Context) *RpgLeaderboa
 }
 
 // Exec executes the query.
-func (_c *RpgLeaderboardSnapshotCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rlsc *RpgLeaderboardSnapshotCreate) Exec(ctx context.Context) error {
+	_, err := rlsc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgLeaderboardSnapshotCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rlsc *RpgLeaderboardSnapshotCreate) ExecX(ctx context.Context) {
+	if err := rlsc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgLeaderboardSnapshotCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rlsc *RpgLeaderboardSnapshotCreate) defaults() {
+	if _, ok := rlsc.mutation.CreateTime(); !ok {
 		v := rpgleaderboardsnapshot.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		rlsc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rlsc.mutation.UpdateTime(); !ok {
 		v := rpgleaderboardsnapshot.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		rlsc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rlsc.mutation.IsDelete(); !ok {
 		v := rpgleaderboardsnapshot.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		rlsc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rlsc.mutation.Version(); !ok {
 		v := rpgleaderboardsnapshot.DefaultVersion
-		_c.mutation.SetVersion(v)
+		rlsc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Score(); !ok {
+	if _, ok := rlsc.mutation.Score(); !ok {
 		v := rpgleaderboardsnapshot.DefaultScore
-		_c.mutation.SetScore(v)
+		rlsc.mutation.SetScore(v)
 	}
-	if _, ok := _c.mutation.Rank(); !ok {
+	if _, ok := rlsc.mutation.Rank(); !ok {
 		v := rpgleaderboardsnapshot.DefaultRank
-		_c.mutation.SetRank(v)
+		rlsc.mutation.SetRank(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgLeaderboardSnapshotCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rlsc *RpgLeaderboardSnapshotCreate) check() error {
+	if _, ok := rlsc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rlsc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rlsc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rlsc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := rlsc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.uid"`)}
 	}
-	if _, ok := _c.mutation.Score(); !ok {
+	if _, ok := rlsc.mutation.Score(); !ok {
 		return &ValidationError{Name: "score", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.score"`)}
 	}
-	if _, ok := _c.mutation.Rank(); !ok {
+	if _, ok := rlsc.mutation.Rank(); !ok {
 		return &ValidationError{Name: "rank", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.rank"`)}
 	}
-	if _, ok := _c.mutation.PeriodType(); !ok {
+	if _, ok := rlsc.mutation.PeriodType(); !ok {
 		return &ValidationError{Name: "periodType", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.periodType"`)}
 	}
-	if _, ok := _c.mutation.PeriodKey(); !ok {
+	if _, ok := rlsc.mutation.PeriodKey(); !ok {
 		return &ValidationError{Name: "periodKey", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.periodKey"`)}
 	}
-	if _, ok := _c.mutation.ScoreType(); !ok {
+	if _, ok := rlsc.mutation.ScoreType(); !ok {
 		return &ValidationError{Name: "scoreType", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.scoreType"`)}
 	}
 	return nil
 }
 
-func (_c *RpgLeaderboardSnapshotCreate) sqlSave(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
-	if err := _c.check(); err != nil {
+func (rlsc *RpgLeaderboardSnapshotCreate) sqlSave(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
+	if err := rlsc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rlsc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rlsc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -247,58 +247,58 @@ func (_c *RpgLeaderboardSnapshotCreate) sqlSave(ctx context.Context) (*RpgLeader
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rlsc.mutation.id = &_node.ID
+	rlsc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgLeaderboardSnapshotCreate) createSpec() (*RpgLeaderboardSnapshot, *sqlgraph.CreateSpec) {
+func (rlsc *RpgLeaderboardSnapshotCreate) createSpec() (*RpgLeaderboardSnapshot, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgLeaderboardSnapshot{config: _c.config}
+		_node = &RpgLeaderboardSnapshot{config: rlsc.config}
 		_spec = sqlgraph.NewCreateSpec(rpgleaderboardsnapshot.Table, sqlgraph.NewFieldSpec(rpgleaderboardsnapshot.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rlsc.conflict
+	if id, ok := rlsc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := rlsc.mutation.CreateTime(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := rlsc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := rlsc.mutation.IsDelete(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := rlsc.mutation.Version(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rlsc.mutation.UID(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.Score(); ok {
+	if value, ok := rlsc.mutation.Score(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldScore, field.TypeInt, value)
 		_node.Score = value
 	}
-	if value, ok := _c.mutation.Rank(); ok {
+	if value, ok := rlsc.mutation.Rank(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldRank, field.TypeInt, value)
 		_node.Rank = value
 	}
-	if value, ok := _c.mutation.PeriodType(); ok {
+	if value, ok := rlsc.mutation.PeriodType(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldPeriodType, field.TypeString, value)
 		_node.PeriodType = value
 	}
-	if value, ok := _c.mutation.PeriodKey(); ok {
+	if value, ok := rlsc.mutation.PeriodKey(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldPeriodKey, field.TypeString, value)
 		_node.PeriodKey = value
 	}
-	if value, ok := _c.mutation.ScoreType(); ok {
+	if value, ok := rlsc.mutation.ScoreType(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldScoreType, field.TypeString, value)
 		_node.ScoreType = value
 	}
@@ -321,10 +321,10 @@ func (_c *RpgLeaderboardSnapshotCreate) createSpec() (*RpgLeaderboardSnapshot, *
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgLeaderboardSnapshotCreate) OnConflict(opts ...sql.ConflictOption) *RpgLeaderboardSnapshotUpsertOne {
-	_c.conflict = opts
+func (rlsc *RpgLeaderboardSnapshotCreate) OnConflict(opts ...sql.ConflictOption) *RpgLeaderboardSnapshotUpsertOne {
+	rlsc.conflict = opts
 	return &RpgLeaderboardSnapshotUpsertOne{
-		create: _c,
+		create: rlsc,
 	}
 }
 
@@ -334,10 +334,10 @@ func (_c *RpgLeaderboardSnapshotCreate) OnConflict(opts ...sql.ConflictOption) *
 //	client.RpgLeaderboardSnapshot.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgLeaderboardSnapshotCreate) OnConflictColumns(columns ...string) *RpgLeaderboardSnapshotUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rlsc *RpgLeaderboardSnapshotCreate) OnConflictColumns(columns ...string) *RpgLeaderboardSnapshotUpsertOne {
+	rlsc.conflict = append(rlsc.conflict, sql.ConflictColumns(columns...))
 	return &RpgLeaderboardSnapshotUpsertOne{
-		create: _c,
+		create: rlsc,
 	}
 }
 
@@ -733,16 +733,16 @@ type RpgLeaderboardSnapshotCreateBulk struct {
 }
 
 // Save creates the RpgLeaderboardSnapshot entities in the database.
-func (_c *RpgLeaderboardSnapshotCreateBulk) Save(ctx context.Context) ([]*RpgLeaderboardSnapshot, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rlscb *RpgLeaderboardSnapshotCreateBulk) Save(ctx context.Context) ([]*RpgLeaderboardSnapshot, error) {
+	if rlscb.err != nil {
+		return nil, rlscb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgLeaderboardSnapshot, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rlscb.builders))
+	nodes := make([]*RpgLeaderboardSnapshot, len(rlscb.builders))
+	mutators := make([]Mutator, len(rlscb.builders))
+	for i := range rlscb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rlscb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgLeaderboardSnapshotMutation)
@@ -756,12 +756,12 @@ func (_c *RpgLeaderboardSnapshotCreateBulk) Save(ctx context.Context) ([]*RpgLea
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rlscb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rlscb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rlscb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -785,7 +785,7 @@ func (_c *RpgLeaderboardSnapshotCreateBulk) Save(ctx context.Context) ([]*RpgLea
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rlscb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -793,8 +793,8 @@ func (_c *RpgLeaderboardSnapshotCreateBulk) Save(ctx context.Context) ([]*RpgLea
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgLeaderboardSnapshotCreateBulk) SaveX(ctx context.Context) []*RpgLeaderboardSnapshot {
-	v, err := _c.Save(ctx)
+func (rlscb *RpgLeaderboardSnapshotCreateBulk) SaveX(ctx context.Context) []*RpgLeaderboardSnapshot {
+	v, err := rlscb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -802,14 +802,14 @@ func (_c *RpgLeaderboardSnapshotCreateBulk) SaveX(ctx context.Context) []*RpgLea
 }
 
 // Exec executes the query.
-func (_c *RpgLeaderboardSnapshotCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rlscb *RpgLeaderboardSnapshotCreateBulk) Exec(ctx context.Context) error {
+	_, err := rlscb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgLeaderboardSnapshotCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rlscb *RpgLeaderboardSnapshotCreateBulk) ExecX(ctx context.Context) {
+	if err := rlscb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -829,10 +829,10 @@ func (_c *RpgLeaderboardSnapshotCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgLeaderboardSnapshotCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgLeaderboardSnapshotUpsertBulk {
-	_c.conflict = opts
+func (rlscb *RpgLeaderboardSnapshotCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgLeaderboardSnapshotUpsertBulk {
+	rlscb.conflict = opts
 	return &RpgLeaderboardSnapshotUpsertBulk{
-		create: _c,
+		create: rlscb,
 	}
 }
 
@@ -842,10 +842,10 @@ func (_c *RpgLeaderboardSnapshotCreateBulk) OnConflict(opts ...sql.ConflictOptio
 //	client.RpgLeaderboardSnapshot.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgLeaderboardSnapshotCreateBulk) OnConflictColumns(columns ...string) *RpgLeaderboardSnapshotUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rlscb *RpgLeaderboardSnapshotCreateBulk) OnConflictColumns(columns ...string) *RpgLeaderboardSnapshotUpsertBulk {
+	rlscb.conflict = append(rlscb.conflict, sql.ConflictColumns(columns...))
 	return &RpgLeaderboardSnapshotUpsertBulk{
-		create: _c,
+		create: rlscb,
 	}
 }
 

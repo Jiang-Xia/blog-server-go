@@ -28,40 +28,40 @@ type RpgLotteryPoolQuery struct {
 }
 
 // Where adds a new predicate for the RpgLotteryPoolQuery builder.
-func (_q *RpgLotteryPoolQuery) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rlpq *RpgLotteryPoolQuery) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolQuery {
+	rlpq.predicates = append(rlpq.predicates, ps...)
+	return rlpq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgLotteryPoolQuery) Limit(limit int) *RpgLotteryPoolQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rlpq *RpgLotteryPoolQuery) Limit(limit int) *RpgLotteryPoolQuery {
+	rlpq.ctx.Limit = &limit
+	return rlpq
 }
 
 // Offset to start from.
-func (_q *RpgLotteryPoolQuery) Offset(offset int) *RpgLotteryPoolQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rlpq *RpgLotteryPoolQuery) Offset(offset int) *RpgLotteryPoolQuery {
+	rlpq.ctx.Offset = &offset
+	return rlpq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgLotteryPoolQuery) Unique(unique bool) *RpgLotteryPoolQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rlpq *RpgLotteryPoolQuery) Unique(unique bool) *RpgLotteryPoolQuery {
+	rlpq.ctx.Unique = &unique
+	return rlpq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgLotteryPoolQuery) Order(o ...rpglotterypool.OrderOption) *RpgLotteryPoolQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rlpq *RpgLotteryPoolQuery) Order(o ...rpglotterypool.OrderOption) *RpgLotteryPoolQuery {
+	rlpq.order = append(rlpq.order, o...)
+	return rlpq
 }
 
 // First returns the first RpgLotteryPool entity from the query.
 // Returns a *NotFoundError when no RpgLotteryPool was found.
-func (_q *RpgLotteryPoolQuery) First(ctx context.Context) (*RpgLotteryPool, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rlpq *RpgLotteryPoolQuery) First(ctx context.Context) (*RpgLotteryPool, error) {
+	nodes, err := rlpq.Limit(1).All(setContextOp(ctx, rlpq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgLotteryPoolQuery) First(ctx context.Context) (*RpgLotteryPool, erro
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) FirstX(ctx context.Context) *RpgLotteryPool {
-	node, err := _q.First(ctx)
+func (rlpq *RpgLotteryPoolQuery) FirstX(ctx context.Context) *RpgLotteryPool {
+	node, err := rlpq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgLotteryPoolQuery) FirstX(ctx context.Context) *RpgLotteryPool {
 
 // FirstID returns the first RpgLotteryPool ID from the query.
 // Returns a *NotFoundError when no RpgLotteryPool ID was found.
-func (_q *RpgLotteryPoolQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rlpq *RpgLotteryPoolQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rlpq.Limit(1).IDs(setContextOp(ctx, rlpq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgLotteryPoolQuery) FirstID(ctx context.Context) (id int, err error) 
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rlpq *RpgLotteryPoolQuery) FirstIDX(ctx context.Context) int {
+	id, err := rlpq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgLotteryPoolQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgLotteryPool entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgLotteryPool entity is found.
 // Returns a *NotFoundError when no RpgLotteryPool entities are found.
-func (_q *RpgLotteryPoolQuery) Only(ctx context.Context) (*RpgLotteryPool, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rlpq *RpgLotteryPoolQuery) Only(ctx context.Context) (*RpgLotteryPool, error) {
+	nodes, err := rlpq.Limit(2).All(setContextOp(ctx, rlpq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgLotteryPoolQuery) Only(ctx context.Context) (*RpgLotteryPool, error
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) OnlyX(ctx context.Context) *RpgLotteryPool {
-	node, err := _q.Only(ctx)
+func (rlpq *RpgLotteryPoolQuery) OnlyX(ctx context.Context) *RpgLotteryPool {
+	node, err := rlpq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgLotteryPoolQuery) OnlyX(ctx context.Context) *RpgLotteryPool {
 // OnlyID is like Only, but returns the only RpgLotteryPool ID in the query.
 // Returns a *NotSingularError when more than one RpgLotteryPool ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgLotteryPoolQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rlpq *RpgLotteryPoolQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rlpq.Limit(2).IDs(setContextOp(ctx, rlpq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgLotteryPoolQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rlpq *RpgLotteryPoolQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rlpq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgLotteryPoolQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgLotteryPools.
-func (_q *RpgLotteryPoolQuery) All(ctx context.Context) ([]*RpgLotteryPool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rlpq *RpgLotteryPoolQuery) All(ctx context.Context) ([]*RpgLotteryPool, error) {
+	ctx = setContextOp(ctx, rlpq.ctx, ent.OpQueryAll)
+	if err := rlpq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgLotteryPool, *RpgLotteryPoolQuery]()
-	return withInterceptors[[]*RpgLotteryPool](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgLotteryPool](ctx, rlpq, qr, rlpq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) AllX(ctx context.Context) []*RpgLotteryPool {
-	nodes, err := _q.All(ctx)
+func (rlpq *RpgLotteryPoolQuery) AllX(ctx context.Context) []*RpgLotteryPool {
+	nodes, err := rlpq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgLotteryPoolQuery) AllX(ctx context.Context) []*RpgLotteryPool {
 }
 
 // IDs executes the query and returns a list of RpgLotteryPool IDs.
-func (_q *RpgLotteryPoolQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rlpq *RpgLotteryPoolQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rlpq.ctx.Unique == nil && rlpq.path != nil {
+		rlpq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpglotterypool.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rlpq.ctx, ent.OpQueryIDs)
+	if err = rlpq.Select(rpglotterypool.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rlpq *RpgLotteryPoolQuery) IDsX(ctx context.Context) []int {
+	ids, err := rlpq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgLotteryPoolQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgLotteryPoolQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rlpq *RpgLotteryPoolQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rlpq.ctx, ent.OpQueryCount)
+	if err := rlpq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgLotteryPoolQuery](), _q.inters)
+	return withInterceptors[int](ctx, rlpq, querierCount[*RpgLotteryPoolQuery](), rlpq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rlpq *RpgLotteryPoolQuery) CountX(ctx context.Context) int {
+	count, err := rlpq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgLotteryPoolQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgLotteryPoolQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rlpq *RpgLotteryPoolQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rlpq.ctx, ent.OpQueryExist)
+	switch _, err := rlpq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgLotteryPoolQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgLotteryPoolQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rlpq *RpgLotteryPoolQuery) ExistX(ctx context.Context) bool {
+	exist, err := rlpq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgLotteryPoolQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgLotteryPoolQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgLotteryPoolQuery) Clone() *RpgLotteryPoolQuery {
-	if _q == nil {
+func (rlpq *RpgLotteryPoolQuery) Clone() *RpgLotteryPoolQuery {
+	if rlpq == nil {
 		return nil
 	}
 	return &RpgLotteryPoolQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpglotterypool.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgLotteryPool{}, _q.predicates...),
+		config:     rlpq.config,
+		ctx:        rlpq.ctx.Clone(),
+		order:      append([]rpglotterypool.OrderOption{}, rlpq.order...),
+		inters:     append([]Interceptor{}, rlpq.inters...),
+		predicates: append([]predicate.RpgLotteryPool{}, rlpq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rlpq.sql.Clone(),
+		path: rlpq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgLotteryPoolQuery) Clone() *RpgLotteryPoolQuery {
 //		GroupBy(rpglotterypool.FieldItemCode).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgLotteryPoolQuery) GroupBy(field string, fields ...string) *RpgLotteryPoolGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgLotteryPoolGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rlpq *RpgLotteryPoolQuery) GroupBy(field string, fields ...string) *RpgLotteryPoolGroupBy {
+	rlpq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgLotteryPoolGroupBy{build: rlpq}
+	grbuild.flds = &rlpq.ctx.Fields
 	grbuild.label = rpglotterypool.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgLotteryPoolQuery) GroupBy(field string, fields ...string) *RpgLotte
 //	client.RpgLotteryPool.Query().
 //		Select(rpglotterypool.FieldItemCode).
 //		Scan(ctx, &v)
-func (_q *RpgLotteryPoolQuery) Select(fields ...string) *RpgLotteryPoolSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgLotteryPoolSelect{RpgLotteryPoolQuery: _q}
+func (rlpq *RpgLotteryPoolQuery) Select(fields ...string) *RpgLotteryPoolSelect {
+	rlpq.ctx.Fields = append(rlpq.ctx.Fields, fields...)
+	sbuild := &RpgLotteryPoolSelect{RpgLotteryPoolQuery: rlpq}
 	sbuild.label = rpglotterypool.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rlpq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgLotteryPoolSelect configured with the given aggregations.
-func (_q *RpgLotteryPoolQuery) Aggregate(fns ...AggregateFunc) *RpgLotteryPoolSelect {
-	return _q.Select().Aggregate(fns...)
+func (rlpq *RpgLotteryPoolQuery) Aggregate(fns ...AggregateFunc) *RpgLotteryPoolSelect {
+	return rlpq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgLotteryPoolQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rlpq *RpgLotteryPoolQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rlpq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rlpq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rlpq.ctx.Fields {
 		if !rpglotterypool.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rlpq.path != nil {
+		prev, err := rlpq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rlpq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgLotteryPoolQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgLotteryPool, error) {
+func (rlpq *RpgLotteryPoolQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgLotteryPool, error) {
 	var (
 		nodes = []*RpgLotteryPool{}
-		_spec = _q.querySpec()
+		_spec = rlpq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgLotteryPool).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgLotteryPool{config: _q.config}
+		node := &RpgLotteryPool{config: rlpq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rlpq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgLotteryPoolQuery) sqlAll(ctx context.Context, hooks ...queryHook) (
 	return nodes, nil
 }
 
-func (_q *RpgLotteryPoolQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rlpq *RpgLotteryPoolQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rlpq.querySpec()
+	_spec.Node.Columns = rlpq.ctx.Fields
+	if len(rlpq.ctx.Fields) > 0 {
+		_spec.Unique = rlpq.ctx.Unique != nil && *rlpq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rlpq.driver, _spec)
 }
 
-func (_q *RpgLotteryPoolQuery) querySpec() *sqlgraph.QuerySpec {
+func (rlpq *RpgLotteryPoolQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpglotterypool.Table, rpglotterypool.Columns, sqlgraph.NewFieldSpec(rpglotterypool.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rlpq.sql
+	if unique := rlpq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rlpq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rlpq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpglotterypool.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgLotteryPoolQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rlpq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rlpq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rlpq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rlpq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgLotteryPoolQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgLotteryPoolQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rlpq *RpgLotteryPoolQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rlpq.driver.Dialect())
 	t1 := builder.Table(rpglotterypool.Table)
-	columns := _q.ctx.Fields
+	columns := rlpq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpglotterypool.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rlpq.sql != nil {
+		selector = rlpq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rlpq.ctx.Unique != nil && *rlpq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rlpq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rlpq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rlpq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rlpq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgLotteryPoolGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgLotteryPoolGroupBy) Aggregate(fns ...AggregateFunc) *RpgLotteryPoolGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rlpgb *RpgLotteryPoolGroupBy) Aggregate(fns ...AggregateFunc) *RpgLotteryPoolGroupBy {
+	rlpgb.fns = append(rlpgb.fns, fns...)
+	return rlpgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgLotteryPoolGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rlpgb *RpgLotteryPoolGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rlpgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rlpgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgLotteryPoolQuery, *RpgLotteryPoolGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgLotteryPoolQuery, *RpgLotteryPoolGroupBy](ctx, rlpgb.build, rlpgb, rlpgb.build.inters, v)
 }
 
-func (_g *RpgLotteryPoolGroupBy) sqlScan(ctx context.Context, root *RpgLotteryPoolQuery, v any) error {
+func (rlpgb *RpgLotteryPoolGroupBy) sqlScan(ctx context.Context, root *RpgLotteryPoolQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rlpgb.fns))
+	for _, fn := range rlpgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rlpgb.flds)+len(rlpgb.fns))
+		for _, f := range *rlpgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rlpgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rlpgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgLotteryPoolSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgLotteryPoolSelect) Aggregate(fns ...AggregateFunc) *RpgLotteryPoolSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rlps *RpgLotteryPoolSelect) Aggregate(fns ...AggregateFunc) *RpgLotteryPoolSelect {
+	rlps.fns = append(rlps.fns, fns...)
+	return rlps
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgLotteryPoolSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rlps *RpgLotteryPoolSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rlps.ctx, ent.OpQuerySelect)
+	if err := rlps.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgLotteryPoolQuery, *RpgLotteryPoolSelect](ctx, _s.RpgLotteryPoolQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgLotteryPoolQuery, *RpgLotteryPoolSelect](ctx, rlps.RpgLotteryPoolQuery, rlps, rlps.inters, v)
 }
 
-func (_s *RpgLotteryPoolSelect) sqlScan(ctx context.Context, root *RpgLotteryPoolQuery, v any) error {
+func (rlps *RpgLotteryPoolSelect) sqlScan(ctx context.Context, root *RpgLotteryPoolQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rlps.fns))
+	for _, fn := range rlps.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rlps.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgLotteryPoolSelect) sqlScan(ctx context.Context, root *RpgLotteryPoo
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rlps.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

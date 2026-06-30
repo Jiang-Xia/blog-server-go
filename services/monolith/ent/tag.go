@@ -53,7 +53,7 @@ func (*Tag) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Tag fields.
-func (_m *Tag) assignValues(columns []string, values []any) error {
+func (t *Tag) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -63,46 +63,46 @@ func (_m *Tag) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				t.ID = value.String
 			}
 		case tag.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				t.UID = int(value.Int64)
 			}
 		case tag.FieldLabel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field label", values[i])
 			} else if value.Valid {
-				_m.Label = value.String
+				t.Label = value.String
 			}
 		case tag.FieldValue:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field value", values[i])
 			} else if value.Valid {
-				_m.Value = value.String
+				t.Value = value.String
 			}
 		case tag.FieldColor:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field color", values[i])
 			} else if value.Valid {
-				_m.Color = value.String
+				t.Color = value.String
 			}
 		case tag.FieldCreateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field create_at", values[i])
 			} else if value.Valid {
-				_m.CreateAt = value.Time
+				t.CreateAt = value.Time
 			}
 		case tag.FieldUpdateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field update_at", values[i])
 			} else if value.Valid {
-				_m.UpdateAt = value.Time
+				t.UpdateAt = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			t.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -110,50 +110,50 @@ func (_m *Tag) assignValues(columns []string, values []any) error {
 
 // GetValue returns the ent.Value that was dynamically selected and assigned to the Tag.
 // This includes values selected through modifiers, order, etc.
-func (_m *Tag) GetValue(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (t *Tag) GetValue(name string) (ent.Value, error) {
+	return t.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Tag.
 // Note that you need to call Tag.Unwrap() before calling this method if this Tag
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Tag) Update() *TagUpdateOne {
-	return NewTagClient(_m.config).UpdateOne(_m)
+func (t *Tag) Update() *TagUpdateOne {
+	return NewTagClient(t.config).UpdateOne(t)
 }
 
 // Unwrap unwraps the Tag entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Tag) Unwrap() *Tag {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (t *Tag) Unwrap() *Tag {
+	_tx, ok := t.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Tag is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	t.config.driver = _tx.drv
+	return t
 }
 
 // String implements the fmt.Stringer.
-func (_m *Tag) String() string {
+func (t *Tag) String() string {
 	var builder strings.Builder
 	builder.WriteString("Tag(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", t.ID))
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", t.UID))
 	builder.WriteString(", ")
 	builder.WriteString("label=")
-	builder.WriteString(_m.Label)
+	builder.WriteString(t.Label)
 	builder.WriteString(", ")
 	builder.WriteString("value=")
-	builder.WriteString(_m.Value)
+	builder.WriteString(t.Value)
 	builder.WriteString(", ")
 	builder.WriteString("color=")
-	builder.WriteString(_m.Color)
+	builder.WriteString(t.Color)
 	builder.WriteString(", ")
 	builder.WriteString("create_at=")
-	builder.WriteString(_m.CreateAt.Format(time.ANSIC))
+	builder.WriteString(t.CreateAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("update_at=")
-	builder.WriteString(_m.UpdateAt.Format(time.ANSIC))
+	builder.WriteString(t.UpdateAt.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -23,65 +23,65 @@ type LikeCreate struct {
 }
 
 // SetArticleId sets the "articleId" field.
-func (_c *LikeCreate) SetArticleId(v int) *LikeCreate {
-	_c.mutation.SetArticleId(v)
-	return _c
+func (lc *LikeCreate) SetArticleId(i int) *LikeCreate {
+	lc.mutation.SetArticleId(i)
+	return lc
 }
 
 // SetUID sets the "uid" field.
-func (_c *LikeCreate) SetUID(v int) *LikeCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (lc *LikeCreate) SetUID(i int) *LikeCreate {
+	lc.mutation.SetUID(i)
+	return lc
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_c *LikeCreate) SetNillableUID(v *int) *LikeCreate {
-	if v != nil {
-		_c.SetUID(*v)
+func (lc *LikeCreate) SetNillableUID(i *int) *LikeCreate {
+	if i != nil {
+		lc.SetUID(*i)
 	}
-	return _c
+	return lc
 }
 
 // SetIP sets the "ip" field.
-func (_c *LikeCreate) SetIP(v string) *LikeCreate {
-	_c.mutation.SetIP(v)
-	return _c
+func (lc *LikeCreate) SetIP(s string) *LikeCreate {
+	lc.mutation.SetIP(s)
+	return lc
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_c *LikeCreate) SetNillableIP(v *string) *LikeCreate {
-	if v != nil {
-		_c.SetIP(*v)
+func (lc *LikeCreate) SetNillableIP(s *string) *LikeCreate {
+	if s != nil {
+		lc.SetIP(*s)
 	}
-	return _c
+	return lc
 }
 
 // SetStatus sets the "status" field.
-func (_c *LikeCreate) SetStatus(v string) *LikeCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (lc *LikeCreate) SetStatus(s string) *LikeCreate {
+	lc.mutation.SetStatus(s)
+	return lc
 }
 
 // SetID sets the "id" field.
-func (_c *LikeCreate) SetID(v string) *LikeCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (lc *LikeCreate) SetID(s string) *LikeCreate {
+	lc.mutation.SetID(s)
+	return lc
 }
 
 // Mutation returns the LikeMutation object of the builder.
-func (_c *LikeCreate) Mutation() *LikeMutation {
-	return _c.mutation
+func (lc *LikeCreate) Mutation() *LikeMutation {
+	return lc.mutation
 }
 
 // Save creates the Like in the database.
-func (_c *LikeCreate) Save(ctx context.Context) (*Like, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (lc *LikeCreate) Save(ctx context.Context) (*Like, error) {
+	lc.defaults()
+	return withHooks(ctx, lc.sqlSave, lc.mutation, lc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *LikeCreate) SaveX(ctx context.Context) *Like {
-	v, err := _c.Save(ctx)
+func (lc *LikeCreate) SaveX(ctx context.Context) *Like {
+	v, err := lc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -89,53 +89,53 @@ func (_c *LikeCreate) SaveX(ctx context.Context) *Like {
 }
 
 // Exec executes the query.
-func (_c *LikeCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (lc *LikeCreate) Exec(ctx context.Context) error {
+	_, err := lc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *LikeCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (lc *LikeCreate) ExecX(ctx context.Context) {
+	if err := lc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *LikeCreate) defaults() {
-	if _, ok := _c.mutation.UID(); !ok {
+func (lc *LikeCreate) defaults() {
+	if _, ok := lc.mutation.UID(); !ok {
 		v := like.DefaultUID
-		_c.mutation.SetUID(v)
+		lc.mutation.SetUID(v)
 	}
-	if _, ok := _c.mutation.IP(); !ok {
+	if _, ok := lc.mutation.IP(); !ok {
 		v := like.DefaultIP
-		_c.mutation.SetIP(v)
+		lc.mutation.SetIP(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *LikeCreate) check() error {
-	if _, ok := _c.mutation.ArticleId(); !ok {
+func (lc *LikeCreate) check() error {
+	if _, ok := lc.mutation.ArticleId(); !ok {
 		return &ValidationError{Name: "articleId", err: errors.New(`ent: missing required field "Like.articleId"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := lc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "Like.uid"`)}
 	}
-	if _, ok := _c.mutation.IP(); !ok {
+	if _, ok := lc.mutation.IP(); !ok {
 		return &ValidationError{Name: "ip", err: errors.New(`ent: missing required field "Like.ip"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := lc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "Like.status"`)}
 	}
 	return nil
 }
 
-func (_c *LikeCreate) sqlSave(ctx context.Context) (*Like, error) {
-	if err := _c.check(); err != nil {
+func (lc *LikeCreate) sqlSave(ctx context.Context) (*Like, error) {
+	if err := lc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := lc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, lc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -148,34 +148,34 @@ func (_c *LikeCreate) sqlSave(ctx context.Context) (*Like, error) {
 			return nil, fmt.Errorf("unexpected Like.ID type: %T", _spec.ID.Value)
 		}
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	lc.mutation.id = &_node.ID
+	lc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *LikeCreate) createSpec() (*Like, *sqlgraph.CreateSpec) {
+func (lc *LikeCreate) createSpec() (*Like, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Like{config: _c.config}
+		_node = &Like{config: lc.config}
 		_spec = sqlgraph.NewCreateSpec(like.Table, sqlgraph.NewFieldSpec(like.FieldID, field.TypeString))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = lc.conflict
+	if id, ok := lc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.ArticleId(); ok {
+	if value, ok := lc.mutation.ArticleId(); ok {
 		_spec.SetField(like.FieldArticleId, field.TypeInt, value)
 		_node.ArticleId = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := lc.mutation.UID(); ok {
 		_spec.SetField(like.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.IP(); ok {
+	if value, ok := lc.mutation.IP(); ok {
 		_spec.SetField(like.FieldIP, field.TypeString, value)
 		_node.IP = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := lc.mutation.Status(); ok {
 		_spec.SetField(like.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
@@ -198,10 +198,10 @@ func (_c *LikeCreate) createSpec() (*Like, *sqlgraph.CreateSpec) {
 //			SetArticleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *LikeCreate) OnConflict(opts ...sql.ConflictOption) *LikeUpsertOne {
-	_c.conflict = opts
+func (lc *LikeCreate) OnConflict(opts ...sql.ConflictOption) *LikeUpsertOne {
+	lc.conflict = opts
 	return &LikeUpsertOne{
-		create: _c,
+		create: lc,
 	}
 }
 
@@ -211,10 +211,10 @@ func (_c *LikeCreate) OnConflict(opts ...sql.ConflictOption) *LikeUpsertOne {
 //	client.Like.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *LikeCreate) OnConflictColumns(columns ...string) *LikeUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (lc *LikeCreate) OnConflictColumns(columns ...string) *LikeUpsertOne {
+	lc.conflict = append(lc.conflict, sql.ConflictColumns(columns...))
 	return &LikeUpsertOne{
-		create: _c,
+		create: lc,
 	}
 }
 
@@ -456,16 +456,16 @@ type LikeCreateBulk struct {
 }
 
 // Save creates the Like entities in the database.
-func (_c *LikeCreateBulk) Save(ctx context.Context) ([]*Like, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (lcb *LikeCreateBulk) Save(ctx context.Context) ([]*Like, error) {
+	if lcb.err != nil {
+		return nil, lcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Like, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(lcb.builders))
+	nodes := make([]*Like, len(lcb.builders))
+	mutators := make([]Mutator, len(lcb.builders))
+	for i := range lcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := lcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*LikeMutation)
@@ -479,12 +479,12 @@ func (_c *LikeCreateBulk) Save(ctx context.Context) ([]*Like, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, lcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = lcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, lcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -504,7 +504,7 @@ func (_c *LikeCreateBulk) Save(ctx context.Context) ([]*Like, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, lcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -512,8 +512,8 @@ func (_c *LikeCreateBulk) Save(ctx context.Context) ([]*Like, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *LikeCreateBulk) SaveX(ctx context.Context) []*Like {
-	v, err := _c.Save(ctx)
+func (lcb *LikeCreateBulk) SaveX(ctx context.Context) []*Like {
+	v, err := lcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -521,14 +521,14 @@ func (_c *LikeCreateBulk) SaveX(ctx context.Context) []*Like {
 }
 
 // Exec executes the query.
-func (_c *LikeCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (lcb *LikeCreateBulk) Exec(ctx context.Context) error {
+	_, err := lcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *LikeCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (lcb *LikeCreateBulk) ExecX(ctx context.Context) {
+	if err := lcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -548,10 +548,10 @@ func (_c *LikeCreateBulk) ExecX(ctx context.Context) {
 //			SetArticleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *LikeCreateBulk) OnConflict(opts ...sql.ConflictOption) *LikeUpsertBulk {
-	_c.conflict = opts
+func (lcb *LikeCreateBulk) OnConflict(opts ...sql.ConflictOption) *LikeUpsertBulk {
+	lcb.conflict = opts
 	return &LikeUpsertBulk{
-		create: _c,
+		create: lcb,
 	}
 }
 
@@ -561,10 +561,10 @@ func (_c *LikeCreateBulk) OnConflict(opts ...sql.ConflictOption) *LikeUpsertBulk
 //	client.Like.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *LikeCreateBulk) OnConflictColumns(columns ...string) *LikeUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (lcb *LikeCreateBulk) OnConflictColumns(columns ...string) *LikeUpsertBulk {
+	lcb.conflict = append(lcb.conflict, sql.ConflictColumns(columns...))
 	return &LikeUpsertBulk{
-		create: _c,
+		create: lcb,
 	}
 }
 

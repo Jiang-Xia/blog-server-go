@@ -28,40 +28,40 @@ type RolePrivilegesPrivilegeQuery struct {
 }
 
 // Where adds a new predicate for the RolePrivilegesPrivilegeQuery builder.
-func (_q *RolePrivilegesPrivilegeQuery) Where(ps ...predicate.RolePrivilegesPrivilege) *RolePrivilegesPrivilegeQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rppq *RolePrivilegesPrivilegeQuery) Where(ps ...predicate.RolePrivilegesPrivilege) *RolePrivilegesPrivilegeQuery {
+	rppq.predicates = append(rppq.predicates, ps...)
+	return rppq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RolePrivilegesPrivilegeQuery) Limit(limit int) *RolePrivilegesPrivilegeQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rppq *RolePrivilegesPrivilegeQuery) Limit(limit int) *RolePrivilegesPrivilegeQuery {
+	rppq.ctx.Limit = &limit
+	return rppq
 }
 
 // Offset to start from.
-func (_q *RolePrivilegesPrivilegeQuery) Offset(offset int) *RolePrivilegesPrivilegeQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rppq *RolePrivilegesPrivilegeQuery) Offset(offset int) *RolePrivilegesPrivilegeQuery {
+	rppq.ctx.Offset = &offset
+	return rppq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RolePrivilegesPrivilegeQuery) Unique(unique bool) *RolePrivilegesPrivilegeQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rppq *RolePrivilegesPrivilegeQuery) Unique(unique bool) *RolePrivilegesPrivilegeQuery {
+	rppq.ctx.Unique = &unique
+	return rppq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RolePrivilegesPrivilegeQuery) Order(o ...roleprivilegesprivilege.OrderOption) *RolePrivilegesPrivilegeQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rppq *RolePrivilegesPrivilegeQuery) Order(o ...roleprivilegesprivilege.OrderOption) *RolePrivilegesPrivilegeQuery {
+	rppq.order = append(rppq.order, o...)
+	return rppq
 }
 
 // First returns the first RolePrivilegesPrivilege entity from the query.
 // Returns a *NotFoundError when no RolePrivilegesPrivilege was found.
-func (_q *RolePrivilegesPrivilegeQuery) First(ctx context.Context) (*RolePrivilegesPrivilege, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rppq *RolePrivilegesPrivilegeQuery) First(ctx context.Context) (*RolePrivilegesPrivilege, error) {
+	nodes, err := rppq.Limit(1).All(setContextOp(ctx, rppq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RolePrivilegesPrivilegeQuery) First(ctx context.Context) (*RolePrivile
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) FirstX(ctx context.Context) *RolePrivilegesPrivilege {
-	node, err := _q.First(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) FirstX(ctx context.Context) *RolePrivilegesPrivilege {
+	node, err := rppq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RolePrivilegesPrivilegeQuery) FirstX(ctx context.Context) *RolePrivile
 
 // FirstID returns the first RolePrivilegesPrivilege ID from the query.
 // Returns a *NotFoundError when no RolePrivilegesPrivilege ID was found.
-func (_q *RolePrivilegesPrivilegeQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rppq *RolePrivilegesPrivilegeQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rppq.Limit(1).IDs(setContextOp(ctx, rppq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RolePrivilegesPrivilegeQuery) FirstID(ctx context.Context) (id int, er
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) FirstIDX(ctx context.Context) int {
+	id, err := rppq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RolePrivilegesPrivilegeQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RolePrivilegesPrivilege entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RolePrivilegesPrivilege entity is found.
 // Returns a *NotFoundError when no RolePrivilegesPrivilege entities are found.
-func (_q *RolePrivilegesPrivilegeQuery) Only(ctx context.Context) (*RolePrivilegesPrivilege, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rppq *RolePrivilegesPrivilegeQuery) Only(ctx context.Context) (*RolePrivilegesPrivilege, error) {
+	nodes, err := rppq.Limit(2).All(setContextOp(ctx, rppq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RolePrivilegesPrivilegeQuery) Only(ctx context.Context) (*RolePrivileg
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) OnlyX(ctx context.Context) *RolePrivilegesPrivilege {
-	node, err := _q.Only(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) OnlyX(ctx context.Context) *RolePrivilegesPrivilege {
+	node, err := rppq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RolePrivilegesPrivilegeQuery) OnlyX(ctx context.Context) *RolePrivileg
 // OnlyID is like Only, but returns the only RolePrivilegesPrivilege ID in the query.
 // Returns a *NotSingularError when more than one RolePrivilegesPrivilege ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RolePrivilegesPrivilegeQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rppq *RolePrivilegesPrivilegeQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rppq.Limit(2).IDs(setContextOp(ctx, rppq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RolePrivilegesPrivilegeQuery) OnlyID(ctx context.Context) (id int, err
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rppq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RolePrivilegesPrivilegeQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RolePrivilegesPrivileges.
-func (_q *RolePrivilegesPrivilegeQuery) All(ctx context.Context) ([]*RolePrivilegesPrivilege, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rppq *RolePrivilegesPrivilegeQuery) All(ctx context.Context) ([]*RolePrivilegesPrivilege, error) {
+	ctx = setContextOp(ctx, rppq.ctx, ent.OpQueryAll)
+	if err := rppq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RolePrivilegesPrivilege, *RolePrivilegesPrivilegeQuery]()
-	return withInterceptors[[]*RolePrivilegesPrivilege](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RolePrivilegesPrivilege](ctx, rppq, qr, rppq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) AllX(ctx context.Context) []*RolePrivilegesPrivilege {
-	nodes, err := _q.All(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) AllX(ctx context.Context) []*RolePrivilegesPrivilege {
+	nodes, err := rppq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RolePrivilegesPrivilegeQuery) AllX(ctx context.Context) []*RolePrivile
 }
 
 // IDs executes the query and returns a list of RolePrivilegesPrivilege IDs.
-func (_q *RolePrivilegesPrivilegeQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rppq *RolePrivilegesPrivilegeQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rppq.ctx.Unique == nil && rppq.path != nil {
+		rppq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(roleprivilegesprivilege.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rppq.ctx, ent.OpQueryIDs)
+	if err = rppq.Select(roleprivilegesprivilege.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) IDsX(ctx context.Context) []int {
+	ids, err := rppq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RolePrivilegesPrivilegeQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RolePrivilegesPrivilegeQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rppq *RolePrivilegesPrivilegeQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rppq.ctx, ent.OpQueryCount)
+	if err := rppq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RolePrivilegesPrivilegeQuery](), _q.inters)
+	return withInterceptors[int](ctx, rppq, querierCount[*RolePrivilegesPrivilegeQuery](), rppq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) CountX(ctx context.Context) int {
+	count, err := rppq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RolePrivilegesPrivilegeQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RolePrivilegesPrivilegeQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rppq *RolePrivilegesPrivilegeQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rppq.ctx, ent.OpQueryExist)
+	switch _, err := rppq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RolePrivilegesPrivilegeQuery) Exist(ctx context.Context) (bool, error)
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RolePrivilegesPrivilegeQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rppq *RolePrivilegesPrivilegeQuery) ExistX(ctx context.Context) bool {
+	exist, err := rppq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RolePrivilegesPrivilegeQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RolePrivilegesPrivilegeQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RolePrivilegesPrivilegeQuery) Clone() *RolePrivilegesPrivilegeQuery {
-	if _q == nil {
+func (rppq *RolePrivilegesPrivilegeQuery) Clone() *RolePrivilegesPrivilegeQuery {
+	if rppq == nil {
 		return nil
 	}
 	return &RolePrivilegesPrivilegeQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]roleprivilegesprivilege.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RolePrivilegesPrivilege{}, _q.predicates...),
+		config:     rppq.config,
+		ctx:        rppq.ctx.Clone(),
+		order:      append([]roleprivilegesprivilege.OrderOption{}, rppq.order...),
+		inters:     append([]Interceptor{}, rppq.inters...),
+		predicates: append([]predicate.RolePrivilegesPrivilege{}, rppq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rppq.sql.Clone(),
+		path: rppq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RolePrivilegesPrivilegeQuery) Clone() *RolePrivilegesPrivilegeQuery {
 //		GroupBy(roleprivilegesprivilege.FieldRoleId).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RolePrivilegesPrivilegeQuery) GroupBy(field string, fields ...string) *RolePrivilegesPrivilegeGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RolePrivilegesPrivilegeGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rppq *RolePrivilegesPrivilegeQuery) GroupBy(field string, fields ...string) *RolePrivilegesPrivilegeGroupBy {
+	rppq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RolePrivilegesPrivilegeGroupBy{build: rppq}
+	grbuild.flds = &rppq.ctx.Fields
 	grbuild.label = roleprivilegesprivilege.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RolePrivilegesPrivilegeQuery) GroupBy(field string, fields ...string) 
 //	client.RolePrivilegesPrivilege.Query().
 //		Select(roleprivilegesprivilege.FieldRoleId).
 //		Scan(ctx, &v)
-func (_q *RolePrivilegesPrivilegeQuery) Select(fields ...string) *RolePrivilegesPrivilegeSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RolePrivilegesPrivilegeSelect{RolePrivilegesPrivilegeQuery: _q}
+func (rppq *RolePrivilegesPrivilegeQuery) Select(fields ...string) *RolePrivilegesPrivilegeSelect {
+	rppq.ctx.Fields = append(rppq.ctx.Fields, fields...)
+	sbuild := &RolePrivilegesPrivilegeSelect{RolePrivilegesPrivilegeQuery: rppq}
 	sbuild.label = roleprivilegesprivilege.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rppq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RolePrivilegesPrivilegeSelect configured with the given aggregations.
-func (_q *RolePrivilegesPrivilegeQuery) Aggregate(fns ...AggregateFunc) *RolePrivilegesPrivilegeSelect {
-	return _q.Select().Aggregate(fns...)
+func (rppq *RolePrivilegesPrivilegeQuery) Aggregate(fns ...AggregateFunc) *RolePrivilegesPrivilegeSelect {
+	return rppq.Select().Aggregate(fns...)
 }
 
-func (_q *RolePrivilegesPrivilegeQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rppq *RolePrivilegesPrivilegeQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rppq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rppq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rppq.ctx.Fields {
 		if !roleprivilegesprivilege.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rppq.path != nil {
+		prev, err := rppq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rppq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RolePrivilegesPrivilegeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RolePrivilegesPrivilege, error) {
+func (rppq *RolePrivilegesPrivilegeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RolePrivilegesPrivilege, error) {
 	var (
 		nodes = []*RolePrivilegesPrivilege{}
-		_spec = _q.querySpec()
+		_spec = rppq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RolePrivilegesPrivilege).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RolePrivilegesPrivilege{config: _q.config}
+		node := &RolePrivilegesPrivilege{config: rppq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rppq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RolePrivilegesPrivilegeQuery) sqlAll(ctx context.Context, hooks ...que
 	return nodes, nil
 }
 
-func (_q *RolePrivilegesPrivilegeQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rppq *RolePrivilegesPrivilegeQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rppq.querySpec()
+	_spec.Node.Columns = rppq.ctx.Fields
+	if len(rppq.ctx.Fields) > 0 {
+		_spec.Unique = rppq.ctx.Unique != nil && *rppq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rppq.driver, _spec)
 }
 
-func (_q *RolePrivilegesPrivilegeQuery) querySpec() *sqlgraph.QuerySpec {
+func (rppq *RolePrivilegesPrivilegeQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(roleprivilegesprivilege.Table, roleprivilegesprivilege.Columns, sqlgraph.NewFieldSpec(roleprivilegesprivilege.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rppq.sql
+	if unique := rppq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rppq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rppq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, roleprivilegesprivilege.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RolePrivilegesPrivilegeQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rppq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rppq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rppq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rppq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RolePrivilegesPrivilegeQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RolePrivilegesPrivilegeQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rppq *RolePrivilegesPrivilegeQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rppq.driver.Dialect())
 	t1 := builder.Table(roleprivilegesprivilege.Table)
-	columns := _q.ctx.Fields
+	columns := rppq.ctx.Fields
 	if len(columns) == 0 {
 		columns = roleprivilegesprivilege.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rppq.sql != nil {
+		selector = rppq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rppq.ctx.Unique != nil && *rppq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rppq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rppq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rppq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rppq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RolePrivilegesPrivilegeGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RolePrivilegesPrivilegeGroupBy) Aggregate(fns ...AggregateFunc) *RolePrivilegesPrivilegeGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rppgb *RolePrivilegesPrivilegeGroupBy) Aggregate(fns ...AggregateFunc) *RolePrivilegesPrivilegeGroupBy {
+	rppgb.fns = append(rppgb.fns, fns...)
+	return rppgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RolePrivilegesPrivilegeGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rppgb *RolePrivilegesPrivilegeGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rppgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rppgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RolePrivilegesPrivilegeQuery, *RolePrivilegesPrivilegeGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RolePrivilegesPrivilegeQuery, *RolePrivilegesPrivilegeGroupBy](ctx, rppgb.build, rppgb, rppgb.build.inters, v)
 }
 
-func (_g *RolePrivilegesPrivilegeGroupBy) sqlScan(ctx context.Context, root *RolePrivilegesPrivilegeQuery, v any) error {
+func (rppgb *RolePrivilegesPrivilegeGroupBy) sqlScan(ctx context.Context, root *RolePrivilegesPrivilegeQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rppgb.fns))
+	for _, fn := range rppgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rppgb.flds)+len(rppgb.fns))
+		for _, f := range *rppgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rppgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rppgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RolePrivilegesPrivilegeSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RolePrivilegesPrivilegeSelect) Aggregate(fns ...AggregateFunc) *RolePrivilegesPrivilegeSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rpps *RolePrivilegesPrivilegeSelect) Aggregate(fns ...AggregateFunc) *RolePrivilegesPrivilegeSelect {
+	rpps.fns = append(rpps.fns, fns...)
+	return rpps
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RolePrivilegesPrivilegeSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rpps *RolePrivilegesPrivilegeSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rpps.ctx, ent.OpQuerySelect)
+	if err := rpps.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RolePrivilegesPrivilegeQuery, *RolePrivilegesPrivilegeSelect](ctx, _s.RolePrivilegesPrivilegeQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RolePrivilegesPrivilegeQuery, *RolePrivilegesPrivilegeSelect](ctx, rpps.RolePrivilegesPrivilegeQuery, rpps, rpps.inters, v)
 }
 
-func (_s *RolePrivilegesPrivilegeSelect) sqlScan(ctx context.Context, root *RolePrivilegesPrivilegeQuery, v any) error {
+func (rpps *RolePrivilegesPrivilegeSelect) sqlScan(ctx context.Context, root *RolePrivilegesPrivilegeQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rpps.fns))
+	for _, fn := range rpps.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rpps.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RolePrivilegesPrivilegeSelect) sqlScan(ctx context.Context, root *Role
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rpps.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

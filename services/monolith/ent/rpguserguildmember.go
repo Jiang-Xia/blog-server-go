@@ -49,7 +49,7 @@ func (*RpgUserGuildMember) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserGuildMember fields.
-func (_m *RpgUserGuildMember) assignValues(columns []string, values []any) error {
+func (rugm *RpgUserGuildMember) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -60,33 +60,33 @@ func (_m *RpgUserGuildMember) assignValues(columns []string, values []any) error
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rugm.ID = int(value.Int64)
 		case rpguserguildmember.FieldGuildId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field guildId", values[i])
 			} else if value.Valid {
-				_m.GuildId = int(value.Int64)
+				rugm.GuildId = int(value.Int64)
 			}
 		case rpguserguildmember.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rugm.UID = int(value.Int64)
 			}
 		case rpguserguildmember.FieldJoinTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field joinTime", values[i])
 			} else if value.Valid {
-				_m.JoinTime = value.Time
+				rugm.JoinTime = value.Time
 			}
 		case rpguserguildmember.FieldRole:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field role", values[i])
 			} else if value.Valid {
-				_m.Role = value.String
+				rugm.Role = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rugm.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -94,44 +94,44 @@ func (_m *RpgUserGuildMember) assignValues(columns []string, values []any) error
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserGuildMember.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserGuildMember) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rugm *RpgUserGuildMember) Value(name string) (ent.Value, error) {
+	return rugm.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserGuildMember.
 // Note that you need to call RpgUserGuildMember.Unwrap() before calling this method if this RpgUserGuildMember
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserGuildMember) Update() *RpgUserGuildMemberUpdateOne {
-	return NewRpgUserGuildMemberClient(_m.config).UpdateOne(_m)
+func (rugm *RpgUserGuildMember) Update() *RpgUserGuildMemberUpdateOne {
+	return NewRpgUserGuildMemberClient(rugm.config).UpdateOne(rugm)
 }
 
 // Unwrap unwraps the RpgUserGuildMember entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserGuildMember) Unwrap() *RpgUserGuildMember {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rugm *RpgUserGuildMember) Unwrap() *RpgUserGuildMember {
+	_tx, ok := rugm.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserGuildMember is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rugm.config.driver = _tx.drv
+	return rugm
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserGuildMember) String() string {
+func (rugm *RpgUserGuildMember) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserGuildMember(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rugm.ID))
 	builder.WriteString("guildId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.GuildId))
+	builder.WriteString(fmt.Sprintf("%v", rugm.GuildId))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rugm.UID))
 	builder.WriteString(", ")
 	builder.WriteString("joinTime=")
-	builder.WriteString(_m.JoinTime.Format(time.ANSIC))
+	builder.WriteString(rugm.JoinTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("role=")
-	builder.WriteString(_m.Role)
+	builder.WriteString(rugm.Role)
 	builder.WriteByte(')')
 	return builder.String()
 }

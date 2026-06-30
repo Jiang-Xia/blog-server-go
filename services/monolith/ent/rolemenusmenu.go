@@ -41,7 +41,7 @@ func (*RoleMenusMenu) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RoleMenusMenu fields.
-func (_m *RoleMenusMenu) assignValues(columns []string, values []any) error {
+func (rmm *RoleMenusMenu) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -52,21 +52,21 @@ func (_m *RoleMenusMenu) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rmm.ID = int(value.Int64)
 		case rolemenusmenu.FieldRoleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field roleId", values[i])
 			} else if value.Valid {
-				_m.RoleId = int(value.Int64)
+				rmm.RoleId = int(value.Int64)
 			}
 		case rolemenusmenu.FieldMenuId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field menuId", values[i])
 			} else if value.Valid {
-				_m.MenuId = value.String
+				rmm.MenuId = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rmm.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -74,38 +74,38 @@ func (_m *RoleMenusMenu) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RoleMenusMenu.
 // This includes values selected through modifiers, order, etc.
-func (_m *RoleMenusMenu) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rmm *RoleMenusMenu) Value(name string) (ent.Value, error) {
+	return rmm.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RoleMenusMenu.
 // Note that you need to call RoleMenusMenu.Unwrap() before calling this method if this RoleMenusMenu
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RoleMenusMenu) Update() *RoleMenusMenuUpdateOne {
-	return NewRoleMenusMenuClient(_m.config).UpdateOne(_m)
+func (rmm *RoleMenusMenu) Update() *RoleMenusMenuUpdateOne {
+	return NewRoleMenusMenuClient(rmm.config).UpdateOne(rmm)
 }
 
 // Unwrap unwraps the RoleMenusMenu entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RoleMenusMenu) Unwrap() *RoleMenusMenu {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rmm *RoleMenusMenu) Unwrap() *RoleMenusMenu {
+	_tx, ok := rmm.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RoleMenusMenu is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rmm.config.driver = _tx.drv
+	return rmm
 }
 
 // String implements the fmt.Stringer.
-func (_m *RoleMenusMenu) String() string {
+func (rmm *RoleMenusMenu) String() string {
 	var builder strings.Builder
 	builder.WriteString("RoleMenusMenu(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rmm.ID))
 	builder.WriteString("roleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RoleId))
+	builder.WriteString(fmt.Sprintf("%v", rmm.RoleId))
 	builder.WriteString(", ")
 	builder.WriteString("menuId=")
-	builder.WriteString(_m.MenuId)
+	builder.WriteString(rmm.MenuId)
 	builder.WriteByte(')')
 	return builder.String()
 }

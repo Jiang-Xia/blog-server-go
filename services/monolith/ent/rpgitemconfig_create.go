@@ -23,203 +23,203 @@ type RpgItemConfigCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgItemConfigCreate) SetCreateTime(v time.Time) *RpgItemConfigCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetCreateTime(t time.Time) *RpgItemConfigCreate {
+	ricc.mutation.SetCreateTime(t)
+	return ricc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableCreateTime(v *time.Time) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (ricc *RpgItemConfigCreate) SetNillableCreateTime(t *time.Time) *RpgItemConfigCreate {
+	if t != nil {
+		ricc.SetCreateTime(*t)
 	}
-	return _c
+	return ricc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgItemConfigCreate) SetUpdateTime(v time.Time) *RpgItemConfigCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetUpdateTime(t time.Time) *RpgItemConfigCreate {
+	ricc.mutation.SetUpdateTime(t)
+	return ricc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableUpdateTime(v *time.Time) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (ricc *RpgItemConfigCreate) SetNillableUpdateTime(t *time.Time) *RpgItemConfigCreate {
+	if t != nil {
+		ricc.SetUpdateTime(*t)
 	}
-	return _c
+	return ricc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgItemConfigCreate) SetIsDelete(v bool) *RpgItemConfigCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetIsDelete(b bool) *RpgItemConfigCreate {
+	ricc.mutation.SetIsDelete(b)
+	return ricc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableIsDelete(v *bool) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (ricc *RpgItemConfigCreate) SetNillableIsDelete(b *bool) *RpgItemConfigCreate {
+	if b != nil {
+		ricc.SetIsDelete(*b)
 	}
-	return _c
+	return ricc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgItemConfigCreate) SetVersion(v int) *RpgItemConfigCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetVersion(i int) *RpgItemConfigCreate {
+	ricc.mutation.SetVersion(i)
+	return ricc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableVersion(v *int) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (ricc *RpgItemConfigCreate) SetNillableVersion(i *int) *RpgItemConfigCreate {
+	if i != nil {
+		ricc.SetVersion(*i)
 	}
-	return _c
+	return ricc
 }
 
 // SetCode sets the "code" field.
-func (_c *RpgItemConfigCreate) SetCode(v string) *RpgItemConfigCreate {
-	_c.mutation.SetCode(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetCode(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetCode(s)
+	return ricc
 }
 
 // SetName sets the "name" field.
-func (_c *RpgItemConfigCreate) SetName(v string) *RpgItemConfigCreate {
-	_c.mutation.SetName(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetName(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetName(s)
+	return ricc
 }
 
 // SetSort sets the "sort" field.
-func (_c *RpgItemConfigCreate) SetSort(v int) *RpgItemConfigCreate {
-	_c.mutation.SetSort(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetSort(i int) *RpgItemConfigCreate {
+	ricc.mutation.SetSort(i)
+	return ricc
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableSort(v *int) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetSort(*v)
+func (ricc *RpgItemConfigCreate) SetNillableSort(i *int) *RpgItemConfigCreate {
+	if i != nil {
+		ricc.SetSort(*i)
 	}
-	return _c
+	return ricc
 }
 
 // SetActive sets the "active" field.
-func (_c *RpgItemConfigCreate) SetActive(v int) *RpgItemConfigCreate {
-	_c.mutation.SetActive(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetActive(i int) *RpgItemConfigCreate {
+	ricc.mutation.SetActive(i)
+	return ricc
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableActive(v *int) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetActive(*v)
+func (ricc *RpgItemConfigCreate) SetNillableActive(i *int) *RpgItemConfigCreate {
+	if i != nil {
+		ricc.SetActive(*i)
 	}
-	return _c
+	return ricc
 }
 
 // SetIsHidden sets the "isHidden" field.
-func (_c *RpgItemConfigCreate) SetIsHidden(v int) *RpgItemConfigCreate {
-	_c.mutation.SetIsHidden(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetIsHidden(i int) *RpgItemConfigCreate {
+	ricc.mutation.SetIsHidden(i)
+	return ricc
 }
 
 // SetNillableIsHidden sets the "isHidden" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableIsHidden(v *int) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetIsHidden(*v)
+func (ricc *RpgItemConfigCreate) SetNillableIsHidden(i *int) *RpgItemConfigCreate {
+	if i != nil {
+		ricc.SetIsHidden(*i)
 	}
-	return _c
+	return ricc
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgItemConfigCreate) SetEffectJson(v string) *RpgItemConfigCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetEffectJson(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetEffectJson(s)
+	return ricc
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableEffectJson(v *string) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (ricc *RpgItemConfigCreate) SetNillableEffectJson(s *string) *RpgItemConfigCreate {
+	if s != nil {
+		ricc.SetEffectJson(*s)
 	}
-	return _c
+	return ricc
 }
 
 // SetItemType sets the "itemType" field.
-func (_c *RpgItemConfigCreate) SetItemType(v string) *RpgItemConfigCreate {
-	_c.mutation.SetItemType(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetItemType(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetItemType(s)
+	return ricc
 }
 
 // SetDescription sets the "description" field.
-func (_c *RpgItemConfigCreate) SetDescription(v string) *RpgItemConfigCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetDescription(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetDescription(s)
+	return ricc
 }
 
 // SetCategory sets the "category" field.
-func (_c *RpgItemConfigCreate) SetCategory(v string) *RpgItemConfigCreate {
-	_c.mutation.SetCategory(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetCategory(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetCategory(s)
+	return ricc
 }
 
 // SetNillableCategory sets the "category" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableCategory(v *string) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetCategory(*v)
+func (ricc *RpgItemConfigCreate) SetNillableCategory(s *string) *RpgItemConfigCreate {
+	if s != nil {
+		ricc.SetCategory(*s)
 	}
-	return _c
+	return ricc
 }
 
 // SetIcon sets the "icon" field.
-func (_c *RpgItemConfigCreate) SetIcon(v string) *RpgItemConfigCreate {
-	_c.mutation.SetIcon(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetIcon(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetIcon(s)
+	return ricc
 }
 
 // SetNillableIcon sets the "icon" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableIcon(v *string) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetIcon(*v)
+func (ricc *RpgItemConfigCreate) SetNillableIcon(s *string) *RpgItemConfigCreate {
+	if s != nil {
+		ricc.SetIcon(*s)
 	}
-	return _c
+	return ricc
 }
 
 // SetRarity sets the "rarity" field.
-func (_c *RpgItemConfigCreate) SetRarity(v string) *RpgItemConfigCreate {
-	_c.mutation.SetRarity(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetRarity(s string) *RpgItemConfigCreate {
+	ricc.mutation.SetRarity(s)
+	return ricc
 }
 
 // SetNillableRarity sets the "rarity" field if the given value is not nil.
-func (_c *RpgItemConfigCreate) SetNillableRarity(v *string) *RpgItemConfigCreate {
-	if v != nil {
-		_c.SetRarity(*v)
+func (ricc *RpgItemConfigCreate) SetNillableRarity(s *string) *RpgItemConfigCreate {
+	if s != nil {
+		ricc.SetRarity(*s)
 	}
-	return _c
+	return ricc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgItemConfigCreate) SetID(v int) *RpgItemConfigCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ricc *RpgItemConfigCreate) SetID(i int) *RpgItemConfigCreate {
+	ricc.mutation.SetID(i)
+	return ricc
 }
 
 // Mutation returns the RpgItemConfigMutation object of the builder.
-func (_c *RpgItemConfigCreate) Mutation() *RpgItemConfigMutation {
-	return _c.mutation
+func (ricc *RpgItemConfigCreate) Mutation() *RpgItemConfigMutation {
+	return ricc.mutation
 }
 
 // Save creates the RpgItemConfig in the database.
-func (_c *RpgItemConfigCreate) Save(ctx context.Context) (*RpgItemConfig, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ricc *RpgItemConfigCreate) Save(ctx context.Context) (*RpgItemConfig, error) {
+	ricc.defaults()
+	return withHooks(ctx, ricc.sqlSave, ricc.mutation, ricc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgItemConfigCreate) SaveX(ctx context.Context) *RpgItemConfig {
-	v, err := _c.Save(ctx)
+func (ricc *RpgItemConfigCreate) SaveX(ctx context.Context) *RpgItemConfig {
+	v, err := ricc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -227,115 +227,115 @@ func (_c *RpgItemConfigCreate) SaveX(ctx context.Context) *RpgItemConfig {
 }
 
 // Exec executes the query.
-func (_c *RpgItemConfigCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ricc *RpgItemConfigCreate) Exec(ctx context.Context) error {
+	_, err := ricc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgItemConfigCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ricc *RpgItemConfigCreate) ExecX(ctx context.Context) {
+	if err := ricc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgItemConfigCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ricc *RpgItemConfigCreate) defaults() {
+	if _, ok := ricc.mutation.CreateTime(); !ok {
 		v := rpgitemconfig.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		ricc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ricc.mutation.UpdateTime(); !ok {
 		v := rpgitemconfig.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		ricc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ricc.mutation.IsDelete(); !ok {
 		v := rpgitemconfig.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		ricc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ricc.mutation.Version(); !ok {
 		v := rpgitemconfig.DefaultVersion
-		_c.mutation.SetVersion(v)
+		ricc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := ricc.mutation.Sort(); !ok {
 		v := rpgitemconfig.DefaultSort
-		_c.mutation.SetSort(v)
+		ricc.mutation.SetSort(v)
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := ricc.mutation.Active(); !ok {
 		v := rpgitemconfig.DefaultActive
-		_c.mutation.SetActive(v)
+		ricc.mutation.SetActive(v)
 	}
-	if _, ok := _c.mutation.IsHidden(); !ok {
+	if _, ok := ricc.mutation.IsHidden(); !ok {
 		v := rpgitemconfig.DefaultIsHidden
-		_c.mutation.SetIsHidden(v)
+		ricc.mutation.SetIsHidden(v)
 	}
-	if _, ok := _c.mutation.Category(); !ok {
+	if _, ok := ricc.mutation.Category(); !ok {
 		v := rpgitemconfig.DefaultCategory
-		_c.mutation.SetCategory(v)
+		ricc.mutation.SetCategory(v)
 	}
-	if _, ok := _c.mutation.Icon(); !ok {
+	if _, ok := ricc.mutation.Icon(); !ok {
 		v := rpgitemconfig.DefaultIcon
-		_c.mutation.SetIcon(v)
+		ricc.mutation.SetIcon(v)
 	}
-	if _, ok := _c.mutation.Rarity(); !ok {
+	if _, ok := ricc.mutation.Rarity(); !ok {
 		v := rpgitemconfig.DefaultRarity
-		_c.mutation.SetRarity(v)
+		ricc.mutation.SetRarity(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgItemConfigCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ricc *RpgItemConfigCreate) check() error {
+	if _, ok := ricc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgItemConfig.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ricc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgItemConfig.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ricc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgItemConfig.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ricc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgItemConfig.version"`)}
 	}
-	if _, ok := _c.mutation.Code(); !ok {
+	if _, ok := ricc.mutation.Code(); !ok {
 		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "RpgItemConfig.code"`)}
 	}
-	if _, ok := _c.mutation.Name(); !ok {
+	if _, ok := ricc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "RpgItemConfig.name"`)}
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := ricc.mutation.Sort(); !ok {
 		return &ValidationError{Name: "sort", err: errors.New(`ent: missing required field "RpgItemConfig.sort"`)}
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := ricc.mutation.Active(); !ok {
 		return &ValidationError{Name: "active", err: errors.New(`ent: missing required field "RpgItemConfig.active"`)}
 	}
-	if _, ok := _c.mutation.IsHidden(); !ok {
+	if _, ok := ricc.mutation.IsHidden(); !ok {
 		return &ValidationError{Name: "isHidden", err: errors.New(`ent: missing required field "RpgItemConfig.isHidden"`)}
 	}
-	if _, ok := _c.mutation.ItemType(); !ok {
+	if _, ok := ricc.mutation.ItemType(); !ok {
 		return &ValidationError{Name: "itemType", err: errors.New(`ent: missing required field "RpgItemConfig.itemType"`)}
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := ricc.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "RpgItemConfig.description"`)}
 	}
-	if _, ok := _c.mutation.Category(); !ok {
+	if _, ok := ricc.mutation.Category(); !ok {
 		return &ValidationError{Name: "category", err: errors.New(`ent: missing required field "RpgItemConfig.category"`)}
 	}
-	if _, ok := _c.mutation.Icon(); !ok {
+	if _, ok := ricc.mutation.Icon(); !ok {
 		return &ValidationError{Name: "icon", err: errors.New(`ent: missing required field "RpgItemConfig.icon"`)}
 	}
-	if _, ok := _c.mutation.Rarity(); !ok {
+	if _, ok := ricc.mutation.Rarity(); !ok {
 		return &ValidationError{Name: "rarity", err: errors.New(`ent: missing required field "RpgItemConfig.rarity"`)}
 	}
 	return nil
 }
 
-func (_c *RpgItemConfigCreate) sqlSave(ctx context.Context) (*RpgItemConfig, error) {
-	if err := _c.check(); err != nil {
+func (ricc *RpgItemConfigCreate) sqlSave(ctx context.Context) (*RpgItemConfig, error) {
+	if err := ricc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ricc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ricc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -345,78 +345,78 @@ func (_c *RpgItemConfigCreate) sqlSave(ctx context.Context) (*RpgItemConfig, err
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ricc.mutation.id = &_node.ID
+	ricc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgItemConfigCreate) createSpec() (*RpgItemConfig, *sqlgraph.CreateSpec) {
+func (ricc *RpgItemConfigCreate) createSpec() (*RpgItemConfig, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgItemConfig{config: _c.config}
+		_node = &RpgItemConfig{config: ricc.config}
 		_spec = sqlgraph.NewCreateSpec(rpgitemconfig.Table, sqlgraph.NewFieldSpec(rpgitemconfig.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = ricc.conflict
+	if id, ok := ricc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := ricc.mutation.CreateTime(); ok {
 		_spec.SetField(rpgitemconfig.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := ricc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgitemconfig.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := ricc.mutation.IsDelete(); ok {
 		_spec.SetField(rpgitemconfig.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := ricc.mutation.Version(); ok {
 		_spec.SetField(rpgitemconfig.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.Code(); ok {
+	if value, ok := ricc.mutation.Code(); ok {
 		_spec.SetField(rpgitemconfig.FieldCode, field.TypeString, value)
 		_node.Code = value
 	}
-	if value, ok := _c.mutation.Name(); ok {
+	if value, ok := ricc.mutation.Name(); ok {
 		_spec.SetField(rpgitemconfig.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := _c.mutation.Sort(); ok {
+	if value, ok := ricc.mutation.Sort(); ok {
 		_spec.SetField(rpgitemconfig.FieldSort, field.TypeInt, value)
 		_node.Sort = value
 	}
-	if value, ok := _c.mutation.Active(); ok {
+	if value, ok := ricc.mutation.Active(); ok {
 		_spec.SetField(rpgitemconfig.FieldActive, field.TypeInt, value)
 		_node.Active = value
 	}
-	if value, ok := _c.mutation.IsHidden(); ok {
+	if value, ok := ricc.mutation.IsHidden(); ok {
 		_spec.SetField(rpgitemconfig.FieldIsHidden, field.TypeInt, value)
 		_node.IsHidden = value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := ricc.mutation.EffectJson(); ok {
 		_spec.SetField(rpgitemconfig.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.ItemType(); ok {
+	if value, ok := ricc.mutation.ItemType(); ok {
 		_spec.SetField(rpgitemconfig.FieldItemType, field.TypeString, value)
 		_node.ItemType = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := ricc.mutation.Description(); ok {
 		_spec.SetField(rpgitemconfig.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.Category(); ok {
+	if value, ok := ricc.mutation.Category(); ok {
 		_spec.SetField(rpgitemconfig.FieldCategory, field.TypeString, value)
 		_node.Category = value
 	}
-	if value, ok := _c.mutation.Icon(); ok {
+	if value, ok := ricc.mutation.Icon(); ok {
 		_spec.SetField(rpgitemconfig.FieldIcon, field.TypeString, value)
 		_node.Icon = value
 	}
-	if value, ok := _c.mutation.Rarity(); ok {
+	if value, ok := ricc.mutation.Rarity(); ok {
 		_spec.SetField(rpgitemconfig.FieldRarity, field.TypeString, value)
 		_node.Rarity = value
 	}
@@ -439,10 +439,10 @@ func (_c *RpgItemConfigCreate) createSpec() (*RpgItemConfig, *sqlgraph.CreateSpe
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgItemConfigCreate) OnConflict(opts ...sql.ConflictOption) *RpgItemConfigUpsertOne {
-	_c.conflict = opts
+func (ricc *RpgItemConfigCreate) OnConflict(opts ...sql.ConflictOption) *RpgItemConfigUpsertOne {
+	ricc.conflict = opts
 	return &RpgItemConfigUpsertOne{
-		create: _c,
+		create: ricc,
 	}
 }
 
@@ -452,10 +452,10 @@ func (_c *RpgItemConfigCreate) OnConflict(opts ...sql.ConflictOption) *RpgItemCo
 //	client.RpgItemConfig.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgItemConfigCreate) OnConflictColumns(columns ...string) *RpgItemConfigUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ricc *RpgItemConfigCreate) OnConflictColumns(columns ...string) *RpgItemConfigUpsertOne {
+	ricc.conflict = append(ricc.conflict, sql.ConflictColumns(columns...))
 	return &RpgItemConfigUpsertOne{
-		create: _c,
+		create: ricc,
 	}
 }
 
@@ -994,16 +994,16 @@ type RpgItemConfigCreateBulk struct {
 }
 
 // Save creates the RpgItemConfig entities in the database.
-func (_c *RpgItemConfigCreateBulk) Save(ctx context.Context) ([]*RpgItemConfig, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (riccb *RpgItemConfigCreateBulk) Save(ctx context.Context) ([]*RpgItemConfig, error) {
+	if riccb.err != nil {
+		return nil, riccb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgItemConfig, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(riccb.builders))
+	nodes := make([]*RpgItemConfig, len(riccb.builders))
+	mutators := make([]Mutator, len(riccb.builders))
+	for i := range riccb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := riccb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgItemConfigMutation)
@@ -1017,12 +1017,12 @@ func (_c *RpgItemConfigCreateBulk) Save(ctx context.Context) ([]*RpgItemConfig, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, riccb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = riccb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, riccb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1046,7 +1046,7 @@ func (_c *RpgItemConfigCreateBulk) Save(ctx context.Context) ([]*RpgItemConfig, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, riccb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1054,8 +1054,8 @@ func (_c *RpgItemConfigCreateBulk) Save(ctx context.Context) ([]*RpgItemConfig, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgItemConfigCreateBulk) SaveX(ctx context.Context) []*RpgItemConfig {
-	v, err := _c.Save(ctx)
+func (riccb *RpgItemConfigCreateBulk) SaveX(ctx context.Context) []*RpgItemConfig {
+	v, err := riccb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1063,14 +1063,14 @@ func (_c *RpgItemConfigCreateBulk) SaveX(ctx context.Context) []*RpgItemConfig {
 }
 
 // Exec executes the query.
-func (_c *RpgItemConfigCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (riccb *RpgItemConfigCreateBulk) Exec(ctx context.Context) error {
+	_, err := riccb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgItemConfigCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (riccb *RpgItemConfigCreateBulk) ExecX(ctx context.Context) {
+	if err := riccb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1090,10 +1090,10 @@ func (_c *RpgItemConfigCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgItemConfigCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgItemConfigUpsertBulk {
-	_c.conflict = opts
+func (riccb *RpgItemConfigCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgItemConfigUpsertBulk {
+	riccb.conflict = opts
 	return &RpgItemConfigUpsertBulk{
-		create: _c,
+		create: riccb,
 	}
 }
 
@@ -1103,10 +1103,10 @@ func (_c *RpgItemConfigCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgIt
 //	client.RpgItemConfig.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgItemConfigCreateBulk) OnConflictColumns(columns ...string) *RpgItemConfigUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (riccb *RpgItemConfigCreateBulk) OnConflictColumns(columns ...string) *RpgItemConfigUpsertBulk {
+	riccb.conflict = append(riccb.conflict, sql.ConflictColumns(columns...))
 	return &RpgItemConfigUpsertBulk{
-		create: _c,
+		create: riccb,
 	}
 }
 

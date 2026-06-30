@@ -24,93 +24,93 @@ type CollectCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *CollectCreate) SetCreateTime(v time.Time) *CollectCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (cc *CollectCreate) SetCreateTime(t time.Time) *CollectCreate {
+	cc.mutation.SetCreateTime(t)
+	return cc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *CollectCreate) SetNillableCreateTime(v *time.Time) *CollectCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (cc *CollectCreate) SetNillableCreateTime(t *time.Time) *CollectCreate {
+	if t != nil {
+		cc.SetCreateTime(*t)
 	}
-	return _c
+	return cc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *CollectCreate) SetUpdateTime(v time.Time) *CollectCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (cc *CollectCreate) SetUpdateTime(t time.Time) *CollectCreate {
+	cc.mutation.SetUpdateTime(t)
+	return cc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *CollectCreate) SetNillableUpdateTime(v *time.Time) *CollectCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (cc *CollectCreate) SetNillableUpdateTime(t *time.Time) *CollectCreate {
+	if t != nil {
+		cc.SetUpdateTime(*t)
 	}
-	return _c
+	return cc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *CollectCreate) SetIsDelete(v bool) *CollectCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (cc *CollectCreate) SetIsDelete(b bool) *CollectCreate {
+	cc.mutation.SetIsDelete(b)
+	return cc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *CollectCreate) SetNillableIsDelete(v *bool) *CollectCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (cc *CollectCreate) SetNillableIsDelete(b *bool) *CollectCreate {
+	if b != nil {
+		cc.SetIsDelete(*b)
 	}
-	return _c
+	return cc
 }
 
 // SetVersion sets the "version" field.
-func (_c *CollectCreate) SetVersion(v int) *CollectCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (cc *CollectCreate) SetVersion(i int) *CollectCreate {
+	cc.mutation.SetVersion(i)
+	return cc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *CollectCreate) SetNillableVersion(v *int) *CollectCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (cc *CollectCreate) SetNillableVersion(i *int) *CollectCreate {
+	if i != nil {
+		cc.SetVersion(*i)
 	}
-	return _c
+	return cc
 }
 
 // SetUID sets the "uid" field.
-func (_c *CollectCreate) SetUID(v int) *CollectCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (cc *CollectCreate) SetUID(i int) *CollectCreate {
+	cc.mutation.SetUID(i)
+	return cc
 }
 
 // SetArticleId sets the "articleId" field.
-func (_c *CollectCreate) SetArticleId(v int) *CollectCreate {
-	_c.mutation.SetArticleId(v)
-	return _c
+func (cc *CollectCreate) SetArticleId(i int) *CollectCreate {
+	cc.mutation.SetArticleId(i)
+	return cc
 }
 
 // SetID sets the "id" field.
-func (_c *CollectCreate) SetID(v string) *CollectCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (cc *CollectCreate) SetID(s string) *CollectCreate {
+	cc.mutation.SetID(s)
+	return cc
 }
 
 // Mutation returns the CollectMutation object of the builder.
-func (_c *CollectCreate) Mutation() *CollectMutation {
-	return _c.mutation
+func (cc *CollectCreate) Mutation() *CollectMutation {
+	return cc.mutation
 }
 
 // Save creates the Collect in the database.
-func (_c *CollectCreate) Save(ctx context.Context) (*Collect, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (cc *CollectCreate) Save(ctx context.Context) (*Collect, error) {
+	cc.defaults()
+	return withHooks(ctx, cc.sqlSave, cc.mutation, cc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *CollectCreate) SaveX(ctx context.Context) *Collect {
-	v, err := _c.Save(ctx)
+func (cc *CollectCreate) SaveX(ctx context.Context) *Collect {
+	v, err := cc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -118,67 +118,67 @@ func (_c *CollectCreate) SaveX(ctx context.Context) *Collect {
 }
 
 // Exec executes the query.
-func (_c *CollectCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (cc *CollectCreate) Exec(ctx context.Context) error {
+	_, err := cc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *CollectCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (cc *CollectCreate) ExecX(ctx context.Context) {
+	if err := cc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *CollectCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (cc *CollectCreate) defaults() {
+	if _, ok := cc.mutation.CreateTime(); !ok {
 		v := collect.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		cc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := cc.mutation.UpdateTime(); !ok {
 		v := collect.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		cc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := cc.mutation.IsDelete(); !ok {
 		v := collect.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		cc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := cc.mutation.Version(); !ok {
 		v := collect.DefaultVersion
-		_c.mutation.SetVersion(v)
+		cc.mutation.SetVersion(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *CollectCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (cc *CollectCreate) check() error {
+	if _, ok := cc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Collect.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := cc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Collect.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := cc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Collect.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := cc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Collect.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := cc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "Collect.uid"`)}
 	}
-	if _, ok := _c.mutation.ArticleId(); !ok {
+	if _, ok := cc.mutation.ArticleId(); !ok {
 		return &ValidationError{Name: "articleId", err: errors.New(`ent: missing required field "Collect.articleId"`)}
 	}
 	return nil
 }
 
-func (_c *CollectCreate) sqlSave(ctx context.Context) (*Collect, error) {
-	if err := _c.check(); err != nil {
+func (cc *CollectCreate) sqlSave(ctx context.Context) (*Collect, error) {
+	if err := cc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := cc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, cc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -191,42 +191,42 @@ func (_c *CollectCreate) sqlSave(ctx context.Context) (*Collect, error) {
 			return nil, fmt.Errorf("unexpected Collect.ID type: %T", _spec.ID.Value)
 		}
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	cc.mutation.id = &_node.ID
+	cc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *CollectCreate) createSpec() (*Collect, *sqlgraph.CreateSpec) {
+func (cc *CollectCreate) createSpec() (*Collect, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Collect{config: _c.config}
+		_node = &Collect{config: cc.config}
 		_spec = sqlgraph.NewCreateSpec(collect.Table, sqlgraph.NewFieldSpec(collect.FieldID, field.TypeString))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = cc.conflict
+	if id, ok := cc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := cc.mutation.CreateTime(); ok {
 		_spec.SetField(collect.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := cc.mutation.UpdateTime(); ok {
 		_spec.SetField(collect.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := cc.mutation.IsDelete(); ok {
 		_spec.SetField(collect.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := cc.mutation.Version(); ok {
 		_spec.SetField(collect.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := cc.mutation.UID(); ok {
 		_spec.SetField(collect.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.ArticleId(); ok {
+	if value, ok := cc.mutation.ArticleId(); ok {
 		_spec.SetField(collect.FieldArticleId, field.TypeInt, value)
 		_node.ArticleId = value
 	}
@@ -249,10 +249,10 @@ func (_c *CollectCreate) createSpec() (*Collect, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *CollectCreate) OnConflict(opts ...sql.ConflictOption) *CollectUpsertOne {
-	_c.conflict = opts
+func (cc *CollectCreate) OnConflict(opts ...sql.ConflictOption) *CollectUpsertOne {
+	cc.conflict = opts
 	return &CollectUpsertOne{
-		create: _c,
+		create: cc,
 	}
 }
 
@@ -262,10 +262,10 @@ func (_c *CollectCreate) OnConflict(opts ...sql.ConflictOption) *CollectUpsertOn
 //	client.Collect.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *CollectCreate) OnConflictColumns(columns ...string) *CollectUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (cc *CollectCreate) OnConflictColumns(columns ...string) *CollectUpsertOne {
+	cc.conflict = append(cc.conflict, sql.ConflictColumns(columns...))
 	return &CollectUpsertOne{
-		create: _c,
+		create: cc,
 	}
 }
 
@@ -549,16 +549,16 @@ type CollectCreateBulk struct {
 }
 
 // Save creates the Collect entities in the database.
-func (_c *CollectCreateBulk) Save(ctx context.Context) ([]*Collect, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ccb *CollectCreateBulk) Save(ctx context.Context) ([]*Collect, error) {
+	if ccb.err != nil {
+		return nil, ccb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Collect, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ccb.builders))
+	nodes := make([]*Collect, len(ccb.builders))
+	mutators := make([]Mutator, len(ccb.builders))
+	for i := range ccb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ccb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*CollectMutation)
@@ -572,12 +572,12 @@ func (_c *CollectCreateBulk) Save(ctx context.Context) ([]*Collect, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ccb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ccb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ccb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -597,7 +597,7 @@ func (_c *CollectCreateBulk) Save(ctx context.Context) ([]*Collect, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ccb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -605,8 +605,8 @@ func (_c *CollectCreateBulk) Save(ctx context.Context) ([]*Collect, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *CollectCreateBulk) SaveX(ctx context.Context) []*Collect {
-	v, err := _c.Save(ctx)
+func (ccb *CollectCreateBulk) SaveX(ctx context.Context) []*Collect {
+	v, err := ccb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -614,14 +614,14 @@ func (_c *CollectCreateBulk) SaveX(ctx context.Context) []*Collect {
 }
 
 // Exec executes the query.
-func (_c *CollectCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ccb *CollectCreateBulk) Exec(ctx context.Context) error {
+	_, err := ccb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *CollectCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ccb *CollectCreateBulk) ExecX(ctx context.Context) {
+	if err := ccb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -641,10 +641,10 @@ func (_c *CollectCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *CollectCreateBulk) OnConflict(opts ...sql.ConflictOption) *CollectUpsertBulk {
-	_c.conflict = opts
+func (ccb *CollectCreateBulk) OnConflict(opts ...sql.ConflictOption) *CollectUpsertBulk {
+	ccb.conflict = opts
 	return &CollectUpsertBulk{
-		create: _c,
+		create: ccb,
 	}
 }
 
@@ -654,10 +654,10 @@ func (_c *CollectCreateBulk) OnConflict(opts ...sql.ConflictOption) *CollectUpse
 //	client.Collect.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *CollectCreateBulk) OnConflictColumns(columns ...string) *CollectUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ccb *CollectCreateBulk) OnConflictColumns(columns ...string) *CollectUpsertBulk {
+	ccb.conflict = append(ccb.conflict, sql.ConflictColumns(columns...))
 	return &CollectUpsertBulk{
-		create: _c,
+		create: ccb,
 	}
 }
 

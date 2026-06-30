@@ -20,56 +20,56 @@ type RpgUserLotteryRecordDelete struct {
 }
 
 // Where appends a list predicates to the RpgUserLotteryRecordDelete builder.
-func (_d *RpgUserLotteryRecordDelete) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rulrd *RpgUserLotteryRecordDelete) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordDelete {
+	rulrd.mutation.Where(ps...)
+	return rulrd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgUserLotteryRecordDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rulrd *RpgUserLotteryRecordDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rulrd.sqlExec, rulrd.mutation, rulrd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserLotteryRecordDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rulrd *RpgUserLotteryRecordDelete) ExecX(ctx context.Context) int {
+	n, err := rulrd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgUserLotteryRecordDelete) sqlExec(ctx context.Context) (int, error) {
+func (rulrd *RpgUserLotteryRecordDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpguserlotteryrecord.Table, sqlgraph.NewFieldSpec(rpguserlotteryrecord.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rulrd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rulrd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rulrd.mutation.done = true
 	return affected, err
 }
 
 // RpgUserLotteryRecordDeleteOne is the builder for deleting a single RpgUserLotteryRecord entity.
 type RpgUserLotteryRecordDeleteOne struct {
-	_d *RpgUserLotteryRecordDelete
+	rulrd *RpgUserLotteryRecordDelete
 }
 
 // Where appends a list predicates to the RpgUserLotteryRecordDelete builder.
-func (_d *RpgUserLotteryRecordDeleteOne) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rulrdo *RpgUserLotteryRecordDeleteOne) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordDeleteOne {
+	rulrdo.rulrd.mutation.Where(ps...)
+	return rulrdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgUserLotteryRecordDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rulrdo *RpgUserLotteryRecordDeleteOne) Exec(ctx context.Context) error {
+	n, err := rulrdo.rulrd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgUserLotteryRecordDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserLotteryRecordDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rulrdo *RpgUserLotteryRecordDeleteOne) ExecX(ctx context.Context) {
+	if err := rulrdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

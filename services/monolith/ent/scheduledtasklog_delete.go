@@ -20,56 +20,56 @@ type ScheduledTaskLogDelete struct {
 }
 
 // Where appends a list predicates to the ScheduledTaskLogDelete builder.
-func (_d *ScheduledTaskLogDelete) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (stld *ScheduledTaskLogDelete) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogDelete {
+	stld.mutation.Where(ps...)
+	return stld
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *ScheduledTaskLogDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (stld *ScheduledTaskLogDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, stld.sqlExec, stld.mutation, stld.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *ScheduledTaskLogDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (stld *ScheduledTaskLogDelete) ExecX(ctx context.Context) int {
+	n, err := stld.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *ScheduledTaskLogDelete) sqlExec(ctx context.Context) (int, error) {
+func (stld *ScheduledTaskLogDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(scheduledtasklog.Table, sqlgraph.NewFieldSpec(scheduledtasklog.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := stld.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, stld.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	stld.mutation.done = true
 	return affected, err
 }
 
 // ScheduledTaskLogDeleteOne is the builder for deleting a single ScheduledTaskLog entity.
 type ScheduledTaskLogDeleteOne struct {
-	_d *ScheduledTaskLogDelete
+	stld *ScheduledTaskLogDelete
 }
 
 // Where appends a list predicates to the ScheduledTaskLogDelete builder.
-func (_d *ScheduledTaskLogDeleteOne) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (stldo *ScheduledTaskLogDeleteOne) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogDeleteOne {
+	stldo.stld.mutation.Where(ps...)
+	return stldo
 }
 
 // Exec executes the deletion query.
-func (_d *ScheduledTaskLogDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (stldo *ScheduledTaskLogDeleteOne) Exec(ctx context.Context) error {
+	n, err := stldo.stld.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *ScheduledTaskLogDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *ScheduledTaskLogDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (stldo *ScheduledTaskLogDeleteOne) ExecX(ctx context.Context) {
+	if err := stldo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

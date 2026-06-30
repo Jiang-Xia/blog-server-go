@@ -28,40 +28,40 @@ type RpgUserLoadoutQuery struct {
 }
 
 // Where adds a new predicate for the RpgUserLoadoutQuery builder.
-func (_q *RpgUserLoadoutQuery) Where(ps ...predicate.RpgUserLoadout) *RpgUserLoadoutQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rulq *RpgUserLoadoutQuery) Where(ps ...predicate.RpgUserLoadout) *RpgUserLoadoutQuery {
+	rulq.predicates = append(rulq.predicates, ps...)
+	return rulq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgUserLoadoutQuery) Limit(limit int) *RpgUserLoadoutQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rulq *RpgUserLoadoutQuery) Limit(limit int) *RpgUserLoadoutQuery {
+	rulq.ctx.Limit = &limit
+	return rulq
 }
 
 // Offset to start from.
-func (_q *RpgUserLoadoutQuery) Offset(offset int) *RpgUserLoadoutQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rulq *RpgUserLoadoutQuery) Offset(offset int) *RpgUserLoadoutQuery {
+	rulq.ctx.Offset = &offset
+	return rulq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgUserLoadoutQuery) Unique(unique bool) *RpgUserLoadoutQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rulq *RpgUserLoadoutQuery) Unique(unique bool) *RpgUserLoadoutQuery {
+	rulq.ctx.Unique = &unique
+	return rulq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgUserLoadoutQuery) Order(o ...rpguserloadout.OrderOption) *RpgUserLoadoutQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rulq *RpgUserLoadoutQuery) Order(o ...rpguserloadout.OrderOption) *RpgUserLoadoutQuery {
+	rulq.order = append(rulq.order, o...)
+	return rulq
 }
 
 // First returns the first RpgUserLoadout entity from the query.
 // Returns a *NotFoundError when no RpgUserLoadout was found.
-func (_q *RpgUserLoadoutQuery) First(ctx context.Context) (*RpgUserLoadout, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rulq *RpgUserLoadoutQuery) First(ctx context.Context) (*RpgUserLoadout, error) {
+	nodes, err := rulq.Limit(1).All(setContextOp(ctx, rulq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgUserLoadoutQuery) First(ctx context.Context) (*RpgUserLoadout, erro
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) FirstX(ctx context.Context) *RpgUserLoadout {
-	node, err := _q.First(ctx)
+func (rulq *RpgUserLoadoutQuery) FirstX(ctx context.Context) *RpgUserLoadout {
+	node, err := rulq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgUserLoadoutQuery) FirstX(ctx context.Context) *RpgUserLoadout {
 
 // FirstID returns the first RpgUserLoadout ID from the query.
 // Returns a *NotFoundError when no RpgUserLoadout ID was found.
-func (_q *RpgUserLoadoutQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rulq *RpgUserLoadoutQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rulq.Limit(1).IDs(setContextOp(ctx, rulq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgUserLoadoutQuery) FirstID(ctx context.Context) (id int, err error) 
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rulq *RpgUserLoadoutQuery) FirstIDX(ctx context.Context) int {
+	id, err := rulq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgUserLoadoutQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgUserLoadout entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgUserLoadout entity is found.
 // Returns a *NotFoundError when no RpgUserLoadout entities are found.
-func (_q *RpgUserLoadoutQuery) Only(ctx context.Context) (*RpgUserLoadout, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rulq *RpgUserLoadoutQuery) Only(ctx context.Context) (*RpgUserLoadout, error) {
+	nodes, err := rulq.Limit(2).All(setContextOp(ctx, rulq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgUserLoadoutQuery) Only(ctx context.Context) (*RpgUserLoadout, error
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) OnlyX(ctx context.Context) *RpgUserLoadout {
-	node, err := _q.Only(ctx)
+func (rulq *RpgUserLoadoutQuery) OnlyX(ctx context.Context) *RpgUserLoadout {
+	node, err := rulq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgUserLoadoutQuery) OnlyX(ctx context.Context) *RpgUserLoadout {
 // OnlyID is like Only, but returns the only RpgUserLoadout ID in the query.
 // Returns a *NotSingularError when more than one RpgUserLoadout ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgUserLoadoutQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rulq *RpgUserLoadoutQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rulq.Limit(2).IDs(setContextOp(ctx, rulq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgUserLoadoutQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rulq *RpgUserLoadoutQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rulq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgUserLoadoutQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgUserLoadouts.
-func (_q *RpgUserLoadoutQuery) All(ctx context.Context) ([]*RpgUserLoadout, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rulq *RpgUserLoadoutQuery) All(ctx context.Context) ([]*RpgUserLoadout, error) {
+	ctx = setContextOp(ctx, rulq.ctx, ent.OpQueryAll)
+	if err := rulq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgUserLoadout, *RpgUserLoadoutQuery]()
-	return withInterceptors[[]*RpgUserLoadout](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgUserLoadout](ctx, rulq, qr, rulq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) AllX(ctx context.Context) []*RpgUserLoadout {
-	nodes, err := _q.All(ctx)
+func (rulq *RpgUserLoadoutQuery) AllX(ctx context.Context) []*RpgUserLoadout {
+	nodes, err := rulq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgUserLoadoutQuery) AllX(ctx context.Context) []*RpgUserLoadout {
 }
 
 // IDs executes the query and returns a list of RpgUserLoadout IDs.
-func (_q *RpgUserLoadoutQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rulq *RpgUserLoadoutQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rulq.ctx.Unique == nil && rulq.path != nil {
+		rulq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpguserloadout.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rulq.ctx, ent.OpQueryIDs)
+	if err = rulq.Select(rpguserloadout.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rulq *RpgUserLoadoutQuery) IDsX(ctx context.Context) []int {
+	ids, err := rulq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgUserLoadoutQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgUserLoadoutQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rulq *RpgUserLoadoutQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rulq.ctx, ent.OpQueryCount)
+	if err := rulq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgUserLoadoutQuery](), _q.inters)
+	return withInterceptors[int](ctx, rulq, querierCount[*RpgUserLoadoutQuery](), rulq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rulq *RpgUserLoadoutQuery) CountX(ctx context.Context) int {
+	count, err := rulq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgUserLoadoutQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgUserLoadoutQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rulq *RpgUserLoadoutQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rulq.ctx, ent.OpQueryExist)
+	switch _, err := rulq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgUserLoadoutQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgUserLoadoutQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rulq *RpgUserLoadoutQuery) ExistX(ctx context.Context) bool {
+	exist, err := rulq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgUserLoadoutQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgUserLoadoutQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgUserLoadoutQuery) Clone() *RpgUserLoadoutQuery {
-	if _q == nil {
+func (rulq *RpgUserLoadoutQuery) Clone() *RpgUserLoadoutQuery {
+	if rulq == nil {
 		return nil
 	}
 	return &RpgUserLoadoutQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpguserloadout.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgUserLoadout{}, _q.predicates...),
+		config:     rulq.config,
+		ctx:        rulq.ctx.Clone(),
+		order:      append([]rpguserloadout.OrderOption{}, rulq.order...),
+		inters:     append([]Interceptor{}, rulq.inters...),
+		predicates: append([]predicate.RpgUserLoadout{}, rulq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rulq.sql.Clone(),
+		path: rulq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgUserLoadoutQuery) Clone() *RpgUserLoadoutQuery {
 //		GroupBy(rpguserloadout.FieldUID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgUserLoadoutQuery) GroupBy(field string, fields ...string) *RpgUserLoadoutGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgUserLoadoutGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rulq *RpgUserLoadoutQuery) GroupBy(field string, fields ...string) *RpgUserLoadoutGroupBy {
+	rulq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgUserLoadoutGroupBy{build: rulq}
+	grbuild.flds = &rulq.ctx.Fields
 	grbuild.label = rpguserloadout.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgUserLoadoutQuery) GroupBy(field string, fields ...string) *RpgUserL
 //	client.RpgUserLoadout.Query().
 //		Select(rpguserloadout.FieldUID).
 //		Scan(ctx, &v)
-func (_q *RpgUserLoadoutQuery) Select(fields ...string) *RpgUserLoadoutSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgUserLoadoutSelect{RpgUserLoadoutQuery: _q}
+func (rulq *RpgUserLoadoutQuery) Select(fields ...string) *RpgUserLoadoutSelect {
+	rulq.ctx.Fields = append(rulq.ctx.Fields, fields...)
+	sbuild := &RpgUserLoadoutSelect{RpgUserLoadoutQuery: rulq}
 	sbuild.label = rpguserloadout.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rulq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgUserLoadoutSelect configured with the given aggregations.
-func (_q *RpgUserLoadoutQuery) Aggregate(fns ...AggregateFunc) *RpgUserLoadoutSelect {
-	return _q.Select().Aggregate(fns...)
+func (rulq *RpgUserLoadoutQuery) Aggregate(fns ...AggregateFunc) *RpgUserLoadoutSelect {
+	return rulq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgUserLoadoutQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rulq *RpgUserLoadoutQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rulq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rulq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rulq.ctx.Fields {
 		if !rpguserloadout.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rulq.path != nil {
+		prev, err := rulq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rulq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgUserLoadoutQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserLoadout, error) {
+func (rulq *RpgUserLoadoutQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserLoadout, error) {
 	var (
 		nodes = []*RpgUserLoadout{}
-		_spec = _q.querySpec()
+		_spec = rulq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgUserLoadout).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgUserLoadout{config: _q.config}
+		node := &RpgUserLoadout{config: rulq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rulq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgUserLoadoutQuery) sqlAll(ctx context.Context, hooks ...queryHook) (
 	return nodes, nil
 }
 
-func (_q *RpgUserLoadoutQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rulq *RpgUserLoadoutQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rulq.querySpec()
+	_spec.Node.Columns = rulq.ctx.Fields
+	if len(rulq.ctx.Fields) > 0 {
+		_spec.Unique = rulq.ctx.Unique != nil && *rulq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rulq.driver, _spec)
 }
 
-func (_q *RpgUserLoadoutQuery) querySpec() *sqlgraph.QuerySpec {
+func (rulq *RpgUserLoadoutQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpguserloadout.Table, rpguserloadout.Columns, sqlgraph.NewFieldSpec(rpguserloadout.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rulq.sql
+	if unique := rulq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rulq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rulq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserloadout.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgUserLoadoutQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rulq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rulq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rulq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rulq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgUserLoadoutQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgUserLoadoutQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rulq *RpgUserLoadoutQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rulq.driver.Dialect())
 	t1 := builder.Table(rpguserloadout.Table)
-	columns := _q.ctx.Fields
+	columns := rulq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpguserloadout.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rulq.sql != nil {
+		selector = rulq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rulq.ctx.Unique != nil && *rulq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rulq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rulq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rulq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rulq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgUserLoadoutGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgUserLoadoutGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserLoadoutGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rulgb *RpgUserLoadoutGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserLoadoutGroupBy {
+	rulgb.fns = append(rulgb.fns, fns...)
+	return rulgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgUserLoadoutGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rulgb *RpgUserLoadoutGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rulgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rulgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserLoadoutQuery, *RpgUserLoadoutGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgUserLoadoutQuery, *RpgUserLoadoutGroupBy](ctx, rulgb.build, rulgb, rulgb.build.inters, v)
 }
 
-func (_g *RpgUserLoadoutGroupBy) sqlScan(ctx context.Context, root *RpgUserLoadoutQuery, v any) error {
+func (rulgb *RpgUserLoadoutGroupBy) sqlScan(ctx context.Context, root *RpgUserLoadoutQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rulgb.fns))
+	for _, fn := range rulgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rulgb.flds)+len(rulgb.fns))
+		for _, f := range *rulgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rulgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rulgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgUserLoadoutSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgUserLoadoutSelect) Aggregate(fns ...AggregateFunc) *RpgUserLoadoutSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (ruls *RpgUserLoadoutSelect) Aggregate(fns ...AggregateFunc) *RpgUserLoadoutSelect {
+	ruls.fns = append(ruls.fns, fns...)
+	return ruls
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgUserLoadoutSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (ruls *RpgUserLoadoutSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruls.ctx, ent.OpQuerySelect)
+	if err := ruls.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserLoadoutQuery, *RpgUserLoadoutSelect](ctx, _s.RpgUserLoadoutQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgUserLoadoutQuery, *RpgUserLoadoutSelect](ctx, ruls.RpgUserLoadoutQuery, ruls, ruls.inters, v)
 }
 
-func (_s *RpgUserLoadoutSelect) sqlScan(ctx context.Context, root *RpgUserLoadoutQuery, v any) error {
+func (ruls *RpgUserLoadoutSelect) sqlScan(ctx context.Context, root *RpgUserLoadoutQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(ruls.fns))
+	for _, fn := range ruls.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*ruls.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgUserLoadoutSelect) sqlScan(ctx context.Context, root *RpgUserLoadou
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruls.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

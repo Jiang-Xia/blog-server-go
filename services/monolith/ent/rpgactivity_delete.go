@@ -20,56 +20,56 @@ type RpgActivityDelete struct {
 }
 
 // Where appends a list predicates to the RpgActivityDelete builder.
-func (_d *RpgActivityDelete) Where(ps ...predicate.RpgActivity) *RpgActivityDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rad *RpgActivityDelete) Where(ps ...predicate.RpgActivity) *RpgActivityDelete {
+	rad.mutation.Where(ps...)
+	return rad
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgActivityDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rad *RpgActivityDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rad.sqlExec, rad.mutation, rad.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgActivityDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rad *RpgActivityDelete) ExecX(ctx context.Context) int {
+	n, err := rad.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgActivityDelete) sqlExec(ctx context.Context) (int, error) {
+func (rad *RpgActivityDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpgactivity.Table, sqlgraph.NewFieldSpec(rpgactivity.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rad.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rad.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rad.mutation.done = true
 	return affected, err
 }
 
 // RpgActivityDeleteOne is the builder for deleting a single RpgActivity entity.
 type RpgActivityDeleteOne struct {
-	_d *RpgActivityDelete
+	rad *RpgActivityDelete
 }
 
 // Where appends a list predicates to the RpgActivityDelete builder.
-func (_d *RpgActivityDeleteOne) Where(ps ...predicate.RpgActivity) *RpgActivityDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rado *RpgActivityDeleteOne) Where(ps ...predicate.RpgActivity) *RpgActivityDeleteOne {
+	rado.rad.mutation.Where(ps...)
+	return rado
 }
 
 // Exec executes the deletion query.
-func (_d *RpgActivityDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rado *RpgActivityDeleteOne) Exec(ctx context.Context) error {
+	n, err := rado.rad.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgActivityDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgActivityDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rado *RpgActivityDeleteOne) ExecX(ctx context.Context) {
+	if err := rado.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

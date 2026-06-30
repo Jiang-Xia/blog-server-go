@@ -23,127 +23,127 @@ type RoleDataScopeUpdate struct {
 }
 
 // Where appends a list predicates to the RoleDataScopeUpdate builder.
-func (_u *RoleDataScopeUpdate) Where(ps ...predicate.RoleDataScope) *RoleDataScopeUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rdsu *RoleDataScopeUpdate) Where(ps ...predicate.RoleDataScope) *RoleDataScopeUpdate {
+	rdsu.mutation.Where(ps...)
+	return rdsu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RoleDataScopeUpdate) SetUpdateTime(v time.Time) *RoleDataScopeUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rdsu *RoleDataScopeUpdate) SetUpdateTime(t time.Time) *RoleDataScopeUpdate {
+	rdsu.mutation.SetUpdateTime(t)
+	return rdsu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RoleDataScopeUpdate) SetIsDelete(v bool) *RoleDataScopeUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rdsu *RoleDataScopeUpdate) SetIsDelete(b bool) *RoleDataScopeUpdate {
+	rdsu.mutation.SetIsDelete(b)
+	return rdsu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RoleDataScopeUpdate) SetNillableIsDelete(v *bool) *RoleDataScopeUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rdsu *RoleDataScopeUpdate) SetNillableIsDelete(b *bool) *RoleDataScopeUpdate {
+	if b != nil {
+		rdsu.SetIsDelete(*b)
 	}
-	return _u
+	return rdsu
 }
 
 // SetVersion sets the "version" field.
-func (_u *RoleDataScopeUpdate) SetVersion(v int) *RoleDataScopeUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rdsu *RoleDataScopeUpdate) SetVersion(i int) *RoleDataScopeUpdate {
+	rdsu.mutation.ResetVersion()
+	rdsu.mutation.SetVersion(i)
+	return rdsu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RoleDataScopeUpdate) SetNillableVersion(v *int) *RoleDataScopeUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rdsu *RoleDataScopeUpdate) SetNillableVersion(i *int) *RoleDataScopeUpdate {
+	if i != nil {
+		rdsu.SetVersion(*i)
 	}
-	return _u
+	return rdsu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RoleDataScopeUpdate) AddVersion(v int) *RoleDataScopeUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rdsu *RoleDataScopeUpdate) AddVersion(i int) *RoleDataScopeUpdate {
+	rdsu.mutation.AddVersion(i)
+	return rdsu
 }
 
 // SetRoleId sets the "roleId" field.
-func (_u *RoleDataScopeUpdate) SetRoleId(v int) *RoleDataScopeUpdate {
-	_u.mutation.ResetRoleId()
-	_u.mutation.SetRoleId(v)
-	return _u
+func (rdsu *RoleDataScopeUpdate) SetRoleId(i int) *RoleDataScopeUpdate {
+	rdsu.mutation.ResetRoleId()
+	rdsu.mutation.SetRoleId(i)
+	return rdsu
 }
 
 // SetNillableRoleId sets the "roleId" field if the given value is not nil.
-func (_u *RoleDataScopeUpdate) SetNillableRoleId(v *int) *RoleDataScopeUpdate {
-	if v != nil {
-		_u.SetRoleId(*v)
+func (rdsu *RoleDataScopeUpdate) SetNillableRoleId(i *int) *RoleDataScopeUpdate {
+	if i != nil {
+		rdsu.SetRoleId(*i)
 	}
-	return _u
+	return rdsu
 }
 
-// AddRoleId adds value to the "roleId" field.
-func (_u *RoleDataScopeUpdate) AddRoleId(v int) *RoleDataScopeUpdate {
-	_u.mutation.AddRoleId(v)
-	return _u
+// AddRoleId adds i to the "roleId" field.
+func (rdsu *RoleDataScopeUpdate) AddRoleId(i int) *RoleDataScopeUpdate {
+	rdsu.mutation.AddRoleId(i)
+	return rdsu
 }
 
 // SetResourceType sets the "resourceType" field.
-func (_u *RoleDataScopeUpdate) SetResourceType(v string) *RoleDataScopeUpdate {
-	_u.mutation.SetResourceType(v)
-	return _u
+func (rdsu *RoleDataScopeUpdate) SetResourceType(s string) *RoleDataScopeUpdate {
+	rdsu.mutation.SetResourceType(s)
+	return rdsu
 }
 
 // SetNillableResourceType sets the "resourceType" field if the given value is not nil.
-func (_u *RoleDataScopeUpdate) SetNillableResourceType(v *string) *RoleDataScopeUpdate {
-	if v != nil {
-		_u.SetResourceType(*v)
+func (rdsu *RoleDataScopeUpdate) SetNillableResourceType(s *string) *RoleDataScopeUpdate {
+	if s != nil {
+		rdsu.SetResourceType(*s)
 	}
-	return _u
+	return rdsu
 }
 
 // SetScopeType sets the "scopeType" field.
-func (_u *RoleDataScopeUpdate) SetScopeType(v string) *RoleDataScopeUpdate {
-	_u.mutation.SetScopeType(v)
-	return _u
+func (rdsu *RoleDataScopeUpdate) SetScopeType(s string) *RoleDataScopeUpdate {
+	rdsu.mutation.SetScopeType(s)
+	return rdsu
 }
 
 // SetNillableScopeType sets the "scopeType" field if the given value is not nil.
-func (_u *RoleDataScopeUpdate) SetNillableScopeType(v *string) *RoleDataScopeUpdate {
-	if v != nil {
-		_u.SetScopeType(*v)
+func (rdsu *RoleDataScopeUpdate) SetNillableScopeType(s *string) *RoleDataScopeUpdate {
+	if s != nil {
+		rdsu.SetScopeType(*s)
 	}
-	return _u
+	return rdsu
 }
 
 // SetDeptIds sets the "deptIds" field.
-func (_u *RoleDataScopeUpdate) SetDeptIds(v map[string]interface{}) *RoleDataScopeUpdate {
-	_u.mutation.SetDeptIds(v)
-	return _u
+func (rdsu *RoleDataScopeUpdate) SetDeptIds(m map[string]interface{}) *RoleDataScopeUpdate {
+	rdsu.mutation.SetDeptIds(m)
+	return rdsu
 }
 
 // ClearDeptIds clears the value of the "deptIds" field.
-func (_u *RoleDataScopeUpdate) ClearDeptIds() *RoleDataScopeUpdate {
-	_u.mutation.ClearDeptIds()
-	return _u
+func (rdsu *RoleDataScopeUpdate) ClearDeptIds() *RoleDataScopeUpdate {
+	rdsu.mutation.ClearDeptIds()
+	return rdsu
 }
 
 // Mutation returns the RoleDataScopeMutation object of the builder.
-func (_u *RoleDataScopeUpdate) Mutation() *RoleDataScopeMutation {
-	return _u.mutation
+func (rdsu *RoleDataScopeUpdate) Mutation() *RoleDataScopeMutation {
+	return rdsu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RoleDataScopeUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rdsu *RoleDataScopeUpdate) Save(ctx context.Context) (int, error) {
+	rdsu.defaults()
+	return withHooks(ctx, rdsu.sqlSave, rdsu.mutation, rdsu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RoleDataScopeUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rdsu *RoleDataScopeUpdate) SaveX(ctx context.Context) int {
+	affected, err := rdsu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -151,66 +151,66 @@ func (_u *RoleDataScopeUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RoleDataScopeUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rdsu *RoleDataScopeUpdate) Exec(ctx context.Context) error {
+	_, err := rdsu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RoleDataScopeUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rdsu *RoleDataScopeUpdate) ExecX(ctx context.Context) {
+	if err := rdsu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RoleDataScopeUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rdsu *RoleDataScopeUpdate) defaults() {
+	if _, ok := rdsu.mutation.UpdateTime(); !ok {
 		v := roledatascope.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rdsu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RoleDataScopeUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rdsu *RoleDataScopeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(roledatascope.Table, roledatascope.Columns, sqlgraph.NewFieldSpec(roledatascope.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rdsu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rdsu.mutation.UpdateTime(); ok {
 		_spec.SetField(roledatascope.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rdsu.mutation.IsDelete(); ok {
 		_spec.SetField(roledatascope.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rdsu.mutation.Version(); ok {
 		_spec.SetField(roledatascope.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rdsu.mutation.AddedVersion(); ok {
 		_spec.AddField(roledatascope.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.RoleId(); ok {
+	if value, ok := rdsu.mutation.RoleId(); ok {
 		_spec.SetField(roledatascope.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRoleId(); ok {
+	if value, ok := rdsu.mutation.AddedRoleId(); ok {
 		_spec.AddField(roledatascope.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ResourceType(); ok {
+	if value, ok := rdsu.mutation.ResourceType(); ok {
 		_spec.SetField(roledatascope.FieldResourceType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ScopeType(); ok {
+	if value, ok := rdsu.mutation.ScopeType(); ok {
 		_spec.SetField(roledatascope.FieldScopeType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.DeptIds(); ok {
+	if value, ok := rdsu.mutation.DeptIds(); ok {
 		_spec.SetField(roledatascope.FieldDeptIds, field.TypeJSON, value)
 	}
-	if _u.mutation.DeptIdsCleared() {
+	if rdsu.mutation.DeptIdsCleared() {
 		_spec.ClearField(roledatascope.FieldDeptIds, field.TypeJSON)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rdsu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{roledatascope.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -218,8 +218,8 @@ func (_u *RoleDataScopeUpdate) sqlSave(ctx context.Context) (_node int, err erro
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rdsu.mutation.done = true
+	return n, nil
 }
 
 // RoleDataScopeUpdateOne is the builder for updating a single RoleDataScope entity.
@@ -231,134 +231,134 @@ type RoleDataScopeUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RoleDataScopeUpdateOne) SetUpdateTime(v time.Time) *RoleDataScopeUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) SetUpdateTime(t time.Time) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.SetUpdateTime(t)
+	return rdsuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RoleDataScopeUpdateOne) SetIsDelete(v bool) *RoleDataScopeUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) SetIsDelete(b bool) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.SetIsDelete(b)
+	return rdsuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RoleDataScopeUpdateOne) SetNillableIsDelete(v *bool) *RoleDataScopeUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rdsuo *RoleDataScopeUpdateOne) SetNillableIsDelete(b *bool) *RoleDataScopeUpdateOne {
+	if b != nil {
+		rdsuo.SetIsDelete(*b)
 	}
-	return _u
+	return rdsuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RoleDataScopeUpdateOne) SetVersion(v int) *RoleDataScopeUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) SetVersion(i int) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.ResetVersion()
+	rdsuo.mutation.SetVersion(i)
+	return rdsuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RoleDataScopeUpdateOne) SetNillableVersion(v *int) *RoleDataScopeUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rdsuo *RoleDataScopeUpdateOne) SetNillableVersion(i *int) *RoleDataScopeUpdateOne {
+	if i != nil {
+		rdsuo.SetVersion(*i)
 	}
-	return _u
+	return rdsuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RoleDataScopeUpdateOne) AddVersion(v int) *RoleDataScopeUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rdsuo *RoleDataScopeUpdateOne) AddVersion(i int) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.AddVersion(i)
+	return rdsuo
 }
 
 // SetRoleId sets the "roleId" field.
-func (_u *RoleDataScopeUpdateOne) SetRoleId(v int) *RoleDataScopeUpdateOne {
-	_u.mutation.ResetRoleId()
-	_u.mutation.SetRoleId(v)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) SetRoleId(i int) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.ResetRoleId()
+	rdsuo.mutation.SetRoleId(i)
+	return rdsuo
 }
 
 // SetNillableRoleId sets the "roleId" field if the given value is not nil.
-func (_u *RoleDataScopeUpdateOne) SetNillableRoleId(v *int) *RoleDataScopeUpdateOne {
-	if v != nil {
-		_u.SetRoleId(*v)
+func (rdsuo *RoleDataScopeUpdateOne) SetNillableRoleId(i *int) *RoleDataScopeUpdateOne {
+	if i != nil {
+		rdsuo.SetRoleId(*i)
 	}
-	return _u
+	return rdsuo
 }
 
-// AddRoleId adds value to the "roleId" field.
-func (_u *RoleDataScopeUpdateOne) AddRoleId(v int) *RoleDataScopeUpdateOne {
-	_u.mutation.AddRoleId(v)
-	return _u
+// AddRoleId adds i to the "roleId" field.
+func (rdsuo *RoleDataScopeUpdateOne) AddRoleId(i int) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.AddRoleId(i)
+	return rdsuo
 }
 
 // SetResourceType sets the "resourceType" field.
-func (_u *RoleDataScopeUpdateOne) SetResourceType(v string) *RoleDataScopeUpdateOne {
-	_u.mutation.SetResourceType(v)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) SetResourceType(s string) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.SetResourceType(s)
+	return rdsuo
 }
 
 // SetNillableResourceType sets the "resourceType" field if the given value is not nil.
-func (_u *RoleDataScopeUpdateOne) SetNillableResourceType(v *string) *RoleDataScopeUpdateOne {
-	if v != nil {
-		_u.SetResourceType(*v)
+func (rdsuo *RoleDataScopeUpdateOne) SetNillableResourceType(s *string) *RoleDataScopeUpdateOne {
+	if s != nil {
+		rdsuo.SetResourceType(*s)
 	}
-	return _u
+	return rdsuo
 }
 
 // SetScopeType sets the "scopeType" field.
-func (_u *RoleDataScopeUpdateOne) SetScopeType(v string) *RoleDataScopeUpdateOne {
-	_u.mutation.SetScopeType(v)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) SetScopeType(s string) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.SetScopeType(s)
+	return rdsuo
 }
 
 // SetNillableScopeType sets the "scopeType" field if the given value is not nil.
-func (_u *RoleDataScopeUpdateOne) SetNillableScopeType(v *string) *RoleDataScopeUpdateOne {
-	if v != nil {
-		_u.SetScopeType(*v)
+func (rdsuo *RoleDataScopeUpdateOne) SetNillableScopeType(s *string) *RoleDataScopeUpdateOne {
+	if s != nil {
+		rdsuo.SetScopeType(*s)
 	}
-	return _u
+	return rdsuo
 }
 
 // SetDeptIds sets the "deptIds" field.
-func (_u *RoleDataScopeUpdateOne) SetDeptIds(v map[string]interface{}) *RoleDataScopeUpdateOne {
-	_u.mutation.SetDeptIds(v)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) SetDeptIds(m map[string]interface{}) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.SetDeptIds(m)
+	return rdsuo
 }
 
 // ClearDeptIds clears the value of the "deptIds" field.
-func (_u *RoleDataScopeUpdateOne) ClearDeptIds() *RoleDataScopeUpdateOne {
-	_u.mutation.ClearDeptIds()
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) ClearDeptIds() *RoleDataScopeUpdateOne {
+	rdsuo.mutation.ClearDeptIds()
+	return rdsuo
 }
 
 // Mutation returns the RoleDataScopeMutation object of the builder.
-func (_u *RoleDataScopeUpdateOne) Mutation() *RoleDataScopeMutation {
-	return _u.mutation
+func (rdsuo *RoleDataScopeUpdateOne) Mutation() *RoleDataScopeMutation {
+	return rdsuo.mutation
 }
 
 // Where appends a list predicates to the RoleDataScopeUpdate builder.
-func (_u *RoleDataScopeUpdateOne) Where(ps ...predicate.RoleDataScope) *RoleDataScopeUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) Where(ps ...predicate.RoleDataScope) *RoleDataScopeUpdateOne {
+	rdsuo.mutation.Where(ps...)
+	return rdsuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RoleDataScopeUpdateOne) Select(field string, fields ...string) *RoleDataScopeUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rdsuo *RoleDataScopeUpdateOne) Select(field string, fields ...string) *RoleDataScopeUpdateOne {
+	rdsuo.fields = append([]string{field}, fields...)
+	return rdsuo
 }
 
 // Save executes the query and returns the updated RoleDataScope entity.
-func (_u *RoleDataScopeUpdateOne) Save(ctx context.Context) (*RoleDataScope, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rdsuo *RoleDataScopeUpdateOne) Save(ctx context.Context) (*RoleDataScope, error) {
+	rdsuo.defaults()
+	return withHooks(ctx, rdsuo.sqlSave, rdsuo.mutation, rdsuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RoleDataScopeUpdateOne) SaveX(ctx context.Context) *RoleDataScope {
-	node, err := _u.Save(ctx)
+func (rdsuo *RoleDataScopeUpdateOne) SaveX(ctx context.Context) *RoleDataScope {
+	node, err := rdsuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -366,34 +366,34 @@ func (_u *RoleDataScopeUpdateOne) SaveX(ctx context.Context) *RoleDataScope {
 }
 
 // Exec executes the query on the entity.
-func (_u *RoleDataScopeUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rdsuo *RoleDataScopeUpdateOne) Exec(ctx context.Context) error {
+	_, err := rdsuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RoleDataScopeUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rdsuo *RoleDataScopeUpdateOne) ExecX(ctx context.Context) {
+	if err := rdsuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RoleDataScopeUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rdsuo *RoleDataScopeUpdateOne) defaults() {
+	if _, ok := rdsuo.mutation.UpdateTime(); !ok {
 		v := roledatascope.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rdsuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RoleDataScopeUpdateOne) sqlSave(ctx context.Context) (_node *RoleDataScope, err error) {
+func (rdsuo *RoleDataScopeUpdateOne) sqlSave(ctx context.Context) (_node *RoleDataScope, err error) {
 	_spec := sqlgraph.NewUpdateSpec(roledatascope.Table, roledatascope.Columns, sqlgraph.NewFieldSpec(roledatascope.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rdsuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RoleDataScope.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rdsuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, roledatascope.FieldID)
 		for _, f := range fields {
@@ -405,47 +405,47 @@ func (_u *RoleDataScopeUpdateOne) sqlSave(ctx context.Context) (_node *RoleDataS
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rdsuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rdsuo.mutation.UpdateTime(); ok {
 		_spec.SetField(roledatascope.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rdsuo.mutation.IsDelete(); ok {
 		_spec.SetField(roledatascope.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rdsuo.mutation.Version(); ok {
 		_spec.SetField(roledatascope.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rdsuo.mutation.AddedVersion(); ok {
 		_spec.AddField(roledatascope.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.RoleId(); ok {
+	if value, ok := rdsuo.mutation.RoleId(); ok {
 		_spec.SetField(roledatascope.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRoleId(); ok {
+	if value, ok := rdsuo.mutation.AddedRoleId(); ok {
 		_spec.AddField(roledatascope.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ResourceType(); ok {
+	if value, ok := rdsuo.mutation.ResourceType(); ok {
 		_spec.SetField(roledatascope.FieldResourceType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ScopeType(); ok {
+	if value, ok := rdsuo.mutation.ScopeType(); ok {
 		_spec.SetField(roledatascope.FieldScopeType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.DeptIds(); ok {
+	if value, ok := rdsuo.mutation.DeptIds(); ok {
 		_spec.SetField(roledatascope.FieldDeptIds, field.TypeJSON, value)
 	}
-	if _u.mutation.DeptIdsCleared() {
+	if rdsuo.mutation.DeptIdsCleared() {
 		_spec.ClearField(roledatascope.FieldDeptIds, field.TypeJSON)
 	}
-	_node = &RoleDataScope{config: _u.config}
+	_node = &RoleDataScope{config: rdsuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rdsuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{roledatascope.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -453,6 +453,6 @@ func (_u *RoleDataScopeUpdateOne) sqlSave(ctx context.Context) (_node *RoleDataS
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rdsuo.mutation.done = true
 	return _node, nil
 }

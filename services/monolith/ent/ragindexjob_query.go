@@ -28,40 +28,40 @@ type RagIndexJobQuery struct {
 }
 
 // Where adds a new predicate for the RagIndexJobQuery builder.
-func (_q *RagIndexJobQuery) Where(ps ...predicate.RagIndexJob) *RagIndexJobQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rijq *RagIndexJobQuery) Where(ps ...predicate.RagIndexJob) *RagIndexJobQuery {
+	rijq.predicates = append(rijq.predicates, ps...)
+	return rijq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RagIndexJobQuery) Limit(limit int) *RagIndexJobQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rijq *RagIndexJobQuery) Limit(limit int) *RagIndexJobQuery {
+	rijq.ctx.Limit = &limit
+	return rijq
 }
 
 // Offset to start from.
-func (_q *RagIndexJobQuery) Offset(offset int) *RagIndexJobQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rijq *RagIndexJobQuery) Offset(offset int) *RagIndexJobQuery {
+	rijq.ctx.Offset = &offset
+	return rijq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RagIndexJobQuery) Unique(unique bool) *RagIndexJobQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rijq *RagIndexJobQuery) Unique(unique bool) *RagIndexJobQuery {
+	rijq.ctx.Unique = &unique
+	return rijq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RagIndexJobQuery) Order(o ...ragindexjob.OrderOption) *RagIndexJobQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rijq *RagIndexJobQuery) Order(o ...ragindexjob.OrderOption) *RagIndexJobQuery {
+	rijq.order = append(rijq.order, o...)
+	return rijq
 }
 
 // First returns the first RagIndexJob entity from the query.
 // Returns a *NotFoundError when no RagIndexJob was found.
-func (_q *RagIndexJobQuery) First(ctx context.Context) (*RagIndexJob, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rijq *RagIndexJobQuery) First(ctx context.Context) (*RagIndexJob, error) {
+	nodes, err := rijq.Limit(1).All(setContextOp(ctx, rijq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RagIndexJobQuery) First(ctx context.Context) (*RagIndexJob, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RagIndexJobQuery) FirstX(ctx context.Context) *RagIndexJob {
-	node, err := _q.First(ctx)
+func (rijq *RagIndexJobQuery) FirstX(ctx context.Context) *RagIndexJob {
+	node, err := rijq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RagIndexJobQuery) FirstX(ctx context.Context) *RagIndexJob {
 
 // FirstID returns the first RagIndexJob ID from the query.
 // Returns a *NotFoundError when no RagIndexJob ID was found.
-func (_q *RagIndexJobQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rijq *RagIndexJobQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rijq.Limit(1).IDs(setContextOp(ctx, rijq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RagIndexJobQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RagIndexJobQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rijq *RagIndexJobQuery) FirstIDX(ctx context.Context) int {
+	id, err := rijq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RagIndexJobQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RagIndexJob entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RagIndexJob entity is found.
 // Returns a *NotFoundError when no RagIndexJob entities are found.
-func (_q *RagIndexJobQuery) Only(ctx context.Context) (*RagIndexJob, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rijq *RagIndexJobQuery) Only(ctx context.Context) (*RagIndexJob, error) {
+	nodes, err := rijq.Limit(2).All(setContextOp(ctx, rijq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RagIndexJobQuery) Only(ctx context.Context) (*RagIndexJob, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RagIndexJobQuery) OnlyX(ctx context.Context) *RagIndexJob {
-	node, err := _q.Only(ctx)
+func (rijq *RagIndexJobQuery) OnlyX(ctx context.Context) *RagIndexJob {
+	node, err := rijq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RagIndexJobQuery) OnlyX(ctx context.Context) *RagIndexJob {
 // OnlyID is like Only, but returns the only RagIndexJob ID in the query.
 // Returns a *NotSingularError when more than one RagIndexJob ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RagIndexJobQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rijq *RagIndexJobQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rijq.Limit(2).IDs(setContextOp(ctx, rijq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RagIndexJobQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RagIndexJobQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rijq *RagIndexJobQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rijq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RagIndexJobQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RagIndexJobs.
-func (_q *RagIndexJobQuery) All(ctx context.Context) ([]*RagIndexJob, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rijq *RagIndexJobQuery) All(ctx context.Context) ([]*RagIndexJob, error) {
+	ctx = setContextOp(ctx, rijq.ctx, ent.OpQueryAll)
+	if err := rijq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RagIndexJob, *RagIndexJobQuery]()
-	return withInterceptors[[]*RagIndexJob](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RagIndexJob](ctx, rijq, qr, rijq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RagIndexJobQuery) AllX(ctx context.Context) []*RagIndexJob {
-	nodes, err := _q.All(ctx)
+func (rijq *RagIndexJobQuery) AllX(ctx context.Context) []*RagIndexJob {
+	nodes, err := rijq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RagIndexJobQuery) AllX(ctx context.Context) []*RagIndexJob {
 }
 
 // IDs executes the query and returns a list of RagIndexJob IDs.
-func (_q *RagIndexJobQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rijq *RagIndexJobQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rijq.ctx.Unique == nil && rijq.path != nil {
+		rijq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(ragindexjob.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rijq.ctx, ent.OpQueryIDs)
+	if err = rijq.Select(ragindexjob.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RagIndexJobQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rijq *RagIndexJobQuery) IDsX(ctx context.Context) []int {
+	ids, err := rijq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RagIndexJobQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RagIndexJobQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rijq *RagIndexJobQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rijq.ctx, ent.OpQueryCount)
+	if err := rijq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RagIndexJobQuery](), _q.inters)
+	return withInterceptors[int](ctx, rijq, querierCount[*RagIndexJobQuery](), rijq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RagIndexJobQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rijq *RagIndexJobQuery) CountX(ctx context.Context) int {
+	count, err := rijq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RagIndexJobQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RagIndexJobQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rijq *RagIndexJobQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rijq.ctx, ent.OpQueryExist)
+	switch _, err := rijq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RagIndexJobQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RagIndexJobQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rijq *RagIndexJobQuery) ExistX(ctx context.Context) bool {
+	exist, err := rijq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RagIndexJobQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RagIndexJobQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RagIndexJobQuery) Clone() *RagIndexJobQuery {
-	if _q == nil {
+func (rijq *RagIndexJobQuery) Clone() *RagIndexJobQuery {
+	if rijq == nil {
 		return nil
 	}
 	return &RagIndexJobQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]ragindexjob.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RagIndexJob{}, _q.predicates...),
+		config:     rijq.config,
+		ctx:        rijq.ctx.Clone(),
+		order:      append([]ragindexjob.OrderOption{}, rijq.order...),
+		inters:     append([]Interceptor{}, rijq.inters...),
+		predicates: append([]predicate.RagIndexJob{}, rijq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rijq.sql.Clone(),
+		path: rijq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RagIndexJobQuery) Clone() *RagIndexJobQuery {
 //		GroupBy(ragindexjob.FieldArticleID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RagIndexJobQuery) GroupBy(field string, fields ...string) *RagIndexJobGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RagIndexJobGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rijq *RagIndexJobQuery) GroupBy(field string, fields ...string) *RagIndexJobGroupBy {
+	rijq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RagIndexJobGroupBy{build: rijq}
+	grbuild.flds = &rijq.ctx.Fields
 	grbuild.label = ragindexjob.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RagIndexJobQuery) GroupBy(field string, fields ...string) *RagIndexJob
 //	client.RagIndexJob.Query().
 //		Select(ragindexjob.FieldArticleID).
 //		Scan(ctx, &v)
-func (_q *RagIndexJobQuery) Select(fields ...string) *RagIndexJobSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RagIndexJobSelect{RagIndexJobQuery: _q}
+func (rijq *RagIndexJobQuery) Select(fields ...string) *RagIndexJobSelect {
+	rijq.ctx.Fields = append(rijq.ctx.Fields, fields...)
+	sbuild := &RagIndexJobSelect{RagIndexJobQuery: rijq}
 	sbuild.label = ragindexjob.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rijq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RagIndexJobSelect configured with the given aggregations.
-func (_q *RagIndexJobQuery) Aggregate(fns ...AggregateFunc) *RagIndexJobSelect {
-	return _q.Select().Aggregate(fns...)
+func (rijq *RagIndexJobQuery) Aggregate(fns ...AggregateFunc) *RagIndexJobSelect {
+	return rijq.Select().Aggregate(fns...)
 }
 
-func (_q *RagIndexJobQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rijq *RagIndexJobQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rijq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rijq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rijq.ctx.Fields {
 		if !ragindexjob.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rijq.path != nil {
+		prev, err := rijq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rijq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RagIndexJobQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RagIndexJob, error) {
+func (rijq *RagIndexJobQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RagIndexJob, error) {
 	var (
 		nodes = []*RagIndexJob{}
-		_spec = _q.querySpec()
+		_spec = rijq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RagIndexJob).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RagIndexJob{config: _q.config}
+		node := &RagIndexJob{config: rijq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rijq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RagIndexJobQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 	return nodes, nil
 }
 
-func (_q *RagIndexJobQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rijq *RagIndexJobQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rijq.querySpec()
+	_spec.Node.Columns = rijq.ctx.Fields
+	if len(rijq.ctx.Fields) > 0 {
+		_spec.Unique = rijq.ctx.Unique != nil && *rijq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rijq.driver, _spec)
 }
 
-func (_q *RagIndexJobQuery) querySpec() *sqlgraph.QuerySpec {
+func (rijq *RagIndexJobQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(ragindexjob.Table, ragindexjob.Columns, sqlgraph.NewFieldSpec(ragindexjob.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rijq.sql
+	if unique := rijq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rijq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rijq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, ragindexjob.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RagIndexJobQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rijq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rijq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rijq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rijq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RagIndexJobQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RagIndexJobQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rijq *RagIndexJobQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rijq.driver.Dialect())
 	t1 := builder.Table(ragindexjob.Table)
-	columns := _q.ctx.Fields
+	columns := rijq.ctx.Fields
 	if len(columns) == 0 {
 		columns = ragindexjob.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rijq.sql != nil {
+		selector = rijq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rijq.ctx.Unique != nil && *rijq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rijq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rijq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rijq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rijq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RagIndexJobGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RagIndexJobGroupBy) Aggregate(fns ...AggregateFunc) *RagIndexJobGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rijgb *RagIndexJobGroupBy) Aggregate(fns ...AggregateFunc) *RagIndexJobGroupBy {
+	rijgb.fns = append(rijgb.fns, fns...)
+	return rijgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RagIndexJobGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rijgb *RagIndexJobGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rijgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rijgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RagIndexJobQuery, *RagIndexJobGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RagIndexJobQuery, *RagIndexJobGroupBy](ctx, rijgb.build, rijgb, rijgb.build.inters, v)
 }
 
-func (_g *RagIndexJobGroupBy) sqlScan(ctx context.Context, root *RagIndexJobQuery, v any) error {
+func (rijgb *RagIndexJobGroupBy) sqlScan(ctx context.Context, root *RagIndexJobQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rijgb.fns))
+	for _, fn := range rijgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rijgb.flds)+len(rijgb.fns))
+		for _, f := range *rijgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rijgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rijgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RagIndexJobSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RagIndexJobSelect) Aggregate(fns ...AggregateFunc) *RagIndexJobSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rijs *RagIndexJobSelect) Aggregate(fns ...AggregateFunc) *RagIndexJobSelect {
+	rijs.fns = append(rijs.fns, fns...)
+	return rijs
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RagIndexJobSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rijs *RagIndexJobSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rijs.ctx, ent.OpQuerySelect)
+	if err := rijs.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RagIndexJobQuery, *RagIndexJobSelect](ctx, _s.RagIndexJobQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RagIndexJobQuery, *RagIndexJobSelect](ctx, rijs.RagIndexJobQuery, rijs, rijs.inters, v)
 }
 
-func (_s *RagIndexJobSelect) sqlScan(ctx context.Context, root *RagIndexJobQuery, v any) error {
+func (rijs *RagIndexJobSelect) sqlScan(ctx context.Context, root *RagIndexJobQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rijs.fns))
+	for _, fn := range rijs.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rijs.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RagIndexJobSelect) sqlScan(ctx context.Context, root *RagIndexJobQuery
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rijs.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

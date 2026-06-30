@@ -20,56 +20,56 @@ type RpgUserPetDelete struct {
 }
 
 // Where appends a list predicates to the RpgUserPetDelete builder.
-func (_d *RpgUserPetDelete) Where(ps ...predicate.RpgUserPet) *RpgUserPetDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rupd *RpgUserPetDelete) Where(ps ...predicate.RpgUserPet) *RpgUserPetDelete {
+	rupd.mutation.Where(ps...)
+	return rupd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgUserPetDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rupd *RpgUserPetDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rupd.sqlExec, rupd.mutation, rupd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserPetDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rupd *RpgUserPetDelete) ExecX(ctx context.Context) int {
+	n, err := rupd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgUserPetDelete) sqlExec(ctx context.Context) (int, error) {
+func (rupd *RpgUserPetDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpguserpet.Table, sqlgraph.NewFieldSpec(rpguserpet.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rupd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rupd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rupd.mutation.done = true
 	return affected, err
 }
 
 // RpgUserPetDeleteOne is the builder for deleting a single RpgUserPet entity.
 type RpgUserPetDeleteOne struct {
-	_d *RpgUserPetDelete
+	rupd *RpgUserPetDelete
 }
 
 // Where appends a list predicates to the RpgUserPetDelete builder.
-func (_d *RpgUserPetDeleteOne) Where(ps ...predicate.RpgUserPet) *RpgUserPetDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rupdo *RpgUserPetDeleteOne) Where(ps ...predicate.RpgUserPet) *RpgUserPetDeleteOne {
+	rupdo.rupd.mutation.Where(ps...)
+	return rupdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgUserPetDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rupdo *RpgUserPetDeleteOne) Exec(ctx context.Context) error {
+	n, err := rupdo.rupd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgUserPetDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserPetDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rupdo *RpgUserPetDeleteOne) ExecX(ctx context.Context) {
+	if err := rupdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

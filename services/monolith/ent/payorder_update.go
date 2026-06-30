@@ -23,204 +23,204 @@ type PayOrderUpdate struct {
 }
 
 // Where appends a list predicates to the PayOrderUpdate builder.
-func (_u *PayOrderUpdate) Where(ps ...predicate.PayOrder) *PayOrderUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (pou *PayOrderUpdate) Where(ps ...predicate.PayOrder) *PayOrderUpdate {
+	pou.mutation.Where(ps...)
+	return pou
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *PayOrderUpdate) SetUpdateTime(v time.Time) *PayOrderUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (pou *PayOrderUpdate) SetUpdateTime(t time.Time) *PayOrderUpdate {
+	pou.mutation.SetUpdateTime(t)
+	return pou
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *PayOrderUpdate) SetIsDelete(v bool) *PayOrderUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (pou *PayOrderUpdate) SetIsDelete(b bool) *PayOrderUpdate {
+	pou.mutation.SetIsDelete(b)
+	return pou
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableIsDelete(v *bool) *PayOrderUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (pou *PayOrderUpdate) SetNillableIsDelete(b *bool) *PayOrderUpdate {
+	if b != nil {
+		pou.SetIsDelete(*b)
 	}
-	return _u
+	return pou
 }
 
 // SetVersion sets the "version" field.
-func (_u *PayOrderUpdate) SetVersion(v int) *PayOrderUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (pou *PayOrderUpdate) SetVersion(i int) *PayOrderUpdate {
+	pou.mutation.ResetVersion()
+	pou.mutation.SetVersion(i)
+	return pou
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableVersion(v *int) *PayOrderUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (pou *PayOrderUpdate) SetNillableVersion(i *int) *PayOrderUpdate {
+	if i != nil {
+		pou.SetVersion(*i)
 	}
-	return _u
+	return pou
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *PayOrderUpdate) AddVersion(v int) *PayOrderUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (pou *PayOrderUpdate) AddVersion(i int) *PayOrderUpdate {
+	pou.mutation.AddVersion(i)
+	return pou
 }
 
 // SetOutTradeNo sets the "outTradeNo" field.
-func (_u *PayOrderUpdate) SetOutTradeNo(v string) *PayOrderUpdate {
-	_u.mutation.SetOutTradeNo(v)
-	return _u
+func (pou *PayOrderUpdate) SetOutTradeNo(s string) *PayOrderUpdate {
+	pou.mutation.SetOutTradeNo(s)
+	return pou
 }
 
 // SetNillableOutTradeNo sets the "outTradeNo" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableOutTradeNo(v *string) *PayOrderUpdate {
-	if v != nil {
-		_u.SetOutTradeNo(*v)
+func (pou *PayOrderUpdate) SetNillableOutTradeNo(s *string) *PayOrderUpdate {
+	if s != nil {
+		pou.SetOutTradeNo(*s)
 	}
-	return _u
+	return pou
 }
 
 // SetTradeNo sets the "tradeNo" field.
-func (_u *PayOrderUpdate) SetTradeNo(v string) *PayOrderUpdate {
-	_u.mutation.SetTradeNo(v)
-	return _u
+func (pou *PayOrderUpdate) SetTradeNo(s string) *PayOrderUpdate {
+	pou.mutation.SetTradeNo(s)
+	return pou
 }
 
 // SetNillableTradeNo sets the "tradeNo" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableTradeNo(v *string) *PayOrderUpdate {
-	if v != nil {
-		_u.SetTradeNo(*v)
+func (pou *PayOrderUpdate) SetNillableTradeNo(s *string) *PayOrderUpdate {
+	if s != nil {
+		pou.SetTradeNo(*s)
 	}
-	return _u
+	return pou
 }
 
 // SetSubject sets the "subject" field.
-func (_u *PayOrderUpdate) SetSubject(v string) *PayOrderUpdate {
-	_u.mutation.SetSubject(v)
-	return _u
+func (pou *PayOrderUpdate) SetSubject(s string) *PayOrderUpdate {
+	pou.mutation.SetSubject(s)
+	return pou
 }
 
 // SetNillableSubject sets the "subject" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableSubject(v *string) *PayOrderUpdate {
-	if v != nil {
-		_u.SetSubject(*v)
+func (pou *PayOrderUpdate) SetNillableSubject(s *string) *PayOrderUpdate {
+	if s != nil {
+		pou.SetSubject(*s)
 	}
-	return _u
+	return pou
 }
 
 // SetTotalAmount sets the "totalAmount" field.
-func (_u *PayOrderUpdate) SetTotalAmount(v float64) *PayOrderUpdate {
-	_u.mutation.ResetTotalAmount()
-	_u.mutation.SetTotalAmount(v)
-	return _u
+func (pou *PayOrderUpdate) SetTotalAmount(f float64) *PayOrderUpdate {
+	pou.mutation.ResetTotalAmount()
+	pou.mutation.SetTotalAmount(f)
+	return pou
 }
 
 // SetNillableTotalAmount sets the "totalAmount" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableTotalAmount(v *float64) *PayOrderUpdate {
-	if v != nil {
-		_u.SetTotalAmount(*v)
+func (pou *PayOrderUpdate) SetNillableTotalAmount(f *float64) *PayOrderUpdate {
+	if f != nil {
+		pou.SetTotalAmount(*f)
 	}
-	return _u
+	return pou
 }
 
-// AddTotalAmount adds value to the "totalAmount" field.
-func (_u *PayOrderUpdate) AddTotalAmount(v float64) *PayOrderUpdate {
-	_u.mutation.AddTotalAmount(v)
-	return _u
+// AddTotalAmount adds f to the "totalAmount" field.
+func (pou *PayOrderUpdate) AddTotalAmount(f float64) *PayOrderUpdate {
+	pou.mutation.AddTotalAmount(f)
+	return pou
 }
 
 // SetBuyerOpenId sets the "buyerOpenId" field.
-func (_u *PayOrderUpdate) SetBuyerOpenId(v string) *PayOrderUpdate {
-	_u.mutation.SetBuyerOpenId(v)
-	return _u
+func (pou *PayOrderUpdate) SetBuyerOpenId(s string) *PayOrderUpdate {
+	pou.mutation.SetBuyerOpenId(s)
+	return pou
 }
 
 // SetNillableBuyerOpenId sets the "buyerOpenId" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableBuyerOpenId(v *string) *PayOrderUpdate {
-	if v != nil {
-		_u.SetBuyerOpenId(*v)
+func (pou *PayOrderUpdate) SetNillableBuyerOpenId(s *string) *PayOrderUpdate {
+	if s != nil {
+		pou.SetBuyerOpenId(*s)
 	}
-	return _u
+	return pou
 }
 
 // SetStatus sets the "status" field.
-func (_u *PayOrderUpdate) SetStatus(v string) *PayOrderUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (pou *PayOrderUpdate) SetStatus(s string) *PayOrderUpdate {
+	pou.mutation.SetStatus(s)
+	return pou
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableStatus(v *string) *PayOrderUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (pou *PayOrderUpdate) SetNillableStatus(s *string) *PayOrderUpdate {
+	if s != nil {
+		pou.SetStatus(*s)
 	}
-	return _u
+	return pou
 }
 
 // SetRefundAmount sets the "refundAmount" field.
-func (_u *PayOrderUpdate) SetRefundAmount(v float64) *PayOrderUpdate {
-	_u.mutation.ResetRefundAmount()
-	_u.mutation.SetRefundAmount(v)
-	return _u
+func (pou *PayOrderUpdate) SetRefundAmount(f float64) *PayOrderUpdate {
+	pou.mutation.ResetRefundAmount()
+	pou.mutation.SetRefundAmount(f)
+	return pou
 }
 
 // SetNillableRefundAmount sets the "refundAmount" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableRefundAmount(v *float64) *PayOrderUpdate {
-	if v != nil {
-		_u.SetRefundAmount(*v)
+func (pou *PayOrderUpdate) SetNillableRefundAmount(f *float64) *PayOrderUpdate {
+	if f != nil {
+		pou.SetRefundAmount(*f)
 	}
-	return _u
+	return pou
 }
 
-// AddRefundAmount adds value to the "refundAmount" field.
-func (_u *PayOrderUpdate) AddRefundAmount(v float64) *PayOrderUpdate {
-	_u.mutation.AddRefundAmount(v)
-	return _u
+// AddRefundAmount adds f to the "refundAmount" field.
+func (pou *PayOrderUpdate) AddRefundAmount(f float64) *PayOrderUpdate {
+	pou.mutation.AddRefundAmount(f)
+	return pou
 }
 
 // SetChannel sets the "channel" field.
-func (_u *PayOrderUpdate) SetChannel(v string) *PayOrderUpdate {
-	_u.mutation.SetChannel(v)
-	return _u
+func (pou *PayOrderUpdate) SetChannel(s string) *PayOrderUpdate {
+	pou.mutation.SetChannel(s)
+	return pou
 }
 
 // SetNillableChannel sets the "channel" field if the given value is not nil.
-func (_u *PayOrderUpdate) SetNillableChannel(v *string) *PayOrderUpdate {
-	if v != nil {
-		_u.SetChannel(*v)
+func (pou *PayOrderUpdate) SetNillableChannel(s *string) *PayOrderUpdate {
+	if s != nil {
+		pou.SetChannel(*s)
 	}
-	return _u
+	return pou
 }
 
 // SetExtendParams sets the "extendParams" field.
-func (_u *PayOrderUpdate) SetExtendParams(v map[string]interface{}) *PayOrderUpdate {
-	_u.mutation.SetExtendParams(v)
-	return _u
+func (pou *PayOrderUpdate) SetExtendParams(m map[string]interface{}) *PayOrderUpdate {
+	pou.mutation.SetExtendParams(m)
+	return pou
 }
 
 // ClearExtendParams clears the value of the "extendParams" field.
-func (_u *PayOrderUpdate) ClearExtendParams() *PayOrderUpdate {
-	_u.mutation.ClearExtendParams()
-	return _u
+func (pou *PayOrderUpdate) ClearExtendParams() *PayOrderUpdate {
+	pou.mutation.ClearExtendParams()
+	return pou
 }
 
 // Mutation returns the PayOrderMutation object of the builder.
-func (_u *PayOrderUpdate) Mutation() *PayOrderMutation {
-	return _u.mutation
+func (pou *PayOrderUpdate) Mutation() *PayOrderMutation {
+	return pou.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *PayOrderUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (pou *PayOrderUpdate) Save(ctx context.Context) (int, error) {
+	pou.defaults()
+	return withHooks(ctx, pou.sqlSave, pou.mutation, pou.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *PayOrderUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (pou *PayOrderUpdate) SaveX(ctx context.Context) int {
+	affected, err := pou.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -228,84 +228,84 @@ func (_u *PayOrderUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *PayOrderUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (pou *PayOrderUpdate) Exec(ctx context.Context) error {
+	_, err := pou.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *PayOrderUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (pou *PayOrderUpdate) ExecX(ctx context.Context) {
+	if err := pou.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *PayOrderUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (pou *PayOrderUpdate) defaults() {
+	if _, ok := pou.mutation.UpdateTime(); !ok {
 		v := payorder.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		pou.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *PayOrderUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (pou *PayOrderUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(payorder.Table, payorder.Columns, sqlgraph.NewFieldSpec(payorder.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := pou.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := pou.mutation.UpdateTime(); ok {
 		_spec.SetField(payorder.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := pou.mutation.IsDelete(); ok {
 		_spec.SetField(payorder.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := pou.mutation.Version(); ok {
 		_spec.SetField(payorder.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := pou.mutation.AddedVersion(); ok {
 		_spec.AddField(payorder.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.OutTradeNo(); ok {
+	if value, ok := pou.mutation.OutTradeNo(); ok {
 		_spec.SetField(payorder.FieldOutTradeNo, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TradeNo(); ok {
+	if value, ok := pou.mutation.TradeNo(); ok {
 		_spec.SetField(payorder.FieldTradeNo, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Subject(); ok {
+	if value, ok := pou.mutation.Subject(); ok {
 		_spec.SetField(payorder.FieldSubject, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TotalAmount(); ok {
+	if value, ok := pou.mutation.TotalAmount(); ok {
 		_spec.SetField(payorder.FieldTotalAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedTotalAmount(); ok {
+	if value, ok := pou.mutation.AddedTotalAmount(); ok {
 		_spec.AddField(payorder.FieldTotalAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.BuyerOpenId(); ok {
+	if value, ok := pou.mutation.BuyerOpenId(); ok {
 		_spec.SetField(payorder.FieldBuyerOpenId, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := pou.mutation.Status(); ok {
 		_spec.SetField(payorder.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.RefundAmount(); ok {
+	if value, ok := pou.mutation.RefundAmount(); ok {
 		_spec.SetField(payorder.FieldRefundAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedRefundAmount(); ok {
+	if value, ok := pou.mutation.AddedRefundAmount(); ok {
 		_spec.AddField(payorder.FieldRefundAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.Channel(); ok {
+	if value, ok := pou.mutation.Channel(); ok {
 		_spec.SetField(payorder.FieldChannel, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ExtendParams(); ok {
+	if value, ok := pou.mutation.ExtendParams(); ok {
 		_spec.SetField(payorder.FieldExtendParams, field.TypeJSON, value)
 	}
-	if _u.mutation.ExtendParamsCleared() {
+	if pou.mutation.ExtendParamsCleared() {
 		_spec.ClearField(payorder.FieldExtendParams, field.TypeJSON)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, pou.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{payorder.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -313,8 +313,8 @@ func (_u *PayOrderUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	pou.mutation.done = true
+	return n, nil
 }
 
 // PayOrderUpdateOne is the builder for updating a single PayOrder entity.
@@ -326,211 +326,211 @@ type PayOrderUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *PayOrderUpdateOne) SetUpdateTime(v time.Time) *PayOrderUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetUpdateTime(t time.Time) *PayOrderUpdateOne {
+	pouo.mutation.SetUpdateTime(t)
+	return pouo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *PayOrderUpdateOne) SetIsDelete(v bool) *PayOrderUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetIsDelete(b bool) *PayOrderUpdateOne {
+	pouo.mutation.SetIsDelete(b)
+	return pouo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableIsDelete(v *bool) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (pouo *PayOrderUpdateOne) SetNillableIsDelete(b *bool) *PayOrderUpdateOne {
+	if b != nil {
+		pouo.SetIsDelete(*b)
 	}
-	return _u
+	return pouo
 }
 
 // SetVersion sets the "version" field.
-func (_u *PayOrderUpdateOne) SetVersion(v int) *PayOrderUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetVersion(i int) *PayOrderUpdateOne {
+	pouo.mutation.ResetVersion()
+	pouo.mutation.SetVersion(i)
+	return pouo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableVersion(v *int) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (pouo *PayOrderUpdateOne) SetNillableVersion(i *int) *PayOrderUpdateOne {
+	if i != nil {
+		pouo.SetVersion(*i)
 	}
-	return _u
+	return pouo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *PayOrderUpdateOne) AddVersion(v int) *PayOrderUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (pouo *PayOrderUpdateOne) AddVersion(i int) *PayOrderUpdateOne {
+	pouo.mutation.AddVersion(i)
+	return pouo
 }
 
 // SetOutTradeNo sets the "outTradeNo" field.
-func (_u *PayOrderUpdateOne) SetOutTradeNo(v string) *PayOrderUpdateOne {
-	_u.mutation.SetOutTradeNo(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetOutTradeNo(s string) *PayOrderUpdateOne {
+	pouo.mutation.SetOutTradeNo(s)
+	return pouo
 }
 
 // SetNillableOutTradeNo sets the "outTradeNo" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableOutTradeNo(v *string) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetOutTradeNo(*v)
+func (pouo *PayOrderUpdateOne) SetNillableOutTradeNo(s *string) *PayOrderUpdateOne {
+	if s != nil {
+		pouo.SetOutTradeNo(*s)
 	}
-	return _u
+	return pouo
 }
 
 // SetTradeNo sets the "tradeNo" field.
-func (_u *PayOrderUpdateOne) SetTradeNo(v string) *PayOrderUpdateOne {
-	_u.mutation.SetTradeNo(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetTradeNo(s string) *PayOrderUpdateOne {
+	pouo.mutation.SetTradeNo(s)
+	return pouo
 }
 
 // SetNillableTradeNo sets the "tradeNo" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableTradeNo(v *string) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetTradeNo(*v)
+func (pouo *PayOrderUpdateOne) SetNillableTradeNo(s *string) *PayOrderUpdateOne {
+	if s != nil {
+		pouo.SetTradeNo(*s)
 	}
-	return _u
+	return pouo
 }
 
 // SetSubject sets the "subject" field.
-func (_u *PayOrderUpdateOne) SetSubject(v string) *PayOrderUpdateOne {
-	_u.mutation.SetSubject(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetSubject(s string) *PayOrderUpdateOne {
+	pouo.mutation.SetSubject(s)
+	return pouo
 }
 
 // SetNillableSubject sets the "subject" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableSubject(v *string) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetSubject(*v)
+func (pouo *PayOrderUpdateOne) SetNillableSubject(s *string) *PayOrderUpdateOne {
+	if s != nil {
+		pouo.SetSubject(*s)
 	}
-	return _u
+	return pouo
 }
 
 // SetTotalAmount sets the "totalAmount" field.
-func (_u *PayOrderUpdateOne) SetTotalAmount(v float64) *PayOrderUpdateOne {
-	_u.mutation.ResetTotalAmount()
-	_u.mutation.SetTotalAmount(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetTotalAmount(f float64) *PayOrderUpdateOne {
+	pouo.mutation.ResetTotalAmount()
+	pouo.mutation.SetTotalAmount(f)
+	return pouo
 }
 
 // SetNillableTotalAmount sets the "totalAmount" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableTotalAmount(v *float64) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetTotalAmount(*v)
+func (pouo *PayOrderUpdateOne) SetNillableTotalAmount(f *float64) *PayOrderUpdateOne {
+	if f != nil {
+		pouo.SetTotalAmount(*f)
 	}
-	return _u
+	return pouo
 }
 
-// AddTotalAmount adds value to the "totalAmount" field.
-func (_u *PayOrderUpdateOne) AddTotalAmount(v float64) *PayOrderUpdateOne {
-	_u.mutation.AddTotalAmount(v)
-	return _u
+// AddTotalAmount adds f to the "totalAmount" field.
+func (pouo *PayOrderUpdateOne) AddTotalAmount(f float64) *PayOrderUpdateOne {
+	pouo.mutation.AddTotalAmount(f)
+	return pouo
 }
 
 // SetBuyerOpenId sets the "buyerOpenId" field.
-func (_u *PayOrderUpdateOne) SetBuyerOpenId(v string) *PayOrderUpdateOne {
-	_u.mutation.SetBuyerOpenId(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetBuyerOpenId(s string) *PayOrderUpdateOne {
+	pouo.mutation.SetBuyerOpenId(s)
+	return pouo
 }
 
 // SetNillableBuyerOpenId sets the "buyerOpenId" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableBuyerOpenId(v *string) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetBuyerOpenId(*v)
+func (pouo *PayOrderUpdateOne) SetNillableBuyerOpenId(s *string) *PayOrderUpdateOne {
+	if s != nil {
+		pouo.SetBuyerOpenId(*s)
 	}
-	return _u
+	return pouo
 }
 
 // SetStatus sets the "status" field.
-func (_u *PayOrderUpdateOne) SetStatus(v string) *PayOrderUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetStatus(s string) *PayOrderUpdateOne {
+	pouo.mutation.SetStatus(s)
+	return pouo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableStatus(v *string) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (pouo *PayOrderUpdateOne) SetNillableStatus(s *string) *PayOrderUpdateOne {
+	if s != nil {
+		pouo.SetStatus(*s)
 	}
-	return _u
+	return pouo
 }
 
 // SetRefundAmount sets the "refundAmount" field.
-func (_u *PayOrderUpdateOne) SetRefundAmount(v float64) *PayOrderUpdateOne {
-	_u.mutation.ResetRefundAmount()
-	_u.mutation.SetRefundAmount(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetRefundAmount(f float64) *PayOrderUpdateOne {
+	pouo.mutation.ResetRefundAmount()
+	pouo.mutation.SetRefundAmount(f)
+	return pouo
 }
 
 // SetNillableRefundAmount sets the "refundAmount" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableRefundAmount(v *float64) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetRefundAmount(*v)
+func (pouo *PayOrderUpdateOne) SetNillableRefundAmount(f *float64) *PayOrderUpdateOne {
+	if f != nil {
+		pouo.SetRefundAmount(*f)
 	}
-	return _u
+	return pouo
 }
 
-// AddRefundAmount adds value to the "refundAmount" field.
-func (_u *PayOrderUpdateOne) AddRefundAmount(v float64) *PayOrderUpdateOne {
-	_u.mutation.AddRefundAmount(v)
-	return _u
+// AddRefundAmount adds f to the "refundAmount" field.
+func (pouo *PayOrderUpdateOne) AddRefundAmount(f float64) *PayOrderUpdateOne {
+	pouo.mutation.AddRefundAmount(f)
+	return pouo
 }
 
 // SetChannel sets the "channel" field.
-func (_u *PayOrderUpdateOne) SetChannel(v string) *PayOrderUpdateOne {
-	_u.mutation.SetChannel(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetChannel(s string) *PayOrderUpdateOne {
+	pouo.mutation.SetChannel(s)
+	return pouo
 }
 
 // SetNillableChannel sets the "channel" field if the given value is not nil.
-func (_u *PayOrderUpdateOne) SetNillableChannel(v *string) *PayOrderUpdateOne {
-	if v != nil {
-		_u.SetChannel(*v)
+func (pouo *PayOrderUpdateOne) SetNillableChannel(s *string) *PayOrderUpdateOne {
+	if s != nil {
+		pouo.SetChannel(*s)
 	}
-	return _u
+	return pouo
 }
 
 // SetExtendParams sets the "extendParams" field.
-func (_u *PayOrderUpdateOne) SetExtendParams(v map[string]interface{}) *PayOrderUpdateOne {
-	_u.mutation.SetExtendParams(v)
-	return _u
+func (pouo *PayOrderUpdateOne) SetExtendParams(m map[string]interface{}) *PayOrderUpdateOne {
+	pouo.mutation.SetExtendParams(m)
+	return pouo
 }
 
 // ClearExtendParams clears the value of the "extendParams" field.
-func (_u *PayOrderUpdateOne) ClearExtendParams() *PayOrderUpdateOne {
-	_u.mutation.ClearExtendParams()
-	return _u
+func (pouo *PayOrderUpdateOne) ClearExtendParams() *PayOrderUpdateOne {
+	pouo.mutation.ClearExtendParams()
+	return pouo
 }
 
 // Mutation returns the PayOrderMutation object of the builder.
-func (_u *PayOrderUpdateOne) Mutation() *PayOrderMutation {
-	return _u.mutation
+func (pouo *PayOrderUpdateOne) Mutation() *PayOrderMutation {
+	return pouo.mutation
 }
 
 // Where appends a list predicates to the PayOrderUpdate builder.
-func (_u *PayOrderUpdateOne) Where(ps ...predicate.PayOrder) *PayOrderUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (pouo *PayOrderUpdateOne) Where(ps ...predicate.PayOrder) *PayOrderUpdateOne {
+	pouo.mutation.Where(ps...)
+	return pouo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *PayOrderUpdateOne) Select(field string, fields ...string) *PayOrderUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (pouo *PayOrderUpdateOne) Select(field string, fields ...string) *PayOrderUpdateOne {
+	pouo.fields = append([]string{field}, fields...)
+	return pouo
 }
 
 // Save executes the query and returns the updated PayOrder entity.
-func (_u *PayOrderUpdateOne) Save(ctx context.Context) (*PayOrder, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (pouo *PayOrderUpdateOne) Save(ctx context.Context) (*PayOrder, error) {
+	pouo.defaults()
+	return withHooks(ctx, pouo.sqlSave, pouo.mutation, pouo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *PayOrderUpdateOne) SaveX(ctx context.Context) *PayOrder {
-	node, err := _u.Save(ctx)
+func (pouo *PayOrderUpdateOne) SaveX(ctx context.Context) *PayOrder {
+	node, err := pouo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -538,34 +538,34 @@ func (_u *PayOrderUpdateOne) SaveX(ctx context.Context) *PayOrder {
 }
 
 // Exec executes the query on the entity.
-func (_u *PayOrderUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (pouo *PayOrderUpdateOne) Exec(ctx context.Context) error {
+	_, err := pouo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *PayOrderUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (pouo *PayOrderUpdateOne) ExecX(ctx context.Context) {
+	if err := pouo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *PayOrderUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (pouo *PayOrderUpdateOne) defaults() {
+	if _, ok := pouo.mutation.UpdateTime(); !ok {
 		v := payorder.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		pouo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *PayOrderUpdateOne) sqlSave(ctx context.Context) (_node *PayOrder, err error) {
+func (pouo *PayOrderUpdateOne) sqlSave(ctx context.Context) (_node *PayOrder, err error) {
 	_spec := sqlgraph.NewUpdateSpec(payorder.Table, payorder.Columns, sqlgraph.NewFieldSpec(payorder.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := pouo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "PayOrder.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := pouo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, payorder.FieldID)
 		for _, f := range fields {
@@ -577,65 +577,65 @@ func (_u *PayOrderUpdateOne) sqlSave(ctx context.Context) (_node *PayOrder, err 
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := pouo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := pouo.mutation.UpdateTime(); ok {
 		_spec.SetField(payorder.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := pouo.mutation.IsDelete(); ok {
 		_spec.SetField(payorder.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := pouo.mutation.Version(); ok {
 		_spec.SetField(payorder.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := pouo.mutation.AddedVersion(); ok {
 		_spec.AddField(payorder.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.OutTradeNo(); ok {
+	if value, ok := pouo.mutation.OutTradeNo(); ok {
 		_spec.SetField(payorder.FieldOutTradeNo, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TradeNo(); ok {
+	if value, ok := pouo.mutation.TradeNo(); ok {
 		_spec.SetField(payorder.FieldTradeNo, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Subject(); ok {
+	if value, ok := pouo.mutation.Subject(); ok {
 		_spec.SetField(payorder.FieldSubject, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.TotalAmount(); ok {
+	if value, ok := pouo.mutation.TotalAmount(); ok {
 		_spec.SetField(payorder.FieldTotalAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedTotalAmount(); ok {
+	if value, ok := pouo.mutation.AddedTotalAmount(); ok {
 		_spec.AddField(payorder.FieldTotalAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.BuyerOpenId(); ok {
+	if value, ok := pouo.mutation.BuyerOpenId(); ok {
 		_spec.SetField(payorder.FieldBuyerOpenId, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := pouo.mutation.Status(); ok {
 		_spec.SetField(payorder.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.RefundAmount(); ok {
+	if value, ok := pouo.mutation.RefundAmount(); ok {
 		_spec.SetField(payorder.FieldRefundAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedRefundAmount(); ok {
+	if value, ok := pouo.mutation.AddedRefundAmount(); ok {
 		_spec.AddField(payorder.FieldRefundAmount, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.Channel(); ok {
+	if value, ok := pouo.mutation.Channel(); ok {
 		_spec.SetField(payorder.FieldChannel, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ExtendParams(); ok {
+	if value, ok := pouo.mutation.ExtendParams(); ok {
 		_spec.SetField(payorder.FieldExtendParams, field.TypeJSON, value)
 	}
-	if _u.mutation.ExtendParamsCleared() {
+	if pouo.mutation.ExtendParamsCleared() {
 		_spec.ClearField(payorder.FieldExtendParams, field.TypeJSON)
 	}
-	_node = &PayOrder{config: _u.config}
+	_node = &PayOrder{config: pouo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, pouo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{payorder.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -643,6 +643,6 @@ func (_u *PayOrderUpdateOne) sqlSave(ctx context.Context) (_node *PayOrder, err 
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	pouo.mutation.done = true
 	return _node, nil
 }

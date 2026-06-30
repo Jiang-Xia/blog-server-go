@@ -20,56 +20,56 @@ type ArticleTagsTagDelete struct {
 }
 
 // Where appends a list predicates to the ArticleTagsTagDelete builder.
-func (_d *ArticleTagsTagDelete) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (attd *ArticleTagsTagDelete) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagDelete {
+	attd.mutation.Where(ps...)
+	return attd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *ArticleTagsTagDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (attd *ArticleTagsTagDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, attd.sqlExec, attd.mutation, attd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *ArticleTagsTagDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (attd *ArticleTagsTagDelete) ExecX(ctx context.Context) int {
+	n, err := attd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *ArticleTagsTagDelete) sqlExec(ctx context.Context) (int, error) {
+func (attd *ArticleTagsTagDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(articletagstag.Table, sqlgraph.NewFieldSpec(articletagstag.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := attd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, attd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	attd.mutation.done = true
 	return affected, err
 }
 
 // ArticleTagsTagDeleteOne is the builder for deleting a single ArticleTagsTag entity.
 type ArticleTagsTagDeleteOne struct {
-	_d *ArticleTagsTagDelete
+	attd *ArticleTagsTagDelete
 }
 
 // Where appends a list predicates to the ArticleTagsTagDelete builder.
-func (_d *ArticleTagsTagDeleteOne) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (attdo *ArticleTagsTagDeleteOne) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagDeleteOne {
+	attdo.attd.mutation.Where(ps...)
+	return attdo
 }
 
 // Exec executes the deletion query.
-func (_d *ArticleTagsTagDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (attdo *ArticleTagsTagDeleteOne) Exec(ctx context.Context) error {
+	n, err := attdo.attd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *ArticleTagsTagDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *ArticleTagsTagDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (attdo *ArticleTagsTagDeleteOne) ExecX(ctx context.Context) {
+	if err := attdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

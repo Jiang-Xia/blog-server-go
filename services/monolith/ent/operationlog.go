@@ -71,7 +71,7 @@ func (*OperationLog) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the OperationLog fields.
-func (_m *OperationLog) assignValues(columns []string, values []any) error {
+func (ol *OperationLog) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -82,94 +82,94 @@ func (_m *OperationLog) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			ol.ID = int(value.Int64)
 		case operationlog.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				ol.CreateTime = value.Time
 			}
 		case operationlog.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				ol.UpdateTime = value.Time
 			}
 		case operationlog.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				ol.IsDelete = value.Bool
 			}
 		case operationlog.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				ol.Version = int(value.Int64)
 			}
 		case operationlog.FieldUserId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field userId", values[i])
 			} else if value.Valid {
-				_m.UserId = int(value.Int64)
+				ol.UserId = int(value.Int64)
 			}
 		case operationlog.FieldUsername:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field username", values[i])
 			} else if value.Valid {
-				_m.Username = value.String
+				ol.Username = value.String
 			}
 		case operationlog.FieldModule:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field module", values[i])
 			} else if value.Valid {
-				_m.Module = value.String
+				ol.Module = value.String
 			}
 		case operationlog.FieldAction:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field action", values[i])
 			} else if value.Valid {
-				_m.Action = value.String
+				ol.Action = value.String
 			}
 		case operationlog.FieldMethod:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field method", values[i])
 			} else if value.Valid {
-				_m.Method = value.String
+				ol.Method = value.String
 			}
 		case operationlog.FieldPath:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field path", values[i])
 			} else if value.Valid {
-				_m.Path = value.String
+				ol.Path = value.String
 			}
 		case operationlog.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				ol.Description = value.String
 			}
 		case operationlog.FieldIP:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field ip", values[i])
 			} else if value.Valid {
-				_m.IP = value.String
+				ol.IP = value.String
 			}
 		case operationlog.FieldRequestBody:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field requestBody", values[i])
 			} else if value.Valid {
-				_m.RequestBody = new(string)
-				*_m.RequestBody = value.String
+				ol.RequestBody = new(string)
+				*ol.RequestBody = value.String
 			}
 		case operationlog.FieldStatusCode:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field statusCode", values[i])
 			} else if value.Valid {
-				_m.StatusCode = int(value.Int64)
+				ol.StatusCode = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			ol.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -177,76 +177,76 @@ func (_m *OperationLog) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the OperationLog.
 // This includes values selected through modifiers, order, etc.
-func (_m *OperationLog) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (ol *OperationLog) Value(name string) (ent.Value, error) {
+	return ol.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this OperationLog.
 // Note that you need to call OperationLog.Unwrap() before calling this method if this OperationLog
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *OperationLog) Update() *OperationLogUpdateOne {
-	return NewOperationLogClient(_m.config).UpdateOne(_m)
+func (ol *OperationLog) Update() *OperationLogUpdateOne {
+	return NewOperationLogClient(ol.config).UpdateOne(ol)
 }
 
 // Unwrap unwraps the OperationLog entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *OperationLog) Unwrap() *OperationLog {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (ol *OperationLog) Unwrap() *OperationLog {
+	_tx, ok := ol.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: OperationLog is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	ol.config.driver = _tx.drv
+	return ol
 }
 
 // String implements the fmt.Stringer.
-func (_m *OperationLog) String() string {
+func (ol *OperationLog) String() string {
 	var builder strings.Builder
 	builder.WriteString("OperationLog(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", ol.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(ol.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(ol.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", ol.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", ol.Version))
 	builder.WriteString(", ")
 	builder.WriteString("userId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UserId))
+	builder.WriteString(fmt.Sprintf("%v", ol.UserId))
 	builder.WriteString(", ")
 	builder.WriteString("username=")
-	builder.WriteString(_m.Username)
+	builder.WriteString(ol.Username)
 	builder.WriteString(", ")
 	builder.WriteString("module=")
-	builder.WriteString(_m.Module)
+	builder.WriteString(ol.Module)
 	builder.WriteString(", ")
 	builder.WriteString("action=")
-	builder.WriteString(_m.Action)
+	builder.WriteString(ol.Action)
 	builder.WriteString(", ")
 	builder.WriteString("method=")
-	builder.WriteString(_m.Method)
+	builder.WriteString(ol.Method)
 	builder.WriteString(", ")
 	builder.WriteString("path=")
-	builder.WriteString(_m.Path)
+	builder.WriteString(ol.Path)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(ol.Description)
 	builder.WriteString(", ")
 	builder.WriteString("ip=")
-	builder.WriteString(_m.IP)
+	builder.WriteString(ol.IP)
 	builder.WriteString(", ")
-	if v := _m.RequestBody; v != nil {
+	if v := ol.RequestBody; v != nil {
 		builder.WriteString("requestBody=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("statusCode=")
-	builder.WriteString(fmt.Sprintf("%v", _m.StatusCode))
+	builder.WriteString(fmt.Sprintf("%v", ol.StatusCode))
 	builder.WriteByte(')')
 	return builder.String()
 }

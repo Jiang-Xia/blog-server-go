@@ -36,7 +36,7 @@ func (*MyFile) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the MyFile fields.
-func (_m *MyFile) assignValues(columns []string, values []any) error {
+func (mf *MyFile) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -46,10 +46,10 @@ func (_m *MyFile) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				mf.ID = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			mf.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -57,33 +57,33 @@ func (_m *MyFile) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the MyFile.
 // This includes values selected through modifiers, order, etc.
-func (_m *MyFile) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (mf *MyFile) Value(name string) (ent.Value, error) {
+	return mf.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this MyFile.
 // Note that you need to call MyFile.Unwrap() before calling this method if this MyFile
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *MyFile) Update() *MyFileUpdateOne {
-	return NewMyFileClient(_m.config).UpdateOne(_m)
+func (mf *MyFile) Update() *MyFileUpdateOne {
+	return NewMyFileClient(mf.config).UpdateOne(mf)
 }
 
 // Unwrap unwraps the MyFile entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *MyFile) Unwrap() *MyFile {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (mf *MyFile) Unwrap() *MyFile {
+	_tx, ok := mf.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: MyFile is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	mf.config.driver = _tx.drv
+	return mf
 }
 
 // String implements the fmt.Stringer.
-func (_m *MyFile) String() string {
+func (mf *MyFile) String() string {
 	var builder strings.Builder
 	builder.WriteString("MyFile(")
-	builder.WriteString(fmt.Sprintf("id=%v", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v", mf.ID))
 	builder.WriteByte(')')
 	return builder.String()
 }

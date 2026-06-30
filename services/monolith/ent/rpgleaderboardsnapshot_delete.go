@@ -20,56 +20,56 @@ type RpgLeaderboardSnapshotDelete struct {
 }
 
 // Where appends a list predicates to the RpgLeaderboardSnapshotDelete builder.
-func (_d *RpgLeaderboardSnapshotDelete) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rlsd *RpgLeaderboardSnapshotDelete) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotDelete {
+	rlsd.mutation.Where(ps...)
+	return rlsd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgLeaderboardSnapshotDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rlsd *RpgLeaderboardSnapshotDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rlsd.sqlExec, rlsd.mutation, rlsd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgLeaderboardSnapshotDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rlsd *RpgLeaderboardSnapshotDelete) ExecX(ctx context.Context) int {
+	n, err := rlsd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgLeaderboardSnapshotDelete) sqlExec(ctx context.Context) (int, error) {
+func (rlsd *RpgLeaderboardSnapshotDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpgleaderboardsnapshot.Table, sqlgraph.NewFieldSpec(rpgleaderboardsnapshot.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rlsd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rlsd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rlsd.mutation.done = true
 	return affected, err
 }
 
 // RpgLeaderboardSnapshotDeleteOne is the builder for deleting a single RpgLeaderboardSnapshot entity.
 type RpgLeaderboardSnapshotDeleteOne struct {
-	_d *RpgLeaderboardSnapshotDelete
+	rlsd *RpgLeaderboardSnapshotDelete
 }
 
 // Where appends a list predicates to the RpgLeaderboardSnapshotDelete builder.
-func (_d *RpgLeaderboardSnapshotDeleteOne) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rlsdo *RpgLeaderboardSnapshotDeleteOne) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotDeleteOne {
+	rlsdo.rlsd.mutation.Where(ps...)
+	return rlsdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgLeaderboardSnapshotDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rlsdo *RpgLeaderboardSnapshotDeleteOne) Exec(ctx context.Context) error {
+	n, err := rlsdo.rlsd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgLeaderboardSnapshotDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgLeaderboardSnapshotDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rlsdo *RpgLeaderboardSnapshotDeleteOne) ExecX(ctx context.Context) {
+	if err := rlsdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

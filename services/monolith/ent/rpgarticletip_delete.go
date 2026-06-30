@@ -20,56 +20,56 @@ type RpgArticleTipDelete struct {
 }
 
 // Where appends a list predicates to the RpgArticleTipDelete builder.
-func (_d *RpgArticleTipDelete) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (ratd *RpgArticleTipDelete) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipDelete {
+	ratd.mutation.Where(ps...)
+	return ratd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgArticleTipDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (ratd *RpgArticleTipDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, ratd.sqlExec, ratd.mutation, ratd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgArticleTipDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (ratd *RpgArticleTipDelete) ExecX(ctx context.Context) int {
+	n, err := ratd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgArticleTipDelete) sqlExec(ctx context.Context) (int, error) {
+func (ratd *RpgArticleTipDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpgarticletip.Table, sqlgraph.NewFieldSpec(rpgarticletip.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := ratd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, ratd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	ratd.mutation.done = true
 	return affected, err
 }
 
 // RpgArticleTipDeleteOne is the builder for deleting a single RpgArticleTip entity.
 type RpgArticleTipDeleteOne struct {
-	_d *RpgArticleTipDelete
+	ratd *RpgArticleTipDelete
 }
 
 // Where appends a list predicates to the RpgArticleTipDelete builder.
-func (_d *RpgArticleTipDeleteOne) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (ratdo *RpgArticleTipDeleteOne) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipDeleteOne {
+	ratdo.ratd.mutation.Where(ps...)
+	return ratdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgArticleTipDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (ratdo *RpgArticleTipDeleteOne) Exec(ctx context.Context) error {
+	n, err := ratdo.ratd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgArticleTipDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgArticleTipDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (ratdo *RpgArticleTipDeleteOne) ExecX(ctx context.Context) {
+	if err := ratdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
