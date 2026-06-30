@@ -4,12 +4,19 @@ package app
 import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/ws"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/middleware"
+	payrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pay/repo"
+	paysvc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pay/service"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
+	rpgactivity "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/activity"
+	rpgevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/event"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
@@ -45,32 +52,76 @@ func providePubHandler(pubSvc *pub.Service) *handler.PubHandler {
 	return handler.NewPubHandler(handler.PubHandlerDeps{Pub: pubSvc})
 }
 
-// RealtimeRuntime Hub 与 Stream 消费者生命周期。
-type RealtimeRuntime struct {
-	Hub       *ws.Hub
-	Pusher    *ws.RealtimePusher
-	Consumer  *event.Consumer
-	Publisher *event.Publisher
-	WS        *handler.WSHandler
-	DevPush   *handler.DevPushHandler
+func providePayOrderRepo(client *ent.Client) *payrepo.PayOrderRepo {
+	return payrepo.NewPayOrderRepo(client)
 }
 
-func provideEventConsumer(rds rueidis.Client, log *zap.Logger) *event.Consumer {
+func providePayService(cfg *config.Config, orderRepo *payrepo.PayOrderRepo, log *zap.Logger) (*paysvc.PayService, error) {
+	return paysvc.NewPayService(cfg, orderRepo, log)
+}
+
+func providePayOrderService(orderRepo *payrepo.PayOrderRepo, pay *paysvc.PayService, mod *rpg.Module, log *zap.Logger) *paysvc.PayOrderService {
+	return providePayOrderServiceWithRecharge(orderRepo, pay, mod, log)
+}
+
+func provideRPGHandler(mod *rpg.Module, game *handler.RPGGameplay, jwt *auth.JWTService) *handler.RPGHandler {
+	return handler.NewRPGHandler(mod, game, jwt)
+}
+
+func provideActivityNotifyScheduler(mod *rpg.Module, log *zap.Logger) scheduler.ActivityNotifyRunner {
+	return rpgactivity.NewNotifyScheduler(mod.Repo, mod.Notify, log)
+}
+
+// BlogEventConsumer blog 域 Stream 消费器（wire 区分类型用）。
+type BlogEventConsumer struct {
+	*event.Consumer
+}
+
+// RPGEventConsumer RPG 域 Stream 消费器（wire 区分类型用）。
+type RPGEventConsumer struct {
+	*event.Consumer
+}
+
+// RealtimeRuntime Hub 与 Stream 消费者生命周期。
+type RealtimeRuntime struct {
+	Hub          *ws.Hub
+	Pusher       *ws.RealtimePusher
+	BlogConsumer BlogEventConsumer
+	RPGConsumer  RPGEventConsumer
+	Publisher    *event.Publisher
+	WS           *handler.WSHandler
+	DevPush      *handler.DevPushHandler
+}
+
+func provideBlogEventConsumer(rds rueidis.Client, log *zap.Logger) BlogEventConsumer {
 	c := event.NewConsumer(rds, log, event.ConsumerGroupBlog)
 	event.RegisterBlogHandlers(c, log)
-	return c
+	return BlogEventConsumer{c}
+}
+
+func provideRPGEventHandlers(mod *rpg.Module, redis *redisutil.Store) rpgevent.Handlers {
+	return provideRPGEventHandlersFull(mod, redis)
+}
+
+func provideRPGEventConsumer(rds rueidis.Client, log *zap.Logger, handlers rpgevent.Handlers) RPGEventConsumer {
+	c := event.NewConsumer(rds, log, event.ConsumerGroupRPG)
+	rpgevent.RegisterRPGHandlers(c, handlers)
+	return RPGEventConsumer{c}
 }
 
 func provideRealtimeRuntime(
 	hub *ws.Hub,
 	pusher *ws.RealtimePusher,
-	consumer *event.Consumer,
+	blogConsumer BlogEventConsumer,
+	rpgConsumer RPGEventConsumer,
 	publisher *event.Publisher,
 	wsH *handler.WSHandler,
 	dev *handler.DevPushHandler,
 ) *RealtimeRuntime {
 	return &RealtimeRuntime{
-		Hub: hub, Pusher: pusher, Consumer: consumer, Publisher: publisher, WS: wsH, DevPush: dev,
+		Hub: hub, Pusher: pusher,
+		BlogConsumer: blogConsumer, RPGConsumer: rpgConsumer,
+		Publisher: publisher, WS: wsH, DevPush: dev,
 	}
 }
 
@@ -96,6 +147,11 @@ func provideRegisterDeps(
 	operationLogH *handler.OperationLogHandler,
 	wsH *handler.WSHandler,
 	devPushH *handler.DevPushHandler,
+	rpgH *handler.RPGHandler,
+	rpgAdminH *handler.RPGAdminHandler,
+	rpgProfileH *handler.RPGProfileHandler,
+	payH *handler.PayHandler,
+	payOrderH *handler.PayOrderHandler,
 	jwt *auth.JWTService,
 	userRepo *repo.UserRepo,
 	cfg *config.Config,
@@ -126,6 +182,11 @@ func provideRegisterDeps(
 		OperationLog: operationLogH,
 		WS:           wsH,
 		DevPush:      devPushH,
+		RPG:          rpgH,
+		RPGAdmin:     rpgAdminH,
+		RPGProfile:   rpgProfileH,
+		Pay:          payH,
+		PayOrder:     payOrderH,
 		JWT:          jwt,
 		UserRepo:     userRepo,
 		Permission: middleware.PermissionDeps{

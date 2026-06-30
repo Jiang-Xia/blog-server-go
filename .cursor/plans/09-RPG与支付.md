@@ -120,7 +120,7 @@ make test   # 单元 + 集成子集
 
 完成验收后须在 [`docs/09-RPG与支付.md`](../../docs/09-RPG与支付.md) 记录实现要点、接口一览、验收命令与已知限制，并更新 [`docs/README.md`](../../docs/README.md) 索引。
 
-- [ ] 文档已写入 `docs/`
+- [x] 文档已写入 `docs/`
 
 ## 下一步
 

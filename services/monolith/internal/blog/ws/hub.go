@@ -63,6 +63,17 @@ func (h *Hub) PublishToUser(userID uint64, payload []byte) {
 	h.broadcast <- broadcastMsg{userIDFilter: userID, payload: payload}
 }
 
+// OnlineUIDs 返回当前在线用户 uid 列表（快照）。
+func (h *Hub) OnlineUIDs() []uint64 {
+	h.mu.RLock()
+	defer h.mu.RUnlock()
+	out := make([]uint64, 0, len(h.clients))
+	for uid := range h.clients {
+		out = append(out, uid)
+	}
+	return out
+}
+
 // PublishToTopic 向 topic 订阅者推送。
 func (h *Hub) PublishToTopic(topic string, payload []byte) {
 	h.broadcast <- broadcastMsg{topicFilter: topic, payload: payload}

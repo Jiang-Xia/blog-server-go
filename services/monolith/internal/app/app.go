@@ -13,6 +13,8 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/ws"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
+	rpgseeds "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/seeds"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/redis/rueidis"
 	"go.uber.org/zap"
@@ -20,13 +22,15 @@ import (
 
 // App 聚合 HTTP 服务与基础设施客户端。
 type App struct {
-	h         *server.Hertz
-	log       *zap.Logger
-	ent       *ent.Client
-	redis     rueidis.Client
-	scheduler *scheduler.Scheduler
-	realtime  *RealtimeRuntime
-	cancel    context.CancelFunc
+	h               *server.Hertz
+	log             *zap.Logger
+	ent             *ent.Client
+	redis           rueidis.Client
+	scheduler       *scheduler.Scheduler
+	realtime        *RealtimeRuntime
+	rpgMod          *rpg.Module
+	activityNotify  scheduler.ActivityNotifyRunner
+	cancel          context.CancelFunc
 }
 
 // NewApp 构造可运行的应用实例。
@@ -37,8 +41,13 @@ func NewApp(
 	redisClient rueidis.Client,
 	sched *scheduler.Scheduler,
 	rt *RealtimeRuntime,
+	rpgMod *rpg.Module,
+	activityNotify scheduler.ActivityNotifyRunner,
 ) *App {
-	return &App{h: h, log: log, ent: entClient, redis: redisClient, scheduler: sched, realtime: rt}
+	return &App{
+		h: h, log: log, ent: entClient, redis: redisClient,
+		scheduler: sched, realtime: rt, rpgMod: rpgMod, activityNotify: activityNotify,
+	}
 }
 
 // Run 启动 HTTP 服务并监听退出信号。
@@ -46,23 +55,37 @@ func (a *App) Run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 	a.cancel = cancel
 
+	if a.rpgMod != nil && a.rpgMod.Repo != nil {
+		if err := rpgseeds.SyncAllPredefined(ctx, a.rpgMod.Repo, a.log); err != nil {
+			a.log.Warn("rpg predefined seed sync failed", zap.Error(err))
+		} else {
+			a.log.Info("rpg predefined seeds synced")
+		}
+	}
+
 	if a.realtime != nil && a.realtime.Hub != nil {
 		go a.realtime.Hub.Run(ctx)
 		ws.StartRedisSubscriber(ctx, a.redis, a.realtime.Hub)
 		a.log.Info("websocket hub started")
 	}
-	if a.realtime != nil && a.realtime.Consumer != nil {
-		a.realtime.Consumer.Start(ctx)
-		a.log.Info("event consumer started")
+	if a.realtime != nil && a.realtime.BlogConsumer.Consumer != nil {
+		a.realtime.BlogConsumer.Consumer.Start(ctx)
+		a.log.Info("blog event consumer started")
+	}
+	if a.realtime != nil && a.realtime.RPGConsumer.Consumer != nil {
+		a.realtime.RPGConsumer.Consumer.Start(ctx)
+		a.log.Info("rpg event consumer started")
 	}
 
 	if a.scheduler != nil {
 		if err := a.scheduler.RegisterPlaceholder(); err != nil {
 			a.log.Warn("register placeholder cron failed", zap.Error(err))
-		} else {
-			a.scheduler.Start()
-			a.log.Info("cron scheduler started")
 		}
+		if err := a.scheduler.RegisterActivityNotify(a.activityNotify); err != nil {
+			a.log.Warn("register activity notify cron failed", zap.Error(err))
+		}
+		a.scheduler.Start()
+		a.log.Info("cron scheduler started")
 	}
 	go func() {
 		a.log.Info("hertz server starting")

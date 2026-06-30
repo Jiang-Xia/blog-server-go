@@ -48,3 +48,17 @@ wechat:
 storage:
   upload_path: "./public/uploads/"
   public_prefix: "/static/"
+
+# 支付（env：PAY_ALIPAY_APP_ID、PAY_ALIPAY_PRIVATE_KEY、PAY_ALIPAY_PUBLIC_KEY、PAY_ALIPAY_NOTIFY_URL）
+pay:
+  alipay_app_id: ""
+  alipay_private_key: ""
+  alipay_public_key: ""
+  alipay_gateway: "https://openapi.alipay.com/gateway.do"
+  alipay_notify_url: "http://127.0.0.1:5000/api/v1/pay/notice"
+  alipay_return_url: ""
+  alipay_mini_cashier_page: "packageB/pages/business/pay/all-pay/all-pay"
+  sandbox: true
+  use_legacy_sandbox_gateway: false
+  wechat_app_id: ""
+  wechat_secret: ""
