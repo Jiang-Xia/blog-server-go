@@ -12,7 +12,7 @@ Agent 为验证启动的任何 dev 进程，**结束后必须关闭**。
 | 阶段 | 命令 | 端口 |
 |------|------|------|
 | 单体 monolith | `make dev` / `go run services/monolith/cmd/main.go` | **5000** |
-| gateway（Plan 05） | `make dev-gateway` | **8000** |
+| gateway（Plan 10） | `make dev-gateway` | **8000** |
 | blog / user / rpg | 各服务配置 `http.addr` | 5001–5003 |
 
 ## 必须关闭的场景

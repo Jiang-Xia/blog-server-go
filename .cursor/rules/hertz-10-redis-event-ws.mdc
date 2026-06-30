@@ -45,7 +45,7 @@ _ = s.publisher.Publish(ctx, EventCommentCreated, payload)
 - **控制帧** Ping/Pong（`WriteMessage(PingMessage)`）— 连接探活
 - **应用层** `{"type":"ping"}` → `{"type":"pong"}` — 业务心跳
 
-## 跨服务推送（Plan 05）
+## 跨服务推送（Plan 10）
 
 - rpg-service → Redis pub/sub `realtime:push` → blog-service Hub 转发
 - 推送 payload 须含 `type` + `seq` 供前端断线补漏

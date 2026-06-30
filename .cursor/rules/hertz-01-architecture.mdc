@@ -13,7 +13,7 @@ blog-server-go/
 ├── proto/              # protobuf（buf 管理，go_package 必填）
 ├── pkg/                # 跨服务共享（config/response/errcode/logger/crypto…）
 ├── services/
-│   └── monolith/       # Plan 01–04 单体入口
+│   └── monolith/       # Plan 01–09 单体入口
 │       ├── cmd/main.go
 │       ├── internal/
 │       │   ├── app/        # wire 装配
@@ -21,7 +21,7 @@ blog-server-go/
 │       │   ├── service/    # 用例 / 业务逻辑
 │       │   ├── repo/       # Ent 仓储封装
 │       │   ├── middleware/
-│       │   └── ws/         # WebSocket Hub（Plan 04）
+│       │   └── ws/         # WebSocket Hub（Plan 08）
 │       └── ent/schema/     # Ent schema（按 user/blog/rpg 分子目录）
 ├── migrations/         # golang-migrate
 ├── configs/            # *.yaml（Viper）
@@ -31,7 +31,7 @@ blog-server-go/
 └── go.mod              # 单 module monorepo
 ```
 
-Plan 05 拆分后各服务复用相同 `internal/` 分层，Ent schema 随服务迁移到 `services/<name>/ent/schema/`。
+Plan 10 拆分后各服务复用相同 `internal/` 分层，Ent schema 随服务迁移到 `services/<name>/ent/schema/`。
 
 ## 分层职责
 
