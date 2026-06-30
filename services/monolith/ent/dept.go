@@ -67,7 +67,7 @@ func (*Dept) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Dept fields.
-func (_m *Dept) assignValues(columns []string, values []any) error {
+func (d *Dept) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -78,84 +78,84 @@ func (_m *Dept) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			d.ID = int(value.Int64)
 		case dept.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				d.CreateTime = value.Time
 			}
 		case dept.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				d.UpdateTime = value.Time
 			}
 		case dept.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				d.IsDelete = value.Bool
 			}
 		case dept.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				d.Version = int(value.Int64)
 			}
 		case dept.FieldDeptName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field deptName", values[i])
 			} else if value.Valid {
-				_m.DeptName = value.String
+				d.DeptName = value.String
 			}
 		case dept.FieldDeptCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field deptCode", values[i])
 			} else if value.Valid {
-				_m.DeptCode = value.String
+				d.DeptCode = value.String
 			}
 		case dept.FieldParentId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field parentId", values[i])
 			} else if value.Valid {
-				_m.ParentId = int(value.Int64)
+				d.ParentId = int(value.Int64)
 			}
 		case dept.FieldLeaderId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field leaderId", values[i])
 			} else if value.Valid {
-				_m.LeaderId = new(string)
-				*_m.LeaderId = value.String
+				d.LeaderId = new(string)
+				*d.LeaderId = value.String
 			}
 		case dept.FieldLeaderName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field leaderName", values[i])
 			} else if value.Valid {
-				_m.LeaderName = new(string)
-				*_m.LeaderName = value.String
+				d.LeaderName = new(string)
+				*d.LeaderName = value.String
 			}
 		case dept.FieldOrderNum:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field orderNum", values[i])
 			} else if value.Valid {
-				_m.OrderNum = int(value.Int64)
+				d.OrderNum = int(value.Int64)
 			}
 		case dept.FieldStatus:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = int(value.Int64)
+				d.Status = int(value.Int64)
 			}
 		case dept.FieldRemark:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field remark", values[i])
 			} else if value.Valid {
-				_m.Remark = new(string)
-				*_m.Remark = value.String
+				d.Remark = new(string)
+				*d.Remark = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			d.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -163,71 +163,71 @@ func (_m *Dept) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Dept.
 // This includes values selected through modifiers, order, etc.
-func (_m *Dept) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (d *Dept) Value(name string) (ent.Value, error) {
+	return d.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Dept.
 // Note that you need to call Dept.Unwrap() before calling this method if this Dept
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Dept) Update() *DeptUpdateOne {
-	return NewDeptClient(_m.config).UpdateOne(_m)
+func (d *Dept) Update() *DeptUpdateOne {
+	return NewDeptClient(d.config).UpdateOne(d)
 }
 
 // Unwrap unwraps the Dept entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Dept) Unwrap() *Dept {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (d *Dept) Unwrap() *Dept {
+	_tx, ok := d.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Dept is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	d.config.driver = _tx.drv
+	return d
 }
 
 // String implements the fmt.Stringer.
-func (_m *Dept) String() string {
+func (d *Dept) String() string {
 	var builder strings.Builder
 	builder.WriteString("Dept(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", d.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(d.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(d.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", d.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", d.Version))
 	builder.WriteString(", ")
 	builder.WriteString("deptName=")
-	builder.WriteString(_m.DeptName)
+	builder.WriteString(d.DeptName)
 	builder.WriteString(", ")
 	builder.WriteString("deptCode=")
-	builder.WriteString(_m.DeptCode)
+	builder.WriteString(d.DeptCode)
 	builder.WriteString(", ")
 	builder.WriteString("parentId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ParentId))
+	builder.WriteString(fmt.Sprintf("%v", d.ParentId))
 	builder.WriteString(", ")
-	if v := _m.LeaderId; v != nil {
+	if v := d.LeaderId; v != nil {
 		builder.WriteString("leaderId=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.LeaderName; v != nil {
+	if v := d.LeaderName; v != nil {
 		builder.WriteString("leaderName=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("orderNum=")
-	builder.WriteString(fmt.Sprintf("%v", _m.OrderNum))
+	builder.WriteString(fmt.Sprintf("%v", d.OrderNum))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Status))
+	builder.WriteString(fmt.Sprintf("%v", d.Status))
 	builder.WriteString(", ")
-	if v := _m.Remark; v != nil {
+	if v := d.Remark; v != nil {
 		builder.WriteString("remark=")
 		builder.WriteString(*v)
 	}

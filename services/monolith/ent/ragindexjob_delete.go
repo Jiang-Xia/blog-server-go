@@ -20,56 +20,56 @@ type RagIndexJobDelete struct {
 }
 
 // Where appends a list predicates to the RagIndexJobDelete builder.
-func (_d *RagIndexJobDelete) Where(ps ...predicate.RagIndexJob) *RagIndexJobDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rijd *RagIndexJobDelete) Where(ps ...predicate.RagIndexJob) *RagIndexJobDelete {
+	rijd.mutation.Where(ps...)
+	return rijd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RagIndexJobDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rijd *RagIndexJobDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rijd.sqlExec, rijd.mutation, rijd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RagIndexJobDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rijd *RagIndexJobDelete) ExecX(ctx context.Context) int {
+	n, err := rijd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RagIndexJobDelete) sqlExec(ctx context.Context) (int, error) {
+func (rijd *RagIndexJobDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(ragindexjob.Table, sqlgraph.NewFieldSpec(ragindexjob.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rijd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rijd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rijd.mutation.done = true
 	return affected, err
 }
 
 // RagIndexJobDeleteOne is the builder for deleting a single RagIndexJob entity.
 type RagIndexJobDeleteOne struct {
-	_d *RagIndexJobDelete
+	rijd *RagIndexJobDelete
 }
 
 // Where appends a list predicates to the RagIndexJobDelete builder.
-func (_d *RagIndexJobDeleteOne) Where(ps ...predicate.RagIndexJob) *RagIndexJobDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rijdo *RagIndexJobDeleteOne) Where(ps ...predicate.RagIndexJob) *RagIndexJobDeleteOne {
+	rijdo.rijd.mutation.Where(ps...)
+	return rijdo
 }
 
 // Exec executes the deletion query.
-func (_d *RagIndexJobDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rijdo *RagIndexJobDeleteOne) Exec(ctx context.Context) error {
+	n, err := rijdo.rijd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RagIndexJobDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RagIndexJobDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rijdo *RagIndexJobDeleteOne) ExecX(ctx context.Context) {
+	if err := rijdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

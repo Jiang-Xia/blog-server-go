@@ -22,30 +22,30 @@ type ArticleTagsTagCreate struct {
 }
 
 // SetArticleId sets the "articleId" field.
-func (_c *ArticleTagsTagCreate) SetArticleId(v int) *ArticleTagsTagCreate {
-	_c.mutation.SetArticleId(v)
-	return _c
+func (attc *ArticleTagsTagCreate) SetArticleId(i int) *ArticleTagsTagCreate {
+	attc.mutation.SetArticleId(i)
+	return attc
 }
 
 // SetTagId sets the "tagId" field.
-func (_c *ArticleTagsTagCreate) SetTagId(v string) *ArticleTagsTagCreate {
-	_c.mutation.SetTagId(v)
-	return _c
+func (attc *ArticleTagsTagCreate) SetTagId(s string) *ArticleTagsTagCreate {
+	attc.mutation.SetTagId(s)
+	return attc
 }
 
 // Mutation returns the ArticleTagsTagMutation object of the builder.
-func (_c *ArticleTagsTagCreate) Mutation() *ArticleTagsTagMutation {
-	return _c.mutation
+func (attc *ArticleTagsTagCreate) Mutation() *ArticleTagsTagMutation {
+	return attc.mutation
 }
 
 // Save creates the ArticleTagsTag in the database.
-func (_c *ArticleTagsTagCreate) Save(ctx context.Context) (*ArticleTagsTag, error) {
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (attc *ArticleTagsTagCreate) Save(ctx context.Context) (*ArticleTagsTag, error) {
+	return withHooks(ctx, attc.sqlSave, attc.mutation, attc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *ArticleTagsTagCreate) SaveX(ctx context.Context) *ArticleTagsTag {
-	v, err := _c.Save(ctx)
+func (attc *ArticleTagsTagCreate) SaveX(ctx context.Context) *ArticleTagsTag {
+	v, err := attc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -53,35 +53,35 @@ func (_c *ArticleTagsTagCreate) SaveX(ctx context.Context) *ArticleTagsTag {
 }
 
 // Exec executes the query.
-func (_c *ArticleTagsTagCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (attc *ArticleTagsTagCreate) Exec(ctx context.Context) error {
+	_, err := attc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ArticleTagsTagCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (attc *ArticleTagsTagCreate) ExecX(ctx context.Context) {
+	if err := attc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *ArticleTagsTagCreate) check() error {
-	if _, ok := _c.mutation.ArticleId(); !ok {
+func (attc *ArticleTagsTagCreate) check() error {
+	if _, ok := attc.mutation.ArticleId(); !ok {
 		return &ValidationError{Name: "articleId", err: errors.New(`ent: missing required field "ArticleTagsTag.articleId"`)}
 	}
-	if _, ok := _c.mutation.TagId(); !ok {
+	if _, ok := attc.mutation.TagId(); !ok {
 		return &ValidationError{Name: "tagId", err: errors.New(`ent: missing required field "ArticleTagsTag.tagId"`)}
 	}
 	return nil
 }
 
-func (_c *ArticleTagsTagCreate) sqlSave(ctx context.Context) (*ArticleTagsTag, error) {
-	if err := _c.check(); err != nil {
+func (attc *ArticleTagsTagCreate) sqlSave(ctx context.Context) (*ArticleTagsTag, error) {
+	if err := attc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := attc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, attc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -89,22 +89,22 @@ func (_c *ArticleTagsTagCreate) sqlSave(ctx context.Context) (*ArticleTagsTag, e
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	attc.mutation.id = &_node.ID
+	attc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *ArticleTagsTagCreate) createSpec() (*ArticleTagsTag, *sqlgraph.CreateSpec) {
+func (attc *ArticleTagsTagCreate) createSpec() (*ArticleTagsTag, *sqlgraph.CreateSpec) {
 	var (
-		_node = &ArticleTagsTag{config: _c.config}
+		_node = &ArticleTagsTag{config: attc.config}
 		_spec = sqlgraph.NewCreateSpec(articletagstag.Table, sqlgraph.NewFieldSpec(articletagstag.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if value, ok := _c.mutation.ArticleId(); ok {
+	_spec.OnConflict = attc.conflict
+	if value, ok := attc.mutation.ArticleId(); ok {
 		_spec.SetField(articletagstag.FieldArticleId, field.TypeInt, value)
 		_node.ArticleId = value
 	}
-	if value, ok := _c.mutation.TagId(); ok {
+	if value, ok := attc.mutation.TagId(); ok {
 		_spec.SetField(articletagstag.FieldTagId, field.TypeString, value)
 		_node.TagId = value
 	}
@@ -127,10 +127,10 @@ func (_c *ArticleTagsTagCreate) createSpec() (*ArticleTagsTag, *sqlgraph.CreateS
 //			SetArticleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ArticleTagsTagCreate) OnConflict(opts ...sql.ConflictOption) *ArticleTagsTagUpsertOne {
-	_c.conflict = opts
+func (attc *ArticleTagsTagCreate) OnConflict(opts ...sql.ConflictOption) *ArticleTagsTagUpsertOne {
+	attc.conflict = opts
 	return &ArticleTagsTagUpsertOne{
-		create: _c,
+		create: attc,
 	}
 }
 
@@ -140,10 +140,10 @@ func (_c *ArticleTagsTagCreate) OnConflict(opts ...sql.ConflictOption) *ArticleT
 //	client.ArticleTagsTag.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ArticleTagsTagCreate) OnConflictColumns(columns ...string) *ArticleTagsTagUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (attc *ArticleTagsTagCreate) OnConflictColumns(columns ...string) *ArticleTagsTagUpsertOne {
+	attc.conflict = append(attc.conflict, sql.ConflictColumns(columns...))
 	return &ArticleTagsTagUpsertOne{
-		create: _c,
+		create: attc,
 	}
 }
 
@@ -307,16 +307,16 @@ type ArticleTagsTagCreateBulk struct {
 }
 
 // Save creates the ArticleTagsTag entities in the database.
-func (_c *ArticleTagsTagCreateBulk) Save(ctx context.Context) ([]*ArticleTagsTag, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (attcb *ArticleTagsTagCreateBulk) Save(ctx context.Context) ([]*ArticleTagsTag, error) {
+	if attcb.err != nil {
+		return nil, attcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*ArticleTagsTag, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(attcb.builders))
+	nodes := make([]*ArticleTagsTag, len(attcb.builders))
+	mutators := make([]Mutator, len(attcb.builders))
+	for i := range attcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := attcb.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ArticleTagsTagMutation)
 				if !ok {
@@ -329,12 +329,12 @@ func (_c *ArticleTagsTagCreateBulk) Save(ctx context.Context) ([]*ArticleTagsTag
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, attcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = attcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, attcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -358,7 +358,7 @@ func (_c *ArticleTagsTagCreateBulk) Save(ctx context.Context) ([]*ArticleTagsTag
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, attcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -366,8 +366,8 @@ func (_c *ArticleTagsTagCreateBulk) Save(ctx context.Context) ([]*ArticleTagsTag
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *ArticleTagsTagCreateBulk) SaveX(ctx context.Context) []*ArticleTagsTag {
-	v, err := _c.Save(ctx)
+func (attcb *ArticleTagsTagCreateBulk) SaveX(ctx context.Context) []*ArticleTagsTag {
+	v, err := attcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -375,14 +375,14 @@ func (_c *ArticleTagsTagCreateBulk) SaveX(ctx context.Context) []*ArticleTagsTag
 }
 
 // Exec executes the query.
-func (_c *ArticleTagsTagCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (attcb *ArticleTagsTagCreateBulk) Exec(ctx context.Context) error {
+	_, err := attcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ArticleTagsTagCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (attcb *ArticleTagsTagCreateBulk) ExecX(ctx context.Context) {
+	if err := attcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -402,10 +402,10 @@ func (_c *ArticleTagsTagCreateBulk) ExecX(ctx context.Context) {
 //			SetArticleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ArticleTagsTagCreateBulk) OnConflict(opts ...sql.ConflictOption) *ArticleTagsTagUpsertBulk {
-	_c.conflict = opts
+func (attcb *ArticleTagsTagCreateBulk) OnConflict(opts ...sql.ConflictOption) *ArticleTagsTagUpsertBulk {
+	attcb.conflict = opts
 	return &ArticleTagsTagUpsertBulk{
-		create: _c,
+		create: attcb,
 	}
 }
 
@@ -415,10 +415,10 @@ func (_c *ArticleTagsTagCreateBulk) OnConflict(opts ...sql.ConflictOption) *Arti
 //	client.ArticleTagsTag.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ArticleTagsTagCreateBulk) OnConflictColumns(columns ...string) *ArticleTagsTagUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (attcb *ArticleTagsTagCreateBulk) OnConflictColumns(columns ...string) *ArticleTagsTagUpsertBulk {
+	attcb.conflict = append(attcb.conflict, sql.ConflictColumns(columns...))
 	return &ArticleTagsTagUpsertBulk{
-		create: _c,
+		create: attcb,
 	}
 }
 

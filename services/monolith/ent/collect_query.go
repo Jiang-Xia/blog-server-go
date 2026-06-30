@@ -28,40 +28,40 @@ type CollectQuery struct {
 }
 
 // Where adds a new predicate for the CollectQuery builder.
-func (_q *CollectQuery) Where(ps ...predicate.Collect) *CollectQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (cq *CollectQuery) Where(ps ...predicate.Collect) *CollectQuery {
+	cq.predicates = append(cq.predicates, ps...)
+	return cq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *CollectQuery) Limit(limit int) *CollectQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (cq *CollectQuery) Limit(limit int) *CollectQuery {
+	cq.ctx.Limit = &limit
+	return cq
 }
 
 // Offset to start from.
-func (_q *CollectQuery) Offset(offset int) *CollectQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (cq *CollectQuery) Offset(offset int) *CollectQuery {
+	cq.ctx.Offset = &offset
+	return cq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *CollectQuery) Unique(unique bool) *CollectQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (cq *CollectQuery) Unique(unique bool) *CollectQuery {
+	cq.ctx.Unique = &unique
+	return cq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *CollectQuery) Order(o ...collect.OrderOption) *CollectQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (cq *CollectQuery) Order(o ...collect.OrderOption) *CollectQuery {
+	cq.order = append(cq.order, o...)
+	return cq
 }
 
 // First returns the first Collect entity from the query.
 // Returns a *NotFoundError when no Collect was found.
-func (_q *CollectQuery) First(ctx context.Context) (*Collect, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (cq *CollectQuery) First(ctx context.Context) (*Collect, error) {
+	nodes, err := cq.Limit(1).All(setContextOp(ctx, cq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *CollectQuery) First(ctx context.Context) (*Collect, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *CollectQuery) FirstX(ctx context.Context) *Collect {
-	node, err := _q.First(ctx)
+func (cq *CollectQuery) FirstX(ctx context.Context) *Collect {
+	node, err := cq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *CollectQuery) FirstX(ctx context.Context) *Collect {
 
 // FirstID returns the first Collect ID from the query.
 // Returns a *NotFoundError when no Collect ID was found.
-func (_q *CollectQuery) FirstID(ctx context.Context) (id string, err error) {
+func (cq *CollectQuery) FirstID(ctx context.Context) (id string, err error) {
 	var ids []string
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = cq.Limit(1).IDs(setContextOp(ctx, cq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *CollectQuery) FirstID(ctx context.Context) (id string, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *CollectQuery) FirstIDX(ctx context.Context) string {
-	id, err := _q.FirstID(ctx)
+func (cq *CollectQuery) FirstIDX(ctx context.Context) string {
+	id, err := cq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *CollectQuery) FirstIDX(ctx context.Context) string {
 // Only returns a single Collect entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Collect entity is found.
 // Returns a *NotFoundError when no Collect entities are found.
-func (_q *CollectQuery) Only(ctx context.Context) (*Collect, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (cq *CollectQuery) Only(ctx context.Context) (*Collect, error) {
+	nodes, err := cq.Limit(2).All(setContextOp(ctx, cq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *CollectQuery) Only(ctx context.Context) (*Collect, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *CollectQuery) OnlyX(ctx context.Context) *Collect {
-	node, err := _q.Only(ctx)
+func (cq *CollectQuery) OnlyX(ctx context.Context) *Collect {
+	node, err := cq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *CollectQuery) OnlyX(ctx context.Context) *Collect {
 // OnlyID is like Only, but returns the only Collect ID in the query.
 // Returns a *NotSingularError when more than one Collect ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *CollectQuery) OnlyID(ctx context.Context) (id string, err error) {
+func (cq *CollectQuery) OnlyID(ctx context.Context) (id string, err error) {
 	var ids []string
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = cq.Limit(2).IDs(setContextOp(ctx, cq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *CollectQuery) OnlyID(ctx context.Context) (id string, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *CollectQuery) OnlyIDX(ctx context.Context) string {
-	id, err := _q.OnlyID(ctx)
+func (cq *CollectQuery) OnlyIDX(ctx context.Context) string {
+	id, err := cq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *CollectQuery) OnlyIDX(ctx context.Context) string {
 }
 
 // All executes the query and returns a list of Collects.
-func (_q *CollectQuery) All(ctx context.Context) ([]*Collect, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (cq *CollectQuery) All(ctx context.Context) ([]*Collect, error) {
+	ctx = setContextOp(ctx, cq.ctx, ent.OpQueryAll)
+	if err := cq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Collect, *CollectQuery]()
-	return withInterceptors[[]*Collect](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*Collect](ctx, cq, qr, cq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *CollectQuery) AllX(ctx context.Context) []*Collect {
-	nodes, err := _q.All(ctx)
+func (cq *CollectQuery) AllX(ctx context.Context) []*Collect {
+	nodes, err := cq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *CollectQuery) AllX(ctx context.Context) []*Collect {
 }
 
 // IDs executes the query and returns a list of Collect IDs.
-func (_q *CollectQuery) IDs(ctx context.Context) (ids []string, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (cq *CollectQuery) IDs(ctx context.Context) (ids []string, err error) {
+	if cq.ctx.Unique == nil && cq.path != nil {
+		cq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(collect.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, cq.ctx, ent.OpQueryIDs)
+	if err = cq.Select(collect.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *CollectQuery) IDsX(ctx context.Context) []string {
-	ids, err := _q.IDs(ctx)
+func (cq *CollectQuery) IDsX(ctx context.Context) []string {
+	ids, err := cq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *CollectQuery) IDsX(ctx context.Context) []string {
 }
 
 // Count returns the count of the given query.
-func (_q *CollectQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (cq *CollectQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, cq.ctx, ent.OpQueryCount)
+	if err := cq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*CollectQuery](), _q.inters)
+	return withInterceptors[int](ctx, cq, querierCount[*CollectQuery](), cq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *CollectQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (cq *CollectQuery) CountX(ctx context.Context) int {
+	count, err := cq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *CollectQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *CollectQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (cq *CollectQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, cq.ctx, ent.OpQueryExist)
+	switch _, err := cq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *CollectQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *CollectQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (cq *CollectQuery) ExistX(ctx context.Context) bool {
+	exist, err := cq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *CollectQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the CollectQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *CollectQuery) Clone() *CollectQuery {
-	if _q == nil {
+func (cq *CollectQuery) Clone() *CollectQuery {
+	if cq == nil {
 		return nil
 	}
 	return &CollectQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]collect.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.Collect{}, _q.predicates...),
+		config:     cq.config,
+		ctx:        cq.ctx.Clone(),
+		order:      append([]collect.OrderOption{}, cq.order...),
+		inters:     append([]Interceptor{}, cq.inters...),
+		predicates: append([]predicate.Collect{}, cq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  cq.sql.Clone(),
+		path: cq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *CollectQuery) Clone() *CollectQuery {
 //		GroupBy(collect.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *CollectQuery) GroupBy(field string, fields ...string) *CollectGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &CollectGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (cq *CollectQuery) GroupBy(field string, fields ...string) *CollectGroupBy {
+	cq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &CollectGroupBy{build: cq}
+	grbuild.flds = &cq.ctx.Fields
 	grbuild.label = collect.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *CollectQuery) GroupBy(field string, fields ...string) *CollectGroupBy 
 //	client.Collect.Query().
 //		Select(collect.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *CollectQuery) Select(fields ...string) *CollectSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &CollectSelect{CollectQuery: _q}
+func (cq *CollectQuery) Select(fields ...string) *CollectSelect {
+	cq.ctx.Fields = append(cq.ctx.Fields, fields...)
+	sbuild := &CollectSelect{CollectQuery: cq}
 	sbuild.label = collect.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &cq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a CollectSelect configured with the given aggregations.
-func (_q *CollectQuery) Aggregate(fns ...AggregateFunc) *CollectSelect {
-	return _q.Select().Aggregate(fns...)
+func (cq *CollectQuery) Aggregate(fns ...AggregateFunc) *CollectSelect {
+	return cq.Select().Aggregate(fns...)
 }
 
-func (_q *CollectQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (cq *CollectQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range cq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, cq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range cq.ctx.Fields {
 		if !collect.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if cq.path != nil {
+		prev, err := cq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		cq.sql = prev
 	}
 	return nil
 }
 
-func (_q *CollectQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Collect, error) {
+func (cq *CollectQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Collect, error) {
 	var (
 		nodes = []*Collect{}
-		_spec = _q.querySpec()
+		_spec = cq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*Collect).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Collect{config: _q.config}
+		node := &Collect{config: cq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, cq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *CollectQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Coll
 	return nodes, nil
 }
 
-func (_q *CollectQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (cq *CollectQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := cq.querySpec()
+	_spec.Node.Columns = cq.ctx.Fields
+	if len(cq.ctx.Fields) > 0 {
+		_spec.Unique = cq.ctx.Unique != nil && *cq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, cq.driver, _spec)
 }
 
-func (_q *CollectQuery) querySpec() *sqlgraph.QuerySpec {
+func (cq *CollectQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(collect.Table, collect.Columns, sqlgraph.NewFieldSpec(collect.FieldID, field.TypeString))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = cq.sql
+	if unique := cq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if cq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := cq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, collect.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *CollectQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := cq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := cq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := cq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := cq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *CollectQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *CollectQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (cq *CollectQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(cq.driver.Dialect())
 	t1 := builder.Table(collect.Table)
-	columns := _q.ctx.Fields
+	columns := cq.ctx.Fields
 	if len(columns) == 0 {
 		columns = collect.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if cq.sql != nil {
+		selector = cq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if cq.ctx.Unique != nil && *cq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range cq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range cq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := cq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := cq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type CollectGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *CollectGroupBy) Aggregate(fns ...AggregateFunc) *CollectGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (cgb *CollectGroupBy) Aggregate(fns ...AggregateFunc) *CollectGroupBy {
+	cgb.fns = append(cgb.fns, fns...)
+	return cgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *CollectGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (cgb *CollectGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, cgb.build.ctx, ent.OpQueryGroupBy)
+	if err := cgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*CollectQuery, *CollectGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*CollectQuery, *CollectGroupBy](ctx, cgb.build, cgb, cgb.build.inters, v)
 }
 
-func (_g *CollectGroupBy) sqlScan(ctx context.Context, root *CollectQuery, v any) error {
+func (cgb *CollectGroupBy) sqlScan(ctx context.Context, root *CollectQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(cgb.fns))
+	for _, fn := range cgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*cgb.flds)+len(cgb.fns))
+		for _, f := range *cgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*cgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := cgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type CollectSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *CollectSelect) Aggregate(fns ...AggregateFunc) *CollectSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (cs *CollectSelect) Aggregate(fns ...AggregateFunc) *CollectSelect {
+	cs.fns = append(cs.fns, fns...)
+	return cs
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *CollectSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (cs *CollectSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, cs.ctx, ent.OpQuerySelect)
+	if err := cs.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*CollectQuery, *CollectSelect](ctx, _s.CollectQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*CollectQuery, *CollectSelect](ctx, cs.CollectQuery, cs, cs.inters, v)
 }
 
-func (_s *CollectSelect) sqlScan(ctx context.Context, root *CollectQuery, v any) error {
+func (cs *CollectSelect) sqlScan(ctx context.Context, root *CollectQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(cs.fns))
+	for _, fn := range cs.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*cs.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *CollectSelect) sqlScan(ctx context.Context, root *CollectQuery, v any)
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := cs.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

@@ -23,115 +23,115 @@ type TagUpdate struct {
 }
 
 // Where appends a list predicates to the TagUpdate builder.
-func (_u *TagUpdate) Where(ps ...predicate.Tag) *TagUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (tu *TagUpdate) Where(ps ...predicate.Tag) *TagUpdate {
+	tu.mutation.Where(ps...)
+	return tu
 }
 
 // SetUID sets the "uid" field.
-func (_u *TagUpdate) SetUID(v int) *TagUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (tu *TagUpdate) SetUID(i int) *TagUpdate {
+	tu.mutation.ResetUID()
+	tu.mutation.SetUID(i)
+	return tu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *TagUpdate) SetNillableUID(v *int) *TagUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (tu *TagUpdate) SetNillableUID(i *int) *TagUpdate {
+	if i != nil {
+		tu.SetUID(*i)
 	}
-	return _u
+	return tu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *TagUpdate) AddUID(v int) *TagUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (tu *TagUpdate) AddUID(i int) *TagUpdate {
+	tu.mutation.AddUID(i)
+	return tu
 }
 
 // SetLabel sets the "label" field.
-func (_u *TagUpdate) SetLabel(v string) *TagUpdate {
-	_u.mutation.SetLabel(v)
-	return _u
+func (tu *TagUpdate) SetLabel(s string) *TagUpdate {
+	tu.mutation.SetLabel(s)
+	return tu
 }
 
 // SetNillableLabel sets the "label" field if the given value is not nil.
-func (_u *TagUpdate) SetNillableLabel(v *string) *TagUpdate {
-	if v != nil {
-		_u.SetLabel(*v)
+func (tu *TagUpdate) SetNillableLabel(s *string) *TagUpdate {
+	if s != nil {
+		tu.SetLabel(*s)
 	}
-	return _u
+	return tu
 }
 
 // SetValue sets the "value" field.
-func (_u *TagUpdate) SetValue(v string) *TagUpdate {
-	_u.mutation.SetValue(v)
-	return _u
+func (tu *TagUpdate) SetValue(s string) *TagUpdate {
+	tu.mutation.SetValue(s)
+	return tu
 }
 
 // SetNillableValue sets the "value" field if the given value is not nil.
-func (_u *TagUpdate) SetNillableValue(v *string) *TagUpdate {
-	if v != nil {
-		_u.SetValue(*v)
+func (tu *TagUpdate) SetNillableValue(s *string) *TagUpdate {
+	if s != nil {
+		tu.SetValue(*s)
 	}
-	return _u
+	return tu
 }
 
 // SetColor sets the "color" field.
-func (_u *TagUpdate) SetColor(v string) *TagUpdate {
-	_u.mutation.SetColor(v)
-	return _u
+func (tu *TagUpdate) SetColor(s string) *TagUpdate {
+	tu.mutation.SetColor(s)
+	return tu
 }
 
 // SetNillableColor sets the "color" field if the given value is not nil.
-func (_u *TagUpdate) SetNillableColor(v *string) *TagUpdate {
-	if v != nil {
-		_u.SetColor(*v)
+func (tu *TagUpdate) SetNillableColor(s *string) *TagUpdate {
+	if s != nil {
+		tu.SetColor(*s)
 	}
-	return _u
+	return tu
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *TagUpdate) SetCreateAt(v time.Time) *TagUpdate {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (tu *TagUpdate) SetCreateAt(t time.Time) *TagUpdate {
+	tu.mutation.SetCreateAt(t)
+	return tu
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *TagUpdate) SetNillableCreateAt(v *time.Time) *TagUpdate {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (tu *TagUpdate) SetNillableCreateAt(t *time.Time) *TagUpdate {
+	if t != nil {
+		tu.SetCreateAt(*t)
 	}
-	return _u
+	return tu
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_u *TagUpdate) SetUpdateAt(v time.Time) *TagUpdate {
-	_u.mutation.SetUpdateAt(v)
-	return _u
+func (tu *TagUpdate) SetUpdateAt(t time.Time) *TagUpdate {
+	tu.mutation.SetUpdateAt(t)
+	return tu
 }
 
 // SetNillableUpdateAt sets the "update_at" field if the given value is not nil.
-func (_u *TagUpdate) SetNillableUpdateAt(v *time.Time) *TagUpdate {
-	if v != nil {
-		_u.SetUpdateAt(*v)
+func (tu *TagUpdate) SetNillableUpdateAt(t *time.Time) *TagUpdate {
+	if t != nil {
+		tu.SetUpdateAt(*t)
 	}
-	return _u
+	return tu
 }
 
 // Mutation returns the TagMutation object of the builder.
-func (_u *TagUpdate) Mutation() *TagMutation {
-	return _u.mutation
+func (tu *TagUpdate) Mutation() *TagMutation {
+	return tu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *TagUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (tu *TagUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, tu.sqlSave, tu.mutation, tu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *TagUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (tu *TagUpdate) SaveX(ctx context.Context) int {
+	affected, err := tu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -139,49 +139,49 @@ func (_u *TagUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *TagUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (tu *TagUpdate) Exec(ctx context.Context) error {
+	_, err := tu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *TagUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (tu *TagUpdate) ExecX(ctx context.Context) {
+	if err := tu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *TagUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (tu *TagUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(tag.Table, tag.Columns, sqlgraph.NewFieldSpec(tag.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := tu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := tu.mutation.UID(); ok {
 		_spec.SetField(tag.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := tu.mutation.AddedUID(); ok {
 		_spec.AddField(tag.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Label(); ok {
+	if value, ok := tu.mutation.Label(); ok {
 		_spec.SetField(tag.FieldLabel, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Value(); ok {
+	if value, ok := tu.mutation.Value(); ok {
 		_spec.SetField(tag.FieldValue, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Color(); ok {
+	if value, ok := tu.mutation.Color(); ok {
 		_spec.SetField(tag.FieldColor, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := tu.mutation.CreateAt(); ok {
 		_spec.SetField(tag.FieldCreateAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.UpdateAt(); ok {
+	if value, ok := tu.mutation.UpdateAt(); ok {
 		_spec.SetField(tag.FieldUpdateAt, field.TypeTime, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, tu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{tag.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -189,8 +189,8 @@ func (_u *TagUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	tu.mutation.done = true
+	return n, nil
 }
 
 // TagUpdateOne is the builder for updating a single Tag entity.
@@ -202,122 +202,122 @@ type TagUpdateOne struct {
 }
 
 // SetUID sets the "uid" field.
-func (_u *TagUpdateOne) SetUID(v int) *TagUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (tuo *TagUpdateOne) SetUID(i int) *TagUpdateOne {
+	tuo.mutation.ResetUID()
+	tuo.mutation.SetUID(i)
+	return tuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *TagUpdateOne) SetNillableUID(v *int) *TagUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (tuo *TagUpdateOne) SetNillableUID(i *int) *TagUpdateOne {
+	if i != nil {
+		tuo.SetUID(*i)
 	}
-	return _u
+	return tuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *TagUpdateOne) AddUID(v int) *TagUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (tuo *TagUpdateOne) AddUID(i int) *TagUpdateOne {
+	tuo.mutation.AddUID(i)
+	return tuo
 }
 
 // SetLabel sets the "label" field.
-func (_u *TagUpdateOne) SetLabel(v string) *TagUpdateOne {
-	_u.mutation.SetLabel(v)
-	return _u
+func (tuo *TagUpdateOne) SetLabel(s string) *TagUpdateOne {
+	tuo.mutation.SetLabel(s)
+	return tuo
 }
 
 // SetNillableLabel sets the "label" field if the given value is not nil.
-func (_u *TagUpdateOne) SetNillableLabel(v *string) *TagUpdateOne {
-	if v != nil {
-		_u.SetLabel(*v)
+func (tuo *TagUpdateOne) SetNillableLabel(s *string) *TagUpdateOne {
+	if s != nil {
+		tuo.SetLabel(*s)
 	}
-	return _u
+	return tuo
 }
 
 // SetValue sets the "value" field.
-func (_u *TagUpdateOne) SetValue(v string) *TagUpdateOne {
-	_u.mutation.SetValue(v)
-	return _u
+func (tuo *TagUpdateOne) SetValue(s string) *TagUpdateOne {
+	tuo.mutation.SetValue(s)
+	return tuo
 }
 
 // SetNillableValue sets the "value" field if the given value is not nil.
-func (_u *TagUpdateOne) SetNillableValue(v *string) *TagUpdateOne {
-	if v != nil {
-		_u.SetValue(*v)
+func (tuo *TagUpdateOne) SetNillableValue(s *string) *TagUpdateOne {
+	if s != nil {
+		tuo.SetValue(*s)
 	}
-	return _u
+	return tuo
 }
 
 // SetColor sets the "color" field.
-func (_u *TagUpdateOne) SetColor(v string) *TagUpdateOne {
-	_u.mutation.SetColor(v)
-	return _u
+func (tuo *TagUpdateOne) SetColor(s string) *TagUpdateOne {
+	tuo.mutation.SetColor(s)
+	return tuo
 }
 
 // SetNillableColor sets the "color" field if the given value is not nil.
-func (_u *TagUpdateOne) SetNillableColor(v *string) *TagUpdateOne {
-	if v != nil {
-		_u.SetColor(*v)
+func (tuo *TagUpdateOne) SetNillableColor(s *string) *TagUpdateOne {
+	if s != nil {
+		tuo.SetColor(*s)
 	}
-	return _u
+	return tuo
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *TagUpdateOne) SetCreateAt(v time.Time) *TagUpdateOne {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (tuo *TagUpdateOne) SetCreateAt(t time.Time) *TagUpdateOne {
+	tuo.mutation.SetCreateAt(t)
+	return tuo
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *TagUpdateOne) SetNillableCreateAt(v *time.Time) *TagUpdateOne {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (tuo *TagUpdateOne) SetNillableCreateAt(t *time.Time) *TagUpdateOne {
+	if t != nil {
+		tuo.SetCreateAt(*t)
 	}
-	return _u
+	return tuo
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_u *TagUpdateOne) SetUpdateAt(v time.Time) *TagUpdateOne {
-	_u.mutation.SetUpdateAt(v)
-	return _u
+func (tuo *TagUpdateOne) SetUpdateAt(t time.Time) *TagUpdateOne {
+	tuo.mutation.SetUpdateAt(t)
+	return tuo
 }
 
 // SetNillableUpdateAt sets the "update_at" field if the given value is not nil.
-func (_u *TagUpdateOne) SetNillableUpdateAt(v *time.Time) *TagUpdateOne {
-	if v != nil {
-		_u.SetUpdateAt(*v)
+func (tuo *TagUpdateOne) SetNillableUpdateAt(t *time.Time) *TagUpdateOne {
+	if t != nil {
+		tuo.SetUpdateAt(*t)
 	}
-	return _u
+	return tuo
 }
 
 // Mutation returns the TagMutation object of the builder.
-func (_u *TagUpdateOne) Mutation() *TagMutation {
-	return _u.mutation
+func (tuo *TagUpdateOne) Mutation() *TagMutation {
+	return tuo.mutation
 }
 
 // Where appends a list predicates to the TagUpdate builder.
-func (_u *TagUpdateOne) Where(ps ...predicate.Tag) *TagUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (tuo *TagUpdateOne) Where(ps ...predicate.Tag) *TagUpdateOne {
+	tuo.mutation.Where(ps...)
+	return tuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *TagUpdateOne) Select(field string, fields ...string) *TagUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (tuo *TagUpdateOne) Select(field string, fields ...string) *TagUpdateOne {
+	tuo.fields = append([]string{field}, fields...)
+	return tuo
 }
 
 // Save executes the query and returns the updated Tag entity.
-func (_u *TagUpdateOne) Save(ctx context.Context) (*Tag, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (tuo *TagUpdateOne) Save(ctx context.Context) (*Tag, error) {
+	return withHooks(ctx, tuo.sqlSave, tuo.mutation, tuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *TagUpdateOne) SaveX(ctx context.Context) *Tag {
-	node, err := _u.Save(ctx)
+func (tuo *TagUpdateOne) SaveX(ctx context.Context) *Tag {
+	node, err := tuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -325,26 +325,26 @@ func (_u *TagUpdateOne) SaveX(ctx context.Context) *Tag {
 }
 
 // Exec executes the query on the entity.
-func (_u *TagUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (tuo *TagUpdateOne) Exec(ctx context.Context) error {
+	_, err := tuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *TagUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (tuo *TagUpdateOne) ExecX(ctx context.Context) {
+	if err := tuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *TagUpdateOne) sqlSave(ctx context.Context) (_node *Tag, err error) {
+func (tuo *TagUpdateOne) sqlSave(ctx context.Context) (_node *Tag, err error) {
 	_spec := sqlgraph.NewUpdateSpec(tag.Table, tag.Columns, sqlgraph.NewFieldSpec(tag.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := tuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Tag.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := tuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, tag.FieldID)
 		for _, f := range fields {
@@ -356,38 +356,38 @@ func (_u *TagUpdateOne) sqlSave(ctx context.Context) (_node *Tag, err error) {
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := tuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := tuo.mutation.UID(); ok {
 		_spec.SetField(tag.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := tuo.mutation.AddedUID(); ok {
 		_spec.AddField(tag.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Label(); ok {
+	if value, ok := tuo.mutation.Label(); ok {
 		_spec.SetField(tag.FieldLabel, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Value(); ok {
+	if value, ok := tuo.mutation.Value(); ok {
 		_spec.SetField(tag.FieldValue, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Color(); ok {
+	if value, ok := tuo.mutation.Color(); ok {
 		_spec.SetField(tag.FieldColor, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := tuo.mutation.CreateAt(); ok {
 		_spec.SetField(tag.FieldCreateAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.UpdateAt(); ok {
+	if value, ok := tuo.mutation.UpdateAt(); ok {
 		_spec.SetField(tag.FieldUpdateAt, field.TypeTime, value)
 	}
-	_node = &Tag{config: _u.config}
+	_node = &Tag{config: tuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, tuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{tag.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -395,6 +395,6 @@ func (_u *TagUpdateOne) sqlSave(ctx context.Context) (_node *Tag, err error) {
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	tuo.mutation.done = true
 	return _node, nil
 }

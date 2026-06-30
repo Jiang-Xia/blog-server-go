@@ -23,141 +23,141 @@ type ScheduledTaskLogCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *ScheduledTaskLogCreate) SetCreateTime(v time.Time) *ScheduledTaskLogCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetCreateTime(t time.Time) *ScheduledTaskLogCreate {
+	stlc.mutation.SetCreateTime(t)
+	return stlc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *ScheduledTaskLogCreate) SetNillableCreateTime(v *time.Time) *ScheduledTaskLogCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (stlc *ScheduledTaskLogCreate) SetNillableCreateTime(t *time.Time) *ScheduledTaskLogCreate {
+	if t != nil {
+		stlc.SetCreateTime(*t)
 	}
-	return _c
+	return stlc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *ScheduledTaskLogCreate) SetUpdateTime(v time.Time) *ScheduledTaskLogCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetUpdateTime(t time.Time) *ScheduledTaskLogCreate {
+	stlc.mutation.SetUpdateTime(t)
+	return stlc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *ScheduledTaskLogCreate) SetNillableUpdateTime(v *time.Time) *ScheduledTaskLogCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (stlc *ScheduledTaskLogCreate) SetNillableUpdateTime(t *time.Time) *ScheduledTaskLogCreate {
+	if t != nil {
+		stlc.SetUpdateTime(*t)
 	}
-	return _c
+	return stlc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *ScheduledTaskLogCreate) SetIsDelete(v bool) *ScheduledTaskLogCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetIsDelete(b bool) *ScheduledTaskLogCreate {
+	stlc.mutation.SetIsDelete(b)
+	return stlc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *ScheduledTaskLogCreate) SetNillableIsDelete(v *bool) *ScheduledTaskLogCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (stlc *ScheduledTaskLogCreate) SetNillableIsDelete(b *bool) *ScheduledTaskLogCreate {
+	if b != nil {
+		stlc.SetIsDelete(*b)
 	}
-	return _c
+	return stlc
 }
 
 // SetVersion sets the "version" field.
-func (_c *ScheduledTaskLogCreate) SetVersion(v int) *ScheduledTaskLogCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetVersion(i int) *ScheduledTaskLogCreate {
+	stlc.mutation.SetVersion(i)
+	return stlc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *ScheduledTaskLogCreate) SetNillableVersion(v *int) *ScheduledTaskLogCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (stlc *ScheduledTaskLogCreate) SetNillableVersion(i *int) *ScheduledTaskLogCreate {
+	if i != nil {
+		stlc.SetVersion(*i)
 	}
-	return _c
+	return stlc
 }
 
 // SetTaskName sets the "taskName" field.
-func (_c *ScheduledTaskLogCreate) SetTaskName(v string) *ScheduledTaskLogCreate {
-	_c.mutation.SetTaskName(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetTaskName(s string) *ScheduledTaskLogCreate {
+	stlc.mutation.SetTaskName(s)
+	return stlc
 }
 
 // SetStatus sets the "status" field.
-func (_c *ScheduledTaskLogCreate) SetStatus(v string) *ScheduledTaskLogCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetStatus(s string) *ScheduledTaskLogCreate {
+	stlc.mutation.SetStatus(s)
+	return stlc
 }
 
 // SetStartTime sets the "startTime" field.
-func (_c *ScheduledTaskLogCreate) SetStartTime(v time.Time) *ScheduledTaskLogCreate {
-	_c.mutation.SetStartTime(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetStartTime(t time.Time) *ScheduledTaskLogCreate {
+	stlc.mutation.SetStartTime(t)
+	return stlc
 }
 
 // SetEndTime sets the "endTime" field.
-func (_c *ScheduledTaskLogCreate) SetEndTime(v time.Time) *ScheduledTaskLogCreate {
-	_c.mutation.SetEndTime(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetEndTime(t time.Time) *ScheduledTaskLogCreate {
+	stlc.mutation.SetEndTime(t)
+	return stlc
 }
 
 // SetNillableEndTime sets the "endTime" field if the given value is not nil.
-func (_c *ScheduledTaskLogCreate) SetNillableEndTime(v *time.Time) *ScheduledTaskLogCreate {
-	if v != nil {
-		_c.SetEndTime(*v)
+func (stlc *ScheduledTaskLogCreate) SetNillableEndTime(t *time.Time) *ScheduledTaskLogCreate {
+	if t != nil {
+		stlc.SetEndTime(*t)
 	}
-	return _c
+	return stlc
 }
 
 // SetResult sets the "result" field.
-func (_c *ScheduledTaskLogCreate) SetResult(v string) *ScheduledTaskLogCreate {
-	_c.mutation.SetResult(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetResult(s string) *ScheduledTaskLogCreate {
+	stlc.mutation.SetResult(s)
+	return stlc
 }
 
 // SetNillableResult sets the "result" field if the given value is not nil.
-func (_c *ScheduledTaskLogCreate) SetNillableResult(v *string) *ScheduledTaskLogCreate {
-	if v != nil {
-		_c.SetResult(*v)
+func (stlc *ScheduledTaskLogCreate) SetNillableResult(s *string) *ScheduledTaskLogCreate {
+	if s != nil {
+		stlc.SetResult(*s)
 	}
-	return _c
+	return stlc
 }
 
 // SetErrorMessage sets the "errorMessage" field.
-func (_c *ScheduledTaskLogCreate) SetErrorMessage(v string) *ScheduledTaskLogCreate {
-	_c.mutation.SetErrorMessage(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetErrorMessage(s string) *ScheduledTaskLogCreate {
+	stlc.mutation.SetErrorMessage(s)
+	return stlc
 }
 
 // SetNillableErrorMessage sets the "errorMessage" field if the given value is not nil.
-func (_c *ScheduledTaskLogCreate) SetNillableErrorMessage(v *string) *ScheduledTaskLogCreate {
-	if v != nil {
-		_c.SetErrorMessage(*v)
+func (stlc *ScheduledTaskLogCreate) SetNillableErrorMessage(s *string) *ScheduledTaskLogCreate {
+	if s != nil {
+		stlc.SetErrorMessage(*s)
 	}
-	return _c
+	return stlc
 }
 
 // SetID sets the "id" field.
-func (_c *ScheduledTaskLogCreate) SetID(v int) *ScheduledTaskLogCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (stlc *ScheduledTaskLogCreate) SetID(i int) *ScheduledTaskLogCreate {
+	stlc.mutation.SetID(i)
+	return stlc
 }
 
 // Mutation returns the ScheduledTaskLogMutation object of the builder.
-func (_c *ScheduledTaskLogCreate) Mutation() *ScheduledTaskLogMutation {
-	return _c.mutation
+func (stlc *ScheduledTaskLogCreate) Mutation() *ScheduledTaskLogMutation {
+	return stlc.mutation
 }
 
 // Save creates the ScheduledTaskLog in the database.
-func (_c *ScheduledTaskLogCreate) Save(ctx context.Context) (*ScheduledTaskLog, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (stlc *ScheduledTaskLogCreate) Save(ctx context.Context) (*ScheduledTaskLog, error) {
+	stlc.defaults()
+	return withHooks(ctx, stlc.sqlSave, stlc.mutation, stlc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *ScheduledTaskLogCreate) SaveX(ctx context.Context) *ScheduledTaskLog {
-	v, err := _c.Save(ctx)
+func (stlc *ScheduledTaskLogCreate) SaveX(ctx context.Context) *ScheduledTaskLog {
+	v, err := stlc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -165,70 +165,70 @@ func (_c *ScheduledTaskLogCreate) SaveX(ctx context.Context) *ScheduledTaskLog {
 }
 
 // Exec executes the query.
-func (_c *ScheduledTaskLogCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (stlc *ScheduledTaskLogCreate) Exec(ctx context.Context) error {
+	_, err := stlc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ScheduledTaskLogCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (stlc *ScheduledTaskLogCreate) ExecX(ctx context.Context) {
+	if err := stlc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *ScheduledTaskLogCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (stlc *ScheduledTaskLogCreate) defaults() {
+	if _, ok := stlc.mutation.CreateTime(); !ok {
 		v := scheduledtasklog.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		stlc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := stlc.mutation.UpdateTime(); !ok {
 		v := scheduledtasklog.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		stlc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := stlc.mutation.IsDelete(); !ok {
 		v := scheduledtasklog.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		stlc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := stlc.mutation.Version(); !ok {
 		v := scheduledtasklog.DefaultVersion
-		_c.mutation.SetVersion(v)
+		stlc.mutation.SetVersion(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *ScheduledTaskLogCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (stlc *ScheduledTaskLogCreate) check() error {
+	if _, ok := stlc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "ScheduledTaskLog.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := stlc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "ScheduledTaskLog.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := stlc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "ScheduledTaskLog.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := stlc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "ScheduledTaskLog.version"`)}
 	}
-	if _, ok := _c.mutation.TaskName(); !ok {
+	if _, ok := stlc.mutation.TaskName(); !ok {
 		return &ValidationError{Name: "taskName", err: errors.New(`ent: missing required field "ScheduledTaskLog.taskName"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := stlc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "ScheduledTaskLog.status"`)}
 	}
-	if _, ok := _c.mutation.StartTime(); !ok {
+	if _, ok := stlc.mutation.StartTime(); !ok {
 		return &ValidationError{Name: "startTime", err: errors.New(`ent: missing required field "ScheduledTaskLog.startTime"`)}
 	}
 	return nil
 }
 
-func (_c *ScheduledTaskLogCreate) sqlSave(ctx context.Context) (*ScheduledTaskLog, error) {
-	if err := _c.check(); err != nil {
+func (stlc *ScheduledTaskLogCreate) sqlSave(ctx context.Context) (*ScheduledTaskLog, error) {
+	if err := stlc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := stlc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, stlc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -238,58 +238,58 @@ func (_c *ScheduledTaskLogCreate) sqlSave(ctx context.Context) (*ScheduledTaskLo
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	stlc.mutation.id = &_node.ID
+	stlc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *ScheduledTaskLogCreate) createSpec() (*ScheduledTaskLog, *sqlgraph.CreateSpec) {
+func (stlc *ScheduledTaskLogCreate) createSpec() (*ScheduledTaskLog, *sqlgraph.CreateSpec) {
 	var (
-		_node = &ScheduledTaskLog{config: _c.config}
+		_node = &ScheduledTaskLog{config: stlc.config}
 		_spec = sqlgraph.NewCreateSpec(scheduledtasklog.Table, sqlgraph.NewFieldSpec(scheduledtasklog.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = stlc.conflict
+	if id, ok := stlc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := stlc.mutation.CreateTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := stlc.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := stlc.mutation.IsDelete(); ok {
 		_spec.SetField(scheduledtasklog.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := stlc.mutation.Version(); ok {
 		_spec.SetField(scheduledtasklog.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.TaskName(); ok {
+	if value, ok := stlc.mutation.TaskName(); ok {
 		_spec.SetField(scheduledtasklog.FieldTaskName, field.TypeString, value)
 		_node.TaskName = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := stlc.mutation.Status(); ok {
 		_spec.SetField(scheduledtasklog.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
-	if value, ok := _c.mutation.StartTime(); ok {
+	if value, ok := stlc.mutation.StartTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldStartTime, field.TypeTime, value)
 		_node.StartTime = value
 	}
-	if value, ok := _c.mutation.EndTime(); ok {
+	if value, ok := stlc.mutation.EndTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldEndTime, field.TypeTime, value)
 		_node.EndTime = &value
 	}
-	if value, ok := _c.mutation.Result(); ok {
+	if value, ok := stlc.mutation.Result(); ok {
 		_spec.SetField(scheduledtasklog.FieldResult, field.TypeString, value)
 		_node.Result = &value
 	}
-	if value, ok := _c.mutation.ErrorMessage(); ok {
+	if value, ok := stlc.mutation.ErrorMessage(); ok {
 		_spec.SetField(scheduledtasklog.FieldErrorMessage, field.TypeString, value)
 		_node.ErrorMessage = &value
 	}
@@ -312,10 +312,10 @@ func (_c *ScheduledTaskLogCreate) createSpec() (*ScheduledTaskLog, *sqlgraph.Cre
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ScheduledTaskLogCreate) OnConflict(opts ...sql.ConflictOption) *ScheduledTaskLogUpsertOne {
-	_c.conflict = opts
+func (stlc *ScheduledTaskLogCreate) OnConflict(opts ...sql.ConflictOption) *ScheduledTaskLogUpsertOne {
+	stlc.conflict = opts
 	return &ScheduledTaskLogUpsertOne{
-		create: _c,
+		create: stlc,
 	}
 }
 
@@ -325,10 +325,10 @@ func (_c *ScheduledTaskLogCreate) OnConflict(opts ...sql.ConflictOption) *Schedu
 //	client.ScheduledTaskLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ScheduledTaskLogCreate) OnConflictColumns(columns ...string) *ScheduledTaskLogUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (stlc *ScheduledTaskLogCreate) OnConflictColumns(columns ...string) *ScheduledTaskLogUpsertOne {
+	stlc.conflict = append(stlc.conflict, sql.ConflictColumns(columns...))
 	return &ScheduledTaskLogUpsertOne{
-		create: _c,
+		create: stlc,
 	}
 }
 
@@ -724,16 +724,16 @@ type ScheduledTaskLogCreateBulk struct {
 }
 
 // Save creates the ScheduledTaskLog entities in the database.
-func (_c *ScheduledTaskLogCreateBulk) Save(ctx context.Context) ([]*ScheduledTaskLog, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (stlcb *ScheduledTaskLogCreateBulk) Save(ctx context.Context) ([]*ScheduledTaskLog, error) {
+	if stlcb.err != nil {
+		return nil, stlcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*ScheduledTaskLog, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(stlcb.builders))
+	nodes := make([]*ScheduledTaskLog, len(stlcb.builders))
+	mutators := make([]Mutator, len(stlcb.builders))
+	for i := range stlcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := stlcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ScheduledTaskLogMutation)
@@ -747,12 +747,12 @@ func (_c *ScheduledTaskLogCreateBulk) Save(ctx context.Context) ([]*ScheduledTas
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, stlcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = stlcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, stlcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -776,7 +776,7 @@ func (_c *ScheduledTaskLogCreateBulk) Save(ctx context.Context) ([]*ScheduledTas
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, stlcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -784,8 +784,8 @@ func (_c *ScheduledTaskLogCreateBulk) Save(ctx context.Context) ([]*ScheduledTas
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *ScheduledTaskLogCreateBulk) SaveX(ctx context.Context) []*ScheduledTaskLog {
-	v, err := _c.Save(ctx)
+func (stlcb *ScheduledTaskLogCreateBulk) SaveX(ctx context.Context) []*ScheduledTaskLog {
+	v, err := stlcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -793,14 +793,14 @@ func (_c *ScheduledTaskLogCreateBulk) SaveX(ctx context.Context) []*ScheduledTas
 }
 
 // Exec executes the query.
-func (_c *ScheduledTaskLogCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (stlcb *ScheduledTaskLogCreateBulk) Exec(ctx context.Context) error {
+	_, err := stlcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ScheduledTaskLogCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (stlcb *ScheduledTaskLogCreateBulk) ExecX(ctx context.Context) {
+	if err := stlcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -820,10 +820,10 @@ func (_c *ScheduledTaskLogCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ScheduledTaskLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *ScheduledTaskLogUpsertBulk {
-	_c.conflict = opts
+func (stlcb *ScheduledTaskLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *ScheduledTaskLogUpsertBulk {
+	stlcb.conflict = opts
 	return &ScheduledTaskLogUpsertBulk{
-		create: _c,
+		create: stlcb,
 	}
 }
 
@@ -833,10 +833,10 @@ func (_c *ScheduledTaskLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *Sc
 //	client.ScheduledTaskLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ScheduledTaskLogCreateBulk) OnConflictColumns(columns ...string) *ScheduledTaskLogUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (stlcb *ScheduledTaskLogCreateBulk) OnConflictColumns(columns ...string) *ScheduledTaskLogUpsertBulk {
+	stlcb.conflict = append(stlcb.conflict, sql.ConflictColumns(columns...))
 	return &ScheduledTaskLogUpsertBulk{
-		create: _c,
+		create: stlcb,
 	}
 }
 

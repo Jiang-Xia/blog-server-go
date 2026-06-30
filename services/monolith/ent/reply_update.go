@@ -23,143 +23,143 @@ type ReplyUpdate struct {
 }
 
 // Where appends a list predicates to the ReplyUpdate builder.
-func (_u *ReplyUpdate) Where(ps ...predicate.Reply) *ReplyUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (ru *ReplyUpdate) Where(ps ...predicate.Reply) *ReplyUpdate {
+	ru.mutation.Where(ps...)
+	return ru
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *ReplyUpdate) SetUpdateTime(v time.Time) *ReplyUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ru *ReplyUpdate) SetUpdateTime(t time.Time) *ReplyUpdate {
+	ru.mutation.SetUpdateTime(t)
+	return ru
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *ReplyUpdate) SetIsDelete(v bool) *ReplyUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ru *ReplyUpdate) SetIsDelete(b bool) *ReplyUpdate {
+	ru.mutation.SetIsDelete(b)
+	return ru
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *ReplyUpdate) SetNillableIsDelete(v *bool) *ReplyUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ru *ReplyUpdate) SetNillableIsDelete(b *bool) *ReplyUpdate {
+	if b != nil {
+		ru.SetIsDelete(*b)
 	}
-	return _u
+	return ru
 }
 
 // SetVersion sets the "version" field.
-func (_u *ReplyUpdate) SetVersion(v int) *ReplyUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ru *ReplyUpdate) SetVersion(i int) *ReplyUpdate {
+	ru.mutation.ResetVersion()
+	ru.mutation.SetVersion(i)
+	return ru
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *ReplyUpdate) SetNillableVersion(v *int) *ReplyUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ru *ReplyUpdate) SetNillableVersion(i *int) *ReplyUpdate {
+	if i != nil {
+		ru.SetVersion(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *ReplyUpdate) AddVersion(v int) *ReplyUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ru *ReplyUpdate) AddVersion(i int) *ReplyUpdate {
+	ru.mutation.AddVersion(i)
+	return ru
 }
 
 // SetParentId sets the "parentId" field.
-func (_u *ReplyUpdate) SetParentId(v string) *ReplyUpdate {
-	_u.mutation.SetParentId(v)
-	return _u
+func (ru *ReplyUpdate) SetParentId(s string) *ReplyUpdate {
+	ru.mutation.SetParentId(s)
+	return ru
 }
 
 // SetNillableParentId sets the "parentId" field if the given value is not nil.
-func (_u *ReplyUpdate) SetNillableParentId(v *string) *ReplyUpdate {
-	if v != nil {
-		_u.SetParentId(*v)
+func (ru *ReplyUpdate) SetNillableParentId(s *string) *ReplyUpdate {
+	if s != nil {
+		ru.SetParentId(*s)
 	}
-	return _u
+	return ru
 }
 
 // SetReplyUid sets the "replyUid" field.
-func (_u *ReplyUpdate) SetReplyUid(v string) *ReplyUpdate {
-	_u.mutation.SetReplyUid(v)
-	return _u
+func (ru *ReplyUpdate) SetReplyUid(s string) *ReplyUpdate {
+	ru.mutation.SetReplyUid(s)
+	return ru
 }
 
 // SetNillableReplyUid sets the "replyUid" field if the given value is not nil.
-func (_u *ReplyUpdate) SetNillableReplyUid(v *string) *ReplyUpdate {
-	if v != nil {
-		_u.SetReplyUid(*v)
+func (ru *ReplyUpdate) SetNillableReplyUid(s *string) *ReplyUpdate {
+	if s != nil {
+		ru.SetReplyUid(*s)
 	}
-	return _u
+	return ru
 }
 
 // SetContent sets the "content" field.
-func (_u *ReplyUpdate) SetContent(v string) *ReplyUpdate {
-	_u.mutation.SetContent(v)
-	return _u
+func (ru *ReplyUpdate) SetContent(s string) *ReplyUpdate {
+	ru.mutation.SetContent(s)
+	return ru
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (_u *ReplyUpdate) SetNillableContent(v *string) *ReplyUpdate {
-	if v != nil {
-		_u.SetContent(*v)
+func (ru *ReplyUpdate) SetNillableContent(s *string) *ReplyUpdate {
+	if s != nil {
+		ru.SetContent(*s)
 	}
-	return _u
+	return ru
 }
 
 // SetUID sets the "uid" field.
-func (_u *ReplyUpdate) SetUID(v int) *ReplyUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ru *ReplyUpdate) SetUID(i int) *ReplyUpdate {
+	ru.mutation.ResetUID()
+	ru.mutation.SetUID(i)
+	return ru
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *ReplyUpdate) SetNillableUID(v *int) *ReplyUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (ru *ReplyUpdate) SetNillableUID(i *int) *ReplyUpdate {
+	if i != nil {
+		ru.SetUID(*i)
 	}
-	return _u
+	return ru
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *ReplyUpdate) AddUID(v int) *ReplyUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ru *ReplyUpdate) AddUID(i int) *ReplyUpdate {
+	ru.mutation.AddUID(i)
+	return ru
 }
 
 // SetStatus sets the "status" field.
-func (_u *ReplyUpdate) SetStatus(v string) *ReplyUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (ru *ReplyUpdate) SetStatus(s string) *ReplyUpdate {
+	ru.mutation.SetStatus(s)
+	return ru
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *ReplyUpdate) SetNillableStatus(v *string) *ReplyUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (ru *ReplyUpdate) SetNillableStatus(s *string) *ReplyUpdate {
+	if s != nil {
+		ru.SetStatus(*s)
 	}
-	return _u
+	return ru
 }
 
 // Mutation returns the ReplyMutation object of the builder.
-func (_u *ReplyUpdate) Mutation() *ReplyMutation {
-	return _u.mutation
+func (ru *ReplyUpdate) Mutation() *ReplyMutation {
+	return ru.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *ReplyUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ru *ReplyUpdate) Save(ctx context.Context) (int, error) {
+	ru.defaults()
+	return withHooks(ctx, ru.sqlSave, ru.mutation, ru.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ReplyUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (ru *ReplyUpdate) SaveX(ctx context.Context) int {
+	affected, err := ru.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -167,66 +167,66 @@ func (_u *ReplyUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *ReplyUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ru *ReplyUpdate) Exec(ctx context.Context) error {
+	_, err := ru.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ReplyUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ru *ReplyUpdate) ExecX(ctx context.Context) {
+	if err := ru.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *ReplyUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ru *ReplyUpdate) defaults() {
+	if _, ok := ru.mutation.UpdateTime(); !ok {
 		v := reply.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ru.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *ReplyUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (ru *ReplyUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(reply.Table, reply.Columns, sqlgraph.NewFieldSpec(reply.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ru.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ru.mutation.UpdateTime(); ok {
 		_spec.SetField(reply.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ru.mutation.IsDelete(); ok {
 		_spec.SetField(reply.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ru.mutation.Version(); ok {
 		_spec.SetField(reply.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ru.mutation.AddedVersion(); ok {
 		_spec.AddField(reply.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ParentId(); ok {
+	if value, ok := ru.mutation.ParentId(); ok {
 		_spec.SetField(reply.FieldParentId, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ReplyUid(); ok {
+	if value, ok := ru.mutation.ReplyUid(); ok {
 		_spec.SetField(reply.FieldReplyUid, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Content(); ok {
+	if value, ok := ru.mutation.Content(); ok {
 		_spec.SetField(reply.FieldContent, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ru.mutation.UID(); ok {
 		_spec.SetField(reply.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ru.mutation.AddedUID(); ok {
 		_spec.AddField(reply.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := ru.mutation.Status(); ok {
 		_spec.SetField(reply.FieldStatus, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, ru.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{reply.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -234,8 +234,8 @@ func (_u *ReplyUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	ru.mutation.done = true
+	return n, nil
 }
 
 // ReplyUpdateOne is the builder for updating a single Reply entity.
@@ -247,150 +247,150 @@ type ReplyUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *ReplyUpdateOne) SetUpdateTime(v time.Time) *ReplyUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetUpdateTime(t time.Time) *ReplyUpdateOne {
+	ruo.mutation.SetUpdateTime(t)
+	return ruo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *ReplyUpdateOne) SetIsDelete(v bool) *ReplyUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetIsDelete(b bool) *ReplyUpdateOne {
+	ruo.mutation.SetIsDelete(b)
+	return ruo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *ReplyUpdateOne) SetNillableIsDelete(v *bool) *ReplyUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ruo *ReplyUpdateOne) SetNillableIsDelete(b *bool) *ReplyUpdateOne {
+	if b != nil {
+		ruo.SetIsDelete(*b)
 	}
-	return _u
+	return ruo
 }
 
 // SetVersion sets the "version" field.
-func (_u *ReplyUpdateOne) SetVersion(v int) *ReplyUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetVersion(i int) *ReplyUpdateOne {
+	ruo.mutation.ResetVersion()
+	ruo.mutation.SetVersion(i)
+	return ruo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *ReplyUpdateOne) SetNillableVersion(v *int) *ReplyUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ruo *ReplyUpdateOne) SetNillableVersion(i *int) *ReplyUpdateOne {
+	if i != nil {
+		ruo.SetVersion(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *ReplyUpdateOne) AddVersion(v int) *ReplyUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ruo *ReplyUpdateOne) AddVersion(i int) *ReplyUpdateOne {
+	ruo.mutation.AddVersion(i)
+	return ruo
 }
 
 // SetParentId sets the "parentId" field.
-func (_u *ReplyUpdateOne) SetParentId(v string) *ReplyUpdateOne {
-	_u.mutation.SetParentId(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetParentId(s string) *ReplyUpdateOne {
+	ruo.mutation.SetParentId(s)
+	return ruo
 }
 
 // SetNillableParentId sets the "parentId" field if the given value is not nil.
-func (_u *ReplyUpdateOne) SetNillableParentId(v *string) *ReplyUpdateOne {
-	if v != nil {
-		_u.SetParentId(*v)
+func (ruo *ReplyUpdateOne) SetNillableParentId(s *string) *ReplyUpdateOne {
+	if s != nil {
+		ruo.SetParentId(*s)
 	}
-	return _u
+	return ruo
 }
 
 // SetReplyUid sets the "replyUid" field.
-func (_u *ReplyUpdateOne) SetReplyUid(v string) *ReplyUpdateOne {
-	_u.mutation.SetReplyUid(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetReplyUid(s string) *ReplyUpdateOne {
+	ruo.mutation.SetReplyUid(s)
+	return ruo
 }
 
 // SetNillableReplyUid sets the "replyUid" field if the given value is not nil.
-func (_u *ReplyUpdateOne) SetNillableReplyUid(v *string) *ReplyUpdateOne {
-	if v != nil {
-		_u.SetReplyUid(*v)
+func (ruo *ReplyUpdateOne) SetNillableReplyUid(s *string) *ReplyUpdateOne {
+	if s != nil {
+		ruo.SetReplyUid(*s)
 	}
-	return _u
+	return ruo
 }
 
 // SetContent sets the "content" field.
-func (_u *ReplyUpdateOne) SetContent(v string) *ReplyUpdateOne {
-	_u.mutation.SetContent(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetContent(s string) *ReplyUpdateOne {
+	ruo.mutation.SetContent(s)
+	return ruo
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (_u *ReplyUpdateOne) SetNillableContent(v *string) *ReplyUpdateOne {
-	if v != nil {
-		_u.SetContent(*v)
+func (ruo *ReplyUpdateOne) SetNillableContent(s *string) *ReplyUpdateOne {
+	if s != nil {
+		ruo.SetContent(*s)
 	}
-	return _u
+	return ruo
 }
 
 // SetUID sets the "uid" field.
-func (_u *ReplyUpdateOne) SetUID(v int) *ReplyUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetUID(i int) *ReplyUpdateOne {
+	ruo.mutation.ResetUID()
+	ruo.mutation.SetUID(i)
+	return ruo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *ReplyUpdateOne) SetNillableUID(v *int) *ReplyUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (ruo *ReplyUpdateOne) SetNillableUID(i *int) *ReplyUpdateOne {
+	if i != nil {
+		ruo.SetUID(*i)
 	}
-	return _u
+	return ruo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *ReplyUpdateOne) AddUID(v int) *ReplyUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (ruo *ReplyUpdateOne) AddUID(i int) *ReplyUpdateOne {
+	ruo.mutation.AddUID(i)
+	return ruo
 }
 
 // SetStatus sets the "status" field.
-func (_u *ReplyUpdateOne) SetStatus(v string) *ReplyUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (ruo *ReplyUpdateOne) SetStatus(s string) *ReplyUpdateOne {
+	ruo.mutation.SetStatus(s)
+	return ruo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *ReplyUpdateOne) SetNillableStatus(v *string) *ReplyUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (ruo *ReplyUpdateOne) SetNillableStatus(s *string) *ReplyUpdateOne {
+	if s != nil {
+		ruo.SetStatus(*s)
 	}
-	return _u
+	return ruo
 }
 
 // Mutation returns the ReplyMutation object of the builder.
-func (_u *ReplyUpdateOne) Mutation() *ReplyMutation {
-	return _u.mutation
+func (ruo *ReplyUpdateOne) Mutation() *ReplyMutation {
+	return ruo.mutation
 }
 
 // Where appends a list predicates to the ReplyUpdate builder.
-func (_u *ReplyUpdateOne) Where(ps ...predicate.Reply) *ReplyUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruo *ReplyUpdateOne) Where(ps ...predicate.Reply) *ReplyUpdateOne {
+	ruo.mutation.Where(ps...)
+	return ruo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *ReplyUpdateOne) Select(field string, fields ...string) *ReplyUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (ruo *ReplyUpdateOne) Select(field string, fields ...string) *ReplyUpdateOne {
+	ruo.fields = append([]string{field}, fields...)
+	return ruo
 }
 
 // Save executes the query and returns the updated Reply entity.
-func (_u *ReplyUpdateOne) Save(ctx context.Context) (*Reply, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruo *ReplyUpdateOne) Save(ctx context.Context) (*Reply, error) {
+	ruo.defaults()
+	return withHooks(ctx, ruo.sqlSave, ruo.mutation, ruo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ReplyUpdateOne) SaveX(ctx context.Context) *Reply {
-	node, err := _u.Save(ctx)
+func (ruo *ReplyUpdateOne) SaveX(ctx context.Context) *Reply {
+	node, err := ruo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -398,34 +398,34 @@ func (_u *ReplyUpdateOne) SaveX(ctx context.Context) *Reply {
 }
 
 // Exec executes the query on the entity.
-func (_u *ReplyUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruo *ReplyUpdateOne) Exec(ctx context.Context) error {
+	_, err := ruo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ReplyUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruo *ReplyUpdateOne) ExecX(ctx context.Context) {
+	if err := ruo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *ReplyUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ruo *ReplyUpdateOne) defaults() {
+	if _, ok := ruo.mutation.UpdateTime(); !ok {
 		v := reply.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ruo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *ReplyUpdateOne) sqlSave(ctx context.Context) (_node *Reply, err error) {
+func (ruo *ReplyUpdateOne) sqlSave(ctx context.Context) (_node *Reply, err error) {
 	_spec := sqlgraph.NewUpdateSpec(reply.Table, reply.Columns, sqlgraph.NewFieldSpec(reply.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := ruo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Reply.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := ruo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, reply.FieldID)
 		for _, f := range fields {
@@ -437,47 +437,47 @@ func (_u *ReplyUpdateOne) sqlSave(ctx context.Context) (_node *Reply, err error)
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ruo.mutation.UpdateTime(); ok {
 		_spec.SetField(reply.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ruo.mutation.IsDelete(); ok {
 		_spec.SetField(reply.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ruo.mutation.Version(); ok {
 		_spec.SetField(reply.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ruo.mutation.AddedVersion(); ok {
 		_spec.AddField(reply.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ParentId(); ok {
+	if value, ok := ruo.mutation.ParentId(); ok {
 		_spec.SetField(reply.FieldParentId, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.ReplyUid(); ok {
+	if value, ok := ruo.mutation.ReplyUid(); ok {
 		_spec.SetField(reply.FieldReplyUid, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Content(); ok {
+	if value, ok := ruo.mutation.Content(); ok {
 		_spec.SetField(reply.FieldContent, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := ruo.mutation.UID(); ok {
 		_spec.SetField(reply.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := ruo.mutation.AddedUID(); ok {
 		_spec.AddField(reply.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := ruo.mutation.Status(); ok {
 		_spec.SetField(reply.FieldStatus, field.TypeString, value)
 	}
-	_node = &Reply{config: _u.config}
+	_node = &Reply{config: ruo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, ruo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{reply.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -485,6 +485,6 @@ func (_u *ReplyUpdateOne) sqlSave(ctx context.Context) (_node *Reply, err error)
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	ruo.mutation.done = true
 	return _node, nil
 }

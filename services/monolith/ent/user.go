@@ -75,7 +75,7 @@ func (*User) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the User fields.
-func (_m *User) assignValues(columns []string, values []any) error {
+func (u *User) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -86,110 +86,110 @@ func (_m *User) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			u.ID = int(value.Int64)
 		case user.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				u.CreateTime = value.Time
 			}
 		case user.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				u.UpdateTime = value.Time
 			}
 		case user.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				u.IsDelete = value.Bool
 			}
 		case user.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				u.Version = int(value.Int64)
 			}
 		case user.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				u.Status = value.String
 			}
 		case user.FieldPassword:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field password", values[i])
 			} else if value.Valid {
-				_m.Password = value.String
+				u.Password = value.String
 			}
 		case user.FieldSalt:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field salt", values[i])
 			} else if value.Valid {
-				_m.Salt = value.String
+				u.Salt = value.String
 			}
 		case user.FieldIntro:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field intro", values[i])
 			} else if value.Valid {
-				_m.Intro = value.String
+				u.Intro = value.String
 			}
 		case user.FieldAvatar:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field avatar", values[i])
 			} else if value.Valid {
-				_m.Avatar = value.String
+				u.Avatar = value.String
 			}
 		case user.FieldHomepage:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field homepage", values[i])
 			} else if value.Valid {
-				_m.Homepage = value.String
+				u.Homepage = value.String
 			}
 		case user.FieldEmail:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field email", values[i])
 			} else if value.Valid {
-				_m.Email = new(string)
-				*_m.Email = value.String
+				u.Email = new(string)
+				*u.Email = value.String
 			}
 		case user.FieldGithubId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field githubId", values[i])
 			} else if value.Valid {
-				_m.GithubId = new(string)
-				*_m.GithubId = value.String
+				u.GithubId = new(string)
+				*u.GithubId = value.String
 			}
 		case user.FieldWechatOpenId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field wechatOpenId", values[i])
 			} else if value.Valid {
-				_m.WechatOpenId = new(string)
-				*_m.WechatOpenId = value.String
+				u.WechatOpenId = new(string)
+				*u.WechatOpenId = value.String
 			}
 		case user.FieldUsername:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field username", values[i])
 			} else if value.Valid {
-				_m.Username = new(string)
-				*_m.Username = value.String
+				u.Username = new(string)
+				*u.Username = value.String
 			}
 		case user.FieldDeptId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field deptId", values[i])
 			} else if value.Valid {
-				_m.DeptId = new(int)
-				*_m.DeptId = int(value.Int64)
+				u.DeptId = new(int)
+				*u.DeptId = int(value.Int64)
 			}
 		case user.FieldNickname:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field nickname", values[i])
 			} else if value.Valid {
-				_m.Nickname = value.String
+				u.Nickname = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			u.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -197,90 +197,90 @@ func (_m *User) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the User.
 // This includes values selected through modifiers, order, etc.
-func (_m *User) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (u *User) Value(name string) (ent.Value, error) {
+	return u.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this User.
 // Note that you need to call User.Unwrap() before calling this method if this User
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *User) Update() *UserUpdateOne {
-	return NewUserClient(_m.config).UpdateOne(_m)
+func (u *User) Update() *UserUpdateOne {
+	return NewUserClient(u.config).UpdateOne(u)
 }
 
 // Unwrap unwraps the User entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *User) Unwrap() *User {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (u *User) Unwrap() *User {
+	_tx, ok := u.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: User is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	u.config.driver = _tx.drv
+	return u
 }
 
 // String implements the fmt.Stringer.
-func (_m *User) String() string {
+func (u *User) String() string {
 	var builder strings.Builder
 	builder.WriteString("User(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", u.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(u.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(u.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", u.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", u.Version))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(u.Status)
 	builder.WriteString(", ")
 	builder.WriteString("password=")
-	builder.WriteString(_m.Password)
+	builder.WriteString(u.Password)
 	builder.WriteString(", ")
 	builder.WriteString("salt=")
-	builder.WriteString(_m.Salt)
+	builder.WriteString(u.Salt)
 	builder.WriteString(", ")
 	builder.WriteString("intro=")
-	builder.WriteString(_m.Intro)
+	builder.WriteString(u.Intro)
 	builder.WriteString(", ")
 	builder.WriteString("avatar=")
-	builder.WriteString(_m.Avatar)
+	builder.WriteString(u.Avatar)
 	builder.WriteString(", ")
 	builder.WriteString("homepage=")
-	builder.WriteString(_m.Homepage)
+	builder.WriteString(u.Homepage)
 	builder.WriteString(", ")
-	if v := _m.Email; v != nil {
+	if v := u.Email; v != nil {
 		builder.WriteString("email=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.GithubId; v != nil {
+	if v := u.GithubId; v != nil {
 		builder.WriteString("githubId=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.WechatOpenId; v != nil {
+	if v := u.WechatOpenId; v != nil {
 		builder.WriteString("wechatOpenId=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.Username; v != nil {
+	if v := u.Username; v != nil {
 		builder.WriteString("username=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.DeptId; v != nil {
+	if v := u.DeptId; v != nil {
 		builder.WriteString("deptId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("nickname=")
-	builder.WriteString(_m.Nickname)
+	builder.WriteString(u.Nickname)
 	builder.WriteByte(')')
 	return builder.String()
 }

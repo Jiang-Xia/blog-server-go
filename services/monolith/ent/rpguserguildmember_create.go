@@ -23,57 +23,57 @@ type RpgUserGuildMemberCreate struct {
 }
 
 // SetGuildId sets the "guildId" field.
-func (_c *RpgUserGuildMemberCreate) SetGuildId(v int) *RpgUserGuildMemberCreate {
-	_c.mutation.SetGuildId(v)
-	return _c
+func (rugmc *RpgUserGuildMemberCreate) SetGuildId(i int) *RpgUserGuildMemberCreate {
+	rugmc.mutation.SetGuildId(i)
+	return rugmc
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgUserGuildMemberCreate) SetUID(v int) *RpgUserGuildMemberCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rugmc *RpgUserGuildMemberCreate) SetUID(i int) *RpgUserGuildMemberCreate {
+	rugmc.mutation.SetUID(i)
+	return rugmc
 }
 
 // SetJoinTime sets the "joinTime" field.
-func (_c *RpgUserGuildMemberCreate) SetJoinTime(v time.Time) *RpgUserGuildMemberCreate {
-	_c.mutation.SetJoinTime(v)
-	return _c
+func (rugmc *RpgUserGuildMemberCreate) SetJoinTime(t time.Time) *RpgUserGuildMemberCreate {
+	rugmc.mutation.SetJoinTime(t)
+	return rugmc
 }
 
 // SetRole sets the "role" field.
-func (_c *RpgUserGuildMemberCreate) SetRole(v string) *RpgUserGuildMemberCreate {
-	_c.mutation.SetRole(v)
-	return _c
+func (rugmc *RpgUserGuildMemberCreate) SetRole(s string) *RpgUserGuildMemberCreate {
+	rugmc.mutation.SetRole(s)
+	return rugmc
 }
 
 // SetNillableRole sets the "role" field if the given value is not nil.
-func (_c *RpgUserGuildMemberCreate) SetNillableRole(v *string) *RpgUserGuildMemberCreate {
-	if v != nil {
-		_c.SetRole(*v)
+func (rugmc *RpgUserGuildMemberCreate) SetNillableRole(s *string) *RpgUserGuildMemberCreate {
+	if s != nil {
+		rugmc.SetRole(*s)
 	}
-	return _c
+	return rugmc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserGuildMemberCreate) SetID(v int) *RpgUserGuildMemberCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rugmc *RpgUserGuildMemberCreate) SetID(i int) *RpgUserGuildMemberCreate {
+	rugmc.mutation.SetID(i)
+	return rugmc
 }
 
 // Mutation returns the RpgUserGuildMemberMutation object of the builder.
-func (_c *RpgUserGuildMemberCreate) Mutation() *RpgUserGuildMemberMutation {
-	return _c.mutation
+func (rugmc *RpgUserGuildMemberCreate) Mutation() *RpgUserGuildMemberMutation {
+	return rugmc.mutation
 }
 
 // Save creates the RpgUserGuildMember in the database.
-func (_c *RpgUserGuildMemberCreate) Save(ctx context.Context) (*RpgUserGuildMember, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rugmc *RpgUserGuildMemberCreate) Save(ctx context.Context) (*RpgUserGuildMember, error) {
+	rugmc.defaults()
+	return withHooks(ctx, rugmc.sqlSave, rugmc.mutation, rugmc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserGuildMemberCreate) SaveX(ctx context.Context) *RpgUserGuildMember {
-	v, err := _c.Save(ctx)
+func (rugmc *RpgUserGuildMemberCreate) SaveX(ctx context.Context) *RpgUserGuildMember {
+	v, err := rugmc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -81,49 +81,49 @@ func (_c *RpgUserGuildMemberCreate) SaveX(ctx context.Context) *RpgUserGuildMemb
 }
 
 // Exec executes the query.
-func (_c *RpgUserGuildMemberCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rugmc *RpgUserGuildMemberCreate) Exec(ctx context.Context) error {
+	_, err := rugmc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserGuildMemberCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rugmc *RpgUserGuildMemberCreate) ExecX(ctx context.Context) {
+	if err := rugmc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgUserGuildMemberCreate) defaults() {
-	if _, ok := _c.mutation.Role(); !ok {
+func (rugmc *RpgUserGuildMemberCreate) defaults() {
+	if _, ok := rugmc.mutation.Role(); !ok {
 		v := rpguserguildmember.DefaultRole
-		_c.mutation.SetRole(v)
+		rugmc.mutation.SetRole(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserGuildMemberCreate) check() error {
-	if _, ok := _c.mutation.GuildId(); !ok {
+func (rugmc *RpgUserGuildMemberCreate) check() error {
+	if _, ok := rugmc.mutation.GuildId(); !ok {
 		return &ValidationError{Name: "guildId", err: errors.New(`ent: missing required field "RpgUserGuildMember.guildId"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := rugmc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserGuildMember.uid"`)}
 	}
-	if _, ok := _c.mutation.JoinTime(); !ok {
+	if _, ok := rugmc.mutation.JoinTime(); !ok {
 		return &ValidationError{Name: "joinTime", err: errors.New(`ent: missing required field "RpgUserGuildMember.joinTime"`)}
 	}
-	if _, ok := _c.mutation.Role(); !ok {
+	if _, ok := rugmc.mutation.Role(); !ok {
 		return &ValidationError{Name: "role", err: errors.New(`ent: missing required field "RpgUserGuildMember.role"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserGuildMemberCreate) sqlSave(ctx context.Context) (*RpgUserGuildMember, error) {
-	if err := _c.check(); err != nil {
+func (rugmc *RpgUserGuildMemberCreate) sqlSave(ctx context.Context) (*RpgUserGuildMember, error) {
+	if err := rugmc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rugmc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rugmc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -133,34 +133,34 @@ func (_c *RpgUserGuildMemberCreate) sqlSave(ctx context.Context) (*RpgUserGuildM
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rugmc.mutation.id = &_node.ID
+	rugmc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserGuildMemberCreate) createSpec() (*RpgUserGuildMember, *sqlgraph.CreateSpec) {
+func (rugmc *RpgUserGuildMemberCreate) createSpec() (*RpgUserGuildMember, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserGuildMember{config: _c.config}
+		_node = &RpgUserGuildMember{config: rugmc.config}
 		_spec = sqlgraph.NewCreateSpec(rpguserguildmember.Table, sqlgraph.NewFieldSpec(rpguserguildmember.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rugmc.conflict
+	if id, ok := rugmc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.GuildId(); ok {
+	if value, ok := rugmc.mutation.GuildId(); ok {
 		_spec.SetField(rpguserguildmember.FieldGuildId, field.TypeInt, value)
 		_node.GuildId = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rugmc.mutation.UID(); ok {
 		_spec.SetField(rpguserguildmember.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.JoinTime(); ok {
+	if value, ok := rugmc.mutation.JoinTime(); ok {
 		_spec.SetField(rpguserguildmember.FieldJoinTime, field.TypeTime, value)
 		_node.JoinTime = value
 	}
-	if value, ok := _c.mutation.Role(); ok {
+	if value, ok := rugmc.mutation.Role(); ok {
 		_spec.SetField(rpguserguildmember.FieldRole, field.TypeString, value)
 		_node.Role = value
 	}
@@ -183,10 +183,10 @@ func (_c *RpgUserGuildMemberCreate) createSpec() (*RpgUserGuildMember, *sqlgraph
 //			SetGuildId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserGuildMemberCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserGuildMemberUpsertOne {
-	_c.conflict = opts
+func (rugmc *RpgUserGuildMemberCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserGuildMemberUpsertOne {
+	rugmc.conflict = opts
 	return &RpgUserGuildMemberUpsertOne{
-		create: _c,
+		create: rugmc,
 	}
 }
 
@@ -196,10 +196,10 @@ func (_c *RpgUserGuildMemberCreate) OnConflict(opts ...sql.ConflictOption) *RpgU
 //	client.RpgUserGuildMember.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserGuildMemberCreate) OnConflictColumns(columns ...string) *RpgUserGuildMemberUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rugmc *RpgUserGuildMemberCreate) OnConflictColumns(columns ...string) *RpgUserGuildMemberUpsertOne {
+	rugmc.conflict = append(rugmc.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserGuildMemberUpsertOne{
-		create: _c,
+		create: rugmc,
 	}
 }
 
@@ -436,16 +436,16 @@ type RpgUserGuildMemberCreateBulk struct {
 }
 
 // Save creates the RpgUserGuildMember entities in the database.
-func (_c *RpgUserGuildMemberCreateBulk) Save(ctx context.Context) ([]*RpgUserGuildMember, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rugmcb *RpgUserGuildMemberCreateBulk) Save(ctx context.Context) ([]*RpgUserGuildMember, error) {
+	if rugmcb.err != nil {
+		return nil, rugmcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserGuildMember, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rugmcb.builders))
+	nodes := make([]*RpgUserGuildMember, len(rugmcb.builders))
+	mutators := make([]Mutator, len(rugmcb.builders))
+	for i := range rugmcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rugmcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserGuildMemberMutation)
@@ -459,12 +459,12 @@ func (_c *RpgUserGuildMemberCreateBulk) Save(ctx context.Context) ([]*RpgUserGui
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rugmcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rugmcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rugmcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -488,7 +488,7 @@ func (_c *RpgUserGuildMemberCreateBulk) Save(ctx context.Context) ([]*RpgUserGui
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rugmcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -496,8 +496,8 @@ func (_c *RpgUserGuildMemberCreateBulk) Save(ctx context.Context) ([]*RpgUserGui
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserGuildMemberCreateBulk) SaveX(ctx context.Context) []*RpgUserGuildMember {
-	v, err := _c.Save(ctx)
+func (rugmcb *RpgUserGuildMemberCreateBulk) SaveX(ctx context.Context) []*RpgUserGuildMember {
+	v, err := rugmcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -505,14 +505,14 @@ func (_c *RpgUserGuildMemberCreateBulk) SaveX(ctx context.Context) []*RpgUserGui
 }
 
 // Exec executes the query.
-func (_c *RpgUserGuildMemberCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rugmcb *RpgUserGuildMemberCreateBulk) Exec(ctx context.Context) error {
+	_, err := rugmcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserGuildMemberCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rugmcb *RpgUserGuildMemberCreateBulk) ExecX(ctx context.Context) {
+	if err := rugmcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -532,10 +532,10 @@ func (_c *RpgUserGuildMemberCreateBulk) ExecX(ctx context.Context) {
 //			SetGuildId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserGuildMemberCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserGuildMemberUpsertBulk {
-	_c.conflict = opts
+func (rugmcb *RpgUserGuildMemberCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserGuildMemberUpsertBulk {
+	rugmcb.conflict = opts
 	return &RpgUserGuildMemberUpsertBulk{
-		create: _c,
+		create: rugmcb,
 	}
 }
 
@@ -545,10 +545,10 @@ func (_c *RpgUserGuildMemberCreateBulk) OnConflict(opts ...sql.ConflictOption) *
 //	client.RpgUserGuildMember.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserGuildMemberCreateBulk) OnConflictColumns(columns ...string) *RpgUserGuildMemberUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rugmcb *RpgUserGuildMemberCreateBulk) OnConflictColumns(columns ...string) *RpgUserGuildMemberUpsertBulk {
+	rugmcb.conflict = append(rugmcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserGuildMemberUpsertBulk{
-		create: _c,
+		create: rugmcb,
 	}
 }
 

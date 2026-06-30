@@ -23,207 +23,207 @@ type RpgUserBuffCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgUserBuffCreate) SetCreateTime(v time.Time) *RpgUserBuffCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetCreateTime(t time.Time) *RpgUserBuffCreate {
+	rubc.mutation.SetCreateTime(t)
+	return rubc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableCreateTime(v *time.Time) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (rubc *RpgUserBuffCreate) SetNillableCreateTime(t *time.Time) *RpgUserBuffCreate {
+	if t != nil {
+		rubc.SetCreateTime(*t)
 	}
-	return _c
+	return rubc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgUserBuffCreate) SetUpdateTime(v time.Time) *RpgUserBuffCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetUpdateTime(t time.Time) *RpgUserBuffCreate {
+	rubc.mutation.SetUpdateTime(t)
+	return rubc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableUpdateTime(v *time.Time) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (rubc *RpgUserBuffCreate) SetNillableUpdateTime(t *time.Time) *RpgUserBuffCreate {
+	if t != nil {
+		rubc.SetUpdateTime(*t)
 	}
-	return _c
+	return rubc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgUserBuffCreate) SetIsDelete(v bool) *RpgUserBuffCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetIsDelete(b bool) *RpgUserBuffCreate {
+	rubc.mutation.SetIsDelete(b)
+	return rubc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableIsDelete(v *bool) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (rubc *RpgUserBuffCreate) SetNillableIsDelete(b *bool) *RpgUserBuffCreate {
+	if b != nil {
+		rubc.SetIsDelete(*b)
 	}
-	return _c
+	return rubc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgUserBuffCreate) SetVersion(v int) *RpgUserBuffCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetVersion(i int) *RpgUserBuffCreate {
+	rubc.mutation.SetVersion(i)
+	return rubc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableVersion(v *int) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (rubc *RpgUserBuffCreate) SetNillableVersion(i *int) *RpgUserBuffCreate {
+	if i != nil {
+		rubc.SetVersion(*i)
 	}
-	return _c
+	return rubc
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgUserBuffCreate) SetUID(v int) *RpgUserBuffCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetUID(i int) *RpgUserBuffCreate {
+	rubc.mutation.SetUID(i)
+	return rubc
 }
 
 // SetBuffCode sets the "buffCode" field.
-func (_c *RpgUserBuffCreate) SetBuffCode(v string) *RpgUserBuffCreate {
-	_c.mutation.SetBuffCode(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetBuffCode(s string) *RpgUserBuffCreate {
+	rubc.mutation.SetBuffCode(s)
+	return rubc
 }
 
 // SetBuffType sets the "buffType" field.
-func (_c *RpgUserBuffCreate) SetBuffType(v string) *RpgUserBuffCreate {
-	_c.mutation.SetBuffType(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetBuffType(s string) *RpgUserBuffCreate {
+	rubc.mutation.SetBuffType(s)
+	return rubc
 }
 
 // SetName sets the "name" field.
-func (_c *RpgUserBuffCreate) SetName(v string) *RpgUserBuffCreate {
-	_c.mutation.SetName(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetName(s string) *RpgUserBuffCreate {
+	rubc.mutation.SetName(s)
+	return rubc
 }
 
 // SetDescription sets the "description" field.
-func (_c *RpgUserBuffCreate) SetDescription(v string) *RpgUserBuffCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetDescription(s string) *RpgUserBuffCreate {
+	rubc.mutation.SetDescription(s)
+	return rubc
 }
 
 // SetValue sets the "value" field.
-func (_c *RpgUserBuffCreate) SetValue(v float64) *RpgUserBuffCreate {
-	_c.mutation.SetValue(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetValue(f float64) *RpgUserBuffCreate {
+	rubc.mutation.SetValue(f)
+	return rubc
 }
 
 // SetExpireAt sets the "expireAt" field.
-func (_c *RpgUserBuffCreate) SetExpireAt(v time.Time) *RpgUserBuffCreate {
-	_c.mutation.SetExpireAt(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetExpireAt(t time.Time) *RpgUserBuffCreate {
+	rubc.mutation.SetExpireAt(t)
+	return rubc
 }
 
 // SetRemainingUses sets the "remainingUses" field.
-func (_c *RpgUserBuffCreate) SetRemainingUses(v int) *RpgUserBuffCreate {
-	_c.mutation.SetRemainingUses(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetRemainingUses(i int) *RpgUserBuffCreate {
+	rubc.mutation.SetRemainingUses(i)
+	return rubc
 }
 
 // SetNillableRemainingUses sets the "remainingUses" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableRemainingUses(v *int) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetRemainingUses(*v)
+func (rubc *RpgUserBuffCreate) SetNillableRemainingUses(i *int) *RpgUserBuffCreate {
+	if i != nil {
+		rubc.SetRemainingUses(*i)
 	}
-	return _c
+	return rubc
 }
 
 // SetIsActive sets the "isActive" field.
-func (_c *RpgUserBuffCreate) SetIsActive(v int) *RpgUserBuffCreate {
-	_c.mutation.SetIsActive(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetIsActive(i int) *RpgUserBuffCreate {
+	rubc.mutation.SetIsActive(i)
+	return rubc
 }
 
 // SetNillableIsActive sets the "isActive" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableIsActive(v *int) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetIsActive(*v)
+func (rubc *RpgUserBuffCreate) SetNillableIsActive(i *int) *RpgUserBuffCreate {
+	if i != nil {
+		rubc.SetIsActive(*i)
 	}
-	return _c
+	return rubc
 }
 
 // SetSourceType sets the "sourceType" field.
-func (_c *RpgUserBuffCreate) SetSourceType(v string) *RpgUserBuffCreate {
-	_c.mutation.SetSourceType(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetSourceType(s string) *RpgUserBuffCreate {
+	rubc.mutation.SetSourceType(s)
+	return rubc
 }
 
 // SetNillableSourceType sets the "sourceType" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableSourceType(v *string) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetSourceType(*v)
+func (rubc *RpgUserBuffCreate) SetNillableSourceType(s *string) *RpgUserBuffCreate {
+	if s != nil {
+		rubc.SetSourceType(*s)
 	}
-	return _c
+	return rubc
 }
 
 // SetSourceId sets the "sourceId" field.
-func (_c *RpgUserBuffCreate) SetSourceId(v int) *RpgUserBuffCreate {
-	_c.mutation.SetSourceId(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetSourceId(i int) *RpgUserBuffCreate {
+	rubc.mutation.SetSourceId(i)
+	return rubc
 }
 
 // SetNillableSourceId sets the "sourceId" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableSourceId(v *int) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetSourceId(*v)
+func (rubc *RpgUserBuffCreate) SetNillableSourceId(i *int) *RpgUserBuffCreate {
+	if i != nil {
+		rubc.SetSourceId(*i)
 	}
-	return _c
+	return rubc
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgUserBuffCreate) SetEffectJson(v string) *RpgUserBuffCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetEffectJson(s string) *RpgUserBuffCreate {
+	rubc.mutation.SetEffectJson(s)
+	return rubc
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableEffectJson(v *string) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (rubc *RpgUserBuffCreate) SetNillableEffectJson(s *string) *RpgUserBuffCreate {
+	if s != nil {
+		rubc.SetEffectJson(*s)
 	}
-	return _c
+	return rubc
 }
 
 // SetTriggerMode sets the "triggerMode" field.
-func (_c *RpgUserBuffCreate) SetTriggerMode(v string) *RpgUserBuffCreate {
-	_c.mutation.SetTriggerMode(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetTriggerMode(s string) *RpgUserBuffCreate {
+	rubc.mutation.SetTriggerMode(s)
+	return rubc
 }
 
 // SetNillableTriggerMode sets the "triggerMode" field if the given value is not nil.
-func (_c *RpgUserBuffCreate) SetNillableTriggerMode(v *string) *RpgUserBuffCreate {
-	if v != nil {
-		_c.SetTriggerMode(*v)
+func (rubc *RpgUserBuffCreate) SetNillableTriggerMode(s *string) *RpgUserBuffCreate {
+	if s != nil {
+		rubc.SetTriggerMode(*s)
 	}
-	return _c
+	return rubc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserBuffCreate) SetID(v int) *RpgUserBuffCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rubc *RpgUserBuffCreate) SetID(i int) *RpgUserBuffCreate {
+	rubc.mutation.SetID(i)
+	return rubc
 }
 
 // Mutation returns the RpgUserBuffMutation object of the builder.
-func (_c *RpgUserBuffCreate) Mutation() *RpgUserBuffMutation {
-	return _c.mutation
+func (rubc *RpgUserBuffCreate) Mutation() *RpgUserBuffMutation {
+	return rubc.mutation
 }
 
 // Save creates the RpgUserBuff in the database.
-func (_c *RpgUserBuffCreate) Save(ctx context.Context) (*RpgUserBuff, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rubc *RpgUserBuffCreate) Save(ctx context.Context) (*RpgUserBuff, error) {
+	rubc.defaults()
+	return withHooks(ctx, rubc.sqlSave, rubc.mutation, rubc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserBuffCreate) SaveX(ctx context.Context) *RpgUserBuff {
-	v, err := _c.Save(ctx)
+func (rubc *RpgUserBuffCreate) SaveX(ctx context.Context) *RpgUserBuff {
+	v, err := rubc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -231,103 +231,103 @@ func (_c *RpgUserBuffCreate) SaveX(ctx context.Context) *RpgUserBuff {
 }
 
 // Exec executes the query.
-func (_c *RpgUserBuffCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rubc *RpgUserBuffCreate) Exec(ctx context.Context) error {
+	_, err := rubc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserBuffCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rubc *RpgUserBuffCreate) ExecX(ctx context.Context) {
+	if err := rubc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgUserBuffCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rubc *RpgUserBuffCreate) defaults() {
+	if _, ok := rubc.mutation.CreateTime(); !ok {
 		v := rpguserbuff.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		rubc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rubc.mutation.UpdateTime(); !ok {
 		v := rpguserbuff.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		rubc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rubc.mutation.IsDelete(); !ok {
 		v := rpguserbuff.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		rubc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rubc.mutation.Version(); !ok {
 		v := rpguserbuff.DefaultVersion
-		_c.mutation.SetVersion(v)
+		rubc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.RemainingUses(); !ok {
+	if _, ok := rubc.mutation.RemainingUses(); !ok {
 		v := rpguserbuff.DefaultRemainingUses
-		_c.mutation.SetRemainingUses(v)
+		rubc.mutation.SetRemainingUses(v)
 	}
-	if _, ok := _c.mutation.IsActive(); !ok {
+	if _, ok := rubc.mutation.IsActive(); !ok {
 		v := rpguserbuff.DefaultIsActive
-		_c.mutation.SetIsActive(v)
+		rubc.mutation.SetIsActive(v)
 	}
-	if _, ok := _c.mutation.TriggerMode(); !ok {
+	if _, ok := rubc.mutation.TriggerMode(); !ok {
 		v := rpguserbuff.DefaultTriggerMode
-		_c.mutation.SetTriggerMode(v)
+		rubc.mutation.SetTriggerMode(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserBuffCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rubc *RpgUserBuffCreate) check() error {
+	if _, ok := rubc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserBuff.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rubc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserBuff.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rubc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserBuff.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rubc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserBuff.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := rubc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserBuff.uid"`)}
 	}
-	if _, ok := _c.mutation.BuffCode(); !ok {
+	if _, ok := rubc.mutation.BuffCode(); !ok {
 		return &ValidationError{Name: "buffCode", err: errors.New(`ent: missing required field "RpgUserBuff.buffCode"`)}
 	}
-	if _, ok := _c.mutation.BuffType(); !ok {
+	if _, ok := rubc.mutation.BuffType(); !ok {
 		return &ValidationError{Name: "buffType", err: errors.New(`ent: missing required field "RpgUserBuff.buffType"`)}
 	}
-	if _, ok := _c.mutation.Name(); !ok {
+	if _, ok := rubc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "RpgUserBuff.name"`)}
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := rubc.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "RpgUserBuff.description"`)}
 	}
-	if _, ok := _c.mutation.Value(); !ok {
+	if _, ok := rubc.mutation.Value(); !ok {
 		return &ValidationError{Name: "value", err: errors.New(`ent: missing required field "RpgUserBuff.value"`)}
 	}
-	if _, ok := _c.mutation.ExpireAt(); !ok {
+	if _, ok := rubc.mutation.ExpireAt(); !ok {
 		return &ValidationError{Name: "expireAt", err: errors.New(`ent: missing required field "RpgUserBuff.expireAt"`)}
 	}
-	if _, ok := _c.mutation.RemainingUses(); !ok {
+	if _, ok := rubc.mutation.RemainingUses(); !ok {
 		return &ValidationError{Name: "remainingUses", err: errors.New(`ent: missing required field "RpgUserBuff.remainingUses"`)}
 	}
-	if _, ok := _c.mutation.IsActive(); !ok {
+	if _, ok := rubc.mutation.IsActive(); !ok {
 		return &ValidationError{Name: "isActive", err: errors.New(`ent: missing required field "RpgUserBuff.isActive"`)}
 	}
-	if _, ok := _c.mutation.TriggerMode(); !ok {
+	if _, ok := rubc.mutation.TriggerMode(); !ok {
 		return &ValidationError{Name: "triggerMode", err: errors.New(`ent: missing required field "RpgUserBuff.triggerMode"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserBuffCreate) sqlSave(ctx context.Context) (*RpgUserBuff, error) {
-	if err := _c.check(); err != nil {
+func (rubc *RpgUserBuffCreate) sqlSave(ctx context.Context) (*RpgUserBuff, error) {
+	if err := rubc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rubc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rubc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -337,86 +337,86 @@ func (_c *RpgUserBuffCreate) sqlSave(ctx context.Context) (*RpgUserBuff, error) 
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rubc.mutation.id = &_node.ID
+	rubc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserBuffCreate) createSpec() (*RpgUserBuff, *sqlgraph.CreateSpec) {
+func (rubc *RpgUserBuffCreate) createSpec() (*RpgUserBuff, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserBuff{config: _c.config}
+		_node = &RpgUserBuff{config: rubc.config}
 		_spec = sqlgraph.NewCreateSpec(rpguserbuff.Table, sqlgraph.NewFieldSpec(rpguserbuff.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rubc.conflict
+	if id, ok := rubc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := rubc.mutation.CreateTime(); ok {
 		_spec.SetField(rpguserbuff.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := rubc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserbuff.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := rubc.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserbuff.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := rubc.mutation.Version(); ok {
 		_spec.SetField(rpguserbuff.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rubc.mutation.UID(); ok {
 		_spec.SetField(rpguserbuff.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.BuffCode(); ok {
+	if value, ok := rubc.mutation.BuffCode(); ok {
 		_spec.SetField(rpguserbuff.FieldBuffCode, field.TypeString, value)
 		_node.BuffCode = value
 	}
-	if value, ok := _c.mutation.BuffType(); ok {
+	if value, ok := rubc.mutation.BuffType(); ok {
 		_spec.SetField(rpguserbuff.FieldBuffType, field.TypeString, value)
 		_node.BuffType = value
 	}
-	if value, ok := _c.mutation.Name(); ok {
+	if value, ok := rubc.mutation.Name(); ok {
 		_spec.SetField(rpguserbuff.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := rubc.mutation.Description(); ok {
 		_spec.SetField(rpguserbuff.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.Value(); ok {
+	if value, ok := rubc.mutation.Value(); ok {
 		_spec.SetField(rpguserbuff.FieldValue, field.TypeFloat64, value)
 		_node.Value = value
 	}
-	if value, ok := _c.mutation.ExpireAt(); ok {
+	if value, ok := rubc.mutation.ExpireAt(); ok {
 		_spec.SetField(rpguserbuff.FieldExpireAt, field.TypeTime, value)
 		_node.ExpireAt = value
 	}
-	if value, ok := _c.mutation.RemainingUses(); ok {
+	if value, ok := rubc.mutation.RemainingUses(); ok {
 		_spec.SetField(rpguserbuff.FieldRemainingUses, field.TypeInt, value)
 		_node.RemainingUses = value
 	}
-	if value, ok := _c.mutation.IsActive(); ok {
+	if value, ok := rubc.mutation.IsActive(); ok {
 		_spec.SetField(rpguserbuff.FieldIsActive, field.TypeInt, value)
 		_node.IsActive = value
 	}
-	if value, ok := _c.mutation.SourceType(); ok {
+	if value, ok := rubc.mutation.SourceType(); ok {
 		_spec.SetField(rpguserbuff.FieldSourceType, field.TypeString, value)
 		_node.SourceType = &value
 	}
-	if value, ok := _c.mutation.SourceId(); ok {
+	if value, ok := rubc.mutation.SourceId(); ok {
 		_spec.SetField(rpguserbuff.FieldSourceId, field.TypeInt, value)
 		_node.SourceId = &value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := rubc.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserbuff.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.TriggerMode(); ok {
+	if value, ok := rubc.mutation.TriggerMode(); ok {
 		_spec.SetField(rpguserbuff.FieldTriggerMode, field.TypeString, value)
 		_node.TriggerMode = value
 	}
@@ -439,10 +439,10 @@ func (_c *RpgUserBuffCreate) createSpec() (*RpgUserBuff, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserBuffCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserBuffUpsertOne {
-	_c.conflict = opts
+func (rubc *RpgUserBuffCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserBuffUpsertOne {
+	rubc.conflict = opts
 	return &RpgUserBuffUpsertOne{
-		create: _c,
+		create: rubc,
 	}
 }
 
@@ -452,10 +452,10 @@ func (_c *RpgUserBuffCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserBuff
 //	client.RpgUserBuff.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserBuffCreate) OnConflictColumns(columns ...string) *RpgUserBuffUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rubc *RpgUserBuffCreate) OnConflictColumns(columns ...string) *RpgUserBuffUpsertOne {
+	rubc.conflict = append(rubc.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserBuffUpsertOne{
-		create: _c,
+		create: rubc,
 	}
 }
 
@@ -1098,16 +1098,16 @@ type RpgUserBuffCreateBulk struct {
 }
 
 // Save creates the RpgUserBuff entities in the database.
-func (_c *RpgUserBuffCreateBulk) Save(ctx context.Context) ([]*RpgUserBuff, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rubcb *RpgUserBuffCreateBulk) Save(ctx context.Context) ([]*RpgUserBuff, error) {
+	if rubcb.err != nil {
+		return nil, rubcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserBuff, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rubcb.builders))
+	nodes := make([]*RpgUserBuff, len(rubcb.builders))
+	mutators := make([]Mutator, len(rubcb.builders))
+	for i := range rubcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rubcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserBuffMutation)
@@ -1121,12 +1121,12 @@ func (_c *RpgUserBuffCreateBulk) Save(ctx context.Context) ([]*RpgUserBuff, erro
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rubcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rubcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rubcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1150,7 +1150,7 @@ func (_c *RpgUserBuffCreateBulk) Save(ctx context.Context) ([]*RpgUserBuff, erro
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rubcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1158,8 +1158,8 @@ func (_c *RpgUserBuffCreateBulk) Save(ctx context.Context) ([]*RpgUserBuff, erro
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserBuffCreateBulk) SaveX(ctx context.Context) []*RpgUserBuff {
-	v, err := _c.Save(ctx)
+func (rubcb *RpgUserBuffCreateBulk) SaveX(ctx context.Context) []*RpgUserBuff {
+	v, err := rubcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1167,14 +1167,14 @@ func (_c *RpgUserBuffCreateBulk) SaveX(ctx context.Context) []*RpgUserBuff {
 }
 
 // Exec executes the query.
-func (_c *RpgUserBuffCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rubcb *RpgUserBuffCreateBulk) Exec(ctx context.Context) error {
+	_, err := rubcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserBuffCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rubcb *RpgUserBuffCreateBulk) ExecX(ctx context.Context) {
+	if err := rubcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1194,10 +1194,10 @@ func (_c *RpgUserBuffCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserBuffCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserBuffUpsertBulk {
-	_c.conflict = opts
+func (rubcb *RpgUserBuffCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserBuffUpsertBulk {
+	rubcb.conflict = opts
 	return &RpgUserBuffUpsertBulk{
-		create: _c,
+		create: rubcb,
 	}
 }
 
@@ -1207,10 +1207,10 @@ func (_c *RpgUserBuffCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUser
 //	client.RpgUserBuff.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserBuffCreateBulk) OnConflictColumns(columns ...string) *RpgUserBuffUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rubcb *RpgUserBuffCreateBulk) OnConflictColumns(columns ...string) *RpgUserBuffUpsertBulk {
+	rubcb.conflict = append(rubcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserBuffUpsertBulk{
-		create: _c,
+		create: rubcb,
 	}
 }
 

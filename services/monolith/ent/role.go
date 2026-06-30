@@ -55,7 +55,7 @@ func (*Role) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Role fields.
-func (_m *Role) assignValues(columns []string, values []any) error {
+func (r *Role) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -66,45 +66,45 @@ func (_m *Role) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			r.ID = int(value.Int64)
 		case role.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				r.CreateTime = value.Time
 			}
 		case role.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				r.UpdateTime = value.Time
 			}
 		case role.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				r.IsDelete = value.Bool
 			}
 		case role.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				r.Version = int(value.Int64)
 			}
 		case role.FieldRoleName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field roleName", values[i])
 			} else if value.Valid {
-				_m.RoleName = value.String
+				r.RoleName = value.String
 			}
 		case role.FieldRoleDesc:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field roleDesc", values[i])
 			} else if value.Valid {
-				_m.RoleDesc = value.String
+				r.RoleDesc = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			r.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -112,50 +112,50 @@ func (_m *Role) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Role.
 // This includes values selected through modifiers, order, etc.
-func (_m *Role) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (r *Role) Value(name string) (ent.Value, error) {
+	return r.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Role.
 // Note that you need to call Role.Unwrap() before calling this method if this Role
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Role) Update() *RoleUpdateOne {
-	return NewRoleClient(_m.config).UpdateOne(_m)
+func (r *Role) Update() *RoleUpdateOne {
+	return NewRoleClient(r.config).UpdateOne(r)
 }
 
 // Unwrap unwraps the Role entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Role) Unwrap() *Role {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (r *Role) Unwrap() *Role {
+	_tx, ok := r.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Role is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	r.config.driver = _tx.drv
+	return r
 }
 
 // String implements the fmt.Stringer.
-func (_m *Role) String() string {
+func (r *Role) String() string {
 	var builder strings.Builder
 	builder.WriteString("Role(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(r.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(r.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", r.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", r.Version))
 	builder.WriteString(", ")
 	builder.WriteString("roleName=")
-	builder.WriteString(_m.RoleName)
+	builder.WriteString(r.RoleName)
 	builder.WriteString(", ")
 	builder.WriteString("roleDesc=")
-	builder.WriteString(_m.RoleDesc)
+	builder.WriteString(r.RoleDesc)
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -46,7 +46,7 @@ func (*Like) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Like fields.
-func (_m *Like) assignValues(columns []string, values []any) error {
+func (l *Like) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -56,34 +56,34 @@ func (_m *Like) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				l.ID = value.String
 			}
 		case like.FieldArticleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field articleId", values[i])
 			} else if value.Valid {
-				_m.ArticleId = int(value.Int64)
+				l.ArticleId = int(value.Int64)
 			}
 		case like.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				l.UID = int(value.Int64)
 			}
 		case like.FieldIP:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field ip", values[i])
 			} else if value.Valid {
-				_m.IP = value.String
+				l.IP = value.String
 			}
 		case like.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				l.Status = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			l.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -91,44 +91,44 @@ func (_m *Like) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Like.
 // This includes values selected through modifiers, order, etc.
-func (_m *Like) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (l *Like) Value(name string) (ent.Value, error) {
+	return l.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Like.
 // Note that you need to call Like.Unwrap() before calling this method if this Like
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Like) Update() *LikeUpdateOne {
-	return NewLikeClient(_m.config).UpdateOne(_m)
+func (l *Like) Update() *LikeUpdateOne {
+	return NewLikeClient(l.config).UpdateOne(l)
 }
 
 // Unwrap unwraps the Like entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Like) Unwrap() *Like {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (l *Like) Unwrap() *Like {
+	_tx, ok := l.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Like is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	l.config.driver = _tx.drv
+	return l
 }
 
 // String implements the fmt.Stringer.
-func (_m *Like) String() string {
+func (l *Like) String() string {
 	var builder strings.Builder
 	builder.WriteString("Like(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", l.ID))
 	builder.WriteString("articleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleId))
+	builder.WriteString(fmt.Sprintf("%v", l.ArticleId))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", l.UID))
 	builder.WriteString(", ")
 	builder.WriteString("ip=")
-	builder.WriteString(_m.IP)
+	builder.WriteString(l.IP)
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(l.Status)
 	builder.WriteByte(')')
 	return builder.String()
 }

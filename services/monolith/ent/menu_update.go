@@ -22,170 +22,170 @@ type MenuUpdate struct {
 }
 
 // Where appends a list predicates to the MenuUpdate builder.
-func (_u *MenuUpdate) Where(ps ...predicate.Menu) *MenuUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (mu *MenuUpdate) Where(ps ...predicate.Menu) *MenuUpdate {
+	mu.mutation.Where(ps...)
+	return mu
 }
 
 // SetPid sets the "pid" field.
-func (_u *MenuUpdate) SetPid(v string) *MenuUpdate {
-	_u.mutation.SetPid(v)
-	return _u
+func (mu *MenuUpdate) SetPid(s string) *MenuUpdate {
+	mu.mutation.SetPid(s)
+	return mu
 }
 
 // SetNillablePid sets the "pid" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillablePid(v *string) *MenuUpdate {
-	if v != nil {
-		_u.SetPid(*v)
+func (mu *MenuUpdate) SetNillablePid(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetPid(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetPath sets the "path" field.
-func (_u *MenuUpdate) SetPath(v string) *MenuUpdate {
-	_u.mutation.SetPath(v)
-	return _u
+func (mu *MenuUpdate) SetPath(s string) *MenuUpdate {
+	mu.mutation.SetPath(s)
+	return mu
 }
 
 // SetNillablePath sets the "path" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillablePath(v *string) *MenuUpdate {
-	if v != nil {
-		_u.SetPath(*v)
+func (mu *MenuUpdate) SetNillablePath(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetPath(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetName sets the "name" field.
-func (_u *MenuUpdate) SetName(v string) *MenuUpdate {
-	_u.mutation.SetName(v)
-	return _u
+func (mu *MenuUpdate) SetName(s string) *MenuUpdate {
+	mu.mutation.SetName(s)
+	return mu
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillableName(v *string) *MenuUpdate {
-	if v != nil {
-		_u.SetName(*v)
+func (mu *MenuUpdate) SetNillableName(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetName(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetOrder sets the "order" field.
-func (_u *MenuUpdate) SetOrder(v int) *MenuUpdate {
-	_u.mutation.ResetOrder()
-	_u.mutation.SetOrder(v)
-	return _u
+func (mu *MenuUpdate) SetOrder(i int) *MenuUpdate {
+	mu.mutation.ResetOrder()
+	mu.mutation.SetOrder(i)
+	return mu
 }
 
 // SetNillableOrder sets the "order" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillableOrder(v *int) *MenuUpdate {
-	if v != nil {
-		_u.SetOrder(*v)
+func (mu *MenuUpdate) SetNillableOrder(i *int) *MenuUpdate {
+	if i != nil {
+		mu.SetOrder(*i)
 	}
-	return _u
+	return mu
 }
 
-// AddOrder adds value to the "order" field.
-func (_u *MenuUpdate) AddOrder(v int) *MenuUpdate {
-	_u.mutation.AddOrder(v)
-	return _u
+// AddOrder adds i to the "order" field.
+func (mu *MenuUpdate) AddOrder(i int) *MenuUpdate {
+	mu.mutation.AddOrder(i)
+	return mu
 }
 
 // SetIcon sets the "icon" field.
-func (_u *MenuUpdate) SetIcon(v string) *MenuUpdate {
-	_u.mutation.SetIcon(v)
-	return _u
+func (mu *MenuUpdate) SetIcon(s string) *MenuUpdate {
+	mu.mutation.SetIcon(s)
+	return mu
 }
 
 // SetNillableIcon sets the "icon" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillableIcon(v *string) *MenuUpdate {
-	if v != nil {
-		_u.SetIcon(*v)
+func (mu *MenuUpdate) SetNillableIcon(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetIcon(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetLocale sets the "locale" field.
-func (_u *MenuUpdate) SetLocale(v string) *MenuUpdate {
-	_u.mutation.SetLocale(v)
-	return _u
+func (mu *MenuUpdate) SetLocale(s string) *MenuUpdate {
+	mu.mutation.SetLocale(s)
+	return mu
 }
 
 // SetNillableLocale sets the "locale" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillableLocale(v *string) *MenuUpdate {
-	if v != nil {
-		_u.SetLocale(*v)
+func (mu *MenuUpdate) SetNillableLocale(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetLocale(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetRequiresAuth sets the "requiresAuth" field.
-func (_u *MenuUpdate) SetRequiresAuth(v int) *MenuUpdate {
-	_u.mutation.ResetRequiresAuth()
-	_u.mutation.SetRequiresAuth(v)
-	return _u
+func (mu *MenuUpdate) SetRequiresAuth(i int) *MenuUpdate {
+	mu.mutation.ResetRequiresAuth()
+	mu.mutation.SetRequiresAuth(i)
+	return mu
 }
 
 // SetNillableRequiresAuth sets the "requiresAuth" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillableRequiresAuth(v *int) *MenuUpdate {
-	if v != nil {
-		_u.SetRequiresAuth(*v)
+func (mu *MenuUpdate) SetNillableRequiresAuth(i *int) *MenuUpdate {
+	if i != nil {
+		mu.SetRequiresAuth(*i)
 	}
-	return _u
+	return mu
 }
 
-// AddRequiresAuth adds value to the "requiresAuth" field.
-func (_u *MenuUpdate) AddRequiresAuth(v int) *MenuUpdate {
-	_u.mutation.AddRequiresAuth(v)
-	return _u
+// AddRequiresAuth adds i to the "requiresAuth" field.
+func (mu *MenuUpdate) AddRequiresAuth(i int) *MenuUpdate {
+	mu.mutation.AddRequiresAuth(i)
+	return mu
 }
 
 // SetFilePath sets the "filePath" field.
-func (_u *MenuUpdate) SetFilePath(v string) *MenuUpdate {
-	_u.mutation.SetFilePath(v)
-	return _u
+func (mu *MenuUpdate) SetFilePath(s string) *MenuUpdate {
+	mu.mutation.SetFilePath(s)
+	return mu
 }
 
 // SetNillableFilePath sets the "filePath" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillableFilePath(v *string) *MenuUpdate {
-	if v != nil {
-		_u.SetFilePath(*v)
+func (mu *MenuUpdate) SetNillableFilePath(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetFilePath(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetMenuCnName sets the "menuCnName" field.
-func (_u *MenuUpdate) SetMenuCnName(v string) *MenuUpdate {
-	_u.mutation.SetMenuCnName(v)
-	return _u
+func (mu *MenuUpdate) SetMenuCnName(s string) *MenuUpdate {
+	mu.mutation.SetMenuCnName(s)
+	return mu
 }
 
 // SetNillableMenuCnName sets the "menuCnName" field if the given value is not nil.
-func (_u *MenuUpdate) SetNillableMenuCnName(v *string) *MenuUpdate {
-	if v != nil {
-		_u.SetMenuCnName(*v)
+func (mu *MenuUpdate) SetNillableMenuCnName(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetMenuCnName(*s)
 	}
-	return _u
+	return mu
 }
 
 // ClearMenuCnName clears the value of the "menuCnName" field.
-func (_u *MenuUpdate) ClearMenuCnName() *MenuUpdate {
-	_u.mutation.ClearMenuCnName()
-	return _u
+func (mu *MenuUpdate) ClearMenuCnName() *MenuUpdate {
+	mu.mutation.ClearMenuCnName()
+	return mu
 }
 
 // Mutation returns the MenuMutation object of the builder.
-func (_u *MenuUpdate) Mutation() *MenuMutation {
-	return _u.mutation
+func (mu *MenuUpdate) Mutation() *MenuMutation {
+	return mu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *MenuUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (mu *MenuUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, mu.sqlSave, mu.mutation, mu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *MenuUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (mu *MenuUpdate) SaveX(ctx context.Context) int {
+	affected, err := mu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -193,64 +193,64 @@ func (_u *MenuUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *MenuUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (mu *MenuUpdate) Exec(ctx context.Context) error {
+	_, err := mu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *MenuUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (mu *MenuUpdate) ExecX(ctx context.Context) {
+	if err := mu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *MenuUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (mu *MenuUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(menu.Table, menu.Columns, sqlgraph.NewFieldSpec(menu.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := mu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.Pid(); ok {
+	if value, ok := mu.mutation.Pid(); ok {
 		_spec.SetField(menu.FieldPid, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Path(); ok {
+	if value, ok := mu.mutation.Path(); ok {
 		_spec.SetField(menu.FieldPath, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := mu.mutation.Name(); ok {
 		_spec.SetField(menu.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Order(); ok {
+	if value, ok := mu.mutation.Order(); ok {
 		_spec.SetField(menu.FieldOrder, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedOrder(); ok {
+	if value, ok := mu.mutation.AddedOrder(); ok {
 		_spec.AddField(menu.FieldOrder, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Icon(); ok {
+	if value, ok := mu.mutation.Icon(); ok {
 		_spec.SetField(menu.FieldIcon, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Locale(); ok {
+	if value, ok := mu.mutation.Locale(); ok {
 		_spec.SetField(menu.FieldLocale, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.RequiresAuth(); ok {
+	if value, ok := mu.mutation.RequiresAuth(); ok {
 		_spec.SetField(menu.FieldRequiresAuth, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRequiresAuth(); ok {
+	if value, ok := mu.mutation.AddedRequiresAuth(); ok {
 		_spec.AddField(menu.FieldRequiresAuth, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.FilePath(); ok {
+	if value, ok := mu.mutation.FilePath(); ok {
 		_spec.SetField(menu.FieldFilePath, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.MenuCnName(); ok {
+	if value, ok := mu.mutation.MenuCnName(); ok {
 		_spec.SetField(menu.FieldMenuCnName, field.TypeString, value)
 	}
-	if _u.mutation.MenuCnNameCleared() {
+	if mu.mutation.MenuCnNameCleared() {
 		_spec.ClearField(menu.FieldMenuCnName, field.TypeString)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, mu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{menu.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -258,8 +258,8 @@ func (_u *MenuUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	mu.mutation.done = true
+	return n, nil
 }
 
 // MenuUpdateOne is the builder for updating a single Menu entity.
@@ -271,177 +271,177 @@ type MenuUpdateOne struct {
 }
 
 // SetPid sets the "pid" field.
-func (_u *MenuUpdateOne) SetPid(v string) *MenuUpdateOne {
-	_u.mutation.SetPid(v)
-	return _u
+func (muo *MenuUpdateOne) SetPid(s string) *MenuUpdateOne {
+	muo.mutation.SetPid(s)
+	return muo
 }
 
 // SetNillablePid sets the "pid" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillablePid(v *string) *MenuUpdateOne {
-	if v != nil {
-		_u.SetPid(*v)
+func (muo *MenuUpdateOne) SetNillablePid(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetPid(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetPath sets the "path" field.
-func (_u *MenuUpdateOne) SetPath(v string) *MenuUpdateOne {
-	_u.mutation.SetPath(v)
-	return _u
+func (muo *MenuUpdateOne) SetPath(s string) *MenuUpdateOne {
+	muo.mutation.SetPath(s)
+	return muo
 }
 
 // SetNillablePath sets the "path" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillablePath(v *string) *MenuUpdateOne {
-	if v != nil {
-		_u.SetPath(*v)
+func (muo *MenuUpdateOne) SetNillablePath(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetPath(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetName sets the "name" field.
-func (_u *MenuUpdateOne) SetName(v string) *MenuUpdateOne {
-	_u.mutation.SetName(v)
-	return _u
+func (muo *MenuUpdateOne) SetName(s string) *MenuUpdateOne {
+	muo.mutation.SetName(s)
+	return muo
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillableName(v *string) *MenuUpdateOne {
-	if v != nil {
-		_u.SetName(*v)
+func (muo *MenuUpdateOne) SetNillableName(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetName(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetOrder sets the "order" field.
-func (_u *MenuUpdateOne) SetOrder(v int) *MenuUpdateOne {
-	_u.mutation.ResetOrder()
-	_u.mutation.SetOrder(v)
-	return _u
+func (muo *MenuUpdateOne) SetOrder(i int) *MenuUpdateOne {
+	muo.mutation.ResetOrder()
+	muo.mutation.SetOrder(i)
+	return muo
 }
 
 // SetNillableOrder sets the "order" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillableOrder(v *int) *MenuUpdateOne {
-	if v != nil {
-		_u.SetOrder(*v)
+func (muo *MenuUpdateOne) SetNillableOrder(i *int) *MenuUpdateOne {
+	if i != nil {
+		muo.SetOrder(*i)
 	}
-	return _u
+	return muo
 }
 
-// AddOrder adds value to the "order" field.
-func (_u *MenuUpdateOne) AddOrder(v int) *MenuUpdateOne {
-	_u.mutation.AddOrder(v)
-	return _u
+// AddOrder adds i to the "order" field.
+func (muo *MenuUpdateOne) AddOrder(i int) *MenuUpdateOne {
+	muo.mutation.AddOrder(i)
+	return muo
 }
 
 // SetIcon sets the "icon" field.
-func (_u *MenuUpdateOne) SetIcon(v string) *MenuUpdateOne {
-	_u.mutation.SetIcon(v)
-	return _u
+func (muo *MenuUpdateOne) SetIcon(s string) *MenuUpdateOne {
+	muo.mutation.SetIcon(s)
+	return muo
 }
 
 // SetNillableIcon sets the "icon" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillableIcon(v *string) *MenuUpdateOne {
-	if v != nil {
-		_u.SetIcon(*v)
+func (muo *MenuUpdateOne) SetNillableIcon(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetIcon(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetLocale sets the "locale" field.
-func (_u *MenuUpdateOne) SetLocale(v string) *MenuUpdateOne {
-	_u.mutation.SetLocale(v)
-	return _u
+func (muo *MenuUpdateOne) SetLocale(s string) *MenuUpdateOne {
+	muo.mutation.SetLocale(s)
+	return muo
 }
 
 // SetNillableLocale sets the "locale" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillableLocale(v *string) *MenuUpdateOne {
-	if v != nil {
-		_u.SetLocale(*v)
+func (muo *MenuUpdateOne) SetNillableLocale(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetLocale(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetRequiresAuth sets the "requiresAuth" field.
-func (_u *MenuUpdateOne) SetRequiresAuth(v int) *MenuUpdateOne {
-	_u.mutation.ResetRequiresAuth()
-	_u.mutation.SetRequiresAuth(v)
-	return _u
+func (muo *MenuUpdateOne) SetRequiresAuth(i int) *MenuUpdateOne {
+	muo.mutation.ResetRequiresAuth()
+	muo.mutation.SetRequiresAuth(i)
+	return muo
 }
 
 // SetNillableRequiresAuth sets the "requiresAuth" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillableRequiresAuth(v *int) *MenuUpdateOne {
-	if v != nil {
-		_u.SetRequiresAuth(*v)
+func (muo *MenuUpdateOne) SetNillableRequiresAuth(i *int) *MenuUpdateOne {
+	if i != nil {
+		muo.SetRequiresAuth(*i)
 	}
-	return _u
+	return muo
 }
 
-// AddRequiresAuth adds value to the "requiresAuth" field.
-func (_u *MenuUpdateOne) AddRequiresAuth(v int) *MenuUpdateOne {
-	_u.mutation.AddRequiresAuth(v)
-	return _u
+// AddRequiresAuth adds i to the "requiresAuth" field.
+func (muo *MenuUpdateOne) AddRequiresAuth(i int) *MenuUpdateOne {
+	muo.mutation.AddRequiresAuth(i)
+	return muo
 }
 
 // SetFilePath sets the "filePath" field.
-func (_u *MenuUpdateOne) SetFilePath(v string) *MenuUpdateOne {
-	_u.mutation.SetFilePath(v)
-	return _u
+func (muo *MenuUpdateOne) SetFilePath(s string) *MenuUpdateOne {
+	muo.mutation.SetFilePath(s)
+	return muo
 }
 
 // SetNillableFilePath sets the "filePath" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillableFilePath(v *string) *MenuUpdateOne {
-	if v != nil {
-		_u.SetFilePath(*v)
+func (muo *MenuUpdateOne) SetNillableFilePath(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetFilePath(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetMenuCnName sets the "menuCnName" field.
-func (_u *MenuUpdateOne) SetMenuCnName(v string) *MenuUpdateOne {
-	_u.mutation.SetMenuCnName(v)
-	return _u
+func (muo *MenuUpdateOne) SetMenuCnName(s string) *MenuUpdateOne {
+	muo.mutation.SetMenuCnName(s)
+	return muo
 }
 
 // SetNillableMenuCnName sets the "menuCnName" field if the given value is not nil.
-func (_u *MenuUpdateOne) SetNillableMenuCnName(v *string) *MenuUpdateOne {
-	if v != nil {
-		_u.SetMenuCnName(*v)
+func (muo *MenuUpdateOne) SetNillableMenuCnName(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetMenuCnName(*s)
 	}
-	return _u
+	return muo
 }
 
 // ClearMenuCnName clears the value of the "menuCnName" field.
-func (_u *MenuUpdateOne) ClearMenuCnName() *MenuUpdateOne {
-	_u.mutation.ClearMenuCnName()
-	return _u
+func (muo *MenuUpdateOne) ClearMenuCnName() *MenuUpdateOne {
+	muo.mutation.ClearMenuCnName()
+	return muo
 }
 
 // Mutation returns the MenuMutation object of the builder.
-func (_u *MenuUpdateOne) Mutation() *MenuMutation {
-	return _u.mutation
+func (muo *MenuUpdateOne) Mutation() *MenuMutation {
+	return muo.mutation
 }
 
 // Where appends a list predicates to the MenuUpdate builder.
-func (_u *MenuUpdateOne) Where(ps ...predicate.Menu) *MenuUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (muo *MenuUpdateOne) Where(ps ...predicate.Menu) *MenuUpdateOne {
+	muo.mutation.Where(ps...)
+	return muo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *MenuUpdateOne) Select(field string, fields ...string) *MenuUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (muo *MenuUpdateOne) Select(field string, fields ...string) *MenuUpdateOne {
+	muo.fields = append([]string{field}, fields...)
+	return muo
 }
 
 // Save executes the query and returns the updated Menu entity.
-func (_u *MenuUpdateOne) Save(ctx context.Context) (*Menu, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (muo *MenuUpdateOne) Save(ctx context.Context) (*Menu, error) {
+	return withHooks(ctx, muo.sqlSave, muo.mutation, muo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *MenuUpdateOne) SaveX(ctx context.Context) *Menu {
-	node, err := _u.Save(ctx)
+func (muo *MenuUpdateOne) SaveX(ctx context.Context) *Menu {
+	node, err := muo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -449,26 +449,26 @@ func (_u *MenuUpdateOne) SaveX(ctx context.Context) *Menu {
 }
 
 // Exec executes the query on the entity.
-func (_u *MenuUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (muo *MenuUpdateOne) Exec(ctx context.Context) error {
+	_, err := muo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *MenuUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (muo *MenuUpdateOne) ExecX(ctx context.Context) {
+	if err := muo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *MenuUpdateOne) sqlSave(ctx context.Context) (_node *Menu, err error) {
+func (muo *MenuUpdateOne) sqlSave(ctx context.Context) (_node *Menu, err error) {
 	_spec := sqlgraph.NewUpdateSpec(menu.Table, menu.Columns, sqlgraph.NewFieldSpec(menu.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := muo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Menu.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := muo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, menu.FieldID)
 		for _, f := range fields {
@@ -480,53 +480,53 @@ func (_u *MenuUpdateOne) sqlSave(ctx context.Context) (_node *Menu, err error) {
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := muo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.Pid(); ok {
+	if value, ok := muo.mutation.Pid(); ok {
 		_spec.SetField(menu.FieldPid, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Path(); ok {
+	if value, ok := muo.mutation.Path(); ok {
 		_spec.SetField(menu.FieldPath, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := muo.mutation.Name(); ok {
 		_spec.SetField(menu.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Order(); ok {
+	if value, ok := muo.mutation.Order(); ok {
 		_spec.SetField(menu.FieldOrder, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedOrder(); ok {
+	if value, ok := muo.mutation.AddedOrder(); ok {
 		_spec.AddField(menu.FieldOrder, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Icon(); ok {
+	if value, ok := muo.mutation.Icon(); ok {
 		_spec.SetField(menu.FieldIcon, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Locale(); ok {
+	if value, ok := muo.mutation.Locale(); ok {
 		_spec.SetField(menu.FieldLocale, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.RequiresAuth(); ok {
+	if value, ok := muo.mutation.RequiresAuth(); ok {
 		_spec.SetField(menu.FieldRequiresAuth, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRequiresAuth(); ok {
+	if value, ok := muo.mutation.AddedRequiresAuth(); ok {
 		_spec.AddField(menu.FieldRequiresAuth, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.FilePath(); ok {
+	if value, ok := muo.mutation.FilePath(); ok {
 		_spec.SetField(menu.FieldFilePath, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.MenuCnName(); ok {
+	if value, ok := muo.mutation.MenuCnName(); ok {
 		_spec.SetField(menu.FieldMenuCnName, field.TypeString, value)
 	}
-	if _u.mutation.MenuCnNameCleared() {
+	if muo.mutation.MenuCnNameCleared() {
 		_spec.ClearField(menu.FieldMenuCnName, field.TypeString)
 	}
-	_node = &Menu{config: _u.config}
+	_node = &Menu{config: muo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, muo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{menu.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -534,6 +534,6 @@ func (_u *MenuUpdateOne) sqlSave(ctx context.Context) (_node *Menu, err error) {
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	muo.mutation.done = true
 	return _node, nil
 }

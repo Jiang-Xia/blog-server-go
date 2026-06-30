@@ -23,191 +23,191 @@ type PayOrderCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *PayOrderCreate) SetCreateTime(v time.Time) *PayOrderCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (poc *PayOrderCreate) SetCreateTime(t time.Time) *PayOrderCreate {
+	poc.mutation.SetCreateTime(t)
+	return poc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableCreateTime(v *time.Time) *PayOrderCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (poc *PayOrderCreate) SetNillableCreateTime(t *time.Time) *PayOrderCreate {
+	if t != nil {
+		poc.SetCreateTime(*t)
 	}
-	return _c
+	return poc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *PayOrderCreate) SetUpdateTime(v time.Time) *PayOrderCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (poc *PayOrderCreate) SetUpdateTime(t time.Time) *PayOrderCreate {
+	poc.mutation.SetUpdateTime(t)
+	return poc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableUpdateTime(v *time.Time) *PayOrderCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (poc *PayOrderCreate) SetNillableUpdateTime(t *time.Time) *PayOrderCreate {
+	if t != nil {
+		poc.SetUpdateTime(*t)
 	}
-	return _c
+	return poc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *PayOrderCreate) SetIsDelete(v bool) *PayOrderCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (poc *PayOrderCreate) SetIsDelete(b bool) *PayOrderCreate {
+	poc.mutation.SetIsDelete(b)
+	return poc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableIsDelete(v *bool) *PayOrderCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (poc *PayOrderCreate) SetNillableIsDelete(b *bool) *PayOrderCreate {
+	if b != nil {
+		poc.SetIsDelete(*b)
 	}
-	return _c
+	return poc
 }
 
 // SetVersion sets the "version" field.
-func (_c *PayOrderCreate) SetVersion(v int) *PayOrderCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (poc *PayOrderCreate) SetVersion(i int) *PayOrderCreate {
+	poc.mutation.SetVersion(i)
+	return poc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableVersion(v *int) *PayOrderCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (poc *PayOrderCreate) SetNillableVersion(i *int) *PayOrderCreate {
+	if i != nil {
+		poc.SetVersion(*i)
 	}
-	return _c
+	return poc
 }
 
 // SetOutTradeNo sets the "outTradeNo" field.
-func (_c *PayOrderCreate) SetOutTradeNo(v string) *PayOrderCreate {
-	_c.mutation.SetOutTradeNo(v)
-	return _c
+func (poc *PayOrderCreate) SetOutTradeNo(s string) *PayOrderCreate {
+	poc.mutation.SetOutTradeNo(s)
+	return poc
 }
 
 // SetTradeNo sets the "tradeNo" field.
-func (_c *PayOrderCreate) SetTradeNo(v string) *PayOrderCreate {
-	_c.mutation.SetTradeNo(v)
-	return _c
+func (poc *PayOrderCreate) SetTradeNo(s string) *PayOrderCreate {
+	poc.mutation.SetTradeNo(s)
+	return poc
 }
 
 // SetNillableTradeNo sets the "tradeNo" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableTradeNo(v *string) *PayOrderCreate {
-	if v != nil {
-		_c.SetTradeNo(*v)
+func (poc *PayOrderCreate) SetNillableTradeNo(s *string) *PayOrderCreate {
+	if s != nil {
+		poc.SetTradeNo(*s)
 	}
-	return _c
+	return poc
 }
 
 // SetSubject sets the "subject" field.
-func (_c *PayOrderCreate) SetSubject(v string) *PayOrderCreate {
-	_c.mutation.SetSubject(v)
-	return _c
+func (poc *PayOrderCreate) SetSubject(s string) *PayOrderCreate {
+	poc.mutation.SetSubject(s)
+	return poc
 }
 
 // SetNillableSubject sets the "subject" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableSubject(v *string) *PayOrderCreate {
-	if v != nil {
-		_c.SetSubject(*v)
+func (poc *PayOrderCreate) SetNillableSubject(s *string) *PayOrderCreate {
+	if s != nil {
+		poc.SetSubject(*s)
 	}
-	return _c
+	return poc
 }
 
 // SetTotalAmount sets the "totalAmount" field.
-func (_c *PayOrderCreate) SetTotalAmount(v float64) *PayOrderCreate {
-	_c.mutation.SetTotalAmount(v)
-	return _c
+func (poc *PayOrderCreate) SetTotalAmount(f float64) *PayOrderCreate {
+	poc.mutation.SetTotalAmount(f)
+	return poc
 }
 
 // SetNillableTotalAmount sets the "totalAmount" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableTotalAmount(v *float64) *PayOrderCreate {
-	if v != nil {
-		_c.SetTotalAmount(*v)
+func (poc *PayOrderCreate) SetNillableTotalAmount(f *float64) *PayOrderCreate {
+	if f != nil {
+		poc.SetTotalAmount(*f)
 	}
-	return _c
+	return poc
 }
 
 // SetBuyerOpenId sets the "buyerOpenId" field.
-func (_c *PayOrderCreate) SetBuyerOpenId(v string) *PayOrderCreate {
-	_c.mutation.SetBuyerOpenId(v)
-	return _c
+func (poc *PayOrderCreate) SetBuyerOpenId(s string) *PayOrderCreate {
+	poc.mutation.SetBuyerOpenId(s)
+	return poc
 }
 
 // SetNillableBuyerOpenId sets the "buyerOpenId" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableBuyerOpenId(v *string) *PayOrderCreate {
-	if v != nil {
-		_c.SetBuyerOpenId(*v)
+func (poc *PayOrderCreate) SetNillableBuyerOpenId(s *string) *PayOrderCreate {
+	if s != nil {
+		poc.SetBuyerOpenId(*s)
 	}
-	return _c
+	return poc
 }
 
 // SetStatus sets the "status" field.
-func (_c *PayOrderCreate) SetStatus(v string) *PayOrderCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (poc *PayOrderCreate) SetStatus(s string) *PayOrderCreate {
+	poc.mutation.SetStatus(s)
+	return poc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableStatus(v *string) *PayOrderCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (poc *PayOrderCreate) SetNillableStatus(s *string) *PayOrderCreate {
+	if s != nil {
+		poc.SetStatus(*s)
 	}
-	return _c
+	return poc
 }
 
 // SetRefundAmount sets the "refundAmount" field.
-func (_c *PayOrderCreate) SetRefundAmount(v float64) *PayOrderCreate {
-	_c.mutation.SetRefundAmount(v)
-	return _c
+func (poc *PayOrderCreate) SetRefundAmount(f float64) *PayOrderCreate {
+	poc.mutation.SetRefundAmount(f)
+	return poc
 }
 
 // SetNillableRefundAmount sets the "refundAmount" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableRefundAmount(v *float64) *PayOrderCreate {
-	if v != nil {
-		_c.SetRefundAmount(*v)
+func (poc *PayOrderCreate) SetNillableRefundAmount(f *float64) *PayOrderCreate {
+	if f != nil {
+		poc.SetRefundAmount(*f)
 	}
-	return _c
+	return poc
 }
 
 // SetChannel sets the "channel" field.
-func (_c *PayOrderCreate) SetChannel(v string) *PayOrderCreate {
-	_c.mutation.SetChannel(v)
-	return _c
+func (poc *PayOrderCreate) SetChannel(s string) *PayOrderCreate {
+	poc.mutation.SetChannel(s)
+	return poc
 }
 
 // SetNillableChannel sets the "channel" field if the given value is not nil.
-func (_c *PayOrderCreate) SetNillableChannel(v *string) *PayOrderCreate {
-	if v != nil {
-		_c.SetChannel(*v)
+func (poc *PayOrderCreate) SetNillableChannel(s *string) *PayOrderCreate {
+	if s != nil {
+		poc.SetChannel(*s)
 	}
-	return _c
+	return poc
 }
 
 // SetExtendParams sets the "extendParams" field.
-func (_c *PayOrderCreate) SetExtendParams(v map[string]interface{}) *PayOrderCreate {
-	_c.mutation.SetExtendParams(v)
-	return _c
+func (poc *PayOrderCreate) SetExtendParams(m map[string]interface{}) *PayOrderCreate {
+	poc.mutation.SetExtendParams(m)
+	return poc
 }
 
 // SetID sets the "id" field.
-func (_c *PayOrderCreate) SetID(v int) *PayOrderCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (poc *PayOrderCreate) SetID(i int) *PayOrderCreate {
+	poc.mutation.SetID(i)
+	return poc
 }
 
 // Mutation returns the PayOrderMutation object of the builder.
-func (_c *PayOrderCreate) Mutation() *PayOrderMutation {
-	return _c.mutation
+func (poc *PayOrderCreate) Mutation() *PayOrderMutation {
+	return poc.mutation
 }
 
 // Save creates the PayOrder in the database.
-func (_c *PayOrderCreate) Save(ctx context.Context) (*PayOrder, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (poc *PayOrderCreate) Save(ctx context.Context) (*PayOrder, error) {
+	poc.defaults()
+	return withHooks(ctx, poc.sqlSave, poc.mutation, poc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *PayOrderCreate) SaveX(ctx context.Context) *PayOrder {
-	v, err := _c.Save(ctx)
+func (poc *PayOrderCreate) SaveX(ctx context.Context) *PayOrder {
+	v, err := poc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -215,113 +215,113 @@ func (_c *PayOrderCreate) SaveX(ctx context.Context) *PayOrder {
 }
 
 // Exec executes the query.
-func (_c *PayOrderCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (poc *PayOrderCreate) Exec(ctx context.Context) error {
+	_, err := poc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *PayOrderCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (poc *PayOrderCreate) ExecX(ctx context.Context) {
+	if err := poc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *PayOrderCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (poc *PayOrderCreate) defaults() {
+	if _, ok := poc.mutation.CreateTime(); !ok {
 		v := payorder.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		poc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := poc.mutation.UpdateTime(); !ok {
 		v := payorder.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		poc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := poc.mutation.IsDelete(); !ok {
 		v := payorder.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		poc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := poc.mutation.Version(); !ok {
 		v := payorder.DefaultVersion
-		_c.mutation.SetVersion(v)
+		poc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.TradeNo(); !ok {
+	if _, ok := poc.mutation.TradeNo(); !ok {
 		v := payorder.DefaultTradeNo
-		_c.mutation.SetTradeNo(v)
+		poc.mutation.SetTradeNo(v)
 	}
-	if _, ok := _c.mutation.Subject(); !ok {
+	if _, ok := poc.mutation.Subject(); !ok {
 		v := payorder.DefaultSubject
-		_c.mutation.SetSubject(v)
+		poc.mutation.SetSubject(v)
 	}
-	if _, ok := _c.mutation.TotalAmount(); !ok {
+	if _, ok := poc.mutation.TotalAmount(); !ok {
 		v := payorder.DefaultTotalAmount
-		_c.mutation.SetTotalAmount(v)
+		poc.mutation.SetTotalAmount(v)
 	}
-	if _, ok := _c.mutation.BuyerOpenId(); !ok {
+	if _, ok := poc.mutation.BuyerOpenId(); !ok {
 		v := payorder.DefaultBuyerOpenId
-		_c.mutation.SetBuyerOpenId(v)
+		poc.mutation.SetBuyerOpenId(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := poc.mutation.Status(); !ok {
 		v := payorder.DefaultStatus
-		_c.mutation.SetStatus(v)
+		poc.mutation.SetStatus(v)
 	}
-	if _, ok := _c.mutation.RefundAmount(); !ok {
+	if _, ok := poc.mutation.RefundAmount(); !ok {
 		v := payorder.DefaultRefundAmount
-		_c.mutation.SetRefundAmount(v)
+		poc.mutation.SetRefundAmount(v)
 	}
-	if _, ok := _c.mutation.Channel(); !ok {
+	if _, ok := poc.mutation.Channel(); !ok {
 		v := payorder.DefaultChannel
-		_c.mutation.SetChannel(v)
+		poc.mutation.SetChannel(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *PayOrderCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (poc *PayOrderCreate) check() error {
+	if _, ok := poc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "PayOrder.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := poc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "PayOrder.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := poc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "PayOrder.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := poc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "PayOrder.version"`)}
 	}
-	if _, ok := _c.mutation.OutTradeNo(); !ok {
+	if _, ok := poc.mutation.OutTradeNo(); !ok {
 		return &ValidationError{Name: "outTradeNo", err: errors.New(`ent: missing required field "PayOrder.outTradeNo"`)}
 	}
-	if _, ok := _c.mutation.TradeNo(); !ok {
+	if _, ok := poc.mutation.TradeNo(); !ok {
 		return &ValidationError{Name: "tradeNo", err: errors.New(`ent: missing required field "PayOrder.tradeNo"`)}
 	}
-	if _, ok := _c.mutation.Subject(); !ok {
+	if _, ok := poc.mutation.Subject(); !ok {
 		return &ValidationError{Name: "subject", err: errors.New(`ent: missing required field "PayOrder.subject"`)}
 	}
-	if _, ok := _c.mutation.TotalAmount(); !ok {
+	if _, ok := poc.mutation.TotalAmount(); !ok {
 		return &ValidationError{Name: "totalAmount", err: errors.New(`ent: missing required field "PayOrder.totalAmount"`)}
 	}
-	if _, ok := _c.mutation.BuyerOpenId(); !ok {
+	if _, ok := poc.mutation.BuyerOpenId(); !ok {
 		return &ValidationError{Name: "buyerOpenId", err: errors.New(`ent: missing required field "PayOrder.buyerOpenId"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := poc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "PayOrder.status"`)}
 	}
-	if _, ok := _c.mutation.RefundAmount(); !ok {
+	if _, ok := poc.mutation.RefundAmount(); !ok {
 		return &ValidationError{Name: "refundAmount", err: errors.New(`ent: missing required field "PayOrder.refundAmount"`)}
 	}
-	if _, ok := _c.mutation.Channel(); !ok {
+	if _, ok := poc.mutation.Channel(); !ok {
 		return &ValidationError{Name: "channel", err: errors.New(`ent: missing required field "PayOrder.channel"`)}
 	}
 	return nil
 }
 
-func (_c *PayOrderCreate) sqlSave(ctx context.Context) (*PayOrder, error) {
-	if err := _c.check(); err != nil {
+func (poc *PayOrderCreate) sqlSave(ctx context.Context) (*PayOrder, error) {
+	if err := poc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := poc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, poc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -331,70 +331,70 @@ func (_c *PayOrderCreate) sqlSave(ctx context.Context) (*PayOrder, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	poc.mutation.id = &_node.ID
+	poc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *PayOrderCreate) createSpec() (*PayOrder, *sqlgraph.CreateSpec) {
+func (poc *PayOrderCreate) createSpec() (*PayOrder, *sqlgraph.CreateSpec) {
 	var (
-		_node = &PayOrder{config: _c.config}
+		_node = &PayOrder{config: poc.config}
 		_spec = sqlgraph.NewCreateSpec(payorder.Table, sqlgraph.NewFieldSpec(payorder.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = poc.conflict
+	if id, ok := poc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := poc.mutation.CreateTime(); ok {
 		_spec.SetField(payorder.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := poc.mutation.UpdateTime(); ok {
 		_spec.SetField(payorder.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := poc.mutation.IsDelete(); ok {
 		_spec.SetField(payorder.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := poc.mutation.Version(); ok {
 		_spec.SetField(payorder.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.OutTradeNo(); ok {
+	if value, ok := poc.mutation.OutTradeNo(); ok {
 		_spec.SetField(payorder.FieldOutTradeNo, field.TypeString, value)
 		_node.OutTradeNo = value
 	}
-	if value, ok := _c.mutation.TradeNo(); ok {
+	if value, ok := poc.mutation.TradeNo(); ok {
 		_spec.SetField(payorder.FieldTradeNo, field.TypeString, value)
 		_node.TradeNo = value
 	}
-	if value, ok := _c.mutation.Subject(); ok {
+	if value, ok := poc.mutation.Subject(); ok {
 		_spec.SetField(payorder.FieldSubject, field.TypeString, value)
 		_node.Subject = value
 	}
-	if value, ok := _c.mutation.TotalAmount(); ok {
+	if value, ok := poc.mutation.TotalAmount(); ok {
 		_spec.SetField(payorder.FieldTotalAmount, field.TypeFloat64, value)
 		_node.TotalAmount = value
 	}
-	if value, ok := _c.mutation.BuyerOpenId(); ok {
+	if value, ok := poc.mutation.BuyerOpenId(); ok {
 		_spec.SetField(payorder.FieldBuyerOpenId, field.TypeString, value)
 		_node.BuyerOpenId = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := poc.mutation.Status(); ok {
 		_spec.SetField(payorder.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
-	if value, ok := _c.mutation.RefundAmount(); ok {
+	if value, ok := poc.mutation.RefundAmount(); ok {
 		_spec.SetField(payorder.FieldRefundAmount, field.TypeFloat64, value)
 		_node.RefundAmount = value
 	}
-	if value, ok := _c.mutation.Channel(); ok {
+	if value, ok := poc.mutation.Channel(); ok {
 		_spec.SetField(payorder.FieldChannel, field.TypeString, value)
 		_node.Channel = value
 	}
-	if value, ok := _c.mutation.ExtendParams(); ok {
+	if value, ok := poc.mutation.ExtendParams(); ok {
 		_spec.SetField(payorder.FieldExtendParams, field.TypeJSON, value)
 		_node.ExtendParams = value
 	}
@@ -417,10 +417,10 @@ func (_c *PayOrderCreate) createSpec() (*PayOrder, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *PayOrderCreate) OnConflict(opts ...sql.ConflictOption) *PayOrderUpsertOne {
-	_c.conflict = opts
+func (poc *PayOrderCreate) OnConflict(opts ...sql.ConflictOption) *PayOrderUpsertOne {
+	poc.conflict = opts
 	return &PayOrderUpsertOne{
-		create: _c,
+		create: poc,
 	}
 }
 
@@ -430,10 +430,10 @@ func (_c *PayOrderCreate) OnConflict(opts ...sql.ConflictOption) *PayOrderUpsert
 //	client.PayOrder.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *PayOrderCreate) OnConflictColumns(columns ...string) *PayOrderUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (poc *PayOrderCreate) OnConflictColumns(columns ...string) *PayOrderUpsertOne {
+	poc.conflict = append(poc.conflict, sql.ConflictColumns(columns...))
 	return &PayOrderUpsertOne{
-		create: _c,
+		create: poc,
 	}
 }
 
@@ -907,16 +907,16 @@ type PayOrderCreateBulk struct {
 }
 
 // Save creates the PayOrder entities in the database.
-func (_c *PayOrderCreateBulk) Save(ctx context.Context) ([]*PayOrder, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (pocb *PayOrderCreateBulk) Save(ctx context.Context) ([]*PayOrder, error) {
+	if pocb.err != nil {
+		return nil, pocb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*PayOrder, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(pocb.builders))
+	nodes := make([]*PayOrder, len(pocb.builders))
+	mutators := make([]Mutator, len(pocb.builders))
+	for i := range pocb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := pocb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*PayOrderMutation)
@@ -930,12 +930,12 @@ func (_c *PayOrderCreateBulk) Save(ctx context.Context) ([]*PayOrder, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, pocb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = pocb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, pocb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -959,7 +959,7 @@ func (_c *PayOrderCreateBulk) Save(ctx context.Context) ([]*PayOrder, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, pocb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -967,8 +967,8 @@ func (_c *PayOrderCreateBulk) Save(ctx context.Context) ([]*PayOrder, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *PayOrderCreateBulk) SaveX(ctx context.Context) []*PayOrder {
-	v, err := _c.Save(ctx)
+func (pocb *PayOrderCreateBulk) SaveX(ctx context.Context) []*PayOrder {
+	v, err := pocb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -976,14 +976,14 @@ func (_c *PayOrderCreateBulk) SaveX(ctx context.Context) []*PayOrder {
 }
 
 // Exec executes the query.
-func (_c *PayOrderCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (pocb *PayOrderCreateBulk) Exec(ctx context.Context) error {
+	_, err := pocb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *PayOrderCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (pocb *PayOrderCreateBulk) ExecX(ctx context.Context) {
+	if err := pocb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1003,10 +1003,10 @@ func (_c *PayOrderCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *PayOrderCreateBulk) OnConflict(opts ...sql.ConflictOption) *PayOrderUpsertBulk {
-	_c.conflict = opts
+func (pocb *PayOrderCreateBulk) OnConflict(opts ...sql.ConflictOption) *PayOrderUpsertBulk {
+	pocb.conflict = opts
 	return &PayOrderUpsertBulk{
-		create: _c,
+		create: pocb,
 	}
 }
 
@@ -1016,10 +1016,10 @@ func (_c *PayOrderCreateBulk) OnConflict(opts ...sql.ConflictOption) *PayOrderUp
 //	client.PayOrder.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *PayOrderCreateBulk) OnConflictColumns(columns ...string) *PayOrderUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (pocb *PayOrderCreateBulk) OnConflictColumns(columns ...string) *PayOrderUpsertBulk {
+	pocb.conflict = append(pocb.conflict, sql.ConflictColumns(columns...))
 	return &PayOrderUpsertBulk{
-		create: _c,
+		create: pocb,
 	}
 }
 

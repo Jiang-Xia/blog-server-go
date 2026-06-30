@@ -20,56 +20,56 @@ type RpgUserInventoryDelete struct {
 }
 
 // Where appends a list predicates to the RpgUserInventoryDelete builder.
-func (_d *RpgUserInventoryDelete) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (ruid *RpgUserInventoryDelete) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryDelete {
+	ruid.mutation.Where(ps...)
+	return ruid
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgUserInventoryDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (ruid *RpgUserInventoryDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, ruid.sqlExec, ruid.mutation, ruid.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserInventoryDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (ruid *RpgUserInventoryDelete) ExecX(ctx context.Context) int {
+	n, err := ruid.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgUserInventoryDelete) sqlExec(ctx context.Context) (int, error) {
+func (ruid *RpgUserInventoryDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpguserinventory.Table, sqlgraph.NewFieldSpec(rpguserinventory.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := ruid.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, ruid.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	ruid.mutation.done = true
 	return affected, err
 }
 
 // RpgUserInventoryDeleteOne is the builder for deleting a single RpgUserInventory entity.
 type RpgUserInventoryDeleteOne struct {
-	_d *RpgUserInventoryDelete
+	ruid *RpgUserInventoryDelete
 }
 
 // Where appends a list predicates to the RpgUserInventoryDelete builder.
-func (_d *RpgUserInventoryDeleteOne) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (ruido *RpgUserInventoryDeleteOne) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryDeleteOne {
+	ruido.ruid.mutation.Where(ps...)
+	return ruido
 }
 
 // Exec executes the deletion query.
-func (_d *RpgUserInventoryDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (ruido *RpgUserInventoryDeleteOne) Exec(ctx context.Context) error {
+	n, err := ruido.ruid.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgUserInventoryDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserInventoryDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (ruido *RpgUserInventoryDeleteOne) ExecX(ctx context.Context) {
+	if err := ruido.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

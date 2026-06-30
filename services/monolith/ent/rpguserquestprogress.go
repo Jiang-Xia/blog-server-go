@@ -63,7 +63,7 @@ func (*RpgUserQuestProgress) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserQuestProgress fields.
-func (_m *RpgUserQuestProgress) assignValues(columns []string, values []any) error {
+func (ruqp *RpgUserQuestProgress) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -74,69 +74,69 @@ func (_m *RpgUserQuestProgress) assignValues(columns []string, values []any) err
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			ruqp.ID = int(value.Int64)
 		case rpguserquestprogress.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				ruqp.CreateTime = value.Time
 			}
 		case rpguserquestprogress.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				ruqp.UpdateTime = value.Time
 			}
 		case rpguserquestprogress.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				ruqp.IsDelete = value.Bool
 			}
 		case rpguserquestprogress.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				ruqp.Version = int(value.Int64)
 			}
 		case rpguserquestprogress.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				ruqp.UID = int(value.Int64)
 			}
 		case rpguserquestprogress.FieldQuestCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field questCode", values[i])
 			} else if value.Valid {
-				_m.QuestCode = value.String
+				ruqp.QuestCode = value.String
 			}
 		case rpguserquestprogress.FieldProgress:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field progress", values[i])
 			} else if value.Valid {
-				_m.Progress = int(value.Int64)
+				ruqp.Progress = int(value.Int64)
 			}
 		case rpguserquestprogress.FieldCompleted:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field completed", values[i])
 			} else if value.Valid {
-				_m.Completed = int(value.Int64)
+				ruqp.Completed = int(value.Int64)
 			}
 		case rpguserquestprogress.FieldClaimed:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field claimed", values[i])
 			} else if value.Valid {
-				_m.Claimed = int(value.Int64)
+				ruqp.Claimed = int(value.Int64)
 			}
 		case rpguserquestprogress.FieldQuestDate:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field questDate", values[i])
 			} else if value.Valid {
-				_m.QuestDate = value.Time
+				ruqp.QuestDate = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			ruqp.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -144,62 +144,62 @@ func (_m *RpgUserQuestProgress) assignValues(columns []string, values []any) err
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserQuestProgress.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserQuestProgress) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (ruqp *RpgUserQuestProgress) Value(name string) (ent.Value, error) {
+	return ruqp.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserQuestProgress.
 // Note that you need to call RpgUserQuestProgress.Unwrap() before calling this method if this RpgUserQuestProgress
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserQuestProgress) Update() *RpgUserQuestProgressUpdateOne {
-	return NewRpgUserQuestProgressClient(_m.config).UpdateOne(_m)
+func (ruqp *RpgUserQuestProgress) Update() *RpgUserQuestProgressUpdateOne {
+	return NewRpgUserQuestProgressClient(ruqp.config).UpdateOne(ruqp)
 }
 
 // Unwrap unwraps the RpgUserQuestProgress entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserQuestProgress) Unwrap() *RpgUserQuestProgress {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (ruqp *RpgUserQuestProgress) Unwrap() *RpgUserQuestProgress {
+	_tx, ok := ruqp.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserQuestProgress is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	ruqp.config.driver = _tx.drv
+	return ruqp
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserQuestProgress) String() string {
+func (ruqp *RpgUserQuestProgress) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserQuestProgress(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", ruqp.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(ruqp.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(ruqp.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", ruqp.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", ruqp.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", ruqp.UID))
 	builder.WriteString(", ")
 	builder.WriteString("questCode=")
-	builder.WriteString(_m.QuestCode)
+	builder.WriteString(ruqp.QuestCode)
 	builder.WriteString(", ")
 	builder.WriteString("progress=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Progress))
+	builder.WriteString(fmt.Sprintf("%v", ruqp.Progress))
 	builder.WriteString(", ")
 	builder.WriteString("completed=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Completed))
+	builder.WriteString(fmt.Sprintf("%v", ruqp.Completed))
 	builder.WriteString(", ")
 	builder.WriteString("claimed=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Claimed))
+	builder.WriteString(fmt.Sprintf("%v", ruqp.Claimed))
 	builder.WriteString(", ")
 	builder.WriteString("questDate=")
-	builder.WriteString(_m.QuestDate.Format(time.ANSIC))
+	builder.WriteString(ruqp.QuestDate.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

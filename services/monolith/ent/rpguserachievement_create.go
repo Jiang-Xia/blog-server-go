@@ -23,135 +23,135 @@ type RpgUserAchievementCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgUserAchievementCreate) SetCreateTime(v time.Time) *RpgUserAchievementCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetCreateTime(t time.Time) *RpgUserAchievementCreate {
+	ruac.mutation.SetCreateTime(t)
+	return ruac
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgUserAchievementCreate) SetNillableCreateTime(v *time.Time) *RpgUserAchievementCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (ruac *RpgUserAchievementCreate) SetNillableCreateTime(t *time.Time) *RpgUserAchievementCreate {
+	if t != nil {
+		ruac.SetCreateTime(*t)
 	}
-	return _c
+	return ruac
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgUserAchievementCreate) SetUpdateTime(v time.Time) *RpgUserAchievementCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetUpdateTime(t time.Time) *RpgUserAchievementCreate {
+	ruac.mutation.SetUpdateTime(t)
+	return ruac
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgUserAchievementCreate) SetNillableUpdateTime(v *time.Time) *RpgUserAchievementCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (ruac *RpgUserAchievementCreate) SetNillableUpdateTime(t *time.Time) *RpgUserAchievementCreate {
+	if t != nil {
+		ruac.SetUpdateTime(*t)
 	}
-	return _c
+	return ruac
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgUserAchievementCreate) SetIsDelete(v bool) *RpgUserAchievementCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetIsDelete(b bool) *RpgUserAchievementCreate {
+	ruac.mutation.SetIsDelete(b)
+	return ruac
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgUserAchievementCreate) SetNillableIsDelete(v *bool) *RpgUserAchievementCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (ruac *RpgUserAchievementCreate) SetNillableIsDelete(b *bool) *RpgUserAchievementCreate {
+	if b != nil {
+		ruac.SetIsDelete(*b)
 	}
-	return _c
+	return ruac
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgUserAchievementCreate) SetVersion(v int) *RpgUserAchievementCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetVersion(i int) *RpgUserAchievementCreate {
+	ruac.mutation.SetVersion(i)
+	return ruac
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgUserAchievementCreate) SetNillableVersion(v *int) *RpgUserAchievementCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (ruac *RpgUserAchievementCreate) SetNillableVersion(i *int) *RpgUserAchievementCreate {
+	if i != nil {
+		ruac.SetVersion(*i)
 	}
-	return _c
+	return ruac
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgUserAchievementCreate) SetUID(v int) *RpgUserAchievementCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetUID(i int) *RpgUserAchievementCreate {
+	ruac.mutation.SetUID(i)
+	return ruac
 }
 
 // SetAchievementCode sets the "achievementCode" field.
-func (_c *RpgUserAchievementCreate) SetAchievementCode(v string) *RpgUserAchievementCreate {
-	_c.mutation.SetAchievementCode(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetAchievementCode(s string) *RpgUserAchievementCreate {
+	ruac.mutation.SetAchievementCode(s)
+	return ruac
 }
 
 // SetProgress sets the "progress" field.
-func (_c *RpgUserAchievementCreate) SetProgress(v int) *RpgUserAchievementCreate {
-	_c.mutation.SetProgress(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetProgress(i int) *RpgUserAchievementCreate {
+	ruac.mutation.SetProgress(i)
+	return ruac
 }
 
 // SetNillableProgress sets the "progress" field if the given value is not nil.
-func (_c *RpgUserAchievementCreate) SetNillableProgress(v *int) *RpgUserAchievementCreate {
-	if v != nil {
-		_c.SetProgress(*v)
+func (ruac *RpgUserAchievementCreate) SetNillableProgress(i *int) *RpgUserAchievementCreate {
+	if i != nil {
+		ruac.SetProgress(*i)
 	}
-	return _c
+	return ruac
 }
 
 // SetCompleted sets the "completed" field.
-func (_c *RpgUserAchievementCreate) SetCompleted(v int) *RpgUserAchievementCreate {
-	_c.mutation.SetCompleted(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetCompleted(i int) *RpgUserAchievementCreate {
+	ruac.mutation.SetCompleted(i)
+	return ruac
 }
 
 // SetNillableCompleted sets the "completed" field if the given value is not nil.
-func (_c *RpgUserAchievementCreate) SetNillableCompleted(v *int) *RpgUserAchievementCreate {
-	if v != nil {
-		_c.SetCompleted(*v)
+func (ruac *RpgUserAchievementCreate) SetNillableCompleted(i *int) *RpgUserAchievementCreate {
+	if i != nil {
+		ruac.SetCompleted(*i)
 	}
-	return _c
+	return ruac
 }
 
 // SetCompletedAt sets the "completedAt" field.
-func (_c *RpgUserAchievementCreate) SetCompletedAt(v time.Time) *RpgUserAchievementCreate {
-	_c.mutation.SetCompletedAt(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetCompletedAt(t time.Time) *RpgUserAchievementCreate {
+	ruac.mutation.SetCompletedAt(t)
+	return ruac
 }
 
 // SetNillableCompletedAt sets the "completedAt" field if the given value is not nil.
-func (_c *RpgUserAchievementCreate) SetNillableCompletedAt(v *time.Time) *RpgUserAchievementCreate {
-	if v != nil {
-		_c.SetCompletedAt(*v)
+func (ruac *RpgUserAchievementCreate) SetNillableCompletedAt(t *time.Time) *RpgUserAchievementCreate {
+	if t != nil {
+		ruac.SetCompletedAt(*t)
 	}
-	return _c
+	return ruac
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserAchievementCreate) SetID(v int) *RpgUserAchievementCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ruac *RpgUserAchievementCreate) SetID(i int) *RpgUserAchievementCreate {
+	ruac.mutation.SetID(i)
+	return ruac
 }
 
 // Mutation returns the RpgUserAchievementMutation object of the builder.
-func (_c *RpgUserAchievementCreate) Mutation() *RpgUserAchievementMutation {
-	return _c.mutation
+func (ruac *RpgUserAchievementCreate) Mutation() *RpgUserAchievementMutation {
+	return ruac.mutation
 }
 
 // Save creates the RpgUserAchievement in the database.
-func (_c *RpgUserAchievementCreate) Save(ctx context.Context) (*RpgUserAchievement, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ruac *RpgUserAchievementCreate) Save(ctx context.Context) (*RpgUserAchievement, error) {
+	ruac.defaults()
+	return withHooks(ctx, ruac.sqlSave, ruac.mutation, ruac.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserAchievementCreate) SaveX(ctx context.Context) *RpgUserAchievement {
-	v, err := _c.Save(ctx)
+func (ruac *RpgUserAchievementCreate) SaveX(ctx context.Context) *RpgUserAchievement {
+	v, err := ruac.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,81 +159,81 @@ func (_c *RpgUserAchievementCreate) SaveX(ctx context.Context) *RpgUserAchieveme
 }
 
 // Exec executes the query.
-func (_c *RpgUserAchievementCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruac *RpgUserAchievementCreate) Exec(ctx context.Context) error {
+	_, err := ruac.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserAchievementCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruac *RpgUserAchievementCreate) ExecX(ctx context.Context) {
+	if err := ruac.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgUserAchievementCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ruac *RpgUserAchievementCreate) defaults() {
+	if _, ok := ruac.mutation.CreateTime(); !ok {
 		v := rpguserachievement.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		ruac.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ruac.mutation.UpdateTime(); !ok {
 		v := rpguserachievement.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		ruac.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ruac.mutation.IsDelete(); !ok {
 		v := rpguserachievement.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		ruac.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ruac.mutation.Version(); !ok {
 		v := rpguserachievement.DefaultVersion
-		_c.mutation.SetVersion(v)
+		ruac.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Progress(); !ok {
+	if _, ok := ruac.mutation.Progress(); !ok {
 		v := rpguserachievement.DefaultProgress
-		_c.mutation.SetProgress(v)
+		ruac.mutation.SetProgress(v)
 	}
-	if _, ok := _c.mutation.Completed(); !ok {
+	if _, ok := ruac.mutation.Completed(); !ok {
 		v := rpguserachievement.DefaultCompleted
-		_c.mutation.SetCompleted(v)
+		ruac.mutation.SetCompleted(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserAchievementCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ruac *RpgUserAchievementCreate) check() error {
+	if _, ok := ruac.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserAchievement.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ruac.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserAchievement.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ruac.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserAchievement.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ruac.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserAchievement.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := ruac.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserAchievement.uid"`)}
 	}
-	if _, ok := _c.mutation.AchievementCode(); !ok {
+	if _, ok := ruac.mutation.AchievementCode(); !ok {
 		return &ValidationError{Name: "achievementCode", err: errors.New(`ent: missing required field "RpgUserAchievement.achievementCode"`)}
 	}
-	if _, ok := _c.mutation.Progress(); !ok {
+	if _, ok := ruac.mutation.Progress(); !ok {
 		return &ValidationError{Name: "progress", err: errors.New(`ent: missing required field "RpgUserAchievement.progress"`)}
 	}
-	if _, ok := _c.mutation.Completed(); !ok {
+	if _, ok := ruac.mutation.Completed(); !ok {
 		return &ValidationError{Name: "completed", err: errors.New(`ent: missing required field "RpgUserAchievement.completed"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserAchievementCreate) sqlSave(ctx context.Context) (*RpgUserAchievement, error) {
-	if err := _c.check(); err != nil {
+func (ruac *RpgUserAchievementCreate) sqlSave(ctx context.Context) (*RpgUserAchievement, error) {
+	if err := ruac.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ruac.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ruac.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -243,54 +243,54 @@ func (_c *RpgUserAchievementCreate) sqlSave(ctx context.Context) (*RpgUserAchiev
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ruac.mutation.id = &_node.ID
+	ruac.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserAchievementCreate) createSpec() (*RpgUserAchievement, *sqlgraph.CreateSpec) {
+func (ruac *RpgUserAchievementCreate) createSpec() (*RpgUserAchievement, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserAchievement{config: _c.config}
+		_node = &RpgUserAchievement{config: ruac.config}
 		_spec = sqlgraph.NewCreateSpec(rpguserachievement.Table, sqlgraph.NewFieldSpec(rpguserachievement.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = ruac.conflict
+	if id, ok := ruac.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := ruac.mutation.CreateTime(); ok {
 		_spec.SetField(rpguserachievement.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := ruac.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserachievement.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := ruac.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserachievement.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := ruac.mutation.Version(); ok {
 		_spec.SetField(rpguserachievement.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := ruac.mutation.UID(); ok {
 		_spec.SetField(rpguserachievement.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.AchievementCode(); ok {
+	if value, ok := ruac.mutation.AchievementCode(); ok {
 		_spec.SetField(rpguserachievement.FieldAchievementCode, field.TypeString, value)
 		_node.AchievementCode = value
 	}
-	if value, ok := _c.mutation.Progress(); ok {
+	if value, ok := ruac.mutation.Progress(); ok {
 		_spec.SetField(rpguserachievement.FieldProgress, field.TypeInt, value)
 		_node.Progress = value
 	}
-	if value, ok := _c.mutation.Completed(); ok {
+	if value, ok := ruac.mutation.Completed(); ok {
 		_spec.SetField(rpguserachievement.FieldCompleted, field.TypeInt, value)
 		_node.Completed = value
 	}
-	if value, ok := _c.mutation.CompletedAt(); ok {
+	if value, ok := ruac.mutation.CompletedAt(); ok {
 		_spec.SetField(rpguserachievement.FieldCompletedAt, field.TypeTime, value)
 		_node.CompletedAt = &value
 	}
@@ -313,10 +313,10 @@ func (_c *RpgUserAchievementCreate) createSpec() (*RpgUserAchievement, *sqlgraph
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserAchievementCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserAchievementUpsertOne {
-	_c.conflict = opts
+func (ruac *RpgUserAchievementCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserAchievementUpsertOne {
+	ruac.conflict = opts
 	return &RpgUserAchievementUpsertOne{
-		create: _c,
+		create: ruac,
 	}
 }
 
@@ -326,10 +326,10 @@ func (_c *RpgUserAchievementCreate) OnConflict(opts ...sql.ConflictOption) *RpgU
 //	client.RpgUserAchievement.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserAchievementCreate) OnConflictColumns(columns ...string) *RpgUserAchievementUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruac *RpgUserAchievementCreate) OnConflictColumns(columns ...string) *RpgUserAchievementUpsertOne {
+	ruac.conflict = append(ruac.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserAchievementUpsertOne{
-		create: _c,
+		create: ruac,
 	}
 }
 
@@ -712,16 +712,16 @@ type RpgUserAchievementCreateBulk struct {
 }
 
 // Save creates the RpgUserAchievement entities in the database.
-func (_c *RpgUserAchievementCreateBulk) Save(ctx context.Context) ([]*RpgUserAchievement, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ruacb *RpgUserAchievementCreateBulk) Save(ctx context.Context) ([]*RpgUserAchievement, error) {
+	if ruacb.err != nil {
+		return nil, ruacb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserAchievement, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ruacb.builders))
+	nodes := make([]*RpgUserAchievement, len(ruacb.builders))
+	mutators := make([]Mutator, len(ruacb.builders))
+	for i := range ruacb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ruacb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserAchievementMutation)
@@ -735,12 +735,12 @@ func (_c *RpgUserAchievementCreateBulk) Save(ctx context.Context) ([]*RpgUserAch
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ruacb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ruacb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ruacb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -764,7 +764,7 @@ func (_c *RpgUserAchievementCreateBulk) Save(ctx context.Context) ([]*RpgUserAch
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ruacb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -772,8 +772,8 @@ func (_c *RpgUserAchievementCreateBulk) Save(ctx context.Context) ([]*RpgUserAch
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserAchievementCreateBulk) SaveX(ctx context.Context) []*RpgUserAchievement {
-	v, err := _c.Save(ctx)
+func (ruacb *RpgUserAchievementCreateBulk) SaveX(ctx context.Context) []*RpgUserAchievement {
+	v, err := ruacb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -781,14 +781,14 @@ func (_c *RpgUserAchievementCreateBulk) SaveX(ctx context.Context) []*RpgUserAch
 }
 
 // Exec executes the query.
-func (_c *RpgUserAchievementCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruacb *RpgUserAchievementCreateBulk) Exec(ctx context.Context) error {
+	_, err := ruacb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserAchievementCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruacb *RpgUserAchievementCreateBulk) ExecX(ctx context.Context) {
+	if err := ruacb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -808,10 +808,10 @@ func (_c *RpgUserAchievementCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserAchievementCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserAchievementUpsertBulk {
-	_c.conflict = opts
+func (ruacb *RpgUserAchievementCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserAchievementUpsertBulk {
+	ruacb.conflict = opts
 	return &RpgUserAchievementUpsertBulk{
-		create: _c,
+		create: ruacb,
 	}
 }
 
@@ -821,10 +821,10 @@ func (_c *RpgUserAchievementCreateBulk) OnConflict(opts ...sql.ConflictOption) *
 //	client.RpgUserAchievement.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserAchievementCreateBulk) OnConflictColumns(columns ...string) *RpgUserAchievementUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruacb *RpgUserAchievementCreateBulk) OnConflictColumns(columns ...string) *RpgUserAchievementUpsertBulk {
+	ruacb.conflict = append(ruacb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserAchievementUpsertBulk{
-		create: _c,
+		create: ruacb,
 	}
 }
 

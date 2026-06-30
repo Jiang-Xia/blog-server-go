@@ -23,140 +23,140 @@ type RagQueryLogUpdate struct {
 }
 
 // Where appends a list predicates to the RagQueryLogUpdate builder.
-func (_u *RagQueryLogUpdate) Where(ps ...predicate.RagQueryLog) *RagQueryLogUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rqlu *RagQueryLogUpdate) Where(ps ...predicate.RagQueryLog) *RagQueryLogUpdate {
+	rqlu.mutation.Where(ps...)
+	return rqlu
 }
 
 // SetUID sets the "uid" field.
-func (_u *RagQueryLogUpdate) SetUID(v int) *RagQueryLogUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rqlu *RagQueryLogUpdate) SetUID(i int) *RagQueryLogUpdate {
+	rqlu.mutation.ResetUID()
+	rqlu.mutation.SetUID(i)
+	return rqlu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RagQueryLogUpdate) SetNillableUID(v *int) *RagQueryLogUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (rqlu *RagQueryLogUpdate) SetNillableUID(i *int) *RagQueryLogUpdate {
+	if i != nil {
+		rqlu.SetUID(*i)
 	}
-	return _u
+	return rqlu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RagQueryLogUpdate) AddUID(v int) *RagQueryLogUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rqlu *RagQueryLogUpdate) AddUID(i int) *RagQueryLogUpdate {
+	rqlu.mutation.AddUID(i)
+	return rqlu
 }
 
 // SetQuestion sets the "question" field.
-func (_u *RagQueryLogUpdate) SetQuestion(v string) *RagQueryLogUpdate {
-	_u.mutation.SetQuestion(v)
-	return _u
+func (rqlu *RagQueryLogUpdate) SetQuestion(s string) *RagQueryLogUpdate {
+	rqlu.mutation.SetQuestion(s)
+	return rqlu
 }
 
 // SetNillableQuestion sets the "question" field if the given value is not nil.
-func (_u *RagQueryLogUpdate) SetNillableQuestion(v *string) *RagQueryLogUpdate {
-	if v != nil {
-		_u.SetQuestion(*v)
+func (rqlu *RagQueryLogUpdate) SetNillableQuestion(s *string) *RagQueryLogUpdate {
+	if s != nil {
+		rqlu.SetQuestion(*s)
 	}
-	return _u
+	return rqlu
 }
 
 // SetAnswerPreview sets the "answer_preview" field.
-func (_u *RagQueryLogUpdate) SetAnswerPreview(v string) *RagQueryLogUpdate {
-	_u.mutation.SetAnswerPreview(v)
-	return _u
+func (rqlu *RagQueryLogUpdate) SetAnswerPreview(s string) *RagQueryLogUpdate {
+	rqlu.mutation.SetAnswerPreview(s)
+	return rqlu
 }
 
 // SetNillableAnswerPreview sets the "answer_preview" field if the given value is not nil.
-func (_u *RagQueryLogUpdate) SetNillableAnswerPreview(v *string) *RagQueryLogUpdate {
-	if v != nil {
-		_u.SetAnswerPreview(*v)
+func (rqlu *RagQueryLogUpdate) SetNillableAnswerPreview(s *string) *RagQueryLogUpdate {
+	if s != nil {
+		rqlu.SetAnswerPreview(*s)
 	}
-	return _u
+	return rqlu
 }
 
 // ClearAnswerPreview clears the value of the "answer_preview" field.
-func (_u *RagQueryLogUpdate) ClearAnswerPreview() *RagQueryLogUpdate {
-	_u.mutation.ClearAnswerPreview()
-	return _u
+func (rqlu *RagQueryLogUpdate) ClearAnswerPreview() *RagQueryLogUpdate {
+	rqlu.mutation.ClearAnswerPreview()
+	return rqlu
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (_u *RagQueryLogUpdate) SetCitationsJSON(v map[string]interface{}) *RagQueryLogUpdate {
-	_u.mutation.SetCitationsJSON(v)
-	return _u
+func (rqlu *RagQueryLogUpdate) SetCitationsJSON(m map[string]interface{}) *RagQueryLogUpdate {
+	rqlu.mutation.SetCitationsJSON(m)
+	return rqlu
 }
 
 // ClearCitationsJSON clears the value of the "citations_json" field.
-func (_u *RagQueryLogUpdate) ClearCitationsJSON() *RagQueryLogUpdate {
-	_u.mutation.ClearCitationsJSON()
-	return _u
+func (rqlu *RagQueryLogUpdate) ClearCitationsJSON() *RagQueryLogUpdate {
+	rqlu.mutation.ClearCitationsJSON()
+	return rqlu
 }
 
 // SetLatencyMs sets the "latency_ms" field.
-func (_u *RagQueryLogUpdate) SetLatencyMs(v int) *RagQueryLogUpdate {
-	_u.mutation.ResetLatencyMs()
-	_u.mutation.SetLatencyMs(v)
-	return _u
+func (rqlu *RagQueryLogUpdate) SetLatencyMs(i int) *RagQueryLogUpdate {
+	rqlu.mutation.ResetLatencyMs()
+	rqlu.mutation.SetLatencyMs(i)
+	return rqlu
 }
 
 // SetNillableLatencyMs sets the "latency_ms" field if the given value is not nil.
-func (_u *RagQueryLogUpdate) SetNillableLatencyMs(v *int) *RagQueryLogUpdate {
-	if v != nil {
-		_u.SetLatencyMs(*v)
+func (rqlu *RagQueryLogUpdate) SetNillableLatencyMs(i *int) *RagQueryLogUpdate {
+	if i != nil {
+		rqlu.SetLatencyMs(*i)
 	}
-	return _u
+	return rqlu
 }
 
-// AddLatencyMs adds value to the "latency_ms" field.
-func (_u *RagQueryLogUpdate) AddLatencyMs(v int) *RagQueryLogUpdate {
-	_u.mutation.AddLatencyMs(v)
-	return _u
+// AddLatencyMs adds i to the "latency_ms" field.
+func (rqlu *RagQueryLogUpdate) AddLatencyMs(i int) *RagQueryLogUpdate {
+	rqlu.mutation.AddLatencyMs(i)
+	return rqlu
 }
 
 // SetStatus sets the "status" field.
-func (_u *RagQueryLogUpdate) SetStatus(v string) *RagQueryLogUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (rqlu *RagQueryLogUpdate) SetStatus(s string) *RagQueryLogUpdate {
+	rqlu.mutation.SetStatus(s)
+	return rqlu
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *RagQueryLogUpdate) SetNillableStatus(v *string) *RagQueryLogUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (rqlu *RagQueryLogUpdate) SetNillableStatus(s *string) *RagQueryLogUpdate {
+	if s != nil {
+		rqlu.SetStatus(*s)
 	}
-	return _u
+	return rqlu
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *RagQueryLogUpdate) SetCreateAt(v time.Time) *RagQueryLogUpdate {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (rqlu *RagQueryLogUpdate) SetCreateAt(t time.Time) *RagQueryLogUpdate {
+	rqlu.mutation.SetCreateAt(t)
+	return rqlu
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *RagQueryLogUpdate) SetNillableCreateAt(v *time.Time) *RagQueryLogUpdate {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (rqlu *RagQueryLogUpdate) SetNillableCreateAt(t *time.Time) *RagQueryLogUpdate {
+	if t != nil {
+		rqlu.SetCreateAt(*t)
 	}
-	return _u
+	return rqlu
 }
 
 // Mutation returns the RagQueryLogMutation object of the builder.
-func (_u *RagQueryLogUpdate) Mutation() *RagQueryLogMutation {
-	return _u.mutation
+func (rqlu *RagQueryLogUpdate) Mutation() *RagQueryLogMutation {
+	return rqlu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RagQueryLogUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rqlu *RagQueryLogUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rqlu.sqlSave, rqlu.mutation, rqlu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RagQueryLogUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rqlu *RagQueryLogUpdate) SaveX(ctx context.Context) int {
+	affected, err := rqlu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -164,61 +164,61 @@ func (_u *RagQueryLogUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RagQueryLogUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rqlu *RagQueryLogUpdate) Exec(ctx context.Context) error {
+	_, err := rqlu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RagQueryLogUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rqlu *RagQueryLogUpdate) ExecX(ctx context.Context) {
+	if err := rqlu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RagQueryLogUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rqlu *RagQueryLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(ragquerylog.Table, ragquerylog.Columns, sqlgraph.NewFieldSpec(ragquerylog.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rqlu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rqlu.mutation.UID(); ok {
 		_spec.SetField(ragquerylog.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rqlu.mutation.AddedUID(); ok {
 		_spec.AddField(ragquerylog.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Question(); ok {
+	if value, ok := rqlu.mutation.Question(); ok {
 		_spec.SetField(ragquerylog.FieldQuestion, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.AnswerPreview(); ok {
+	if value, ok := rqlu.mutation.AnswerPreview(); ok {
 		_spec.SetField(ragquerylog.FieldAnswerPreview, field.TypeString, value)
 	}
-	if _u.mutation.AnswerPreviewCleared() {
+	if rqlu.mutation.AnswerPreviewCleared() {
 		_spec.ClearField(ragquerylog.FieldAnswerPreview, field.TypeString)
 	}
-	if value, ok := _u.mutation.CitationsJSON(); ok {
+	if value, ok := rqlu.mutation.CitationsJSON(); ok {
 		_spec.SetField(ragquerylog.FieldCitationsJSON, field.TypeJSON, value)
 	}
-	if _u.mutation.CitationsJSONCleared() {
+	if rqlu.mutation.CitationsJSONCleared() {
 		_spec.ClearField(ragquerylog.FieldCitationsJSON, field.TypeJSON)
 	}
-	if value, ok := _u.mutation.LatencyMs(); ok {
+	if value, ok := rqlu.mutation.LatencyMs(); ok {
 		_spec.SetField(ragquerylog.FieldLatencyMs, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLatencyMs(); ok {
+	if value, ok := rqlu.mutation.AddedLatencyMs(); ok {
 		_spec.AddField(ragquerylog.FieldLatencyMs, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := rqlu.mutation.Status(); ok {
 		_spec.SetField(ragquerylog.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := rqlu.mutation.CreateAt(); ok {
 		_spec.SetField(ragquerylog.FieldCreateAt, field.TypeTime, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rqlu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{ragquerylog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -226,8 +226,8 @@ func (_u *RagQueryLogUpdate) sqlSave(ctx context.Context) (_node int, err error)
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rqlu.mutation.done = true
+	return n, nil
 }
 
 // RagQueryLogUpdateOne is the builder for updating a single RagQueryLog entity.
@@ -239,147 +239,147 @@ type RagQueryLogUpdateOne struct {
 }
 
 // SetUID sets the "uid" field.
-func (_u *RagQueryLogUpdateOne) SetUID(v int) *RagQueryLogUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) SetUID(i int) *RagQueryLogUpdateOne {
+	rqluo.mutation.ResetUID()
+	rqluo.mutation.SetUID(i)
+	return rqluo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *RagQueryLogUpdateOne) SetNillableUID(v *int) *RagQueryLogUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (rqluo *RagQueryLogUpdateOne) SetNillableUID(i *int) *RagQueryLogUpdateOne {
+	if i != nil {
+		rqluo.SetUID(*i)
 	}
-	return _u
+	return rqluo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *RagQueryLogUpdateOne) AddUID(v int) *RagQueryLogUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (rqluo *RagQueryLogUpdateOne) AddUID(i int) *RagQueryLogUpdateOne {
+	rqluo.mutation.AddUID(i)
+	return rqluo
 }
 
 // SetQuestion sets the "question" field.
-func (_u *RagQueryLogUpdateOne) SetQuestion(v string) *RagQueryLogUpdateOne {
-	_u.mutation.SetQuestion(v)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) SetQuestion(s string) *RagQueryLogUpdateOne {
+	rqluo.mutation.SetQuestion(s)
+	return rqluo
 }
 
 // SetNillableQuestion sets the "question" field if the given value is not nil.
-func (_u *RagQueryLogUpdateOne) SetNillableQuestion(v *string) *RagQueryLogUpdateOne {
-	if v != nil {
-		_u.SetQuestion(*v)
+func (rqluo *RagQueryLogUpdateOne) SetNillableQuestion(s *string) *RagQueryLogUpdateOne {
+	if s != nil {
+		rqluo.SetQuestion(*s)
 	}
-	return _u
+	return rqluo
 }
 
 // SetAnswerPreview sets the "answer_preview" field.
-func (_u *RagQueryLogUpdateOne) SetAnswerPreview(v string) *RagQueryLogUpdateOne {
-	_u.mutation.SetAnswerPreview(v)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) SetAnswerPreview(s string) *RagQueryLogUpdateOne {
+	rqluo.mutation.SetAnswerPreview(s)
+	return rqluo
 }
 
 // SetNillableAnswerPreview sets the "answer_preview" field if the given value is not nil.
-func (_u *RagQueryLogUpdateOne) SetNillableAnswerPreview(v *string) *RagQueryLogUpdateOne {
-	if v != nil {
-		_u.SetAnswerPreview(*v)
+func (rqluo *RagQueryLogUpdateOne) SetNillableAnswerPreview(s *string) *RagQueryLogUpdateOne {
+	if s != nil {
+		rqluo.SetAnswerPreview(*s)
 	}
-	return _u
+	return rqluo
 }
 
 // ClearAnswerPreview clears the value of the "answer_preview" field.
-func (_u *RagQueryLogUpdateOne) ClearAnswerPreview() *RagQueryLogUpdateOne {
-	_u.mutation.ClearAnswerPreview()
-	return _u
+func (rqluo *RagQueryLogUpdateOne) ClearAnswerPreview() *RagQueryLogUpdateOne {
+	rqluo.mutation.ClearAnswerPreview()
+	return rqluo
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (_u *RagQueryLogUpdateOne) SetCitationsJSON(v map[string]interface{}) *RagQueryLogUpdateOne {
-	_u.mutation.SetCitationsJSON(v)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) SetCitationsJSON(m map[string]interface{}) *RagQueryLogUpdateOne {
+	rqluo.mutation.SetCitationsJSON(m)
+	return rqluo
 }
 
 // ClearCitationsJSON clears the value of the "citations_json" field.
-func (_u *RagQueryLogUpdateOne) ClearCitationsJSON() *RagQueryLogUpdateOne {
-	_u.mutation.ClearCitationsJSON()
-	return _u
+func (rqluo *RagQueryLogUpdateOne) ClearCitationsJSON() *RagQueryLogUpdateOne {
+	rqluo.mutation.ClearCitationsJSON()
+	return rqluo
 }
 
 // SetLatencyMs sets the "latency_ms" field.
-func (_u *RagQueryLogUpdateOne) SetLatencyMs(v int) *RagQueryLogUpdateOne {
-	_u.mutation.ResetLatencyMs()
-	_u.mutation.SetLatencyMs(v)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) SetLatencyMs(i int) *RagQueryLogUpdateOne {
+	rqluo.mutation.ResetLatencyMs()
+	rqluo.mutation.SetLatencyMs(i)
+	return rqluo
 }
 
 // SetNillableLatencyMs sets the "latency_ms" field if the given value is not nil.
-func (_u *RagQueryLogUpdateOne) SetNillableLatencyMs(v *int) *RagQueryLogUpdateOne {
-	if v != nil {
-		_u.SetLatencyMs(*v)
+func (rqluo *RagQueryLogUpdateOne) SetNillableLatencyMs(i *int) *RagQueryLogUpdateOne {
+	if i != nil {
+		rqluo.SetLatencyMs(*i)
 	}
-	return _u
+	return rqluo
 }
 
-// AddLatencyMs adds value to the "latency_ms" field.
-func (_u *RagQueryLogUpdateOne) AddLatencyMs(v int) *RagQueryLogUpdateOne {
-	_u.mutation.AddLatencyMs(v)
-	return _u
+// AddLatencyMs adds i to the "latency_ms" field.
+func (rqluo *RagQueryLogUpdateOne) AddLatencyMs(i int) *RagQueryLogUpdateOne {
+	rqluo.mutation.AddLatencyMs(i)
+	return rqluo
 }
 
 // SetStatus sets the "status" field.
-func (_u *RagQueryLogUpdateOne) SetStatus(v string) *RagQueryLogUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) SetStatus(s string) *RagQueryLogUpdateOne {
+	rqluo.mutation.SetStatus(s)
+	return rqluo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *RagQueryLogUpdateOne) SetNillableStatus(v *string) *RagQueryLogUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (rqluo *RagQueryLogUpdateOne) SetNillableStatus(s *string) *RagQueryLogUpdateOne {
+	if s != nil {
+		rqluo.SetStatus(*s)
 	}
-	return _u
+	return rqluo
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *RagQueryLogUpdateOne) SetCreateAt(v time.Time) *RagQueryLogUpdateOne {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) SetCreateAt(t time.Time) *RagQueryLogUpdateOne {
+	rqluo.mutation.SetCreateAt(t)
+	return rqluo
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *RagQueryLogUpdateOne) SetNillableCreateAt(v *time.Time) *RagQueryLogUpdateOne {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (rqluo *RagQueryLogUpdateOne) SetNillableCreateAt(t *time.Time) *RagQueryLogUpdateOne {
+	if t != nil {
+		rqluo.SetCreateAt(*t)
 	}
-	return _u
+	return rqluo
 }
 
 // Mutation returns the RagQueryLogMutation object of the builder.
-func (_u *RagQueryLogUpdateOne) Mutation() *RagQueryLogMutation {
-	return _u.mutation
+func (rqluo *RagQueryLogUpdateOne) Mutation() *RagQueryLogMutation {
+	return rqluo.mutation
 }
 
 // Where appends a list predicates to the RagQueryLogUpdate builder.
-func (_u *RagQueryLogUpdateOne) Where(ps ...predicate.RagQueryLog) *RagQueryLogUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) Where(ps ...predicate.RagQueryLog) *RagQueryLogUpdateOne {
+	rqluo.mutation.Where(ps...)
+	return rqluo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RagQueryLogUpdateOne) Select(field string, fields ...string) *RagQueryLogUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rqluo *RagQueryLogUpdateOne) Select(field string, fields ...string) *RagQueryLogUpdateOne {
+	rqluo.fields = append([]string{field}, fields...)
+	return rqluo
 }
 
 // Save executes the query and returns the updated RagQueryLog entity.
-func (_u *RagQueryLogUpdateOne) Save(ctx context.Context) (*RagQueryLog, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rqluo *RagQueryLogUpdateOne) Save(ctx context.Context) (*RagQueryLog, error) {
+	return withHooks(ctx, rqluo.sqlSave, rqluo.mutation, rqluo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RagQueryLogUpdateOne) SaveX(ctx context.Context) *RagQueryLog {
-	node, err := _u.Save(ctx)
+func (rqluo *RagQueryLogUpdateOne) SaveX(ctx context.Context) *RagQueryLog {
+	node, err := rqluo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -387,26 +387,26 @@ func (_u *RagQueryLogUpdateOne) SaveX(ctx context.Context) *RagQueryLog {
 }
 
 // Exec executes the query on the entity.
-func (_u *RagQueryLogUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rqluo *RagQueryLogUpdateOne) Exec(ctx context.Context) error {
+	_, err := rqluo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RagQueryLogUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rqluo *RagQueryLogUpdateOne) ExecX(ctx context.Context) {
+	if err := rqluo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RagQueryLogUpdateOne) sqlSave(ctx context.Context) (_node *RagQueryLog, err error) {
+func (rqluo *RagQueryLogUpdateOne) sqlSave(ctx context.Context) (_node *RagQueryLog, err error) {
 	_spec := sqlgraph.NewUpdateSpec(ragquerylog.Table, ragquerylog.Columns, sqlgraph.NewFieldSpec(ragquerylog.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rqluo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RagQueryLog.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rqluo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, ragquerylog.FieldID)
 		for _, f := range fields {
@@ -418,50 +418,50 @@ func (_u *RagQueryLogUpdateOne) sqlSave(ctx context.Context) (_node *RagQueryLog
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rqluo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := rqluo.mutation.UID(); ok {
 		_spec.SetField(ragquerylog.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := rqluo.mutation.AddedUID(); ok {
 		_spec.AddField(ragquerylog.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Question(); ok {
+	if value, ok := rqluo.mutation.Question(); ok {
 		_spec.SetField(ragquerylog.FieldQuestion, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.AnswerPreview(); ok {
+	if value, ok := rqluo.mutation.AnswerPreview(); ok {
 		_spec.SetField(ragquerylog.FieldAnswerPreview, field.TypeString, value)
 	}
-	if _u.mutation.AnswerPreviewCleared() {
+	if rqluo.mutation.AnswerPreviewCleared() {
 		_spec.ClearField(ragquerylog.FieldAnswerPreview, field.TypeString)
 	}
-	if value, ok := _u.mutation.CitationsJSON(); ok {
+	if value, ok := rqluo.mutation.CitationsJSON(); ok {
 		_spec.SetField(ragquerylog.FieldCitationsJSON, field.TypeJSON, value)
 	}
-	if _u.mutation.CitationsJSONCleared() {
+	if rqluo.mutation.CitationsJSONCleared() {
 		_spec.ClearField(ragquerylog.FieldCitationsJSON, field.TypeJSON)
 	}
-	if value, ok := _u.mutation.LatencyMs(); ok {
+	if value, ok := rqluo.mutation.LatencyMs(); ok {
 		_spec.SetField(ragquerylog.FieldLatencyMs, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLatencyMs(); ok {
+	if value, ok := rqluo.mutation.AddedLatencyMs(); ok {
 		_spec.AddField(ragquerylog.FieldLatencyMs, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := rqluo.mutation.Status(); ok {
 		_spec.SetField(ragquerylog.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := rqluo.mutation.CreateAt(); ok {
 		_spec.SetField(ragquerylog.FieldCreateAt, field.TypeTime, value)
 	}
-	_node = &RagQueryLog{config: _u.config}
+	_node = &RagQueryLog{config: rqluo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rqluo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{ragquerylog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -469,6 +469,6 @@ func (_u *RagQueryLogUpdateOne) sqlSave(ctx context.Context) (_node *RagQueryLog
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rqluo.mutation.done = true
 	return _node, nil
 }

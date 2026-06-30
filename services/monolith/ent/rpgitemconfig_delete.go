@@ -20,56 +20,56 @@ type RpgItemConfigDelete struct {
 }
 
 // Where appends a list predicates to the RpgItemConfigDelete builder.
-func (_d *RpgItemConfigDelete) Where(ps ...predicate.RpgItemConfig) *RpgItemConfigDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (ricd *RpgItemConfigDelete) Where(ps ...predicate.RpgItemConfig) *RpgItemConfigDelete {
+	ricd.mutation.Where(ps...)
+	return ricd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgItemConfigDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (ricd *RpgItemConfigDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, ricd.sqlExec, ricd.mutation, ricd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgItemConfigDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (ricd *RpgItemConfigDelete) ExecX(ctx context.Context) int {
+	n, err := ricd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgItemConfigDelete) sqlExec(ctx context.Context) (int, error) {
+func (ricd *RpgItemConfigDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpgitemconfig.Table, sqlgraph.NewFieldSpec(rpgitemconfig.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := ricd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, ricd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	ricd.mutation.done = true
 	return affected, err
 }
 
 // RpgItemConfigDeleteOne is the builder for deleting a single RpgItemConfig entity.
 type RpgItemConfigDeleteOne struct {
-	_d *RpgItemConfigDelete
+	ricd *RpgItemConfigDelete
 }
 
 // Where appends a list predicates to the RpgItemConfigDelete builder.
-func (_d *RpgItemConfigDeleteOne) Where(ps ...predicate.RpgItemConfig) *RpgItemConfigDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (ricdo *RpgItemConfigDeleteOne) Where(ps ...predicate.RpgItemConfig) *RpgItemConfigDeleteOne {
+	ricdo.ricd.mutation.Where(ps...)
+	return ricdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgItemConfigDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (ricdo *RpgItemConfigDeleteOne) Exec(ctx context.Context) error {
+	n, err := ricdo.ricd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgItemConfigDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgItemConfigDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (ricdo *RpgItemConfigDeleteOne) ExecX(ctx context.Context) {
+	if err := ricdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

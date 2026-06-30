@@ -22,135 +22,135 @@ type RpgLotteryPoolUpdate struct {
 }
 
 // Where appends a list predicates to the RpgLotteryPoolUpdate builder.
-func (_u *RpgLotteryPoolUpdate) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolUpdate {
+	rlpu.mutation.Where(ps...)
+	return rlpu
 }
 
 // SetItemCode sets the "itemCode" field.
-func (_u *RpgLotteryPoolUpdate) SetItemCode(v string) *RpgLotteryPoolUpdate {
-	_u.mutation.SetItemCode(v)
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) SetItemCode(s string) *RpgLotteryPoolUpdate {
+	rlpu.mutation.SetItemCode(s)
+	return rlpu
 }
 
 // SetNillableItemCode sets the "itemCode" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdate) SetNillableItemCode(v *string) *RpgLotteryPoolUpdate {
-	if v != nil {
-		_u.SetItemCode(*v)
+func (rlpu *RpgLotteryPoolUpdate) SetNillableItemCode(s *string) *RpgLotteryPoolUpdate {
+	if s != nil {
+		rlpu.SetItemCode(*s)
 	}
-	return _u
+	return rlpu
 }
 
 // SetProbability sets the "probability" field.
-func (_u *RpgLotteryPoolUpdate) SetProbability(v float64) *RpgLotteryPoolUpdate {
-	_u.mutation.ResetProbability()
-	_u.mutation.SetProbability(v)
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) SetProbability(f float64) *RpgLotteryPoolUpdate {
+	rlpu.mutation.ResetProbability()
+	rlpu.mutation.SetProbability(f)
+	return rlpu
 }
 
 // SetNillableProbability sets the "probability" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdate) SetNillableProbability(v *float64) *RpgLotteryPoolUpdate {
-	if v != nil {
-		_u.SetProbability(*v)
+func (rlpu *RpgLotteryPoolUpdate) SetNillableProbability(f *float64) *RpgLotteryPoolUpdate {
+	if f != nil {
+		rlpu.SetProbability(*f)
 	}
-	return _u
+	return rlpu
 }
 
-// AddProbability adds value to the "probability" field.
-func (_u *RpgLotteryPoolUpdate) AddProbability(v float64) *RpgLotteryPoolUpdate {
-	_u.mutation.AddProbability(v)
-	return _u
+// AddProbability adds f to the "probability" field.
+func (rlpu *RpgLotteryPoolUpdate) AddProbability(f float64) *RpgLotteryPoolUpdate {
+	rlpu.mutation.AddProbability(f)
+	return rlpu
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgLotteryPoolUpdate) SetActive(v int) *RpgLotteryPoolUpdate {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) SetActive(i int) *RpgLotteryPoolUpdate {
+	rlpu.mutation.ResetActive()
+	rlpu.mutation.SetActive(i)
+	return rlpu
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdate) SetNillableActive(v *int) *RpgLotteryPoolUpdate {
-	if v != nil {
-		_u.SetActive(*v)
+func (rlpu *RpgLotteryPoolUpdate) SetNillableActive(i *int) *RpgLotteryPoolUpdate {
+	if i != nil {
+		rlpu.SetActive(*i)
 	}
-	return _u
+	return rlpu
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgLotteryPoolUpdate) AddActive(v int) *RpgLotteryPoolUpdate {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rlpu *RpgLotteryPoolUpdate) AddActive(i int) *RpgLotteryPoolUpdate {
+	rlpu.mutation.AddActive(i)
+	return rlpu
 }
 
 // SetSort sets the "sort" field.
-func (_u *RpgLotteryPoolUpdate) SetSort(v int) *RpgLotteryPoolUpdate {
-	_u.mutation.ResetSort()
-	_u.mutation.SetSort(v)
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) SetSort(i int) *RpgLotteryPoolUpdate {
+	rlpu.mutation.ResetSort()
+	rlpu.mutation.SetSort(i)
+	return rlpu
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdate) SetNillableSort(v *int) *RpgLotteryPoolUpdate {
-	if v != nil {
-		_u.SetSort(*v)
+func (rlpu *RpgLotteryPoolUpdate) SetNillableSort(i *int) *RpgLotteryPoolUpdate {
+	if i != nil {
+		rlpu.SetSort(*i)
 	}
-	return _u
+	return rlpu
 }
 
-// AddSort adds value to the "sort" field.
-func (_u *RpgLotteryPoolUpdate) AddSort(v int) *RpgLotteryPoolUpdate {
-	_u.mutation.AddSort(v)
-	return _u
+// AddSort adds i to the "sort" field.
+func (rlpu *RpgLotteryPoolUpdate) AddSort(i int) *RpgLotteryPoolUpdate {
+	rlpu.mutation.AddSort(i)
+	return rlpu
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgLotteryPoolUpdate) SetEffectJson(v string) *RpgLotteryPoolUpdate {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) SetEffectJson(s string) *RpgLotteryPoolUpdate {
+	rlpu.mutation.SetEffectJson(s)
+	return rlpu
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdate) SetNillableEffectJson(v *string) *RpgLotteryPoolUpdate {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rlpu *RpgLotteryPoolUpdate) SetNillableEffectJson(s *string) *RpgLotteryPoolUpdate {
+	if s != nil {
+		rlpu.SetEffectJson(*s)
 	}
-	return _u
+	return rlpu
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgLotteryPoolUpdate) ClearEffectJson() *RpgLotteryPoolUpdate {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) ClearEffectJson() *RpgLotteryPoolUpdate {
+	rlpu.mutation.ClearEffectJson()
+	return rlpu
 }
 
 // SetRarity sets the "rarity" field.
-func (_u *RpgLotteryPoolUpdate) SetRarity(v string) *RpgLotteryPoolUpdate {
-	_u.mutation.SetRarity(v)
-	return _u
+func (rlpu *RpgLotteryPoolUpdate) SetRarity(s string) *RpgLotteryPoolUpdate {
+	rlpu.mutation.SetRarity(s)
+	return rlpu
 }
 
 // SetNillableRarity sets the "rarity" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdate) SetNillableRarity(v *string) *RpgLotteryPoolUpdate {
-	if v != nil {
-		_u.SetRarity(*v)
+func (rlpu *RpgLotteryPoolUpdate) SetNillableRarity(s *string) *RpgLotteryPoolUpdate {
+	if s != nil {
+		rlpu.SetRarity(*s)
 	}
-	return _u
+	return rlpu
 }
 
 // Mutation returns the RpgLotteryPoolMutation object of the builder.
-func (_u *RpgLotteryPoolUpdate) Mutation() *RpgLotteryPoolMutation {
-	return _u.mutation
+func (rlpu *RpgLotteryPoolUpdate) Mutation() *RpgLotteryPoolMutation {
+	return rlpu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgLotteryPoolUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rlpu *RpgLotteryPoolUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rlpu.sqlSave, rlpu.mutation, rlpu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgLotteryPoolUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rlpu *RpgLotteryPoolUpdate) SaveX(ctx context.Context) int {
+	affected, err := rlpu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -158,58 +158,58 @@ func (_u *RpgLotteryPoolUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgLotteryPoolUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rlpu *RpgLotteryPoolUpdate) Exec(ctx context.Context) error {
+	_, err := rlpu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgLotteryPoolUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rlpu *RpgLotteryPoolUpdate) ExecX(ctx context.Context) {
+	if err := rlpu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgLotteryPoolUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rlpu *RpgLotteryPoolUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpglotterypool.Table, rpglotterypool.Columns, sqlgraph.NewFieldSpec(rpglotterypool.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rlpu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ItemCode(); ok {
+	if value, ok := rlpu.mutation.ItemCode(); ok {
 		_spec.SetField(rpglotterypool.FieldItemCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Probability(); ok {
+	if value, ok := rlpu.mutation.Probability(); ok {
 		_spec.SetField(rpglotterypool.FieldProbability, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedProbability(); ok {
+	if value, ok := rlpu.mutation.AddedProbability(); ok {
 		_spec.AddField(rpglotterypool.FieldProbability, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rlpu.mutation.Active(); ok {
 		_spec.SetField(rpglotterypool.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rlpu.mutation.AddedActive(); ok {
 		_spec.AddField(rpglotterypool.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Sort(); ok {
+	if value, ok := rlpu.mutation.Sort(); ok {
 		_spec.SetField(rpglotterypool.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSort(); ok {
+	if value, ok := rlpu.mutation.AddedSort(); ok {
 		_spec.AddField(rpglotterypool.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rlpu.mutation.EffectJson(); ok {
 		_spec.SetField(rpglotterypool.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rlpu.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpglotterypool.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Rarity(); ok {
+	if value, ok := rlpu.mutation.Rarity(); ok {
 		_spec.SetField(rpglotterypool.FieldRarity, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rlpu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpglotterypool.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -217,8 +217,8 @@ func (_u *RpgLotteryPoolUpdate) sqlSave(ctx context.Context) (_node int, err err
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rlpu.mutation.done = true
+	return n, nil
 }
 
 // RpgLotteryPoolUpdateOne is the builder for updating a single RpgLotteryPool entity.
@@ -230,142 +230,142 @@ type RpgLotteryPoolUpdateOne struct {
 }
 
 // SetItemCode sets the "itemCode" field.
-func (_u *RpgLotteryPoolUpdateOne) SetItemCode(v string) *RpgLotteryPoolUpdateOne {
-	_u.mutation.SetItemCode(v)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) SetItemCode(s string) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.SetItemCode(s)
+	return rlpuo
 }
 
 // SetNillableItemCode sets the "itemCode" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdateOne) SetNillableItemCode(v *string) *RpgLotteryPoolUpdateOne {
-	if v != nil {
-		_u.SetItemCode(*v)
+func (rlpuo *RpgLotteryPoolUpdateOne) SetNillableItemCode(s *string) *RpgLotteryPoolUpdateOne {
+	if s != nil {
+		rlpuo.SetItemCode(*s)
 	}
-	return _u
+	return rlpuo
 }
 
 // SetProbability sets the "probability" field.
-func (_u *RpgLotteryPoolUpdateOne) SetProbability(v float64) *RpgLotteryPoolUpdateOne {
-	_u.mutation.ResetProbability()
-	_u.mutation.SetProbability(v)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) SetProbability(f float64) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.ResetProbability()
+	rlpuo.mutation.SetProbability(f)
+	return rlpuo
 }
 
 // SetNillableProbability sets the "probability" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdateOne) SetNillableProbability(v *float64) *RpgLotteryPoolUpdateOne {
-	if v != nil {
-		_u.SetProbability(*v)
+func (rlpuo *RpgLotteryPoolUpdateOne) SetNillableProbability(f *float64) *RpgLotteryPoolUpdateOne {
+	if f != nil {
+		rlpuo.SetProbability(*f)
 	}
-	return _u
+	return rlpuo
 }
 
-// AddProbability adds value to the "probability" field.
-func (_u *RpgLotteryPoolUpdateOne) AddProbability(v float64) *RpgLotteryPoolUpdateOne {
-	_u.mutation.AddProbability(v)
-	return _u
+// AddProbability adds f to the "probability" field.
+func (rlpuo *RpgLotteryPoolUpdateOne) AddProbability(f float64) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.AddProbability(f)
+	return rlpuo
 }
 
 // SetActive sets the "active" field.
-func (_u *RpgLotteryPoolUpdateOne) SetActive(v int) *RpgLotteryPoolUpdateOne {
-	_u.mutation.ResetActive()
-	_u.mutation.SetActive(v)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) SetActive(i int) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.ResetActive()
+	rlpuo.mutation.SetActive(i)
+	return rlpuo
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdateOne) SetNillableActive(v *int) *RpgLotteryPoolUpdateOne {
-	if v != nil {
-		_u.SetActive(*v)
+func (rlpuo *RpgLotteryPoolUpdateOne) SetNillableActive(i *int) *RpgLotteryPoolUpdateOne {
+	if i != nil {
+		rlpuo.SetActive(*i)
 	}
-	return _u
+	return rlpuo
 }
 
-// AddActive adds value to the "active" field.
-func (_u *RpgLotteryPoolUpdateOne) AddActive(v int) *RpgLotteryPoolUpdateOne {
-	_u.mutation.AddActive(v)
-	return _u
+// AddActive adds i to the "active" field.
+func (rlpuo *RpgLotteryPoolUpdateOne) AddActive(i int) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.AddActive(i)
+	return rlpuo
 }
 
 // SetSort sets the "sort" field.
-func (_u *RpgLotteryPoolUpdateOne) SetSort(v int) *RpgLotteryPoolUpdateOne {
-	_u.mutation.ResetSort()
-	_u.mutation.SetSort(v)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) SetSort(i int) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.ResetSort()
+	rlpuo.mutation.SetSort(i)
+	return rlpuo
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdateOne) SetNillableSort(v *int) *RpgLotteryPoolUpdateOne {
-	if v != nil {
-		_u.SetSort(*v)
+func (rlpuo *RpgLotteryPoolUpdateOne) SetNillableSort(i *int) *RpgLotteryPoolUpdateOne {
+	if i != nil {
+		rlpuo.SetSort(*i)
 	}
-	return _u
+	return rlpuo
 }
 
-// AddSort adds value to the "sort" field.
-func (_u *RpgLotteryPoolUpdateOne) AddSort(v int) *RpgLotteryPoolUpdateOne {
-	_u.mutation.AddSort(v)
-	return _u
+// AddSort adds i to the "sort" field.
+func (rlpuo *RpgLotteryPoolUpdateOne) AddSort(i int) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.AddSort(i)
+	return rlpuo
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_u *RpgLotteryPoolUpdateOne) SetEffectJson(v string) *RpgLotteryPoolUpdateOne {
-	_u.mutation.SetEffectJson(v)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) SetEffectJson(s string) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.SetEffectJson(s)
+	return rlpuo
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdateOne) SetNillableEffectJson(v *string) *RpgLotteryPoolUpdateOne {
-	if v != nil {
-		_u.SetEffectJson(*v)
+func (rlpuo *RpgLotteryPoolUpdateOne) SetNillableEffectJson(s *string) *RpgLotteryPoolUpdateOne {
+	if s != nil {
+		rlpuo.SetEffectJson(*s)
 	}
-	return _u
+	return rlpuo
 }
 
 // ClearEffectJson clears the value of the "effectJson" field.
-func (_u *RpgLotteryPoolUpdateOne) ClearEffectJson() *RpgLotteryPoolUpdateOne {
-	_u.mutation.ClearEffectJson()
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) ClearEffectJson() *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.ClearEffectJson()
+	return rlpuo
 }
 
 // SetRarity sets the "rarity" field.
-func (_u *RpgLotteryPoolUpdateOne) SetRarity(v string) *RpgLotteryPoolUpdateOne {
-	_u.mutation.SetRarity(v)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) SetRarity(s string) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.SetRarity(s)
+	return rlpuo
 }
 
 // SetNillableRarity sets the "rarity" field if the given value is not nil.
-func (_u *RpgLotteryPoolUpdateOne) SetNillableRarity(v *string) *RpgLotteryPoolUpdateOne {
-	if v != nil {
-		_u.SetRarity(*v)
+func (rlpuo *RpgLotteryPoolUpdateOne) SetNillableRarity(s *string) *RpgLotteryPoolUpdateOne {
+	if s != nil {
+		rlpuo.SetRarity(*s)
 	}
-	return _u
+	return rlpuo
 }
 
 // Mutation returns the RpgLotteryPoolMutation object of the builder.
-func (_u *RpgLotteryPoolUpdateOne) Mutation() *RpgLotteryPoolMutation {
-	return _u.mutation
+func (rlpuo *RpgLotteryPoolUpdateOne) Mutation() *RpgLotteryPoolMutation {
+	return rlpuo.mutation
 }
 
 // Where appends a list predicates to the RpgLotteryPoolUpdate builder.
-func (_u *RpgLotteryPoolUpdateOne) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolUpdateOne {
+	rlpuo.mutation.Where(ps...)
+	return rlpuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgLotteryPoolUpdateOne) Select(field string, fields ...string) *RpgLotteryPoolUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rlpuo *RpgLotteryPoolUpdateOne) Select(field string, fields ...string) *RpgLotteryPoolUpdateOne {
+	rlpuo.fields = append([]string{field}, fields...)
+	return rlpuo
 }
 
 // Save executes the query and returns the updated RpgLotteryPool entity.
-func (_u *RpgLotteryPoolUpdateOne) Save(ctx context.Context) (*RpgLotteryPool, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rlpuo *RpgLotteryPoolUpdateOne) Save(ctx context.Context) (*RpgLotteryPool, error) {
+	return withHooks(ctx, rlpuo.sqlSave, rlpuo.mutation, rlpuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgLotteryPoolUpdateOne) SaveX(ctx context.Context) *RpgLotteryPool {
-	node, err := _u.Save(ctx)
+func (rlpuo *RpgLotteryPoolUpdateOne) SaveX(ctx context.Context) *RpgLotteryPool {
+	node, err := rlpuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -373,26 +373,26 @@ func (_u *RpgLotteryPoolUpdateOne) SaveX(ctx context.Context) *RpgLotteryPool {
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgLotteryPoolUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rlpuo *RpgLotteryPoolUpdateOne) Exec(ctx context.Context) error {
+	_, err := rlpuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgLotteryPoolUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rlpuo *RpgLotteryPoolUpdateOne) ExecX(ctx context.Context) {
+	if err := rlpuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RpgLotteryPoolUpdateOne) sqlSave(ctx context.Context) (_node *RpgLotteryPool, err error) {
+func (rlpuo *RpgLotteryPoolUpdateOne) sqlSave(ctx context.Context) (_node *RpgLotteryPool, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpglotterypool.Table, rpglotterypool.Columns, sqlgraph.NewFieldSpec(rpglotterypool.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rlpuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgLotteryPool.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rlpuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpglotterypool.FieldID)
 		for _, f := range fields {
@@ -404,47 +404,47 @@ func (_u *RpgLotteryPoolUpdateOne) sqlSave(ctx context.Context) (_node *RpgLotte
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rlpuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ItemCode(); ok {
+	if value, ok := rlpuo.mutation.ItemCode(); ok {
 		_spec.SetField(rpglotterypool.FieldItemCode, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Probability(); ok {
+	if value, ok := rlpuo.mutation.Probability(); ok {
 		_spec.SetField(rpglotterypool.FieldProbability, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.AddedProbability(); ok {
+	if value, ok := rlpuo.mutation.AddedProbability(); ok {
 		_spec.AddField(rpglotterypool.FieldProbability, field.TypeFloat64, value)
 	}
-	if value, ok := _u.mutation.Active(); ok {
+	if value, ok := rlpuo.mutation.Active(); ok {
 		_spec.SetField(rpglotterypool.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedActive(); ok {
+	if value, ok := rlpuo.mutation.AddedActive(); ok {
 		_spec.AddField(rpglotterypool.FieldActive, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Sort(); ok {
+	if value, ok := rlpuo.mutation.Sort(); ok {
 		_spec.SetField(rpglotterypool.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedSort(); ok {
+	if value, ok := rlpuo.mutation.AddedSort(); ok {
 		_spec.AddField(rpglotterypool.FieldSort, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.EffectJson(); ok {
+	if value, ok := rlpuo.mutation.EffectJson(); ok {
 		_spec.SetField(rpglotterypool.FieldEffectJson, field.TypeString, value)
 	}
-	if _u.mutation.EffectJsonCleared() {
+	if rlpuo.mutation.EffectJsonCleared() {
 		_spec.ClearField(rpglotterypool.FieldEffectJson, field.TypeString)
 	}
-	if value, ok := _u.mutation.Rarity(); ok {
+	if value, ok := rlpuo.mutation.Rarity(); ok {
 		_spec.SetField(rpglotterypool.FieldRarity, field.TypeString, value)
 	}
-	_node = &RpgLotteryPool{config: _u.config}
+	_node = &RpgLotteryPool{config: rlpuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rlpuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpglotterypool.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -452,6 +452,6 @@ func (_u *RpgLotteryPoolUpdateOne) sqlSave(ctx context.Context) (_node *RpgLotte
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rlpuo.mutation.done = true
 	return _node, nil
 }

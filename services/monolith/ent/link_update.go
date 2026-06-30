@@ -23,177 +23,177 @@ type LinkUpdate struct {
 }
 
 // Where appends a list predicates to the LinkUpdate builder.
-func (_u *LinkUpdate) Where(ps ...predicate.Link) *LinkUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (lu *LinkUpdate) Where(ps ...predicate.Link) *LinkUpdate {
+	lu.mutation.Where(ps...)
+	return lu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *LinkUpdate) SetUpdateTime(v time.Time) *LinkUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (lu *LinkUpdate) SetUpdateTime(t time.Time) *LinkUpdate {
+	lu.mutation.SetUpdateTime(t)
+	return lu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *LinkUpdate) SetIsDelete(v bool) *LinkUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (lu *LinkUpdate) SetIsDelete(b bool) *LinkUpdate {
+	lu.mutation.SetIsDelete(b)
+	return lu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableIsDelete(v *bool) *LinkUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (lu *LinkUpdate) SetNillableIsDelete(b *bool) *LinkUpdate {
+	if b != nil {
+		lu.SetIsDelete(*b)
 	}
-	return _u
+	return lu
 }
 
 // SetVersion sets the "version" field.
-func (_u *LinkUpdate) SetVersion(v int) *LinkUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (lu *LinkUpdate) SetVersion(i int) *LinkUpdate {
+	lu.mutation.ResetVersion()
+	lu.mutation.SetVersion(i)
+	return lu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableVersion(v *int) *LinkUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (lu *LinkUpdate) SetNillableVersion(i *int) *LinkUpdate {
+	if i != nil {
+		lu.SetVersion(*i)
 	}
-	return _u
+	return lu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *LinkUpdate) AddVersion(v int) *LinkUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (lu *LinkUpdate) AddVersion(i int) *LinkUpdate {
+	lu.mutation.AddVersion(i)
+	return lu
 }
 
 // SetIcon sets the "icon" field.
-func (_u *LinkUpdate) SetIcon(v string) *LinkUpdate {
-	_u.mutation.SetIcon(v)
-	return _u
+func (lu *LinkUpdate) SetIcon(s string) *LinkUpdate {
+	lu.mutation.SetIcon(s)
+	return lu
 }
 
 // SetNillableIcon sets the "icon" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableIcon(v *string) *LinkUpdate {
-	if v != nil {
-		_u.SetIcon(*v)
+func (lu *LinkUpdate) SetNillableIcon(s *string) *LinkUpdate {
+	if s != nil {
+		lu.SetIcon(*s)
 	}
-	return _u
+	return lu
 }
 
 // SetURL sets the "url" field.
-func (_u *LinkUpdate) SetURL(v string) *LinkUpdate {
-	_u.mutation.SetURL(v)
-	return _u
+func (lu *LinkUpdate) SetURL(s string) *LinkUpdate {
+	lu.mutation.SetURL(s)
+	return lu
 }
 
 // SetNillableURL sets the "url" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableURL(v *string) *LinkUpdate {
-	if v != nil {
-		_u.SetURL(*v)
+func (lu *LinkUpdate) SetNillableURL(s *string) *LinkUpdate {
+	if s != nil {
+		lu.SetURL(*s)
 	}
-	return _u
+	return lu
 }
 
 // SetTitle sets the "title" field.
-func (_u *LinkUpdate) SetTitle(v string) *LinkUpdate {
-	_u.mutation.SetTitle(v)
-	return _u
+func (lu *LinkUpdate) SetTitle(s string) *LinkUpdate {
+	lu.mutation.SetTitle(s)
+	return lu
 }
 
 // SetNillableTitle sets the "title" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableTitle(v *string) *LinkUpdate {
-	if v != nil {
-		_u.SetTitle(*v)
+func (lu *LinkUpdate) SetNillableTitle(s *string) *LinkUpdate {
+	if s != nil {
+		lu.SetTitle(*s)
 	}
-	return _u
+	return lu
 }
 
 // SetDesp sets the "desp" field.
-func (_u *LinkUpdate) SetDesp(v string) *LinkUpdate {
-	_u.mutation.SetDesp(v)
-	return _u
+func (lu *LinkUpdate) SetDesp(s string) *LinkUpdate {
+	lu.mutation.SetDesp(s)
+	return lu
 }
 
 // SetNillableDesp sets the "desp" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableDesp(v *string) *LinkUpdate {
-	if v != nil {
-		_u.SetDesp(*v)
+func (lu *LinkUpdate) SetNillableDesp(s *string) *LinkUpdate {
+	if s != nil {
+		lu.SetDesp(*s)
 	}
-	return _u
+	return lu
 }
 
 // SetAgreed sets the "agreed" field.
-func (_u *LinkUpdate) SetAgreed(v int) *LinkUpdate {
-	_u.mutation.ResetAgreed()
-	_u.mutation.SetAgreed(v)
-	return _u
+func (lu *LinkUpdate) SetAgreed(i int) *LinkUpdate {
+	lu.mutation.ResetAgreed()
+	lu.mutation.SetAgreed(i)
+	return lu
 }
 
 // SetNillableAgreed sets the "agreed" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableAgreed(v *int) *LinkUpdate {
-	if v != nil {
-		_u.SetAgreed(*v)
+func (lu *LinkUpdate) SetNillableAgreed(i *int) *LinkUpdate {
+	if i != nil {
+		lu.SetAgreed(*i)
 	}
-	return _u
+	return lu
 }
 
-// AddAgreed adds value to the "agreed" field.
-func (_u *LinkUpdate) AddAgreed(v int) *LinkUpdate {
-	_u.mutation.AddAgreed(v)
-	return _u
+// AddAgreed adds i to the "agreed" field.
+func (lu *LinkUpdate) AddAgreed(i int) *LinkUpdate {
+	lu.mutation.AddAgreed(i)
+	return lu
 }
 
 // SetLastCheckStatus sets the "lastCheckStatus" field.
-func (_u *LinkUpdate) SetLastCheckStatus(v string) *LinkUpdate {
-	_u.mutation.SetLastCheckStatus(v)
-	return _u
+func (lu *LinkUpdate) SetLastCheckStatus(s string) *LinkUpdate {
+	lu.mutation.SetLastCheckStatus(s)
+	return lu
 }
 
 // SetNillableLastCheckStatus sets the "lastCheckStatus" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableLastCheckStatus(v *string) *LinkUpdate {
-	if v != nil {
-		_u.SetLastCheckStatus(*v)
+func (lu *LinkUpdate) SetNillableLastCheckStatus(s *string) *LinkUpdate {
+	if s != nil {
+		lu.SetLastCheckStatus(*s)
 	}
-	return _u
+	return lu
 }
 
 // SetLastCheckTime sets the "lastCheckTime" field.
-func (_u *LinkUpdate) SetLastCheckTime(v time.Time) *LinkUpdate {
-	_u.mutation.SetLastCheckTime(v)
-	return _u
+func (lu *LinkUpdate) SetLastCheckTime(t time.Time) *LinkUpdate {
+	lu.mutation.SetLastCheckTime(t)
+	return lu
 }
 
 // SetNillableLastCheckTime sets the "lastCheckTime" field if the given value is not nil.
-func (_u *LinkUpdate) SetNillableLastCheckTime(v *time.Time) *LinkUpdate {
-	if v != nil {
-		_u.SetLastCheckTime(*v)
+func (lu *LinkUpdate) SetNillableLastCheckTime(t *time.Time) *LinkUpdate {
+	if t != nil {
+		lu.SetLastCheckTime(*t)
 	}
-	return _u
+	return lu
 }
 
 // ClearLastCheckTime clears the value of the "lastCheckTime" field.
-func (_u *LinkUpdate) ClearLastCheckTime() *LinkUpdate {
-	_u.mutation.ClearLastCheckTime()
-	return _u
+func (lu *LinkUpdate) ClearLastCheckTime() *LinkUpdate {
+	lu.mutation.ClearLastCheckTime()
+	return lu
 }
 
 // Mutation returns the LinkMutation object of the builder.
-func (_u *LinkUpdate) Mutation() *LinkMutation {
-	return _u.mutation
+func (lu *LinkUpdate) Mutation() *LinkMutation {
+	return lu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *LinkUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (lu *LinkUpdate) Save(ctx context.Context) (int, error) {
+	lu.defaults()
+	return withHooks(ctx, lu.sqlSave, lu.mutation, lu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *LinkUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (lu *LinkUpdate) SaveX(ctx context.Context) int {
+	affected, err := lu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -201,75 +201,75 @@ func (_u *LinkUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *LinkUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (lu *LinkUpdate) Exec(ctx context.Context) error {
+	_, err := lu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *LinkUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (lu *LinkUpdate) ExecX(ctx context.Context) {
+	if err := lu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *LinkUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (lu *LinkUpdate) defaults() {
+	if _, ok := lu.mutation.UpdateTime(); !ok {
 		v := link.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		lu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *LinkUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (lu *LinkUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(link.Table, link.Columns, sqlgraph.NewFieldSpec(link.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := lu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := lu.mutation.UpdateTime(); ok {
 		_spec.SetField(link.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := lu.mutation.IsDelete(); ok {
 		_spec.SetField(link.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := lu.mutation.Version(); ok {
 		_spec.SetField(link.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := lu.mutation.AddedVersion(); ok {
 		_spec.AddField(link.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Icon(); ok {
+	if value, ok := lu.mutation.Icon(); ok {
 		_spec.SetField(link.FieldIcon, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.URL(); ok {
+	if value, ok := lu.mutation.URL(); ok {
 		_spec.SetField(link.FieldURL, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Title(); ok {
+	if value, ok := lu.mutation.Title(); ok {
 		_spec.SetField(link.FieldTitle, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Desp(); ok {
+	if value, ok := lu.mutation.Desp(); ok {
 		_spec.SetField(link.FieldDesp, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Agreed(); ok {
+	if value, ok := lu.mutation.Agreed(); ok {
 		_spec.SetField(link.FieldAgreed, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAgreed(); ok {
+	if value, ok := lu.mutation.AddedAgreed(); ok {
 		_spec.AddField(link.FieldAgreed, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LastCheckStatus(); ok {
+	if value, ok := lu.mutation.LastCheckStatus(); ok {
 		_spec.SetField(link.FieldLastCheckStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.LastCheckTime(); ok {
+	if value, ok := lu.mutation.LastCheckTime(); ok {
 		_spec.SetField(link.FieldLastCheckTime, field.TypeTime, value)
 	}
-	if _u.mutation.LastCheckTimeCleared() {
+	if lu.mutation.LastCheckTimeCleared() {
 		_spec.ClearField(link.FieldLastCheckTime, field.TypeTime)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, lu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{link.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -277,8 +277,8 @@ func (_u *LinkUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	lu.mutation.done = true
+	return n, nil
 }
 
 // LinkUpdateOne is the builder for updating a single Link entity.
@@ -290,184 +290,184 @@ type LinkUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *LinkUpdateOne) SetUpdateTime(v time.Time) *LinkUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (luo *LinkUpdateOne) SetUpdateTime(t time.Time) *LinkUpdateOne {
+	luo.mutation.SetUpdateTime(t)
+	return luo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *LinkUpdateOne) SetIsDelete(v bool) *LinkUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (luo *LinkUpdateOne) SetIsDelete(b bool) *LinkUpdateOne {
+	luo.mutation.SetIsDelete(b)
+	return luo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableIsDelete(v *bool) *LinkUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (luo *LinkUpdateOne) SetNillableIsDelete(b *bool) *LinkUpdateOne {
+	if b != nil {
+		luo.SetIsDelete(*b)
 	}
-	return _u
+	return luo
 }
 
 // SetVersion sets the "version" field.
-func (_u *LinkUpdateOne) SetVersion(v int) *LinkUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (luo *LinkUpdateOne) SetVersion(i int) *LinkUpdateOne {
+	luo.mutation.ResetVersion()
+	luo.mutation.SetVersion(i)
+	return luo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableVersion(v *int) *LinkUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (luo *LinkUpdateOne) SetNillableVersion(i *int) *LinkUpdateOne {
+	if i != nil {
+		luo.SetVersion(*i)
 	}
-	return _u
+	return luo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *LinkUpdateOne) AddVersion(v int) *LinkUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (luo *LinkUpdateOne) AddVersion(i int) *LinkUpdateOne {
+	luo.mutation.AddVersion(i)
+	return luo
 }
 
 // SetIcon sets the "icon" field.
-func (_u *LinkUpdateOne) SetIcon(v string) *LinkUpdateOne {
-	_u.mutation.SetIcon(v)
-	return _u
+func (luo *LinkUpdateOne) SetIcon(s string) *LinkUpdateOne {
+	luo.mutation.SetIcon(s)
+	return luo
 }
 
 // SetNillableIcon sets the "icon" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableIcon(v *string) *LinkUpdateOne {
-	if v != nil {
-		_u.SetIcon(*v)
+func (luo *LinkUpdateOne) SetNillableIcon(s *string) *LinkUpdateOne {
+	if s != nil {
+		luo.SetIcon(*s)
 	}
-	return _u
+	return luo
 }
 
 // SetURL sets the "url" field.
-func (_u *LinkUpdateOne) SetURL(v string) *LinkUpdateOne {
-	_u.mutation.SetURL(v)
-	return _u
+func (luo *LinkUpdateOne) SetURL(s string) *LinkUpdateOne {
+	luo.mutation.SetURL(s)
+	return luo
 }
 
 // SetNillableURL sets the "url" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableURL(v *string) *LinkUpdateOne {
-	if v != nil {
-		_u.SetURL(*v)
+func (luo *LinkUpdateOne) SetNillableURL(s *string) *LinkUpdateOne {
+	if s != nil {
+		luo.SetURL(*s)
 	}
-	return _u
+	return luo
 }
 
 // SetTitle sets the "title" field.
-func (_u *LinkUpdateOne) SetTitle(v string) *LinkUpdateOne {
-	_u.mutation.SetTitle(v)
-	return _u
+func (luo *LinkUpdateOne) SetTitle(s string) *LinkUpdateOne {
+	luo.mutation.SetTitle(s)
+	return luo
 }
 
 // SetNillableTitle sets the "title" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableTitle(v *string) *LinkUpdateOne {
-	if v != nil {
-		_u.SetTitle(*v)
+func (luo *LinkUpdateOne) SetNillableTitle(s *string) *LinkUpdateOne {
+	if s != nil {
+		luo.SetTitle(*s)
 	}
-	return _u
+	return luo
 }
 
 // SetDesp sets the "desp" field.
-func (_u *LinkUpdateOne) SetDesp(v string) *LinkUpdateOne {
-	_u.mutation.SetDesp(v)
-	return _u
+func (luo *LinkUpdateOne) SetDesp(s string) *LinkUpdateOne {
+	luo.mutation.SetDesp(s)
+	return luo
 }
 
 // SetNillableDesp sets the "desp" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableDesp(v *string) *LinkUpdateOne {
-	if v != nil {
-		_u.SetDesp(*v)
+func (luo *LinkUpdateOne) SetNillableDesp(s *string) *LinkUpdateOne {
+	if s != nil {
+		luo.SetDesp(*s)
 	}
-	return _u
+	return luo
 }
 
 // SetAgreed sets the "agreed" field.
-func (_u *LinkUpdateOne) SetAgreed(v int) *LinkUpdateOne {
-	_u.mutation.ResetAgreed()
-	_u.mutation.SetAgreed(v)
-	return _u
+func (luo *LinkUpdateOne) SetAgreed(i int) *LinkUpdateOne {
+	luo.mutation.ResetAgreed()
+	luo.mutation.SetAgreed(i)
+	return luo
 }
 
 // SetNillableAgreed sets the "agreed" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableAgreed(v *int) *LinkUpdateOne {
-	if v != nil {
-		_u.SetAgreed(*v)
+func (luo *LinkUpdateOne) SetNillableAgreed(i *int) *LinkUpdateOne {
+	if i != nil {
+		luo.SetAgreed(*i)
 	}
-	return _u
+	return luo
 }
 
-// AddAgreed adds value to the "agreed" field.
-func (_u *LinkUpdateOne) AddAgreed(v int) *LinkUpdateOne {
-	_u.mutation.AddAgreed(v)
-	return _u
+// AddAgreed adds i to the "agreed" field.
+func (luo *LinkUpdateOne) AddAgreed(i int) *LinkUpdateOne {
+	luo.mutation.AddAgreed(i)
+	return luo
 }
 
 // SetLastCheckStatus sets the "lastCheckStatus" field.
-func (_u *LinkUpdateOne) SetLastCheckStatus(v string) *LinkUpdateOne {
-	_u.mutation.SetLastCheckStatus(v)
-	return _u
+func (luo *LinkUpdateOne) SetLastCheckStatus(s string) *LinkUpdateOne {
+	luo.mutation.SetLastCheckStatus(s)
+	return luo
 }
 
 // SetNillableLastCheckStatus sets the "lastCheckStatus" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableLastCheckStatus(v *string) *LinkUpdateOne {
-	if v != nil {
-		_u.SetLastCheckStatus(*v)
+func (luo *LinkUpdateOne) SetNillableLastCheckStatus(s *string) *LinkUpdateOne {
+	if s != nil {
+		luo.SetLastCheckStatus(*s)
 	}
-	return _u
+	return luo
 }
 
 // SetLastCheckTime sets the "lastCheckTime" field.
-func (_u *LinkUpdateOne) SetLastCheckTime(v time.Time) *LinkUpdateOne {
-	_u.mutation.SetLastCheckTime(v)
-	return _u
+func (luo *LinkUpdateOne) SetLastCheckTime(t time.Time) *LinkUpdateOne {
+	luo.mutation.SetLastCheckTime(t)
+	return luo
 }
 
 // SetNillableLastCheckTime sets the "lastCheckTime" field if the given value is not nil.
-func (_u *LinkUpdateOne) SetNillableLastCheckTime(v *time.Time) *LinkUpdateOne {
-	if v != nil {
-		_u.SetLastCheckTime(*v)
+func (luo *LinkUpdateOne) SetNillableLastCheckTime(t *time.Time) *LinkUpdateOne {
+	if t != nil {
+		luo.SetLastCheckTime(*t)
 	}
-	return _u
+	return luo
 }
 
 // ClearLastCheckTime clears the value of the "lastCheckTime" field.
-func (_u *LinkUpdateOne) ClearLastCheckTime() *LinkUpdateOne {
-	_u.mutation.ClearLastCheckTime()
-	return _u
+func (luo *LinkUpdateOne) ClearLastCheckTime() *LinkUpdateOne {
+	luo.mutation.ClearLastCheckTime()
+	return luo
 }
 
 // Mutation returns the LinkMutation object of the builder.
-func (_u *LinkUpdateOne) Mutation() *LinkMutation {
-	return _u.mutation
+func (luo *LinkUpdateOne) Mutation() *LinkMutation {
+	return luo.mutation
 }
 
 // Where appends a list predicates to the LinkUpdate builder.
-func (_u *LinkUpdateOne) Where(ps ...predicate.Link) *LinkUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (luo *LinkUpdateOne) Where(ps ...predicate.Link) *LinkUpdateOne {
+	luo.mutation.Where(ps...)
+	return luo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *LinkUpdateOne) Select(field string, fields ...string) *LinkUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (luo *LinkUpdateOne) Select(field string, fields ...string) *LinkUpdateOne {
+	luo.fields = append([]string{field}, fields...)
+	return luo
 }
 
 // Save executes the query and returns the updated Link entity.
-func (_u *LinkUpdateOne) Save(ctx context.Context) (*Link, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (luo *LinkUpdateOne) Save(ctx context.Context) (*Link, error) {
+	luo.defaults()
+	return withHooks(ctx, luo.sqlSave, luo.mutation, luo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *LinkUpdateOne) SaveX(ctx context.Context) *Link {
-	node, err := _u.Save(ctx)
+func (luo *LinkUpdateOne) SaveX(ctx context.Context) *Link {
+	node, err := luo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -475,34 +475,34 @@ func (_u *LinkUpdateOne) SaveX(ctx context.Context) *Link {
 }
 
 // Exec executes the query on the entity.
-func (_u *LinkUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (luo *LinkUpdateOne) Exec(ctx context.Context) error {
+	_, err := luo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *LinkUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (luo *LinkUpdateOne) ExecX(ctx context.Context) {
+	if err := luo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *LinkUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (luo *LinkUpdateOne) defaults() {
+	if _, ok := luo.mutation.UpdateTime(); !ok {
 		v := link.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		luo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *LinkUpdateOne) sqlSave(ctx context.Context) (_node *Link, err error) {
+func (luo *LinkUpdateOne) sqlSave(ctx context.Context) (_node *Link, err error) {
 	_spec := sqlgraph.NewUpdateSpec(link.Table, link.Columns, sqlgraph.NewFieldSpec(link.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := luo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Link.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := luo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, link.FieldID)
 		for _, f := range fields {
@@ -514,56 +514,56 @@ func (_u *LinkUpdateOne) sqlSave(ctx context.Context) (_node *Link, err error) {
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := luo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := luo.mutation.UpdateTime(); ok {
 		_spec.SetField(link.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := luo.mutation.IsDelete(); ok {
 		_spec.SetField(link.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := luo.mutation.Version(); ok {
 		_spec.SetField(link.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := luo.mutation.AddedVersion(); ok {
 		_spec.AddField(link.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Icon(); ok {
+	if value, ok := luo.mutation.Icon(); ok {
 		_spec.SetField(link.FieldIcon, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.URL(); ok {
+	if value, ok := luo.mutation.URL(); ok {
 		_spec.SetField(link.FieldURL, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Title(); ok {
+	if value, ok := luo.mutation.Title(); ok {
 		_spec.SetField(link.FieldTitle, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Desp(); ok {
+	if value, ok := luo.mutation.Desp(); ok {
 		_spec.SetField(link.FieldDesp, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Agreed(); ok {
+	if value, ok := luo.mutation.Agreed(); ok {
 		_spec.SetField(link.FieldAgreed, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAgreed(); ok {
+	if value, ok := luo.mutation.AddedAgreed(); ok {
 		_spec.AddField(link.FieldAgreed, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.LastCheckStatus(); ok {
+	if value, ok := luo.mutation.LastCheckStatus(); ok {
 		_spec.SetField(link.FieldLastCheckStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.LastCheckTime(); ok {
+	if value, ok := luo.mutation.LastCheckTime(); ok {
 		_spec.SetField(link.FieldLastCheckTime, field.TypeTime, value)
 	}
-	if _u.mutation.LastCheckTimeCleared() {
+	if luo.mutation.LastCheckTimeCleared() {
 		_spec.ClearField(link.FieldLastCheckTime, field.TypeTime)
 	}
-	_node = &Link{config: _u.config}
+	_node = &Link{config: luo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, luo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{link.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -571,6 +571,6 @@ func (_u *LinkUpdateOne) sqlSave(ctx context.Context) (_node *Link, err error) {
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	luo.mutation.done = true
 	return _node, nil
 }

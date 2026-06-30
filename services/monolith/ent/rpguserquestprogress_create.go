@@ -23,141 +23,141 @@ type RpgUserQuestProgressCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgUserQuestProgressCreate) SetCreateTime(v time.Time) *RpgUserQuestProgressCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetCreateTime(t time.Time) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetCreateTime(t)
+	return ruqpc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgUserQuestProgressCreate) SetNillableCreateTime(v *time.Time) *RpgUserQuestProgressCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (ruqpc *RpgUserQuestProgressCreate) SetNillableCreateTime(t *time.Time) *RpgUserQuestProgressCreate {
+	if t != nil {
+		ruqpc.SetCreateTime(*t)
 	}
-	return _c
+	return ruqpc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgUserQuestProgressCreate) SetUpdateTime(v time.Time) *RpgUserQuestProgressCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetUpdateTime(t time.Time) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetUpdateTime(t)
+	return ruqpc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgUserQuestProgressCreate) SetNillableUpdateTime(v *time.Time) *RpgUserQuestProgressCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (ruqpc *RpgUserQuestProgressCreate) SetNillableUpdateTime(t *time.Time) *RpgUserQuestProgressCreate {
+	if t != nil {
+		ruqpc.SetUpdateTime(*t)
 	}
-	return _c
+	return ruqpc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgUserQuestProgressCreate) SetIsDelete(v bool) *RpgUserQuestProgressCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetIsDelete(b bool) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetIsDelete(b)
+	return ruqpc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgUserQuestProgressCreate) SetNillableIsDelete(v *bool) *RpgUserQuestProgressCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (ruqpc *RpgUserQuestProgressCreate) SetNillableIsDelete(b *bool) *RpgUserQuestProgressCreate {
+	if b != nil {
+		ruqpc.SetIsDelete(*b)
 	}
-	return _c
+	return ruqpc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgUserQuestProgressCreate) SetVersion(v int) *RpgUserQuestProgressCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetVersion(i int) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetVersion(i)
+	return ruqpc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgUserQuestProgressCreate) SetNillableVersion(v *int) *RpgUserQuestProgressCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (ruqpc *RpgUserQuestProgressCreate) SetNillableVersion(i *int) *RpgUserQuestProgressCreate {
+	if i != nil {
+		ruqpc.SetVersion(*i)
 	}
-	return _c
+	return ruqpc
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgUserQuestProgressCreate) SetUID(v int) *RpgUserQuestProgressCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetUID(i int) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetUID(i)
+	return ruqpc
 }
 
 // SetQuestCode sets the "questCode" field.
-func (_c *RpgUserQuestProgressCreate) SetQuestCode(v string) *RpgUserQuestProgressCreate {
-	_c.mutation.SetQuestCode(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetQuestCode(s string) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetQuestCode(s)
+	return ruqpc
 }
 
 // SetProgress sets the "progress" field.
-func (_c *RpgUserQuestProgressCreate) SetProgress(v int) *RpgUserQuestProgressCreate {
-	_c.mutation.SetProgress(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetProgress(i int) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetProgress(i)
+	return ruqpc
 }
 
 // SetNillableProgress sets the "progress" field if the given value is not nil.
-func (_c *RpgUserQuestProgressCreate) SetNillableProgress(v *int) *RpgUserQuestProgressCreate {
-	if v != nil {
-		_c.SetProgress(*v)
+func (ruqpc *RpgUserQuestProgressCreate) SetNillableProgress(i *int) *RpgUserQuestProgressCreate {
+	if i != nil {
+		ruqpc.SetProgress(*i)
 	}
-	return _c
+	return ruqpc
 }
 
 // SetCompleted sets the "completed" field.
-func (_c *RpgUserQuestProgressCreate) SetCompleted(v int) *RpgUserQuestProgressCreate {
-	_c.mutation.SetCompleted(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetCompleted(i int) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetCompleted(i)
+	return ruqpc
 }
 
 // SetNillableCompleted sets the "completed" field if the given value is not nil.
-func (_c *RpgUserQuestProgressCreate) SetNillableCompleted(v *int) *RpgUserQuestProgressCreate {
-	if v != nil {
-		_c.SetCompleted(*v)
+func (ruqpc *RpgUserQuestProgressCreate) SetNillableCompleted(i *int) *RpgUserQuestProgressCreate {
+	if i != nil {
+		ruqpc.SetCompleted(*i)
 	}
-	return _c
+	return ruqpc
 }
 
 // SetClaimed sets the "claimed" field.
-func (_c *RpgUserQuestProgressCreate) SetClaimed(v int) *RpgUserQuestProgressCreate {
-	_c.mutation.SetClaimed(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetClaimed(i int) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetClaimed(i)
+	return ruqpc
 }
 
 // SetNillableClaimed sets the "claimed" field if the given value is not nil.
-func (_c *RpgUserQuestProgressCreate) SetNillableClaimed(v *int) *RpgUserQuestProgressCreate {
-	if v != nil {
-		_c.SetClaimed(*v)
+func (ruqpc *RpgUserQuestProgressCreate) SetNillableClaimed(i *int) *RpgUserQuestProgressCreate {
+	if i != nil {
+		ruqpc.SetClaimed(*i)
 	}
-	return _c
+	return ruqpc
 }
 
 // SetQuestDate sets the "questDate" field.
-func (_c *RpgUserQuestProgressCreate) SetQuestDate(v time.Time) *RpgUserQuestProgressCreate {
-	_c.mutation.SetQuestDate(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetQuestDate(t time.Time) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetQuestDate(t)
+	return ruqpc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserQuestProgressCreate) SetID(v int) *RpgUserQuestProgressCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ruqpc *RpgUserQuestProgressCreate) SetID(i int) *RpgUserQuestProgressCreate {
+	ruqpc.mutation.SetID(i)
+	return ruqpc
 }
 
 // Mutation returns the RpgUserQuestProgressMutation object of the builder.
-func (_c *RpgUserQuestProgressCreate) Mutation() *RpgUserQuestProgressMutation {
-	return _c.mutation
+func (ruqpc *RpgUserQuestProgressCreate) Mutation() *RpgUserQuestProgressMutation {
+	return ruqpc.mutation
 }
 
 // Save creates the RpgUserQuestProgress in the database.
-func (_c *RpgUserQuestProgressCreate) Save(ctx context.Context) (*RpgUserQuestProgress, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ruqpc *RpgUserQuestProgressCreate) Save(ctx context.Context) (*RpgUserQuestProgress, error) {
+	ruqpc.defaults()
+	return withHooks(ctx, ruqpc.sqlSave, ruqpc.mutation, ruqpc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserQuestProgressCreate) SaveX(ctx context.Context) *RpgUserQuestProgress {
-	v, err := _c.Save(ctx)
+func (ruqpc *RpgUserQuestProgressCreate) SaveX(ctx context.Context) *RpgUserQuestProgress {
+	v, err := ruqpc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -165,91 +165,91 @@ func (_c *RpgUserQuestProgressCreate) SaveX(ctx context.Context) *RpgUserQuestPr
 }
 
 // Exec executes the query.
-func (_c *RpgUserQuestProgressCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruqpc *RpgUserQuestProgressCreate) Exec(ctx context.Context) error {
+	_, err := ruqpc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserQuestProgressCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruqpc *RpgUserQuestProgressCreate) ExecX(ctx context.Context) {
+	if err := ruqpc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgUserQuestProgressCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ruqpc *RpgUserQuestProgressCreate) defaults() {
+	if _, ok := ruqpc.mutation.CreateTime(); !ok {
 		v := rpguserquestprogress.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		ruqpc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ruqpc.mutation.UpdateTime(); !ok {
 		v := rpguserquestprogress.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		ruqpc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ruqpc.mutation.IsDelete(); !ok {
 		v := rpguserquestprogress.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		ruqpc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ruqpc.mutation.Version(); !ok {
 		v := rpguserquestprogress.DefaultVersion
-		_c.mutation.SetVersion(v)
+		ruqpc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Progress(); !ok {
+	if _, ok := ruqpc.mutation.Progress(); !ok {
 		v := rpguserquestprogress.DefaultProgress
-		_c.mutation.SetProgress(v)
+		ruqpc.mutation.SetProgress(v)
 	}
-	if _, ok := _c.mutation.Completed(); !ok {
+	if _, ok := ruqpc.mutation.Completed(); !ok {
 		v := rpguserquestprogress.DefaultCompleted
-		_c.mutation.SetCompleted(v)
+		ruqpc.mutation.SetCompleted(v)
 	}
-	if _, ok := _c.mutation.Claimed(); !ok {
+	if _, ok := ruqpc.mutation.Claimed(); !ok {
 		v := rpguserquestprogress.DefaultClaimed
-		_c.mutation.SetClaimed(v)
+		ruqpc.mutation.SetClaimed(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserQuestProgressCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ruqpc *RpgUserQuestProgressCreate) check() error {
+	if _, ok := ruqpc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserQuestProgress.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ruqpc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserQuestProgress.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ruqpc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserQuestProgress.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ruqpc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserQuestProgress.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := ruqpc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserQuestProgress.uid"`)}
 	}
-	if _, ok := _c.mutation.QuestCode(); !ok {
+	if _, ok := ruqpc.mutation.QuestCode(); !ok {
 		return &ValidationError{Name: "questCode", err: errors.New(`ent: missing required field "RpgUserQuestProgress.questCode"`)}
 	}
-	if _, ok := _c.mutation.Progress(); !ok {
+	if _, ok := ruqpc.mutation.Progress(); !ok {
 		return &ValidationError{Name: "progress", err: errors.New(`ent: missing required field "RpgUserQuestProgress.progress"`)}
 	}
-	if _, ok := _c.mutation.Completed(); !ok {
+	if _, ok := ruqpc.mutation.Completed(); !ok {
 		return &ValidationError{Name: "completed", err: errors.New(`ent: missing required field "RpgUserQuestProgress.completed"`)}
 	}
-	if _, ok := _c.mutation.Claimed(); !ok {
+	if _, ok := ruqpc.mutation.Claimed(); !ok {
 		return &ValidationError{Name: "claimed", err: errors.New(`ent: missing required field "RpgUserQuestProgress.claimed"`)}
 	}
-	if _, ok := _c.mutation.QuestDate(); !ok {
+	if _, ok := ruqpc.mutation.QuestDate(); !ok {
 		return &ValidationError{Name: "questDate", err: errors.New(`ent: missing required field "RpgUserQuestProgress.questDate"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserQuestProgressCreate) sqlSave(ctx context.Context) (*RpgUserQuestProgress, error) {
-	if err := _c.check(); err != nil {
+func (ruqpc *RpgUserQuestProgressCreate) sqlSave(ctx context.Context) (*RpgUserQuestProgress, error) {
+	if err := ruqpc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ruqpc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ruqpc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -259,58 +259,58 @@ func (_c *RpgUserQuestProgressCreate) sqlSave(ctx context.Context) (*RpgUserQues
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ruqpc.mutation.id = &_node.ID
+	ruqpc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserQuestProgressCreate) createSpec() (*RpgUserQuestProgress, *sqlgraph.CreateSpec) {
+func (ruqpc *RpgUserQuestProgressCreate) createSpec() (*RpgUserQuestProgress, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserQuestProgress{config: _c.config}
+		_node = &RpgUserQuestProgress{config: ruqpc.config}
 		_spec = sqlgraph.NewCreateSpec(rpguserquestprogress.Table, sqlgraph.NewFieldSpec(rpguserquestprogress.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = ruqpc.conflict
+	if id, ok := ruqpc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := ruqpc.mutation.CreateTime(); ok {
 		_spec.SetField(rpguserquestprogress.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := ruqpc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := ruqpc.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserquestprogress.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := ruqpc.mutation.Version(); ok {
 		_spec.SetField(rpguserquestprogress.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := ruqpc.mutation.UID(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.QuestCode(); ok {
+	if value, ok := ruqpc.mutation.QuestCode(); ok {
 		_spec.SetField(rpguserquestprogress.FieldQuestCode, field.TypeString, value)
 		_node.QuestCode = value
 	}
-	if value, ok := _c.mutation.Progress(); ok {
+	if value, ok := ruqpc.mutation.Progress(); ok {
 		_spec.SetField(rpguserquestprogress.FieldProgress, field.TypeInt, value)
 		_node.Progress = value
 	}
-	if value, ok := _c.mutation.Completed(); ok {
+	if value, ok := ruqpc.mutation.Completed(); ok {
 		_spec.SetField(rpguserquestprogress.FieldCompleted, field.TypeInt, value)
 		_node.Completed = value
 	}
-	if value, ok := _c.mutation.Claimed(); ok {
+	if value, ok := ruqpc.mutation.Claimed(); ok {
 		_spec.SetField(rpguserquestprogress.FieldClaimed, field.TypeInt, value)
 		_node.Claimed = value
 	}
-	if value, ok := _c.mutation.QuestDate(); ok {
+	if value, ok := ruqpc.mutation.QuestDate(); ok {
 		_spec.SetField(rpguserquestprogress.FieldQuestDate, field.TypeTime, value)
 		_node.QuestDate = value
 	}
@@ -333,10 +333,10 @@ func (_c *RpgUserQuestProgressCreate) createSpec() (*RpgUserQuestProgress, *sqlg
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserQuestProgressCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserQuestProgressUpsertOne {
-	_c.conflict = opts
+func (ruqpc *RpgUserQuestProgressCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserQuestProgressUpsertOne {
+	ruqpc.conflict = opts
 	return &RpgUserQuestProgressUpsertOne{
-		create: _c,
+		create: ruqpc,
 	}
 }
 
@@ -346,10 +346,10 @@ func (_c *RpgUserQuestProgressCreate) OnConflict(opts ...sql.ConflictOption) *Rp
 //	client.RpgUserQuestProgress.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserQuestProgressCreate) OnConflictColumns(columns ...string) *RpgUserQuestProgressUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruqpc *RpgUserQuestProgressCreate) OnConflictColumns(columns ...string) *RpgUserQuestProgressUpsertOne {
+	ruqpc.conflict = append(ruqpc.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserQuestProgressUpsertOne{
-		create: _c,
+		create: ruqpc,
 	}
 }
 
@@ -758,16 +758,16 @@ type RpgUserQuestProgressCreateBulk struct {
 }
 
 // Save creates the RpgUserQuestProgress entities in the database.
-func (_c *RpgUserQuestProgressCreateBulk) Save(ctx context.Context) ([]*RpgUserQuestProgress, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ruqpcb *RpgUserQuestProgressCreateBulk) Save(ctx context.Context) ([]*RpgUserQuestProgress, error) {
+	if ruqpcb.err != nil {
+		return nil, ruqpcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserQuestProgress, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ruqpcb.builders))
+	nodes := make([]*RpgUserQuestProgress, len(ruqpcb.builders))
+	mutators := make([]Mutator, len(ruqpcb.builders))
+	for i := range ruqpcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ruqpcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserQuestProgressMutation)
@@ -781,12 +781,12 @@ func (_c *RpgUserQuestProgressCreateBulk) Save(ctx context.Context) ([]*RpgUserQ
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ruqpcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ruqpcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ruqpcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -810,7 +810,7 @@ func (_c *RpgUserQuestProgressCreateBulk) Save(ctx context.Context) ([]*RpgUserQ
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ruqpcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -818,8 +818,8 @@ func (_c *RpgUserQuestProgressCreateBulk) Save(ctx context.Context) ([]*RpgUserQ
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserQuestProgressCreateBulk) SaveX(ctx context.Context) []*RpgUserQuestProgress {
-	v, err := _c.Save(ctx)
+func (ruqpcb *RpgUserQuestProgressCreateBulk) SaveX(ctx context.Context) []*RpgUserQuestProgress {
+	v, err := ruqpcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -827,14 +827,14 @@ func (_c *RpgUserQuestProgressCreateBulk) SaveX(ctx context.Context) []*RpgUserQ
 }
 
 // Exec executes the query.
-func (_c *RpgUserQuestProgressCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruqpcb *RpgUserQuestProgressCreateBulk) Exec(ctx context.Context) error {
+	_, err := ruqpcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserQuestProgressCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruqpcb *RpgUserQuestProgressCreateBulk) ExecX(ctx context.Context) {
+	if err := ruqpcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -854,10 +854,10 @@ func (_c *RpgUserQuestProgressCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserQuestProgressCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserQuestProgressUpsertBulk {
-	_c.conflict = opts
+func (ruqpcb *RpgUserQuestProgressCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserQuestProgressUpsertBulk {
+	ruqpcb.conflict = opts
 	return &RpgUserQuestProgressUpsertBulk{
-		create: _c,
+		create: ruqpcb,
 	}
 }
 
@@ -867,10 +867,10 @@ func (_c *RpgUserQuestProgressCreateBulk) OnConflict(opts ...sql.ConflictOption)
 //	client.RpgUserQuestProgress.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserQuestProgressCreateBulk) OnConflictColumns(columns ...string) *RpgUserQuestProgressUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruqpcb *RpgUserQuestProgressCreateBulk) OnConflictColumns(columns ...string) *RpgUserQuestProgressUpsertBulk {
+	ruqpcb.conflict = append(ruqpcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserQuestProgressUpsertBulk{
-		create: _c,
+		create: ruqpcb,
 	}
 }
 

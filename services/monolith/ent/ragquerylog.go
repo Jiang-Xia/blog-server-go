@@ -58,7 +58,7 @@ func (*RagQueryLog) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RagQueryLog fields.
-func (_m *RagQueryLog) assignValues(columns []string, values []any) error {
+func (rql *RagQueryLog) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -69,31 +69,31 @@ func (_m *RagQueryLog) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rql.ID = int(value.Int64)
 		case ragquerylog.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rql.UID = int(value.Int64)
 			}
 		case ragquerylog.FieldQuestion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field question", values[i])
 			} else if value.Valid {
-				_m.Question = value.String
+				rql.Question = value.String
 			}
 		case ragquerylog.FieldAnswerPreview:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field answer_preview", values[i])
 			} else if value.Valid {
-				_m.AnswerPreview = new(string)
-				*_m.AnswerPreview = value.String
+				rql.AnswerPreview = new(string)
+				*rql.AnswerPreview = value.String
 			}
 		case ragquerylog.FieldCitationsJSON:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field citations_json", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &_m.CitationsJSON); err != nil {
+				if err := json.Unmarshal(*value, &rql.CitationsJSON); err != nil {
 					return fmt.Errorf("unmarshal field citations_json: %w", err)
 				}
 			}
@@ -101,22 +101,22 @@ func (_m *RagQueryLog) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field latency_ms", values[i])
 			} else if value.Valid {
-				_m.LatencyMs = int(value.Int64)
+				rql.LatencyMs = int(value.Int64)
 			}
 		case ragquerylog.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				rql.Status = value.String
 			}
 		case ragquerylog.FieldCreateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field create_at", values[i])
 			} else if value.Valid {
-				_m.CreateAt = value.Time
+				rql.CreateAt = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rql.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -124,55 +124,55 @@ func (_m *RagQueryLog) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RagQueryLog.
 // This includes values selected through modifiers, order, etc.
-func (_m *RagQueryLog) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rql *RagQueryLog) Value(name string) (ent.Value, error) {
+	return rql.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RagQueryLog.
 // Note that you need to call RagQueryLog.Unwrap() before calling this method if this RagQueryLog
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RagQueryLog) Update() *RagQueryLogUpdateOne {
-	return NewRagQueryLogClient(_m.config).UpdateOne(_m)
+func (rql *RagQueryLog) Update() *RagQueryLogUpdateOne {
+	return NewRagQueryLogClient(rql.config).UpdateOne(rql)
 }
 
 // Unwrap unwraps the RagQueryLog entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RagQueryLog) Unwrap() *RagQueryLog {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rql *RagQueryLog) Unwrap() *RagQueryLog {
+	_tx, ok := rql.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RagQueryLog is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rql.config.driver = _tx.drv
+	return rql
 }
 
 // String implements the fmt.Stringer.
-func (_m *RagQueryLog) String() string {
+func (rql *RagQueryLog) String() string {
 	var builder strings.Builder
 	builder.WriteString("RagQueryLog(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rql.ID))
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rql.UID))
 	builder.WriteString(", ")
 	builder.WriteString("question=")
-	builder.WriteString(_m.Question)
+	builder.WriteString(rql.Question)
 	builder.WriteString(", ")
-	if v := _m.AnswerPreview; v != nil {
+	if v := rql.AnswerPreview; v != nil {
 		builder.WriteString("answer_preview=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("citations_json=")
-	builder.WriteString(fmt.Sprintf("%v", _m.CitationsJSON))
+	builder.WriteString(fmt.Sprintf("%v", rql.CitationsJSON))
 	builder.WriteString(", ")
 	builder.WriteString("latency_ms=")
-	builder.WriteString(fmt.Sprintf("%v", _m.LatencyMs))
+	builder.WriteString(fmt.Sprintf("%v", rql.LatencyMs))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(rql.Status)
 	builder.WriteString(", ")
 	builder.WriteString("create_at=")
-	builder.WriteString(_m.CreateAt.Format(time.ANSIC))
+	builder.WriteString(rql.CreateAt.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

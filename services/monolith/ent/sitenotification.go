@@ -59,7 +59,7 @@ func (*SiteNotification) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the SiteNotification fields.
-func (_m *SiteNotification) assignValues(columns []string, values []any) error {
+func (sn *SiteNotification) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -70,57 +70,57 @@ func (_m *SiteNotification) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			sn.ID = int(value.Int64)
 		case sitenotification.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				sn.CreateTime = value.Time
 			}
 		case sitenotification.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				sn.UpdateTime = value.Time
 			}
 		case sitenotification.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				sn.IsDelete = value.Bool
 			}
 		case sitenotification.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				sn.Version = int(value.Int64)
 			}
 		case sitenotification.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				sn.UID = int(value.Int64)
 			}
 		case sitenotification.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				_m.Type = value.String
+				sn.Type = value.String
 			}
 		case sitenotification.FieldPayload:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field payload", values[i])
 			} else if value.Valid {
-				_m.Payload = value.String
+				sn.Payload = value.String
 			}
 		case sitenotification.FieldRead:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field read", values[i])
 			} else if value.Valid {
-				_m.Read = int(value.Int64)
+				sn.Read = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			sn.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -128,56 +128,56 @@ func (_m *SiteNotification) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the SiteNotification.
 // This includes values selected through modifiers, order, etc.
-func (_m *SiteNotification) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (sn *SiteNotification) Value(name string) (ent.Value, error) {
+	return sn.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this SiteNotification.
 // Note that you need to call SiteNotification.Unwrap() before calling this method if this SiteNotification
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *SiteNotification) Update() *SiteNotificationUpdateOne {
-	return NewSiteNotificationClient(_m.config).UpdateOne(_m)
+func (sn *SiteNotification) Update() *SiteNotificationUpdateOne {
+	return NewSiteNotificationClient(sn.config).UpdateOne(sn)
 }
 
 // Unwrap unwraps the SiteNotification entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *SiteNotification) Unwrap() *SiteNotification {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (sn *SiteNotification) Unwrap() *SiteNotification {
+	_tx, ok := sn.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: SiteNotification is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	sn.config.driver = _tx.drv
+	return sn
 }
 
 // String implements the fmt.Stringer.
-func (_m *SiteNotification) String() string {
+func (sn *SiteNotification) String() string {
 	var builder strings.Builder
 	builder.WriteString("SiteNotification(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", sn.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(sn.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(sn.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", sn.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", sn.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", sn.UID))
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(_m.Type)
+	builder.WriteString(sn.Type)
 	builder.WriteString(", ")
 	builder.WriteString("payload=")
-	builder.WriteString(_m.Payload)
+	builder.WriteString(sn.Payload)
 	builder.WriteString(", ")
 	builder.WriteString("read=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Read))
+	builder.WriteString(fmt.Sprintf("%v", sn.Read))
 	builder.WriteByte(')')
 	return builder.String()
 }

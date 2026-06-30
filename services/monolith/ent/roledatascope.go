@@ -62,7 +62,7 @@ func (*RoleDataScope) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RoleDataScope fields.
-func (_m *RoleDataScope) assignValues(columns []string, values []any) error {
+func (rds *RoleDataScope) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -73,59 +73,59 @@ func (_m *RoleDataScope) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rds.ID = int(value.Int64)
 		case roledatascope.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rds.CreateTime = value.Time
 			}
 		case roledatascope.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rds.UpdateTime = value.Time
 			}
 		case roledatascope.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rds.IsDelete = value.Bool
 			}
 		case roledatascope.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rds.Version = int(value.Int64)
 			}
 		case roledatascope.FieldRoleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field roleId", values[i])
 			} else if value.Valid {
-				_m.RoleId = int(value.Int64)
+				rds.RoleId = int(value.Int64)
 			}
 		case roledatascope.FieldResourceType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field resourceType", values[i])
 			} else if value.Valid {
-				_m.ResourceType = value.String
+				rds.ResourceType = value.String
 			}
 		case roledatascope.FieldScopeType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field scopeType", values[i])
 			} else if value.Valid {
-				_m.ScopeType = value.String
+				rds.ScopeType = value.String
 			}
 		case roledatascope.FieldDeptIds:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field deptIds", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &_m.DeptIds); err != nil {
+				if err := json.Unmarshal(*value, &rds.DeptIds); err != nil {
 					return fmt.Errorf("unmarshal field deptIds: %w", err)
 				}
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rds.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -133,56 +133,56 @@ func (_m *RoleDataScope) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RoleDataScope.
 // This includes values selected through modifiers, order, etc.
-func (_m *RoleDataScope) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rds *RoleDataScope) Value(name string) (ent.Value, error) {
+	return rds.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RoleDataScope.
 // Note that you need to call RoleDataScope.Unwrap() before calling this method if this RoleDataScope
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RoleDataScope) Update() *RoleDataScopeUpdateOne {
-	return NewRoleDataScopeClient(_m.config).UpdateOne(_m)
+func (rds *RoleDataScope) Update() *RoleDataScopeUpdateOne {
+	return NewRoleDataScopeClient(rds.config).UpdateOne(rds)
 }
 
 // Unwrap unwraps the RoleDataScope entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RoleDataScope) Unwrap() *RoleDataScope {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rds *RoleDataScope) Unwrap() *RoleDataScope {
+	_tx, ok := rds.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RoleDataScope is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rds.config.driver = _tx.drv
+	return rds
 }
 
 // String implements the fmt.Stringer.
-func (_m *RoleDataScope) String() string {
+func (rds *RoleDataScope) String() string {
 	var builder strings.Builder
 	builder.WriteString("RoleDataScope(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rds.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rds.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rds.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rds.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rds.Version))
 	builder.WriteString(", ")
 	builder.WriteString("roleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RoleId))
+	builder.WriteString(fmt.Sprintf("%v", rds.RoleId))
 	builder.WriteString(", ")
 	builder.WriteString("resourceType=")
-	builder.WriteString(_m.ResourceType)
+	builder.WriteString(rds.ResourceType)
 	builder.WriteString(", ")
 	builder.WriteString("scopeType=")
-	builder.WriteString(_m.ScopeType)
+	builder.WriteString(rds.ScopeType)
 	builder.WriteString(", ")
 	builder.WriteString("deptIds=")
-	builder.WriteString(fmt.Sprintf("%v", _m.DeptIds))
+	builder.WriteString(fmt.Sprintf("%v", rds.DeptIds))
 	builder.WriteByte(')')
 	return builder.String()
 }

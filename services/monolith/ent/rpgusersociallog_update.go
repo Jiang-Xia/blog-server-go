@@ -23,164 +23,164 @@ type RpgUserSocialLogUpdate struct {
 }
 
 // Where appends a list predicates to the RpgUserSocialLogUpdate builder.
-func (_u *RpgUserSocialLogUpdate) Where(ps ...predicate.RpgUserSocialLog) *RpgUserSocialLogUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) Where(ps ...predicate.RpgUserSocialLog) *RpgUserSocialLogUpdate {
+	ruslu.mutation.Where(ps...)
+	return ruslu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserSocialLogUpdate) SetUpdateTime(v time.Time) *RpgUserSocialLogUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetUpdateTime(t time.Time) *RpgUserSocialLogUpdate {
+	ruslu.mutation.SetUpdateTime(t)
+	return ruslu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserSocialLogUpdate) SetIsDelete(v bool) *RpgUserSocialLogUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetIsDelete(b bool) *RpgUserSocialLogUpdate {
+	ruslu.mutation.SetIsDelete(b)
+	return ruslu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdate) SetNillableIsDelete(v *bool) *RpgUserSocialLogUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (ruslu *RpgUserSocialLogUpdate) SetNillableIsDelete(b *bool) *RpgUserSocialLogUpdate {
+	if b != nil {
+		ruslu.SetIsDelete(*b)
 	}
-	return _u
+	return ruslu
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserSocialLogUpdate) SetVersion(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetVersion(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.ResetVersion()
+	ruslu.mutation.SetVersion(i)
+	return ruslu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdate) SetNillableVersion(v *int) *RpgUserSocialLogUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (ruslu *RpgUserSocialLogUpdate) SetNillableVersion(i *int) *RpgUserSocialLogUpdate {
+	if i != nil {
+		ruslu.SetVersion(*i)
 	}
-	return _u
+	return ruslu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserSocialLogUpdate) AddVersion(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (ruslu *RpgUserSocialLogUpdate) AddVersion(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.AddVersion(i)
+	return ruslu
 }
 
 // SetFromUid sets the "fromUid" field.
-func (_u *RpgUserSocialLogUpdate) SetFromUid(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.ResetFromUid()
-	_u.mutation.SetFromUid(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetFromUid(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.ResetFromUid()
+	ruslu.mutation.SetFromUid(i)
+	return ruslu
 }
 
 // SetNillableFromUid sets the "fromUid" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdate) SetNillableFromUid(v *int) *RpgUserSocialLogUpdate {
-	if v != nil {
-		_u.SetFromUid(*v)
+func (ruslu *RpgUserSocialLogUpdate) SetNillableFromUid(i *int) *RpgUserSocialLogUpdate {
+	if i != nil {
+		ruslu.SetFromUid(*i)
 	}
-	return _u
+	return ruslu
 }
 
-// AddFromUid adds value to the "fromUid" field.
-func (_u *RpgUserSocialLogUpdate) AddFromUid(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.AddFromUid(v)
-	return _u
+// AddFromUid adds i to the "fromUid" field.
+func (ruslu *RpgUserSocialLogUpdate) AddFromUid(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.AddFromUid(i)
+	return ruslu
 }
 
 // SetToUid sets the "toUid" field.
-func (_u *RpgUserSocialLogUpdate) SetToUid(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.ResetToUid()
-	_u.mutation.SetToUid(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetToUid(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.ResetToUid()
+	ruslu.mutation.SetToUid(i)
+	return ruslu
 }
 
 // SetNillableToUid sets the "toUid" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdate) SetNillableToUid(v *int) *RpgUserSocialLogUpdate {
-	if v != nil {
-		_u.SetToUid(*v)
+func (ruslu *RpgUserSocialLogUpdate) SetNillableToUid(i *int) *RpgUserSocialLogUpdate {
+	if i != nil {
+		ruslu.SetToUid(*i)
 	}
-	return _u
+	return ruslu
 }
 
-// AddToUid adds value to the "toUid" field.
-func (_u *RpgUserSocialLogUpdate) AddToUid(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.AddToUid(v)
-	return _u
+// AddToUid adds i to the "toUid" field.
+func (ruslu *RpgUserSocialLogUpdate) AddToUid(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.AddToUid(i)
+	return ruslu
 }
 
 // SetCostCurrency sets the "costCurrency" field.
-func (_u *RpgUserSocialLogUpdate) SetCostCurrency(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.ResetCostCurrency()
-	_u.mutation.SetCostCurrency(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetCostCurrency(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.ResetCostCurrency()
+	ruslu.mutation.SetCostCurrency(i)
+	return ruslu
 }
 
 // SetNillableCostCurrency sets the "costCurrency" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdate) SetNillableCostCurrency(v *int) *RpgUserSocialLogUpdate {
-	if v != nil {
-		_u.SetCostCurrency(*v)
+func (ruslu *RpgUserSocialLogUpdate) SetNillableCostCurrency(i *int) *RpgUserSocialLogUpdate {
+	if i != nil {
+		ruslu.SetCostCurrency(*i)
 	}
-	return _u
+	return ruslu
 }
 
-// AddCostCurrency adds value to the "costCurrency" field.
-func (_u *RpgUserSocialLogUpdate) AddCostCurrency(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.AddCostCurrency(v)
-	return _u
+// AddCostCurrency adds i to the "costCurrency" field.
+func (ruslu *RpgUserSocialLogUpdate) AddCostCurrency(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.AddCostCurrency(i)
+	return ruslu
 }
 
 // SetHpDelta sets the "hpDelta" field.
-func (_u *RpgUserSocialLogUpdate) SetHpDelta(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.ResetHpDelta()
-	_u.mutation.SetHpDelta(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetHpDelta(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.ResetHpDelta()
+	ruslu.mutation.SetHpDelta(i)
+	return ruslu
 }
 
 // SetNillableHpDelta sets the "hpDelta" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdate) SetNillableHpDelta(v *int) *RpgUserSocialLogUpdate {
-	if v != nil {
-		_u.SetHpDelta(*v)
+func (ruslu *RpgUserSocialLogUpdate) SetNillableHpDelta(i *int) *RpgUserSocialLogUpdate {
+	if i != nil {
+		ruslu.SetHpDelta(*i)
 	}
-	return _u
+	return ruslu
 }
 
-// AddHpDelta adds value to the "hpDelta" field.
-func (_u *RpgUserSocialLogUpdate) AddHpDelta(v int) *RpgUserSocialLogUpdate {
-	_u.mutation.AddHpDelta(v)
-	return _u
+// AddHpDelta adds i to the "hpDelta" field.
+func (ruslu *RpgUserSocialLogUpdate) AddHpDelta(i int) *RpgUserSocialLogUpdate {
+	ruslu.mutation.AddHpDelta(i)
+	return ruslu
 }
 
 // SetAction sets the "action" field.
-func (_u *RpgUserSocialLogUpdate) SetAction(v string) *RpgUserSocialLogUpdate {
-	_u.mutation.SetAction(v)
-	return _u
+func (ruslu *RpgUserSocialLogUpdate) SetAction(s string) *RpgUserSocialLogUpdate {
+	ruslu.mutation.SetAction(s)
+	return ruslu
 }
 
 // SetNillableAction sets the "action" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdate) SetNillableAction(v *string) *RpgUserSocialLogUpdate {
-	if v != nil {
-		_u.SetAction(*v)
+func (ruslu *RpgUserSocialLogUpdate) SetNillableAction(s *string) *RpgUserSocialLogUpdate {
+	if s != nil {
+		ruslu.SetAction(*s)
 	}
-	return _u
+	return ruslu
 }
 
 // Mutation returns the RpgUserSocialLogMutation object of the builder.
-func (_u *RpgUserSocialLogUpdate) Mutation() *RpgUserSocialLogMutation {
-	return _u.mutation
+func (ruslu *RpgUserSocialLogUpdate) Mutation() *RpgUserSocialLogMutation {
+	return ruslu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RpgUserSocialLogUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (ruslu *RpgUserSocialLogUpdate) Save(ctx context.Context) (int, error) {
+	ruslu.defaults()
+	return withHooks(ctx, ruslu.sqlSave, ruslu.mutation, ruslu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserSocialLogUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (ruslu *RpgUserSocialLogUpdate) SaveX(ctx context.Context) int {
+	affected, err := ruslu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -188,75 +188,75 @@ func (_u *RpgUserSocialLogUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RpgUserSocialLogUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (ruslu *RpgUserSocialLogUpdate) Exec(ctx context.Context) error {
+	_, err := ruslu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserSocialLogUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (ruslu *RpgUserSocialLogUpdate) ExecX(ctx context.Context) {
+	if err := ruslu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserSocialLogUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (ruslu *RpgUserSocialLogUpdate) defaults() {
+	if _, ok := ruslu.mutation.UpdateTime(); !ok {
 		v := rpgusersociallog.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		ruslu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserSocialLogUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (ruslu *RpgUserSocialLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgusersociallog.Table, rpgusersociallog.Columns, sqlgraph.NewFieldSpec(rpgusersociallog.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := ruslu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := ruslu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgusersociallog.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := ruslu.mutation.IsDelete(); ok {
 		_spec.SetField(rpgusersociallog.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := ruslu.mutation.Version(); ok {
 		_spec.SetField(rpgusersociallog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := ruslu.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgusersociallog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.FromUid(); ok {
+	if value, ok := ruslu.mutation.FromUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldFromUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedFromUid(); ok {
+	if value, ok := ruslu.mutation.AddedFromUid(); ok {
 		_spec.AddField(rpgusersociallog.FieldFromUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ToUid(); ok {
+	if value, ok := ruslu.mutation.ToUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldToUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedToUid(); ok {
+	if value, ok := ruslu.mutation.AddedToUid(); ok {
 		_spec.AddField(rpgusersociallog.FieldToUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.CostCurrency(); ok {
+	if value, ok := ruslu.mutation.CostCurrency(); ok {
 		_spec.SetField(rpgusersociallog.FieldCostCurrency, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCostCurrency(); ok {
+	if value, ok := ruslu.mutation.AddedCostCurrency(); ok {
 		_spec.AddField(rpgusersociallog.FieldCostCurrency, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.HpDelta(); ok {
+	if value, ok := ruslu.mutation.HpDelta(); ok {
 		_spec.SetField(rpgusersociallog.FieldHpDelta, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedHpDelta(); ok {
+	if value, ok := ruslu.mutation.AddedHpDelta(); ok {
 		_spec.AddField(rpgusersociallog.FieldHpDelta, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Action(); ok {
+	if value, ok := ruslu.mutation.Action(); ok {
 		_spec.SetField(rpgusersociallog.FieldAction, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, ruslu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgusersociallog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -264,8 +264,8 @@ func (_u *RpgUserSocialLogUpdate) sqlSave(ctx context.Context) (_node int, err e
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	ruslu.mutation.done = true
+	return n, nil
 }
 
 // RpgUserSocialLogUpdateOne is the builder for updating a single RpgUserSocialLog entity.
@@ -277,171 +277,171 @@ type RpgUserSocialLogUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *RpgUserSocialLogUpdateOne) SetUpdateTime(v time.Time) *RpgUserSocialLogUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetUpdateTime(t time.Time) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.SetUpdateTime(t)
+	return rusluo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *RpgUserSocialLogUpdateOne) SetIsDelete(v bool) *RpgUserSocialLogUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetIsDelete(b bool) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.SetIsDelete(b)
+	return rusluo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdateOne) SetNillableIsDelete(v *bool) *RpgUserSocialLogUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (rusluo *RpgUserSocialLogUpdateOne) SetNillableIsDelete(b *bool) *RpgUserSocialLogUpdateOne {
+	if b != nil {
+		rusluo.SetIsDelete(*b)
 	}
-	return _u
+	return rusluo
 }
 
 // SetVersion sets the "version" field.
-func (_u *RpgUserSocialLogUpdateOne) SetVersion(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetVersion(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.ResetVersion()
+	rusluo.mutation.SetVersion(i)
+	return rusluo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdateOne) SetNillableVersion(v *int) *RpgUserSocialLogUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (rusluo *RpgUserSocialLogUpdateOne) SetNillableVersion(i *int) *RpgUserSocialLogUpdateOne {
+	if i != nil {
+		rusluo.SetVersion(*i)
 	}
-	return _u
+	return rusluo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *RpgUserSocialLogUpdateOne) AddVersion(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (rusluo *RpgUserSocialLogUpdateOne) AddVersion(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.AddVersion(i)
+	return rusluo
 }
 
 // SetFromUid sets the "fromUid" field.
-func (_u *RpgUserSocialLogUpdateOne) SetFromUid(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.ResetFromUid()
-	_u.mutation.SetFromUid(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetFromUid(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.ResetFromUid()
+	rusluo.mutation.SetFromUid(i)
+	return rusluo
 }
 
 // SetNillableFromUid sets the "fromUid" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdateOne) SetNillableFromUid(v *int) *RpgUserSocialLogUpdateOne {
-	if v != nil {
-		_u.SetFromUid(*v)
+func (rusluo *RpgUserSocialLogUpdateOne) SetNillableFromUid(i *int) *RpgUserSocialLogUpdateOne {
+	if i != nil {
+		rusluo.SetFromUid(*i)
 	}
-	return _u
+	return rusluo
 }
 
-// AddFromUid adds value to the "fromUid" field.
-func (_u *RpgUserSocialLogUpdateOne) AddFromUid(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.AddFromUid(v)
-	return _u
+// AddFromUid adds i to the "fromUid" field.
+func (rusluo *RpgUserSocialLogUpdateOne) AddFromUid(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.AddFromUid(i)
+	return rusluo
 }
 
 // SetToUid sets the "toUid" field.
-func (_u *RpgUserSocialLogUpdateOne) SetToUid(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.ResetToUid()
-	_u.mutation.SetToUid(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetToUid(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.ResetToUid()
+	rusluo.mutation.SetToUid(i)
+	return rusluo
 }
 
 // SetNillableToUid sets the "toUid" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdateOne) SetNillableToUid(v *int) *RpgUserSocialLogUpdateOne {
-	if v != nil {
-		_u.SetToUid(*v)
+func (rusluo *RpgUserSocialLogUpdateOne) SetNillableToUid(i *int) *RpgUserSocialLogUpdateOne {
+	if i != nil {
+		rusluo.SetToUid(*i)
 	}
-	return _u
+	return rusluo
 }
 
-// AddToUid adds value to the "toUid" field.
-func (_u *RpgUserSocialLogUpdateOne) AddToUid(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.AddToUid(v)
-	return _u
+// AddToUid adds i to the "toUid" field.
+func (rusluo *RpgUserSocialLogUpdateOne) AddToUid(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.AddToUid(i)
+	return rusluo
 }
 
 // SetCostCurrency sets the "costCurrency" field.
-func (_u *RpgUserSocialLogUpdateOne) SetCostCurrency(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.ResetCostCurrency()
-	_u.mutation.SetCostCurrency(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetCostCurrency(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.ResetCostCurrency()
+	rusluo.mutation.SetCostCurrency(i)
+	return rusluo
 }
 
 // SetNillableCostCurrency sets the "costCurrency" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdateOne) SetNillableCostCurrency(v *int) *RpgUserSocialLogUpdateOne {
-	if v != nil {
-		_u.SetCostCurrency(*v)
+func (rusluo *RpgUserSocialLogUpdateOne) SetNillableCostCurrency(i *int) *RpgUserSocialLogUpdateOne {
+	if i != nil {
+		rusluo.SetCostCurrency(*i)
 	}
-	return _u
+	return rusluo
 }
 
-// AddCostCurrency adds value to the "costCurrency" field.
-func (_u *RpgUserSocialLogUpdateOne) AddCostCurrency(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.AddCostCurrency(v)
-	return _u
+// AddCostCurrency adds i to the "costCurrency" field.
+func (rusluo *RpgUserSocialLogUpdateOne) AddCostCurrency(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.AddCostCurrency(i)
+	return rusluo
 }
 
 // SetHpDelta sets the "hpDelta" field.
-func (_u *RpgUserSocialLogUpdateOne) SetHpDelta(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.ResetHpDelta()
-	_u.mutation.SetHpDelta(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetHpDelta(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.ResetHpDelta()
+	rusluo.mutation.SetHpDelta(i)
+	return rusluo
 }
 
 // SetNillableHpDelta sets the "hpDelta" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdateOne) SetNillableHpDelta(v *int) *RpgUserSocialLogUpdateOne {
-	if v != nil {
-		_u.SetHpDelta(*v)
+func (rusluo *RpgUserSocialLogUpdateOne) SetNillableHpDelta(i *int) *RpgUserSocialLogUpdateOne {
+	if i != nil {
+		rusluo.SetHpDelta(*i)
 	}
-	return _u
+	return rusluo
 }
 
-// AddHpDelta adds value to the "hpDelta" field.
-func (_u *RpgUserSocialLogUpdateOne) AddHpDelta(v int) *RpgUserSocialLogUpdateOne {
-	_u.mutation.AddHpDelta(v)
-	return _u
+// AddHpDelta adds i to the "hpDelta" field.
+func (rusluo *RpgUserSocialLogUpdateOne) AddHpDelta(i int) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.AddHpDelta(i)
+	return rusluo
 }
 
 // SetAction sets the "action" field.
-func (_u *RpgUserSocialLogUpdateOne) SetAction(v string) *RpgUserSocialLogUpdateOne {
-	_u.mutation.SetAction(v)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) SetAction(s string) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.SetAction(s)
+	return rusluo
 }
 
 // SetNillableAction sets the "action" field if the given value is not nil.
-func (_u *RpgUserSocialLogUpdateOne) SetNillableAction(v *string) *RpgUserSocialLogUpdateOne {
-	if v != nil {
-		_u.SetAction(*v)
+func (rusluo *RpgUserSocialLogUpdateOne) SetNillableAction(s *string) *RpgUserSocialLogUpdateOne {
+	if s != nil {
+		rusluo.SetAction(*s)
 	}
-	return _u
+	return rusluo
 }
 
 // Mutation returns the RpgUserSocialLogMutation object of the builder.
-func (_u *RpgUserSocialLogUpdateOne) Mutation() *RpgUserSocialLogMutation {
-	return _u.mutation
+func (rusluo *RpgUserSocialLogUpdateOne) Mutation() *RpgUserSocialLogMutation {
+	return rusluo.mutation
 }
 
 // Where appends a list predicates to the RpgUserSocialLogUpdate builder.
-func (_u *RpgUserSocialLogUpdateOne) Where(ps ...predicate.RpgUserSocialLog) *RpgUserSocialLogUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) Where(ps ...predicate.RpgUserSocialLog) *RpgUserSocialLogUpdateOne {
+	rusluo.mutation.Where(ps...)
+	return rusluo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RpgUserSocialLogUpdateOne) Select(field string, fields ...string) *RpgUserSocialLogUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rusluo *RpgUserSocialLogUpdateOne) Select(field string, fields ...string) *RpgUserSocialLogUpdateOne {
+	rusluo.fields = append([]string{field}, fields...)
+	return rusluo
 }
 
 // Save executes the query and returns the updated RpgUserSocialLog entity.
-func (_u *RpgUserSocialLogUpdateOne) Save(ctx context.Context) (*RpgUserSocialLog, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rusluo *RpgUserSocialLogUpdateOne) Save(ctx context.Context) (*RpgUserSocialLog, error) {
+	rusluo.defaults()
+	return withHooks(ctx, rusluo.sqlSave, rusluo.mutation, rusluo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RpgUserSocialLogUpdateOne) SaveX(ctx context.Context) *RpgUserSocialLog {
-	node, err := _u.Save(ctx)
+func (rusluo *RpgUserSocialLogUpdateOne) SaveX(ctx context.Context) *RpgUserSocialLog {
+	node, err := rusluo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -449,34 +449,34 @@ func (_u *RpgUserSocialLogUpdateOne) SaveX(ctx context.Context) *RpgUserSocialLo
 }
 
 // Exec executes the query on the entity.
-func (_u *RpgUserSocialLogUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rusluo *RpgUserSocialLogUpdateOne) Exec(ctx context.Context) error {
+	_, err := rusluo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RpgUserSocialLogUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rusluo *RpgUserSocialLogUpdateOne) ExecX(ctx context.Context) {
+	if err := rusluo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *RpgUserSocialLogUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (rusluo *RpgUserSocialLogUpdateOne) defaults() {
+	if _, ok := rusluo.mutation.UpdateTime(); !ok {
 		v := rpgusersociallog.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		rusluo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *RpgUserSocialLogUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserSocialLog, err error) {
+func (rusluo *RpgUserSocialLogUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserSocialLog, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgusersociallog.Table, rpgusersociallog.Columns, sqlgraph.NewFieldSpec(rpgusersociallog.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rusluo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RpgUserSocialLog.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rusluo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgusersociallog.FieldID)
 		for _, f := range fields {
@@ -488,56 +488,56 @@ func (_u *RpgUserSocialLogUpdateOne) sqlSave(ctx context.Context) (_node *RpgUse
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rusluo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := rusluo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgusersociallog.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := rusluo.mutation.IsDelete(); ok {
 		_spec.SetField(rpgusersociallog.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := rusluo.mutation.Version(); ok {
 		_spec.SetField(rpgusersociallog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := rusluo.mutation.AddedVersion(); ok {
 		_spec.AddField(rpgusersociallog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.FromUid(); ok {
+	if value, ok := rusluo.mutation.FromUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldFromUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedFromUid(); ok {
+	if value, ok := rusluo.mutation.AddedFromUid(); ok {
 		_spec.AddField(rpgusersociallog.FieldFromUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ToUid(); ok {
+	if value, ok := rusluo.mutation.ToUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldToUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedToUid(); ok {
+	if value, ok := rusluo.mutation.AddedToUid(); ok {
 		_spec.AddField(rpgusersociallog.FieldToUid, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.CostCurrency(); ok {
+	if value, ok := rusluo.mutation.CostCurrency(); ok {
 		_spec.SetField(rpgusersociallog.FieldCostCurrency, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedCostCurrency(); ok {
+	if value, ok := rusluo.mutation.AddedCostCurrency(); ok {
 		_spec.AddField(rpgusersociallog.FieldCostCurrency, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.HpDelta(); ok {
+	if value, ok := rusluo.mutation.HpDelta(); ok {
 		_spec.SetField(rpgusersociallog.FieldHpDelta, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedHpDelta(); ok {
+	if value, ok := rusluo.mutation.AddedHpDelta(); ok {
 		_spec.AddField(rpgusersociallog.FieldHpDelta, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Action(); ok {
+	if value, ok := rusluo.mutation.Action(); ok {
 		_spec.SetField(rpgusersociallog.FieldAction, field.TypeString, value)
 	}
-	_node = &RpgUserSocialLog{config: _u.config}
+	_node = &RpgUserSocialLog{config: rusluo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rusluo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rpgusersociallog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -545,6 +545,6 @@ func (_u *RpgUserSocialLogUpdateOne) sqlSave(ctx context.Context) (_node *RpgUse
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rusluo.mutation.done = true
 	return _node, nil
 }

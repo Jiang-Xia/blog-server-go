@@ -69,7 +69,7 @@ func (*SensitiveWordHit) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the SensitiveWordHit fields.
-func (_m *SensitiveWordHit) assignValues(columns []string, values []any) error {
+func (swh *SensitiveWordHit) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -80,91 +80,91 @@ func (_m *SensitiveWordHit) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			swh.ID = int(value.Int64)
 		case sensitivewordhit.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				swh.CreateTime = value.Time
 			}
 		case sensitivewordhit.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				swh.UpdateTime = value.Time
 			}
 		case sensitivewordhit.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				swh.IsDelete = value.Bool
 			}
 		case sensitivewordhit.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				swh.Version = int(value.Int64)
 			}
 		case sensitivewordhit.FieldSourceType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field sourceType", values[i])
 			} else if value.Valid {
-				_m.SourceType = value.String
+				swh.SourceType = value.String
 			}
 		case sensitivewordhit.FieldSourceId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field sourceId", values[i])
 			} else if value.Valid {
-				_m.SourceId = value.String
+				swh.SourceId = value.String
 			}
 		case sensitivewordhit.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content", values[i])
 			} else if value.Valid {
-				_m.Content = value.String
+				swh.Content = value.String
 			}
 		case sensitivewordhit.FieldHitWords:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hitWords", values[i])
 			} else if value.Valid {
-				_m.HitWords = value.String
+				swh.HitWords = value.String
 			}
 		case sensitivewordhit.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = new(int)
-				*_m.UID = int(value.Int64)
+				swh.UID = new(int)
+				*swh.UID = int(value.Int64)
 			}
 		case sensitivewordhit.FieldIP:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field ip", values[i])
 			} else if value.Valid {
-				_m.IP = new(string)
-				*_m.IP = value.String
+				swh.IP = new(string)
+				*swh.IP = value.String
 			}
 		case sensitivewordhit.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				swh.Status = value.String
 			}
 		case sensitivewordhit.FieldReviewerId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field reviewerId", values[i])
 			} else if value.Valid {
-				_m.ReviewerId = new(int)
-				*_m.ReviewerId = int(value.Int64)
+				swh.ReviewerId = new(int)
+				*swh.ReviewerId = int(value.Int64)
 			}
 		case sensitivewordhit.FieldReviewTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field reviewTime", values[i])
 			} else if value.Valid {
-				_m.ReviewTime = new(time.Time)
-				*_m.ReviewTime = value.Time
+				swh.ReviewTime = new(time.Time)
+				*swh.ReviewTime = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			swh.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -172,76 +172,76 @@ func (_m *SensitiveWordHit) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the SensitiveWordHit.
 // This includes values selected through modifiers, order, etc.
-func (_m *SensitiveWordHit) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (swh *SensitiveWordHit) Value(name string) (ent.Value, error) {
+	return swh.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this SensitiveWordHit.
 // Note that you need to call SensitiveWordHit.Unwrap() before calling this method if this SensitiveWordHit
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *SensitiveWordHit) Update() *SensitiveWordHitUpdateOne {
-	return NewSensitiveWordHitClient(_m.config).UpdateOne(_m)
+func (swh *SensitiveWordHit) Update() *SensitiveWordHitUpdateOne {
+	return NewSensitiveWordHitClient(swh.config).UpdateOne(swh)
 }
 
 // Unwrap unwraps the SensitiveWordHit entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *SensitiveWordHit) Unwrap() *SensitiveWordHit {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (swh *SensitiveWordHit) Unwrap() *SensitiveWordHit {
+	_tx, ok := swh.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: SensitiveWordHit is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	swh.config.driver = _tx.drv
+	return swh
 }
 
 // String implements the fmt.Stringer.
-func (_m *SensitiveWordHit) String() string {
+func (swh *SensitiveWordHit) String() string {
 	var builder strings.Builder
 	builder.WriteString("SensitiveWordHit(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", swh.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(swh.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(swh.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", swh.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", swh.Version))
 	builder.WriteString(", ")
 	builder.WriteString("sourceType=")
-	builder.WriteString(_m.SourceType)
+	builder.WriteString(swh.SourceType)
 	builder.WriteString(", ")
 	builder.WriteString("sourceId=")
-	builder.WriteString(_m.SourceId)
+	builder.WriteString(swh.SourceId)
 	builder.WriteString(", ")
 	builder.WriteString("content=")
-	builder.WriteString(_m.Content)
+	builder.WriteString(swh.Content)
 	builder.WriteString(", ")
 	builder.WriteString("hitWords=")
-	builder.WriteString(_m.HitWords)
+	builder.WriteString(swh.HitWords)
 	builder.WriteString(", ")
-	if v := _m.UID; v != nil {
+	if v := swh.UID; v != nil {
 		builder.WriteString("uid=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := _m.IP; v != nil {
+	if v := swh.IP; v != nil {
 		builder.WriteString("ip=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(swh.Status)
 	builder.WriteString(", ")
-	if v := _m.ReviewerId; v != nil {
+	if v := swh.ReviewerId; v != nil {
 		builder.WriteString("reviewerId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := _m.ReviewTime; v != nil {
+	if v := swh.ReviewTime; v != nil {
 		builder.WriteString("reviewTime=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}

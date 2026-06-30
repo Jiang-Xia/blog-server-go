@@ -57,7 +57,7 @@ func (*File) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the File fields.
-func (_m *File) assignValues(columns []string, values []any) error {
+func (f *File) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -67,58 +67,58 @@ func (_m *File) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				f.ID = value.String
 			}
 		case file.FieldPid:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field pid", values[i])
 			} else if value.Valid {
-				_m.Pid = value.String
+				f.Pid = value.String
 			}
 		case file.FieldIsFolder:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field isFolder", values[i])
 			} else if value.Valid {
-				_m.IsFolder = int(value.Int64)
+				f.IsFolder = int(value.Int64)
 			}
 		case file.FieldOriginalname:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field originalname", values[i])
 			} else if value.Valid {
-				_m.Originalname = value.String
+				f.Originalname = value.String
 			}
 		case file.FieldFilename:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field filename", values[i])
 			} else if value.Valid {
-				_m.Filename = value.String
+				f.Filename = value.String
 			}
 		case file.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				_m.Type = value.String
+				f.Type = value.String
 			}
 		case file.FieldSize:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field size", values[i])
 			} else if value.Valid {
-				_m.Size = int(value.Int64)
+				f.Size = int(value.Int64)
 			}
 		case file.FieldURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field url", values[i])
 			} else if value.Valid {
-				_m.URL = value.String
+				f.URL = value.String
 			}
 		case file.FieldCreateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field create_at", values[i])
 			} else if value.Valid {
-				_m.CreateAt = value.Time
+				f.CreateAt = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			f.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -126,56 +126,56 @@ func (_m *File) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the File.
 // This includes values selected through modifiers, order, etc.
-func (_m *File) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (f *File) Value(name string) (ent.Value, error) {
+	return f.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this File.
 // Note that you need to call File.Unwrap() before calling this method if this File
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *File) Update() *FileUpdateOne {
-	return NewFileClient(_m.config).UpdateOne(_m)
+func (f *File) Update() *FileUpdateOne {
+	return NewFileClient(f.config).UpdateOne(f)
 }
 
 // Unwrap unwraps the File entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *File) Unwrap() *File {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (f *File) Unwrap() *File {
+	_tx, ok := f.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: File is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	f.config.driver = _tx.drv
+	return f
 }
 
 // String implements the fmt.Stringer.
-func (_m *File) String() string {
+func (f *File) String() string {
 	var builder strings.Builder
 	builder.WriteString("File(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", f.ID))
 	builder.WriteString("pid=")
-	builder.WriteString(_m.Pid)
+	builder.WriteString(f.Pid)
 	builder.WriteString(", ")
 	builder.WriteString("isFolder=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsFolder))
+	builder.WriteString(fmt.Sprintf("%v", f.IsFolder))
 	builder.WriteString(", ")
 	builder.WriteString("originalname=")
-	builder.WriteString(_m.Originalname)
+	builder.WriteString(f.Originalname)
 	builder.WriteString(", ")
 	builder.WriteString("filename=")
-	builder.WriteString(_m.Filename)
+	builder.WriteString(f.Filename)
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(_m.Type)
+	builder.WriteString(f.Type)
 	builder.WriteString(", ")
 	builder.WriteString("size=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Size))
+	builder.WriteString(fmt.Sprintf("%v", f.Size))
 	builder.WriteString(", ")
 	builder.WriteString("url=")
-	builder.WriteString(_m.URL)
+	builder.WriteString(f.URL)
 	builder.WriteString(", ")
 	builder.WriteString("create_at=")
-	builder.WriteString(_m.CreateAt.Format(time.ANSIC))
+	builder.WriteString(f.CreateAt.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

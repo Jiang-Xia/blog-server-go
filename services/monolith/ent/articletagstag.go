@@ -41,7 +41,7 @@ func (*ArticleTagsTag) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the ArticleTagsTag fields.
-func (_m *ArticleTagsTag) assignValues(columns []string, values []any) error {
+func (att *ArticleTagsTag) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -52,21 +52,21 @@ func (_m *ArticleTagsTag) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			att.ID = int(value.Int64)
 		case articletagstag.FieldArticleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field articleId", values[i])
 			} else if value.Valid {
-				_m.ArticleId = int(value.Int64)
+				att.ArticleId = int(value.Int64)
 			}
 		case articletagstag.FieldTagId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field tagId", values[i])
 			} else if value.Valid {
-				_m.TagId = value.String
+				att.TagId = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			att.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -74,38 +74,38 @@ func (_m *ArticleTagsTag) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the ArticleTagsTag.
 // This includes values selected through modifiers, order, etc.
-func (_m *ArticleTagsTag) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (att *ArticleTagsTag) Value(name string) (ent.Value, error) {
+	return att.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this ArticleTagsTag.
 // Note that you need to call ArticleTagsTag.Unwrap() before calling this method if this ArticleTagsTag
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *ArticleTagsTag) Update() *ArticleTagsTagUpdateOne {
-	return NewArticleTagsTagClient(_m.config).UpdateOne(_m)
+func (att *ArticleTagsTag) Update() *ArticleTagsTagUpdateOne {
+	return NewArticleTagsTagClient(att.config).UpdateOne(att)
 }
 
 // Unwrap unwraps the ArticleTagsTag entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *ArticleTagsTag) Unwrap() *ArticleTagsTag {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (att *ArticleTagsTag) Unwrap() *ArticleTagsTag {
+	_tx, ok := att.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: ArticleTagsTag is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	att.config.driver = _tx.drv
+	return att
 }
 
 // String implements the fmt.Stringer.
-func (_m *ArticleTagsTag) String() string {
+func (att *ArticleTagsTag) String() string {
 	var builder strings.Builder
 	builder.WriteString("ArticleTagsTag(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", att.ID))
 	builder.WriteString("articleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleId))
+	builder.WriteString(fmt.Sprintf("%v", att.ArticleId))
 	builder.WriteString(", ")
 	builder.WriteString("tagId=")
-	builder.WriteString(_m.TagId)
+	builder.WriteString(att.TagId)
 	builder.WriteByte(')')
 	return builder.String()
 }

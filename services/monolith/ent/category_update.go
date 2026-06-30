@@ -23,115 +23,115 @@ type CategoryUpdate struct {
 }
 
 // Where appends a list predicates to the CategoryUpdate builder.
-func (_u *CategoryUpdate) Where(ps ...predicate.Category) *CategoryUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (cu *CategoryUpdate) Where(ps ...predicate.Category) *CategoryUpdate {
+	cu.mutation.Where(ps...)
+	return cu
 }
 
 // SetUID sets the "uid" field.
-func (_u *CategoryUpdate) SetUID(v int) *CategoryUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (cu *CategoryUpdate) SetUID(i int) *CategoryUpdate {
+	cu.mutation.ResetUID()
+	cu.mutation.SetUID(i)
+	return cu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *CategoryUpdate) SetNillableUID(v *int) *CategoryUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (cu *CategoryUpdate) SetNillableUID(i *int) *CategoryUpdate {
+	if i != nil {
+		cu.SetUID(*i)
 	}
-	return _u
+	return cu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *CategoryUpdate) AddUID(v int) *CategoryUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (cu *CategoryUpdate) AddUID(i int) *CategoryUpdate {
+	cu.mutation.AddUID(i)
+	return cu
 }
 
 // SetLabel sets the "label" field.
-func (_u *CategoryUpdate) SetLabel(v string) *CategoryUpdate {
-	_u.mutation.SetLabel(v)
-	return _u
+func (cu *CategoryUpdate) SetLabel(s string) *CategoryUpdate {
+	cu.mutation.SetLabel(s)
+	return cu
 }
 
 // SetNillableLabel sets the "label" field if the given value is not nil.
-func (_u *CategoryUpdate) SetNillableLabel(v *string) *CategoryUpdate {
-	if v != nil {
-		_u.SetLabel(*v)
+func (cu *CategoryUpdate) SetNillableLabel(s *string) *CategoryUpdate {
+	if s != nil {
+		cu.SetLabel(*s)
 	}
-	return _u
+	return cu
 }
 
 // SetValue sets the "value" field.
-func (_u *CategoryUpdate) SetValue(v string) *CategoryUpdate {
-	_u.mutation.SetValue(v)
-	return _u
+func (cu *CategoryUpdate) SetValue(s string) *CategoryUpdate {
+	cu.mutation.SetValue(s)
+	return cu
 }
 
 // SetNillableValue sets the "value" field if the given value is not nil.
-func (_u *CategoryUpdate) SetNillableValue(v *string) *CategoryUpdate {
-	if v != nil {
-		_u.SetValue(*v)
+func (cu *CategoryUpdate) SetNillableValue(s *string) *CategoryUpdate {
+	if s != nil {
+		cu.SetValue(*s)
 	}
-	return _u
+	return cu
 }
 
 // SetColor sets the "color" field.
-func (_u *CategoryUpdate) SetColor(v string) *CategoryUpdate {
-	_u.mutation.SetColor(v)
-	return _u
+func (cu *CategoryUpdate) SetColor(s string) *CategoryUpdate {
+	cu.mutation.SetColor(s)
+	return cu
 }
 
 // SetNillableColor sets the "color" field if the given value is not nil.
-func (_u *CategoryUpdate) SetNillableColor(v *string) *CategoryUpdate {
-	if v != nil {
-		_u.SetColor(*v)
+func (cu *CategoryUpdate) SetNillableColor(s *string) *CategoryUpdate {
+	if s != nil {
+		cu.SetColor(*s)
 	}
-	return _u
+	return cu
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *CategoryUpdate) SetCreateAt(v time.Time) *CategoryUpdate {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (cu *CategoryUpdate) SetCreateAt(t time.Time) *CategoryUpdate {
+	cu.mutation.SetCreateAt(t)
+	return cu
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *CategoryUpdate) SetNillableCreateAt(v *time.Time) *CategoryUpdate {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (cu *CategoryUpdate) SetNillableCreateAt(t *time.Time) *CategoryUpdate {
+	if t != nil {
+		cu.SetCreateAt(*t)
 	}
-	return _u
+	return cu
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_u *CategoryUpdate) SetUpdateAt(v time.Time) *CategoryUpdate {
-	_u.mutation.SetUpdateAt(v)
-	return _u
+func (cu *CategoryUpdate) SetUpdateAt(t time.Time) *CategoryUpdate {
+	cu.mutation.SetUpdateAt(t)
+	return cu
 }
 
 // SetNillableUpdateAt sets the "update_at" field if the given value is not nil.
-func (_u *CategoryUpdate) SetNillableUpdateAt(v *time.Time) *CategoryUpdate {
-	if v != nil {
-		_u.SetUpdateAt(*v)
+func (cu *CategoryUpdate) SetNillableUpdateAt(t *time.Time) *CategoryUpdate {
+	if t != nil {
+		cu.SetUpdateAt(*t)
 	}
-	return _u
+	return cu
 }
 
 // Mutation returns the CategoryMutation object of the builder.
-func (_u *CategoryUpdate) Mutation() *CategoryMutation {
-	return _u.mutation
+func (cu *CategoryUpdate) Mutation() *CategoryMutation {
+	return cu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *CategoryUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cu *CategoryUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, cu.sqlSave, cu.mutation, cu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CategoryUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (cu *CategoryUpdate) SaveX(ctx context.Context) int {
+	affected, err := cu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -139,49 +139,49 @@ func (_u *CategoryUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *CategoryUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cu *CategoryUpdate) Exec(ctx context.Context) error {
+	_, err := cu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CategoryUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cu *CategoryUpdate) ExecX(ctx context.Context) {
+	if err := cu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *CategoryUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (cu *CategoryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(category.Table, category.Columns, sqlgraph.NewFieldSpec(category.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := cu.mutation.UID(); ok {
 		_spec.SetField(category.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := cu.mutation.AddedUID(); ok {
 		_spec.AddField(category.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Label(); ok {
+	if value, ok := cu.mutation.Label(); ok {
 		_spec.SetField(category.FieldLabel, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Value(); ok {
+	if value, ok := cu.mutation.Value(); ok {
 		_spec.SetField(category.FieldValue, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Color(); ok {
+	if value, ok := cu.mutation.Color(); ok {
 		_spec.SetField(category.FieldColor, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := cu.mutation.CreateAt(); ok {
 		_spec.SetField(category.FieldCreateAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.UpdateAt(); ok {
+	if value, ok := cu.mutation.UpdateAt(); ok {
 		_spec.SetField(category.FieldUpdateAt, field.TypeTime, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, cu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{category.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -189,8 +189,8 @@ func (_u *CategoryUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	cu.mutation.done = true
+	return n, nil
 }
 
 // CategoryUpdateOne is the builder for updating a single Category entity.
@@ -202,122 +202,122 @@ type CategoryUpdateOne struct {
 }
 
 // SetUID sets the "uid" field.
-func (_u *CategoryUpdateOne) SetUID(v int) *CategoryUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (cuo *CategoryUpdateOne) SetUID(i int) *CategoryUpdateOne {
+	cuo.mutation.ResetUID()
+	cuo.mutation.SetUID(i)
+	return cuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *CategoryUpdateOne) SetNillableUID(v *int) *CategoryUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (cuo *CategoryUpdateOne) SetNillableUID(i *int) *CategoryUpdateOne {
+	if i != nil {
+		cuo.SetUID(*i)
 	}
-	return _u
+	return cuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *CategoryUpdateOne) AddUID(v int) *CategoryUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (cuo *CategoryUpdateOne) AddUID(i int) *CategoryUpdateOne {
+	cuo.mutation.AddUID(i)
+	return cuo
 }
 
 // SetLabel sets the "label" field.
-func (_u *CategoryUpdateOne) SetLabel(v string) *CategoryUpdateOne {
-	_u.mutation.SetLabel(v)
-	return _u
+func (cuo *CategoryUpdateOne) SetLabel(s string) *CategoryUpdateOne {
+	cuo.mutation.SetLabel(s)
+	return cuo
 }
 
 // SetNillableLabel sets the "label" field if the given value is not nil.
-func (_u *CategoryUpdateOne) SetNillableLabel(v *string) *CategoryUpdateOne {
-	if v != nil {
-		_u.SetLabel(*v)
+func (cuo *CategoryUpdateOne) SetNillableLabel(s *string) *CategoryUpdateOne {
+	if s != nil {
+		cuo.SetLabel(*s)
 	}
-	return _u
+	return cuo
 }
 
 // SetValue sets the "value" field.
-func (_u *CategoryUpdateOne) SetValue(v string) *CategoryUpdateOne {
-	_u.mutation.SetValue(v)
-	return _u
+func (cuo *CategoryUpdateOne) SetValue(s string) *CategoryUpdateOne {
+	cuo.mutation.SetValue(s)
+	return cuo
 }
 
 // SetNillableValue sets the "value" field if the given value is not nil.
-func (_u *CategoryUpdateOne) SetNillableValue(v *string) *CategoryUpdateOne {
-	if v != nil {
-		_u.SetValue(*v)
+func (cuo *CategoryUpdateOne) SetNillableValue(s *string) *CategoryUpdateOne {
+	if s != nil {
+		cuo.SetValue(*s)
 	}
-	return _u
+	return cuo
 }
 
 // SetColor sets the "color" field.
-func (_u *CategoryUpdateOne) SetColor(v string) *CategoryUpdateOne {
-	_u.mutation.SetColor(v)
-	return _u
+func (cuo *CategoryUpdateOne) SetColor(s string) *CategoryUpdateOne {
+	cuo.mutation.SetColor(s)
+	return cuo
 }
 
 // SetNillableColor sets the "color" field if the given value is not nil.
-func (_u *CategoryUpdateOne) SetNillableColor(v *string) *CategoryUpdateOne {
-	if v != nil {
-		_u.SetColor(*v)
+func (cuo *CategoryUpdateOne) SetNillableColor(s *string) *CategoryUpdateOne {
+	if s != nil {
+		cuo.SetColor(*s)
 	}
-	return _u
+	return cuo
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_u *CategoryUpdateOne) SetCreateAt(v time.Time) *CategoryUpdateOne {
-	_u.mutation.SetCreateAt(v)
-	return _u
+func (cuo *CategoryUpdateOne) SetCreateAt(t time.Time) *CategoryUpdateOne {
+	cuo.mutation.SetCreateAt(t)
+	return cuo
 }
 
 // SetNillableCreateAt sets the "create_at" field if the given value is not nil.
-func (_u *CategoryUpdateOne) SetNillableCreateAt(v *time.Time) *CategoryUpdateOne {
-	if v != nil {
-		_u.SetCreateAt(*v)
+func (cuo *CategoryUpdateOne) SetNillableCreateAt(t *time.Time) *CategoryUpdateOne {
+	if t != nil {
+		cuo.SetCreateAt(*t)
 	}
-	return _u
+	return cuo
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_u *CategoryUpdateOne) SetUpdateAt(v time.Time) *CategoryUpdateOne {
-	_u.mutation.SetUpdateAt(v)
-	return _u
+func (cuo *CategoryUpdateOne) SetUpdateAt(t time.Time) *CategoryUpdateOne {
+	cuo.mutation.SetUpdateAt(t)
+	return cuo
 }
 
 // SetNillableUpdateAt sets the "update_at" field if the given value is not nil.
-func (_u *CategoryUpdateOne) SetNillableUpdateAt(v *time.Time) *CategoryUpdateOne {
-	if v != nil {
-		_u.SetUpdateAt(*v)
+func (cuo *CategoryUpdateOne) SetNillableUpdateAt(t *time.Time) *CategoryUpdateOne {
+	if t != nil {
+		cuo.SetUpdateAt(*t)
 	}
-	return _u
+	return cuo
 }
 
 // Mutation returns the CategoryMutation object of the builder.
-func (_u *CategoryUpdateOne) Mutation() *CategoryMutation {
-	return _u.mutation
+func (cuo *CategoryUpdateOne) Mutation() *CategoryMutation {
+	return cuo.mutation
 }
 
 // Where appends a list predicates to the CategoryUpdate builder.
-func (_u *CategoryUpdateOne) Where(ps ...predicate.Category) *CategoryUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (cuo *CategoryUpdateOne) Where(ps ...predicate.Category) *CategoryUpdateOne {
+	cuo.mutation.Where(ps...)
+	return cuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *CategoryUpdateOne) Select(field string, fields ...string) *CategoryUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (cuo *CategoryUpdateOne) Select(field string, fields ...string) *CategoryUpdateOne {
+	cuo.fields = append([]string{field}, fields...)
+	return cuo
 }
 
 // Save executes the query and returns the updated Category entity.
-func (_u *CategoryUpdateOne) Save(ctx context.Context) (*Category, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (cuo *CategoryUpdateOne) Save(ctx context.Context) (*Category, error) {
+	return withHooks(ctx, cuo.sqlSave, cuo.mutation, cuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *CategoryUpdateOne) SaveX(ctx context.Context) *Category {
-	node, err := _u.Save(ctx)
+func (cuo *CategoryUpdateOne) SaveX(ctx context.Context) *Category {
+	node, err := cuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -325,26 +325,26 @@ func (_u *CategoryUpdateOne) SaveX(ctx context.Context) *Category {
 }
 
 // Exec executes the query on the entity.
-func (_u *CategoryUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (cuo *CategoryUpdateOne) Exec(ctx context.Context) error {
+	_, err := cuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *CategoryUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (cuo *CategoryUpdateOne) ExecX(ctx context.Context) {
+	if err := cuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *CategoryUpdateOne) sqlSave(ctx context.Context) (_node *Category, err error) {
+func (cuo *CategoryUpdateOne) sqlSave(ctx context.Context) (_node *Category, err error) {
 	_spec := sqlgraph.NewUpdateSpec(category.Table, category.Columns, sqlgraph.NewFieldSpec(category.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := cuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Category.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := cuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, category.FieldID)
 		for _, f := range fields {
@@ -356,38 +356,38 @@ func (_u *CategoryUpdateOne) sqlSave(ctx context.Context) (_node *Category, err 
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := cuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := cuo.mutation.UID(); ok {
 		_spec.SetField(category.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := cuo.mutation.AddedUID(); ok {
 		_spec.AddField(category.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Label(); ok {
+	if value, ok := cuo.mutation.Label(); ok {
 		_spec.SetField(category.FieldLabel, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Value(); ok {
+	if value, ok := cuo.mutation.Value(); ok {
 		_spec.SetField(category.FieldValue, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Color(); ok {
+	if value, ok := cuo.mutation.Color(); ok {
 		_spec.SetField(category.FieldColor, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.CreateAt(); ok {
+	if value, ok := cuo.mutation.CreateAt(); ok {
 		_spec.SetField(category.FieldCreateAt, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.UpdateAt(); ok {
+	if value, ok := cuo.mutation.UpdateAt(); ok {
 		_spec.SetField(category.FieldUpdateAt, field.TypeTime, value)
 	}
-	_node = &Category{config: _u.config}
+	_node = &Category{config: cuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, cuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{category.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -395,6 +395,6 @@ func (_u *CategoryUpdateOne) sqlSave(ctx context.Context) (_node *Category, err 
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	cuo.mutation.done = true
 	return _node, nil
 }

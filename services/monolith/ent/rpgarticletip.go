@@ -57,7 +57,7 @@ func (*RpgArticleTip) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgArticleTip fields.
-func (_m *RpgArticleTip) assignValues(columns []string, values []any) error {
+func (rat *RpgArticleTip) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -68,57 +68,57 @@ func (_m *RpgArticleTip) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rat.ID = int(value.Int64)
 		case rpgarticletip.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rat.CreateTime = value.Time
 			}
 		case rpgarticletip.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rat.UpdateTime = value.Time
 			}
 		case rpgarticletip.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rat.IsDelete = value.Bool
 			}
 		case rpgarticletip.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rat.Version = int(value.Int64)
 			}
 		case rpgarticletip.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rat.UID = int(value.Int64)
 			}
 		case rpgarticletip.FieldArticleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field articleId", values[i])
 			} else if value.Valid {
-				_m.ArticleId = int(value.Int64)
+				rat.ArticleId = int(value.Int64)
 			}
 		case rpgarticletip.FieldAuthorUid:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field authorUid", values[i])
 			} else if value.Valid {
-				_m.AuthorUid = int(value.Int64)
+				rat.AuthorUid = int(value.Int64)
 			}
 		case rpgarticletip.FieldAmount:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field amount", values[i])
 			} else if value.Valid {
-				_m.Amount = int(value.Int64)
+				rat.Amount = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rat.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -126,56 +126,56 @@ func (_m *RpgArticleTip) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgArticleTip.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgArticleTip) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rat *RpgArticleTip) Value(name string) (ent.Value, error) {
+	return rat.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgArticleTip.
 // Note that you need to call RpgArticleTip.Unwrap() before calling this method if this RpgArticleTip
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgArticleTip) Update() *RpgArticleTipUpdateOne {
-	return NewRpgArticleTipClient(_m.config).UpdateOne(_m)
+func (rat *RpgArticleTip) Update() *RpgArticleTipUpdateOne {
+	return NewRpgArticleTipClient(rat.config).UpdateOne(rat)
 }
 
 // Unwrap unwraps the RpgArticleTip entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgArticleTip) Unwrap() *RpgArticleTip {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rat *RpgArticleTip) Unwrap() *RpgArticleTip {
+	_tx, ok := rat.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgArticleTip is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rat.config.driver = _tx.drv
+	return rat
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgArticleTip) String() string {
+func (rat *RpgArticleTip) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgArticleTip(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rat.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rat.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rat.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rat.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rat.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rat.UID))
 	builder.WriteString(", ")
 	builder.WriteString("articleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleId))
+	builder.WriteString(fmt.Sprintf("%v", rat.ArticleId))
 	builder.WriteString(", ")
 	builder.WriteString("authorUid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.AuthorUid))
+	builder.WriteString(fmt.Sprintf("%v", rat.AuthorUid))
 	builder.WriteString(", ")
 	builder.WriteString("amount=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Amount))
+	builder.WriteString(fmt.Sprintf("%v", rat.Amount))
 	builder.WriteByte(')')
 	return builder.String()
 }

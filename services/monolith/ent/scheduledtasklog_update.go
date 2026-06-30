@@ -23,168 +23,168 @@ type ScheduledTaskLogUpdate struct {
 }
 
 // Where appends a list predicates to the ScheduledTaskLogUpdate builder.
-func (_u *ScheduledTaskLogUpdate) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogUpdate {
+	stlu.mutation.Where(ps...)
+	return stlu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *ScheduledTaskLogUpdate) SetUpdateTime(v time.Time) *ScheduledTaskLogUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetUpdateTime(t time.Time) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetUpdateTime(t)
+	return stlu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *ScheduledTaskLogUpdate) SetIsDelete(v bool) *ScheduledTaskLogUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetIsDelete(b bool) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetIsDelete(b)
+	return stlu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableIsDelete(v *bool) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableIsDelete(b *bool) *ScheduledTaskLogUpdate {
+	if b != nil {
+		stlu.SetIsDelete(*b)
 	}
-	return _u
+	return stlu
 }
 
 // SetVersion sets the "version" field.
-func (_u *ScheduledTaskLogUpdate) SetVersion(v int) *ScheduledTaskLogUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetVersion(i int) *ScheduledTaskLogUpdate {
+	stlu.mutation.ResetVersion()
+	stlu.mutation.SetVersion(i)
+	return stlu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableVersion(v *int) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableVersion(i *int) *ScheduledTaskLogUpdate {
+	if i != nil {
+		stlu.SetVersion(*i)
 	}
-	return _u
+	return stlu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *ScheduledTaskLogUpdate) AddVersion(v int) *ScheduledTaskLogUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (stlu *ScheduledTaskLogUpdate) AddVersion(i int) *ScheduledTaskLogUpdate {
+	stlu.mutation.AddVersion(i)
+	return stlu
 }
 
 // SetTaskName sets the "taskName" field.
-func (_u *ScheduledTaskLogUpdate) SetTaskName(v string) *ScheduledTaskLogUpdate {
-	_u.mutation.SetTaskName(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetTaskName(s string) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetTaskName(s)
+	return stlu
 }
 
 // SetNillableTaskName sets the "taskName" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableTaskName(v *string) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetTaskName(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableTaskName(s *string) *ScheduledTaskLogUpdate {
+	if s != nil {
+		stlu.SetTaskName(*s)
 	}
-	return _u
+	return stlu
 }
 
 // SetStatus sets the "status" field.
-func (_u *ScheduledTaskLogUpdate) SetStatus(v string) *ScheduledTaskLogUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetStatus(s string) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetStatus(s)
+	return stlu
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableStatus(v *string) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableStatus(s *string) *ScheduledTaskLogUpdate {
+	if s != nil {
+		stlu.SetStatus(*s)
 	}
-	return _u
+	return stlu
 }
 
 // SetStartTime sets the "startTime" field.
-func (_u *ScheduledTaskLogUpdate) SetStartTime(v time.Time) *ScheduledTaskLogUpdate {
-	_u.mutation.SetStartTime(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetStartTime(t time.Time) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetStartTime(t)
+	return stlu
 }
 
 // SetNillableStartTime sets the "startTime" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableStartTime(v *time.Time) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetStartTime(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableStartTime(t *time.Time) *ScheduledTaskLogUpdate {
+	if t != nil {
+		stlu.SetStartTime(*t)
 	}
-	return _u
+	return stlu
 }
 
 // SetEndTime sets the "endTime" field.
-func (_u *ScheduledTaskLogUpdate) SetEndTime(v time.Time) *ScheduledTaskLogUpdate {
-	_u.mutation.SetEndTime(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetEndTime(t time.Time) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetEndTime(t)
+	return stlu
 }
 
 // SetNillableEndTime sets the "endTime" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableEndTime(v *time.Time) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetEndTime(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableEndTime(t *time.Time) *ScheduledTaskLogUpdate {
+	if t != nil {
+		stlu.SetEndTime(*t)
 	}
-	return _u
+	return stlu
 }
 
 // ClearEndTime clears the value of the "endTime" field.
-func (_u *ScheduledTaskLogUpdate) ClearEndTime() *ScheduledTaskLogUpdate {
-	_u.mutation.ClearEndTime()
-	return _u
+func (stlu *ScheduledTaskLogUpdate) ClearEndTime() *ScheduledTaskLogUpdate {
+	stlu.mutation.ClearEndTime()
+	return stlu
 }
 
 // SetResult sets the "result" field.
-func (_u *ScheduledTaskLogUpdate) SetResult(v string) *ScheduledTaskLogUpdate {
-	_u.mutation.SetResult(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetResult(s string) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetResult(s)
+	return stlu
 }
 
 // SetNillableResult sets the "result" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableResult(v *string) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetResult(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableResult(s *string) *ScheduledTaskLogUpdate {
+	if s != nil {
+		stlu.SetResult(*s)
 	}
-	return _u
+	return stlu
 }
 
 // ClearResult clears the value of the "result" field.
-func (_u *ScheduledTaskLogUpdate) ClearResult() *ScheduledTaskLogUpdate {
-	_u.mutation.ClearResult()
-	return _u
+func (stlu *ScheduledTaskLogUpdate) ClearResult() *ScheduledTaskLogUpdate {
+	stlu.mutation.ClearResult()
+	return stlu
 }
 
 // SetErrorMessage sets the "errorMessage" field.
-func (_u *ScheduledTaskLogUpdate) SetErrorMessage(v string) *ScheduledTaskLogUpdate {
-	_u.mutation.SetErrorMessage(v)
-	return _u
+func (stlu *ScheduledTaskLogUpdate) SetErrorMessage(s string) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetErrorMessage(s)
+	return stlu
 }
 
 // SetNillableErrorMessage sets the "errorMessage" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdate) SetNillableErrorMessage(v *string) *ScheduledTaskLogUpdate {
-	if v != nil {
-		_u.SetErrorMessage(*v)
+func (stlu *ScheduledTaskLogUpdate) SetNillableErrorMessage(s *string) *ScheduledTaskLogUpdate {
+	if s != nil {
+		stlu.SetErrorMessage(*s)
 	}
-	return _u
+	return stlu
 }
 
 // ClearErrorMessage clears the value of the "errorMessage" field.
-func (_u *ScheduledTaskLogUpdate) ClearErrorMessage() *ScheduledTaskLogUpdate {
-	_u.mutation.ClearErrorMessage()
-	return _u
+func (stlu *ScheduledTaskLogUpdate) ClearErrorMessage() *ScheduledTaskLogUpdate {
+	stlu.mutation.ClearErrorMessage()
+	return stlu
 }
 
 // Mutation returns the ScheduledTaskLogMutation object of the builder.
-func (_u *ScheduledTaskLogUpdate) Mutation() *ScheduledTaskLogMutation {
-	return _u.mutation
+func (stlu *ScheduledTaskLogUpdate) Mutation() *ScheduledTaskLogMutation {
+	return stlu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *ScheduledTaskLogUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (stlu *ScheduledTaskLogUpdate) Save(ctx context.Context) (int, error) {
+	stlu.defaults()
+	return withHooks(ctx, stlu.sqlSave, stlu.mutation, stlu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ScheduledTaskLogUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (stlu *ScheduledTaskLogUpdate) SaveX(ctx context.Context) int {
+	affected, err := stlu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -192,75 +192,75 @@ func (_u *ScheduledTaskLogUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *ScheduledTaskLogUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (stlu *ScheduledTaskLogUpdate) Exec(ctx context.Context) error {
+	_, err := stlu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ScheduledTaskLogUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (stlu *ScheduledTaskLogUpdate) ExecX(ctx context.Context) {
+	if err := stlu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *ScheduledTaskLogUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (stlu *ScheduledTaskLogUpdate) defaults() {
+	if _, ok := stlu.mutation.UpdateTime(); !ok {
 		v := scheduledtasklog.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		stlu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *ScheduledTaskLogUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (stlu *ScheduledTaskLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(scheduledtasklog.Table, scheduledtasklog.Columns, sqlgraph.NewFieldSpec(scheduledtasklog.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := stlu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := stlu.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := stlu.mutation.IsDelete(); ok {
 		_spec.SetField(scheduledtasklog.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := stlu.mutation.Version(); ok {
 		_spec.SetField(scheduledtasklog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := stlu.mutation.AddedVersion(); ok {
 		_spec.AddField(scheduledtasklog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.TaskName(); ok {
+	if value, ok := stlu.mutation.TaskName(); ok {
 		_spec.SetField(scheduledtasklog.FieldTaskName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := stlu.mutation.Status(); ok {
 		_spec.SetField(scheduledtasklog.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.StartTime(); ok {
+	if value, ok := stlu.mutation.StartTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldStartTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.EndTime(); ok {
+	if value, ok := stlu.mutation.EndTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldEndTime, field.TypeTime, value)
 	}
-	if _u.mutation.EndTimeCleared() {
+	if stlu.mutation.EndTimeCleared() {
 		_spec.ClearField(scheduledtasklog.FieldEndTime, field.TypeTime)
 	}
-	if value, ok := _u.mutation.Result(); ok {
+	if value, ok := stlu.mutation.Result(); ok {
 		_spec.SetField(scheduledtasklog.FieldResult, field.TypeString, value)
 	}
-	if _u.mutation.ResultCleared() {
+	if stlu.mutation.ResultCleared() {
 		_spec.ClearField(scheduledtasklog.FieldResult, field.TypeString)
 	}
-	if value, ok := _u.mutation.ErrorMessage(); ok {
+	if value, ok := stlu.mutation.ErrorMessage(); ok {
 		_spec.SetField(scheduledtasklog.FieldErrorMessage, field.TypeString, value)
 	}
-	if _u.mutation.ErrorMessageCleared() {
+	if stlu.mutation.ErrorMessageCleared() {
 		_spec.ClearField(scheduledtasklog.FieldErrorMessage, field.TypeString)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, stlu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{scheduledtasklog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -268,8 +268,8 @@ func (_u *ScheduledTaskLogUpdate) sqlSave(ctx context.Context) (_node int, err e
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	stlu.mutation.done = true
+	return n, nil
 }
 
 // ScheduledTaskLogUpdateOne is the builder for updating a single ScheduledTaskLog entity.
@@ -281,175 +281,175 @@ type ScheduledTaskLogUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *ScheduledTaskLogUpdateOne) SetUpdateTime(v time.Time) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetUpdateTime(t time.Time) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetUpdateTime(t)
+	return stluo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *ScheduledTaskLogUpdateOne) SetIsDelete(v bool) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetIsDelete(b bool) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetIsDelete(b)
+	return stluo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableIsDelete(v *bool) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableIsDelete(b *bool) *ScheduledTaskLogUpdateOne {
+	if b != nil {
+		stluo.SetIsDelete(*b)
 	}
-	return _u
+	return stluo
 }
 
 // SetVersion sets the "version" field.
-func (_u *ScheduledTaskLogUpdateOne) SetVersion(v int) *ScheduledTaskLogUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetVersion(i int) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.ResetVersion()
+	stluo.mutation.SetVersion(i)
+	return stluo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableVersion(v *int) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableVersion(i *int) *ScheduledTaskLogUpdateOne {
+	if i != nil {
+		stluo.SetVersion(*i)
 	}
-	return _u
+	return stluo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *ScheduledTaskLogUpdateOne) AddVersion(v int) *ScheduledTaskLogUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (stluo *ScheduledTaskLogUpdateOne) AddVersion(i int) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.AddVersion(i)
+	return stluo
 }
 
 // SetTaskName sets the "taskName" field.
-func (_u *ScheduledTaskLogUpdateOne) SetTaskName(v string) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetTaskName(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetTaskName(s string) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetTaskName(s)
+	return stluo
 }
 
 // SetNillableTaskName sets the "taskName" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableTaskName(v *string) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetTaskName(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableTaskName(s *string) *ScheduledTaskLogUpdateOne {
+	if s != nil {
+		stluo.SetTaskName(*s)
 	}
-	return _u
+	return stluo
 }
 
 // SetStatus sets the "status" field.
-func (_u *ScheduledTaskLogUpdateOne) SetStatus(v string) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetStatus(s string) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetStatus(s)
+	return stluo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableStatus(v *string) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableStatus(s *string) *ScheduledTaskLogUpdateOne {
+	if s != nil {
+		stluo.SetStatus(*s)
 	}
-	return _u
+	return stluo
 }
 
 // SetStartTime sets the "startTime" field.
-func (_u *ScheduledTaskLogUpdateOne) SetStartTime(v time.Time) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetStartTime(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetStartTime(t time.Time) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetStartTime(t)
+	return stluo
 }
 
 // SetNillableStartTime sets the "startTime" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableStartTime(v *time.Time) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetStartTime(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableStartTime(t *time.Time) *ScheduledTaskLogUpdateOne {
+	if t != nil {
+		stluo.SetStartTime(*t)
 	}
-	return _u
+	return stluo
 }
 
 // SetEndTime sets the "endTime" field.
-func (_u *ScheduledTaskLogUpdateOne) SetEndTime(v time.Time) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetEndTime(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetEndTime(t time.Time) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetEndTime(t)
+	return stluo
 }
 
 // SetNillableEndTime sets the "endTime" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableEndTime(v *time.Time) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetEndTime(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableEndTime(t *time.Time) *ScheduledTaskLogUpdateOne {
+	if t != nil {
+		stluo.SetEndTime(*t)
 	}
-	return _u
+	return stluo
 }
 
 // ClearEndTime clears the value of the "endTime" field.
-func (_u *ScheduledTaskLogUpdateOne) ClearEndTime() *ScheduledTaskLogUpdateOne {
-	_u.mutation.ClearEndTime()
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) ClearEndTime() *ScheduledTaskLogUpdateOne {
+	stluo.mutation.ClearEndTime()
+	return stluo
 }
 
 // SetResult sets the "result" field.
-func (_u *ScheduledTaskLogUpdateOne) SetResult(v string) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetResult(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetResult(s string) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetResult(s)
+	return stluo
 }
 
 // SetNillableResult sets the "result" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableResult(v *string) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetResult(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableResult(s *string) *ScheduledTaskLogUpdateOne {
+	if s != nil {
+		stluo.SetResult(*s)
 	}
-	return _u
+	return stluo
 }
 
 // ClearResult clears the value of the "result" field.
-func (_u *ScheduledTaskLogUpdateOne) ClearResult() *ScheduledTaskLogUpdateOne {
-	_u.mutation.ClearResult()
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) ClearResult() *ScheduledTaskLogUpdateOne {
+	stluo.mutation.ClearResult()
+	return stluo
 }
 
 // SetErrorMessage sets the "errorMessage" field.
-func (_u *ScheduledTaskLogUpdateOne) SetErrorMessage(v string) *ScheduledTaskLogUpdateOne {
-	_u.mutation.SetErrorMessage(v)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) SetErrorMessage(s string) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetErrorMessage(s)
+	return stluo
 }
 
 // SetNillableErrorMessage sets the "errorMessage" field if the given value is not nil.
-func (_u *ScheduledTaskLogUpdateOne) SetNillableErrorMessage(v *string) *ScheduledTaskLogUpdateOne {
-	if v != nil {
-		_u.SetErrorMessage(*v)
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableErrorMessage(s *string) *ScheduledTaskLogUpdateOne {
+	if s != nil {
+		stluo.SetErrorMessage(*s)
 	}
-	return _u
+	return stluo
 }
 
 // ClearErrorMessage clears the value of the "errorMessage" field.
-func (_u *ScheduledTaskLogUpdateOne) ClearErrorMessage() *ScheduledTaskLogUpdateOne {
-	_u.mutation.ClearErrorMessage()
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) ClearErrorMessage() *ScheduledTaskLogUpdateOne {
+	stluo.mutation.ClearErrorMessage()
+	return stluo
 }
 
 // Mutation returns the ScheduledTaskLogMutation object of the builder.
-func (_u *ScheduledTaskLogUpdateOne) Mutation() *ScheduledTaskLogMutation {
-	return _u.mutation
+func (stluo *ScheduledTaskLogUpdateOne) Mutation() *ScheduledTaskLogMutation {
+	return stluo.mutation
 }
 
 // Where appends a list predicates to the ScheduledTaskLogUpdate builder.
-func (_u *ScheduledTaskLogUpdateOne) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) Where(ps ...predicate.ScheduledTaskLog) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.Where(ps...)
+	return stluo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *ScheduledTaskLogUpdateOne) Select(field string, fields ...string) *ScheduledTaskLogUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (stluo *ScheduledTaskLogUpdateOne) Select(field string, fields ...string) *ScheduledTaskLogUpdateOne {
+	stluo.fields = append([]string{field}, fields...)
+	return stluo
 }
 
 // Save executes the query and returns the updated ScheduledTaskLog entity.
-func (_u *ScheduledTaskLogUpdateOne) Save(ctx context.Context) (*ScheduledTaskLog, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (stluo *ScheduledTaskLogUpdateOne) Save(ctx context.Context) (*ScheduledTaskLog, error) {
+	stluo.defaults()
+	return withHooks(ctx, stluo.sqlSave, stluo.mutation, stluo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ScheduledTaskLogUpdateOne) SaveX(ctx context.Context) *ScheduledTaskLog {
-	node, err := _u.Save(ctx)
+func (stluo *ScheduledTaskLogUpdateOne) SaveX(ctx context.Context) *ScheduledTaskLog {
+	node, err := stluo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -457,34 +457,34 @@ func (_u *ScheduledTaskLogUpdateOne) SaveX(ctx context.Context) *ScheduledTaskLo
 }
 
 // Exec executes the query on the entity.
-func (_u *ScheduledTaskLogUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (stluo *ScheduledTaskLogUpdateOne) Exec(ctx context.Context) error {
+	_, err := stluo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ScheduledTaskLogUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (stluo *ScheduledTaskLogUpdateOne) ExecX(ctx context.Context) {
+	if err := stluo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *ScheduledTaskLogUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (stluo *ScheduledTaskLogUpdateOne) defaults() {
+	if _, ok := stluo.mutation.UpdateTime(); !ok {
 		v := scheduledtasklog.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		stluo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *ScheduledTaskLogUpdateOne) sqlSave(ctx context.Context) (_node *ScheduledTaskLog, err error) {
+func (stluo *ScheduledTaskLogUpdateOne) sqlSave(ctx context.Context) (_node *ScheduledTaskLog, err error) {
 	_spec := sqlgraph.NewUpdateSpec(scheduledtasklog.Table, scheduledtasklog.Columns, sqlgraph.NewFieldSpec(scheduledtasklog.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := stluo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "ScheduledTaskLog.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := stluo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, scheduledtasklog.FieldID)
 		for _, f := range fields {
@@ -496,56 +496,56 @@ func (_u *ScheduledTaskLogUpdateOne) sqlSave(ctx context.Context) (_node *Schedu
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := stluo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := stluo.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := stluo.mutation.IsDelete(); ok {
 		_spec.SetField(scheduledtasklog.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := stluo.mutation.Version(); ok {
 		_spec.SetField(scheduledtasklog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := stluo.mutation.AddedVersion(); ok {
 		_spec.AddField(scheduledtasklog.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.TaskName(); ok {
+	if value, ok := stluo.mutation.TaskName(); ok {
 		_spec.SetField(scheduledtasklog.FieldTaskName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := stluo.mutation.Status(); ok {
 		_spec.SetField(scheduledtasklog.FieldStatus, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.StartTime(); ok {
+	if value, ok := stluo.mutation.StartTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldStartTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.EndTime(); ok {
+	if value, ok := stluo.mutation.EndTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldEndTime, field.TypeTime, value)
 	}
-	if _u.mutation.EndTimeCleared() {
+	if stluo.mutation.EndTimeCleared() {
 		_spec.ClearField(scheduledtasklog.FieldEndTime, field.TypeTime)
 	}
-	if value, ok := _u.mutation.Result(); ok {
+	if value, ok := stluo.mutation.Result(); ok {
 		_spec.SetField(scheduledtasklog.FieldResult, field.TypeString, value)
 	}
-	if _u.mutation.ResultCleared() {
+	if stluo.mutation.ResultCleared() {
 		_spec.ClearField(scheduledtasklog.FieldResult, field.TypeString)
 	}
-	if value, ok := _u.mutation.ErrorMessage(); ok {
+	if value, ok := stluo.mutation.ErrorMessage(); ok {
 		_spec.SetField(scheduledtasklog.FieldErrorMessage, field.TypeString, value)
 	}
-	if _u.mutation.ErrorMessageCleared() {
+	if stluo.mutation.ErrorMessageCleared() {
 		_spec.ClearField(scheduledtasklog.FieldErrorMessage, field.TypeString)
 	}
-	_node = &ScheduledTaskLog{config: _u.config}
+	_node = &ScheduledTaskLog{config: stluo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, stluo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{scheduledtasklog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -553,6 +553,6 @@ func (_u *ScheduledTaskLogUpdateOne) sqlSave(ctx context.Context) (_node *Schedu
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	stluo.mutation.done = true
 	return _node, nil
 }

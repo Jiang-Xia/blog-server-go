@@ -20,56 +20,56 @@ type RpgLevelRewardDelete struct {
 }
 
 // Where appends a list predicates to the RpgLevelRewardDelete builder.
-func (_d *RpgLevelRewardDelete) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rlrd *RpgLevelRewardDelete) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardDelete {
+	rlrd.mutation.Where(ps...)
+	return rlrd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgLevelRewardDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rlrd *RpgLevelRewardDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rlrd.sqlExec, rlrd.mutation, rlrd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgLevelRewardDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rlrd *RpgLevelRewardDelete) ExecX(ctx context.Context) int {
+	n, err := rlrd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgLevelRewardDelete) sqlExec(ctx context.Context) (int, error) {
+func (rlrd *RpgLevelRewardDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpglevelreward.Table, sqlgraph.NewFieldSpec(rpglevelreward.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rlrd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rlrd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rlrd.mutation.done = true
 	return affected, err
 }
 
 // RpgLevelRewardDeleteOne is the builder for deleting a single RpgLevelReward entity.
 type RpgLevelRewardDeleteOne struct {
-	_d *RpgLevelRewardDelete
+	rlrd *RpgLevelRewardDelete
 }
 
 // Where appends a list predicates to the RpgLevelRewardDelete builder.
-func (_d *RpgLevelRewardDeleteOne) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rlrdo *RpgLevelRewardDeleteOne) Where(ps ...predicate.RpgLevelReward) *RpgLevelRewardDeleteOne {
+	rlrdo.rlrd.mutation.Where(ps...)
+	return rlrdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgLevelRewardDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rlrdo *RpgLevelRewardDeleteOne) Exec(ctx context.Context) error {
+	n, err := rlrdo.rlrd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgLevelRewardDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgLevelRewardDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rlrdo *RpgLevelRewardDeleteOne) ExecX(ctx context.Context) {
+	if err := rlrdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

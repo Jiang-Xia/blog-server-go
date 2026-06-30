@@ -28,40 +28,40 @@ type SensitiveWordHitQuery struct {
 }
 
 // Where adds a new predicate for the SensitiveWordHitQuery builder.
-func (_q *SensitiveWordHitQuery) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (swhq *SensitiveWordHitQuery) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitQuery {
+	swhq.predicates = append(swhq.predicates, ps...)
+	return swhq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *SensitiveWordHitQuery) Limit(limit int) *SensitiveWordHitQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (swhq *SensitiveWordHitQuery) Limit(limit int) *SensitiveWordHitQuery {
+	swhq.ctx.Limit = &limit
+	return swhq
 }
 
 // Offset to start from.
-func (_q *SensitiveWordHitQuery) Offset(offset int) *SensitiveWordHitQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (swhq *SensitiveWordHitQuery) Offset(offset int) *SensitiveWordHitQuery {
+	swhq.ctx.Offset = &offset
+	return swhq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *SensitiveWordHitQuery) Unique(unique bool) *SensitiveWordHitQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (swhq *SensitiveWordHitQuery) Unique(unique bool) *SensitiveWordHitQuery {
+	swhq.ctx.Unique = &unique
+	return swhq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *SensitiveWordHitQuery) Order(o ...sensitivewordhit.OrderOption) *SensitiveWordHitQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (swhq *SensitiveWordHitQuery) Order(o ...sensitivewordhit.OrderOption) *SensitiveWordHitQuery {
+	swhq.order = append(swhq.order, o...)
+	return swhq
 }
 
 // First returns the first SensitiveWordHit entity from the query.
 // Returns a *NotFoundError when no SensitiveWordHit was found.
-func (_q *SensitiveWordHitQuery) First(ctx context.Context) (*SensitiveWordHit, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (swhq *SensitiveWordHitQuery) First(ctx context.Context) (*SensitiveWordHit, error) {
+	nodes, err := swhq.Limit(1).All(setContextOp(ctx, swhq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *SensitiveWordHitQuery) First(ctx context.Context) (*SensitiveWordHit, 
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) FirstX(ctx context.Context) *SensitiveWordHit {
-	node, err := _q.First(ctx)
+func (swhq *SensitiveWordHitQuery) FirstX(ctx context.Context) *SensitiveWordHit {
+	node, err := swhq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *SensitiveWordHitQuery) FirstX(ctx context.Context) *SensitiveWordHit {
 
 // FirstID returns the first SensitiveWordHit ID from the query.
 // Returns a *NotFoundError when no SensitiveWordHit ID was found.
-func (_q *SensitiveWordHitQuery) FirstID(ctx context.Context) (id int, err error) {
+func (swhq *SensitiveWordHitQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = swhq.Limit(1).IDs(setContextOp(ctx, swhq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *SensitiveWordHitQuery) FirstID(ctx context.Context) (id int, err error
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (swhq *SensitiveWordHitQuery) FirstIDX(ctx context.Context) int {
+	id, err := swhq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *SensitiveWordHitQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single SensitiveWordHit entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one SensitiveWordHit entity is found.
 // Returns a *NotFoundError when no SensitiveWordHit entities are found.
-func (_q *SensitiveWordHitQuery) Only(ctx context.Context) (*SensitiveWordHit, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (swhq *SensitiveWordHitQuery) Only(ctx context.Context) (*SensitiveWordHit, error) {
+	nodes, err := swhq.Limit(2).All(setContextOp(ctx, swhq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *SensitiveWordHitQuery) Only(ctx context.Context) (*SensitiveWordHit, e
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) OnlyX(ctx context.Context) *SensitiveWordHit {
-	node, err := _q.Only(ctx)
+func (swhq *SensitiveWordHitQuery) OnlyX(ctx context.Context) *SensitiveWordHit {
+	node, err := swhq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *SensitiveWordHitQuery) OnlyX(ctx context.Context) *SensitiveWordHit {
 // OnlyID is like Only, but returns the only SensitiveWordHit ID in the query.
 // Returns a *NotSingularError when more than one SensitiveWordHit ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *SensitiveWordHitQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (swhq *SensitiveWordHitQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = swhq.Limit(2).IDs(setContextOp(ctx, swhq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *SensitiveWordHitQuery) OnlyID(ctx context.Context) (id int, err error)
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (swhq *SensitiveWordHitQuery) OnlyIDX(ctx context.Context) int {
+	id, err := swhq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *SensitiveWordHitQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of SensitiveWordHits.
-func (_q *SensitiveWordHitQuery) All(ctx context.Context) ([]*SensitiveWordHit, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (swhq *SensitiveWordHitQuery) All(ctx context.Context) ([]*SensitiveWordHit, error) {
+	ctx = setContextOp(ctx, swhq.ctx, ent.OpQueryAll)
+	if err := swhq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*SensitiveWordHit, *SensitiveWordHitQuery]()
-	return withInterceptors[[]*SensitiveWordHit](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*SensitiveWordHit](ctx, swhq, qr, swhq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) AllX(ctx context.Context) []*SensitiveWordHit {
-	nodes, err := _q.All(ctx)
+func (swhq *SensitiveWordHitQuery) AllX(ctx context.Context) []*SensitiveWordHit {
+	nodes, err := swhq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *SensitiveWordHitQuery) AllX(ctx context.Context) []*SensitiveWordHit {
 }
 
 // IDs executes the query and returns a list of SensitiveWordHit IDs.
-func (_q *SensitiveWordHitQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (swhq *SensitiveWordHitQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if swhq.ctx.Unique == nil && swhq.path != nil {
+		swhq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(sensitivewordhit.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, swhq.ctx, ent.OpQueryIDs)
+	if err = swhq.Select(sensitivewordhit.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (swhq *SensitiveWordHitQuery) IDsX(ctx context.Context) []int {
+	ids, err := swhq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *SensitiveWordHitQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *SensitiveWordHitQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (swhq *SensitiveWordHitQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, swhq.ctx, ent.OpQueryCount)
+	if err := swhq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*SensitiveWordHitQuery](), _q.inters)
+	return withInterceptors[int](ctx, swhq, querierCount[*SensitiveWordHitQuery](), swhq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (swhq *SensitiveWordHitQuery) CountX(ctx context.Context) int {
+	count, err := swhq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *SensitiveWordHitQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *SensitiveWordHitQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (swhq *SensitiveWordHitQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, swhq.ctx, ent.OpQueryExist)
+	switch _, err := swhq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *SensitiveWordHitQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *SensitiveWordHitQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (swhq *SensitiveWordHitQuery) ExistX(ctx context.Context) bool {
+	exist, err := swhq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *SensitiveWordHitQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the SensitiveWordHitQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *SensitiveWordHitQuery) Clone() *SensitiveWordHitQuery {
-	if _q == nil {
+func (swhq *SensitiveWordHitQuery) Clone() *SensitiveWordHitQuery {
+	if swhq == nil {
 		return nil
 	}
 	return &SensitiveWordHitQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]sensitivewordhit.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.SensitiveWordHit{}, _q.predicates...),
+		config:     swhq.config,
+		ctx:        swhq.ctx.Clone(),
+		order:      append([]sensitivewordhit.OrderOption{}, swhq.order...),
+		inters:     append([]Interceptor{}, swhq.inters...),
+		predicates: append([]predicate.SensitiveWordHit{}, swhq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  swhq.sql.Clone(),
+		path: swhq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *SensitiveWordHitQuery) Clone() *SensitiveWordHitQuery {
 //		GroupBy(sensitivewordhit.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *SensitiveWordHitQuery) GroupBy(field string, fields ...string) *SensitiveWordHitGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &SensitiveWordHitGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (swhq *SensitiveWordHitQuery) GroupBy(field string, fields ...string) *SensitiveWordHitGroupBy {
+	swhq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &SensitiveWordHitGroupBy{build: swhq}
+	grbuild.flds = &swhq.ctx.Fields
 	grbuild.label = sensitivewordhit.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *SensitiveWordHitQuery) GroupBy(field string, fields ...string) *Sensit
 //	client.SensitiveWordHit.Query().
 //		Select(sensitivewordhit.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *SensitiveWordHitQuery) Select(fields ...string) *SensitiveWordHitSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &SensitiveWordHitSelect{SensitiveWordHitQuery: _q}
+func (swhq *SensitiveWordHitQuery) Select(fields ...string) *SensitiveWordHitSelect {
+	swhq.ctx.Fields = append(swhq.ctx.Fields, fields...)
+	sbuild := &SensitiveWordHitSelect{SensitiveWordHitQuery: swhq}
 	sbuild.label = sensitivewordhit.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &swhq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a SensitiveWordHitSelect configured with the given aggregations.
-func (_q *SensitiveWordHitQuery) Aggregate(fns ...AggregateFunc) *SensitiveWordHitSelect {
-	return _q.Select().Aggregate(fns...)
+func (swhq *SensitiveWordHitQuery) Aggregate(fns ...AggregateFunc) *SensitiveWordHitSelect {
+	return swhq.Select().Aggregate(fns...)
 }
 
-func (_q *SensitiveWordHitQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (swhq *SensitiveWordHitQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range swhq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, swhq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range swhq.ctx.Fields {
 		if !sensitivewordhit.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if swhq.path != nil {
+		prev, err := swhq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		swhq.sql = prev
 	}
 	return nil
 }
 
-func (_q *SensitiveWordHitQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*SensitiveWordHit, error) {
+func (swhq *SensitiveWordHitQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*SensitiveWordHit, error) {
 	var (
 		nodes = []*SensitiveWordHit{}
-		_spec = _q.querySpec()
+		_spec = swhq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*SensitiveWordHit).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &SensitiveWordHit{config: _q.config}
+		node := &SensitiveWordHit{config: swhq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, swhq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *SensitiveWordHitQuery) sqlAll(ctx context.Context, hooks ...queryHook)
 	return nodes, nil
 }
 
-func (_q *SensitiveWordHitQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (swhq *SensitiveWordHitQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := swhq.querySpec()
+	_spec.Node.Columns = swhq.ctx.Fields
+	if len(swhq.ctx.Fields) > 0 {
+		_spec.Unique = swhq.ctx.Unique != nil && *swhq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, swhq.driver, _spec)
 }
 
-func (_q *SensitiveWordHitQuery) querySpec() *sqlgraph.QuerySpec {
+func (swhq *SensitiveWordHitQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(sensitivewordhit.Table, sensitivewordhit.Columns, sqlgraph.NewFieldSpec(sensitivewordhit.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = swhq.sql
+	if unique := swhq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if swhq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := swhq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, sensitivewordhit.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *SensitiveWordHitQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := swhq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := swhq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := swhq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := swhq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *SensitiveWordHitQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *SensitiveWordHitQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (swhq *SensitiveWordHitQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(swhq.driver.Dialect())
 	t1 := builder.Table(sensitivewordhit.Table)
-	columns := _q.ctx.Fields
+	columns := swhq.ctx.Fields
 	if len(columns) == 0 {
 		columns = sensitivewordhit.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if swhq.sql != nil {
+		selector = swhq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if swhq.ctx.Unique != nil && *swhq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range swhq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range swhq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := swhq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := swhq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type SensitiveWordHitGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *SensitiveWordHitGroupBy) Aggregate(fns ...AggregateFunc) *SensitiveWordHitGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (swhgb *SensitiveWordHitGroupBy) Aggregate(fns ...AggregateFunc) *SensitiveWordHitGroupBy {
+	swhgb.fns = append(swhgb.fns, fns...)
+	return swhgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *SensitiveWordHitGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (swhgb *SensitiveWordHitGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, swhgb.build.ctx, ent.OpQueryGroupBy)
+	if err := swhgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*SensitiveWordHitQuery, *SensitiveWordHitGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*SensitiveWordHitQuery, *SensitiveWordHitGroupBy](ctx, swhgb.build, swhgb, swhgb.build.inters, v)
 }
 
-func (_g *SensitiveWordHitGroupBy) sqlScan(ctx context.Context, root *SensitiveWordHitQuery, v any) error {
+func (swhgb *SensitiveWordHitGroupBy) sqlScan(ctx context.Context, root *SensitiveWordHitQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(swhgb.fns))
+	for _, fn := range swhgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*swhgb.flds)+len(swhgb.fns))
+		for _, f := range *swhgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*swhgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := swhgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type SensitiveWordHitSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *SensitiveWordHitSelect) Aggregate(fns ...AggregateFunc) *SensitiveWordHitSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (swhs *SensitiveWordHitSelect) Aggregate(fns ...AggregateFunc) *SensitiveWordHitSelect {
+	swhs.fns = append(swhs.fns, fns...)
+	return swhs
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *SensitiveWordHitSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (swhs *SensitiveWordHitSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, swhs.ctx, ent.OpQuerySelect)
+	if err := swhs.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*SensitiveWordHitQuery, *SensitiveWordHitSelect](ctx, _s.SensitiveWordHitQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*SensitiveWordHitQuery, *SensitiveWordHitSelect](ctx, swhs.SensitiveWordHitQuery, swhs, swhs.inters, v)
 }
 
-func (_s *SensitiveWordHitSelect) sqlScan(ctx context.Context, root *SensitiveWordHitQuery, v any) error {
+func (swhs *SensitiveWordHitSelect) sqlScan(ctx context.Context, root *SensitiveWordHitQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(swhs.fns))
+	for _, fn := range swhs.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*swhs.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *SensitiveWordHitSelect) sqlScan(ctx context.Context, root *SensitiveWo
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := swhs.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

@@ -23,135 +23,135 @@ type MenuCreate struct {
 }
 
 // SetPid sets the "pid" field.
-func (_c *MenuCreate) SetPid(v string) *MenuCreate {
-	_c.mutation.SetPid(v)
-	return _c
+func (mc *MenuCreate) SetPid(s string) *MenuCreate {
+	mc.mutation.SetPid(s)
+	return mc
 }
 
 // SetNillablePid sets the "pid" field if the given value is not nil.
-func (_c *MenuCreate) SetNillablePid(v *string) *MenuCreate {
-	if v != nil {
-		_c.SetPid(*v)
+func (mc *MenuCreate) SetNillablePid(s *string) *MenuCreate {
+	if s != nil {
+		mc.SetPid(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetPath sets the "path" field.
-func (_c *MenuCreate) SetPath(v string) *MenuCreate {
-	_c.mutation.SetPath(v)
-	return _c
+func (mc *MenuCreate) SetPath(s string) *MenuCreate {
+	mc.mutation.SetPath(s)
+	return mc
 }
 
 // SetName sets the "name" field.
-func (_c *MenuCreate) SetName(v string) *MenuCreate {
-	_c.mutation.SetName(v)
-	return _c
+func (mc *MenuCreate) SetName(s string) *MenuCreate {
+	mc.mutation.SetName(s)
+	return mc
 }
 
 // SetOrder sets the "order" field.
-func (_c *MenuCreate) SetOrder(v int) *MenuCreate {
-	_c.mutation.SetOrder(v)
-	return _c
+func (mc *MenuCreate) SetOrder(i int) *MenuCreate {
+	mc.mutation.SetOrder(i)
+	return mc
 }
 
 // SetNillableOrder sets the "order" field if the given value is not nil.
-func (_c *MenuCreate) SetNillableOrder(v *int) *MenuCreate {
-	if v != nil {
-		_c.SetOrder(*v)
+func (mc *MenuCreate) SetNillableOrder(i *int) *MenuCreate {
+	if i != nil {
+		mc.SetOrder(*i)
 	}
-	return _c
+	return mc
 }
 
 // SetIcon sets the "icon" field.
-func (_c *MenuCreate) SetIcon(v string) *MenuCreate {
-	_c.mutation.SetIcon(v)
-	return _c
+func (mc *MenuCreate) SetIcon(s string) *MenuCreate {
+	mc.mutation.SetIcon(s)
+	return mc
 }
 
 // SetNillableIcon sets the "icon" field if the given value is not nil.
-func (_c *MenuCreate) SetNillableIcon(v *string) *MenuCreate {
-	if v != nil {
-		_c.SetIcon(*v)
+func (mc *MenuCreate) SetNillableIcon(s *string) *MenuCreate {
+	if s != nil {
+		mc.SetIcon(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetLocale sets the "locale" field.
-func (_c *MenuCreate) SetLocale(v string) *MenuCreate {
-	_c.mutation.SetLocale(v)
-	return _c
+func (mc *MenuCreate) SetLocale(s string) *MenuCreate {
+	mc.mutation.SetLocale(s)
+	return mc
 }
 
 // SetNillableLocale sets the "locale" field if the given value is not nil.
-func (_c *MenuCreate) SetNillableLocale(v *string) *MenuCreate {
-	if v != nil {
-		_c.SetLocale(*v)
+func (mc *MenuCreate) SetNillableLocale(s *string) *MenuCreate {
+	if s != nil {
+		mc.SetLocale(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetRequiresAuth sets the "requiresAuth" field.
-func (_c *MenuCreate) SetRequiresAuth(v int) *MenuCreate {
-	_c.mutation.SetRequiresAuth(v)
-	return _c
+func (mc *MenuCreate) SetRequiresAuth(i int) *MenuCreate {
+	mc.mutation.SetRequiresAuth(i)
+	return mc
 }
 
 // SetNillableRequiresAuth sets the "requiresAuth" field if the given value is not nil.
-func (_c *MenuCreate) SetNillableRequiresAuth(v *int) *MenuCreate {
-	if v != nil {
-		_c.SetRequiresAuth(*v)
+func (mc *MenuCreate) SetNillableRequiresAuth(i *int) *MenuCreate {
+	if i != nil {
+		mc.SetRequiresAuth(*i)
 	}
-	return _c
+	return mc
 }
 
 // SetFilePath sets the "filePath" field.
-func (_c *MenuCreate) SetFilePath(v string) *MenuCreate {
-	_c.mutation.SetFilePath(v)
-	return _c
+func (mc *MenuCreate) SetFilePath(s string) *MenuCreate {
+	mc.mutation.SetFilePath(s)
+	return mc
 }
 
 // SetNillableFilePath sets the "filePath" field if the given value is not nil.
-func (_c *MenuCreate) SetNillableFilePath(v *string) *MenuCreate {
-	if v != nil {
-		_c.SetFilePath(*v)
+func (mc *MenuCreate) SetNillableFilePath(s *string) *MenuCreate {
+	if s != nil {
+		mc.SetFilePath(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetMenuCnName sets the "menuCnName" field.
-func (_c *MenuCreate) SetMenuCnName(v string) *MenuCreate {
-	_c.mutation.SetMenuCnName(v)
-	return _c
+func (mc *MenuCreate) SetMenuCnName(s string) *MenuCreate {
+	mc.mutation.SetMenuCnName(s)
+	return mc
 }
 
 // SetNillableMenuCnName sets the "menuCnName" field if the given value is not nil.
-func (_c *MenuCreate) SetNillableMenuCnName(v *string) *MenuCreate {
-	if v != nil {
-		_c.SetMenuCnName(*v)
+func (mc *MenuCreate) SetNillableMenuCnName(s *string) *MenuCreate {
+	if s != nil {
+		mc.SetMenuCnName(*s)
 	}
-	return _c
+	return mc
 }
 
 // SetID sets the "id" field.
-func (_c *MenuCreate) SetID(v string) *MenuCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (mc *MenuCreate) SetID(s string) *MenuCreate {
+	mc.mutation.SetID(s)
+	return mc
 }
 
 // Mutation returns the MenuMutation object of the builder.
-func (_c *MenuCreate) Mutation() *MenuMutation {
-	return _c.mutation
+func (mc *MenuCreate) Mutation() *MenuMutation {
+	return mc.mutation
 }
 
 // Save creates the Menu in the database.
-func (_c *MenuCreate) Save(ctx context.Context) (*Menu, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (mc *MenuCreate) Save(ctx context.Context) (*Menu, error) {
+	mc.defaults()
+	return withHooks(ctx, mc.sqlSave, mc.mutation, mc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *MenuCreate) SaveX(ctx context.Context) *Menu {
-	v, err := _c.Save(ctx)
+func (mc *MenuCreate) SaveX(ctx context.Context) *Menu {
+	v, err := mc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,85 +159,85 @@ func (_c *MenuCreate) SaveX(ctx context.Context) *Menu {
 }
 
 // Exec executes the query.
-func (_c *MenuCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (mc *MenuCreate) Exec(ctx context.Context) error {
+	_, err := mc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *MenuCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (mc *MenuCreate) ExecX(ctx context.Context) {
+	if err := mc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *MenuCreate) defaults() {
-	if _, ok := _c.mutation.Pid(); !ok {
+func (mc *MenuCreate) defaults() {
+	if _, ok := mc.mutation.Pid(); !ok {
 		v := menu.DefaultPid
-		_c.mutation.SetPid(v)
+		mc.mutation.SetPid(v)
 	}
-	if _, ok := _c.mutation.Order(); !ok {
+	if _, ok := mc.mutation.Order(); !ok {
 		v := menu.DefaultOrder
-		_c.mutation.SetOrder(v)
+		mc.mutation.SetOrder(v)
 	}
-	if _, ok := _c.mutation.Icon(); !ok {
+	if _, ok := mc.mutation.Icon(); !ok {
 		v := menu.DefaultIcon
-		_c.mutation.SetIcon(v)
+		mc.mutation.SetIcon(v)
 	}
-	if _, ok := _c.mutation.Locale(); !ok {
+	if _, ok := mc.mutation.Locale(); !ok {
 		v := menu.DefaultLocale
-		_c.mutation.SetLocale(v)
+		mc.mutation.SetLocale(v)
 	}
-	if _, ok := _c.mutation.RequiresAuth(); !ok {
+	if _, ok := mc.mutation.RequiresAuth(); !ok {
 		v := menu.DefaultRequiresAuth
-		_c.mutation.SetRequiresAuth(v)
+		mc.mutation.SetRequiresAuth(v)
 	}
-	if _, ok := _c.mutation.FilePath(); !ok {
+	if _, ok := mc.mutation.FilePath(); !ok {
 		v := menu.DefaultFilePath
-		_c.mutation.SetFilePath(v)
+		mc.mutation.SetFilePath(v)
 	}
-	if _, ok := _c.mutation.MenuCnName(); !ok {
+	if _, ok := mc.mutation.MenuCnName(); !ok {
 		v := menu.DefaultMenuCnName
-		_c.mutation.SetMenuCnName(v)
+		mc.mutation.SetMenuCnName(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *MenuCreate) check() error {
-	if _, ok := _c.mutation.Pid(); !ok {
+func (mc *MenuCreate) check() error {
+	if _, ok := mc.mutation.Pid(); !ok {
 		return &ValidationError{Name: "pid", err: errors.New(`ent: missing required field "Menu.pid"`)}
 	}
-	if _, ok := _c.mutation.Path(); !ok {
+	if _, ok := mc.mutation.Path(); !ok {
 		return &ValidationError{Name: "path", err: errors.New(`ent: missing required field "Menu.path"`)}
 	}
-	if _, ok := _c.mutation.Name(); !ok {
+	if _, ok := mc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Menu.name"`)}
 	}
-	if _, ok := _c.mutation.Order(); !ok {
+	if _, ok := mc.mutation.Order(); !ok {
 		return &ValidationError{Name: "order", err: errors.New(`ent: missing required field "Menu.order"`)}
 	}
-	if _, ok := _c.mutation.Icon(); !ok {
+	if _, ok := mc.mutation.Icon(); !ok {
 		return &ValidationError{Name: "icon", err: errors.New(`ent: missing required field "Menu.icon"`)}
 	}
-	if _, ok := _c.mutation.Locale(); !ok {
+	if _, ok := mc.mutation.Locale(); !ok {
 		return &ValidationError{Name: "locale", err: errors.New(`ent: missing required field "Menu.locale"`)}
 	}
-	if _, ok := _c.mutation.RequiresAuth(); !ok {
+	if _, ok := mc.mutation.RequiresAuth(); !ok {
 		return &ValidationError{Name: "requiresAuth", err: errors.New(`ent: missing required field "Menu.requiresAuth"`)}
 	}
-	if _, ok := _c.mutation.FilePath(); !ok {
+	if _, ok := mc.mutation.FilePath(); !ok {
 		return &ValidationError{Name: "filePath", err: errors.New(`ent: missing required field "Menu.filePath"`)}
 	}
 	return nil
 }
 
-func (_c *MenuCreate) sqlSave(ctx context.Context) (*Menu, error) {
-	if err := _c.check(); err != nil {
+func (mc *MenuCreate) sqlSave(ctx context.Context) (*Menu, error) {
+	if err := mc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := mc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, mc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -250,54 +250,54 @@ func (_c *MenuCreate) sqlSave(ctx context.Context) (*Menu, error) {
 			return nil, fmt.Errorf("unexpected Menu.ID type: %T", _spec.ID.Value)
 		}
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	mc.mutation.id = &_node.ID
+	mc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *MenuCreate) createSpec() (*Menu, *sqlgraph.CreateSpec) {
+func (mc *MenuCreate) createSpec() (*Menu, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Menu{config: _c.config}
+		_node = &Menu{config: mc.config}
 		_spec = sqlgraph.NewCreateSpec(menu.Table, sqlgraph.NewFieldSpec(menu.FieldID, field.TypeString))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = mc.conflict
+	if id, ok := mc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.Pid(); ok {
+	if value, ok := mc.mutation.Pid(); ok {
 		_spec.SetField(menu.FieldPid, field.TypeString, value)
 		_node.Pid = value
 	}
-	if value, ok := _c.mutation.Path(); ok {
+	if value, ok := mc.mutation.Path(); ok {
 		_spec.SetField(menu.FieldPath, field.TypeString, value)
 		_node.Path = value
 	}
-	if value, ok := _c.mutation.Name(); ok {
+	if value, ok := mc.mutation.Name(); ok {
 		_spec.SetField(menu.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := _c.mutation.Order(); ok {
+	if value, ok := mc.mutation.Order(); ok {
 		_spec.SetField(menu.FieldOrder, field.TypeInt, value)
 		_node.Order = value
 	}
-	if value, ok := _c.mutation.Icon(); ok {
+	if value, ok := mc.mutation.Icon(); ok {
 		_spec.SetField(menu.FieldIcon, field.TypeString, value)
 		_node.Icon = value
 	}
-	if value, ok := _c.mutation.Locale(); ok {
+	if value, ok := mc.mutation.Locale(); ok {
 		_spec.SetField(menu.FieldLocale, field.TypeString, value)
 		_node.Locale = value
 	}
-	if value, ok := _c.mutation.RequiresAuth(); ok {
+	if value, ok := mc.mutation.RequiresAuth(); ok {
 		_spec.SetField(menu.FieldRequiresAuth, field.TypeInt, value)
 		_node.RequiresAuth = value
 	}
-	if value, ok := _c.mutation.FilePath(); ok {
+	if value, ok := mc.mutation.FilePath(); ok {
 		_spec.SetField(menu.FieldFilePath, field.TypeString, value)
 		_node.FilePath = value
 	}
-	if value, ok := _c.mutation.MenuCnName(); ok {
+	if value, ok := mc.mutation.MenuCnName(); ok {
 		_spec.SetField(menu.FieldMenuCnName, field.TypeString, value)
 		_node.MenuCnName = &value
 	}
@@ -320,10 +320,10 @@ func (_c *MenuCreate) createSpec() (*Menu, *sqlgraph.CreateSpec) {
 //			SetPid(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *MenuCreate) OnConflict(opts ...sql.ConflictOption) *MenuUpsertOne {
-	_c.conflict = opts
+func (mc *MenuCreate) OnConflict(opts ...sql.ConflictOption) *MenuUpsertOne {
+	mc.conflict = opts
 	return &MenuUpsertOne{
-		create: _c,
+		create: mc,
 	}
 }
 
@@ -333,10 +333,10 @@ func (_c *MenuCreate) OnConflict(opts ...sql.ConflictOption) *MenuUpsertOne {
 //	client.Menu.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *MenuCreate) OnConflictColumns(columns ...string) *MenuUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (mc *MenuCreate) OnConflictColumns(columns ...string) *MenuUpsertOne {
+	mc.conflict = append(mc.conflict, sql.ConflictColumns(columns...))
 	return &MenuUpsertOne{
-		create: _c,
+		create: mc,
 	}
 }
 
@@ -721,16 +721,16 @@ type MenuCreateBulk struct {
 }
 
 // Save creates the Menu entities in the database.
-func (_c *MenuCreateBulk) Save(ctx context.Context) ([]*Menu, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (mcb *MenuCreateBulk) Save(ctx context.Context) ([]*Menu, error) {
+	if mcb.err != nil {
+		return nil, mcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Menu, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(mcb.builders))
+	nodes := make([]*Menu, len(mcb.builders))
+	mutators := make([]Mutator, len(mcb.builders))
+	for i := range mcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := mcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*MenuMutation)
@@ -744,12 +744,12 @@ func (_c *MenuCreateBulk) Save(ctx context.Context) ([]*Menu, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, mcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = mcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, mcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -769,7 +769,7 @@ func (_c *MenuCreateBulk) Save(ctx context.Context) ([]*Menu, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, mcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -777,8 +777,8 @@ func (_c *MenuCreateBulk) Save(ctx context.Context) ([]*Menu, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *MenuCreateBulk) SaveX(ctx context.Context) []*Menu {
-	v, err := _c.Save(ctx)
+func (mcb *MenuCreateBulk) SaveX(ctx context.Context) []*Menu {
+	v, err := mcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -786,14 +786,14 @@ func (_c *MenuCreateBulk) SaveX(ctx context.Context) []*Menu {
 }
 
 // Exec executes the query.
-func (_c *MenuCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (mcb *MenuCreateBulk) Exec(ctx context.Context) error {
+	_, err := mcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *MenuCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (mcb *MenuCreateBulk) ExecX(ctx context.Context) {
+	if err := mcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -813,10 +813,10 @@ func (_c *MenuCreateBulk) ExecX(ctx context.Context) {
 //			SetPid(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *MenuCreateBulk) OnConflict(opts ...sql.ConflictOption) *MenuUpsertBulk {
-	_c.conflict = opts
+func (mcb *MenuCreateBulk) OnConflict(opts ...sql.ConflictOption) *MenuUpsertBulk {
+	mcb.conflict = opts
 	return &MenuUpsertBulk{
-		create: _c,
+		create: mcb,
 	}
 }
 
@@ -826,10 +826,10 @@ func (_c *MenuCreateBulk) OnConflict(opts ...sql.ConflictOption) *MenuUpsertBulk
 //	client.Menu.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *MenuCreateBulk) OnConflictColumns(columns ...string) *MenuUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (mcb *MenuCreateBulk) OnConflictColumns(columns ...string) *MenuUpsertBulk {
+	mcb.conflict = append(mcb.conflict, sql.ConflictColumns(columns...))
 	return &MenuUpsertBulk{
-		create: _c,
+		create: mcb,
 	}
 }
 

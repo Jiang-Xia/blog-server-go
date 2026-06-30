@@ -22,30 +22,30 @@ type RolePrivilegesPrivilegeCreate struct {
 }
 
 // SetRoleId sets the "roleId" field.
-func (_c *RolePrivilegesPrivilegeCreate) SetRoleId(v int) *RolePrivilegesPrivilegeCreate {
-	_c.mutation.SetRoleId(v)
-	return _c
+func (rppc *RolePrivilegesPrivilegeCreate) SetRoleId(i int) *RolePrivilegesPrivilegeCreate {
+	rppc.mutation.SetRoleId(i)
+	return rppc
 }
 
 // SetPrivilegeId sets the "privilegeId" field.
-func (_c *RolePrivilegesPrivilegeCreate) SetPrivilegeId(v int) *RolePrivilegesPrivilegeCreate {
-	_c.mutation.SetPrivilegeId(v)
-	return _c
+func (rppc *RolePrivilegesPrivilegeCreate) SetPrivilegeId(i int) *RolePrivilegesPrivilegeCreate {
+	rppc.mutation.SetPrivilegeId(i)
+	return rppc
 }
 
 // Mutation returns the RolePrivilegesPrivilegeMutation object of the builder.
-func (_c *RolePrivilegesPrivilegeCreate) Mutation() *RolePrivilegesPrivilegeMutation {
-	return _c.mutation
+func (rppc *RolePrivilegesPrivilegeCreate) Mutation() *RolePrivilegesPrivilegeMutation {
+	return rppc.mutation
 }
 
 // Save creates the RolePrivilegesPrivilege in the database.
-func (_c *RolePrivilegesPrivilegeCreate) Save(ctx context.Context) (*RolePrivilegesPrivilege, error) {
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rppc *RolePrivilegesPrivilegeCreate) Save(ctx context.Context) (*RolePrivilegesPrivilege, error) {
+	return withHooks(ctx, rppc.sqlSave, rppc.mutation, rppc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RolePrivilegesPrivilegeCreate) SaveX(ctx context.Context) *RolePrivilegesPrivilege {
-	v, err := _c.Save(ctx)
+func (rppc *RolePrivilegesPrivilegeCreate) SaveX(ctx context.Context) *RolePrivilegesPrivilege {
+	v, err := rppc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -53,35 +53,35 @@ func (_c *RolePrivilegesPrivilegeCreate) SaveX(ctx context.Context) *RolePrivile
 }
 
 // Exec executes the query.
-func (_c *RolePrivilegesPrivilegeCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rppc *RolePrivilegesPrivilegeCreate) Exec(ctx context.Context) error {
+	_, err := rppc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RolePrivilegesPrivilegeCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rppc *RolePrivilegesPrivilegeCreate) ExecX(ctx context.Context) {
+	if err := rppc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RolePrivilegesPrivilegeCreate) check() error {
-	if _, ok := _c.mutation.RoleId(); !ok {
+func (rppc *RolePrivilegesPrivilegeCreate) check() error {
+	if _, ok := rppc.mutation.RoleId(); !ok {
 		return &ValidationError{Name: "roleId", err: errors.New(`ent: missing required field "RolePrivilegesPrivilege.roleId"`)}
 	}
-	if _, ok := _c.mutation.PrivilegeId(); !ok {
+	if _, ok := rppc.mutation.PrivilegeId(); !ok {
 		return &ValidationError{Name: "privilegeId", err: errors.New(`ent: missing required field "RolePrivilegesPrivilege.privilegeId"`)}
 	}
 	return nil
 }
 
-func (_c *RolePrivilegesPrivilegeCreate) sqlSave(ctx context.Context) (*RolePrivilegesPrivilege, error) {
-	if err := _c.check(); err != nil {
+func (rppc *RolePrivilegesPrivilegeCreate) sqlSave(ctx context.Context) (*RolePrivilegesPrivilege, error) {
+	if err := rppc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rppc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rppc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -89,22 +89,22 @@ func (_c *RolePrivilegesPrivilegeCreate) sqlSave(ctx context.Context) (*RolePriv
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rppc.mutation.id = &_node.ID
+	rppc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RolePrivilegesPrivilegeCreate) createSpec() (*RolePrivilegesPrivilege, *sqlgraph.CreateSpec) {
+func (rppc *RolePrivilegesPrivilegeCreate) createSpec() (*RolePrivilegesPrivilege, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RolePrivilegesPrivilege{config: _c.config}
+		_node = &RolePrivilegesPrivilege{config: rppc.config}
 		_spec = sqlgraph.NewCreateSpec(roleprivilegesprivilege.Table, sqlgraph.NewFieldSpec(roleprivilegesprivilege.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if value, ok := _c.mutation.RoleId(); ok {
+	_spec.OnConflict = rppc.conflict
+	if value, ok := rppc.mutation.RoleId(); ok {
 		_spec.SetField(roleprivilegesprivilege.FieldRoleId, field.TypeInt, value)
 		_node.RoleId = value
 	}
-	if value, ok := _c.mutation.PrivilegeId(); ok {
+	if value, ok := rppc.mutation.PrivilegeId(); ok {
 		_spec.SetField(roleprivilegesprivilege.FieldPrivilegeId, field.TypeInt, value)
 		_node.PrivilegeId = value
 	}
@@ -127,10 +127,10 @@ func (_c *RolePrivilegesPrivilegeCreate) createSpec() (*RolePrivilegesPrivilege,
 //			SetRoleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RolePrivilegesPrivilegeCreate) OnConflict(opts ...sql.ConflictOption) *RolePrivilegesPrivilegeUpsertOne {
-	_c.conflict = opts
+func (rppc *RolePrivilegesPrivilegeCreate) OnConflict(opts ...sql.ConflictOption) *RolePrivilegesPrivilegeUpsertOne {
+	rppc.conflict = opts
 	return &RolePrivilegesPrivilegeUpsertOne{
-		create: _c,
+		create: rppc,
 	}
 }
 
@@ -140,10 +140,10 @@ func (_c *RolePrivilegesPrivilegeCreate) OnConflict(opts ...sql.ConflictOption) 
 //	client.RolePrivilegesPrivilege.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RolePrivilegesPrivilegeCreate) OnConflictColumns(columns ...string) *RolePrivilegesPrivilegeUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rppc *RolePrivilegesPrivilegeCreate) OnConflictColumns(columns ...string) *RolePrivilegesPrivilegeUpsertOne {
+	rppc.conflict = append(rppc.conflict, sql.ConflictColumns(columns...))
 	return &RolePrivilegesPrivilegeUpsertOne{
-		create: _c,
+		create: rppc,
 	}
 }
 
@@ -320,16 +320,16 @@ type RolePrivilegesPrivilegeCreateBulk struct {
 }
 
 // Save creates the RolePrivilegesPrivilege entities in the database.
-func (_c *RolePrivilegesPrivilegeCreateBulk) Save(ctx context.Context) ([]*RolePrivilegesPrivilege, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rppcb *RolePrivilegesPrivilegeCreateBulk) Save(ctx context.Context) ([]*RolePrivilegesPrivilege, error) {
+	if rppcb.err != nil {
+		return nil, rppcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RolePrivilegesPrivilege, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rppcb.builders))
+	nodes := make([]*RolePrivilegesPrivilege, len(rppcb.builders))
+	mutators := make([]Mutator, len(rppcb.builders))
+	for i := range rppcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rppcb.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RolePrivilegesPrivilegeMutation)
 				if !ok {
@@ -342,12 +342,12 @@ func (_c *RolePrivilegesPrivilegeCreateBulk) Save(ctx context.Context) ([]*RoleP
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rppcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rppcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rppcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -371,7 +371,7 @@ func (_c *RolePrivilegesPrivilegeCreateBulk) Save(ctx context.Context) ([]*RoleP
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rppcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -379,8 +379,8 @@ func (_c *RolePrivilegesPrivilegeCreateBulk) Save(ctx context.Context) ([]*RoleP
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RolePrivilegesPrivilegeCreateBulk) SaveX(ctx context.Context) []*RolePrivilegesPrivilege {
-	v, err := _c.Save(ctx)
+func (rppcb *RolePrivilegesPrivilegeCreateBulk) SaveX(ctx context.Context) []*RolePrivilegesPrivilege {
+	v, err := rppcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -388,14 +388,14 @@ func (_c *RolePrivilegesPrivilegeCreateBulk) SaveX(ctx context.Context) []*RoleP
 }
 
 // Exec executes the query.
-func (_c *RolePrivilegesPrivilegeCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rppcb *RolePrivilegesPrivilegeCreateBulk) Exec(ctx context.Context) error {
+	_, err := rppcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RolePrivilegesPrivilegeCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rppcb *RolePrivilegesPrivilegeCreateBulk) ExecX(ctx context.Context) {
+	if err := rppcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -415,10 +415,10 @@ func (_c *RolePrivilegesPrivilegeCreateBulk) ExecX(ctx context.Context) {
 //			SetRoleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RolePrivilegesPrivilegeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RolePrivilegesPrivilegeUpsertBulk {
-	_c.conflict = opts
+func (rppcb *RolePrivilegesPrivilegeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RolePrivilegesPrivilegeUpsertBulk {
+	rppcb.conflict = opts
 	return &RolePrivilegesPrivilegeUpsertBulk{
-		create: _c,
+		create: rppcb,
 	}
 }
 
@@ -428,10 +428,10 @@ func (_c *RolePrivilegesPrivilegeCreateBulk) OnConflict(opts ...sql.ConflictOpti
 //	client.RolePrivilegesPrivilege.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RolePrivilegesPrivilegeCreateBulk) OnConflictColumns(columns ...string) *RolePrivilegesPrivilegeUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rppcb *RolePrivilegesPrivilegeCreateBulk) OnConflictColumns(columns ...string) *RolePrivilegesPrivilegeUpsertBulk {
+	rppcb.conflict = append(rppcb.conflict, sql.ConflictColumns(columns...))
 	return &RolePrivilegesPrivilegeUpsertBulk{
-		create: _c,
+		create: rppcb,
 	}
 }
 

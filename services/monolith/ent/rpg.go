@@ -83,7 +83,7 @@ func (*Rpg) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Rpg fields.
-func (_m *Rpg) assignValues(columns []string, values []any) error {
+func (r *Rpg) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -94,133 +94,133 @@ func (_m *Rpg) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			r.ID = int(value.Int64)
 		case rpg.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				r.CreateTime = value.Time
 			}
 		case rpg.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				r.UpdateTime = value.Time
 			}
 		case rpg.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				r.IsDelete = value.Bool
 			}
 		case rpg.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				r.Version = int(value.Int64)
 			}
 		case rpg.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				r.UID = int(value.Int64)
 			}
 		case rpg.FieldExp:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field exp", values[i])
 			} else if value.Valid {
-				_m.Exp = int(value.Int64)
+				r.Exp = int(value.Int64)
 			}
 		case rpg.FieldLevel:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field level", values[i])
 			} else if value.Valid {
-				_m.Level = int(value.Int64)
+				r.Level = int(value.Int64)
 			}
 		case rpg.FieldLifeValue:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field lifeValue", values[i])
 			} else if value.Valid {
-				_m.LifeValue = int(value.Int64)
+				r.LifeValue = int(value.Int64)
 			}
 		case rpg.FieldLastSignDate:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field lastSignDate", values[i])
 			} else if value.Valid {
-				_m.LastSignDate = new(time.Time)
-				*_m.LastSignDate = value.Time
+				r.LastSignDate = new(time.Time)
+				*r.LastSignDate = value.Time
 			}
 		case rpg.FieldTotalSignDays:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field totalSignDays", values[i])
 			} else if value.Valid {
-				_m.TotalSignDays = int(value.Int64)
+				r.TotalSignDays = int(value.Int64)
 			}
 		case rpg.FieldConsecutiveSignDays:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field consecutiveSignDays", values[i])
 			} else if value.Valid {
-				_m.ConsecutiveSignDays = int(value.Int64)
+				r.ConsecutiveSignDays = int(value.Int64)
 			}
 		case rpg.FieldBanStartTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field banStartTime", values[i])
 			} else if value.Valid {
-				_m.BanStartTime = new(time.Time)
-				*_m.BanStartTime = value.Time
+				r.BanStartTime = new(time.Time)
+				*r.BanStartTime = value.Time
 			}
 		case rpg.FieldBanEndTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field banEndTime", values[i])
 			} else if value.Valid {
-				_m.BanEndTime = new(time.Time)
-				*_m.BanEndTime = value.Time
+				r.BanEndTime = new(time.Time)
+				*r.BanEndTime = value.Time
 			}
 		case rpg.FieldSensitiveHitsCount:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sensitiveHitsCount", values[i])
 			} else if value.Valid {
-				_m.SensitiveHitsCount = int(value.Int64)
+				r.SensitiveHitsCount = int(value.Int64)
 			}
 		case rpg.FieldZeroLifeCount:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field zeroLifeCount", values[i])
 			} else if value.Valid {
-				_m.ZeroLifeCount = int(value.Int64)
+				r.ZeroLifeCount = int(value.Int64)
 			}
 		case rpg.FieldLotteryTickets:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field lotteryTickets", values[i])
 			} else if value.Valid {
-				_m.LotteryTickets = int(value.Int64)
+				r.LotteryTickets = int(value.Int64)
 			}
 		case rpg.FieldReputation:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field reputation", values[i])
 			} else if value.Valid {
-				_m.Reputation = int(value.Int64)
+				r.Reputation = int(value.Int64)
 			}
 		case rpg.FieldLotteryPityCounter:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field lotteryPityCounter", values[i])
 			} else if value.Valid {
-				_m.LotteryPityCounter = int(value.Int64)
+				r.LotteryPityCounter = int(value.Int64)
 			}
 		case rpg.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				r.EffectJson = new(string)
+				*r.EffectJson = value.String
 			}
 		case rpg.FieldLotteryLegendaryPityCounter:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field lotteryLegendaryPityCounter", values[i])
 			} else if value.Valid {
-				_m.LotteryLegendaryPityCounter = int(value.Int64)
+				r.LotteryLegendaryPityCounter = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			r.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -228,100 +228,100 @@ func (_m *Rpg) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Rpg.
 // This includes values selected through modifiers, order, etc.
-func (_m *Rpg) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (r *Rpg) Value(name string) (ent.Value, error) {
+	return r.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Rpg.
 // Note that you need to call Rpg.Unwrap() before calling this method if this Rpg
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Rpg) Update() *RpgUpdateOne {
-	return NewRpgClient(_m.config).UpdateOne(_m)
+func (r *Rpg) Update() *RpgUpdateOne {
+	return NewRpgClient(r.config).UpdateOne(r)
 }
 
 // Unwrap unwraps the Rpg entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Rpg) Unwrap() *Rpg {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (r *Rpg) Unwrap() *Rpg {
+	_tx, ok := r.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Rpg is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	r.config.driver = _tx.drv
+	return r
 }
 
 // String implements the fmt.Stringer.
-func (_m *Rpg) String() string {
+func (r *Rpg) String() string {
 	var builder strings.Builder
 	builder.WriteString("Rpg(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(r.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(r.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", r.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", r.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", r.UID))
 	builder.WriteString(", ")
 	builder.WriteString("exp=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Exp))
+	builder.WriteString(fmt.Sprintf("%v", r.Exp))
 	builder.WriteString(", ")
 	builder.WriteString("level=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Level))
+	builder.WriteString(fmt.Sprintf("%v", r.Level))
 	builder.WriteString(", ")
 	builder.WriteString("lifeValue=")
-	builder.WriteString(fmt.Sprintf("%v", _m.LifeValue))
+	builder.WriteString(fmt.Sprintf("%v", r.LifeValue))
 	builder.WriteString(", ")
-	if v := _m.LastSignDate; v != nil {
+	if v := r.LastSignDate; v != nil {
 		builder.WriteString("lastSignDate=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("totalSignDays=")
-	builder.WriteString(fmt.Sprintf("%v", _m.TotalSignDays))
+	builder.WriteString(fmt.Sprintf("%v", r.TotalSignDays))
 	builder.WriteString(", ")
 	builder.WriteString("consecutiveSignDays=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ConsecutiveSignDays))
+	builder.WriteString(fmt.Sprintf("%v", r.ConsecutiveSignDays))
 	builder.WriteString(", ")
-	if v := _m.BanStartTime; v != nil {
+	if v := r.BanStartTime; v != nil {
 		builder.WriteString("banStartTime=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}
 	builder.WriteString(", ")
-	if v := _m.BanEndTime; v != nil {
+	if v := r.BanEndTime; v != nil {
 		builder.WriteString("banEndTime=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("sensitiveHitsCount=")
-	builder.WriteString(fmt.Sprintf("%v", _m.SensitiveHitsCount))
+	builder.WriteString(fmt.Sprintf("%v", r.SensitiveHitsCount))
 	builder.WriteString(", ")
 	builder.WriteString("zeroLifeCount=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ZeroLifeCount))
+	builder.WriteString(fmt.Sprintf("%v", r.ZeroLifeCount))
 	builder.WriteString(", ")
 	builder.WriteString("lotteryTickets=")
-	builder.WriteString(fmt.Sprintf("%v", _m.LotteryTickets))
+	builder.WriteString(fmt.Sprintf("%v", r.LotteryTickets))
 	builder.WriteString(", ")
 	builder.WriteString("reputation=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Reputation))
+	builder.WriteString(fmt.Sprintf("%v", r.Reputation))
 	builder.WriteString(", ")
 	builder.WriteString("lotteryPityCounter=")
-	builder.WriteString(fmt.Sprintf("%v", _m.LotteryPityCounter))
+	builder.WriteString(fmt.Sprintf("%v", r.LotteryPityCounter))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := r.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("lotteryLegendaryPityCounter=")
-	builder.WriteString(fmt.Sprintf("%v", _m.LotteryLegendaryPityCounter))
+	builder.WriteString(fmt.Sprintf("%v", r.LotteryLegendaryPityCounter))
 	builder.WriteByte(')')
 	return builder.String()
 }

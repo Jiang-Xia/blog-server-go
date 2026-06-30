@@ -74,7 +74,7 @@ func (*PayOrder) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the PayOrder fields.
-func (_m *PayOrder) assignValues(columns []string, values []any) error {
+func (po *PayOrder) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -85,89 +85,89 @@ func (_m *PayOrder) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			po.ID = int(value.Int64)
 		case payorder.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				po.CreateTime = value.Time
 			}
 		case payorder.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				po.UpdateTime = value.Time
 			}
 		case payorder.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				po.IsDelete = value.Bool
 			}
 		case payorder.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				po.Version = int(value.Int64)
 			}
 		case payorder.FieldOutTradeNo:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field outTradeNo", values[i])
 			} else if value.Valid {
-				_m.OutTradeNo = value.String
+				po.OutTradeNo = value.String
 			}
 		case payorder.FieldTradeNo:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field tradeNo", values[i])
 			} else if value.Valid {
-				_m.TradeNo = value.String
+				po.TradeNo = value.String
 			}
 		case payorder.FieldSubject:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field subject", values[i])
 			} else if value.Valid {
-				_m.Subject = value.String
+				po.Subject = value.String
 			}
 		case payorder.FieldTotalAmount:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field totalAmount", values[i])
 			} else if value.Valid {
-				_m.TotalAmount = value.Float64
+				po.TotalAmount = value.Float64
 			}
 		case payorder.FieldBuyerOpenId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field buyerOpenId", values[i])
 			} else if value.Valid {
-				_m.BuyerOpenId = value.String
+				po.BuyerOpenId = value.String
 			}
 		case payorder.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				po.Status = value.String
 			}
 		case payorder.FieldRefundAmount:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field refundAmount", values[i])
 			} else if value.Valid {
-				_m.RefundAmount = value.Float64
+				po.RefundAmount = value.Float64
 			}
 		case payorder.FieldChannel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field channel", values[i])
 			} else if value.Valid {
-				_m.Channel = value.String
+				po.Channel = value.String
 			}
 		case payorder.FieldExtendParams:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field extendParams", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &_m.ExtendParams); err != nil {
+				if err := json.Unmarshal(*value, &po.ExtendParams); err != nil {
 					return fmt.Errorf("unmarshal field extendParams: %w", err)
 				}
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			po.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -175,71 +175,71 @@ func (_m *PayOrder) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the PayOrder.
 // This includes values selected through modifiers, order, etc.
-func (_m *PayOrder) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (po *PayOrder) Value(name string) (ent.Value, error) {
+	return po.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this PayOrder.
 // Note that you need to call PayOrder.Unwrap() before calling this method if this PayOrder
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *PayOrder) Update() *PayOrderUpdateOne {
-	return NewPayOrderClient(_m.config).UpdateOne(_m)
+func (po *PayOrder) Update() *PayOrderUpdateOne {
+	return NewPayOrderClient(po.config).UpdateOne(po)
 }
 
 // Unwrap unwraps the PayOrder entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *PayOrder) Unwrap() *PayOrder {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (po *PayOrder) Unwrap() *PayOrder {
+	_tx, ok := po.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: PayOrder is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	po.config.driver = _tx.drv
+	return po
 }
 
 // String implements the fmt.Stringer.
-func (_m *PayOrder) String() string {
+func (po *PayOrder) String() string {
 	var builder strings.Builder
 	builder.WriteString("PayOrder(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", po.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(po.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(po.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", po.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", po.Version))
 	builder.WriteString(", ")
 	builder.WriteString("outTradeNo=")
-	builder.WriteString(_m.OutTradeNo)
+	builder.WriteString(po.OutTradeNo)
 	builder.WriteString(", ")
 	builder.WriteString("tradeNo=")
-	builder.WriteString(_m.TradeNo)
+	builder.WriteString(po.TradeNo)
 	builder.WriteString(", ")
 	builder.WriteString("subject=")
-	builder.WriteString(_m.Subject)
+	builder.WriteString(po.Subject)
 	builder.WriteString(", ")
 	builder.WriteString("totalAmount=")
-	builder.WriteString(fmt.Sprintf("%v", _m.TotalAmount))
+	builder.WriteString(fmt.Sprintf("%v", po.TotalAmount))
 	builder.WriteString(", ")
 	builder.WriteString("buyerOpenId=")
-	builder.WriteString(_m.BuyerOpenId)
+	builder.WriteString(po.BuyerOpenId)
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(po.Status)
 	builder.WriteString(", ")
 	builder.WriteString("refundAmount=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RefundAmount))
+	builder.WriteString(fmt.Sprintf("%v", po.RefundAmount))
 	builder.WriteString(", ")
 	builder.WriteString("channel=")
-	builder.WriteString(_m.Channel)
+	builder.WriteString(po.Channel)
 	builder.WriteString(", ")
 	builder.WriteString("extendParams=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ExtendParams))
+	builder.WriteString(fmt.Sprintf("%v", po.ExtendParams))
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -48,7 +48,7 @@ func (*RpgUserLoadout) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserLoadout fields.
-func (_m *RpgUserLoadout) assignValues(columns []string, values []any) error {
+func (rul *RpgUserLoadout) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -59,43 +59,43 @@ func (_m *RpgUserLoadout) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rul.ID = int(value.Int64)
 		case rpguserloadout.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rul.UID = int(value.Int64)
 			}
 		case rpguserloadout.FieldTitleCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field titleCode", values[i])
 			} else if value.Valid {
-				_m.TitleCode = new(string)
-				*_m.TitleCode = value.String
+				rul.TitleCode = new(string)
+				*rul.TitleCode = value.String
 			}
 		case rpguserloadout.FieldAvatarFrameCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field avatarFrameCode", values[i])
 			} else if value.Valid {
-				_m.AvatarFrameCode = new(string)
-				*_m.AvatarFrameCode = value.String
+				rul.AvatarFrameCode = new(string)
+				*rul.AvatarFrameCode = value.String
 			}
 		case rpguserloadout.FieldPetId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field petId", values[i])
 			} else if value.Valid {
-				_m.PetId = new(int)
-				*_m.PetId = int(value.Int64)
+				rul.PetId = new(int)
+				*rul.PetId = int(value.Int64)
 			}
 		case rpguserloadout.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rul.EffectJson = new(string)
+				*rul.EffectJson = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rul.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -103,52 +103,52 @@ func (_m *RpgUserLoadout) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserLoadout.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserLoadout) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rul *RpgUserLoadout) Value(name string) (ent.Value, error) {
+	return rul.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserLoadout.
 // Note that you need to call RpgUserLoadout.Unwrap() before calling this method if this RpgUserLoadout
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserLoadout) Update() *RpgUserLoadoutUpdateOne {
-	return NewRpgUserLoadoutClient(_m.config).UpdateOne(_m)
+func (rul *RpgUserLoadout) Update() *RpgUserLoadoutUpdateOne {
+	return NewRpgUserLoadoutClient(rul.config).UpdateOne(rul)
 }
 
 // Unwrap unwraps the RpgUserLoadout entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserLoadout) Unwrap() *RpgUserLoadout {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rul *RpgUserLoadout) Unwrap() *RpgUserLoadout {
+	_tx, ok := rul.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserLoadout is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rul.config.driver = _tx.drv
+	return rul
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserLoadout) String() string {
+func (rul *RpgUserLoadout) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserLoadout(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rul.ID))
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rul.UID))
 	builder.WriteString(", ")
-	if v := _m.TitleCode; v != nil {
+	if v := rul.TitleCode; v != nil {
 		builder.WriteString("titleCode=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.AvatarFrameCode; v != nil {
+	if v := rul.AvatarFrameCode; v != nil {
 		builder.WriteString("avatarFrameCode=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.PetId; v != nil {
+	if v := rul.PetId; v != nil {
 		builder.WriteString("petId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rul.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}

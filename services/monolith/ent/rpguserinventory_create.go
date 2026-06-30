@@ -23,85 +23,85 @@ type RpgUserInventoryCreate struct {
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgUserInventoryCreate) SetUID(v int) *RpgUserInventoryCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (ruic *RpgUserInventoryCreate) SetUID(i int) *RpgUserInventoryCreate {
+	ruic.mutation.SetUID(i)
+	return ruic
 }
 
 // SetItemCode sets the "itemCode" field.
-func (_c *RpgUserInventoryCreate) SetItemCode(v string) *RpgUserInventoryCreate {
-	_c.mutation.SetItemCode(v)
-	return _c
+func (ruic *RpgUserInventoryCreate) SetItemCode(s string) *RpgUserInventoryCreate {
+	ruic.mutation.SetItemCode(s)
+	return ruic
 }
 
 // SetQuantity sets the "quantity" field.
-func (_c *RpgUserInventoryCreate) SetQuantity(v int) *RpgUserInventoryCreate {
-	_c.mutation.SetQuantity(v)
-	return _c
+func (ruic *RpgUserInventoryCreate) SetQuantity(i int) *RpgUserInventoryCreate {
+	ruic.mutation.SetQuantity(i)
+	return ruic
 }
 
 // SetNillableQuantity sets the "quantity" field if the given value is not nil.
-func (_c *RpgUserInventoryCreate) SetNillableQuantity(v *int) *RpgUserInventoryCreate {
-	if v != nil {
-		_c.SetQuantity(*v)
+func (ruic *RpgUserInventoryCreate) SetNillableQuantity(i *int) *RpgUserInventoryCreate {
+	if i != nil {
+		ruic.SetQuantity(*i)
 	}
-	return _c
+	return ruic
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgUserInventoryCreate) SetEffectJson(v string) *RpgUserInventoryCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (ruic *RpgUserInventoryCreate) SetEffectJson(s string) *RpgUserInventoryCreate {
+	ruic.mutation.SetEffectJson(s)
+	return ruic
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgUserInventoryCreate) SetNillableEffectJson(v *string) *RpgUserInventoryCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (ruic *RpgUserInventoryCreate) SetNillableEffectJson(s *string) *RpgUserInventoryCreate {
+	if s != nil {
+		ruic.SetEffectJson(*s)
 	}
-	return _c
+	return ruic
 }
 
 // SetAcquiredAt sets the "acquiredAt" field.
-func (_c *RpgUserInventoryCreate) SetAcquiredAt(v time.Time) *RpgUserInventoryCreate {
-	_c.mutation.SetAcquiredAt(v)
-	return _c
+func (ruic *RpgUserInventoryCreate) SetAcquiredAt(t time.Time) *RpgUserInventoryCreate {
+	ruic.mutation.SetAcquiredAt(t)
+	return ruic
 }
 
 // SetSource sets the "source" field.
-func (_c *RpgUserInventoryCreate) SetSource(v string) *RpgUserInventoryCreate {
-	_c.mutation.SetSource(v)
-	return _c
+func (ruic *RpgUserInventoryCreate) SetSource(s string) *RpgUserInventoryCreate {
+	ruic.mutation.SetSource(s)
+	return ruic
 }
 
 // SetNillableSource sets the "source" field if the given value is not nil.
-func (_c *RpgUserInventoryCreate) SetNillableSource(v *string) *RpgUserInventoryCreate {
-	if v != nil {
-		_c.SetSource(*v)
+func (ruic *RpgUserInventoryCreate) SetNillableSource(s *string) *RpgUserInventoryCreate {
+	if s != nil {
+		ruic.SetSource(*s)
 	}
-	return _c
+	return ruic
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserInventoryCreate) SetID(v int) *RpgUserInventoryCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ruic *RpgUserInventoryCreate) SetID(i int) *RpgUserInventoryCreate {
+	ruic.mutation.SetID(i)
+	return ruic
 }
 
 // Mutation returns the RpgUserInventoryMutation object of the builder.
-func (_c *RpgUserInventoryCreate) Mutation() *RpgUserInventoryMutation {
-	return _c.mutation
+func (ruic *RpgUserInventoryCreate) Mutation() *RpgUserInventoryMutation {
+	return ruic.mutation
 }
 
 // Save creates the RpgUserInventory in the database.
-func (_c *RpgUserInventoryCreate) Save(ctx context.Context) (*RpgUserInventory, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ruic *RpgUserInventoryCreate) Save(ctx context.Context) (*RpgUserInventory, error) {
+	ruic.defaults()
+	return withHooks(ctx, ruic.sqlSave, ruic.mutation, ruic.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserInventoryCreate) SaveX(ctx context.Context) *RpgUserInventory {
-	v, err := _c.Save(ctx)
+func (ruic *RpgUserInventoryCreate) SaveX(ctx context.Context) *RpgUserInventory {
+	v, err := ruic.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -109,56 +109,56 @@ func (_c *RpgUserInventoryCreate) SaveX(ctx context.Context) *RpgUserInventory {
 }
 
 // Exec executes the query.
-func (_c *RpgUserInventoryCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruic *RpgUserInventoryCreate) Exec(ctx context.Context) error {
+	_, err := ruic.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserInventoryCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruic *RpgUserInventoryCreate) ExecX(ctx context.Context) {
+	if err := ruic.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgUserInventoryCreate) defaults() {
-	if _, ok := _c.mutation.Quantity(); !ok {
+func (ruic *RpgUserInventoryCreate) defaults() {
+	if _, ok := ruic.mutation.Quantity(); !ok {
 		v := rpguserinventory.DefaultQuantity
-		_c.mutation.SetQuantity(v)
+		ruic.mutation.SetQuantity(v)
 	}
-	if _, ok := _c.mutation.Source(); !ok {
+	if _, ok := ruic.mutation.Source(); !ok {
 		v := rpguserinventory.DefaultSource
-		_c.mutation.SetSource(v)
+		ruic.mutation.SetSource(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserInventoryCreate) check() error {
-	if _, ok := _c.mutation.UID(); !ok {
+func (ruic *RpgUserInventoryCreate) check() error {
+	if _, ok := ruic.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserInventory.uid"`)}
 	}
-	if _, ok := _c.mutation.ItemCode(); !ok {
+	if _, ok := ruic.mutation.ItemCode(); !ok {
 		return &ValidationError{Name: "itemCode", err: errors.New(`ent: missing required field "RpgUserInventory.itemCode"`)}
 	}
-	if _, ok := _c.mutation.Quantity(); !ok {
+	if _, ok := ruic.mutation.Quantity(); !ok {
 		return &ValidationError{Name: "quantity", err: errors.New(`ent: missing required field "RpgUserInventory.quantity"`)}
 	}
-	if _, ok := _c.mutation.AcquiredAt(); !ok {
+	if _, ok := ruic.mutation.AcquiredAt(); !ok {
 		return &ValidationError{Name: "acquiredAt", err: errors.New(`ent: missing required field "RpgUserInventory.acquiredAt"`)}
 	}
-	if _, ok := _c.mutation.Source(); !ok {
+	if _, ok := ruic.mutation.Source(); !ok {
 		return &ValidationError{Name: "source", err: errors.New(`ent: missing required field "RpgUserInventory.source"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserInventoryCreate) sqlSave(ctx context.Context) (*RpgUserInventory, error) {
-	if err := _c.check(); err != nil {
+func (ruic *RpgUserInventoryCreate) sqlSave(ctx context.Context) (*RpgUserInventory, error) {
+	if err := ruic.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ruic.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ruic.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -168,42 +168,42 @@ func (_c *RpgUserInventoryCreate) sqlSave(ctx context.Context) (*RpgUserInventor
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ruic.mutation.id = &_node.ID
+	ruic.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserInventoryCreate) createSpec() (*RpgUserInventory, *sqlgraph.CreateSpec) {
+func (ruic *RpgUserInventoryCreate) createSpec() (*RpgUserInventory, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserInventory{config: _c.config}
+		_node = &RpgUserInventory{config: ruic.config}
 		_spec = sqlgraph.NewCreateSpec(rpguserinventory.Table, sqlgraph.NewFieldSpec(rpguserinventory.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = ruic.conflict
+	if id, ok := ruic.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := ruic.mutation.UID(); ok {
 		_spec.SetField(rpguserinventory.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.ItemCode(); ok {
+	if value, ok := ruic.mutation.ItemCode(); ok {
 		_spec.SetField(rpguserinventory.FieldItemCode, field.TypeString, value)
 		_node.ItemCode = value
 	}
-	if value, ok := _c.mutation.Quantity(); ok {
+	if value, ok := ruic.mutation.Quantity(); ok {
 		_spec.SetField(rpguserinventory.FieldQuantity, field.TypeInt, value)
 		_node.Quantity = value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := ruic.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserinventory.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.AcquiredAt(); ok {
+	if value, ok := ruic.mutation.AcquiredAt(); ok {
 		_spec.SetField(rpguserinventory.FieldAcquiredAt, field.TypeTime, value)
 		_node.AcquiredAt = value
 	}
-	if value, ok := _c.mutation.Source(); ok {
+	if value, ok := ruic.mutation.Source(); ok {
 		_spec.SetField(rpguserinventory.FieldSource, field.TypeString, value)
 		_node.Source = value
 	}
@@ -226,10 +226,10 @@ func (_c *RpgUserInventoryCreate) createSpec() (*RpgUserInventory, *sqlgraph.Cre
 //			SetUID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserInventoryCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserInventoryUpsertOne {
-	_c.conflict = opts
+func (ruic *RpgUserInventoryCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserInventoryUpsertOne {
+	ruic.conflict = opts
 	return &RpgUserInventoryUpsertOne{
-		create: _c,
+		create: ruic,
 	}
 }
 
@@ -239,10 +239,10 @@ func (_c *RpgUserInventoryCreate) OnConflict(opts ...sql.ConflictOption) *RpgUse
 //	client.RpgUserInventory.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserInventoryCreate) OnConflictColumns(columns ...string) *RpgUserInventoryUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruic *RpgUserInventoryCreate) OnConflictColumns(columns ...string) *RpgUserInventoryUpsertOne {
+	ruic.conflict = append(ruic.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserInventoryUpsertOne{
-		create: _c,
+		create: ruic,
 	}
 }
 
@@ -544,16 +544,16 @@ type RpgUserInventoryCreateBulk struct {
 }
 
 // Save creates the RpgUserInventory entities in the database.
-func (_c *RpgUserInventoryCreateBulk) Save(ctx context.Context) ([]*RpgUserInventory, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ruicb *RpgUserInventoryCreateBulk) Save(ctx context.Context) ([]*RpgUserInventory, error) {
+	if ruicb.err != nil {
+		return nil, ruicb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserInventory, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ruicb.builders))
+	nodes := make([]*RpgUserInventory, len(ruicb.builders))
+	mutators := make([]Mutator, len(ruicb.builders))
+	for i := range ruicb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ruicb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserInventoryMutation)
@@ -567,12 +567,12 @@ func (_c *RpgUserInventoryCreateBulk) Save(ctx context.Context) ([]*RpgUserInven
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ruicb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ruicb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ruicb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -596,7 +596,7 @@ func (_c *RpgUserInventoryCreateBulk) Save(ctx context.Context) ([]*RpgUserInven
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ruicb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -604,8 +604,8 @@ func (_c *RpgUserInventoryCreateBulk) Save(ctx context.Context) ([]*RpgUserInven
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserInventoryCreateBulk) SaveX(ctx context.Context) []*RpgUserInventory {
-	v, err := _c.Save(ctx)
+func (ruicb *RpgUserInventoryCreateBulk) SaveX(ctx context.Context) []*RpgUserInventory {
+	v, err := ruicb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -613,14 +613,14 @@ func (_c *RpgUserInventoryCreateBulk) SaveX(ctx context.Context) []*RpgUserInven
 }
 
 // Exec executes the query.
-func (_c *RpgUserInventoryCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruicb *RpgUserInventoryCreateBulk) Exec(ctx context.Context) error {
+	_, err := ruicb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserInventoryCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruicb *RpgUserInventoryCreateBulk) ExecX(ctx context.Context) {
+	if err := ruicb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -640,10 +640,10 @@ func (_c *RpgUserInventoryCreateBulk) ExecX(ctx context.Context) {
 //			SetUID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserInventoryCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserInventoryUpsertBulk {
-	_c.conflict = opts
+func (ruicb *RpgUserInventoryCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserInventoryUpsertBulk {
+	ruicb.conflict = opts
 	return &RpgUserInventoryUpsertBulk{
-		create: _c,
+		create: ruicb,
 	}
 }
 
@@ -653,10 +653,10 @@ func (_c *RpgUserInventoryCreateBulk) OnConflict(opts ...sql.ConflictOption) *Rp
 //	client.RpgUserInventory.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserInventoryCreateBulk) OnConflictColumns(columns ...string) *RpgUserInventoryUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruicb *RpgUserInventoryCreateBulk) OnConflictColumns(columns ...string) *RpgUserInventoryUpsertBulk {
+	ruicb.conflict = append(ruicb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserInventoryUpsertBulk{
-		create: _c,
+		create: ruicb,
 	}
 }
 

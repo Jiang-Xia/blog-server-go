@@ -23,167 +23,167 @@ type PrivilegeCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *PrivilegeCreate) SetCreateTime(v time.Time) *PrivilegeCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (pc *PrivilegeCreate) SetCreateTime(t time.Time) *PrivilegeCreate {
+	pc.mutation.SetCreateTime(t)
+	return pc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableCreateTime(v *time.Time) *PrivilegeCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (pc *PrivilegeCreate) SetNillableCreateTime(t *time.Time) *PrivilegeCreate {
+	if t != nil {
+		pc.SetCreateTime(*t)
 	}
-	return _c
+	return pc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *PrivilegeCreate) SetUpdateTime(v time.Time) *PrivilegeCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (pc *PrivilegeCreate) SetUpdateTime(t time.Time) *PrivilegeCreate {
+	pc.mutation.SetUpdateTime(t)
+	return pc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableUpdateTime(v *time.Time) *PrivilegeCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (pc *PrivilegeCreate) SetNillableUpdateTime(t *time.Time) *PrivilegeCreate {
+	if t != nil {
+		pc.SetUpdateTime(*t)
 	}
-	return _c
+	return pc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *PrivilegeCreate) SetIsDelete(v bool) *PrivilegeCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (pc *PrivilegeCreate) SetIsDelete(b bool) *PrivilegeCreate {
+	pc.mutation.SetIsDelete(b)
+	return pc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableIsDelete(v *bool) *PrivilegeCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (pc *PrivilegeCreate) SetNillableIsDelete(b *bool) *PrivilegeCreate {
+	if b != nil {
+		pc.SetIsDelete(*b)
 	}
-	return _c
+	return pc
 }
 
 // SetVersion sets the "version" field.
-func (_c *PrivilegeCreate) SetVersion(v int) *PrivilegeCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (pc *PrivilegeCreate) SetVersion(i int) *PrivilegeCreate {
+	pc.mutation.SetVersion(i)
+	return pc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableVersion(v *int) *PrivilegeCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (pc *PrivilegeCreate) SetNillableVersion(i *int) *PrivilegeCreate {
+	if i != nil {
+		pc.SetVersion(*i)
 	}
-	return _c
+	return pc
 }
 
 // SetPrivilegeName sets the "privilegeName" field.
-func (_c *PrivilegeCreate) SetPrivilegeName(v string) *PrivilegeCreate {
-	_c.mutation.SetPrivilegeName(v)
-	return _c
+func (pc *PrivilegeCreate) SetPrivilegeName(s string) *PrivilegeCreate {
+	pc.mutation.SetPrivilegeName(s)
+	return pc
 }
 
 // SetPrivilegeCode sets the "privilegeCode" field.
-func (_c *PrivilegeCreate) SetPrivilegeCode(v string) *PrivilegeCreate {
-	_c.mutation.SetPrivilegeCode(v)
-	return _c
+func (pc *PrivilegeCreate) SetPrivilegeCode(s string) *PrivilegeCreate {
+	pc.mutation.SetPrivilegeCode(s)
+	return pc
 }
 
 // SetPrivilegePage sets the "privilegePage" field.
-func (_c *PrivilegeCreate) SetPrivilegePage(v string) *PrivilegeCreate {
-	_c.mutation.SetPrivilegePage(v)
-	return _c
+func (pc *PrivilegeCreate) SetPrivilegePage(s string) *PrivilegeCreate {
+	pc.mutation.SetPrivilegePage(s)
+	return pc
 }
 
 // SetIsVisible sets the "isVisible" field.
-func (_c *PrivilegeCreate) SetIsVisible(v int) *PrivilegeCreate {
-	_c.mutation.SetIsVisible(v)
-	return _c
+func (pc *PrivilegeCreate) SetIsVisible(i int) *PrivilegeCreate {
+	pc.mutation.SetIsVisible(i)
+	return pc
 }
 
 // SetNillableIsVisible sets the "isVisible" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableIsVisible(v *int) *PrivilegeCreate {
-	if v != nil {
-		_c.SetIsVisible(*v)
+func (pc *PrivilegeCreate) SetNillableIsVisible(i *int) *PrivilegeCreate {
+	if i != nil {
+		pc.SetIsVisible(*i)
 	}
-	return _c
+	return pc
 }
 
 // SetPathPattern sets the "pathPattern" field.
-func (_c *PrivilegeCreate) SetPathPattern(v string) *PrivilegeCreate {
-	_c.mutation.SetPathPattern(v)
-	return _c
+func (pc *PrivilegeCreate) SetPathPattern(s string) *PrivilegeCreate {
+	pc.mutation.SetPathPattern(s)
+	return pc
 }
 
 // SetHttpMethod sets the "httpMethod" field.
-func (_c *PrivilegeCreate) SetHttpMethod(v string) *PrivilegeCreate {
-	_c.mutation.SetHttpMethod(v)
-	return _c
+func (pc *PrivilegeCreate) SetHttpMethod(s string) *PrivilegeCreate {
+	pc.mutation.SetHttpMethod(s)
+	return pc
 }
 
 // SetIsPublic sets the "isPublic" field.
-func (_c *PrivilegeCreate) SetIsPublic(v int) *PrivilegeCreate {
-	_c.mutation.SetIsPublic(v)
-	return _c
+func (pc *PrivilegeCreate) SetIsPublic(i int) *PrivilegeCreate {
+	pc.mutation.SetIsPublic(i)
+	return pc
 }
 
 // SetNillableIsPublic sets the "isPublic" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableIsPublic(v *int) *PrivilegeCreate {
-	if v != nil {
-		_c.SetIsPublic(*v)
+func (pc *PrivilegeCreate) SetNillableIsPublic(i *int) *PrivilegeCreate {
+	if i != nil {
+		pc.SetIsPublic(*i)
 	}
-	return _c
+	return pc
 }
 
 // SetRequireOwnership sets the "requireOwnership" field.
-func (_c *PrivilegeCreate) SetRequireOwnership(v int) *PrivilegeCreate {
-	_c.mutation.SetRequireOwnership(v)
-	return _c
+func (pc *PrivilegeCreate) SetRequireOwnership(i int) *PrivilegeCreate {
+	pc.mutation.SetRequireOwnership(i)
+	return pc
 }
 
 // SetNillableRequireOwnership sets the "requireOwnership" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableRequireOwnership(v *int) *PrivilegeCreate {
-	if v != nil {
-		_c.SetRequireOwnership(*v)
+func (pc *PrivilegeCreate) SetNillableRequireOwnership(i *int) *PrivilegeCreate {
+	if i != nil {
+		pc.SetRequireOwnership(*i)
 	}
-	return _c
+	return pc
 }
 
 // SetDescription sets the "description" field.
-func (_c *PrivilegeCreate) SetDescription(v string) *PrivilegeCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (pc *PrivilegeCreate) SetDescription(s string) *PrivilegeCreate {
+	pc.mutation.SetDescription(s)
+	return pc
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_c *PrivilegeCreate) SetNillableDescription(v *string) *PrivilegeCreate {
-	if v != nil {
-		_c.SetDescription(*v)
+func (pc *PrivilegeCreate) SetNillableDescription(s *string) *PrivilegeCreate {
+	if s != nil {
+		pc.SetDescription(*s)
 	}
-	return _c
+	return pc
 }
 
 // SetID sets the "id" field.
-func (_c *PrivilegeCreate) SetID(v int) *PrivilegeCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (pc *PrivilegeCreate) SetID(i int) *PrivilegeCreate {
+	pc.mutation.SetID(i)
+	return pc
 }
 
 // Mutation returns the PrivilegeMutation object of the builder.
-func (_c *PrivilegeCreate) Mutation() *PrivilegeMutation {
-	return _c.mutation
+func (pc *PrivilegeCreate) Mutation() *PrivilegeMutation {
+	return pc.mutation
 }
 
 // Save creates the Privilege in the database.
-func (_c *PrivilegeCreate) Save(ctx context.Context) (*Privilege, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (pc *PrivilegeCreate) Save(ctx context.Context) (*Privilege, error) {
+	pc.defaults()
+	return withHooks(ctx, pc.sqlSave, pc.mutation, pc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *PrivilegeCreate) SaveX(ctx context.Context) *Privilege {
-	v, err := _c.Save(ctx)
+func (pc *PrivilegeCreate) SaveX(ctx context.Context) *Privilege {
+	v, err := pc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -191,97 +191,97 @@ func (_c *PrivilegeCreate) SaveX(ctx context.Context) *Privilege {
 }
 
 // Exec executes the query.
-func (_c *PrivilegeCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (pc *PrivilegeCreate) Exec(ctx context.Context) error {
+	_, err := pc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *PrivilegeCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (pc *PrivilegeCreate) ExecX(ctx context.Context) {
+	if err := pc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *PrivilegeCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (pc *PrivilegeCreate) defaults() {
+	if _, ok := pc.mutation.CreateTime(); !ok {
 		v := privilege.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		pc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := pc.mutation.UpdateTime(); !ok {
 		v := privilege.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		pc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := pc.mutation.IsDelete(); !ok {
 		v := privilege.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		pc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := pc.mutation.Version(); !ok {
 		v := privilege.DefaultVersion
-		_c.mutation.SetVersion(v)
+		pc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.IsVisible(); !ok {
+	if _, ok := pc.mutation.IsVisible(); !ok {
 		v := privilege.DefaultIsVisible
-		_c.mutation.SetIsVisible(v)
+		pc.mutation.SetIsVisible(v)
 	}
-	if _, ok := _c.mutation.IsPublic(); !ok {
+	if _, ok := pc.mutation.IsPublic(); !ok {
 		v := privilege.DefaultIsPublic
-		_c.mutation.SetIsPublic(v)
+		pc.mutation.SetIsPublic(v)
 	}
-	if _, ok := _c.mutation.RequireOwnership(); !ok {
+	if _, ok := pc.mutation.RequireOwnership(); !ok {
 		v := privilege.DefaultRequireOwnership
-		_c.mutation.SetRequireOwnership(v)
+		pc.mutation.SetRequireOwnership(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *PrivilegeCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (pc *PrivilegeCreate) check() error {
+	if _, ok := pc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Privilege.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := pc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Privilege.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := pc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Privilege.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := pc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Privilege.version"`)}
 	}
-	if _, ok := _c.mutation.PrivilegeName(); !ok {
+	if _, ok := pc.mutation.PrivilegeName(); !ok {
 		return &ValidationError{Name: "privilegeName", err: errors.New(`ent: missing required field "Privilege.privilegeName"`)}
 	}
-	if _, ok := _c.mutation.PrivilegeCode(); !ok {
+	if _, ok := pc.mutation.PrivilegeCode(); !ok {
 		return &ValidationError{Name: "privilegeCode", err: errors.New(`ent: missing required field "Privilege.privilegeCode"`)}
 	}
-	if _, ok := _c.mutation.PrivilegePage(); !ok {
+	if _, ok := pc.mutation.PrivilegePage(); !ok {
 		return &ValidationError{Name: "privilegePage", err: errors.New(`ent: missing required field "Privilege.privilegePage"`)}
 	}
-	if _, ok := _c.mutation.IsVisible(); !ok {
+	if _, ok := pc.mutation.IsVisible(); !ok {
 		return &ValidationError{Name: "isVisible", err: errors.New(`ent: missing required field "Privilege.isVisible"`)}
 	}
-	if _, ok := _c.mutation.PathPattern(); !ok {
+	if _, ok := pc.mutation.PathPattern(); !ok {
 		return &ValidationError{Name: "pathPattern", err: errors.New(`ent: missing required field "Privilege.pathPattern"`)}
 	}
-	if _, ok := _c.mutation.HttpMethod(); !ok {
+	if _, ok := pc.mutation.HttpMethod(); !ok {
 		return &ValidationError{Name: "httpMethod", err: errors.New(`ent: missing required field "Privilege.httpMethod"`)}
 	}
-	if _, ok := _c.mutation.IsPublic(); !ok {
+	if _, ok := pc.mutation.IsPublic(); !ok {
 		return &ValidationError{Name: "isPublic", err: errors.New(`ent: missing required field "Privilege.isPublic"`)}
 	}
-	if _, ok := _c.mutation.RequireOwnership(); !ok {
+	if _, ok := pc.mutation.RequireOwnership(); !ok {
 		return &ValidationError{Name: "requireOwnership", err: errors.New(`ent: missing required field "Privilege.requireOwnership"`)}
 	}
 	return nil
 }
 
-func (_c *PrivilegeCreate) sqlSave(ctx context.Context) (*Privilege, error) {
-	if err := _c.check(); err != nil {
+func (pc *PrivilegeCreate) sqlSave(ctx context.Context) (*Privilege, error) {
+	if err := pc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := pc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, pc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -291,70 +291,70 @@ func (_c *PrivilegeCreate) sqlSave(ctx context.Context) (*Privilege, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	pc.mutation.id = &_node.ID
+	pc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *PrivilegeCreate) createSpec() (*Privilege, *sqlgraph.CreateSpec) {
+func (pc *PrivilegeCreate) createSpec() (*Privilege, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Privilege{config: _c.config}
+		_node = &Privilege{config: pc.config}
 		_spec = sqlgraph.NewCreateSpec(privilege.Table, sqlgraph.NewFieldSpec(privilege.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = pc.conflict
+	if id, ok := pc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := pc.mutation.CreateTime(); ok {
 		_spec.SetField(privilege.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := pc.mutation.UpdateTime(); ok {
 		_spec.SetField(privilege.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := pc.mutation.IsDelete(); ok {
 		_spec.SetField(privilege.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := pc.mutation.Version(); ok {
 		_spec.SetField(privilege.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.PrivilegeName(); ok {
+	if value, ok := pc.mutation.PrivilegeName(); ok {
 		_spec.SetField(privilege.FieldPrivilegeName, field.TypeString, value)
 		_node.PrivilegeName = value
 	}
-	if value, ok := _c.mutation.PrivilegeCode(); ok {
+	if value, ok := pc.mutation.PrivilegeCode(); ok {
 		_spec.SetField(privilege.FieldPrivilegeCode, field.TypeString, value)
 		_node.PrivilegeCode = value
 	}
-	if value, ok := _c.mutation.PrivilegePage(); ok {
+	if value, ok := pc.mutation.PrivilegePage(); ok {
 		_spec.SetField(privilege.FieldPrivilegePage, field.TypeString, value)
 		_node.PrivilegePage = value
 	}
-	if value, ok := _c.mutation.IsVisible(); ok {
+	if value, ok := pc.mutation.IsVisible(); ok {
 		_spec.SetField(privilege.FieldIsVisible, field.TypeInt, value)
 		_node.IsVisible = value
 	}
-	if value, ok := _c.mutation.PathPattern(); ok {
+	if value, ok := pc.mutation.PathPattern(); ok {
 		_spec.SetField(privilege.FieldPathPattern, field.TypeString, value)
 		_node.PathPattern = value
 	}
-	if value, ok := _c.mutation.HttpMethod(); ok {
+	if value, ok := pc.mutation.HttpMethod(); ok {
 		_spec.SetField(privilege.FieldHttpMethod, field.TypeString, value)
 		_node.HttpMethod = value
 	}
-	if value, ok := _c.mutation.IsPublic(); ok {
+	if value, ok := pc.mutation.IsPublic(); ok {
 		_spec.SetField(privilege.FieldIsPublic, field.TypeInt, value)
 		_node.IsPublic = value
 	}
-	if value, ok := _c.mutation.RequireOwnership(); ok {
+	if value, ok := pc.mutation.RequireOwnership(); ok {
 		_spec.SetField(privilege.FieldRequireOwnership, field.TypeInt, value)
 		_node.RequireOwnership = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := pc.mutation.Description(); ok {
 		_spec.SetField(privilege.FieldDescription, field.TypeString, value)
 		_node.Description = &value
 	}
@@ -377,10 +377,10 @@ func (_c *PrivilegeCreate) createSpec() (*Privilege, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *PrivilegeCreate) OnConflict(opts ...sql.ConflictOption) *PrivilegeUpsertOne {
-	_c.conflict = opts
+func (pc *PrivilegeCreate) OnConflict(opts ...sql.ConflictOption) *PrivilegeUpsertOne {
+	pc.conflict = opts
 	return &PrivilegeUpsertOne{
-		create: _c,
+		create: pc,
 	}
 }
 
@@ -390,10 +390,10 @@ func (_c *PrivilegeCreate) OnConflict(opts ...sql.ConflictOption) *PrivilegeUpse
 //	client.Privilege.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *PrivilegeCreate) OnConflictColumns(columns ...string) *PrivilegeUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (pc *PrivilegeCreate) OnConflictColumns(columns ...string) *PrivilegeUpsertOne {
+	pc.conflict = append(pc.conflict, sql.ConflictColumns(columns...))
 	return &PrivilegeUpsertOne{
-		create: _c,
+		create: pc,
 	}
 }
 
@@ -880,16 +880,16 @@ type PrivilegeCreateBulk struct {
 }
 
 // Save creates the Privilege entities in the database.
-func (_c *PrivilegeCreateBulk) Save(ctx context.Context) ([]*Privilege, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (pcb *PrivilegeCreateBulk) Save(ctx context.Context) ([]*Privilege, error) {
+	if pcb.err != nil {
+		return nil, pcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Privilege, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(pcb.builders))
+	nodes := make([]*Privilege, len(pcb.builders))
+	mutators := make([]Mutator, len(pcb.builders))
+	for i := range pcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := pcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*PrivilegeMutation)
@@ -903,12 +903,12 @@ func (_c *PrivilegeCreateBulk) Save(ctx context.Context) ([]*Privilege, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, pcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = pcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, pcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -932,7 +932,7 @@ func (_c *PrivilegeCreateBulk) Save(ctx context.Context) ([]*Privilege, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, pcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -940,8 +940,8 @@ func (_c *PrivilegeCreateBulk) Save(ctx context.Context) ([]*Privilege, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *PrivilegeCreateBulk) SaveX(ctx context.Context) []*Privilege {
-	v, err := _c.Save(ctx)
+func (pcb *PrivilegeCreateBulk) SaveX(ctx context.Context) []*Privilege {
+	v, err := pcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -949,14 +949,14 @@ func (_c *PrivilegeCreateBulk) SaveX(ctx context.Context) []*Privilege {
 }
 
 // Exec executes the query.
-func (_c *PrivilegeCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (pcb *PrivilegeCreateBulk) Exec(ctx context.Context) error {
+	_, err := pcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *PrivilegeCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (pcb *PrivilegeCreateBulk) ExecX(ctx context.Context) {
+	if err := pcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -976,10 +976,10 @@ func (_c *PrivilegeCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *PrivilegeCreateBulk) OnConflict(opts ...sql.ConflictOption) *PrivilegeUpsertBulk {
-	_c.conflict = opts
+func (pcb *PrivilegeCreateBulk) OnConflict(opts ...sql.ConflictOption) *PrivilegeUpsertBulk {
+	pcb.conflict = opts
 	return &PrivilegeUpsertBulk{
-		create: _c,
+		create: pcb,
 	}
 }
 
@@ -989,10 +989,10 @@ func (_c *PrivilegeCreateBulk) OnConflict(opts ...sql.ConflictOption) *Privilege
 //	client.Privilege.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *PrivilegeCreateBulk) OnConflictColumns(columns ...string) *PrivilegeUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (pcb *PrivilegeCreateBulk) OnConflictColumns(columns ...string) *PrivilegeUpsertBulk {
+	pcb.conflict = append(pcb.conflict, sql.ConflictColumns(columns...))
 	return &PrivilegeUpsertBulk{
-		create: _c,
+		create: pcb,
 	}
 }
 

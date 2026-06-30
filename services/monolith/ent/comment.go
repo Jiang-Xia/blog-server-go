@@ -61,7 +61,7 @@ func (*Comment) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Comment fields.
-func (_m *Comment) assignValues(columns []string, values []any) error {
+func (c *Comment) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -71,66 +71,66 @@ func (_m *Comment) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				c.ID = value.String
 			}
 		case comment.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				c.CreateTime = value.Time
 			}
 		case comment.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				c.UpdateTime = value.Time
 			}
 		case comment.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				c.IsDelete = value.Bool
 			}
 		case comment.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				c.Version = int(value.Int64)
 			}
 		case comment.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content", values[i])
 			} else if value.Valid {
-				_m.Content = value.String
+				c.Content = value.String
 			}
 		case comment.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				c.UID = int(value.Int64)
 			}
 		case comment.FieldUserId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field userId", values[i])
 			} else if value.Valid {
-				_m.UserId = new(int)
-				*_m.UserId = int(value.Int64)
+				c.UserId = new(int)
+				*c.UserId = int(value.Int64)
 			}
 		case comment.FieldArticleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field articleId", values[i])
 			} else if value.Valid {
-				_m.ArticleId = new(int)
-				*_m.ArticleId = int(value.Int64)
+				c.ArticleId = new(int)
+				*c.ArticleId = int(value.Int64)
 			}
 		case comment.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				c.Status = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			c.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -138,63 +138,63 @@ func (_m *Comment) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Comment.
 // This includes values selected through modifiers, order, etc.
-func (_m *Comment) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (c *Comment) Value(name string) (ent.Value, error) {
+	return c.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Comment.
 // Note that you need to call Comment.Unwrap() before calling this method if this Comment
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Comment) Update() *CommentUpdateOne {
-	return NewCommentClient(_m.config).UpdateOne(_m)
+func (c *Comment) Update() *CommentUpdateOne {
+	return NewCommentClient(c.config).UpdateOne(c)
 }
 
 // Unwrap unwraps the Comment entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Comment) Unwrap() *Comment {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (c *Comment) Unwrap() *Comment {
+	_tx, ok := c.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Comment is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	c.config.driver = _tx.drv
+	return c
 }
 
 // String implements the fmt.Stringer.
-func (_m *Comment) String() string {
+func (c *Comment) String() string {
 	var builder strings.Builder
 	builder.WriteString("Comment(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", c.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(c.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(c.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", c.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", c.Version))
 	builder.WriteString(", ")
 	builder.WriteString("content=")
-	builder.WriteString(_m.Content)
+	builder.WriteString(c.Content)
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", c.UID))
 	builder.WriteString(", ")
-	if v := _m.UserId; v != nil {
+	if v := c.UserId; v != nil {
 		builder.WriteString("userId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := _m.ArticleId; v != nil {
+	if v := c.ArticleId; v != nil {
 		builder.WriteString("articleId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(c.Status)
 	builder.WriteByte(')')
 	return builder.String()
 }

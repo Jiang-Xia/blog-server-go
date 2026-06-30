@@ -61,7 +61,7 @@ func (*Reply) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Reply fields.
-func (_m *Reply) assignValues(columns []string, values []any) error {
+func (r *Reply) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -71,64 +71,64 @@ func (_m *Reply) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				r.ID = value.String
 			}
 		case reply.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				r.CreateTime = value.Time
 			}
 		case reply.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				r.UpdateTime = value.Time
 			}
 		case reply.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				r.IsDelete = value.Bool
 			}
 		case reply.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				r.Version = int(value.Int64)
 			}
 		case reply.FieldParentId:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field parentId", values[i])
 			} else if value.Valid {
-				_m.ParentId = value.String
+				r.ParentId = value.String
 			}
 		case reply.FieldReplyUid:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field replyUid", values[i])
 			} else if value.Valid {
-				_m.ReplyUid = value.String
+				r.ReplyUid = value.String
 			}
 		case reply.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content", values[i])
 			} else if value.Valid {
-				_m.Content = value.String
+				r.Content = value.String
 			}
 		case reply.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				r.UID = int(value.Int64)
 			}
 		case reply.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				r.Status = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			r.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -136,59 +136,59 @@ func (_m *Reply) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Reply.
 // This includes values selected through modifiers, order, etc.
-func (_m *Reply) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (r *Reply) Value(name string) (ent.Value, error) {
+	return r.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Reply.
 // Note that you need to call Reply.Unwrap() before calling this method if this Reply
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Reply) Update() *ReplyUpdateOne {
-	return NewReplyClient(_m.config).UpdateOne(_m)
+func (r *Reply) Update() *ReplyUpdateOne {
+	return NewReplyClient(r.config).UpdateOne(r)
 }
 
 // Unwrap unwraps the Reply entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Reply) Unwrap() *Reply {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (r *Reply) Unwrap() *Reply {
+	_tx, ok := r.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Reply is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	r.config.driver = _tx.drv
+	return r
 }
 
 // String implements the fmt.Stringer.
-func (_m *Reply) String() string {
+func (r *Reply) String() string {
 	var builder strings.Builder
 	builder.WriteString("Reply(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(r.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(r.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", r.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", r.Version))
 	builder.WriteString(", ")
 	builder.WriteString("parentId=")
-	builder.WriteString(_m.ParentId)
+	builder.WriteString(r.ParentId)
 	builder.WriteString(", ")
 	builder.WriteString("replyUid=")
-	builder.WriteString(_m.ReplyUid)
+	builder.WriteString(r.ReplyUid)
 	builder.WriteString(", ")
 	builder.WriteString("content=")
-	builder.WriteString(_m.Content)
+	builder.WriteString(r.Content)
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", r.UID))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(r.Status)
 	builder.WriteByte(')')
 	return builder.String()
 }

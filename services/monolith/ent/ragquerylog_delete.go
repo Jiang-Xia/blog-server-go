@@ -20,56 +20,56 @@ type RagQueryLogDelete struct {
 }
 
 // Where appends a list predicates to the RagQueryLogDelete builder.
-func (_d *RagQueryLogDelete) Where(ps ...predicate.RagQueryLog) *RagQueryLogDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rqld *RagQueryLogDelete) Where(ps ...predicate.RagQueryLog) *RagQueryLogDelete {
+	rqld.mutation.Where(ps...)
+	return rqld
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RagQueryLogDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rqld *RagQueryLogDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rqld.sqlExec, rqld.mutation, rqld.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RagQueryLogDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rqld *RagQueryLogDelete) ExecX(ctx context.Context) int {
+	n, err := rqld.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RagQueryLogDelete) sqlExec(ctx context.Context) (int, error) {
+func (rqld *RagQueryLogDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(ragquerylog.Table, sqlgraph.NewFieldSpec(ragquerylog.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rqld.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rqld.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rqld.mutation.done = true
 	return affected, err
 }
 
 // RagQueryLogDeleteOne is the builder for deleting a single RagQueryLog entity.
 type RagQueryLogDeleteOne struct {
-	_d *RagQueryLogDelete
+	rqld *RagQueryLogDelete
 }
 
 // Where appends a list predicates to the RagQueryLogDelete builder.
-func (_d *RagQueryLogDeleteOne) Where(ps ...predicate.RagQueryLog) *RagQueryLogDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rqldo *RagQueryLogDeleteOne) Where(ps ...predicate.RagQueryLog) *RagQueryLogDeleteOne {
+	rqldo.rqld.mutation.Where(ps...)
+	return rqldo
 }
 
 // Exec executes the deletion query.
-func (_d *RagQueryLogDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rqldo *RagQueryLogDeleteOne) Exec(ctx context.Context) error {
+	n, err := rqldo.rqld.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RagQueryLogDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RagQueryLogDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rqldo *RagQueryLogDeleteOne) ExecX(ctx context.Context) {
+	if err := rqldo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

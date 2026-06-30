@@ -20,56 +20,56 @@ type RoleDataScopeDelete struct {
 }
 
 // Where appends a list predicates to the RoleDataScopeDelete builder.
-func (_d *RoleDataScopeDelete) Where(ps ...predicate.RoleDataScope) *RoleDataScopeDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rdsd *RoleDataScopeDelete) Where(ps ...predicate.RoleDataScope) *RoleDataScopeDelete {
+	rdsd.mutation.Where(ps...)
+	return rdsd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RoleDataScopeDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rdsd *RoleDataScopeDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rdsd.sqlExec, rdsd.mutation, rdsd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RoleDataScopeDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rdsd *RoleDataScopeDelete) ExecX(ctx context.Context) int {
+	n, err := rdsd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RoleDataScopeDelete) sqlExec(ctx context.Context) (int, error) {
+func (rdsd *RoleDataScopeDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(roledatascope.Table, sqlgraph.NewFieldSpec(roledatascope.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rdsd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rdsd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rdsd.mutation.done = true
 	return affected, err
 }
 
 // RoleDataScopeDeleteOne is the builder for deleting a single RoleDataScope entity.
 type RoleDataScopeDeleteOne struct {
-	_d *RoleDataScopeDelete
+	rdsd *RoleDataScopeDelete
 }
 
 // Where appends a list predicates to the RoleDataScopeDelete builder.
-func (_d *RoleDataScopeDeleteOne) Where(ps ...predicate.RoleDataScope) *RoleDataScopeDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rdsdo *RoleDataScopeDeleteOne) Where(ps ...predicate.RoleDataScope) *RoleDataScopeDeleteOne {
+	rdsdo.rdsd.mutation.Where(ps...)
+	return rdsdo
 }
 
 // Exec executes the deletion query.
-func (_d *RoleDataScopeDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rdsdo *RoleDataScopeDeleteOne) Exec(ctx context.Context) error {
+	n, err := rdsdo.rdsd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RoleDataScopeDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RoleDataScopeDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rdsdo *RoleDataScopeDeleteOne) ExecX(ctx context.Context) {
+	if err := rdsdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

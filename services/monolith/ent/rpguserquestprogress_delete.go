@@ -20,56 +20,56 @@ type RpgUserQuestProgressDelete struct {
 }
 
 // Where appends a list predicates to the RpgUserQuestProgressDelete builder.
-func (_d *RpgUserQuestProgressDelete) Where(ps ...predicate.RpgUserQuestProgress) *RpgUserQuestProgressDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (ruqpd *RpgUserQuestProgressDelete) Where(ps ...predicate.RpgUserQuestProgress) *RpgUserQuestProgressDelete {
+	ruqpd.mutation.Where(ps...)
+	return ruqpd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgUserQuestProgressDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (ruqpd *RpgUserQuestProgressDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, ruqpd.sqlExec, ruqpd.mutation, ruqpd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserQuestProgressDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (ruqpd *RpgUserQuestProgressDelete) ExecX(ctx context.Context) int {
+	n, err := ruqpd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgUserQuestProgressDelete) sqlExec(ctx context.Context) (int, error) {
+func (ruqpd *RpgUserQuestProgressDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpguserquestprogress.Table, sqlgraph.NewFieldSpec(rpguserquestprogress.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := ruqpd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, ruqpd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	ruqpd.mutation.done = true
 	return affected, err
 }
 
 // RpgUserQuestProgressDeleteOne is the builder for deleting a single RpgUserQuestProgress entity.
 type RpgUserQuestProgressDeleteOne struct {
-	_d *RpgUserQuestProgressDelete
+	ruqpd *RpgUserQuestProgressDelete
 }
 
 // Where appends a list predicates to the RpgUserQuestProgressDelete builder.
-func (_d *RpgUserQuestProgressDeleteOne) Where(ps ...predicate.RpgUserQuestProgress) *RpgUserQuestProgressDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (ruqpdo *RpgUserQuestProgressDeleteOne) Where(ps ...predicate.RpgUserQuestProgress) *RpgUserQuestProgressDeleteOne {
+	ruqpdo.ruqpd.mutation.Where(ps...)
+	return ruqpdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgUserQuestProgressDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (ruqpdo *RpgUserQuestProgressDeleteOne) Exec(ctx context.Context) error {
+	n, err := ruqpdo.ruqpd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgUserQuestProgressDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserQuestProgressDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (ruqpdo *RpgUserQuestProgressDeleteOne) ExecX(ctx context.Context) {
+	if err := ruqpdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

@@ -61,7 +61,7 @@ func (*RpgGuild) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgGuild fields.
-func (_m *RpgGuild) assignValues(columns []string, values []any) error {
+func (rg *RpgGuild) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -72,65 +72,65 @@ func (_m *RpgGuild) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rg.ID = int(value.Int64)
 		case rpgguild.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rg.CreateTime = value.Time
 			}
 		case rpgguild.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rg.UpdateTime = value.Time
 			}
 		case rpgguild.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rg.IsDelete = value.Bool
 			}
 		case rpgguild.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rg.Version = int(value.Int64)
 			}
 		case rpgguild.FieldLeaderUid:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field leaderUid", values[i])
 			} else if value.Valid {
-				_m.LeaderUid = int(value.Int64)
+				rg.LeaderUid = int(value.Int64)
 			}
 		case rpgguild.FieldAnnouncement:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field announcement", values[i])
 			} else if value.Valid {
-				_m.Announcement = new(string)
-				*_m.Announcement = value.String
+				rg.Announcement = new(string)
+				*rg.Announcement = value.String
 			}
 		case rpgguild.FieldMemberCount:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field memberCount", values[i])
 			} else if value.Valid {
-				_m.MemberCount = int(value.Int64)
+				rg.MemberCount = int(value.Int64)
 			}
 		case rpgguild.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rg.EffectJson = new(string)
+				*rg.EffectJson = value.String
 			}
 		case rpgguild.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				rg.Name = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rg.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -138,63 +138,63 @@ func (_m *RpgGuild) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgGuild.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgGuild) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rg *RpgGuild) Value(name string) (ent.Value, error) {
+	return rg.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgGuild.
 // Note that you need to call RpgGuild.Unwrap() before calling this method if this RpgGuild
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgGuild) Update() *RpgGuildUpdateOne {
-	return NewRpgGuildClient(_m.config).UpdateOne(_m)
+func (rg *RpgGuild) Update() *RpgGuildUpdateOne {
+	return NewRpgGuildClient(rg.config).UpdateOne(rg)
 }
 
 // Unwrap unwraps the RpgGuild entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgGuild) Unwrap() *RpgGuild {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rg *RpgGuild) Unwrap() *RpgGuild {
+	_tx, ok := rg.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgGuild is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rg.config.driver = _tx.drv
+	return rg
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgGuild) String() string {
+func (rg *RpgGuild) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgGuild(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rg.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rg.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rg.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rg.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rg.Version))
 	builder.WriteString(", ")
 	builder.WriteString("leaderUid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.LeaderUid))
+	builder.WriteString(fmt.Sprintf("%v", rg.LeaderUid))
 	builder.WriteString(", ")
-	if v := _m.Announcement; v != nil {
+	if v := rg.Announcement; v != nil {
 		builder.WriteString("announcement=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("memberCount=")
-	builder.WriteString(fmt.Sprintf("%v", _m.MemberCount))
+	builder.WriteString(fmt.Sprintf("%v", rg.MemberCount))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rg.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(rg.Name)
 	builder.WriteByte(')')
 	return builder.String()
 }

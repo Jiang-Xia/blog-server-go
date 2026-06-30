@@ -28,40 +28,40 @@ type RpgQuestQuery struct {
 }
 
 // Where adds a new predicate for the RpgQuestQuery builder.
-func (_q *RpgQuestQuery) Where(ps ...predicate.RpgQuest) *RpgQuestQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rqq *RpgQuestQuery) Where(ps ...predicate.RpgQuest) *RpgQuestQuery {
+	rqq.predicates = append(rqq.predicates, ps...)
+	return rqq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgQuestQuery) Limit(limit int) *RpgQuestQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rqq *RpgQuestQuery) Limit(limit int) *RpgQuestQuery {
+	rqq.ctx.Limit = &limit
+	return rqq
 }
 
 // Offset to start from.
-func (_q *RpgQuestQuery) Offset(offset int) *RpgQuestQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rqq *RpgQuestQuery) Offset(offset int) *RpgQuestQuery {
+	rqq.ctx.Offset = &offset
+	return rqq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgQuestQuery) Unique(unique bool) *RpgQuestQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rqq *RpgQuestQuery) Unique(unique bool) *RpgQuestQuery {
+	rqq.ctx.Unique = &unique
+	return rqq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgQuestQuery) Order(o ...rpgquest.OrderOption) *RpgQuestQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rqq *RpgQuestQuery) Order(o ...rpgquest.OrderOption) *RpgQuestQuery {
+	rqq.order = append(rqq.order, o...)
+	return rqq
 }
 
 // First returns the first RpgQuest entity from the query.
 // Returns a *NotFoundError when no RpgQuest was found.
-func (_q *RpgQuestQuery) First(ctx context.Context) (*RpgQuest, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rqq *RpgQuestQuery) First(ctx context.Context) (*RpgQuest, error) {
+	nodes, err := rqq.Limit(1).All(setContextOp(ctx, rqq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgQuestQuery) First(ctx context.Context) (*RpgQuest, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgQuestQuery) FirstX(ctx context.Context) *RpgQuest {
-	node, err := _q.First(ctx)
+func (rqq *RpgQuestQuery) FirstX(ctx context.Context) *RpgQuest {
+	node, err := rqq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgQuestQuery) FirstX(ctx context.Context) *RpgQuest {
 
 // FirstID returns the first RpgQuest ID from the query.
 // Returns a *NotFoundError when no RpgQuest ID was found.
-func (_q *RpgQuestQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rqq *RpgQuestQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rqq.Limit(1).IDs(setContextOp(ctx, rqq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgQuestQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgQuestQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rqq *RpgQuestQuery) FirstIDX(ctx context.Context) int {
+	id, err := rqq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgQuestQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgQuest entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgQuest entity is found.
 // Returns a *NotFoundError when no RpgQuest entities are found.
-func (_q *RpgQuestQuery) Only(ctx context.Context) (*RpgQuest, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rqq *RpgQuestQuery) Only(ctx context.Context) (*RpgQuest, error) {
+	nodes, err := rqq.Limit(2).All(setContextOp(ctx, rqq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgQuestQuery) Only(ctx context.Context) (*RpgQuest, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgQuestQuery) OnlyX(ctx context.Context) *RpgQuest {
-	node, err := _q.Only(ctx)
+func (rqq *RpgQuestQuery) OnlyX(ctx context.Context) *RpgQuest {
+	node, err := rqq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgQuestQuery) OnlyX(ctx context.Context) *RpgQuest {
 // OnlyID is like Only, but returns the only RpgQuest ID in the query.
 // Returns a *NotSingularError when more than one RpgQuest ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgQuestQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rqq *RpgQuestQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rqq.Limit(2).IDs(setContextOp(ctx, rqq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgQuestQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgQuestQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rqq *RpgQuestQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rqq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgQuestQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgQuests.
-func (_q *RpgQuestQuery) All(ctx context.Context) ([]*RpgQuest, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rqq *RpgQuestQuery) All(ctx context.Context) ([]*RpgQuest, error) {
+	ctx = setContextOp(ctx, rqq.ctx, ent.OpQueryAll)
+	if err := rqq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgQuest, *RpgQuestQuery]()
-	return withInterceptors[[]*RpgQuest](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgQuest](ctx, rqq, qr, rqq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgQuestQuery) AllX(ctx context.Context) []*RpgQuest {
-	nodes, err := _q.All(ctx)
+func (rqq *RpgQuestQuery) AllX(ctx context.Context) []*RpgQuest {
+	nodes, err := rqq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgQuestQuery) AllX(ctx context.Context) []*RpgQuest {
 }
 
 // IDs executes the query and returns a list of RpgQuest IDs.
-func (_q *RpgQuestQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rqq *RpgQuestQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rqq.ctx.Unique == nil && rqq.path != nil {
+		rqq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpgquest.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rqq.ctx, ent.OpQueryIDs)
+	if err = rqq.Select(rpgquest.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgQuestQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rqq *RpgQuestQuery) IDsX(ctx context.Context) []int {
+	ids, err := rqq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgQuestQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgQuestQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rqq *RpgQuestQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rqq.ctx, ent.OpQueryCount)
+	if err := rqq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgQuestQuery](), _q.inters)
+	return withInterceptors[int](ctx, rqq, querierCount[*RpgQuestQuery](), rqq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgQuestQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rqq *RpgQuestQuery) CountX(ctx context.Context) int {
+	count, err := rqq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgQuestQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgQuestQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rqq *RpgQuestQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rqq.ctx, ent.OpQueryExist)
+	switch _, err := rqq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgQuestQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgQuestQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rqq *RpgQuestQuery) ExistX(ctx context.Context) bool {
+	exist, err := rqq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgQuestQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgQuestQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgQuestQuery) Clone() *RpgQuestQuery {
-	if _q == nil {
+func (rqq *RpgQuestQuery) Clone() *RpgQuestQuery {
+	if rqq == nil {
 		return nil
 	}
 	return &RpgQuestQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpgquest.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgQuest{}, _q.predicates...),
+		config:     rqq.config,
+		ctx:        rqq.ctx.Clone(),
+		order:      append([]rpgquest.OrderOption{}, rqq.order...),
+		inters:     append([]Interceptor{}, rqq.inters...),
+		predicates: append([]predicate.RpgQuest{}, rqq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rqq.sql.Clone(),
+		path: rqq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgQuestQuery) Clone() *RpgQuestQuery {
 //		GroupBy(rpgquest.FieldCode).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgQuestQuery) GroupBy(field string, fields ...string) *RpgQuestGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgQuestGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rqq *RpgQuestQuery) GroupBy(field string, fields ...string) *RpgQuestGroupBy {
+	rqq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgQuestGroupBy{build: rqq}
+	grbuild.flds = &rqq.ctx.Fields
 	grbuild.label = rpgquest.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgQuestQuery) GroupBy(field string, fields ...string) *RpgQuestGroupB
 //	client.RpgQuest.Query().
 //		Select(rpgquest.FieldCode).
 //		Scan(ctx, &v)
-func (_q *RpgQuestQuery) Select(fields ...string) *RpgQuestSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgQuestSelect{RpgQuestQuery: _q}
+func (rqq *RpgQuestQuery) Select(fields ...string) *RpgQuestSelect {
+	rqq.ctx.Fields = append(rqq.ctx.Fields, fields...)
+	sbuild := &RpgQuestSelect{RpgQuestQuery: rqq}
 	sbuild.label = rpgquest.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rqq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgQuestSelect configured with the given aggregations.
-func (_q *RpgQuestQuery) Aggregate(fns ...AggregateFunc) *RpgQuestSelect {
-	return _q.Select().Aggregate(fns...)
+func (rqq *RpgQuestQuery) Aggregate(fns ...AggregateFunc) *RpgQuestSelect {
+	return rqq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgQuestQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rqq *RpgQuestQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rqq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rqq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rqq.ctx.Fields {
 		if !rpgquest.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rqq.path != nil {
+		prev, err := rqq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rqq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgQuestQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgQuest, error) {
+func (rqq *RpgQuestQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgQuest, error) {
 	var (
 		nodes = []*RpgQuest{}
-		_spec = _q.querySpec()
+		_spec = rqq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgQuest).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgQuest{config: _q.config}
+		node := &RpgQuest{config: rqq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rqq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgQuestQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Rpg
 	return nodes, nil
 }
 
-func (_q *RpgQuestQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rqq *RpgQuestQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rqq.querySpec()
+	_spec.Node.Columns = rqq.ctx.Fields
+	if len(rqq.ctx.Fields) > 0 {
+		_spec.Unique = rqq.ctx.Unique != nil && *rqq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rqq.driver, _spec)
 }
 
-func (_q *RpgQuestQuery) querySpec() *sqlgraph.QuerySpec {
+func (rqq *RpgQuestQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpgquest.Table, rpgquest.Columns, sqlgraph.NewFieldSpec(rpgquest.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rqq.sql
+	if unique := rqq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rqq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rqq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpgquest.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgQuestQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rqq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rqq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rqq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rqq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgQuestQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgQuestQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rqq *RpgQuestQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rqq.driver.Dialect())
 	t1 := builder.Table(rpgquest.Table)
-	columns := _q.ctx.Fields
+	columns := rqq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpgquest.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rqq.sql != nil {
+		selector = rqq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rqq.ctx.Unique != nil && *rqq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rqq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rqq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rqq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rqq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgQuestGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgQuestGroupBy) Aggregate(fns ...AggregateFunc) *RpgQuestGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rqgb *RpgQuestGroupBy) Aggregate(fns ...AggregateFunc) *RpgQuestGroupBy {
+	rqgb.fns = append(rqgb.fns, fns...)
+	return rqgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgQuestGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rqgb *RpgQuestGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rqgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rqgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgQuestQuery, *RpgQuestGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgQuestQuery, *RpgQuestGroupBy](ctx, rqgb.build, rqgb, rqgb.build.inters, v)
 }
 
-func (_g *RpgQuestGroupBy) sqlScan(ctx context.Context, root *RpgQuestQuery, v any) error {
+func (rqgb *RpgQuestGroupBy) sqlScan(ctx context.Context, root *RpgQuestQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rqgb.fns))
+	for _, fn := range rqgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rqgb.flds)+len(rqgb.fns))
+		for _, f := range *rqgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rqgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rqgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgQuestSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgQuestSelect) Aggregate(fns ...AggregateFunc) *RpgQuestSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rqs *RpgQuestSelect) Aggregate(fns ...AggregateFunc) *RpgQuestSelect {
+	rqs.fns = append(rqs.fns, fns...)
+	return rqs
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgQuestSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rqs *RpgQuestSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rqs.ctx, ent.OpQuerySelect)
+	if err := rqs.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgQuestQuery, *RpgQuestSelect](ctx, _s.RpgQuestQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgQuestQuery, *RpgQuestSelect](ctx, rqs.RpgQuestQuery, rqs, rqs.inters, v)
 }
 
-func (_s *RpgQuestSelect) sqlScan(ctx context.Context, root *RpgQuestQuery, v any) error {
+func (rqs *RpgQuestSelect) sqlScan(ctx context.Context, root *RpgQuestQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rqs.fns))
+	for _, fn := range rqs.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rqs.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgQuestSelect) sqlScan(ctx context.Context, root *RpgQuestQuery, v an
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rqs.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

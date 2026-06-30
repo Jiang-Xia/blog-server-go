@@ -20,56 +20,56 @@ type SensitiveWordHitDelete struct {
 }
 
 // Where appends a list predicates to the SensitiveWordHitDelete builder.
-func (_d *SensitiveWordHitDelete) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (swhd *SensitiveWordHitDelete) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitDelete {
+	swhd.mutation.Where(ps...)
+	return swhd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *SensitiveWordHitDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (swhd *SensitiveWordHitDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, swhd.sqlExec, swhd.mutation, swhd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *SensitiveWordHitDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (swhd *SensitiveWordHitDelete) ExecX(ctx context.Context) int {
+	n, err := swhd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *SensitiveWordHitDelete) sqlExec(ctx context.Context) (int, error) {
+func (swhd *SensitiveWordHitDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(sensitivewordhit.Table, sqlgraph.NewFieldSpec(sensitivewordhit.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := swhd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, swhd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	swhd.mutation.done = true
 	return affected, err
 }
 
 // SensitiveWordHitDeleteOne is the builder for deleting a single SensitiveWordHit entity.
 type SensitiveWordHitDeleteOne struct {
-	_d *SensitiveWordHitDelete
+	swhd *SensitiveWordHitDelete
 }
 
 // Where appends a list predicates to the SensitiveWordHitDelete builder.
-func (_d *SensitiveWordHitDeleteOne) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (swhdo *SensitiveWordHitDeleteOne) Where(ps ...predicate.SensitiveWordHit) *SensitiveWordHitDeleteOne {
+	swhdo.swhd.mutation.Where(ps...)
+	return swhdo
 }
 
 // Exec executes the deletion query.
-func (_d *SensitiveWordHitDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (swhdo *SensitiveWordHitDeleteOne) Exec(ctx context.Context) error {
+	n, err := swhdo.swhd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *SensitiveWordHitDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *SensitiveWordHitDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (swhdo *SensitiveWordHitDeleteOne) ExecX(ctx context.Context) {
+	if err := swhdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

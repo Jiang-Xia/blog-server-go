@@ -28,40 +28,40 @@ type RpgUserQuestProgressQuery struct {
 }
 
 // Where adds a new predicate for the RpgUserQuestProgressQuery builder.
-func (_q *RpgUserQuestProgressQuery) Where(ps ...predicate.RpgUserQuestProgress) *RpgUserQuestProgressQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (ruqpq *RpgUserQuestProgressQuery) Where(ps ...predicate.RpgUserQuestProgress) *RpgUserQuestProgressQuery {
+	ruqpq.predicates = append(ruqpq.predicates, ps...)
+	return ruqpq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgUserQuestProgressQuery) Limit(limit int) *RpgUserQuestProgressQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (ruqpq *RpgUserQuestProgressQuery) Limit(limit int) *RpgUserQuestProgressQuery {
+	ruqpq.ctx.Limit = &limit
+	return ruqpq
 }
 
 // Offset to start from.
-func (_q *RpgUserQuestProgressQuery) Offset(offset int) *RpgUserQuestProgressQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (ruqpq *RpgUserQuestProgressQuery) Offset(offset int) *RpgUserQuestProgressQuery {
+	ruqpq.ctx.Offset = &offset
+	return ruqpq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgUserQuestProgressQuery) Unique(unique bool) *RpgUserQuestProgressQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (ruqpq *RpgUserQuestProgressQuery) Unique(unique bool) *RpgUserQuestProgressQuery {
+	ruqpq.ctx.Unique = &unique
+	return ruqpq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgUserQuestProgressQuery) Order(o ...rpguserquestprogress.OrderOption) *RpgUserQuestProgressQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (ruqpq *RpgUserQuestProgressQuery) Order(o ...rpguserquestprogress.OrderOption) *RpgUserQuestProgressQuery {
+	ruqpq.order = append(ruqpq.order, o...)
+	return ruqpq
 }
 
 // First returns the first RpgUserQuestProgress entity from the query.
 // Returns a *NotFoundError when no RpgUserQuestProgress was found.
-func (_q *RpgUserQuestProgressQuery) First(ctx context.Context) (*RpgUserQuestProgress, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (ruqpq *RpgUserQuestProgressQuery) First(ctx context.Context) (*RpgUserQuestProgress, error) {
+	nodes, err := ruqpq.Limit(1).All(setContextOp(ctx, ruqpq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgUserQuestProgressQuery) First(ctx context.Context) (*RpgUserQuestPr
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) FirstX(ctx context.Context) *RpgUserQuestProgress {
-	node, err := _q.First(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) FirstX(ctx context.Context) *RpgUserQuestProgress {
+	node, err := ruqpq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgUserQuestProgressQuery) FirstX(ctx context.Context) *RpgUserQuestPr
 
 // FirstID returns the first RpgUserQuestProgress ID from the query.
 // Returns a *NotFoundError when no RpgUserQuestProgress ID was found.
-func (_q *RpgUserQuestProgressQuery) FirstID(ctx context.Context) (id int, err error) {
+func (ruqpq *RpgUserQuestProgressQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = ruqpq.Limit(1).IDs(setContextOp(ctx, ruqpq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgUserQuestProgressQuery) FirstID(ctx context.Context) (id int, err e
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) FirstIDX(ctx context.Context) int {
+	id, err := ruqpq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgUserQuestProgressQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgUserQuestProgress entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgUserQuestProgress entity is found.
 // Returns a *NotFoundError when no RpgUserQuestProgress entities are found.
-func (_q *RpgUserQuestProgressQuery) Only(ctx context.Context) (*RpgUserQuestProgress, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (ruqpq *RpgUserQuestProgressQuery) Only(ctx context.Context) (*RpgUserQuestProgress, error) {
+	nodes, err := ruqpq.Limit(2).All(setContextOp(ctx, ruqpq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgUserQuestProgressQuery) Only(ctx context.Context) (*RpgUserQuestPro
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) OnlyX(ctx context.Context) *RpgUserQuestProgress {
-	node, err := _q.Only(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) OnlyX(ctx context.Context) *RpgUserQuestProgress {
+	node, err := ruqpq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgUserQuestProgressQuery) OnlyX(ctx context.Context) *RpgUserQuestPro
 // OnlyID is like Only, but returns the only RpgUserQuestProgress ID in the query.
 // Returns a *NotSingularError when more than one RpgUserQuestProgress ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgUserQuestProgressQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (ruqpq *RpgUserQuestProgressQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = ruqpq.Limit(2).IDs(setContextOp(ctx, ruqpq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgUserQuestProgressQuery) OnlyID(ctx context.Context) (id int, err er
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) OnlyIDX(ctx context.Context) int {
+	id, err := ruqpq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgUserQuestProgressQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgUserQuestProgresses.
-func (_q *RpgUserQuestProgressQuery) All(ctx context.Context) ([]*RpgUserQuestProgress, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruqpq *RpgUserQuestProgressQuery) All(ctx context.Context) ([]*RpgUserQuestProgress, error) {
+	ctx = setContextOp(ctx, ruqpq.ctx, ent.OpQueryAll)
+	if err := ruqpq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgUserQuestProgress, *RpgUserQuestProgressQuery]()
-	return withInterceptors[[]*RpgUserQuestProgress](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgUserQuestProgress](ctx, ruqpq, qr, ruqpq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) AllX(ctx context.Context) []*RpgUserQuestProgress {
-	nodes, err := _q.All(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) AllX(ctx context.Context) []*RpgUserQuestProgress {
+	nodes, err := ruqpq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgUserQuestProgressQuery) AllX(ctx context.Context) []*RpgUserQuestPr
 }
 
 // IDs executes the query and returns a list of RpgUserQuestProgress IDs.
-func (_q *RpgUserQuestProgressQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (ruqpq *RpgUserQuestProgressQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if ruqpq.ctx.Unique == nil && ruqpq.path != nil {
+		ruqpq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpguserquestprogress.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, ruqpq.ctx, ent.OpQueryIDs)
+	if err = ruqpq.Select(rpguserquestprogress.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) IDsX(ctx context.Context) []int {
+	ids, err := ruqpq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgUserQuestProgressQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgUserQuestProgressQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruqpq *RpgUserQuestProgressQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, ruqpq.ctx, ent.OpQueryCount)
+	if err := ruqpq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgUserQuestProgressQuery](), _q.inters)
+	return withInterceptors[int](ctx, ruqpq, querierCount[*RpgUserQuestProgressQuery](), ruqpq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) CountX(ctx context.Context) int {
+	count, err := ruqpq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgUserQuestProgressQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgUserQuestProgressQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (ruqpq *RpgUserQuestProgressQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, ruqpq.ctx, ent.OpQueryExist)
+	switch _, err := ruqpq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgUserQuestProgressQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgUserQuestProgressQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (ruqpq *RpgUserQuestProgressQuery) ExistX(ctx context.Context) bool {
+	exist, err := ruqpq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgUserQuestProgressQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgUserQuestProgressQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgUserQuestProgressQuery) Clone() *RpgUserQuestProgressQuery {
-	if _q == nil {
+func (ruqpq *RpgUserQuestProgressQuery) Clone() *RpgUserQuestProgressQuery {
+	if ruqpq == nil {
 		return nil
 	}
 	return &RpgUserQuestProgressQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpguserquestprogress.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgUserQuestProgress{}, _q.predicates...),
+		config:     ruqpq.config,
+		ctx:        ruqpq.ctx.Clone(),
+		order:      append([]rpguserquestprogress.OrderOption{}, ruqpq.order...),
+		inters:     append([]Interceptor{}, ruqpq.inters...),
+		predicates: append([]predicate.RpgUserQuestProgress{}, ruqpq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  ruqpq.sql.Clone(),
+		path: ruqpq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgUserQuestProgressQuery) Clone() *RpgUserQuestProgressQuery {
 //		GroupBy(rpguserquestprogress.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgUserQuestProgressQuery) GroupBy(field string, fields ...string) *RpgUserQuestProgressGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgUserQuestProgressGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (ruqpq *RpgUserQuestProgressQuery) GroupBy(field string, fields ...string) *RpgUserQuestProgressGroupBy {
+	ruqpq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgUserQuestProgressGroupBy{build: ruqpq}
+	grbuild.flds = &ruqpq.ctx.Fields
 	grbuild.label = rpguserquestprogress.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgUserQuestProgressQuery) GroupBy(field string, fields ...string) *Rp
 //	client.RpgUserQuestProgress.Query().
 //		Select(rpguserquestprogress.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RpgUserQuestProgressQuery) Select(fields ...string) *RpgUserQuestProgressSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgUserQuestProgressSelect{RpgUserQuestProgressQuery: _q}
+func (ruqpq *RpgUserQuestProgressQuery) Select(fields ...string) *RpgUserQuestProgressSelect {
+	ruqpq.ctx.Fields = append(ruqpq.ctx.Fields, fields...)
+	sbuild := &RpgUserQuestProgressSelect{RpgUserQuestProgressQuery: ruqpq}
 	sbuild.label = rpguserquestprogress.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &ruqpq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgUserQuestProgressSelect configured with the given aggregations.
-func (_q *RpgUserQuestProgressQuery) Aggregate(fns ...AggregateFunc) *RpgUserQuestProgressSelect {
-	return _q.Select().Aggregate(fns...)
+func (ruqpq *RpgUserQuestProgressQuery) Aggregate(fns ...AggregateFunc) *RpgUserQuestProgressSelect {
+	return ruqpq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgUserQuestProgressQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (ruqpq *RpgUserQuestProgressQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range ruqpq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, ruqpq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range ruqpq.ctx.Fields {
 		if !rpguserquestprogress.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if ruqpq.path != nil {
+		prev, err := ruqpq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		ruqpq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgUserQuestProgressQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserQuestProgress, error) {
+func (ruqpq *RpgUserQuestProgressQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserQuestProgress, error) {
 	var (
 		nodes = []*RpgUserQuestProgress{}
-		_spec = _q.querySpec()
+		_spec = ruqpq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgUserQuestProgress).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgUserQuestProgress{config: _q.config}
+		node := &RpgUserQuestProgress{config: ruqpq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, ruqpq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgUserQuestProgressQuery) sqlAll(ctx context.Context, hooks ...queryH
 	return nodes, nil
 }
 
-func (_q *RpgUserQuestProgressQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (ruqpq *RpgUserQuestProgressQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := ruqpq.querySpec()
+	_spec.Node.Columns = ruqpq.ctx.Fields
+	if len(ruqpq.ctx.Fields) > 0 {
+		_spec.Unique = ruqpq.ctx.Unique != nil && *ruqpq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, ruqpq.driver, _spec)
 }
 
-func (_q *RpgUserQuestProgressQuery) querySpec() *sqlgraph.QuerySpec {
+func (ruqpq *RpgUserQuestProgressQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpguserquestprogress.Table, rpguserquestprogress.Columns, sqlgraph.NewFieldSpec(rpguserquestprogress.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = ruqpq.sql
+	if unique := ruqpq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if ruqpq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := ruqpq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserquestprogress.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgUserQuestProgressQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := ruqpq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruqpq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruqpq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := ruqpq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgUserQuestProgressQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgUserQuestProgressQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (ruqpq *RpgUserQuestProgressQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(ruqpq.driver.Dialect())
 	t1 := builder.Table(rpguserquestprogress.Table)
-	columns := _q.ctx.Fields
+	columns := ruqpq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpguserquestprogress.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if ruqpq.sql != nil {
+		selector = ruqpq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if ruqpq.ctx.Unique != nil && *ruqpq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range ruqpq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range ruqpq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruqpq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruqpq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgUserQuestProgressGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgUserQuestProgressGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserQuestProgressGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (ruqpgb *RpgUserQuestProgressGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserQuestProgressGroupBy {
+	ruqpgb.fns = append(ruqpgb.fns, fns...)
+	return ruqpgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgUserQuestProgressGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (ruqpgb *RpgUserQuestProgressGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruqpgb.build.ctx, ent.OpQueryGroupBy)
+	if err := ruqpgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserQuestProgressQuery, *RpgUserQuestProgressGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgUserQuestProgressQuery, *RpgUserQuestProgressGroupBy](ctx, ruqpgb.build, ruqpgb, ruqpgb.build.inters, v)
 }
 
-func (_g *RpgUserQuestProgressGroupBy) sqlScan(ctx context.Context, root *RpgUserQuestProgressQuery, v any) error {
+func (ruqpgb *RpgUserQuestProgressGroupBy) sqlScan(ctx context.Context, root *RpgUserQuestProgressQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(ruqpgb.fns))
+	for _, fn := range ruqpgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*ruqpgb.flds)+len(ruqpgb.fns))
+		for _, f := range *ruqpgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*ruqpgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruqpgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgUserQuestProgressSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgUserQuestProgressSelect) Aggregate(fns ...AggregateFunc) *RpgUserQuestProgressSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (ruqps *RpgUserQuestProgressSelect) Aggregate(fns ...AggregateFunc) *RpgUserQuestProgressSelect {
+	ruqps.fns = append(ruqps.fns, fns...)
+	return ruqps
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgUserQuestProgressSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (ruqps *RpgUserQuestProgressSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruqps.ctx, ent.OpQuerySelect)
+	if err := ruqps.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserQuestProgressQuery, *RpgUserQuestProgressSelect](ctx, _s.RpgUserQuestProgressQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgUserQuestProgressQuery, *RpgUserQuestProgressSelect](ctx, ruqps.RpgUserQuestProgressQuery, ruqps, ruqps.inters, v)
 }
 
-func (_s *RpgUserQuestProgressSelect) sqlScan(ctx context.Context, root *RpgUserQuestProgressQuery, v any) error {
+func (ruqps *RpgUserQuestProgressSelect) sqlScan(ctx context.Context, root *RpgUserQuestProgressQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(ruqps.fns))
+	for _, fn := range ruqps.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*ruqps.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgUserQuestProgressSelect) sqlScan(ctx context.Context, root *RpgUser
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruqps.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

@@ -23,105 +23,105 @@ type RpgArticleTipCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgArticleTipCreate) SetCreateTime(v time.Time) *RpgArticleTipCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetCreateTime(t time.Time) *RpgArticleTipCreate {
+	ratc.mutation.SetCreateTime(t)
+	return ratc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgArticleTipCreate) SetNillableCreateTime(v *time.Time) *RpgArticleTipCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (ratc *RpgArticleTipCreate) SetNillableCreateTime(t *time.Time) *RpgArticleTipCreate {
+	if t != nil {
+		ratc.SetCreateTime(*t)
 	}
-	return _c
+	return ratc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgArticleTipCreate) SetUpdateTime(v time.Time) *RpgArticleTipCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetUpdateTime(t time.Time) *RpgArticleTipCreate {
+	ratc.mutation.SetUpdateTime(t)
+	return ratc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgArticleTipCreate) SetNillableUpdateTime(v *time.Time) *RpgArticleTipCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (ratc *RpgArticleTipCreate) SetNillableUpdateTime(t *time.Time) *RpgArticleTipCreate {
+	if t != nil {
+		ratc.SetUpdateTime(*t)
 	}
-	return _c
+	return ratc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgArticleTipCreate) SetIsDelete(v bool) *RpgArticleTipCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetIsDelete(b bool) *RpgArticleTipCreate {
+	ratc.mutation.SetIsDelete(b)
+	return ratc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgArticleTipCreate) SetNillableIsDelete(v *bool) *RpgArticleTipCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (ratc *RpgArticleTipCreate) SetNillableIsDelete(b *bool) *RpgArticleTipCreate {
+	if b != nil {
+		ratc.SetIsDelete(*b)
 	}
-	return _c
+	return ratc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgArticleTipCreate) SetVersion(v int) *RpgArticleTipCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetVersion(i int) *RpgArticleTipCreate {
+	ratc.mutation.SetVersion(i)
+	return ratc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgArticleTipCreate) SetNillableVersion(v *int) *RpgArticleTipCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (ratc *RpgArticleTipCreate) SetNillableVersion(i *int) *RpgArticleTipCreate {
+	if i != nil {
+		ratc.SetVersion(*i)
 	}
-	return _c
+	return ratc
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgArticleTipCreate) SetUID(v int) *RpgArticleTipCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetUID(i int) *RpgArticleTipCreate {
+	ratc.mutation.SetUID(i)
+	return ratc
 }
 
 // SetArticleId sets the "articleId" field.
-func (_c *RpgArticleTipCreate) SetArticleId(v int) *RpgArticleTipCreate {
-	_c.mutation.SetArticleId(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetArticleId(i int) *RpgArticleTipCreate {
+	ratc.mutation.SetArticleId(i)
+	return ratc
 }
 
 // SetAuthorUid sets the "authorUid" field.
-func (_c *RpgArticleTipCreate) SetAuthorUid(v int) *RpgArticleTipCreate {
-	_c.mutation.SetAuthorUid(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetAuthorUid(i int) *RpgArticleTipCreate {
+	ratc.mutation.SetAuthorUid(i)
+	return ratc
 }
 
 // SetAmount sets the "amount" field.
-func (_c *RpgArticleTipCreate) SetAmount(v int) *RpgArticleTipCreate {
-	_c.mutation.SetAmount(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetAmount(i int) *RpgArticleTipCreate {
+	ratc.mutation.SetAmount(i)
+	return ratc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgArticleTipCreate) SetID(v int) *RpgArticleTipCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ratc *RpgArticleTipCreate) SetID(i int) *RpgArticleTipCreate {
+	ratc.mutation.SetID(i)
+	return ratc
 }
 
 // Mutation returns the RpgArticleTipMutation object of the builder.
-func (_c *RpgArticleTipCreate) Mutation() *RpgArticleTipMutation {
-	return _c.mutation
+func (ratc *RpgArticleTipCreate) Mutation() *RpgArticleTipMutation {
+	return ratc.mutation
 }
 
 // Save creates the RpgArticleTip in the database.
-func (_c *RpgArticleTipCreate) Save(ctx context.Context) (*RpgArticleTip, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ratc *RpgArticleTipCreate) Save(ctx context.Context) (*RpgArticleTip, error) {
+	ratc.defaults()
+	return withHooks(ctx, ratc.sqlSave, ratc.mutation, ratc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgArticleTipCreate) SaveX(ctx context.Context) *RpgArticleTip {
-	v, err := _c.Save(ctx)
+func (ratc *RpgArticleTipCreate) SaveX(ctx context.Context) *RpgArticleTip {
+	v, err := ratc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -129,73 +129,73 @@ func (_c *RpgArticleTipCreate) SaveX(ctx context.Context) *RpgArticleTip {
 }
 
 // Exec executes the query.
-func (_c *RpgArticleTipCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ratc *RpgArticleTipCreate) Exec(ctx context.Context) error {
+	_, err := ratc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgArticleTipCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ratc *RpgArticleTipCreate) ExecX(ctx context.Context) {
+	if err := ratc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgArticleTipCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ratc *RpgArticleTipCreate) defaults() {
+	if _, ok := ratc.mutation.CreateTime(); !ok {
 		v := rpgarticletip.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		ratc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ratc.mutation.UpdateTime(); !ok {
 		v := rpgarticletip.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		ratc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ratc.mutation.IsDelete(); !ok {
 		v := rpgarticletip.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		ratc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ratc.mutation.Version(); !ok {
 		v := rpgarticletip.DefaultVersion
-		_c.mutation.SetVersion(v)
+		ratc.mutation.SetVersion(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgArticleTipCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ratc *RpgArticleTipCreate) check() error {
+	if _, ok := ratc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgArticleTip.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ratc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgArticleTip.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ratc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgArticleTip.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ratc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgArticleTip.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := ratc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgArticleTip.uid"`)}
 	}
-	if _, ok := _c.mutation.ArticleId(); !ok {
+	if _, ok := ratc.mutation.ArticleId(); !ok {
 		return &ValidationError{Name: "articleId", err: errors.New(`ent: missing required field "RpgArticleTip.articleId"`)}
 	}
-	if _, ok := _c.mutation.AuthorUid(); !ok {
+	if _, ok := ratc.mutation.AuthorUid(); !ok {
 		return &ValidationError{Name: "authorUid", err: errors.New(`ent: missing required field "RpgArticleTip.authorUid"`)}
 	}
-	if _, ok := _c.mutation.Amount(); !ok {
+	if _, ok := ratc.mutation.Amount(); !ok {
 		return &ValidationError{Name: "amount", err: errors.New(`ent: missing required field "RpgArticleTip.amount"`)}
 	}
 	return nil
 }
 
-func (_c *RpgArticleTipCreate) sqlSave(ctx context.Context) (*RpgArticleTip, error) {
-	if err := _c.check(); err != nil {
+func (ratc *RpgArticleTipCreate) sqlSave(ctx context.Context) (*RpgArticleTip, error) {
+	if err := ratc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ratc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ratc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -205,50 +205,50 @@ func (_c *RpgArticleTipCreate) sqlSave(ctx context.Context) (*RpgArticleTip, err
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ratc.mutation.id = &_node.ID
+	ratc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgArticleTipCreate) createSpec() (*RpgArticleTip, *sqlgraph.CreateSpec) {
+func (ratc *RpgArticleTipCreate) createSpec() (*RpgArticleTip, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgArticleTip{config: _c.config}
+		_node = &RpgArticleTip{config: ratc.config}
 		_spec = sqlgraph.NewCreateSpec(rpgarticletip.Table, sqlgraph.NewFieldSpec(rpgarticletip.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = ratc.conflict
+	if id, ok := ratc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := ratc.mutation.CreateTime(); ok {
 		_spec.SetField(rpgarticletip.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := ratc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgarticletip.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := ratc.mutation.IsDelete(); ok {
 		_spec.SetField(rpgarticletip.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := ratc.mutation.Version(); ok {
 		_spec.SetField(rpgarticletip.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := ratc.mutation.UID(); ok {
 		_spec.SetField(rpgarticletip.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.ArticleId(); ok {
+	if value, ok := ratc.mutation.ArticleId(); ok {
 		_spec.SetField(rpgarticletip.FieldArticleId, field.TypeInt, value)
 		_node.ArticleId = value
 	}
-	if value, ok := _c.mutation.AuthorUid(); ok {
+	if value, ok := ratc.mutation.AuthorUid(); ok {
 		_spec.SetField(rpgarticletip.FieldAuthorUid, field.TypeInt, value)
 		_node.AuthorUid = value
 	}
-	if value, ok := _c.mutation.Amount(); ok {
+	if value, ok := ratc.mutation.Amount(); ok {
 		_spec.SetField(rpgarticletip.FieldAmount, field.TypeInt, value)
 		_node.Amount = value
 	}
@@ -271,10 +271,10 @@ func (_c *RpgArticleTipCreate) createSpec() (*RpgArticleTip, *sqlgraph.CreateSpe
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgArticleTipCreate) OnConflict(opts ...sql.ConflictOption) *RpgArticleTipUpsertOne {
-	_c.conflict = opts
+func (ratc *RpgArticleTipCreate) OnConflict(opts ...sql.ConflictOption) *RpgArticleTipUpsertOne {
+	ratc.conflict = opts
 	return &RpgArticleTipUpsertOne{
-		create: _c,
+		create: ratc,
 	}
 }
 
@@ -284,10 +284,10 @@ func (_c *RpgArticleTipCreate) OnConflict(opts ...sql.ConflictOption) *RpgArticl
 //	client.RpgArticleTip.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgArticleTipCreate) OnConflictColumns(columns ...string) *RpgArticleTipUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ratc *RpgArticleTipCreate) OnConflictColumns(columns ...string) *RpgArticleTipUpsertOne {
+	ratc.conflict = append(ratc.conflict, sql.ConflictColumns(columns...))
 	return &RpgArticleTipUpsertOne{
-		create: _c,
+		create: ratc,
 	}
 }
 
@@ -644,16 +644,16 @@ type RpgArticleTipCreateBulk struct {
 }
 
 // Save creates the RpgArticleTip entities in the database.
-func (_c *RpgArticleTipCreateBulk) Save(ctx context.Context) ([]*RpgArticleTip, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ratcb *RpgArticleTipCreateBulk) Save(ctx context.Context) ([]*RpgArticleTip, error) {
+	if ratcb.err != nil {
+		return nil, ratcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgArticleTip, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ratcb.builders))
+	nodes := make([]*RpgArticleTip, len(ratcb.builders))
+	mutators := make([]Mutator, len(ratcb.builders))
+	for i := range ratcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ratcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgArticleTipMutation)
@@ -667,12 +667,12 @@ func (_c *RpgArticleTipCreateBulk) Save(ctx context.Context) ([]*RpgArticleTip, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ratcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ratcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ratcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -696,7 +696,7 @@ func (_c *RpgArticleTipCreateBulk) Save(ctx context.Context) ([]*RpgArticleTip, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ratcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -704,8 +704,8 @@ func (_c *RpgArticleTipCreateBulk) Save(ctx context.Context) ([]*RpgArticleTip, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgArticleTipCreateBulk) SaveX(ctx context.Context) []*RpgArticleTip {
-	v, err := _c.Save(ctx)
+func (ratcb *RpgArticleTipCreateBulk) SaveX(ctx context.Context) []*RpgArticleTip {
+	v, err := ratcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -713,14 +713,14 @@ func (_c *RpgArticleTipCreateBulk) SaveX(ctx context.Context) []*RpgArticleTip {
 }
 
 // Exec executes the query.
-func (_c *RpgArticleTipCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ratcb *RpgArticleTipCreateBulk) Exec(ctx context.Context) error {
+	_, err := ratcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgArticleTipCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ratcb *RpgArticleTipCreateBulk) ExecX(ctx context.Context) {
+	if err := ratcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -740,10 +740,10 @@ func (_c *RpgArticleTipCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgArticleTipCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgArticleTipUpsertBulk {
-	_c.conflict = opts
+func (ratcb *RpgArticleTipCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgArticleTipUpsertBulk {
+	ratcb.conflict = opts
 	return &RpgArticleTipUpsertBulk{
-		create: _c,
+		create: ratcb,
 	}
 }
 
@@ -753,10 +753,10 @@ func (_c *RpgArticleTipCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgAr
 //	client.RpgArticleTip.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgArticleTipCreateBulk) OnConflictColumns(columns ...string) *RpgArticleTipUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ratcb *RpgArticleTipCreateBulk) OnConflictColumns(columns ...string) *RpgArticleTipUpsertBulk {
+	ratcb.conflict = append(ratcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgArticleTipUpsertBulk{
-		create: _c,
+		create: ratcb,
 	}
 }
 

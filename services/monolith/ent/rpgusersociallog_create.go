@@ -23,127 +23,127 @@ type RpgUserSocialLogCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgUserSocialLogCreate) SetCreateTime(v time.Time) *RpgUserSocialLogCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetCreateTime(t time.Time) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetCreateTime(t)
+	return ruslc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgUserSocialLogCreate) SetNillableCreateTime(v *time.Time) *RpgUserSocialLogCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (ruslc *RpgUserSocialLogCreate) SetNillableCreateTime(t *time.Time) *RpgUserSocialLogCreate {
+	if t != nil {
+		ruslc.SetCreateTime(*t)
 	}
-	return _c
+	return ruslc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgUserSocialLogCreate) SetUpdateTime(v time.Time) *RpgUserSocialLogCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetUpdateTime(t time.Time) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetUpdateTime(t)
+	return ruslc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgUserSocialLogCreate) SetNillableUpdateTime(v *time.Time) *RpgUserSocialLogCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (ruslc *RpgUserSocialLogCreate) SetNillableUpdateTime(t *time.Time) *RpgUserSocialLogCreate {
+	if t != nil {
+		ruslc.SetUpdateTime(*t)
 	}
-	return _c
+	return ruslc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgUserSocialLogCreate) SetIsDelete(v bool) *RpgUserSocialLogCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetIsDelete(b bool) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetIsDelete(b)
+	return ruslc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgUserSocialLogCreate) SetNillableIsDelete(v *bool) *RpgUserSocialLogCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (ruslc *RpgUserSocialLogCreate) SetNillableIsDelete(b *bool) *RpgUserSocialLogCreate {
+	if b != nil {
+		ruslc.SetIsDelete(*b)
 	}
-	return _c
+	return ruslc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgUserSocialLogCreate) SetVersion(v int) *RpgUserSocialLogCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetVersion(i int) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetVersion(i)
+	return ruslc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgUserSocialLogCreate) SetNillableVersion(v *int) *RpgUserSocialLogCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (ruslc *RpgUserSocialLogCreate) SetNillableVersion(i *int) *RpgUserSocialLogCreate {
+	if i != nil {
+		ruslc.SetVersion(*i)
 	}
-	return _c
+	return ruslc
 }
 
 // SetFromUid sets the "fromUid" field.
-func (_c *RpgUserSocialLogCreate) SetFromUid(v int) *RpgUserSocialLogCreate {
-	_c.mutation.SetFromUid(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetFromUid(i int) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetFromUid(i)
+	return ruslc
 }
 
 // SetToUid sets the "toUid" field.
-func (_c *RpgUserSocialLogCreate) SetToUid(v int) *RpgUserSocialLogCreate {
-	_c.mutation.SetToUid(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetToUid(i int) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetToUid(i)
+	return ruslc
 }
 
 // SetCostCurrency sets the "costCurrency" field.
-func (_c *RpgUserSocialLogCreate) SetCostCurrency(v int) *RpgUserSocialLogCreate {
-	_c.mutation.SetCostCurrency(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetCostCurrency(i int) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetCostCurrency(i)
+	return ruslc
 }
 
 // SetNillableCostCurrency sets the "costCurrency" field if the given value is not nil.
-func (_c *RpgUserSocialLogCreate) SetNillableCostCurrency(v *int) *RpgUserSocialLogCreate {
-	if v != nil {
-		_c.SetCostCurrency(*v)
+func (ruslc *RpgUserSocialLogCreate) SetNillableCostCurrency(i *int) *RpgUserSocialLogCreate {
+	if i != nil {
+		ruslc.SetCostCurrency(*i)
 	}
-	return _c
+	return ruslc
 }
 
 // SetHpDelta sets the "hpDelta" field.
-func (_c *RpgUserSocialLogCreate) SetHpDelta(v int) *RpgUserSocialLogCreate {
-	_c.mutation.SetHpDelta(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetHpDelta(i int) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetHpDelta(i)
+	return ruslc
 }
 
 // SetNillableHpDelta sets the "hpDelta" field if the given value is not nil.
-func (_c *RpgUserSocialLogCreate) SetNillableHpDelta(v *int) *RpgUserSocialLogCreate {
-	if v != nil {
-		_c.SetHpDelta(*v)
+func (ruslc *RpgUserSocialLogCreate) SetNillableHpDelta(i *int) *RpgUserSocialLogCreate {
+	if i != nil {
+		ruslc.SetHpDelta(*i)
 	}
-	return _c
+	return ruslc
 }
 
 // SetAction sets the "action" field.
-func (_c *RpgUserSocialLogCreate) SetAction(v string) *RpgUserSocialLogCreate {
-	_c.mutation.SetAction(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetAction(s string) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetAction(s)
+	return ruslc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserSocialLogCreate) SetID(v int) *RpgUserSocialLogCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (ruslc *RpgUserSocialLogCreate) SetID(i int) *RpgUserSocialLogCreate {
+	ruslc.mutation.SetID(i)
+	return ruslc
 }
 
 // Mutation returns the RpgUserSocialLogMutation object of the builder.
-func (_c *RpgUserSocialLogCreate) Mutation() *RpgUserSocialLogMutation {
-	return _c.mutation
+func (ruslc *RpgUserSocialLogCreate) Mutation() *RpgUserSocialLogMutation {
+	return ruslc.mutation
 }
 
 // Save creates the RpgUserSocialLog in the database.
-func (_c *RpgUserSocialLogCreate) Save(ctx context.Context) (*RpgUserSocialLog, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ruslc *RpgUserSocialLogCreate) Save(ctx context.Context) (*RpgUserSocialLog, error) {
+	ruslc.defaults()
+	return withHooks(ctx, ruslc.sqlSave, ruslc.mutation, ruslc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserSocialLogCreate) SaveX(ctx context.Context) *RpgUserSocialLog {
-	v, err := _c.Save(ctx)
+func (ruslc *RpgUserSocialLogCreate) SaveX(ctx context.Context) *RpgUserSocialLog {
+	v, err := ruslc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -151,84 +151,84 @@ func (_c *RpgUserSocialLogCreate) SaveX(ctx context.Context) *RpgUserSocialLog {
 }
 
 // Exec executes the query.
-func (_c *RpgUserSocialLogCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruslc *RpgUserSocialLogCreate) Exec(ctx context.Context) error {
+	_, err := ruslc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserSocialLogCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruslc *RpgUserSocialLogCreate) ExecX(ctx context.Context) {
+	if err := ruslc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgUserSocialLogCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ruslc *RpgUserSocialLogCreate) defaults() {
+	if _, ok := ruslc.mutation.CreateTime(); !ok {
 		v := rpgusersociallog.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		ruslc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ruslc.mutation.UpdateTime(); !ok {
 		v := rpgusersociallog.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		ruslc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ruslc.mutation.IsDelete(); !ok {
 		v := rpgusersociallog.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		ruslc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ruslc.mutation.Version(); !ok {
 		v := rpgusersociallog.DefaultVersion
-		_c.mutation.SetVersion(v)
+		ruslc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.CostCurrency(); !ok {
+	if _, ok := ruslc.mutation.CostCurrency(); !ok {
 		v := rpgusersociallog.DefaultCostCurrency
-		_c.mutation.SetCostCurrency(v)
+		ruslc.mutation.SetCostCurrency(v)
 	}
-	if _, ok := _c.mutation.HpDelta(); !ok {
+	if _, ok := ruslc.mutation.HpDelta(); !ok {
 		v := rpgusersociallog.DefaultHpDelta
-		_c.mutation.SetHpDelta(v)
+		ruslc.mutation.SetHpDelta(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserSocialLogCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (ruslc *RpgUserSocialLogCreate) check() error {
+	if _, ok := ruslc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserSocialLog.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := ruslc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserSocialLog.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := ruslc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserSocialLog.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := ruslc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserSocialLog.version"`)}
 	}
-	if _, ok := _c.mutation.FromUid(); !ok {
+	if _, ok := ruslc.mutation.FromUid(); !ok {
 		return &ValidationError{Name: "fromUid", err: errors.New(`ent: missing required field "RpgUserSocialLog.fromUid"`)}
 	}
-	if _, ok := _c.mutation.ToUid(); !ok {
+	if _, ok := ruslc.mutation.ToUid(); !ok {
 		return &ValidationError{Name: "toUid", err: errors.New(`ent: missing required field "RpgUserSocialLog.toUid"`)}
 	}
-	if _, ok := _c.mutation.CostCurrency(); !ok {
+	if _, ok := ruslc.mutation.CostCurrency(); !ok {
 		return &ValidationError{Name: "costCurrency", err: errors.New(`ent: missing required field "RpgUserSocialLog.costCurrency"`)}
 	}
-	if _, ok := _c.mutation.HpDelta(); !ok {
+	if _, ok := ruslc.mutation.HpDelta(); !ok {
 		return &ValidationError{Name: "hpDelta", err: errors.New(`ent: missing required field "RpgUserSocialLog.hpDelta"`)}
 	}
-	if _, ok := _c.mutation.Action(); !ok {
+	if _, ok := ruslc.mutation.Action(); !ok {
 		return &ValidationError{Name: "action", err: errors.New(`ent: missing required field "RpgUserSocialLog.action"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserSocialLogCreate) sqlSave(ctx context.Context) (*RpgUserSocialLog, error) {
-	if err := _c.check(); err != nil {
+func (ruslc *RpgUserSocialLogCreate) sqlSave(ctx context.Context) (*RpgUserSocialLog, error) {
+	if err := ruslc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ruslc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ruslc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -238,54 +238,54 @@ func (_c *RpgUserSocialLogCreate) sqlSave(ctx context.Context) (*RpgUserSocialLo
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ruslc.mutation.id = &_node.ID
+	ruslc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserSocialLogCreate) createSpec() (*RpgUserSocialLog, *sqlgraph.CreateSpec) {
+func (ruslc *RpgUserSocialLogCreate) createSpec() (*RpgUserSocialLog, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserSocialLog{config: _c.config}
+		_node = &RpgUserSocialLog{config: ruslc.config}
 		_spec = sqlgraph.NewCreateSpec(rpgusersociallog.Table, sqlgraph.NewFieldSpec(rpgusersociallog.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = ruslc.conflict
+	if id, ok := ruslc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := ruslc.mutation.CreateTime(); ok {
 		_spec.SetField(rpgusersociallog.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := ruslc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgusersociallog.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := ruslc.mutation.IsDelete(); ok {
 		_spec.SetField(rpgusersociallog.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := ruslc.mutation.Version(); ok {
 		_spec.SetField(rpgusersociallog.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.FromUid(); ok {
+	if value, ok := ruslc.mutation.FromUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldFromUid, field.TypeInt, value)
 		_node.FromUid = value
 	}
-	if value, ok := _c.mutation.ToUid(); ok {
+	if value, ok := ruslc.mutation.ToUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldToUid, field.TypeInt, value)
 		_node.ToUid = value
 	}
-	if value, ok := _c.mutation.CostCurrency(); ok {
+	if value, ok := ruslc.mutation.CostCurrency(); ok {
 		_spec.SetField(rpgusersociallog.FieldCostCurrency, field.TypeInt, value)
 		_node.CostCurrency = value
 	}
-	if value, ok := _c.mutation.HpDelta(); ok {
+	if value, ok := ruslc.mutation.HpDelta(); ok {
 		_spec.SetField(rpgusersociallog.FieldHpDelta, field.TypeInt, value)
 		_node.HpDelta = value
 	}
-	if value, ok := _c.mutation.Action(); ok {
+	if value, ok := ruslc.mutation.Action(); ok {
 		_spec.SetField(rpgusersociallog.FieldAction, field.TypeString, value)
 		_node.Action = value
 	}
@@ -308,10 +308,10 @@ func (_c *RpgUserSocialLogCreate) createSpec() (*RpgUserSocialLog, *sqlgraph.Cre
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserSocialLogCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserSocialLogUpsertOne {
-	_c.conflict = opts
+func (ruslc *RpgUserSocialLogCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserSocialLogUpsertOne {
+	ruslc.conflict = opts
 	return &RpgUserSocialLogUpsertOne{
-		create: _c,
+		create: ruslc,
 	}
 }
 
@@ -321,10 +321,10 @@ func (_c *RpgUserSocialLogCreate) OnConflict(opts ...sql.ConflictOption) *RpgUse
 //	client.RpgUserSocialLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserSocialLogCreate) OnConflictColumns(columns ...string) *RpgUserSocialLogUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruslc *RpgUserSocialLogCreate) OnConflictColumns(columns ...string) *RpgUserSocialLogUpsertOne {
+	ruslc.conflict = append(ruslc.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserSocialLogUpsertOne{
-		create: _c,
+		create: ruslc,
 	}
 }
 
@@ -707,16 +707,16 @@ type RpgUserSocialLogCreateBulk struct {
 }
 
 // Save creates the RpgUserSocialLog entities in the database.
-func (_c *RpgUserSocialLogCreateBulk) Save(ctx context.Context) ([]*RpgUserSocialLog, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ruslcb *RpgUserSocialLogCreateBulk) Save(ctx context.Context) ([]*RpgUserSocialLog, error) {
+	if ruslcb.err != nil {
+		return nil, ruslcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserSocialLog, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ruslcb.builders))
+	nodes := make([]*RpgUserSocialLog, len(ruslcb.builders))
+	mutators := make([]Mutator, len(ruslcb.builders))
+	for i := range ruslcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ruslcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserSocialLogMutation)
@@ -730,12 +730,12 @@ func (_c *RpgUserSocialLogCreateBulk) Save(ctx context.Context) ([]*RpgUserSocia
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ruslcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ruslcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ruslcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -759,7 +759,7 @@ func (_c *RpgUserSocialLogCreateBulk) Save(ctx context.Context) ([]*RpgUserSocia
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ruslcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -767,8 +767,8 @@ func (_c *RpgUserSocialLogCreateBulk) Save(ctx context.Context) ([]*RpgUserSocia
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserSocialLogCreateBulk) SaveX(ctx context.Context) []*RpgUserSocialLog {
-	v, err := _c.Save(ctx)
+func (ruslcb *RpgUserSocialLogCreateBulk) SaveX(ctx context.Context) []*RpgUserSocialLog {
+	v, err := ruslcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -776,14 +776,14 @@ func (_c *RpgUserSocialLogCreateBulk) SaveX(ctx context.Context) []*RpgUserSocia
 }
 
 // Exec executes the query.
-func (_c *RpgUserSocialLogCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruslcb *RpgUserSocialLogCreateBulk) Exec(ctx context.Context) error {
+	_, err := ruslcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserSocialLogCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruslcb *RpgUserSocialLogCreateBulk) ExecX(ctx context.Context) {
+	if err := ruslcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -803,10 +803,10 @@ func (_c *RpgUserSocialLogCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserSocialLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserSocialLogUpsertBulk {
-	_c.conflict = opts
+func (ruslcb *RpgUserSocialLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserSocialLogUpsertBulk {
+	ruslcb.conflict = opts
 	return &RpgUserSocialLogUpsertBulk{
-		create: _c,
+		create: ruslcb,
 	}
 }
 
@@ -816,10 +816,10 @@ func (_c *RpgUserSocialLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *Rp
 //	client.RpgUserSocialLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserSocialLogCreateBulk) OnConflictColumns(columns ...string) *RpgUserSocialLogUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruslcb *RpgUserSocialLogCreateBulk) OnConflictColumns(columns ...string) *RpgUserSocialLogUpsertBulk {
+	ruslcb.conflict = append(ruslcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserSocialLogUpsertBulk{
-		create: _c,
+		create: ruslcb,
 	}
 }
 

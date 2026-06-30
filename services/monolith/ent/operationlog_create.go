@@ -23,181 +23,181 @@ type OperationLogCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *OperationLogCreate) SetCreateTime(v time.Time) *OperationLogCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (olc *OperationLogCreate) SetCreateTime(t time.Time) *OperationLogCreate {
+	olc.mutation.SetCreateTime(t)
+	return olc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableCreateTime(v *time.Time) *OperationLogCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (olc *OperationLogCreate) SetNillableCreateTime(t *time.Time) *OperationLogCreate {
+	if t != nil {
+		olc.SetCreateTime(*t)
 	}
-	return _c
+	return olc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *OperationLogCreate) SetUpdateTime(v time.Time) *OperationLogCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (olc *OperationLogCreate) SetUpdateTime(t time.Time) *OperationLogCreate {
+	olc.mutation.SetUpdateTime(t)
+	return olc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableUpdateTime(v *time.Time) *OperationLogCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (olc *OperationLogCreate) SetNillableUpdateTime(t *time.Time) *OperationLogCreate {
+	if t != nil {
+		olc.SetUpdateTime(*t)
 	}
-	return _c
+	return olc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *OperationLogCreate) SetIsDelete(v bool) *OperationLogCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (olc *OperationLogCreate) SetIsDelete(b bool) *OperationLogCreate {
+	olc.mutation.SetIsDelete(b)
+	return olc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableIsDelete(v *bool) *OperationLogCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (olc *OperationLogCreate) SetNillableIsDelete(b *bool) *OperationLogCreate {
+	if b != nil {
+		olc.SetIsDelete(*b)
 	}
-	return _c
+	return olc
 }
 
 // SetVersion sets the "version" field.
-func (_c *OperationLogCreate) SetVersion(v int) *OperationLogCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (olc *OperationLogCreate) SetVersion(i int) *OperationLogCreate {
+	olc.mutation.SetVersion(i)
+	return olc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableVersion(v *int) *OperationLogCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (olc *OperationLogCreate) SetNillableVersion(i *int) *OperationLogCreate {
+	if i != nil {
+		olc.SetVersion(*i)
 	}
-	return _c
+	return olc
 }
 
 // SetUserId sets the "userId" field.
-func (_c *OperationLogCreate) SetUserId(v int) *OperationLogCreate {
-	_c.mutation.SetUserId(v)
-	return _c
+func (olc *OperationLogCreate) SetUserId(i int) *OperationLogCreate {
+	olc.mutation.SetUserId(i)
+	return olc
 }
 
 // SetUsername sets the "username" field.
-func (_c *OperationLogCreate) SetUsername(v string) *OperationLogCreate {
-	_c.mutation.SetUsername(v)
-	return _c
+func (olc *OperationLogCreate) SetUsername(s string) *OperationLogCreate {
+	olc.mutation.SetUsername(s)
+	return olc
 }
 
 // SetNillableUsername sets the "username" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableUsername(v *string) *OperationLogCreate {
-	if v != nil {
-		_c.SetUsername(*v)
+func (olc *OperationLogCreate) SetNillableUsername(s *string) *OperationLogCreate {
+	if s != nil {
+		olc.SetUsername(*s)
 	}
-	return _c
+	return olc
 }
 
 // SetModule sets the "module" field.
-func (_c *OperationLogCreate) SetModule(v string) *OperationLogCreate {
-	_c.mutation.SetModule(v)
-	return _c
+func (olc *OperationLogCreate) SetModule(s string) *OperationLogCreate {
+	olc.mutation.SetModule(s)
+	return olc
 }
 
 // SetAction sets the "action" field.
-func (_c *OperationLogCreate) SetAction(v string) *OperationLogCreate {
-	_c.mutation.SetAction(v)
-	return _c
+func (olc *OperationLogCreate) SetAction(s string) *OperationLogCreate {
+	olc.mutation.SetAction(s)
+	return olc
 }
 
 // SetMethod sets the "method" field.
-func (_c *OperationLogCreate) SetMethod(v string) *OperationLogCreate {
-	_c.mutation.SetMethod(v)
-	return _c
+func (olc *OperationLogCreate) SetMethod(s string) *OperationLogCreate {
+	olc.mutation.SetMethod(s)
+	return olc
 }
 
 // SetPath sets the "path" field.
-func (_c *OperationLogCreate) SetPath(v string) *OperationLogCreate {
-	_c.mutation.SetPath(v)
-	return _c
+func (olc *OperationLogCreate) SetPath(s string) *OperationLogCreate {
+	olc.mutation.SetPath(s)
+	return olc
 }
 
 // SetDescription sets the "description" field.
-func (_c *OperationLogCreate) SetDescription(v string) *OperationLogCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (olc *OperationLogCreate) SetDescription(s string) *OperationLogCreate {
+	olc.mutation.SetDescription(s)
+	return olc
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableDescription(v *string) *OperationLogCreate {
-	if v != nil {
-		_c.SetDescription(*v)
+func (olc *OperationLogCreate) SetNillableDescription(s *string) *OperationLogCreate {
+	if s != nil {
+		olc.SetDescription(*s)
 	}
-	return _c
+	return olc
 }
 
 // SetIP sets the "ip" field.
-func (_c *OperationLogCreate) SetIP(v string) *OperationLogCreate {
-	_c.mutation.SetIP(v)
-	return _c
+func (olc *OperationLogCreate) SetIP(s string) *OperationLogCreate {
+	olc.mutation.SetIP(s)
+	return olc
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableIP(v *string) *OperationLogCreate {
-	if v != nil {
-		_c.SetIP(*v)
+func (olc *OperationLogCreate) SetNillableIP(s *string) *OperationLogCreate {
+	if s != nil {
+		olc.SetIP(*s)
 	}
-	return _c
+	return olc
 }
 
 // SetRequestBody sets the "requestBody" field.
-func (_c *OperationLogCreate) SetRequestBody(v string) *OperationLogCreate {
-	_c.mutation.SetRequestBody(v)
-	return _c
+func (olc *OperationLogCreate) SetRequestBody(s string) *OperationLogCreate {
+	olc.mutation.SetRequestBody(s)
+	return olc
 }
 
 // SetNillableRequestBody sets the "requestBody" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableRequestBody(v *string) *OperationLogCreate {
-	if v != nil {
-		_c.SetRequestBody(*v)
+func (olc *OperationLogCreate) SetNillableRequestBody(s *string) *OperationLogCreate {
+	if s != nil {
+		olc.SetRequestBody(*s)
 	}
-	return _c
+	return olc
 }
 
 // SetStatusCode sets the "statusCode" field.
-func (_c *OperationLogCreate) SetStatusCode(v int) *OperationLogCreate {
-	_c.mutation.SetStatusCode(v)
-	return _c
+func (olc *OperationLogCreate) SetStatusCode(i int) *OperationLogCreate {
+	olc.mutation.SetStatusCode(i)
+	return olc
 }
 
 // SetNillableStatusCode sets the "statusCode" field if the given value is not nil.
-func (_c *OperationLogCreate) SetNillableStatusCode(v *int) *OperationLogCreate {
-	if v != nil {
-		_c.SetStatusCode(*v)
+func (olc *OperationLogCreate) SetNillableStatusCode(i *int) *OperationLogCreate {
+	if i != nil {
+		olc.SetStatusCode(*i)
 	}
-	return _c
+	return olc
 }
 
 // SetID sets the "id" field.
-func (_c *OperationLogCreate) SetID(v int) *OperationLogCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (olc *OperationLogCreate) SetID(i int) *OperationLogCreate {
+	olc.mutation.SetID(i)
+	return olc
 }
 
 // Mutation returns the OperationLogMutation object of the builder.
-func (_c *OperationLogCreate) Mutation() *OperationLogMutation {
-	return _c.mutation
+func (olc *OperationLogCreate) Mutation() *OperationLogMutation {
+	return olc.mutation
 }
 
 // Save creates the OperationLog in the database.
-func (_c *OperationLogCreate) Save(ctx context.Context) (*OperationLog, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (olc *OperationLogCreate) Save(ctx context.Context) (*OperationLog, error) {
+	olc.defaults()
+	return withHooks(ctx, olc.sqlSave, olc.mutation, olc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *OperationLogCreate) SaveX(ctx context.Context) *OperationLog {
-	v, err := _c.Save(ctx)
+func (olc *OperationLogCreate) SaveX(ctx context.Context) *OperationLog {
+	v, err := olc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -205,104 +205,104 @@ func (_c *OperationLogCreate) SaveX(ctx context.Context) *OperationLog {
 }
 
 // Exec executes the query.
-func (_c *OperationLogCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (olc *OperationLogCreate) Exec(ctx context.Context) error {
+	_, err := olc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *OperationLogCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (olc *OperationLogCreate) ExecX(ctx context.Context) {
+	if err := olc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *OperationLogCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (olc *OperationLogCreate) defaults() {
+	if _, ok := olc.mutation.CreateTime(); !ok {
 		v := operationlog.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		olc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := olc.mutation.UpdateTime(); !ok {
 		v := operationlog.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		olc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := olc.mutation.IsDelete(); !ok {
 		v := operationlog.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		olc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := olc.mutation.Version(); !ok {
 		v := operationlog.DefaultVersion
-		_c.mutation.SetVersion(v)
+		olc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Username(); !ok {
+	if _, ok := olc.mutation.Username(); !ok {
 		v := operationlog.DefaultUsername
-		_c.mutation.SetUsername(v)
+		olc.mutation.SetUsername(v)
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := olc.mutation.Description(); !ok {
 		v := operationlog.DefaultDescription
-		_c.mutation.SetDescription(v)
+		olc.mutation.SetDescription(v)
 	}
-	if _, ok := _c.mutation.IP(); !ok {
+	if _, ok := olc.mutation.IP(); !ok {
 		v := operationlog.DefaultIP
-		_c.mutation.SetIP(v)
+		olc.mutation.SetIP(v)
 	}
-	if _, ok := _c.mutation.StatusCode(); !ok {
+	if _, ok := olc.mutation.StatusCode(); !ok {
 		v := operationlog.DefaultStatusCode
-		_c.mutation.SetStatusCode(v)
+		olc.mutation.SetStatusCode(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *OperationLogCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (olc *OperationLogCreate) check() error {
+	if _, ok := olc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "OperationLog.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := olc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "OperationLog.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := olc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "OperationLog.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := olc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "OperationLog.version"`)}
 	}
-	if _, ok := _c.mutation.UserId(); !ok {
+	if _, ok := olc.mutation.UserId(); !ok {
 		return &ValidationError{Name: "userId", err: errors.New(`ent: missing required field "OperationLog.userId"`)}
 	}
-	if _, ok := _c.mutation.Username(); !ok {
+	if _, ok := olc.mutation.Username(); !ok {
 		return &ValidationError{Name: "username", err: errors.New(`ent: missing required field "OperationLog.username"`)}
 	}
-	if _, ok := _c.mutation.Module(); !ok {
+	if _, ok := olc.mutation.Module(); !ok {
 		return &ValidationError{Name: "module", err: errors.New(`ent: missing required field "OperationLog.module"`)}
 	}
-	if _, ok := _c.mutation.Action(); !ok {
+	if _, ok := olc.mutation.Action(); !ok {
 		return &ValidationError{Name: "action", err: errors.New(`ent: missing required field "OperationLog.action"`)}
 	}
-	if _, ok := _c.mutation.Method(); !ok {
+	if _, ok := olc.mutation.Method(); !ok {
 		return &ValidationError{Name: "method", err: errors.New(`ent: missing required field "OperationLog.method"`)}
 	}
-	if _, ok := _c.mutation.Path(); !ok {
+	if _, ok := olc.mutation.Path(); !ok {
 		return &ValidationError{Name: "path", err: errors.New(`ent: missing required field "OperationLog.path"`)}
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := olc.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "OperationLog.description"`)}
 	}
-	if _, ok := _c.mutation.IP(); !ok {
+	if _, ok := olc.mutation.IP(); !ok {
 		return &ValidationError{Name: "ip", err: errors.New(`ent: missing required field "OperationLog.ip"`)}
 	}
-	if _, ok := _c.mutation.StatusCode(); !ok {
+	if _, ok := olc.mutation.StatusCode(); !ok {
 		return &ValidationError{Name: "statusCode", err: errors.New(`ent: missing required field "OperationLog.statusCode"`)}
 	}
 	return nil
 }
 
-func (_c *OperationLogCreate) sqlSave(ctx context.Context) (*OperationLog, error) {
-	if err := _c.check(); err != nil {
+func (olc *OperationLogCreate) sqlSave(ctx context.Context) (*OperationLog, error) {
+	if err := olc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := olc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, olc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -312,74 +312,74 @@ func (_c *OperationLogCreate) sqlSave(ctx context.Context) (*OperationLog, error
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	olc.mutation.id = &_node.ID
+	olc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *OperationLogCreate) createSpec() (*OperationLog, *sqlgraph.CreateSpec) {
+func (olc *OperationLogCreate) createSpec() (*OperationLog, *sqlgraph.CreateSpec) {
 	var (
-		_node = &OperationLog{config: _c.config}
+		_node = &OperationLog{config: olc.config}
 		_spec = sqlgraph.NewCreateSpec(operationlog.Table, sqlgraph.NewFieldSpec(operationlog.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = olc.conflict
+	if id, ok := olc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := olc.mutation.CreateTime(); ok {
 		_spec.SetField(operationlog.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := olc.mutation.UpdateTime(); ok {
 		_spec.SetField(operationlog.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := olc.mutation.IsDelete(); ok {
 		_spec.SetField(operationlog.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := olc.mutation.Version(); ok {
 		_spec.SetField(operationlog.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UserId(); ok {
+	if value, ok := olc.mutation.UserId(); ok {
 		_spec.SetField(operationlog.FieldUserId, field.TypeInt, value)
 		_node.UserId = value
 	}
-	if value, ok := _c.mutation.Username(); ok {
+	if value, ok := olc.mutation.Username(); ok {
 		_spec.SetField(operationlog.FieldUsername, field.TypeString, value)
 		_node.Username = value
 	}
-	if value, ok := _c.mutation.Module(); ok {
+	if value, ok := olc.mutation.Module(); ok {
 		_spec.SetField(operationlog.FieldModule, field.TypeString, value)
 		_node.Module = value
 	}
-	if value, ok := _c.mutation.Action(); ok {
+	if value, ok := olc.mutation.Action(); ok {
 		_spec.SetField(operationlog.FieldAction, field.TypeString, value)
 		_node.Action = value
 	}
-	if value, ok := _c.mutation.Method(); ok {
+	if value, ok := olc.mutation.Method(); ok {
 		_spec.SetField(operationlog.FieldMethod, field.TypeString, value)
 		_node.Method = value
 	}
-	if value, ok := _c.mutation.Path(); ok {
+	if value, ok := olc.mutation.Path(); ok {
 		_spec.SetField(operationlog.FieldPath, field.TypeString, value)
 		_node.Path = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := olc.mutation.Description(); ok {
 		_spec.SetField(operationlog.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.IP(); ok {
+	if value, ok := olc.mutation.IP(); ok {
 		_spec.SetField(operationlog.FieldIP, field.TypeString, value)
 		_node.IP = value
 	}
-	if value, ok := _c.mutation.RequestBody(); ok {
+	if value, ok := olc.mutation.RequestBody(); ok {
 		_spec.SetField(operationlog.FieldRequestBody, field.TypeString, value)
 		_node.RequestBody = &value
 	}
-	if value, ok := _c.mutation.StatusCode(); ok {
+	if value, ok := olc.mutation.StatusCode(); ok {
 		_spec.SetField(operationlog.FieldStatusCode, field.TypeInt, value)
 		_node.StatusCode = value
 	}
@@ -402,10 +402,10 @@ func (_c *OperationLogCreate) createSpec() (*OperationLog, *sqlgraph.CreateSpec)
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *OperationLogCreate) OnConflict(opts ...sql.ConflictOption) *OperationLogUpsertOne {
-	_c.conflict = opts
+func (olc *OperationLogCreate) OnConflict(opts ...sql.ConflictOption) *OperationLogUpsertOne {
+	olc.conflict = opts
 	return &OperationLogUpsertOne{
-		create: _c,
+		create: olc,
 	}
 }
 
@@ -415,10 +415,10 @@ func (_c *OperationLogCreate) OnConflict(opts ...sql.ConflictOption) *OperationL
 //	client.OperationLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *OperationLogCreate) OnConflictColumns(columns ...string) *OperationLogUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (olc *OperationLogCreate) OnConflictColumns(columns ...string) *OperationLogUpsertOne {
+	olc.conflict = append(olc.conflict, sql.ConflictColumns(columns...))
 	return &OperationLogUpsertOne{
-		create: _c,
+		create: olc,
 	}
 }
 
@@ -918,16 +918,16 @@ type OperationLogCreateBulk struct {
 }
 
 // Save creates the OperationLog entities in the database.
-func (_c *OperationLogCreateBulk) Save(ctx context.Context) ([]*OperationLog, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (olcb *OperationLogCreateBulk) Save(ctx context.Context) ([]*OperationLog, error) {
+	if olcb.err != nil {
+		return nil, olcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*OperationLog, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(olcb.builders))
+	nodes := make([]*OperationLog, len(olcb.builders))
+	mutators := make([]Mutator, len(olcb.builders))
+	for i := range olcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := olcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*OperationLogMutation)
@@ -941,12 +941,12 @@ func (_c *OperationLogCreateBulk) Save(ctx context.Context) ([]*OperationLog, er
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, olcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = olcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, olcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -970,7 +970,7 @@ func (_c *OperationLogCreateBulk) Save(ctx context.Context) ([]*OperationLog, er
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, olcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -978,8 +978,8 @@ func (_c *OperationLogCreateBulk) Save(ctx context.Context) ([]*OperationLog, er
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *OperationLogCreateBulk) SaveX(ctx context.Context) []*OperationLog {
-	v, err := _c.Save(ctx)
+func (olcb *OperationLogCreateBulk) SaveX(ctx context.Context) []*OperationLog {
+	v, err := olcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -987,14 +987,14 @@ func (_c *OperationLogCreateBulk) SaveX(ctx context.Context) []*OperationLog {
 }
 
 // Exec executes the query.
-func (_c *OperationLogCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (olcb *OperationLogCreateBulk) Exec(ctx context.Context) error {
+	_, err := olcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *OperationLogCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (olcb *OperationLogCreateBulk) ExecX(ctx context.Context) {
+	if err := olcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1014,10 +1014,10 @@ func (_c *OperationLogCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *OperationLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *OperationLogUpsertBulk {
-	_c.conflict = opts
+func (olcb *OperationLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *OperationLogUpsertBulk {
+	olcb.conflict = opts
 	return &OperationLogUpsertBulk{
-		create: _c,
+		create: olcb,
 	}
 }
 
@@ -1027,10 +1027,10 @@ func (_c *OperationLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *Operat
 //	client.OperationLog.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *OperationLogCreateBulk) OnConflictColumns(columns ...string) *OperationLogUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (olcb *OperationLogCreateBulk) OnConflictColumns(columns ...string) *OperationLogUpsertBulk {
+	olcb.conflict = append(olcb.conflict, sql.ConflictColumns(columns...))
 	return &OperationLogUpsertBulk{
-		create: _c,
+		create: olcb,
 	}
 }
 

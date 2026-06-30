@@ -22,24 +22,24 @@ type MyFileUpdate struct {
 }
 
 // Where appends a list predicates to the MyFileUpdate builder.
-func (_u *MyFileUpdate) Where(ps ...predicate.MyFile) *MyFileUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (mfu *MyFileUpdate) Where(ps ...predicate.MyFile) *MyFileUpdate {
+	mfu.mutation.Where(ps...)
+	return mfu
 }
 
 // Mutation returns the MyFileMutation object of the builder.
-func (_u *MyFileUpdate) Mutation() *MyFileMutation {
-	return _u.mutation
+func (mfu *MyFileUpdate) Mutation() *MyFileMutation {
+	return mfu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *MyFileUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (mfu *MyFileUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, mfu.sqlSave, mfu.mutation, mfu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *MyFileUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (mfu *MyFileUpdate) SaveX(ctx context.Context) int {
+	affected, err := mfu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -47,28 +47,28 @@ func (_u *MyFileUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *MyFileUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (mfu *MyFileUpdate) Exec(ctx context.Context) error {
+	_, err := mfu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *MyFileUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (mfu *MyFileUpdate) ExecX(ctx context.Context) {
+	if err := mfu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *MyFileUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (mfu *MyFileUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(myfile.Table, myfile.Columns, sqlgraph.NewFieldSpec(myfile.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := mfu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, mfu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{myfile.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -76,8 +76,8 @@ func (_u *MyFileUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	mfu.mutation.done = true
+	return n, nil
 }
 
 // MyFileUpdateOne is the builder for updating a single MyFile entity.
@@ -89,31 +89,31 @@ type MyFileUpdateOne struct {
 }
 
 // Mutation returns the MyFileMutation object of the builder.
-func (_u *MyFileUpdateOne) Mutation() *MyFileMutation {
-	return _u.mutation
+func (mfuo *MyFileUpdateOne) Mutation() *MyFileMutation {
+	return mfuo.mutation
 }
 
 // Where appends a list predicates to the MyFileUpdate builder.
-func (_u *MyFileUpdateOne) Where(ps ...predicate.MyFile) *MyFileUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (mfuo *MyFileUpdateOne) Where(ps ...predicate.MyFile) *MyFileUpdateOne {
+	mfuo.mutation.Where(ps...)
+	return mfuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *MyFileUpdateOne) Select(field string, fields ...string) *MyFileUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (mfuo *MyFileUpdateOne) Select(field string, fields ...string) *MyFileUpdateOne {
+	mfuo.fields = append([]string{field}, fields...)
+	return mfuo
 }
 
 // Save executes the query and returns the updated MyFile entity.
-func (_u *MyFileUpdateOne) Save(ctx context.Context) (*MyFile, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (mfuo *MyFileUpdateOne) Save(ctx context.Context) (*MyFile, error) {
+	return withHooks(ctx, mfuo.sqlSave, mfuo.mutation, mfuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *MyFileUpdateOne) SaveX(ctx context.Context) *MyFile {
-	node, err := _u.Save(ctx)
+func (mfuo *MyFileUpdateOne) SaveX(ctx context.Context) *MyFile {
+	node, err := mfuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -121,26 +121,26 @@ func (_u *MyFileUpdateOne) SaveX(ctx context.Context) *MyFile {
 }
 
 // Exec executes the query on the entity.
-func (_u *MyFileUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (mfuo *MyFileUpdateOne) Exec(ctx context.Context) error {
+	_, err := mfuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *MyFileUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (mfuo *MyFileUpdateOne) ExecX(ctx context.Context) {
+	if err := mfuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *MyFileUpdateOne) sqlSave(ctx context.Context) (_node *MyFile, err error) {
+func (mfuo *MyFileUpdateOne) sqlSave(ctx context.Context) (_node *MyFile, err error) {
 	_spec := sqlgraph.NewUpdateSpec(myfile.Table, myfile.Columns, sqlgraph.NewFieldSpec(myfile.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := mfuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "MyFile.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := mfuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, myfile.FieldID)
 		for _, f := range fields {
@@ -152,17 +152,17 @@ func (_u *MyFileUpdateOne) sqlSave(ctx context.Context) (_node *MyFile, err erro
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := mfuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	_node = &MyFile{config: _u.config}
+	_node = &MyFile{config: mfuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, mfuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{myfile.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -170,6 +170,6 @@ func (_u *MyFileUpdateOne) sqlSave(ctx context.Context) (_node *MyFile, err erro
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	mfuo.mutation.done = true
 	return _node, nil
 }

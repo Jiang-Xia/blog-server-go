@@ -23,199 +23,199 @@ type SensitiveWordUpdate struct {
 }
 
 // Where appends a list predicates to the SensitiveWordUpdate builder.
-func (_u *SensitiveWordUpdate) Where(ps ...predicate.SensitiveWord) *SensitiveWordUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (swu *SensitiveWordUpdate) Where(ps ...predicate.SensitiveWord) *SensitiveWordUpdate {
+	swu.mutation.Where(ps...)
+	return swu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *SensitiveWordUpdate) SetUpdateTime(v time.Time) *SensitiveWordUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetUpdateTime(t time.Time) *SensitiveWordUpdate {
+	swu.mutation.SetUpdateTime(t)
+	return swu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *SensitiveWordUpdate) SetIsDelete(v bool) *SensitiveWordUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetIsDelete(b bool) *SensitiveWordUpdate {
+	swu.mutation.SetIsDelete(b)
+	return swu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableIsDelete(v *bool) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (swu *SensitiveWordUpdate) SetNillableIsDelete(b *bool) *SensitiveWordUpdate {
+	if b != nil {
+		swu.SetIsDelete(*b)
 	}
-	return _u
+	return swu
 }
 
 // SetVersion sets the "version" field.
-func (_u *SensitiveWordUpdate) SetVersion(v int) *SensitiveWordUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetVersion(i int) *SensitiveWordUpdate {
+	swu.mutation.ResetVersion()
+	swu.mutation.SetVersion(i)
+	return swu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableVersion(v *int) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (swu *SensitiveWordUpdate) SetNillableVersion(i *int) *SensitiveWordUpdate {
+	if i != nil {
+		swu.SetVersion(*i)
 	}
-	return _u
+	return swu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *SensitiveWordUpdate) AddVersion(v int) *SensitiveWordUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (swu *SensitiveWordUpdate) AddVersion(i int) *SensitiveWordUpdate {
+	swu.mutation.AddVersion(i)
+	return swu
 }
 
 // SetWord sets the "word" field.
-func (_u *SensitiveWordUpdate) SetWord(v string) *SensitiveWordUpdate {
-	_u.mutation.SetWord(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetWord(s string) *SensitiveWordUpdate {
+	swu.mutation.SetWord(s)
+	return swu
 }
 
 // SetNillableWord sets the "word" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableWord(v *string) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetWord(*v)
+func (swu *SensitiveWordUpdate) SetNillableWord(s *string) *SensitiveWordUpdate {
+	if s != nil {
+		swu.SetWord(*s)
 	}
-	return _u
+	return swu
 }
 
 // SetCategory sets the "category" field.
-func (_u *SensitiveWordUpdate) SetCategory(v string) *SensitiveWordUpdate {
-	_u.mutation.SetCategory(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetCategory(s string) *SensitiveWordUpdate {
+	swu.mutation.SetCategory(s)
+	return swu
 }
 
 // SetNillableCategory sets the "category" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableCategory(v *string) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetCategory(*v)
+func (swu *SensitiveWordUpdate) SetNillableCategory(s *string) *SensitiveWordUpdate {
+	if s != nil {
+		swu.SetCategory(*s)
 	}
-	return _u
+	return swu
 }
 
 // SetStatus sets the "status" field.
-func (_u *SensitiveWordUpdate) SetStatus(v int) *SensitiveWordUpdate {
-	_u.mutation.ResetStatus()
-	_u.mutation.SetStatus(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetStatus(i int) *SensitiveWordUpdate {
+	swu.mutation.ResetStatus()
+	swu.mutation.SetStatus(i)
+	return swu
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableStatus(v *int) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (swu *SensitiveWordUpdate) SetNillableStatus(i *int) *SensitiveWordUpdate {
+	if i != nil {
+		swu.SetStatus(*i)
 	}
-	return _u
+	return swu
 }
 
-// AddStatus adds value to the "status" field.
-func (_u *SensitiveWordUpdate) AddStatus(v int) *SensitiveWordUpdate {
-	_u.mutation.AddStatus(v)
-	return _u
+// AddStatus adds i to the "status" field.
+func (swu *SensitiveWordUpdate) AddStatus(i int) *SensitiveWordUpdate {
+	swu.mutation.AddStatus(i)
+	return swu
 }
 
 // SetLevel sets the "level" field.
-func (_u *SensitiveWordUpdate) SetLevel(v int) *SensitiveWordUpdate {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetLevel(i int) *SensitiveWordUpdate {
+	swu.mutation.ResetLevel()
+	swu.mutation.SetLevel(i)
+	return swu
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableLevel(v *int) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetLevel(*v)
+func (swu *SensitiveWordUpdate) SetNillableLevel(i *int) *SensitiveWordUpdate {
+	if i != nil {
+		swu.SetLevel(*i)
 	}
-	return _u
+	return swu
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *SensitiveWordUpdate) AddLevel(v int) *SensitiveWordUpdate {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (swu *SensitiveWordUpdate) AddLevel(i int) *SensitiveWordUpdate {
+	swu.mutation.AddLevel(i)
+	return swu
 }
 
 // SetHpPenalty sets the "hpPenalty" field.
-func (_u *SensitiveWordUpdate) SetHpPenalty(v int) *SensitiveWordUpdate {
-	_u.mutation.ResetHpPenalty()
-	_u.mutation.SetHpPenalty(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetHpPenalty(i int) *SensitiveWordUpdate {
+	swu.mutation.ResetHpPenalty()
+	swu.mutation.SetHpPenalty(i)
+	return swu
 }
 
 // SetNillableHpPenalty sets the "hpPenalty" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableHpPenalty(v *int) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetHpPenalty(*v)
+func (swu *SensitiveWordUpdate) SetNillableHpPenalty(i *int) *SensitiveWordUpdate {
+	if i != nil {
+		swu.SetHpPenalty(*i)
 	}
-	return _u
+	return swu
 }
 
-// AddHpPenalty adds value to the "hpPenalty" field.
-func (_u *SensitiveWordUpdate) AddHpPenalty(v int) *SensitiveWordUpdate {
-	_u.mutation.AddHpPenalty(v)
-	return _u
+// AddHpPenalty adds i to the "hpPenalty" field.
+func (swu *SensitiveWordUpdate) AddHpPenalty(i int) *SensitiveWordUpdate {
+	swu.mutation.AddHpPenalty(i)
+	return swu
 }
 
 // SetNeedReview sets the "needReview" field.
-func (_u *SensitiveWordUpdate) SetNeedReview(v int) *SensitiveWordUpdate {
-	_u.mutation.ResetNeedReview()
-	_u.mutation.SetNeedReview(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetNeedReview(i int) *SensitiveWordUpdate {
+	swu.mutation.ResetNeedReview()
+	swu.mutation.SetNeedReview(i)
+	return swu
 }
 
 // SetNillableNeedReview sets the "needReview" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableNeedReview(v *int) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetNeedReview(*v)
+func (swu *SensitiveWordUpdate) SetNillableNeedReview(i *int) *SensitiveWordUpdate {
+	if i != nil {
+		swu.SetNeedReview(*i)
 	}
-	return _u
+	return swu
 }
 
-// AddNeedReview adds value to the "needReview" field.
-func (_u *SensitiveWordUpdate) AddNeedReview(v int) *SensitiveWordUpdate {
-	_u.mutation.AddNeedReview(v)
-	return _u
+// AddNeedReview adds i to the "needReview" field.
+func (swu *SensitiveWordUpdate) AddNeedReview(i int) *SensitiveWordUpdate {
+	swu.mutation.AddNeedReview(i)
+	return swu
 }
 
 // SetAction sets the "action" field.
-func (_u *SensitiveWordUpdate) SetAction(v int) *SensitiveWordUpdate {
-	_u.mutation.ResetAction()
-	_u.mutation.SetAction(v)
-	return _u
+func (swu *SensitiveWordUpdate) SetAction(i int) *SensitiveWordUpdate {
+	swu.mutation.ResetAction()
+	swu.mutation.SetAction(i)
+	return swu
 }
 
 // SetNillableAction sets the "action" field if the given value is not nil.
-func (_u *SensitiveWordUpdate) SetNillableAction(v *int) *SensitiveWordUpdate {
-	if v != nil {
-		_u.SetAction(*v)
+func (swu *SensitiveWordUpdate) SetNillableAction(i *int) *SensitiveWordUpdate {
+	if i != nil {
+		swu.SetAction(*i)
 	}
-	return _u
+	return swu
 }
 
-// AddAction adds value to the "action" field.
-func (_u *SensitiveWordUpdate) AddAction(v int) *SensitiveWordUpdate {
-	_u.mutation.AddAction(v)
-	return _u
+// AddAction adds i to the "action" field.
+func (swu *SensitiveWordUpdate) AddAction(i int) *SensitiveWordUpdate {
+	swu.mutation.AddAction(i)
+	return swu
 }
 
 // Mutation returns the SensitiveWordMutation object of the builder.
-func (_u *SensitiveWordUpdate) Mutation() *SensitiveWordMutation {
-	return _u.mutation
+func (swu *SensitiveWordUpdate) Mutation() *SensitiveWordMutation {
+	return swu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *SensitiveWordUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (swu *SensitiveWordUpdate) Save(ctx context.Context) (int, error) {
+	swu.defaults()
+	return withHooks(ctx, swu.sqlSave, swu.mutation, swu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *SensitiveWordUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (swu *SensitiveWordUpdate) SaveX(ctx context.Context) int {
+	affected, err := swu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -223,84 +223,84 @@ func (_u *SensitiveWordUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *SensitiveWordUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (swu *SensitiveWordUpdate) Exec(ctx context.Context) error {
+	_, err := swu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *SensitiveWordUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (swu *SensitiveWordUpdate) ExecX(ctx context.Context) {
+	if err := swu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *SensitiveWordUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (swu *SensitiveWordUpdate) defaults() {
+	if _, ok := swu.mutation.UpdateTime(); !ok {
 		v := sensitiveword.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		swu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *SensitiveWordUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (swu *SensitiveWordUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sensitiveword.Table, sensitiveword.Columns, sqlgraph.NewFieldSpec(sensitiveword.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := swu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := swu.mutation.UpdateTime(); ok {
 		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := swu.mutation.IsDelete(); ok {
 		_spec.SetField(sensitiveword.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := swu.mutation.Version(); ok {
 		_spec.SetField(sensitiveword.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := swu.mutation.AddedVersion(); ok {
 		_spec.AddField(sensitiveword.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Word(); ok {
+	if value, ok := swu.mutation.Word(); ok {
 		_spec.SetField(sensitiveword.FieldWord, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Category(); ok {
+	if value, ok := swu.mutation.Category(); ok {
 		_spec.SetField(sensitiveword.FieldCategory, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := swu.mutation.Status(); ok {
 		_spec.SetField(sensitiveword.FieldStatus, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedStatus(); ok {
+	if value, ok := swu.mutation.AddedStatus(); ok {
 		_spec.AddField(sensitiveword.FieldStatus, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := swu.mutation.Level(); ok {
 		_spec.SetField(sensitiveword.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := swu.mutation.AddedLevel(); ok {
 		_spec.AddField(sensitiveword.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.HpPenalty(); ok {
+	if value, ok := swu.mutation.HpPenalty(); ok {
 		_spec.SetField(sensitiveword.FieldHpPenalty, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedHpPenalty(); ok {
+	if value, ok := swu.mutation.AddedHpPenalty(); ok {
 		_spec.AddField(sensitiveword.FieldHpPenalty, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.NeedReview(); ok {
+	if value, ok := swu.mutation.NeedReview(); ok {
 		_spec.SetField(sensitiveword.FieldNeedReview, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedNeedReview(); ok {
+	if value, ok := swu.mutation.AddedNeedReview(); ok {
 		_spec.AddField(sensitiveword.FieldNeedReview, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Action(); ok {
+	if value, ok := swu.mutation.Action(); ok {
 		_spec.SetField(sensitiveword.FieldAction, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAction(); ok {
+	if value, ok := swu.mutation.AddedAction(); ok {
 		_spec.AddField(sensitiveword.FieldAction, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, swu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{sensitiveword.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -308,8 +308,8 @@ func (_u *SensitiveWordUpdate) sqlSave(ctx context.Context) (_node int, err erro
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	swu.mutation.done = true
+	return n, nil
 }
 
 // SensitiveWordUpdateOne is the builder for updating a single SensitiveWord entity.
@@ -321,206 +321,206 @@ type SensitiveWordUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *SensitiveWordUpdateOne) SetUpdateTime(v time.Time) *SensitiveWordUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetUpdateTime(t time.Time) *SensitiveWordUpdateOne {
+	swuo.mutation.SetUpdateTime(t)
+	return swuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *SensitiveWordUpdateOne) SetIsDelete(v bool) *SensitiveWordUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetIsDelete(b bool) *SensitiveWordUpdateOne {
+	swuo.mutation.SetIsDelete(b)
+	return swuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableIsDelete(v *bool) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableIsDelete(b *bool) *SensitiveWordUpdateOne {
+	if b != nil {
+		swuo.SetIsDelete(*b)
 	}
-	return _u
+	return swuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *SensitiveWordUpdateOne) SetVersion(v int) *SensitiveWordUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetVersion(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.ResetVersion()
+	swuo.mutation.SetVersion(i)
+	return swuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableVersion(v *int) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableVersion(i *int) *SensitiveWordUpdateOne {
+	if i != nil {
+		swuo.SetVersion(*i)
 	}
-	return _u
+	return swuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *SensitiveWordUpdateOne) AddVersion(v int) *SensitiveWordUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (swuo *SensitiveWordUpdateOne) AddVersion(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.AddVersion(i)
+	return swuo
 }
 
 // SetWord sets the "word" field.
-func (_u *SensitiveWordUpdateOne) SetWord(v string) *SensitiveWordUpdateOne {
-	_u.mutation.SetWord(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetWord(s string) *SensitiveWordUpdateOne {
+	swuo.mutation.SetWord(s)
+	return swuo
 }
 
 // SetNillableWord sets the "word" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableWord(v *string) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetWord(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableWord(s *string) *SensitiveWordUpdateOne {
+	if s != nil {
+		swuo.SetWord(*s)
 	}
-	return _u
+	return swuo
 }
 
 // SetCategory sets the "category" field.
-func (_u *SensitiveWordUpdateOne) SetCategory(v string) *SensitiveWordUpdateOne {
-	_u.mutation.SetCategory(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetCategory(s string) *SensitiveWordUpdateOne {
+	swuo.mutation.SetCategory(s)
+	return swuo
 }
 
 // SetNillableCategory sets the "category" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableCategory(v *string) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetCategory(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableCategory(s *string) *SensitiveWordUpdateOne {
+	if s != nil {
+		swuo.SetCategory(*s)
 	}
-	return _u
+	return swuo
 }
 
 // SetStatus sets the "status" field.
-func (_u *SensitiveWordUpdateOne) SetStatus(v int) *SensitiveWordUpdateOne {
-	_u.mutation.ResetStatus()
-	_u.mutation.SetStatus(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetStatus(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.ResetStatus()
+	swuo.mutation.SetStatus(i)
+	return swuo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableStatus(v *int) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableStatus(i *int) *SensitiveWordUpdateOne {
+	if i != nil {
+		swuo.SetStatus(*i)
 	}
-	return _u
+	return swuo
 }
 
-// AddStatus adds value to the "status" field.
-func (_u *SensitiveWordUpdateOne) AddStatus(v int) *SensitiveWordUpdateOne {
-	_u.mutation.AddStatus(v)
-	return _u
+// AddStatus adds i to the "status" field.
+func (swuo *SensitiveWordUpdateOne) AddStatus(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.AddStatus(i)
+	return swuo
 }
 
 // SetLevel sets the "level" field.
-func (_u *SensitiveWordUpdateOne) SetLevel(v int) *SensitiveWordUpdateOne {
-	_u.mutation.ResetLevel()
-	_u.mutation.SetLevel(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetLevel(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.ResetLevel()
+	swuo.mutation.SetLevel(i)
+	return swuo
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableLevel(v *int) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetLevel(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableLevel(i *int) *SensitiveWordUpdateOne {
+	if i != nil {
+		swuo.SetLevel(*i)
 	}
-	return _u
+	return swuo
 }
 
-// AddLevel adds value to the "level" field.
-func (_u *SensitiveWordUpdateOne) AddLevel(v int) *SensitiveWordUpdateOne {
-	_u.mutation.AddLevel(v)
-	return _u
+// AddLevel adds i to the "level" field.
+func (swuo *SensitiveWordUpdateOne) AddLevel(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.AddLevel(i)
+	return swuo
 }
 
 // SetHpPenalty sets the "hpPenalty" field.
-func (_u *SensitiveWordUpdateOne) SetHpPenalty(v int) *SensitiveWordUpdateOne {
-	_u.mutation.ResetHpPenalty()
-	_u.mutation.SetHpPenalty(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetHpPenalty(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.ResetHpPenalty()
+	swuo.mutation.SetHpPenalty(i)
+	return swuo
 }
 
 // SetNillableHpPenalty sets the "hpPenalty" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableHpPenalty(v *int) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetHpPenalty(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableHpPenalty(i *int) *SensitiveWordUpdateOne {
+	if i != nil {
+		swuo.SetHpPenalty(*i)
 	}
-	return _u
+	return swuo
 }
 
-// AddHpPenalty adds value to the "hpPenalty" field.
-func (_u *SensitiveWordUpdateOne) AddHpPenalty(v int) *SensitiveWordUpdateOne {
-	_u.mutation.AddHpPenalty(v)
-	return _u
+// AddHpPenalty adds i to the "hpPenalty" field.
+func (swuo *SensitiveWordUpdateOne) AddHpPenalty(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.AddHpPenalty(i)
+	return swuo
 }
 
 // SetNeedReview sets the "needReview" field.
-func (_u *SensitiveWordUpdateOne) SetNeedReview(v int) *SensitiveWordUpdateOne {
-	_u.mutation.ResetNeedReview()
-	_u.mutation.SetNeedReview(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetNeedReview(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.ResetNeedReview()
+	swuo.mutation.SetNeedReview(i)
+	return swuo
 }
 
 // SetNillableNeedReview sets the "needReview" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableNeedReview(v *int) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetNeedReview(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableNeedReview(i *int) *SensitiveWordUpdateOne {
+	if i != nil {
+		swuo.SetNeedReview(*i)
 	}
-	return _u
+	return swuo
 }
 
-// AddNeedReview adds value to the "needReview" field.
-func (_u *SensitiveWordUpdateOne) AddNeedReview(v int) *SensitiveWordUpdateOne {
-	_u.mutation.AddNeedReview(v)
-	return _u
+// AddNeedReview adds i to the "needReview" field.
+func (swuo *SensitiveWordUpdateOne) AddNeedReview(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.AddNeedReview(i)
+	return swuo
 }
 
 // SetAction sets the "action" field.
-func (_u *SensitiveWordUpdateOne) SetAction(v int) *SensitiveWordUpdateOne {
-	_u.mutation.ResetAction()
-	_u.mutation.SetAction(v)
-	return _u
+func (swuo *SensitiveWordUpdateOne) SetAction(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.ResetAction()
+	swuo.mutation.SetAction(i)
+	return swuo
 }
 
 // SetNillableAction sets the "action" field if the given value is not nil.
-func (_u *SensitiveWordUpdateOne) SetNillableAction(v *int) *SensitiveWordUpdateOne {
-	if v != nil {
-		_u.SetAction(*v)
+func (swuo *SensitiveWordUpdateOne) SetNillableAction(i *int) *SensitiveWordUpdateOne {
+	if i != nil {
+		swuo.SetAction(*i)
 	}
-	return _u
+	return swuo
 }
 
-// AddAction adds value to the "action" field.
-func (_u *SensitiveWordUpdateOne) AddAction(v int) *SensitiveWordUpdateOne {
-	_u.mutation.AddAction(v)
-	return _u
+// AddAction adds i to the "action" field.
+func (swuo *SensitiveWordUpdateOne) AddAction(i int) *SensitiveWordUpdateOne {
+	swuo.mutation.AddAction(i)
+	return swuo
 }
 
 // Mutation returns the SensitiveWordMutation object of the builder.
-func (_u *SensitiveWordUpdateOne) Mutation() *SensitiveWordMutation {
-	return _u.mutation
+func (swuo *SensitiveWordUpdateOne) Mutation() *SensitiveWordMutation {
+	return swuo.mutation
 }
 
 // Where appends a list predicates to the SensitiveWordUpdate builder.
-func (_u *SensitiveWordUpdateOne) Where(ps ...predicate.SensitiveWord) *SensitiveWordUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (swuo *SensitiveWordUpdateOne) Where(ps ...predicate.SensitiveWord) *SensitiveWordUpdateOne {
+	swuo.mutation.Where(ps...)
+	return swuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *SensitiveWordUpdateOne) Select(field string, fields ...string) *SensitiveWordUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (swuo *SensitiveWordUpdateOne) Select(field string, fields ...string) *SensitiveWordUpdateOne {
+	swuo.fields = append([]string{field}, fields...)
+	return swuo
 }
 
 // Save executes the query and returns the updated SensitiveWord entity.
-func (_u *SensitiveWordUpdateOne) Save(ctx context.Context) (*SensitiveWord, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (swuo *SensitiveWordUpdateOne) Save(ctx context.Context) (*SensitiveWord, error) {
+	swuo.defaults()
+	return withHooks(ctx, swuo.sqlSave, swuo.mutation, swuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *SensitiveWordUpdateOne) SaveX(ctx context.Context) *SensitiveWord {
-	node, err := _u.Save(ctx)
+func (swuo *SensitiveWordUpdateOne) SaveX(ctx context.Context) *SensitiveWord {
+	node, err := swuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -528,34 +528,34 @@ func (_u *SensitiveWordUpdateOne) SaveX(ctx context.Context) *SensitiveWord {
 }
 
 // Exec executes the query on the entity.
-func (_u *SensitiveWordUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (swuo *SensitiveWordUpdateOne) Exec(ctx context.Context) error {
+	_, err := swuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *SensitiveWordUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (swuo *SensitiveWordUpdateOne) ExecX(ctx context.Context) {
+	if err := swuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *SensitiveWordUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (swuo *SensitiveWordUpdateOne) defaults() {
+	if _, ok := swuo.mutation.UpdateTime(); !ok {
 		v := sensitiveword.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		swuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *SensitiveWordUpdateOne) sqlSave(ctx context.Context) (_node *SensitiveWord, err error) {
+func (swuo *SensitiveWordUpdateOne) sqlSave(ctx context.Context) (_node *SensitiveWord, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sensitiveword.Table, sensitiveword.Columns, sqlgraph.NewFieldSpec(sensitiveword.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := swuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "SensitiveWord.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := swuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, sensitiveword.FieldID)
 		for _, f := range fields {
@@ -567,65 +567,65 @@ func (_u *SensitiveWordUpdateOne) sqlSave(ctx context.Context) (_node *Sensitive
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := swuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := swuo.mutation.UpdateTime(); ok {
 		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := swuo.mutation.IsDelete(); ok {
 		_spec.SetField(sensitiveword.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := swuo.mutation.Version(); ok {
 		_spec.SetField(sensitiveword.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := swuo.mutation.AddedVersion(); ok {
 		_spec.AddField(sensitiveword.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Word(); ok {
+	if value, ok := swuo.mutation.Word(); ok {
 		_spec.SetField(sensitiveword.FieldWord, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Category(); ok {
+	if value, ok := swuo.mutation.Category(); ok {
 		_spec.SetField(sensitiveword.FieldCategory, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := swuo.mutation.Status(); ok {
 		_spec.SetField(sensitiveword.FieldStatus, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedStatus(); ok {
+	if value, ok := swuo.mutation.AddedStatus(); ok {
 		_spec.AddField(sensitiveword.FieldStatus, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Level(); ok {
+	if value, ok := swuo.mutation.Level(); ok {
 		_spec.SetField(sensitiveword.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedLevel(); ok {
+	if value, ok := swuo.mutation.AddedLevel(); ok {
 		_spec.AddField(sensitiveword.FieldLevel, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.HpPenalty(); ok {
+	if value, ok := swuo.mutation.HpPenalty(); ok {
 		_spec.SetField(sensitiveword.FieldHpPenalty, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedHpPenalty(); ok {
+	if value, ok := swuo.mutation.AddedHpPenalty(); ok {
 		_spec.AddField(sensitiveword.FieldHpPenalty, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.NeedReview(); ok {
+	if value, ok := swuo.mutation.NeedReview(); ok {
 		_spec.SetField(sensitiveword.FieldNeedReview, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedNeedReview(); ok {
+	if value, ok := swuo.mutation.AddedNeedReview(); ok {
 		_spec.AddField(sensitiveword.FieldNeedReview, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Action(); ok {
+	if value, ok := swuo.mutation.Action(); ok {
 		_spec.SetField(sensitiveword.FieldAction, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedAction(); ok {
+	if value, ok := swuo.mutation.AddedAction(); ok {
 		_spec.AddField(sensitiveword.FieldAction, field.TypeInt, value)
 	}
-	_node = &SensitiveWord{config: _u.config}
+	_node = &SensitiveWord{config: swuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, swuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{sensitiveword.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -633,6 +633,6 @@ func (_u *SensitiveWordUpdateOne) sqlSave(ctx context.Context) (_node *Sensitive
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	swuo.mutation.done = true
 	return _node, nil
 }

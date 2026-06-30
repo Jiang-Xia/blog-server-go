@@ -22,59 +22,59 @@ type ArticleTagsTagUpdate struct {
 }
 
 // Where appends a list predicates to the ArticleTagsTagUpdate builder.
-func (_u *ArticleTagsTagUpdate) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (attu *ArticleTagsTagUpdate) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagUpdate {
+	attu.mutation.Where(ps...)
+	return attu
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *ArticleTagsTagUpdate) SetArticleId(v int) *ArticleTagsTagUpdate {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (attu *ArticleTagsTagUpdate) SetArticleId(i int) *ArticleTagsTagUpdate {
+	attu.mutation.ResetArticleId()
+	attu.mutation.SetArticleId(i)
+	return attu
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *ArticleTagsTagUpdate) SetNillableArticleId(v *int) *ArticleTagsTagUpdate {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (attu *ArticleTagsTagUpdate) SetNillableArticleId(i *int) *ArticleTagsTagUpdate {
+	if i != nil {
+		attu.SetArticleId(*i)
 	}
-	return _u
+	return attu
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *ArticleTagsTagUpdate) AddArticleId(v int) *ArticleTagsTagUpdate {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (attu *ArticleTagsTagUpdate) AddArticleId(i int) *ArticleTagsTagUpdate {
+	attu.mutation.AddArticleId(i)
+	return attu
 }
 
 // SetTagId sets the "tagId" field.
-func (_u *ArticleTagsTagUpdate) SetTagId(v string) *ArticleTagsTagUpdate {
-	_u.mutation.SetTagId(v)
-	return _u
+func (attu *ArticleTagsTagUpdate) SetTagId(s string) *ArticleTagsTagUpdate {
+	attu.mutation.SetTagId(s)
+	return attu
 }
 
 // SetNillableTagId sets the "tagId" field if the given value is not nil.
-func (_u *ArticleTagsTagUpdate) SetNillableTagId(v *string) *ArticleTagsTagUpdate {
-	if v != nil {
-		_u.SetTagId(*v)
+func (attu *ArticleTagsTagUpdate) SetNillableTagId(s *string) *ArticleTagsTagUpdate {
+	if s != nil {
+		attu.SetTagId(*s)
 	}
-	return _u
+	return attu
 }
 
 // Mutation returns the ArticleTagsTagMutation object of the builder.
-func (_u *ArticleTagsTagUpdate) Mutation() *ArticleTagsTagMutation {
-	return _u.mutation
+func (attu *ArticleTagsTagUpdate) Mutation() *ArticleTagsTagMutation {
+	return attu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *ArticleTagsTagUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (attu *ArticleTagsTagUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, attu.sqlSave, attu.mutation, attu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ArticleTagsTagUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (attu *ArticleTagsTagUpdate) SaveX(ctx context.Context) int {
+	affected, err := attu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -82,37 +82,37 @@ func (_u *ArticleTagsTagUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *ArticleTagsTagUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (attu *ArticleTagsTagUpdate) Exec(ctx context.Context) error {
+	_, err := attu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ArticleTagsTagUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (attu *ArticleTagsTagUpdate) ExecX(ctx context.Context) {
+	if err := attu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *ArticleTagsTagUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (attu *ArticleTagsTagUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(articletagstag.Table, articletagstag.Columns, sqlgraph.NewFieldSpec(articletagstag.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := attu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := attu.mutation.ArticleId(); ok {
 		_spec.SetField(articletagstag.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := attu.mutation.AddedArticleId(); ok {
 		_spec.AddField(articletagstag.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.TagId(); ok {
+	if value, ok := attu.mutation.TagId(); ok {
 		_spec.SetField(articletagstag.FieldTagId, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, attu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{articletagstag.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -120,8 +120,8 @@ func (_u *ArticleTagsTagUpdate) sqlSave(ctx context.Context) (_node int, err err
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	attu.mutation.done = true
+	return n, nil
 }
 
 // ArticleTagsTagUpdateOne is the builder for updating a single ArticleTagsTag entity.
@@ -133,66 +133,66 @@ type ArticleTagsTagUpdateOne struct {
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *ArticleTagsTagUpdateOne) SetArticleId(v int) *ArticleTagsTagUpdateOne {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (attuo *ArticleTagsTagUpdateOne) SetArticleId(i int) *ArticleTagsTagUpdateOne {
+	attuo.mutation.ResetArticleId()
+	attuo.mutation.SetArticleId(i)
+	return attuo
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *ArticleTagsTagUpdateOne) SetNillableArticleId(v *int) *ArticleTagsTagUpdateOne {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (attuo *ArticleTagsTagUpdateOne) SetNillableArticleId(i *int) *ArticleTagsTagUpdateOne {
+	if i != nil {
+		attuo.SetArticleId(*i)
 	}
-	return _u
+	return attuo
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *ArticleTagsTagUpdateOne) AddArticleId(v int) *ArticleTagsTagUpdateOne {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (attuo *ArticleTagsTagUpdateOne) AddArticleId(i int) *ArticleTagsTagUpdateOne {
+	attuo.mutation.AddArticleId(i)
+	return attuo
 }
 
 // SetTagId sets the "tagId" field.
-func (_u *ArticleTagsTagUpdateOne) SetTagId(v string) *ArticleTagsTagUpdateOne {
-	_u.mutation.SetTagId(v)
-	return _u
+func (attuo *ArticleTagsTagUpdateOne) SetTagId(s string) *ArticleTagsTagUpdateOne {
+	attuo.mutation.SetTagId(s)
+	return attuo
 }
 
 // SetNillableTagId sets the "tagId" field if the given value is not nil.
-func (_u *ArticleTagsTagUpdateOne) SetNillableTagId(v *string) *ArticleTagsTagUpdateOne {
-	if v != nil {
-		_u.SetTagId(*v)
+func (attuo *ArticleTagsTagUpdateOne) SetNillableTagId(s *string) *ArticleTagsTagUpdateOne {
+	if s != nil {
+		attuo.SetTagId(*s)
 	}
-	return _u
+	return attuo
 }
 
 // Mutation returns the ArticleTagsTagMutation object of the builder.
-func (_u *ArticleTagsTagUpdateOne) Mutation() *ArticleTagsTagMutation {
-	return _u.mutation
+func (attuo *ArticleTagsTagUpdateOne) Mutation() *ArticleTagsTagMutation {
+	return attuo.mutation
 }
 
 // Where appends a list predicates to the ArticleTagsTagUpdate builder.
-func (_u *ArticleTagsTagUpdateOne) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (attuo *ArticleTagsTagUpdateOne) Where(ps ...predicate.ArticleTagsTag) *ArticleTagsTagUpdateOne {
+	attuo.mutation.Where(ps...)
+	return attuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *ArticleTagsTagUpdateOne) Select(field string, fields ...string) *ArticleTagsTagUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (attuo *ArticleTagsTagUpdateOne) Select(field string, fields ...string) *ArticleTagsTagUpdateOne {
+	attuo.fields = append([]string{field}, fields...)
+	return attuo
 }
 
 // Save executes the query and returns the updated ArticleTagsTag entity.
-func (_u *ArticleTagsTagUpdateOne) Save(ctx context.Context) (*ArticleTagsTag, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (attuo *ArticleTagsTagUpdateOne) Save(ctx context.Context) (*ArticleTagsTag, error) {
+	return withHooks(ctx, attuo.sqlSave, attuo.mutation, attuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *ArticleTagsTagUpdateOne) SaveX(ctx context.Context) *ArticleTagsTag {
-	node, err := _u.Save(ctx)
+func (attuo *ArticleTagsTagUpdateOne) SaveX(ctx context.Context) *ArticleTagsTag {
+	node, err := attuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -200,26 +200,26 @@ func (_u *ArticleTagsTagUpdateOne) SaveX(ctx context.Context) *ArticleTagsTag {
 }
 
 // Exec executes the query on the entity.
-func (_u *ArticleTagsTagUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (attuo *ArticleTagsTagUpdateOne) Exec(ctx context.Context) error {
+	_, err := attuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *ArticleTagsTagUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (attuo *ArticleTagsTagUpdateOne) ExecX(ctx context.Context) {
+	if err := attuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *ArticleTagsTagUpdateOne) sqlSave(ctx context.Context) (_node *ArticleTagsTag, err error) {
+func (attuo *ArticleTagsTagUpdateOne) sqlSave(ctx context.Context) (_node *ArticleTagsTag, err error) {
 	_spec := sqlgraph.NewUpdateSpec(articletagstag.Table, articletagstag.Columns, sqlgraph.NewFieldSpec(articletagstag.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := attuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "ArticleTagsTag.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := attuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, articletagstag.FieldID)
 		for _, f := range fields {
@@ -231,26 +231,26 @@ func (_u *ArticleTagsTagUpdateOne) sqlSave(ctx context.Context) (_node *ArticleT
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := attuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := attuo.mutation.ArticleId(); ok {
 		_spec.SetField(articletagstag.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := attuo.mutation.AddedArticleId(); ok {
 		_spec.AddField(articletagstag.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.TagId(); ok {
+	if value, ok := attuo.mutation.TagId(); ok {
 		_spec.SetField(articletagstag.FieldTagId, field.TypeString, value)
 	}
-	_node = &ArticleTagsTag{config: _u.config}
+	_node = &ArticleTagsTag{config: attuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, attuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{articletagstag.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -258,6 +258,6 @@ func (_u *ArticleTagsTagUpdateOne) sqlSave(ctx context.Context) (_node *ArticleT
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	attuo.mutation.done = true
 	return _node, nil
 }

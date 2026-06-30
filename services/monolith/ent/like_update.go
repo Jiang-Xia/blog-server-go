@@ -22,94 +22,94 @@ type LikeUpdate struct {
 }
 
 // Where appends a list predicates to the LikeUpdate builder.
-func (_u *LikeUpdate) Where(ps ...predicate.Like) *LikeUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (lu *LikeUpdate) Where(ps ...predicate.Like) *LikeUpdate {
+	lu.mutation.Where(ps...)
+	return lu
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *LikeUpdate) SetArticleId(v int) *LikeUpdate {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (lu *LikeUpdate) SetArticleId(i int) *LikeUpdate {
+	lu.mutation.ResetArticleId()
+	lu.mutation.SetArticleId(i)
+	return lu
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *LikeUpdate) SetNillableArticleId(v *int) *LikeUpdate {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (lu *LikeUpdate) SetNillableArticleId(i *int) *LikeUpdate {
+	if i != nil {
+		lu.SetArticleId(*i)
 	}
-	return _u
+	return lu
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *LikeUpdate) AddArticleId(v int) *LikeUpdate {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (lu *LikeUpdate) AddArticleId(i int) *LikeUpdate {
+	lu.mutation.AddArticleId(i)
+	return lu
 }
 
 // SetUID sets the "uid" field.
-func (_u *LikeUpdate) SetUID(v int) *LikeUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (lu *LikeUpdate) SetUID(i int) *LikeUpdate {
+	lu.mutation.ResetUID()
+	lu.mutation.SetUID(i)
+	return lu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *LikeUpdate) SetNillableUID(v *int) *LikeUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (lu *LikeUpdate) SetNillableUID(i *int) *LikeUpdate {
+	if i != nil {
+		lu.SetUID(*i)
 	}
-	return _u
+	return lu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *LikeUpdate) AddUID(v int) *LikeUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (lu *LikeUpdate) AddUID(i int) *LikeUpdate {
+	lu.mutation.AddUID(i)
+	return lu
 }
 
 // SetIP sets the "ip" field.
-func (_u *LikeUpdate) SetIP(v string) *LikeUpdate {
-	_u.mutation.SetIP(v)
-	return _u
+func (lu *LikeUpdate) SetIP(s string) *LikeUpdate {
+	lu.mutation.SetIP(s)
+	return lu
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *LikeUpdate) SetNillableIP(v *string) *LikeUpdate {
-	if v != nil {
-		_u.SetIP(*v)
+func (lu *LikeUpdate) SetNillableIP(s *string) *LikeUpdate {
+	if s != nil {
+		lu.SetIP(*s)
 	}
-	return _u
+	return lu
 }
 
 // SetStatus sets the "status" field.
-func (_u *LikeUpdate) SetStatus(v string) *LikeUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (lu *LikeUpdate) SetStatus(s string) *LikeUpdate {
+	lu.mutation.SetStatus(s)
+	return lu
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *LikeUpdate) SetNillableStatus(v *string) *LikeUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (lu *LikeUpdate) SetNillableStatus(s *string) *LikeUpdate {
+	if s != nil {
+		lu.SetStatus(*s)
 	}
-	return _u
+	return lu
 }
 
 // Mutation returns the LikeMutation object of the builder.
-func (_u *LikeUpdate) Mutation() *LikeMutation {
-	return _u.mutation
+func (lu *LikeUpdate) Mutation() *LikeMutation {
+	return lu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *LikeUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (lu *LikeUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, lu.sqlSave, lu.mutation, lu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *LikeUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (lu *LikeUpdate) SaveX(ctx context.Context) int {
+	affected, err := lu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -117,46 +117,46 @@ func (_u *LikeUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *LikeUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (lu *LikeUpdate) Exec(ctx context.Context) error {
+	_, err := lu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *LikeUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (lu *LikeUpdate) ExecX(ctx context.Context) {
+	if err := lu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *LikeUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (lu *LikeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(like.Table, like.Columns, sqlgraph.NewFieldSpec(like.FieldID, field.TypeString))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := lu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := lu.mutation.ArticleId(); ok {
 		_spec.SetField(like.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := lu.mutation.AddedArticleId(); ok {
 		_spec.AddField(like.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := lu.mutation.UID(); ok {
 		_spec.SetField(like.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := lu.mutation.AddedUID(); ok {
 		_spec.AddField(like.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := lu.mutation.IP(); ok {
 		_spec.SetField(like.FieldIP, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := lu.mutation.Status(); ok {
 		_spec.SetField(like.FieldStatus, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, lu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{like.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -164,8 +164,8 @@ func (_u *LikeUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	lu.mutation.done = true
+	return n, nil
 }
 
 // LikeUpdateOne is the builder for updating a single Like entity.
@@ -177,101 +177,101 @@ type LikeUpdateOne struct {
 }
 
 // SetArticleId sets the "articleId" field.
-func (_u *LikeUpdateOne) SetArticleId(v int) *LikeUpdateOne {
-	_u.mutation.ResetArticleId()
-	_u.mutation.SetArticleId(v)
-	return _u
+func (luo *LikeUpdateOne) SetArticleId(i int) *LikeUpdateOne {
+	luo.mutation.ResetArticleId()
+	luo.mutation.SetArticleId(i)
+	return luo
 }
 
 // SetNillableArticleId sets the "articleId" field if the given value is not nil.
-func (_u *LikeUpdateOne) SetNillableArticleId(v *int) *LikeUpdateOne {
-	if v != nil {
-		_u.SetArticleId(*v)
+func (luo *LikeUpdateOne) SetNillableArticleId(i *int) *LikeUpdateOne {
+	if i != nil {
+		luo.SetArticleId(*i)
 	}
-	return _u
+	return luo
 }
 
-// AddArticleId adds value to the "articleId" field.
-func (_u *LikeUpdateOne) AddArticleId(v int) *LikeUpdateOne {
-	_u.mutation.AddArticleId(v)
-	return _u
+// AddArticleId adds i to the "articleId" field.
+func (luo *LikeUpdateOne) AddArticleId(i int) *LikeUpdateOne {
+	luo.mutation.AddArticleId(i)
+	return luo
 }
 
 // SetUID sets the "uid" field.
-func (_u *LikeUpdateOne) SetUID(v int) *LikeUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (luo *LikeUpdateOne) SetUID(i int) *LikeUpdateOne {
+	luo.mutation.ResetUID()
+	luo.mutation.SetUID(i)
+	return luo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *LikeUpdateOne) SetNillableUID(v *int) *LikeUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (luo *LikeUpdateOne) SetNillableUID(i *int) *LikeUpdateOne {
+	if i != nil {
+		luo.SetUID(*i)
 	}
-	return _u
+	return luo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *LikeUpdateOne) AddUID(v int) *LikeUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (luo *LikeUpdateOne) AddUID(i int) *LikeUpdateOne {
+	luo.mutation.AddUID(i)
+	return luo
 }
 
 // SetIP sets the "ip" field.
-func (_u *LikeUpdateOne) SetIP(v string) *LikeUpdateOne {
-	_u.mutation.SetIP(v)
-	return _u
+func (luo *LikeUpdateOne) SetIP(s string) *LikeUpdateOne {
+	luo.mutation.SetIP(s)
+	return luo
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *LikeUpdateOne) SetNillableIP(v *string) *LikeUpdateOne {
-	if v != nil {
-		_u.SetIP(*v)
+func (luo *LikeUpdateOne) SetNillableIP(s *string) *LikeUpdateOne {
+	if s != nil {
+		luo.SetIP(*s)
 	}
-	return _u
+	return luo
 }
 
 // SetStatus sets the "status" field.
-func (_u *LikeUpdateOne) SetStatus(v string) *LikeUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (luo *LikeUpdateOne) SetStatus(s string) *LikeUpdateOne {
+	luo.mutation.SetStatus(s)
+	return luo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *LikeUpdateOne) SetNillableStatus(v *string) *LikeUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (luo *LikeUpdateOne) SetNillableStatus(s *string) *LikeUpdateOne {
+	if s != nil {
+		luo.SetStatus(*s)
 	}
-	return _u
+	return luo
 }
 
 // Mutation returns the LikeMutation object of the builder.
-func (_u *LikeUpdateOne) Mutation() *LikeMutation {
-	return _u.mutation
+func (luo *LikeUpdateOne) Mutation() *LikeMutation {
+	return luo.mutation
 }
 
 // Where appends a list predicates to the LikeUpdate builder.
-func (_u *LikeUpdateOne) Where(ps ...predicate.Like) *LikeUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (luo *LikeUpdateOne) Where(ps ...predicate.Like) *LikeUpdateOne {
+	luo.mutation.Where(ps...)
+	return luo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *LikeUpdateOne) Select(field string, fields ...string) *LikeUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (luo *LikeUpdateOne) Select(field string, fields ...string) *LikeUpdateOne {
+	luo.fields = append([]string{field}, fields...)
+	return luo
 }
 
 // Save executes the query and returns the updated Like entity.
-func (_u *LikeUpdateOne) Save(ctx context.Context) (*Like, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (luo *LikeUpdateOne) Save(ctx context.Context) (*Like, error) {
+	return withHooks(ctx, luo.sqlSave, luo.mutation, luo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *LikeUpdateOne) SaveX(ctx context.Context) *Like {
-	node, err := _u.Save(ctx)
+func (luo *LikeUpdateOne) SaveX(ctx context.Context) *Like {
+	node, err := luo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -279,26 +279,26 @@ func (_u *LikeUpdateOne) SaveX(ctx context.Context) *Like {
 }
 
 // Exec executes the query on the entity.
-func (_u *LikeUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (luo *LikeUpdateOne) Exec(ctx context.Context) error {
+	_, err := luo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *LikeUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (luo *LikeUpdateOne) ExecX(ctx context.Context) {
+	if err := luo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *LikeUpdateOne) sqlSave(ctx context.Context) (_node *Like, err error) {
+func (luo *LikeUpdateOne) sqlSave(ctx context.Context) (_node *Like, err error) {
 	_spec := sqlgraph.NewUpdateSpec(like.Table, like.Columns, sqlgraph.NewFieldSpec(like.FieldID, field.TypeString))
-	id, ok := _u.mutation.ID()
+	id, ok := luo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Like.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := luo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, like.FieldID)
 		for _, f := range fields {
@@ -310,35 +310,35 @@ func (_u *LikeUpdateOne) sqlSave(ctx context.Context) (_node *Like, err error) {
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := luo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.ArticleId(); ok {
+	if value, ok := luo.mutation.ArticleId(); ok {
 		_spec.SetField(like.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedArticleId(); ok {
+	if value, ok := luo.mutation.AddedArticleId(); ok {
 		_spec.AddField(like.FieldArticleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := luo.mutation.UID(); ok {
 		_spec.SetField(like.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := luo.mutation.AddedUID(); ok {
 		_spec.AddField(like.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := luo.mutation.IP(); ok {
 		_spec.SetField(like.FieldIP, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := luo.mutation.Status(); ok {
 		_spec.SetField(like.FieldStatus, field.TypeString, value)
 	}
-	_node = &Like{config: _u.config}
+	_node = &Like{config: luo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, luo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{like.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -346,6 +346,6 @@ func (_u *LikeUpdateOne) sqlSave(ctx context.Context) (_node *Like, err error) {
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	luo.mutation.done = true
 	return _node, nil
 }

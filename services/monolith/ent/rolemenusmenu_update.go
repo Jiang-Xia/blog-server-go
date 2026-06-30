@@ -22,59 +22,59 @@ type RoleMenusMenuUpdate struct {
 }
 
 // Where appends a list predicates to the RoleMenusMenuUpdate builder.
-func (_u *RoleMenusMenuUpdate) Where(ps ...predicate.RoleMenusMenu) *RoleMenusMenuUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (rmmu *RoleMenusMenuUpdate) Where(ps ...predicate.RoleMenusMenu) *RoleMenusMenuUpdate {
+	rmmu.mutation.Where(ps...)
+	return rmmu
 }
 
 // SetRoleId sets the "roleId" field.
-func (_u *RoleMenusMenuUpdate) SetRoleId(v int) *RoleMenusMenuUpdate {
-	_u.mutation.ResetRoleId()
-	_u.mutation.SetRoleId(v)
-	return _u
+func (rmmu *RoleMenusMenuUpdate) SetRoleId(i int) *RoleMenusMenuUpdate {
+	rmmu.mutation.ResetRoleId()
+	rmmu.mutation.SetRoleId(i)
+	return rmmu
 }
 
 // SetNillableRoleId sets the "roleId" field if the given value is not nil.
-func (_u *RoleMenusMenuUpdate) SetNillableRoleId(v *int) *RoleMenusMenuUpdate {
-	if v != nil {
-		_u.SetRoleId(*v)
+func (rmmu *RoleMenusMenuUpdate) SetNillableRoleId(i *int) *RoleMenusMenuUpdate {
+	if i != nil {
+		rmmu.SetRoleId(*i)
 	}
-	return _u
+	return rmmu
 }
 
-// AddRoleId adds value to the "roleId" field.
-func (_u *RoleMenusMenuUpdate) AddRoleId(v int) *RoleMenusMenuUpdate {
-	_u.mutation.AddRoleId(v)
-	return _u
+// AddRoleId adds i to the "roleId" field.
+func (rmmu *RoleMenusMenuUpdate) AddRoleId(i int) *RoleMenusMenuUpdate {
+	rmmu.mutation.AddRoleId(i)
+	return rmmu
 }
 
 // SetMenuId sets the "menuId" field.
-func (_u *RoleMenusMenuUpdate) SetMenuId(v string) *RoleMenusMenuUpdate {
-	_u.mutation.SetMenuId(v)
-	return _u
+func (rmmu *RoleMenusMenuUpdate) SetMenuId(s string) *RoleMenusMenuUpdate {
+	rmmu.mutation.SetMenuId(s)
+	return rmmu
 }
 
 // SetNillableMenuId sets the "menuId" field if the given value is not nil.
-func (_u *RoleMenusMenuUpdate) SetNillableMenuId(v *string) *RoleMenusMenuUpdate {
-	if v != nil {
-		_u.SetMenuId(*v)
+func (rmmu *RoleMenusMenuUpdate) SetNillableMenuId(s *string) *RoleMenusMenuUpdate {
+	if s != nil {
+		rmmu.SetMenuId(*s)
 	}
-	return _u
+	return rmmu
 }
 
 // Mutation returns the RoleMenusMenuMutation object of the builder.
-func (_u *RoleMenusMenuUpdate) Mutation() *RoleMenusMenuMutation {
-	return _u.mutation
+func (rmmu *RoleMenusMenuUpdate) Mutation() *RoleMenusMenuMutation {
+	return rmmu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *RoleMenusMenuUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rmmu *RoleMenusMenuUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, rmmu.sqlSave, rmmu.mutation, rmmu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RoleMenusMenuUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (rmmu *RoleMenusMenuUpdate) SaveX(ctx context.Context) int {
+	affected, err := rmmu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -82,37 +82,37 @@ func (_u *RoleMenusMenuUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *RoleMenusMenuUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rmmu *RoleMenusMenuUpdate) Exec(ctx context.Context) error {
+	_, err := rmmu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RoleMenusMenuUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rmmu *RoleMenusMenuUpdate) ExecX(ctx context.Context) {
+	if err := rmmu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RoleMenusMenuUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (rmmu *RoleMenusMenuUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rolemenusmenu.Table, rolemenusmenu.Columns, sqlgraph.NewFieldSpec(rolemenusmenu.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rmmu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.RoleId(); ok {
+	if value, ok := rmmu.mutation.RoleId(); ok {
 		_spec.SetField(rolemenusmenu.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRoleId(); ok {
+	if value, ok := rmmu.mutation.AddedRoleId(); ok {
 		_spec.AddField(rolemenusmenu.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.MenuId(); ok {
+	if value, ok := rmmu.mutation.MenuId(); ok {
 		_spec.SetField(rolemenusmenu.FieldMenuId, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, rmmu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rolemenusmenu.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -120,8 +120,8 @@ func (_u *RoleMenusMenuUpdate) sqlSave(ctx context.Context) (_node int, err erro
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	rmmu.mutation.done = true
+	return n, nil
 }
 
 // RoleMenusMenuUpdateOne is the builder for updating a single RoleMenusMenu entity.
@@ -133,66 +133,66 @@ type RoleMenusMenuUpdateOne struct {
 }
 
 // SetRoleId sets the "roleId" field.
-func (_u *RoleMenusMenuUpdateOne) SetRoleId(v int) *RoleMenusMenuUpdateOne {
-	_u.mutation.ResetRoleId()
-	_u.mutation.SetRoleId(v)
-	return _u
+func (rmmuo *RoleMenusMenuUpdateOne) SetRoleId(i int) *RoleMenusMenuUpdateOne {
+	rmmuo.mutation.ResetRoleId()
+	rmmuo.mutation.SetRoleId(i)
+	return rmmuo
 }
 
 // SetNillableRoleId sets the "roleId" field if the given value is not nil.
-func (_u *RoleMenusMenuUpdateOne) SetNillableRoleId(v *int) *RoleMenusMenuUpdateOne {
-	if v != nil {
-		_u.SetRoleId(*v)
+func (rmmuo *RoleMenusMenuUpdateOne) SetNillableRoleId(i *int) *RoleMenusMenuUpdateOne {
+	if i != nil {
+		rmmuo.SetRoleId(*i)
 	}
-	return _u
+	return rmmuo
 }
 
-// AddRoleId adds value to the "roleId" field.
-func (_u *RoleMenusMenuUpdateOne) AddRoleId(v int) *RoleMenusMenuUpdateOne {
-	_u.mutation.AddRoleId(v)
-	return _u
+// AddRoleId adds i to the "roleId" field.
+func (rmmuo *RoleMenusMenuUpdateOne) AddRoleId(i int) *RoleMenusMenuUpdateOne {
+	rmmuo.mutation.AddRoleId(i)
+	return rmmuo
 }
 
 // SetMenuId sets the "menuId" field.
-func (_u *RoleMenusMenuUpdateOne) SetMenuId(v string) *RoleMenusMenuUpdateOne {
-	_u.mutation.SetMenuId(v)
-	return _u
+func (rmmuo *RoleMenusMenuUpdateOne) SetMenuId(s string) *RoleMenusMenuUpdateOne {
+	rmmuo.mutation.SetMenuId(s)
+	return rmmuo
 }
 
 // SetNillableMenuId sets the "menuId" field if the given value is not nil.
-func (_u *RoleMenusMenuUpdateOne) SetNillableMenuId(v *string) *RoleMenusMenuUpdateOne {
-	if v != nil {
-		_u.SetMenuId(*v)
+func (rmmuo *RoleMenusMenuUpdateOne) SetNillableMenuId(s *string) *RoleMenusMenuUpdateOne {
+	if s != nil {
+		rmmuo.SetMenuId(*s)
 	}
-	return _u
+	return rmmuo
 }
 
 // Mutation returns the RoleMenusMenuMutation object of the builder.
-func (_u *RoleMenusMenuUpdateOne) Mutation() *RoleMenusMenuMutation {
-	return _u.mutation
+func (rmmuo *RoleMenusMenuUpdateOne) Mutation() *RoleMenusMenuMutation {
+	return rmmuo.mutation
 }
 
 // Where appends a list predicates to the RoleMenusMenuUpdate builder.
-func (_u *RoleMenusMenuUpdateOne) Where(ps ...predicate.RoleMenusMenu) *RoleMenusMenuUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (rmmuo *RoleMenusMenuUpdateOne) Where(ps ...predicate.RoleMenusMenu) *RoleMenusMenuUpdateOne {
+	rmmuo.mutation.Where(ps...)
+	return rmmuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *RoleMenusMenuUpdateOne) Select(field string, fields ...string) *RoleMenusMenuUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (rmmuo *RoleMenusMenuUpdateOne) Select(field string, fields ...string) *RoleMenusMenuUpdateOne {
+	rmmuo.fields = append([]string{field}, fields...)
+	return rmmuo
 }
 
 // Save executes the query and returns the updated RoleMenusMenu entity.
-func (_u *RoleMenusMenuUpdateOne) Save(ctx context.Context) (*RoleMenusMenu, error) {
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (rmmuo *RoleMenusMenuUpdateOne) Save(ctx context.Context) (*RoleMenusMenu, error) {
+	return withHooks(ctx, rmmuo.sqlSave, rmmuo.mutation, rmmuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *RoleMenusMenuUpdateOne) SaveX(ctx context.Context) *RoleMenusMenu {
-	node, err := _u.Save(ctx)
+func (rmmuo *RoleMenusMenuUpdateOne) SaveX(ctx context.Context) *RoleMenusMenu {
+	node, err := rmmuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -200,26 +200,26 @@ func (_u *RoleMenusMenuUpdateOne) SaveX(ctx context.Context) *RoleMenusMenu {
 }
 
 // Exec executes the query on the entity.
-func (_u *RoleMenusMenuUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (rmmuo *RoleMenusMenuUpdateOne) Exec(ctx context.Context) error {
+	_, err := rmmuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *RoleMenusMenuUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (rmmuo *RoleMenusMenuUpdateOne) ExecX(ctx context.Context) {
+	if err := rmmuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func (_u *RoleMenusMenuUpdateOne) sqlSave(ctx context.Context) (_node *RoleMenusMenu, err error) {
+func (rmmuo *RoleMenusMenuUpdateOne) sqlSave(ctx context.Context) (_node *RoleMenusMenu, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rolemenusmenu.Table, rolemenusmenu.Columns, sqlgraph.NewFieldSpec(rolemenusmenu.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := rmmuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RoleMenusMenu.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := rmmuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rolemenusmenu.FieldID)
 		for _, f := range fields {
@@ -231,26 +231,26 @@ func (_u *RoleMenusMenuUpdateOne) sqlSave(ctx context.Context) (_node *RoleMenus
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := rmmuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.RoleId(); ok {
+	if value, ok := rmmuo.mutation.RoleId(); ok {
 		_spec.SetField(rolemenusmenu.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRoleId(); ok {
+	if value, ok := rmmuo.mutation.AddedRoleId(); ok {
 		_spec.AddField(rolemenusmenu.FieldRoleId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.MenuId(); ok {
+	if value, ok := rmmuo.mutation.MenuId(); ok {
 		_spec.SetField(rolemenusmenu.FieldMenuId, field.TypeString, value)
 	}
-	_node = &RoleMenusMenu{config: _u.config}
+	_node = &RoleMenusMenu{config: rmmuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, rmmuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rolemenusmenu.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -258,6 +258,6 @@ func (_u *RoleMenusMenuUpdateOne) sqlSave(ctx context.Context) (_node *RoleMenus
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	rmmuo.mutation.done = true
 	return _node, nil
 }

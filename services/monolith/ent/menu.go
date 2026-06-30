@@ -56,7 +56,7 @@ func (*Menu) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Menu fields.
-func (_m *Menu) assignValues(columns []string, values []any) error {
+func (m *Menu) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -66,65 +66,65 @@ func (_m *Menu) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				_m.ID = value.String
+				m.ID = value.String
 			}
 		case menu.FieldPid:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field pid", values[i])
 			} else if value.Valid {
-				_m.Pid = value.String
+				m.Pid = value.String
 			}
 		case menu.FieldPath:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field path", values[i])
 			} else if value.Valid {
-				_m.Path = value.String
+				m.Path = value.String
 			}
 		case menu.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				m.Name = value.String
 			}
 		case menu.FieldOrder:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field order", values[i])
 			} else if value.Valid {
-				_m.Order = int(value.Int64)
+				m.Order = int(value.Int64)
 			}
 		case menu.FieldIcon:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field icon", values[i])
 			} else if value.Valid {
-				_m.Icon = value.String
+				m.Icon = value.String
 			}
 		case menu.FieldLocale:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field locale", values[i])
 			} else if value.Valid {
-				_m.Locale = value.String
+				m.Locale = value.String
 			}
 		case menu.FieldRequiresAuth:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field requiresAuth", values[i])
 			} else if value.Valid {
-				_m.RequiresAuth = int(value.Int64)
+				m.RequiresAuth = int(value.Int64)
 			}
 		case menu.FieldFilePath:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field filePath", values[i])
 			} else if value.Valid {
-				_m.FilePath = value.String
+				m.FilePath = value.String
 			}
 		case menu.FieldMenuCnName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field menuCnName", values[i])
 			} else if value.Valid {
-				_m.MenuCnName = new(string)
-				*_m.MenuCnName = value.String
+				m.MenuCnName = new(string)
+				*m.MenuCnName = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -132,58 +132,58 @@ func (_m *Menu) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Menu.
 // This includes values selected through modifiers, order, etc.
-func (_m *Menu) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (m *Menu) Value(name string) (ent.Value, error) {
+	return m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Menu.
 // Note that you need to call Menu.Unwrap() before calling this method if this Menu
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Menu) Update() *MenuUpdateOne {
-	return NewMenuClient(_m.config).UpdateOne(_m)
+func (m *Menu) Update() *MenuUpdateOne {
+	return NewMenuClient(m.config).UpdateOne(m)
 }
 
 // Unwrap unwraps the Menu entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Menu) Unwrap() *Menu {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (m *Menu) Unwrap() *Menu {
+	_tx, ok := m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Menu is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	m.config.driver = _tx.drv
+	return m
 }
 
 // String implements the fmt.Stringer.
-func (_m *Menu) String() string {
+func (m *Menu) String() string {
 	var builder strings.Builder
 	builder.WriteString("Menu(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", m.ID))
 	builder.WriteString("pid=")
-	builder.WriteString(_m.Pid)
+	builder.WriteString(m.Pid)
 	builder.WriteString(", ")
 	builder.WriteString("path=")
-	builder.WriteString(_m.Path)
+	builder.WriteString(m.Path)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("order=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Order))
+	builder.WriteString(fmt.Sprintf("%v", m.Order))
 	builder.WriteString(", ")
 	builder.WriteString("icon=")
-	builder.WriteString(_m.Icon)
+	builder.WriteString(m.Icon)
 	builder.WriteString(", ")
 	builder.WriteString("locale=")
-	builder.WriteString(_m.Locale)
+	builder.WriteString(m.Locale)
 	builder.WriteString(", ")
 	builder.WriteString("requiresAuth=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RequiresAuth))
+	builder.WriteString(fmt.Sprintf("%v", m.RequiresAuth))
 	builder.WriteString(", ")
 	builder.WriteString("filePath=")
-	builder.WriteString(_m.FilePath)
+	builder.WriteString(m.FilePath)
 	builder.WriteString(", ")
-	if v := _m.MenuCnName; v != nil {
+	if v := m.MenuCnName; v != nil {
 		builder.WriteString("menuCnName=")
 		builder.WriteString(*v)
 	}

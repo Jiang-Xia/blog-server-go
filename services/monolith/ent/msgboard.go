@@ -79,7 +79,7 @@ func (*Msgboard) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Msgboard fields.
-func (_m *Msgboard) assignValues(columns []string, values []any) error {
+func (m *Msgboard) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -90,121 +90,121 @@ func (_m *Msgboard) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			m.ID = int(value.Int64)
 		case msgboard.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				m.CreateTime = value.Time
 			}
 		case msgboard.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				m.UpdateTime = value.Time
 			}
 		case msgboard.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				m.IsDelete = value.Bool
 			}
 		case msgboard.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				m.Version = int(value.Int64)
 			}
 		case msgboard.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				m.Name = value.String
 			}
 		case msgboard.FieldEamil:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field eamil", values[i])
 			} else if value.Valid {
-				_m.Eamil = value.String
+				m.Eamil = value.String
 			}
 		case msgboard.FieldAddress:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field address", values[i])
 			} else if value.Valid {
-				_m.Address = value.String
+				m.Address = value.String
 			}
 		case msgboard.FieldComment:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field comment", values[i])
 			} else if value.Valid {
-				_m.Comment = value.String
+				m.Comment = value.String
 			}
 		case msgboard.FieldAvatar:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field avatar", values[i])
 			} else if value.Valid {
-				_m.Avatar = value.String
+				m.Avatar = value.String
 			}
 		case msgboard.FieldLocation:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field location", values[i])
 			} else if value.Valid {
-				_m.Location = value.String
+				m.Location = value.String
 			}
 		case msgboard.FieldSystem:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field system", values[i])
 			} else if value.Valid {
-				_m.System = value.String
+				m.System = value.String
 			}
 		case msgboard.FieldBrowser:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field browser", values[i])
 			} else if value.Valid {
-				_m.Browser = value.String
+				m.Browser = value.String
 			}
 		case msgboard.FieldRespondent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field respondent", values[i])
 			} else if value.Valid {
-				_m.Respondent = new(string)
-				*_m.Respondent = value.String
+				m.Respondent = new(string)
+				*m.Respondent = value.String
 			}
 		case msgboard.FieldImgUrl:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field imgUrl", values[i])
 			} else if value.Valid {
-				_m.ImgUrl = new(string)
-				*_m.ImgUrl = value.String
+				m.ImgUrl = new(string)
+				*m.ImgUrl = value.String
 			}
 		case msgboard.FieldIP:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field ip", values[i])
 			} else if value.Valid {
-				_m.IP = new(string)
-				*_m.IP = value.String
+				m.IP = new(string)
+				*m.IP = value.String
 			}
 		case msgboard.FieldPId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field pId", values[i])
 			} else if value.Valid {
-				_m.PId = int(value.Int64)
+				m.PId = int(value.Int64)
 			}
 		case msgboard.FieldReplyId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field replyId", values[i])
 			} else if value.Valid {
-				_m.ReplyId = new(int)
-				*_m.ReplyId = int(value.Int64)
+				m.ReplyId = new(int)
+				*m.ReplyId = int(value.Int64)
 			}
 		case msgboard.FieldStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				m.Status = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -212,94 +212,94 @@ func (_m *Msgboard) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Msgboard.
 // This includes values selected through modifiers, order, etc.
-func (_m *Msgboard) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (m *Msgboard) Value(name string) (ent.Value, error) {
+	return m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Msgboard.
 // Note that you need to call Msgboard.Unwrap() before calling this method if this Msgboard
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Msgboard) Update() *MsgboardUpdateOne {
-	return NewMsgboardClient(_m.config).UpdateOne(_m)
+func (m *Msgboard) Update() *MsgboardUpdateOne {
+	return NewMsgboardClient(m.config).UpdateOne(m)
 }
 
 // Unwrap unwraps the Msgboard entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Msgboard) Unwrap() *Msgboard {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (m *Msgboard) Unwrap() *Msgboard {
+	_tx, ok := m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Msgboard is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	m.config.driver = _tx.drv
+	return m
 }
 
 // String implements the fmt.Stringer.
-func (_m *Msgboard) String() string {
+func (m *Msgboard) String() string {
 	var builder strings.Builder
 	builder.WriteString("Msgboard(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", m.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(m.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(m.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", m.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", m.Version))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("eamil=")
-	builder.WriteString(_m.Eamil)
+	builder.WriteString(m.Eamil)
 	builder.WriteString(", ")
 	builder.WriteString("address=")
-	builder.WriteString(_m.Address)
+	builder.WriteString(m.Address)
 	builder.WriteString(", ")
 	builder.WriteString("comment=")
-	builder.WriteString(_m.Comment)
+	builder.WriteString(m.Comment)
 	builder.WriteString(", ")
 	builder.WriteString("avatar=")
-	builder.WriteString(_m.Avatar)
+	builder.WriteString(m.Avatar)
 	builder.WriteString(", ")
 	builder.WriteString("location=")
-	builder.WriteString(_m.Location)
+	builder.WriteString(m.Location)
 	builder.WriteString(", ")
 	builder.WriteString("system=")
-	builder.WriteString(_m.System)
+	builder.WriteString(m.System)
 	builder.WriteString(", ")
 	builder.WriteString("browser=")
-	builder.WriteString(_m.Browser)
+	builder.WriteString(m.Browser)
 	builder.WriteString(", ")
-	if v := _m.Respondent; v != nil {
+	if v := m.Respondent; v != nil {
 		builder.WriteString("respondent=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.ImgUrl; v != nil {
+	if v := m.ImgUrl; v != nil {
 		builder.WriteString("imgUrl=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := _m.IP; v != nil {
+	if v := m.IP; v != nil {
 		builder.WriteString("ip=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("pId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.PId))
+	builder.WriteString(fmt.Sprintf("%v", m.PId))
 	builder.WriteString(", ")
-	if v := _m.ReplyId; v != nil {
+	if v := m.ReplyId; v != nil {
 		builder.WriteString("replyId=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(m.Status)
 	builder.WriteByte(')')
 	return builder.String()
 }

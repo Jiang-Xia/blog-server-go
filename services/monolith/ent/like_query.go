@@ -28,40 +28,40 @@ type LikeQuery struct {
 }
 
 // Where adds a new predicate for the LikeQuery builder.
-func (_q *LikeQuery) Where(ps ...predicate.Like) *LikeQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (lq *LikeQuery) Where(ps ...predicate.Like) *LikeQuery {
+	lq.predicates = append(lq.predicates, ps...)
+	return lq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *LikeQuery) Limit(limit int) *LikeQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (lq *LikeQuery) Limit(limit int) *LikeQuery {
+	lq.ctx.Limit = &limit
+	return lq
 }
 
 // Offset to start from.
-func (_q *LikeQuery) Offset(offset int) *LikeQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (lq *LikeQuery) Offset(offset int) *LikeQuery {
+	lq.ctx.Offset = &offset
+	return lq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *LikeQuery) Unique(unique bool) *LikeQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (lq *LikeQuery) Unique(unique bool) *LikeQuery {
+	lq.ctx.Unique = &unique
+	return lq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *LikeQuery) Order(o ...like.OrderOption) *LikeQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (lq *LikeQuery) Order(o ...like.OrderOption) *LikeQuery {
+	lq.order = append(lq.order, o...)
+	return lq
 }
 
 // First returns the first Like entity from the query.
 // Returns a *NotFoundError when no Like was found.
-func (_q *LikeQuery) First(ctx context.Context) (*Like, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (lq *LikeQuery) First(ctx context.Context) (*Like, error) {
+	nodes, err := lq.Limit(1).All(setContextOp(ctx, lq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *LikeQuery) First(ctx context.Context) (*Like, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *LikeQuery) FirstX(ctx context.Context) *Like {
-	node, err := _q.First(ctx)
+func (lq *LikeQuery) FirstX(ctx context.Context) *Like {
+	node, err := lq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *LikeQuery) FirstX(ctx context.Context) *Like {
 
 // FirstID returns the first Like ID from the query.
 // Returns a *NotFoundError when no Like ID was found.
-func (_q *LikeQuery) FirstID(ctx context.Context) (id string, err error) {
+func (lq *LikeQuery) FirstID(ctx context.Context) (id string, err error) {
 	var ids []string
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = lq.Limit(1).IDs(setContextOp(ctx, lq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *LikeQuery) FirstID(ctx context.Context) (id string, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *LikeQuery) FirstIDX(ctx context.Context) string {
-	id, err := _q.FirstID(ctx)
+func (lq *LikeQuery) FirstIDX(ctx context.Context) string {
+	id, err := lq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *LikeQuery) FirstIDX(ctx context.Context) string {
 // Only returns a single Like entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Like entity is found.
 // Returns a *NotFoundError when no Like entities are found.
-func (_q *LikeQuery) Only(ctx context.Context) (*Like, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (lq *LikeQuery) Only(ctx context.Context) (*Like, error) {
+	nodes, err := lq.Limit(2).All(setContextOp(ctx, lq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *LikeQuery) Only(ctx context.Context) (*Like, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *LikeQuery) OnlyX(ctx context.Context) *Like {
-	node, err := _q.Only(ctx)
+func (lq *LikeQuery) OnlyX(ctx context.Context) *Like {
+	node, err := lq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *LikeQuery) OnlyX(ctx context.Context) *Like {
 // OnlyID is like Only, but returns the only Like ID in the query.
 // Returns a *NotSingularError when more than one Like ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *LikeQuery) OnlyID(ctx context.Context) (id string, err error) {
+func (lq *LikeQuery) OnlyID(ctx context.Context) (id string, err error) {
 	var ids []string
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = lq.Limit(2).IDs(setContextOp(ctx, lq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *LikeQuery) OnlyID(ctx context.Context) (id string, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *LikeQuery) OnlyIDX(ctx context.Context) string {
-	id, err := _q.OnlyID(ctx)
+func (lq *LikeQuery) OnlyIDX(ctx context.Context) string {
+	id, err := lq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *LikeQuery) OnlyIDX(ctx context.Context) string {
 }
 
 // All executes the query and returns a list of Likes.
-func (_q *LikeQuery) All(ctx context.Context) ([]*Like, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (lq *LikeQuery) All(ctx context.Context) ([]*Like, error) {
+	ctx = setContextOp(ctx, lq.ctx, ent.OpQueryAll)
+	if err := lq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Like, *LikeQuery]()
-	return withInterceptors[[]*Like](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*Like](ctx, lq, qr, lq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *LikeQuery) AllX(ctx context.Context) []*Like {
-	nodes, err := _q.All(ctx)
+func (lq *LikeQuery) AllX(ctx context.Context) []*Like {
+	nodes, err := lq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *LikeQuery) AllX(ctx context.Context) []*Like {
 }
 
 // IDs executes the query and returns a list of Like IDs.
-func (_q *LikeQuery) IDs(ctx context.Context) (ids []string, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (lq *LikeQuery) IDs(ctx context.Context) (ids []string, err error) {
+	if lq.ctx.Unique == nil && lq.path != nil {
+		lq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(like.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, lq.ctx, ent.OpQueryIDs)
+	if err = lq.Select(like.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *LikeQuery) IDsX(ctx context.Context) []string {
-	ids, err := _q.IDs(ctx)
+func (lq *LikeQuery) IDsX(ctx context.Context) []string {
+	ids, err := lq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *LikeQuery) IDsX(ctx context.Context) []string {
 }
 
 // Count returns the count of the given query.
-func (_q *LikeQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (lq *LikeQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, lq.ctx, ent.OpQueryCount)
+	if err := lq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*LikeQuery](), _q.inters)
+	return withInterceptors[int](ctx, lq, querierCount[*LikeQuery](), lq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *LikeQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (lq *LikeQuery) CountX(ctx context.Context) int {
+	count, err := lq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *LikeQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *LikeQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (lq *LikeQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, lq.ctx, ent.OpQueryExist)
+	switch _, err := lq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *LikeQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *LikeQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (lq *LikeQuery) ExistX(ctx context.Context) bool {
+	exist, err := lq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *LikeQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the LikeQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *LikeQuery) Clone() *LikeQuery {
-	if _q == nil {
+func (lq *LikeQuery) Clone() *LikeQuery {
+	if lq == nil {
 		return nil
 	}
 	return &LikeQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]like.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.Like{}, _q.predicates...),
+		config:     lq.config,
+		ctx:        lq.ctx.Clone(),
+		order:      append([]like.OrderOption{}, lq.order...),
+		inters:     append([]Interceptor{}, lq.inters...),
+		predicates: append([]predicate.Like{}, lq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  lq.sql.Clone(),
+		path: lq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *LikeQuery) Clone() *LikeQuery {
 //		GroupBy(like.FieldArticleId).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *LikeQuery) GroupBy(field string, fields ...string) *LikeGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &LikeGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (lq *LikeQuery) GroupBy(field string, fields ...string) *LikeGroupBy {
+	lq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &LikeGroupBy{build: lq}
+	grbuild.flds = &lq.ctx.Fields
 	grbuild.label = like.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *LikeQuery) GroupBy(field string, fields ...string) *LikeGroupBy {
 //	client.Like.Query().
 //		Select(like.FieldArticleId).
 //		Scan(ctx, &v)
-func (_q *LikeQuery) Select(fields ...string) *LikeSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &LikeSelect{LikeQuery: _q}
+func (lq *LikeQuery) Select(fields ...string) *LikeSelect {
+	lq.ctx.Fields = append(lq.ctx.Fields, fields...)
+	sbuild := &LikeSelect{LikeQuery: lq}
 	sbuild.label = like.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &lq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a LikeSelect configured with the given aggregations.
-func (_q *LikeQuery) Aggregate(fns ...AggregateFunc) *LikeSelect {
-	return _q.Select().Aggregate(fns...)
+func (lq *LikeQuery) Aggregate(fns ...AggregateFunc) *LikeSelect {
+	return lq.Select().Aggregate(fns...)
 }
 
-func (_q *LikeQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (lq *LikeQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range lq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, lq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range lq.ctx.Fields {
 		if !like.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if lq.path != nil {
+		prev, err := lq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		lq.sql = prev
 	}
 	return nil
 }
 
-func (_q *LikeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Like, error) {
+func (lq *LikeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Like, error) {
 	var (
 		nodes = []*Like{}
-		_spec = _q.querySpec()
+		_spec = lq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*Like).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Like{config: _q.config}
+		node := &Like{config: lq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, lq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *LikeQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Like, e
 	return nodes, nil
 }
 
-func (_q *LikeQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (lq *LikeQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := lq.querySpec()
+	_spec.Node.Columns = lq.ctx.Fields
+	if len(lq.ctx.Fields) > 0 {
+		_spec.Unique = lq.ctx.Unique != nil && *lq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, lq.driver, _spec)
 }
 
-func (_q *LikeQuery) querySpec() *sqlgraph.QuerySpec {
+func (lq *LikeQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(like.Table, like.Columns, sqlgraph.NewFieldSpec(like.FieldID, field.TypeString))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = lq.sql
+	if unique := lq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if lq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := lq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, like.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *LikeQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := lq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := lq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := lq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := lq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *LikeQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *LikeQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (lq *LikeQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(lq.driver.Dialect())
 	t1 := builder.Table(like.Table)
-	columns := _q.ctx.Fields
+	columns := lq.ctx.Fields
 	if len(columns) == 0 {
 		columns = like.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if lq.sql != nil {
+		selector = lq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if lq.ctx.Unique != nil && *lq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range lq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range lq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := lq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := lq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type LikeGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *LikeGroupBy) Aggregate(fns ...AggregateFunc) *LikeGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (lgb *LikeGroupBy) Aggregate(fns ...AggregateFunc) *LikeGroupBy {
+	lgb.fns = append(lgb.fns, fns...)
+	return lgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *LikeGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (lgb *LikeGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, lgb.build.ctx, ent.OpQueryGroupBy)
+	if err := lgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*LikeQuery, *LikeGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*LikeQuery, *LikeGroupBy](ctx, lgb.build, lgb, lgb.build.inters, v)
 }
 
-func (_g *LikeGroupBy) sqlScan(ctx context.Context, root *LikeQuery, v any) error {
+func (lgb *LikeGroupBy) sqlScan(ctx context.Context, root *LikeQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(lgb.fns))
+	for _, fn := range lgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*lgb.flds)+len(lgb.fns))
+		for _, f := range *lgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*lgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := lgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type LikeSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *LikeSelect) Aggregate(fns ...AggregateFunc) *LikeSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (ls *LikeSelect) Aggregate(fns ...AggregateFunc) *LikeSelect {
+	ls.fns = append(ls.fns, fns...)
+	return ls
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *LikeSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (ls *LikeSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ls.ctx, ent.OpQuerySelect)
+	if err := ls.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*LikeQuery, *LikeSelect](ctx, _s.LikeQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*LikeQuery, *LikeSelect](ctx, ls.LikeQuery, ls, ls.inters, v)
 }
 
-func (_s *LikeSelect) sqlScan(ctx context.Context, root *LikeQuery, v any) error {
+func (ls *LikeSelect) sqlScan(ctx context.Context, root *LikeQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(ls.fns))
+	for _, fn := range ls.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*ls.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *LikeSelect) sqlScan(ctx context.Context, root *LikeQuery, v any) error
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ls.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

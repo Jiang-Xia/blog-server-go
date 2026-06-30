@@ -52,7 +52,7 @@ func (*RpgLotteryPool) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgLotteryPool fields.
-func (_m *RpgLotteryPool) assignValues(columns []string, values []any) error {
+func (rlp *RpgLotteryPool) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -63,46 +63,46 @@ func (_m *RpgLotteryPool) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rlp.ID = int(value.Int64)
 		case rpglotterypool.FieldItemCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field itemCode", values[i])
 			} else if value.Valid {
-				_m.ItemCode = value.String
+				rlp.ItemCode = value.String
 			}
 		case rpglotterypool.FieldProbability:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field probability", values[i])
 			} else if value.Valid {
-				_m.Probability = value.Float64
+				rlp.Probability = value.Float64
 			}
 		case rpglotterypool.FieldActive:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field active", values[i])
 			} else if value.Valid {
-				_m.Active = int(value.Int64)
+				rlp.Active = int(value.Int64)
 			}
 		case rpglotterypool.FieldSort:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sort", values[i])
 			} else if value.Valid {
-				_m.Sort = int(value.Int64)
+				rlp.Sort = int(value.Int64)
 			}
 		case rpglotterypool.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				rlp.EffectJson = new(string)
+				*rlp.EffectJson = value.String
 			}
 		case rpglotterypool.FieldRarity:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field rarity", values[i])
 			} else if value.Valid {
-				_m.Rarity = value.String
+				rlp.Rarity = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rlp.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -110,52 +110,52 @@ func (_m *RpgLotteryPool) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgLotteryPool.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgLotteryPool) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rlp *RpgLotteryPool) Value(name string) (ent.Value, error) {
+	return rlp.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgLotteryPool.
 // Note that you need to call RpgLotteryPool.Unwrap() before calling this method if this RpgLotteryPool
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgLotteryPool) Update() *RpgLotteryPoolUpdateOne {
-	return NewRpgLotteryPoolClient(_m.config).UpdateOne(_m)
+func (rlp *RpgLotteryPool) Update() *RpgLotteryPoolUpdateOne {
+	return NewRpgLotteryPoolClient(rlp.config).UpdateOne(rlp)
 }
 
 // Unwrap unwraps the RpgLotteryPool entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgLotteryPool) Unwrap() *RpgLotteryPool {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rlp *RpgLotteryPool) Unwrap() *RpgLotteryPool {
+	_tx, ok := rlp.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgLotteryPool is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rlp.config.driver = _tx.drv
+	return rlp
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgLotteryPool) String() string {
+func (rlp *RpgLotteryPool) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgLotteryPool(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rlp.ID))
 	builder.WriteString("itemCode=")
-	builder.WriteString(_m.ItemCode)
+	builder.WriteString(rlp.ItemCode)
 	builder.WriteString(", ")
 	builder.WriteString("probability=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Probability))
+	builder.WriteString(fmt.Sprintf("%v", rlp.Probability))
 	builder.WriteString(", ")
 	builder.WriteString("active=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Active))
+	builder.WriteString(fmt.Sprintf("%v", rlp.Active))
 	builder.WriteString(", ")
 	builder.WriteString("sort=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Sort))
+	builder.WriteString(fmt.Sprintf("%v", rlp.Sort))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := rlp.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("rarity=")
-	builder.WriteString(_m.Rarity)
+	builder.WriteString(rlp.Rarity)
 	builder.WriteByte(')')
 	return builder.String()
 }

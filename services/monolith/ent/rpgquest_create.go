@@ -22,175 +22,175 @@ type RpgQuestCreate struct {
 }
 
 // SetCode sets the "code" field.
-func (_c *RpgQuestCreate) SetCode(v string) *RpgQuestCreate {
-	_c.mutation.SetCode(v)
-	return _c
+func (rqc *RpgQuestCreate) SetCode(s string) *RpgQuestCreate {
+	rqc.mutation.SetCode(s)
+	return rqc
 }
 
 // SetName sets the "name" field.
-func (_c *RpgQuestCreate) SetName(v string) *RpgQuestCreate {
-	_c.mutation.SetName(v)
-	return _c
+func (rqc *RpgQuestCreate) SetName(s string) *RpgQuestCreate {
+	rqc.mutation.SetName(s)
+	return rqc
 }
 
 // SetDescription sets the "description" field.
-func (_c *RpgQuestCreate) SetDescription(v string) *RpgQuestCreate {
-	_c.mutation.SetDescription(v)
-	return _c
+func (rqc *RpgQuestCreate) SetDescription(s string) *RpgQuestCreate {
+	rqc.mutation.SetDescription(s)
+	return rqc
 }
 
 // SetType sets the "type" field.
-func (_c *RpgQuestCreate) SetType(v string) *RpgQuestCreate {
-	_c.mutation.SetType(v)
-	return _c
+func (rqc *RpgQuestCreate) SetType(s string) *RpgQuestCreate {
+	rqc.mutation.SetType(s)
+	return rqc
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableType(v *string) *RpgQuestCreate {
-	if v != nil {
-		_c.SetType(*v)
+func (rqc *RpgQuestCreate) SetNillableType(s *string) *RpgQuestCreate {
+	if s != nil {
+		rqc.SetType(*s)
 	}
-	return _c
+	return rqc
 }
 
 // SetTargetAction sets the "targetAction" field.
-func (_c *RpgQuestCreate) SetTargetAction(v string) *RpgQuestCreate {
-	_c.mutation.SetTargetAction(v)
-	return _c
+func (rqc *RpgQuestCreate) SetTargetAction(s string) *RpgQuestCreate {
+	rqc.mutation.SetTargetAction(s)
+	return rqc
 }
 
 // SetTargetCount sets the "targetCount" field.
-func (_c *RpgQuestCreate) SetTargetCount(v int) *RpgQuestCreate {
-	_c.mutation.SetTargetCount(v)
-	return _c
+func (rqc *RpgQuestCreate) SetTargetCount(i int) *RpgQuestCreate {
+	rqc.mutation.SetTargetCount(i)
+	return rqc
 }
 
 // SetNillableTargetCount sets the "targetCount" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableTargetCount(v *int) *RpgQuestCreate {
-	if v != nil {
-		_c.SetTargetCount(*v)
+func (rqc *RpgQuestCreate) SetNillableTargetCount(i *int) *RpgQuestCreate {
+	if i != nil {
+		rqc.SetTargetCount(*i)
 	}
-	return _c
+	return rqc
 }
 
 // SetExpReward sets the "expReward" field.
-func (_c *RpgQuestCreate) SetExpReward(v int) *RpgQuestCreate {
-	_c.mutation.SetExpReward(v)
-	return _c
+func (rqc *RpgQuestCreate) SetExpReward(i int) *RpgQuestCreate {
+	rqc.mutation.SetExpReward(i)
+	return rqc
 }
 
 // SetNillableExpReward sets the "expReward" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableExpReward(v *int) *RpgQuestCreate {
-	if v != nil {
-		_c.SetExpReward(*v)
+func (rqc *RpgQuestCreate) SetNillableExpReward(i *int) *RpgQuestCreate {
+	if i != nil {
+		rqc.SetExpReward(*i)
 	}
-	return _c
+	return rqc
 }
 
 // SetHpReward sets the "hpReward" field.
-func (_c *RpgQuestCreate) SetHpReward(v int) *RpgQuestCreate {
-	_c.mutation.SetHpReward(v)
-	return _c
+func (rqc *RpgQuestCreate) SetHpReward(i int) *RpgQuestCreate {
+	rqc.mutation.SetHpReward(i)
+	return rqc
 }
 
 // SetNillableHpReward sets the "hpReward" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableHpReward(v *int) *RpgQuestCreate {
-	if v != nil {
-		_c.SetHpReward(*v)
+func (rqc *RpgQuestCreate) SetNillableHpReward(i *int) *RpgQuestCreate {
+	if i != nil {
+		rqc.SetHpReward(*i)
 	}
-	return _c
+	return rqc
 }
 
 // SetCurrencyReward sets the "currencyReward" field.
-func (_c *RpgQuestCreate) SetCurrencyReward(v int) *RpgQuestCreate {
-	_c.mutation.SetCurrencyReward(v)
-	return _c
+func (rqc *RpgQuestCreate) SetCurrencyReward(i int) *RpgQuestCreate {
+	rqc.mutation.SetCurrencyReward(i)
+	return rqc
 }
 
 // SetNillableCurrencyReward sets the "currencyReward" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableCurrencyReward(v *int) *RpgQuestCreate {
-	if v != nil {
-		_c.SetCurrencyReward(*v)
+func (rqc *RpgQuestCreate) SetNillableCurrencyReward(i *int) *RpgQuestCreate {
+	if i != nil {
+		rqc.SetCurrencyReward(*i)
 	}
-	return _c
+	return rqc
 }
 
 // SetActive sets the "active" field.
-func (_c *RpgQuestCreate) SetActive(v int) *RpgQuestCreate {
-	_c.mutation.SetActive(v)
-	return _c
+func (rqc *RpgQuestCreate) SetActive(i int) *RpgQuestCreate {
+	rqc.mutation.SetActive(i)
+	return rqc
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableActive(v *int) *RpgQuestCreate {
-	if v != nil {
-		_c.SetActive(*v)
+func (rqc *RpgQuestCreate) SetNillableActive(i *int) *RpgQuestCreate {
+	if i != nil {
+		rqc.SetActive(*i)
 	}
-	return _c
+	return rqc
 }
 
 // SetSort sets the "sort" field.
-func (_c *RpgQuestCreate) SetSort(v int) *RpgQuestCreate {
-	_c.mutation.SetSort(v)
-	return _c
+func (rqc *RpgQuestCreate) SetSort(i int) *RpgQuestCreate {
+	rqc.mutation.SetSort(i)
+	return rqc
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableSort(v *int) *RpgQuestCreate {
-	if v != nil {
-		_c.SetSort(*v)
+func (rqc *RpgQuestCreate) SetNillableSort(i *int) *RpgQuestCreate {
+	if i != nil {
+		rqc.SetSort(*i)
 	}
-	return _c
+	return rqc
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgQuestCreate) SetEffectJson(v string) *RpgQuestCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (rqc *RpgQuestCreate) SetEffectJson(s string) *RpgQuestCreate {
+	rqc.mutation.SetEffectJson(s)
+	return rqc
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableEffectJson(v *string) *RpgQuestCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (rqc *RpgQuestCreate) SetNillableEffectJson(s *string) *RpgQuestCreate {
+	if s != nil {
+		rqc.SetEffectJson(*s)
 	}
-	return _c
+	return rqc
 }
 
 // SetQuestSubtype sets the "questSubtype" field.
-func (_c *RpgQuestCreate) SetQuestSubtype(v string) *RpgQuestCreate {
-	_c.mutation.SetQuestSubtype(v)
-	return _c
+func (rqc *RpgQuestCreate) SetQuestSubtype(s string) *RpgQuestCreate {
+	rqc.mutation.SetQuestSubtype(s)
+	return rqc
 }
 
 // SetNillableQuestSubtype sets the "questSubtype" field if the given value is not nil.
-func (_c *RpgQuestCreate) SetNillableQuestSubtype(v *string) *RpgQuestCreate {
-	if v != nil {
-		_c.SetQuestSubtype(*v)
+func (rqc *RpgQuestCreate) SetNillableQuestSubtype(s *string) *RpgQuestCreate {
+	if s != nil {
+		rqc.SetQuestSubtype(*s)
 	}
-	return _c
+	return rqc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgQuestCreate) SetID(v int) *RpgQuestCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rqc *RpgQuestCreate) SetID(i int) *RpgQuestCreate {
+	rqc.mutation.SetID(i)
+	return rqc
 }
 
 // Mutation returns the RpgQuestMutation object of the builder.
-func (_c *RpgQuestCreate) Mutation() *RpgQuestMutation {
-	return _c.mutation
+func (rqc *RpgQuestCreate) Mutation() *RpgQuestMutation {
+	return rqc.mutation
 }
 
 // Save creates the RpgQuest in the database.
-func (_c *RpgQuestCreate) Save(ctx context.Context) (*RpgQuest, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rqc *RpgQuestCreate) Save(ctx context.Context) (*RpgQuest, error) {
+	rqc.defaults()
+	return withHooks(ctx, rqc.sqlSave, rqc.mutation, rqc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgQuestCreate) SaveX(ctx context.Context) *RpgQuest {
-	v, err := _c.Save(ctx)
+func (rqc *RpgQuestCreate) SaveX(ctx context.Context) *RpgQuest {
+	v, err := rqc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -198,101 +198,101 @@ func (_c *RpgQuestCreate) SaveX(ctx context.Context) *RpgQuest {
 }
 
 // Exec executes the query.
-func (_c *RpgQuestCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rqc *RpgQuestCreate) Exec(ctx context.Context) error {
+	_, err := rqc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgQuestCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rqc *RpgQuestCreate) ExecX(ctx context.Context) {
+	if err := rqc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgQuestCreate) defaults() {
-	if _, ok := _c.mutation.GetType(); !ok {
+func (rqc *RpgQuestCreate) defaults() {
+	if _, ok := rqc.mutation.GetType(); !ok {
 		v := rpgquest.DefaultType
-		_c.mutation.SetType(v)
+		rqc.mutation.SetType(v)
 	}
-	if _, ok := _c.mutation.TargetCount(); !ok {
+	if _, ok := rqc.mutation.TargetCount(); !ok {
 		v := rpgquest.DefaultTargetCount
-		_c.mutation.SetTargetCount(v)
+		rqc.mutation.SetTargetCount(v)
 	}
-	if _, ok := _c.mutation.ExpReward(); !ok {
+	if _, ok := rqc.mutation.ExpReward(); !ok {
 		v := rpgquest.DefaultExpReward
-		_c.mutation.SetExpReward(v)
+		rqc.mutation.SetExpReward(v)
 	}
-	if _, ok := _c.mutation.HpReward(); !ok {
+	if _, ok := rqc.mutation.HpReward(); !ok {
 		v := rpgquest.DefaultHpReward
-		_c.mutation.SetHpReward(v)
+		rqc.mutation.SetHpReward(v)
 	}
-	if _, ok := _c.mutation.CurrencyReward(); !ok {
+	if _, ok := rqc.mutation.CurrencyReward(); !ok {
 		v := rpgquest.DefaultCurrencyReward
-		_c.mutation.SetCurrencyReward(v)
+		rqc.mutation.SetCurrencyReward(v)
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := rqc.mutation.Active(); !ok {
 		v := rpgquest.DefaultActive
-		_c.mutation.SetActive(v)
+		rqc.mutation.SetActive(v)
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := rqc.mutation.Sort(); !ok {
 		v := rpgquest.DefaultSort
-		_c.mutation.SetSort(v)
+		rqc.mutation.SetSort(v)
 	}
-	if _, ok := _c.mutation.QuestSubtype(); !ok {
+	if _, ok := rqc.mutation.QuestSubtype(); !ok {
 		v := rpgquest.DefaultQuestSubtype
-		_c.mutation.SetQuestSubtype(v)
+		rqc.mutation.SetQuestSubtype(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgQuestCreate) check() error {
-	if _, ok := _c.mutation.Code(); !ok {
+func (rqc *RpgQuestCreate) check() error {
+	if _, ok := rqc.mutation.Code(); !ok {
 		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "RpgQuest.code"`)}
 	}
-	if _, ok := _c.mutation.Name(); !ok {
+	if _, ok := rqc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "RpgQuest.name"`)}
 	}
-	if _, ok := _c.mutation.Description(); !ok {
+	if _, ok := rqc.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "RpgQuest.description"`)}
 	}
-	if _, ok := _c.mutation.GetType(); !ok {
+	if _, ok := rqc.mutation.GetType(); !ok {
 		return &ValidationError{Name: "type", err: errors.New(`ent: missing required field "RpgQuest.type"`)}
 	}
-	if _, ok := _c.mutation.TargetAction(); !ok {
+	if _, ok := rqc.mutation.TargetAction(); !ok {
 		return &ValidationError{Name: "targetAction", err: errors.New(`ent: missing required field "RpgQuest.targetAction"`)}
 	}
-	if _, ok := _c.mutation.TargetCount(); !ok {
+	if _, ok := rqc.mutation.TargetCount(); !ok {
 		return &ValidationError{Name: "targetCount", err: errors.New(`ent: missing required field "RpgQuest.targetCount"`)}
 	}
-	if _, ok := _c.mutation.ExpReward(); !ok {
+	if _, ok := rqc.mutation.ExpReward(); !ok {
 		return &ValidationError{Name: "expReward", err: errors.New(`ent: missing required field "RpgQuest.expReward"`)}
 	}
-	if _, ok := _c.mutation.HpReward(); !ok {
+	if _, ok := rqc.mutation.HpReward(); !ok {
 		return &ValidationError{Name: "hpReward", err: errors.New(`ent: missing required field "RpgQuest.hpReward"`)}
 	}
-	if _, ok := _c.mutation.CurrencyReward(); !ok {
+	if _, ok := rqc.mutation.CurrencyReward(); !ok {
 		return &ValidationError{Name: "currencyReward", err: errors.New(`ent: missing required field "RpgQuest.currencyReward"`)}
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := rqc.mutation.Active(); !ok {
 		return &ValidationError{Name: "active", err: errors.New(`ent: missing required field "RpgQuest.active"`)}
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := rqc.mutation.Sort(); !ok {
 		return &ValidationError{Name: "sort", err: errors.New(`ent: missing required field "RpgQuest.sort"`)}
 	}
-	if _, ok := _c.mutation.QuestSubtype(); !ok {
+	if _, ok := rqc.mutation.QuestSubtype(); !ok {
 		return &ValidationError{Name: "questSubtype", err: errors.New(`ent: missing required field "RpgQuest.questSubtype"`)}
 	}
 	return nil
 }
 
-func (_c *RpgQuestCreate) sqlSave(ctx context.Context) (*RpgQuest, error) {
-	if err := _c.check(); err != nil {
+func (rqc *RpgQuestCreate) sqlSave(ctx context.Context) (*RpgQuest, error) {
+	if err := rqc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rqc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rqc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -302,70 +302,70 @@ func (_c *RpgQuestCreate) sqlSave(ctx context.Context) (*RpgQuest, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rqc.mutation.id = &_node.ID
+	rqc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgQuestCreate) createSpec() (*RpgQuest, *sqlgraph.CreateSpec) {
+func (rqc *RpgQuestCreate) createSpec() (*RpgQuest, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgQuest{config: _c.config}
+		_node = &RpgQuest{config: rqc.config}
 		_spec = sqlgraph.NewCreateSpec(rpgquest.Table, sqlgraph.NewFieldSpec(rpgquest.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rqc.conflict
+	if id, ok := rqc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.Code(); ok {
+	if value, ok := rqc.mutation.Code(); ok {
 		_spec.SetField(rpgquest.FieldCode, field.TypeString, value)
 		_node.Code = value
 	}
-	if value, ok := _c.mutation.Name(); ok {
+	if value, ok := rqc.mutation.Name(); ok {
 		_spec.SetField(rpgquest.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := _c.mutation.Description(); ok {
+	if value, ok := rqc.mutation.Description(); ok {
 		_spec.SetField(rpgquest.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := _c.mutation.GetType(); ok {
+	if value, ok := rqc.mutation.GetType(); ok {
 		_spec.SetField(rpgquest.FieldType, field.TypeString, value)
 		_node.Type = value
 	}
-	if value, ok := _c.mutation.TargetAction(); ok {
+	if value, ok := rqc.mutation.TargetAction(); ok {
 		_spec.SetField(rpgquest.FieldTargetAction, field.TypeString, value)
 		_node.TargetAction = value
 	}
-	if value, ok := _c.mutation.TargetCount(); ok {
+	if value, ok := rqc.mutation.TargetCount(); ok {
 		_spec.SetField(rpgquest.FieldTargetCount, field.TypeInt, value)
 		_node.TargetCount = value
 	}
-	if value, ok := _c.mutation.ExpReward(); ok {
+	if value, ok := rqc.mutation.ExpReward(); ok {
 		_spec.SetField(rpgquest.FieldExpReward, field.TypeInt, value)
 		_node.ExpReward = value
 	}
-	if value, ok := _c.mutation.HpReward(); ok {
+	if value, ok := rqc.mutation.HpReward(); ok {
 		_spec.SetField(rpgquest.FieldHpReward, field.TypeInt, value)
 		_node.HpReward = value
 	}
-	if value, ok := _c.mutation.CurrencyReward(); ok {
+	if value, ok := rqc.mutation.CurrencyReward(); ok {
 		_spec.SetField(rpgquest.FieldCurrencyReward, field.TypeInt, value)
 		_node.CurrencyReward = value
 	}
-	if value, ok := _c.mutation.Active(); ok {
+	if value, ok := rqc.mutation.Active(); ok {
 		_spec.SetField(rpgquest.FieldActive, field.TypeInt, value)
 		_node.Active = value
 	}
-	if value, ok := _c.mutation.Sort(); ok {
+	if value, ok := rqc.mutation.Sort(); ok {
 		_spec.SetField(rpgquest.FieldSort, field.TypeInt, value)
 		_node.Sort = value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := rqc.mutation.EffectJson(); ok {
 		_spec.SetField(rpgquest.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.QuestSubtype(); ok {
+	if value, ok := rqc.mutation.QuestSubtype(); ok {
 		_spec.SetField(rpgquest.FieldQuestSubtype, field.TypeString, value)
 		_node.QuestSubtype = value
 	}
@@ -388,10 +388,10 @@ func (_c *RpgQuestCreate) createSpec() (*RpgQuest, *sqlgraph.CreateSpec) {
 //			SetCode(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgQuestCreate) OnConflict(opts ...sql.ConflictOption) *RpgQuestUpsertOne {
-	_c.conflict = opts
+func (rqc *RpgQuestCreate) OnConflict(opts ...sql.ConflictOption) *RpgQuestUpsertOne {
+	rqc.conflict = opts
 	return &RpgQuestUpsertOne{
-		create: _c,
+		create: rqc,
 	}
 }
 
@@ -401,10 +401,10 @@ func (_c *RpgQuestCreate) OnConflict(opts ...sql.ConflictOption) *RpgQuestUpsert
 //	client.RpgQuest.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgQuestCreate) OnConflictColumns(columns ...string) *RpgQuestUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rqc *RpgQuestCreate) OnConflictColumns(columns ...string) *RpgQuestUpsertOne {
+	rqc.conflict = append(rqc.conflict, sql.ConflictColumns(columns...))
 	return &RpgQuestUpsertOne{
-		create: _c,
+		create: rqc,
 	}
 }
 
@@ -940,16 +940,16 @@ type RpgQuestCreateBulk struct {
 }
 
 // Save creates the RpgQuest entities in the database.
-func (_c *RpgQuestCreateBulk) Save(ctx context.Context) ([]*RpgQuest, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rqcb *RpgQuestCreateBulk) Save(ctx context.Context) ([]*RpgQuest, error) {
+	if rqcb.err != nil {
+		return nil, rqcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgQuest, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rqcb.builders))
+	nodes := make([]*RpgQuest, len(rqcb.builders))
+	mutators := make([]Mutator, len(rqcb.builders))
+	for i := range rqcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rqcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgQuestMutation)
@@ -963,12 +963,12 @@ func (_c *RpgQuestCreateBulk) Save(ctx context.Context) ([]*RpgQuest, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rqcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rqcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rqcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -992,7 +992,7 @@ func (_c *RpgQuestCreateBulk) Save(ctx context.Context) ([]*RpgQuest, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rqcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1000,8 +1000,8 @@ func (_c *RpgQuestCreateBulk) Save(ctx context.Context) ([]*RpgQuest, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgQuestCreateBulk) SaveX(ctx context.Context) []*RpgQuest {
-	v, err := _c.Save(ctx)
+func (rqcb *RpgQuestCreateBulk) SaveX(ctx context.Context) []*RpgQuest {
+	v, err := rqcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1009,14 +1009,14 @@ func (_c *RpgQuestCreateBulk) SaveX(ctx context.Context) []*RpgQuest {
 }
 
 // Exec executes the query.
-func (_c *RpgQuestCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rqcb *RpgQuestCreateBulk) Exec(ctx context.Context) error {
+	_, err := rqcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgQuestCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rqcb *RpgQuestCreateBulk) ExecX(ctx context.Context) {
+	if err := rqcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1036,10 +1036,10 @@ func (_c *RpgQuestCreateBulk) ExecX(ctx context.Context) {
 //			SetCode(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgQuestCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgQuestUpsertBulk {
-	_c.conflict = opts
+func (rqcb *RpgQuestCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgQuestUpsertBulk {
+	rqcb.conflict = opts
 	return &RpgQuestUpsertBulk{
-		create: _c,
+		create: rqcb,
 	}
 }
 
@@ -1049,10 +1049,10 @@ func (_c *RpgQuestCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgQuestUp
 //	client.RpgQuest.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgQuestCreateBulk) OnConflictColumns(columns ...string) *RpgQuestUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rqcb *RpgQuestCreateBulk) OnConflictColumns(columns ...string) *RpgQuestUpsertBulk {
+	rqcb.conflict = append(rqcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgQuestUpsertBulk{
-		create: _c,
+		create: rqcb,
 	}
 }
 

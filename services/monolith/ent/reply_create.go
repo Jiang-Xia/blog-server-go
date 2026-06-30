@@ -24,119 +24,119 @@ type ReplyCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *ReplyCreate) SetCreateTime(v time.Time) *ReplyCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (rc *ReplyCreate) SetCreateTime(t time.Time) *ReplyCreate {
+	rc.mutation.SetCreateTime(t)
+	return rc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *ReplyCreate) SetNillableCreateTime(v *time.Time) *ReplyCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (rc *ReplyCreate) SetNillableCreateTime(t *time.Time) *ReplyCreate {
+	if t != nil {
+		rc.SetCreateTime(*t)
 	}
-	return _c
+	return rc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *ReplyCreate) SetUpdateTime(v time.Time) *ReplyCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (rc *ReplyCreate) SetUpdateTime(t time.Time) *ReplyCreate {
+	rc.mutation.SetUpdateTime(t)
+	return rc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *ReplyCreate) SetNillableUpdateTime(v *time.Time) *ReplyCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (rc *ReplyCreate) SetNillableUpdateTime(t *time.Time) *ReplyCreate {
+	if t != nil {
+		rc.SetUpdateTime(*t)
 	}
-	return _c
+	return rc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *ReplyCreate) SetIsDelete(v bool) *ReplyCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (rc *ReplyCreate) SetIsDelete(b bool) *ReplyCreate {
+	rc.mutation.SetIsDelete(b)
+	return rc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *ReplyCreate) SetNillableIsDelete(v *bool) *ReplyCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (rc *ReplyCreate) SetNillableIsDelete(b *bool) *ReplyCreate {
+	if b != nil {
+		rc.SetIsDelete(*b)
 	}
-	return _c
+	return rc
 }
 
 // SetVersion sets the "version" field.
-func (_c *ReplyCreate) SetVersion(v int) *ReplyCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (rc *ReplyCreate) SetVersion(i int) *ReplyCreate {
+	rc.mutation.SetVersion(i)
+	return rc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *ReplyCreate) SetNillableVersion(v *int) *ReplyCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (rc *ReplyCreate) SetNillableVersion(i *int) *ReplyCreate {
+	if i != nil {
+		rc.SetVersion(*i)
 	}
-	return _c
+	return rc
 }
 
 // SetParentId sets the "parentId" field.
-func (_c *ReplyCreate) SetParentId(v string) *ReplyCreate {
-	_c.mutation.SetParentId(v)
-	return _c
+func (rc *ReplyCreate) SetParentId(s string) *ReplyCreate {
+	rc.mutation.SetParentId(s)
+	return rc
 }
 
 // SetReplyUid sets the "replyUid" field.
-func (_c *ReplyCreate) SetReplyUid(v string) *ReplyCreate {
-	_c.mutation.SetReplyUid(v)
-	return _c
+func (rc *ReplyCreate) SetReplyUid(s string) *ReplyCreate {
+	rc.mutation.SetReplyUid(s)
+	return rc
 }
 
 // SetContent sets the "content" field.
-func (_c *ReplyCreate) SetContent(v string) *ReplyCreate {
-	_c.mutation.SetContent(v)
-	return _c
+func (rc *ReplyCreate) SetContent(s string) *ReplyCreate {
+	rc.mutation.SetContent(s)
+	return rc
 }
 
 // SetUID sets the "uid" field.
-func (_c *ReplyCreate) SetUID(v int) *ReplyCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rc *ReplyCreate) SetUID(i int) *ReplyCreate {
+	rc.mutation.SetUID(i)
+	return rc
 }
 
 // SetStatus sets the "status" field.
-func (_c *ReplyCreate) SetStatus(v string) *ReplyCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (rc *ReplyCreate) SetStatus(s string) *ReplyCreate {
+	rc.mutation.SetStatus(s)
+	return rc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *ReplyCreate) SetNillableStatus(v *string) *ReplyCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (rc *ReplyCreate) SetNillableStatus(s *string) *ReplyCreate {
+	if s != nil {
+		rc.SetStatus(*s)
 	}
-	return _c
+	return rc
 }
 
 // SetID sets the "id" field.
-func (_c *ReplyCreate) SetID(v string) *ReplyCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rc *ReplyCreate) SetID(s string) *ReplyCreate {
+	rc.mutation.SetID(s)
+	return rc
 }
 
 // Mutation returns the ReplyMutation object of the builder.
-func (_c *ReplyCreate) Mutation() *ReplyMutation {
-	return _c.mutation
+func (rc *ReplyCreate) Mutation() *ReplyMutation {
+	return rc.mutation
 }
 
 // Save creates the Reply in the database.
-func (_c *ReplyCreate) Save(ctx context.Context) (*Reply, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rc *ReplyCreate) Save(ctx context.Context) (*Reply, error) {
+	rc.defaults()
+	return withHooks(ctx, rc.sqlSave, rc.mutation, rc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *ReplyCreate) SaveX(ctx context.Context) *Reply {
-	v, err := _c.Save(ctx)
+func (rc *ReplyCreate) SaveX(ctx context.Context) *Reply {
+	v, err := rc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -144,80 +144,80 @@ func (_c *ReplyCreate) SaveX(ctx context.Context) *Reply {
 }
 
 // Exec executes the query.
-func (_c *ReplyCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rc *ReplyCreate) Exec(ctx context.Context) error {
+	_, err := rc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ReplyCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rc *ReplyCreate) ExecX(ctx context.Context) {
+	if err := rc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *ReplyCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rc *ReplyCreate) defaults() {
+	if _, ok := rc.mutation.CreateTime(); !ok {
 		v := reply.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		rc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rc.mutation.UpdateTime(); !ok {
 		v := reply.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		rc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rc.mutation.IsDelete(); !ok {
 		v := reply.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		rc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rc.mutation.Version(); !ok {
 		v := reply.DefaultVersion
-		_c.mutation.SetVersion(v)
+		rc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := rc.mutation.Status(); !ok {
 		v := reply.DefaultStatus
-		_c.mutation.SetStatus(v)
+		rc.mutation.SetStatus(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *ReplyCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rc *ReplyCreate) check() error {
+	if _, ok := rc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "Reply.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Reply.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Reply.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Reply.version"`)}
 	}
-	if _, ok := _c.mutation.ParentId(); !ok {
+	if _, ok := rc.mutation.ParentId(); !ok {
 		return &ValidationError{Name: "parentId", err: errors.New(`ent: missing required field "Reply.parentId"`)}
 	}
-	if _, ok := _c.mutation.ReplyUid(); !ok {
+	if _, ok := rc.mutation.ReplyUid(); !ok {
 		return &ValidationError{Name: "replyUid", err: errors.New(`ent: missing required field "Reply.replyUid"`)}
 	}
-	if _, ok := _c.mutation.Content(); !ok {
+	if _, ok := rc.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "Reply.content"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := rc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "Reply.uid"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := rc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "Reply.status"`)}
 	}
 	return nil
 }
 
-func (_c *ReplyCreate) sqlSave(ctx context.Context) (*Reply, error) {
-	if err := _c.check(); err != nil {
+func (rc *ReplyCreate) sqlSave(ctx context.Context) (*Reply, error) {
+	if err := rc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -230,54 +230,54 @@ func (_c *ReplyCreate) sqlSave(ctx context.Context) (*Reply, error) {
 			return nil, fmt.Errorf("unexpected Reply.ID type: %T", _spec.ID.Value)
 		}
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rc.mutation.id = &_node.ID
+	rc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *ReplyCreate) createSpec() (*Reply, *sqlgraph.CreateSpec) {
+func (rc *ReplyCreate) createSpec() (*Reply, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Reply{config: _c.config}
+		_node = &Reply{config: rc.config}
 		_spec = sqlgraph.NewCreateSpec(reply.Table, sqlgraph.NewFieldSpec(reply.FieldID, field.TypeString))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rc.conflict
+	if id, ok := rc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := rc.mutation.CreateTime(); ok {
 		_spec.SetField(reply.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := rc.mutation.UpdateTime(); ok {
 		_spec.SetField(reply.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := rc.mutation.IsDelete(); ok {
 		_spec.SetField(reply.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := rc.mutation.Version(); ok {
 		_spec.SetField(reply.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.ParentId(); ok {
+	if value, ok := rc.mutation.ParentId(); ok {
 		_spec.SetField(reply.FieldParentId, field.TypeString, value)
 		_node.ParentId = value
 	}
-	if value, ok := _c.mutation.ReplyUid(); ok {
+	if value, ok := rc.mutation.ReplyUid(); ok {
 		_spec.SetField(reply.FieldReplyUid, field.TypeString, value)
 		_node.ReplyUid = value
 	}
-	if value, ok := _c.mutation.Content(); ok {
+	if value, ok := rc.mutation.Content(); ok {
 		_spec.SetField(reply.FieldContent, field.TypeString, value)
 		_node.Content = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rc.mutation.UID(); ok {
 		_spec.SetField(reply.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := rc.mutation.Status(); ok {
 		_spec.SetField(reply.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
@@ -300,10 +300,10 @@ func (_c *ReplyCreate) createSpec() (*Reply, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ReplyCreate) OnConflict(opts ...sql.ConflictOption) *ReplyUpsertOne {
-	_c.conflict = opts
+func (rc *ReplyCreate) OnConflict(opts ...sql.ConflictOption) *ReplyUpsertOne {
+	rc.conflict = opts
 	return &ReplyUpsertOne{
-		create: _c,
+		create: rc,
 	}
 }
 
@@ -313,10 +313,10 @@ func (_c *ReplyCreate) OnConflict(opts ...sql.ConflictOption) *ReplyUpsertOne {
 //	client.Reply.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ReplyCreate) OnConflictColumns(columns ...string) *ReplyUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rc *ReplyCreate) OnConflictColumns(columns ...string) *ReplyUpsertOne {
+	rc.conflict = append(rc.conflict, sql.ConflictColumns(columns...))
 	return &ReplyUpsertOne{
-		create: _c,
+		create: rc,
 	}
 }
 
@@ -665,16 +665,16 @@ type ReplyCreateBulk struct {
 }
 
 // Save creates the Reply entities in the database.
-func (_c *ReplyCreateBulk) Save(ctx context.Context) ([]*Reply, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rcb *ReplyCreateBulk) Save(ctx context.Context) ([]*Reply, error) {
+	if rcb.err != nil {
+		return nil, rcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*Reply, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rcb.builders))
+	nodes := make([]*Reply, len(rcb.builders))
+	mutators := make([]Mutator, len(rcb.builders))
+	for i := range rcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ReplyMutation)
@@ -688,12 +688,12 @@ func (_c *ReplyCreateBulk) Save(ctx context.Context) ([]*Reply, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -713,7 +713,7 @@ func (_c *ReplyCreateBulk) Save(ctx context.Context) ([]*Reply, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -721,8 +721,8 @@ func (_c *ReplyCreateBulk) Save(ctx context.Context) ([]*Reply, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *ReplyCreateBulk) SaveX(ctx context.Context) []*Reply {
-	v, err := _c.Save(ctx)
+func (rcb *ReplyCreateBulk) SaveX(ctx context.Context) []*Reply {
+	v, err := rcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -730,14 +730,14 @@ func (_c *ReplyCreateBulk) SaveX(ctx context.Context) []*Reply {
 }
 
 // Exec executes the query.
-func (_c *ReplyCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rcb *ReplyCreateBulk) Exec(ctx context.Context) error {
+	_, err := rcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *ReplyCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rcb *ReplyCreateBulk) ExecX(ctx context.Context) {
+	if err := rcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -757,10 +757,10 @@ func (_c *ReplyCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *ReplyCreateBulk) OnConflict(opts ...sql.ConflictOption) *ReplyUpsertBulk {
-	_c.conflict = opts
+func (rcb *ReplyCreateBulk) OnConflict(opts ...sql.ConflictOption) *ReplyUpsertBulk {
+	rcb.conflict = opts
 	return &ReplyUpsertBulk{
-		create: _c,
+		create: rcb,
 	}
 }
 
@@ -770,10 +770,10 @@ func (_c *ReplyCreateBulk) OnConflict(opts ...sql.ConflictOption) *ReplyUpsertBu
 //	client.Reply.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *ReplyCreateBulk) OnConflictColumns(columns ...string) *ReplyUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rcb *ReplyCreateBulk) OnConflictColumns(columns ...string) *ReplyUpsertBulk {
+	rcb.conflict = append(rcb.conflict, sql.ConflictColumns(columns...))
 	return &ReplyUpsertBulk{
-		create: _c,
+		create: rcb,
 	}
 }
 

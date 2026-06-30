@@ -20,56 +20,56 @@ type KnowledgeChunkDelete struct {
 }
 
 // Where appends a list predicates to the KnowledgeChunkDelete builder.
-func (_d *KnowledgeChunkDelete) Where(ps ...predicate.KnowledgeChunk) *KnowledgeChunkDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (kcd *KnowledgeChunkDelete) Where(ps ...predicate.KnowledgeChunk) *KnowledgeChunkDelete {
+	kcd.mutation.Where(ps...)
+	return kcd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *KnowledgeChunkDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (kcd *KnowledgeChunkDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, kcd.sqlExec, kcd.mutation, kcd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *KnowledgeChunkDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (kcd *KnowledgeChunkDelete) ExecX(ctx context.Context) int {
+	n, err := kcd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *KnowledgeChunkDelete) sqlExec(ctx context.Context) (int, error) {
+func (kcd *KnowledgeChunkDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(knowledgechunk.Table, sqlgraph.NewFieldSpec(knowledgechunk.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := kcd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, kcd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	kcd.mutation.done = true
 	return affected, err
 }
 
 // KnowledgeChunkDeleteOne is the builder for deleting a single KnowledgeChunk entity.
 type KnowledgeChunkDeleteOne struct {
-	_d *KnowledgeChunkDelete
+	kcd *KnowledgeChunkDelete
 }
 
 // Where appends a list predicates to the KnowledgeChunkDelete builder.
-func (_d *KnowledgeChunkDeleteOne) Where(ps ...predicate.KnowledgeChunk) *KnowledgeChunkDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (kcdo *KnowledgeChunkDeleteOne) Where(ps ...predicate.KnowledgeChunk) *KnowledgeChunkDeleteOne {
+	kcdo.kcd.mutation.Where(ps...)
+	return kcdo
 }
 
 // Exec executes the deletion query.
-func (_d *KnowledgeChunkDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (kcdo *KnowledgeChunkDeleteOne) Exec(ctx context.Context) error {
+	n, err := kcdo.kcd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *KnowledgeChunkDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *KnowledgeChunkDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (kcdo *KnowledgeChunkDeleteOne) ExecX(ctx context.Context) {
+	if err := kcdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

@@ -22,101 +22,101 @@ type RpgLevelRewardCreate struct {
 }
 
 // SetLevel sets the "level" field.
-func (_c *RpgLevelRewardCreate) SetLevel(v int) *RpgLevelRewardCreate {
-	_c.mutation.SetLevel(v)
-	return _c
+func (rlrc *RpgLevelRewardCreate) SetLevel(i int) *RpgLevelRewardCreate {
+	rlrc.mutation.SetLevel(i)
+	return rlrc
 }
 
 // SetAvatarFrame sets the "avatarFrame" field.
-func (_c *RpgLevelRewardCreate) SetAvatarFrame(v string) *RpgLevelRewardCreate {
-	_c.mutation.SetAvatarFrame(v)
-	return _c
+func (rlrc *RpgLevelRewardCreate) SetAvatarFrame(s string) *RpgLevelRewardCreate {
+	rlrc.mutation.SetAvatarFrame(s)
+	return rlrc
 }
 
 // SetNillableAvatarFrame sets the "avatarFrame" field if the given value is not nil.
-func (_c *RpgLevelRewardCreate) SetNillableAvatarFrame(v *string) *RpgLevelRewardCreate {
-	if v != nil {
-		_c.SetAvatarFrame(*v)
+func (rlrc *RpgLevelRewardCreate) SetNillableAvatarFrame(s *string) *RpgLevelRewardCreate {
+	if s != nil {
+		rlrc.SetAvatarFrame(*s)
 	}
-	return _c
+	return rlrc
 }
 
 // SetTitle sets the "title" field.
-func (_c *RpgLevelRewardCreate) SetTitle(v string) *RpgLevelRewardCreate {
-	_c.mutation.SetTitle(v)
-	return _c
+func (rlrc *RpgLevelRewardCreate) SetTitle(s string) *RpgLevelRewardCreate {
+	rlrc.mutation.SetTitle(s)
+	return rlrc
 }
 
 // SetNillableTitle sets the "title" field if the given value is not nil.
-func (_c *RpgLevelRewardCreate) SetNillableTitle(v *string) *RpgLevelRewardCreate {
-	if v != nil {
-		_c.SetTitle(*v)
+func (rlrc *RpgLevelRewardCreate) SetNillableTitle(s *string) *RpgLevelRewardCreate {
+	if s != nil {
+		rlrc.SetTitle(*s)
 	}
-	return _c
+	return rlrc
 }
 
 // SetCurrencyReward sets the "currencyReward" field.
-func (_c *RpgLevelRewardCreate) SetCurrencyReward(v int) *RpgLevelRewardCreate {
-	_c.mutation.SetCurrencyReward(v)
-	return _c
+func (rlrc *RpgLevelRewardCreate) SetCurrencyReward(i int) *RpgLevelRewardCreate {
+	rlrc.mutation.SetCurrencyReward(i)
+	return rlrc
 }
 
 // SetNillableCurrencyReward sets the "currencyReward" field if the given value is not nil.
-func (_c *RpgLevelRewardCreate) SetNillableCurrencyReward(v *int) *RpgLevelRewardCreate {
-	if v != nil {
-		_c.SetCurrencyReward(*v)
+func (rlrc *RpgLevelRewardCreate) SetNillableCurrencyReward(i *int) *RpgLevelRewardCreate {
+	if i != nil {
+		rlrc.SetCurrencyReward(*i)
 	}
-	return _c
+	return rlrc
 }
 
 // SetActive sets the "active" field.
-func (_c *RpgLevelRewardCreate) SetActive(v int) *RpgLevelRewardCreate {
-	_c.mutation.SetActive(v)
-	return _c
+func (rlrc *RpgLevelRewardCreate) SetActive(i int) *RpgLevelRewardCreate {
+	rlrc.mutation.SetActive(i)
+	return rlrc
 }
 
 // SetNillableActive sets the "active" field if the given value is not nil.
-func (_c *RpgLevelRewardCreate) SetNillableActive(v *int) *RpgLevelRewardCreate {
-	if v != nil {
-		_c.SetActive(*v)
+func (rlrc *RpgLevelRewardCreate) SetNillableActive(i *int) *RpgLevelRewardCreate {
+	if i != nil {
+		rlrc.SetActive(*i)
 	}
-	return _c
+	return rlrc
 }
 
 // SetSort sets the "sort" field.
-func (_c *RpgLevelRewardCreate) SetSort(v int) *RpgLevelRewardCreate {
-	_c.mutation.SetSort(v)
-	return _c
+func (rlrc *RpgLevelRewardCreate) SetSort(i int) *RpgLevelRewardCreate {
+	rlrc.mutation.SetSort(i)
+	return rlrc
 }
 
 // SetNillableSort sets the "sort" field if the given value is not nil.
-func (_c *RpgLevelRewardCreate) SetNillableSort(v *int) *RpgLevelRewardCreate {
-	if v != nil {
-		_c.SetSort(*v)
+func (rlrc *RpgLevelRewardCreate) SetNillableSort(i *int) *RpgLevelRewardCreate {
+	if i != nil {
+		rlrc.SetSort(*i)
 	}
-	return _c
+	return rlrc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgLevelRewardCreate) SetID(v int) *RpgLevelRewardCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rlrc *RpgLevelRewardCreate) SetID(i int) *RpgLevelRewardCreate {
+	rlrc.mutation.SetID(i)
+	return rlrc
 }
 
 // Mutation returns the RpgLevelRewardMutation object of the builder.
-func (_c *RpgLevelRewardCreate) Mutation() *RpgLevelRewardMutation {
-	return _c.mutation
+func (rlrc *RpgLevelRewardCreate) Mutation() *RpgLevelRewardMutation {
+	return rlrc.mutation
 }
 
 // Save creates the RpgLevelReward in the database.
-func (_c *RpgLevelRewardCreate) Save(ctx context.Context) (*RpgLevelReward, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rlrc *RpgLevelRewardCreate) Save(ctx context.Context) (*RpgLevelReward, error) {
+	rlrc.defaults()
+	return withHooks(ctx, rlrc.sqlSave, rlrc.mutation, rlrc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgLevelRewardCreate) SaveX(ctx context.Context) *RpgLevelReward {
-	v, err := _c.Save(ctx)
+func (rlrc *RpgLevelRewardCreate) SaveX(ctx context.Context) *RpgLevelReward {
+	v, err := rlrc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -124,71 +124,71 @@ func (_c *RpgLevelRewardCreate) SaveX(ctx context.Context) *RpgLevelReward {
 }
 
 // Exec executes the query.
-func (_c *RpgLevelRewardCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rlrc *RpgLevelRewardCreate) Exec(ctx context.Context) error {
+	_, err := rlrc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgLevelRewardCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rlrc *RpgLevelRewardCreate) ExecX(ctx context.Context) {
+	if err := rlrc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgLevelRewardCreate) defaults() {
-	if _, ok := _c.mutation.AvatarFrame(); !ok {
+func (rlrc *RpgLevelRewardCreate) defaults() {
+	if _, ok := rlrc.mutation.AvatarFrame(); !ok {
 		v := rpglevelreward.DefaultAvatarFrame
-		_c.mutation.SetAvatarFrame(v)
+		rlrc.mutation.SetAvatarFrame(v)
 	}
-	if _, ok := _c.mutation.Title(); !ok {
+	if _, ok := rlrc.mutation.Title(); !ok {
 		v := rpglevelreward.DefaultTitle
-		_c.mutation.SetTitle(v)
+		rlrc.mutation.SetTitle(v)
 	}
-	if _, ok := _c.mutation.CurrencyReward(); !ok {
+	if _, ok := rlrc.mutation.CurrencyReward(); !ok {
 		v := rpglevelreward.DefaultCurrencyReward
-		_c.mutation.SetCurrencyReward(v)
+		rlrc.mutation.SetCurrencyReward(v)
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := rlrc.mutation.Active(); !ok {
 		v := rpglevelreward.DefaultActive
-		_c.mutation.SetActive(v)
+		rlrc.mutation.SetActive(v)
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := rlrc.mutation.Sort(); !ok {
 		v := rpglevelreward.DefaultSort
-		_c.mutation.SetSort(v)
+		rlrc.mutation.SetSort(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgLevelRewardCreate) check() error {
-	if _, ok := _c.mutation.Level(); !ok {
+func (rlrc *RpgLevelRewardCreate) check() error {
+	if _, ok := rlrc.mutation.Level(); !ok {
 		return &ValidationError{Name: "level", err: errors.New(`ent: missing required field "RpgLevelReward.level"`)}
 	}
-	if _, ok := _c.mutation.AvatarFrame(); !ok {
+	if _, ok := rlrc.mutation.AvatarFrame(); !ok {
 		return &ValidationError{Name: "avatarFrame", err: errors.New(`ent: missing required field "RpgLevelReward.avatarFrame"`)}
 	}
-	if _, ok := _c.mutation.Title(); !ok {
+	if _, ok := rlrc.mutation.Title(); !ok {
 		return &ValidationError{Name: "title", err: errors.New(`ent: missing required field "RpgLevelReward.title"`)}
 	}
-	if _, ok := _c.mutation.CurrencyReward(); !ok {
+	if _, ok := rlrc.mutation.CurrencyReward(); !ok {
 		return &ValidationError{Name: "currencyReward", err: errors.New(`ent: missing required field "RpgLevelReward.currencyReward"`)}
 	}
-	if _, ok := _c.mutation.Active(); !ok {
+	if _, ok := rlrc.mutation.Active(); !ok {
 		return &ValidationError{Name: "active", err: errors.New(`ent: missing required field "RpgLevelReward.active"`)}
 	}
-	if _, ok := _c.mutation.Sort(); !ok {
+	if _, ok := rlrc.mutation.Sort(); !ok {
 		return &ValidationError{Name: "sort", err: errors.New(`ent: missing required field "RpgLevelReward.sort"`)}
 	}
 	return nil
 }
 
-func (_c *RpgLevelRewardCreate) sqlSave(ctx context.Context) (*RpgLevelReward, error) {
-	if err := _c.check(); err != nil {
+func (rlrc *RpgLevelRewardCreate) sqlSave(ctx context.Context) (*RpgLevelReward, error) {
+	if err := rlrc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rlrc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rlrc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -198,42 +198,42 @@ func (_c *RpgLevelRewardCreate) sqlSave(ctx context.Context) (*RpgLevelReward, e
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rlrc.mutation.id = &_node.ID
+	rlrc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgLevelRewardCreate) createSpec() (*RpgLevelReward, *sqlgraph.CreateSpec) {
+func (rlrc *RpgLevelRewardCreate) createSpec() (*RpgLevelReward, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgLevelReward{config: _c.config}
+		_node = &RpgLevelReward{config: rlrc.config}
 		_spec = sqlgraph.NewCreateSpec(rpglevelreward.Table, sqlgraph.NewFieldSpec(rpglevelreward.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rlrc.conflict
+	if id, ok := rlrc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.Level(); ok {
+	if value, ok := rlrc.mutation.Level(); ok {
 		_spec.SetField(rpglevelreward.FieldLevel, field.TypeInt, value)
 		_node.Level = value
 	}
-	if value, ok := _c.mutation.AvatarFrame(); ok {
+	if value, ok := rlrc.mutation.AvatarFrame(); ok {
 		_spec.SetField(rpglevelreward.FieldAvatarFrame, field.TypeString, value)
 		_node.AvatarFrame = value
 	}
-	if value, ok := _c.mutation.Title(); ok {
+	if value, ok := rlrc.mutation.Title(); ok {
 		_spec.SetField(rpglevelreward.FieldTitle, field.TypeString, value)
 		_node.Title = value
 	}
-	if value, ok := _c.mutation.CurrencyReward(); ok {
+	if value, ok := rlrc.mutation.CurrencyReward(); ok {
 		_spec.SetField(rpglevelreward.FieldCurrencyReward, field.TypeInt, value)
 		_node.CurrencyReward = value
 	}
-	if value, ok := _c.mutation.Active(); ok {
+	if value, ok := rlrc.mutation.Active(); ok {
 		_spec.SetField(rpglevelreward.FieldActive, field.TypeInt, value)
 		_node.Active = value
 	}
-	if value, ok := _c.mutation.Sort(); ok {
+	if value, ok := rlrc.mutation.Sort(); ok {
 		_spec.SetField(rpglevelreward.FieldSort, field.TypeInt, value)
 		_node.Sort = value
 	}
@@ -256,10 +256,10 @@ func (_c *RpgLevelRewardCreate) createSpec() (*RpgLevelReward, *sqlgraph.CreateS
 //			SetLevel(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgLevelRewardCreate) OnConflict(opts ...sql.ConflictOption) *RpgLevelRewardUpsertOne {
-	_c.conflict = opts
+func (rlrc *RpgLevelRewardCreate) OnConflict(opts ...sql.ConflictOption) *RpgLevelRewardUpsertOne {
+	rlrc.conflict = opts
 	return &RpgLevelRewardUpsertOne{
-		create: _c,
+		create: rlrc,
 	}
 }
 
@@ -269,10 +269,10 @@ func (_c *RpgLevelRewardCreate) OnConflict(opts ...sql.ConflictOption) *RpgLevel
 //	client.RpgLevelReward.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgLevelRewardCreate) OnConflictColumns(columns ...string) *RpgLevelRewardUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rlrc *RpgLevelRewardCreate) OnConflictColumns(columns ...string) *RpgLevelRewardUpsertOne {
+	rlrc.conflict = append(rlrc.conflict, sql.ConflictColumns(columns...))
 	return &RpgLevelRewardUpsertOne{
-		create: _c,
+		create: rlrc,
 	}
 }
 
@@ -587,16 +587,16 @@ type RpgLevelRewardCreateBulk struct {
 }
 
 // Save creates the RpgLevelReward entities in the database.
-func (_c *RpgLevelRewardCreateBulk) Save(ctx context.Context) ([]*RpgLevelReward, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rlrcb *RpgLevelRewardCreateBulk) Save(ctx context.Context) ([]*RpgLevelReward, error) {
+	if rlrcb.err != nil {
+		return nil, rlrcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgLevelReward, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rlrcb.builders))
+	nodes := make([]*RpgLevelReward, len(rlrcb.builders))
+	mutators := make([]Mutator, len(rlrcb.builders))
+	for i := range rlrcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rlrcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgLevelRewardMutation)
@@ -610,12 +610,12 @@ func (_c *RpgLevelRewardCreateBulk) Save(ctx context.Context) ([]*RpgLevelReward
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rlrcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rlrcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rlrcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -639,7 +639,7 @@ func (_c *RpgLevelRewardCreateBulk) Save(ctx context.Context) ([]*RpgLevelReward
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rlrcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -647,8 +647,8 @@ func (_c *RpgLevelRewardCreateBulk) Save(ctx context.Context) ([]*RpgLevelReward
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgLevelRewardCreateBulk) SaveX(ctx context.Context) []*RpgLevelReward {
-	v, err := _c.Save(ctx)
+func (rlrcb *RpgLevelRewardCreateBulk) SaveX(ctx context.Context) []*RpgLevelReward {
+	v, err := rlrcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -656,14 +656,14 @@ func (_c *RpgLevelRewardCreateBulk) SaveX(ctx context.Context) []*RpgLevelReward
 }
 
 // Exec executes the query.
-func (_c *RpgLevelRewardCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rlrcb *RpgLevelRewardCreateBulk) Exec(ctx context.Context) error {
+	_, err := rlrcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgLevelRewardCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rlrcb *RpgLevelRewardCreateBulk) ExecX(ctx context.Context) {
+	if err := rlrcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -683,10 +683,10 @@ func (_c *RpgLevelRewardCreateBulk) ExecX(ctx context.Context) {
 //			SetLevel(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgLevelRewardCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgLevelRewardUpsertBulk {
-	_c.conflict = opts
+func (rlrcb *RpgLevelRewardCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgLevelRewardUpsertBulk {
+	rlrcb.conflict = opts
 	return &RpgLevelRewardUpsertBulk{
-		create: _c,
+		create: rlrcb,
 	}
 }
 
@@ -696,10 +696,10 @@ func (_c *RpgLevelRewardCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgL
 //	client.RpgLevelReward.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgLevelRewardCreateBulk) OnConflictColumns(columns ...string) *RpgLevelRewardUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rlrcb *RpgLevelRewardCreateBulk) OnConflictColumns(columns ...string) *RpgLevelRewardUpsertBulk {
+	rlrcb.conflict = append(rlrcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgLevelRewardUpsertBulk{
-		create: _c,
+		create: rlrcb,
 	}
 }
 

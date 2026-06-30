@@ -22,30 +22,30 @@ type RoleMenusMenuCreate struct {
 }
 
 // SetRoleId sets the "roleId" field.
-func (_c *RoleMenusMenuCreate) SetRoleId(v int) *RoleMenusMenuCreate {
-	_c.mutation.SetRoleId(v)
-	return _c
+func (rmmc *RoleMenusMenuCreate) SetRoleId(i int) *RoleMenusMenuCreate {
+	rmmc.mutation.SetRoleId(i)
+	return rmmc
 }
 
 // SetMenuId sets the "menuId" field.
-func (_c *RoleMenusMenuCreate) SetMenuId(v string) *RoleMenusMenuCreate {
-	_c.mutation.SetMenuId(v)
-	return _c
+func (rmmc *RoleMenusMenuCreate) SetMenuId(s string) *RoleMenusMenuCreate {
+	rmmc.mutation.SetMenuId(s)
+	return rmmc
 }
 
 // Mutation returns the RoleMenusMenuMutation object of the builder.
-func (_c *RoleMenusMenuCreate) Mutation() *RoleMenusMenuMutation {
-	return _c.mutation
+func (rmmc *RoleMenusMenuCreate) Mutation() *RoleMenusMenuMutation {
+	return rmmc.mutation
 }
 
 // Save creates the RoleMenusMenu in the database.
-func (_c *RoleMenusMenuCreate) Save(ctx context.Context) (*RoleMenusMenu, error) {
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rmmc *RoleMenusMenuCreate) Save(ctx context.Context) (*RoleMenusMenu, error) {
+	return withHooks(ctx, rmmc.sqlSave, rmmc.mutation, rmmc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RoleMenusMenuCreate) SaveX(ctx context.Context) *RoleMenusMenu {
-	v, err := _c.Save(ctx)
+func (rmmc *RoleMenusMenuCreate) SaveX(ctx context.Context) *RoleMenusMenu {
+	v, err := rmmc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -53,35 +53,35 @@ func (_c *RoleMenusMenuCreate) SaveX(ctx context.Context) *RoleMenusMenu {
 }
 
 // Exec executes the query.
-func (_c *RoleMenusMenuCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rmmc *RoleMenusMenuCreate) Exec(ctx context.Context) error {
+	_, err := rmmc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RoleMenusMenuCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rmmc *RoleMenusMenuCreate) ExecX(ctx context.Context) {
+	if err := rmmc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RoleMenusMenuCreate) check() error {
-	if _, ok := _c.mutation.RoleId(); !ok {
+func (rmmc *RoleMenusMenuCreate) check() error {
+	if _, ok := rmmc.mutation.RoleId(); !ok {
 		return &ValidationError{Name: "roleId", err: errors.New(`ent: missing required field "RoleMenusMenu.roleId"`)}
 	}
-	if _, ok := _c.mutation.MenuId(); !ok {
+	if _, ok := rmmc.mutation.MenuId(); !ok {
 		return &ValidationError{Name: "menuId", err: errors.New(`ent: missing required field "RoleMenusMenu.menuId"`)}
 	}
 	return nil
 }
 
-func (_c *RoleMenusMenuCreate) sqlSave(ctx context.Context) (*RoleMenusMenu, error) {
-	if err := _c.check(); err != nil {
+func (rmmc *RoleMenusMenuCreate) sqlSave(ctx context.Context) (*RoleMenusMenu, error) {
+	if err := rmmc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rmmc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rmmc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -89,22 +89,22 @@ func (_c *RoleMenusMenuCreate) sqlSave(ctx context.Context) (*RoleMenusMenu, err
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rmmc.mutation.id = &_node.ID
+	rmmc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RoleMenusMenuCreate) createSpec() (*RoleMenusMenu, *sqlgraph.CreateSpec) {
+func (rmmc *RoleMenusMenuCreate) createSpec() (*RoleMenusMenu, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RoleMenusMenu{config: _c.config}
+		_node = &RoleMenusMenu{config: rmmc.config}
 		_spec = sqlgraph.NewCreateSpec(rolemenusmenu.Table, sqlgraph.NewFieldSpec(rolemenusmenu.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if value, ok := _c.mutation.RoleId(); ok {
+	_spec.OnConflict = rmmc.conflict
+	if value, ok := rmmc.mutation.RoleId(); ok {
 		_spec.SetField(rolemenusmenu.FieldRoleId, field.TypeInt, value)
 		_node.RoleId = value
 	}
-	if value, ok := _c.mutation.MenuId(); ok {
+	if value, ok := rmmc.mutation.MenuId(); ok {
 		_spec.SetField(rolemenusmenu.FieldMenuId, field.TypeString, value)
 		_node.MenuId = value
 	}
@@ -127,10 +127,10 @@ func (_c *RoleMenusMenuCreate) createSpec() (*RoleMenusMenu, *sqlgraph.CreateSpe
 //			SetRoleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RoleMenusMenuCreate) OnConflict(opts ...sql.ConflictOption) *RoleMenusMenuUpsertOne {
-	_c.conflict = opts
+func (rmmc *RoleMenusMenuCreate) OnConflict(opts ...sql.ConflictOption) *RoleMenusMenuUpsertOne {
+	rmmc.conflict = opts
 	return &RoleMenusMenuUpsertOne{
-		create: _c,
+		create: rmmc,
 	}
 }
 
@@ -140,10 +140,10 @@ func (_c *RoleMenusMenuCreate) OnConflict(opts ...sql.ConflictOption) *RoleMenus
 //	client.RoleMenusMenu.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RoleMenusMenuCreate) OnConflictColumns(columns ...string) *RoleMenusMenuUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rmmc *RoleMenusMenuCreate) OnConflictColumns(columns ...string) *RoleMenusMenuUpsertOne {
+	rmmc.conflict = append(rmmc.conflict, sql.ConflictColumns(columns...))
 	return &RoleMenusMenuUpsertOne{
-		create: _c,
+		create: rmmc,
 	}
 }
 
@@ -307,16 +307,16 @@ type RoleMenusMenuCreateBulk struct {
 }
 
 // Save creates the RoleMenusMenu entities in the database.
-func (_c *RoleMenusMenuCreateBulk) Save(ctx context.Context) ([]*RoleMenusMenu, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rmmcb *RoleMenusMenuCreateBulk) Save(ctx context.Context) ([]*RoleMenusMenu, error) {
+	if rmmcb.err != nil {
+		return nil, rmmcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RoleMenusMenu, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rmmcb.builders))
+	nodes := make([]*RoleMenusMenu, len(rmmcb.builders))
+	mutators := make([]Mutator, len(rmmcb.builders))
+	for i := range rmmcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rmmcb.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RoleMenusMenuMutation)
 				if !ok {
@@ -329,12 +329,12 @@ func (_c *RoleMenusMenuCreateBulk) Save(ctx context.Context) ([]*RoleMenusMenu, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rmmcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rmmcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rmmcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -358,7 +358,7 @@ func (_c *RoleMenusMenuCreateBulk) Save(ctx context.Context) ([]*RoleMenusMenu, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rmmcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -366,8 +366,8 @@ func (_c *RoleMenusMenuCreateBulk) Save(ctx context.Context) ([]*RoleMenusMenu, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RoleMenusMenuCreateBulk) SaveX(ctx context.Context) []*RoleMenusMenu {
-	v, err := _c.Save(ctx)
+func (rmmcb *RoleMenusMenuCreateBulk) SaveX(ctx context.Context) []*RoleMenusMenu {
+	v, err := rmmcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -375,14 +375,14 @@ func (_c *RoleMenusMenuCreateBulk) SaveX(ctx context.Context) []*RoleMenusMenu {
 }
 
 // Exec executes the query.
-func (_c *RoleMenusMenuCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rmmcb *RoleMenusMenuCreateBulk) Exec(ctx context.Context) error {
+	_, err := rmmcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RoleMenusMenuCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rmmcb *RoleMenusMenuCreateBulk) ExecX(ctx context.Context) {
+	if err := rmmcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -402,10 +402,10 @@ func (_c *RoleMenusMenuCreateBulk) ExecX(ctx context.Context) {
 //			SetRoleId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RoleMenusMenuCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleMenusMenuUpsertBulk {
-	_c.conflict = opts
+func (rmmcb *RoleMenusMenuCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleMenusMenuUpsertBulk {
+	rmmcb.conflict = opts
 	return &RoleMenusMenuUpsertBulk{
-		create: _c,
+		create: rmmcb,
 	}
 }
 
@@ -415,10 +415,10 @@ func (_c *RoleMenusMenuCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleM
 //	client.RoleMenusMenu.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RoleMenusMenuCreateBulk) OnConflictColumns(columns ...string) *RoleMenusMenuUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rmmcb *RoleMenusMenuCreateBulk) OnConflictColumns(columns ...string) *RoleMenusMenuUpsertBulk {
+	rmmcb.conflict = append(rmmcb.conflict, sql.ConflictColumns(columns...))
 	return &RoleMenusMenuUpsertBulk{
-		create: _c,
+		create: rmmcb,
 	}
 }
 

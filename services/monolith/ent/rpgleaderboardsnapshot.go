@@ -63,7 +63,7 @@ func (*RpgLeaderboardSnapshot) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgLeaderboardSnapshot fields.
-func (_m *RpgLeaderboardSnapshot) assignValues(columns []string, values []any) error {
+func (rls *RpgLeaderboardSnapshot) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -74,69 +74,69 @@ func (_m *RpgLeaderboardSnapshot) assignValues(columns []string, values []any) e
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rls.ID = int(value.Int64)
 		case rpgleaderboardsnapshot.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rls.CreateTime = value.Time
 			}
 		case rpgleaderboardsnapshot.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rls.UpdateTime = value.Time
 			}
 		case rpgleaderboardsnapshot.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rls.IsDelete = value.Bool
 			}
 		case rpgleaderboardsnapshot.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rls.Version = int(value.Int64)
 			}
 		case rpgleaderboardsnapshot.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				_m.UID = int(value.Int64)
+				rls.UID = int(value.Int64)
 			}
 		case rpgleaderboardsnapshot.FieldScore:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field score", values[i])
 			} else if value.Valid {
-				_m.Score = int(value.Int64)
+				rls.Score = int(value.Int64)
 			}
 		case rpgleaderboardsnapshot.FieldRank:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field rank", values[i])
 			} else if value.Valid {
-				_m.Rank = int(value.Int64)
+				rls.Rank = int(value.Int64)
 			}
 		case rpgleaderboardsnapshot.FieldPeriodType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field periodType", values[i])
 			} else if value.Valid {
-				_m.PeriodType = value.String
+				rls.PeriodType = value.String
 			}
 		case rpgleaderboardsnapshot.FieldPeriodKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field periodKey", values[i])
 			} else if value.Valid {
-				_m.PeriodKey = value.String
+				rls.PeriodKey = value.String
 			}
 		case rpgleaderboardsnapshot.FieldScoreType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field scoreType", values[i])
 			} else if value.Valid {
-				_m.ScoreType = value.String
+				rls.ScoreType = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rls.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -144,62 +144,62 @@ func (_m *RpgLeaderboardSnapshot) assignValues(columns []string, values []any) e
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgLeaderboardSnapshot.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgLeaderboardSnapshot) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rls *RpgLeaderboardSnapshot) Value(name string) (ent.Value, error) {
+	return rls.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgLeaderboardSnapshot.
 // Note that you need to call RpgLeaderboardSnapshot.Unwrap() before calling this method if this RpgLeaderboardSnapshot
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgLeaderboardSnapshot) Update() *RpgLeaderboardSnapshotUpdateOne {
-	return NewRpgLeaderboardSnapshotClient(_m.config).UpdateOne(_m)
+func (rls *RpgLeaderboardSnapshot) Update() *RpgLeaderboardSnapshotUpdateOne {
+	return NewRpgLeaderboardSnapshotClient(rls.config).UpdateOne(rls)
 }
 
 // Unwrap unwraps the RpgLeaderboardSnapshot entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgLeaderboardSnapshot) Unwrap() *RpgLeaderboardSnapshot {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rls *RpgLeaderboardSnapshot) Unwrap() *RpgLeaderboardSnapshot {
+	_tx, ok := rls.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgLeaderboardSnapshot is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rls.config.driver = _tx.drv
+	return rls
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgLeaderboardSnapshot) String() string {
+func (rls *RpgLeaderboardSnapshot) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgLeaderboardSnapshot(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rls.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rls.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rls.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rls.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rls.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UID))
+	builder.WriteString(fmt.Sprintf("%v", rls.UID))
 	builder.WriteString(", ")
 	builder.WriteString("score=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Score))
+	builder.WriteString(fmt.Sprintf("%v", rls.Score))
 	builder.WriteString(", ")
 	builder.WriteString("rank=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Rank))
+	builder.WriteString(fmt.Sprintf("%v", rls.Rank))
 	builder.WriteString(", ")
 	builder.WriteString("periodType=")
-	builder.WriteString(_m.PeriodType)
+	builder.WriteString(rls.PeriodType)
 	builder.WriteString(", ")
 	builder.WriteString("periodKey=")
-	builder.WriteString(_m.PeriodKey)
+	builder.WriteString(rls.PeriodKey)
 	builder.WriteString(", ")
 	builder.WriteString("scoreType=")
-	builder.WriteString(_m.ScoreType)
+	builder.WriteString(rls.ScoreType)
 	builder.WriteByte(')')
 	return builder.String()
 }

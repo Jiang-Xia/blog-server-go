@@ -28,40 +28,40 @@ type RpgUserAchievementQuery struct {
 }
 
 // Where adds a new predicate for the RpgUserAchievementQuery builder.
-func (_q *RpgUserAchievementQuery) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (ruaq *RpgUserAchievementQuery) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementQuery {
+	ruaq.predicates = append(ruaq.predicates, ps...)
+	return ruaq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgUserAchievementQuery) Limit(limit int) *RpgUserAchievementQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (ruaq *RpgUserAchievementQuery) Limit(limit int) *RpgUserAchievementQuery {
+	ruaq.ctx.Limit = &limit
+	return ruaq
 }
 
 // Offset to start from.
-func (_q *RpgUserAchievementQuery) Offset(offset int) *RpgUserAchievementQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (ruaq *RpgUserAchievementQuery) Offset(offset int) *RpgUserAchievementQuery {
+	ruaq.ctx.Offset = &offset
+	return ruaq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgUserAchievementQuery) Unique(unique bool) *RpgUserAchievementQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (ruaq *RpgUserAchievementQuery) Unique(unique bool) *RpgUserAchievementQuery {
+	ruaq.ctx.Unique = &unique
+	return ruaq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgUserAchievementQuery) Order(o ...rpguserachievement.OrderOption) *RpgUserAchievementQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (ruaq *RpgUserAchievementQuery) Order(o ...rpguserachievement.OrderOption) *RpgUserAchievementQuery {
+	ruaq.order = append(ruaq.order, o...)
+	return ruaq
 }
 
 // First returns the first RpgUserAchievement entity from the query.
 // Returns a *NotFoundError when no RpgUserAchievement was found.
-func (_q *RpgUserAchievementQuery) First(ctx context.Context) (*RpgUserAchievement, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (ruaq *RpgUserAchievementQuery) First(ctx context.Context) (*RpgUserAchievement, error) {
+	nodes, err := ruaq.Limit(1).All(setContextOp(ctx, ruaq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgUserAchievementQuery) First(ctx context.Context) (*RpgUserAchieveme
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) FirstX(ctx context.Context) *RpgUserAchievement {
-	node, err := _q.First(ctx)
+func (ruaq *RpgUserAchievementQuery) FirstX(ctx context.Context) *RpgUserAchievement {
+	node, err := ruaq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgUserAchievementQuery) FirstX(ctx context.Context) *RpgUserAchieveme
 
 // FirstID returns the first RpgUserAchievement ID from the query.
 // Returns a *NotFoundError when no RpgUserAchievement ID was found.
-func (_q *RpgUserAchievementQuery) FirstID(ctx context.Context) (id int, err error) {
+func (ruaq *RpgUserAchievementQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = ruaq.Limit(1).IDs(setContextOp(ctx, ruaq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgUserAchievementQuery) FirstID(ctx context.Context) (id int, err err
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (ruaq *RpgUserAchievementQuery) FirstIDX(ctx context.Context) int {
+	id, err := ruaq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgUserAchievementQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgUserAchievement entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgUserAchievement entity is found.
 // Returns a *NotFoundError when no RpgUserAchievement entities are found.
-func (_q *RpgUserAchievementQuery) Only(ctx context.Context) (*RpgUserAchievement, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (ruaq *RpgUserAchievementQuery) Only(ctx context.Context) (*RpgUserAchievement, error) {
+	nodes, err := ruaq.Limit(2).All(setContextOp(ctx, ruaq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgUserAchievementQuery) Only(ctx context.Context) (*RpgUserAchievemen
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) OnlyX(ctx context.Context) *RpgUserAchievement {
-	node, err := _q.Only(ctx)
+func (ruaq *RpgUserAchievementQuery) OnlyX(ctx context.Context) *RpgUserAchievement {
+	node, err := ruaq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgUserAchievementQuery) OnlyX(ctx context.Context) *RpgUserAchievemen
 // OnlyID is like Only, but returns the only RpgUserAchievement ID in the query.
 // Returns a *NotSingularError when more than one RpgUserAchievement ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgUserAchievementQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (ruaq *RpgUserAchievementQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = ruaq.Limit(2).IDs(setContextOp(ctx, ruaq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgUserAchievementQuery) OnlyID(ctx context.Context) (id int, err erro
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (ruaq *RpgUserAchievementQuery) OnlyIDX(ctx context.Context) int {
+	id, err := ruaq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgUserAchievementQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgUserAchievements.
-func (_q *RpgUserAchievementQuery) All(ctx context.Context) ([]*RpgUserAchievement, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruaq *RpgUserAchievementQuery) All(ctx context.Context) ([]*RpgUserAchievement, error) {
+	ctx = setContextOp(ctx, ruaq.ctx, ent.OpQueryAll)
+	if err := ruaq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgUserAchievement, *RpgUserAchievementQuery]()
-	return withInterceptors[[]*RpgUserAchievement](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgUserAchievement](ctx, ruaq, qr, ruaq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) AllX(ctx context.Context) []*RpgUserAchievement {
-	nodes, err := _q.All(ctx)
+func (ruaq *RpgUserAchievementQuery) AllX(ctx context.Context) []*RpgUserAchievement {
+	nodes, err := ruaq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgUserAchievementQuery) AllX(ctx context.Context) []*RpgUserAchieveme
 }
 
 // IDs executes the query and returns a list of RpgUserAchievement IDs.
-func (_q *RpgUserAchievementQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (ruaq *RpgUserAchievementQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if ruaq.ctx.Unique == nil && ruaq.path != nil {
+		ruaq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpguserachievement.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, ruaq.ctx, ent.OpQueryIDs)
+	if err = ruaq.Select(rpguserachievement.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (ruaq *RpgUserAchievementQuery) IDsX(ctx context.Context) []int {
+	ids, err := ruaq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgUserAchievementQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgUserAchievementQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruaq *RpgUserAchievementQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, ruaq.ctx, ent.OpQueryCount)
+	if err := ruaq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgUserAchievementQuery](), _q.inters)
+	return withInterceptors[int](ctx, ruaq, querierCount[*RpgUserAchievementQuery](), ruaq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (ruaq *RpgUserAchievementQuery) CountX(ctx context.Context) int {
+	count, err := ruaq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgUserAchievementQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgUserAchievementQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (ruaq *RpgUserAchievementQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, ruaq.ctx, ent.OpQueryExist)
+	switch _, err := ruaq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgUserAchievementQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgUserAchievementQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (ruaq *RpgUserAchievementQuery) ExistX(ctx context.Context) bool {
+	exist, err := ruaq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgUserAchievementQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgUserAchievementQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgUserAchievementQuery) Clone() *RpgUserAchievementQuery {
-	if _q == nil {
+func (ruaq *RpgUserAchievementQuery) Clone() *RpgUserAchievementQuery {
+	if ruaq == nil {
 		return nil
 	}
 	return &RpgUserAchievementQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpguserachievement.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgUserAchievement{}, _q.predicates...),
+		config:     ruaq.config,
+		ctx:        ruaq.ctx.Clone(),
+		order:      append([]rpguserachievement.OrderOption{}, ruaq.order...),
+		inters:     append([]Interceptor{}, ruaq.inters...),
+		predicates: append([]predicate.RpgUserAchievement{}, ruaq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  ruaq.sql.Clone(),
+		path: ruaq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgUserAchievementQuery) Clone() *RpgUserAchievementQuery {
 //		GroupBy(rpguserachievement.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgUserAchievementQuery) GroupBy(field string, fields ...string) *RpgUserAchievementGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgUserAchievementGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (ruaq *RpgUserAchievementQuery) GroupBy(field string, fields ...string) *RpgUserAchievementGroupBy {
+	ruaq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgUserAchievementGroupBy{build: ruaq}
+	grbuild.flds = &ruaq.ctx.Fields
 	grbuild.label = rpguserachievement.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgUserAchievementQuery) GroupBy(field string, fields ...string) *RpgU
 //	client.RpgUserAchievement.Query().
 //		Select(rpguserachievement.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RpgUserAchievementQuery) Select(fields ...string) *RpgUserAchievementSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgUserAchievementSelect{RpgUserAchievementQuery: _q}
+func (ruaq *RpgUserAchievementQuery) Select(fields ...string) *RpgUserAchievementSelect {
+	ruaq.ctx.Fields = append(ruaq.ctx.Fields, fields...)
+	sbuild := &RpgUserAchievementSelect{RpgUserAchievementQuery: ruaq}
 	sbuild.label = rpguserachievement.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &ruaq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgUserAchievementSelect configured with the given aggregations.
-func (_q *RpgUserAchievementQuery) Aggregate(fns ...AggregateFunc) *RpgUserAchievementSelect {
-	return _q.Select().Aggregate(fns...)
+func (ruaq *RpgUserAchievementQuery) Aggregate(fns ...AggregateFunc) *RpgUserAchievementSelect {
+	return ruaq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgUserAchievementQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (ruaq *RpgUserAchievementQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range ruaq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, ruaq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range ruaq.ctx.Fields {
 		if !rpguserachievement.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if ruaq.path != nil {
+		prev, err := ruaq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		ruaq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgUserAchievementQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserAchievement, error) {
+func (ruaq *RpgUserAchievementQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserAchievement, error) {
 	var (
 		nodes = []*RpgUserAchievement{}
-		_spec = _q.querySpec()
+		_spec = ruaq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgUserAchievement).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgUserAchievement{config: _q.config}
+		node := &RpgUserAchievement{config: ruaq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, ruaq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgUserAchievementQuery) sqlAll(ctx context.Context, hooks ...queryHoo
 	return nodes, nil
 }
 
-func (_q *RpgUserAchievementQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (ruaq *RpgUserAchievementQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := ruaq.querySpec()
+	_spec.Node.Columns = ruaq.ctx.Fields
+	if len(ruaq.ctx.Fields) > 0 {
+		_spec.Unique = ruaq.ctx.Unique != nil && *ruaq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, ruaq.driver, _spec)
 }
 
-func (_q *RpgUserAchievementQuery) querySpec() *sqlgraph.QuerySpec {
+func (ruaq *RpgUserAchievementQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpguserachievement.Table, rpguserachievement.Columns, sqlgraph.NewFieldSpec(rpguserachievement.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = ruaq.sql
+	if unique := ruaq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if ruaq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := ruaq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserachievement.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgUserAchievementQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := ruaq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruaq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruaq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := ruaq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgUserAchievementQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgUserAchievementQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (ruaq *RpgUserAchievementQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(ruaq.driver.Dialect())
 	t1 := builder.Table(rpguserachievement.Table)
-	columns := _q.ctx.Fields
+	columns := ruaq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpguserachievement.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if ruaq.sql != nil {
+		selector = ruaq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if ruaq.ctx.Unique != nil && *ruaq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range ruaq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range ruaq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruaq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruaq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgUserAchievementGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgUserAchievementGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserAchievementGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (ruagb *RpgUserAchievementGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserAchievementGroupBy {
+	ruagb.fns = append(ruagb.fns, fns...)
+	return ruagb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgUserAchievementGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (ruagb *RpgUserAchievementGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruagb.build.ctx, ent.OpQueryGroupBy)
+	if err := ruagb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserAchievementQuery, *RpgUserAchievementGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgUserAchievementQuery, *RpgUserAchievementGroupBy](ctx, ruagb.build, ruagb, ruagb.build.inters, v)
 }
 
-func (_g *RpgUserAchievementGroupBy) sqlScan(ctx context.Context, root *RpgUserAchievementQuery, v any) error {
+func (ruagb *RpgUserAchievementGroupBy) sqlScan(ctx context.Context, root *RpgUserAchievementQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(ruagb.fns))
+	for _, fn := range ruagb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*ruagb.flds)+len(ruagb.fns))
+		for _, f := range *ruagb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*ruagb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruagb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgUserAchievementSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgUserAchievementSelect) Aggregate(fns ...AggregateFunc) *RpgUserAchievementSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (ruas *RpgUserAchievementSelect) Aggregate(fns ...AggregateFunc) *RpgUserAchievementSelect {
+	ruas.fns = append(ruas.fns, fns...)
+	return ruas
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgUserAchievementSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (ruas *RpgUserAchievementSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruas.ctx, ent.OpQuerySelect)
+	if err := ruas.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserAchievementQuery, *RpgUserAchievementSelect](ctx, _s.RpgUserAchievementQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgUserAchievementQuery, *RpgUserAchievementSelect](ctx, ruas.RpgUserAchievementQuery, ruas, ruas.inters, v)
 }
 
-func (_s *RpgUserAchievementSelect) sqlScan(ctx context.Context, root *RpgUserAchievementQuery, v any) error {
+func (ruas *RpgUserAchievementSelect) sqlScan(ctx context.Context, root *RpgUserAchievementQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(ruas.fns))
+	for _, fn := range ruas.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*ruas.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgUserAchievementSelect) sqlScan(ctx context.Context, root *RpgUserAc
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruas.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

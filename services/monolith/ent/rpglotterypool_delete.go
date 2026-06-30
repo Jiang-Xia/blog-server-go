@@ -20,56 +20,56 @@ type RpgLotteryPoolDelete struct {
 }
 
 // Where appends a list predicates to the RpgLotteryPoolDelete builder.
-func (_d *RpgLotteryPoolDelete) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rlpd *RpgLotteryPoolDelete) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolDelete {
+	rlpd.mutation.Where(ps...)
+	return rlpd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgLotteryPoolDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rlpd *RpgLotteryPoolDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rlpd.sqlExec, rlpd.mutation, rlpd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgLotteryPoolDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rlpd *RpgLotteryPoolDelete) ExecX(ctx context.Context) int {
+	n, err := rlpd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgLotteryPoolDelete) sqlExec(ctx context.Context) (int, error) {
+func (rlpd *RpgLotteryPoolDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpglotterypool.Table, sqlgraph.NewFieldSpec(rpglotterypool.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rlpd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rlpd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rlpd.mutation.done = true
 	return affected, err
 }
 
 // RpgLotteryPoolDeleteOne is the builder for deleting a single RpgLotteryPool entity.
 type RpgLotteryPoolDeleteOne struct {
-	_d *RpgLotteryPoolDelete
+	rlpd *RpgLotteryPoolDelete
 }
 
 // Where appends a list predicates to the RpgLotteryPoolDelete builder.
-func (_d *RpgLotteryPoolDeleteOne) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rlpdo *RpgLotteryPoolDeleteOne) Where(ps ...predicate.RpgLotteryPool) *RpgLotteryPoolDeleteOne {
+	rlpdo.rlpd.mutation.Where(ps...)
+	return rlpdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgLotteryPoolDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rlpdo *RpgLotteryPoolDeleteOne) Exec(ctx context.Context) error {
+	n, err := rlpdo.rlpd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgLotteryPoolDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgLotteryPoolDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rlpdo *RpgLotteryPoolDeleteOne) ExecX(ctx context.Context) {
+	if err := rlpdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

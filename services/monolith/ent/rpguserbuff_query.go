@@ -28,40 +28,40 @@ type RpgUserBuffQuery struct {
 }
 
 // Where adds a new predicate for the RpgUserBuffQuery builder.
-func (_q *RpgUserBuffQuery) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (rubq *RpgUserBuffQuery) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffQuery {
+	rubq.predicates = append(rubq.predicates, ps...)
+	return rubq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgUserBuffQuery) Limit(limit int) *RpgUserBuffQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (rubq *RpgUserBuffQuery) Limit(limit int) *RpgUserBuffQuery {
+	rubq.ctx.Limit = &limit
+	return rubq
 }
 
 // Offset to start from.
-func (_q *RpgUserBuffQuery) Offset(offset int) *RpgUserBuffQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (rubq *RpgUserBuffQuery) Offset(offset int) *RpgUserBuffQuery {
+	rubq.ctx.Offset = &offset
+	return rubq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgUserBuffQuery) Unique(unique bool) *RpgUserBuffQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (rubq *RpgUserBuffQuery) Unique(unique bool) *RpgUserBuffQuery {
+	rubq.ctx.Unique = &unique
+	return rubq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgUserBuffQuery) Order(o ...rpguserbuff.OrderOption) *RpgUserBuffQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (rubq *RpgUserBuffQuery) Order(o ...rpguserbuff.OrderOption) *RpgUserBuffQuery {
+	rubq.order = append(rubq.order, o...)
+	return rubq
 }
 
 // First returns the first RpgUserBuff entity from the query.
 // Returns a *NotFoundError when no RpgUserBuff was found.
-func (_q *RpgUserBuffQuery) First(ctx context.Context) (*RpgUserBuff, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (rubq *RpgUserBuffQuery) First(ctx context.Context) (*RpgUserBuff, error) {
+	nodes, err := rubq.Limit(1).All(setContextOp(ctx, rubq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgUserBuffQuery) First(ctx context.Context) (*RpgUserBuff, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) FirstX(ctx context.Context) *RpgUserBuff {
-	node, err := _q.First(ctx)
+func (rubq *RpgUserBuffQuery) FirstX(ctx context.Context) *RpgUserBuff {
+	node, err := rubq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgUserBuffQuery) FirstX(ctx context.Context) *RpgUserBuff {
 
 // FirstID returns the first RpgUserBuff ID from the query.
 // Returns a *NotFoundError when no RpgUserBuff ID was found.
-func (_q *RpgUserBuffQuery) FirstID(ctx context.Context) (id int, err error) {
+func (rubq *RpgUserBuffQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = rubq.Limit(1).IDs(setContextOp(ctx, rubq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgUserBuffQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (rubq *RpgUserBuffQuery) FirstIDX(ctx context.Context) int {
+	id, err := rubq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgUserBuffQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgUserBuff entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgUserBuff entity is found.
 // Returns a *NotFoundError when no RpgUserBuff entities are found.
-func (_q *RpgUserBuffQuery) Only(ctx context.Context) (*RpgUserBuff, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (rubq *RpgUserBuffQuery) Only(ctx context.Context) (*RpgUserBuff, error) {
+	nodes, err := rubq.Limit(2).All(setContextOp(ctx, rubq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgUserBuffQuery) Only(ctx context.Context) (*RpgUserBuff, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) OnlyX(ctx context.Context) *RpgUserBuff {
-	node, err := _q.Only(ctx)
+func (rubq *RpgUserBuffQuery) OnlyX(ctx context.Context) *RpgUserBuff {
+	node, err := rubq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgUserBuffQuery) OnlyX(ctx context.Context) *RpgUserBuff {
 // OnlyID is like Only, but returns the only RpgUserBuff ID in the query.
 // Returns a *NotSingularError when more than one RpgUserBuff ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgUserBuffQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (rubq *RpgUserBuffQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = rubq.Limit(2).IDs(setContextOp(ctx, rubq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgUserBuffQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (rubq *RpgUserBuffQuery) OnlyIDX(ctx context.Context) int {
+	id, err := rubq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgUserBuffQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgUserBuffs.
-func (_q *RpgUserBuffQuery) All(ctx context.Context) ([]*RpgUserBuff, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rubq *RpgUserBuffQuery) All(ctx context.Context) ([]*RpgUserBuff, error) {
+	ctx = setContextOp(ctx, rubq.ctx, ent.OpQueryAll)
+	if err := rubq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgUserBuff, *RpgUserBuffQuery]()
-	return withInterceptors[[]*RpgUserBuff](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgUserBuff](ctx, rubq, qr, rubq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) AllX(ctx context.Context) []*RpgUserBuff {
-	nodes, err := _q.All(ctx)
+func (rubq *RpgUserBuffQuery) AllX(ctx context.Context) []*RpgUserBuff {
+	nodes, err := rubq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgUserBuffQuery) AllX(ctx context.Context) []*RpgUserBuff {
 }
 
 // IDs executes the query and returns a list of RpgUserBuff IDs.
-func (_q *RpgUserBuffQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (rubq *RpgUserBuffQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if rubq.ctx.Unique == nil && rubq.path != nil {
+		rubq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpguserbuff.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, rubq.ctx, ent.OpQueryIDs)
+	if err = rubq.Select(rpguserbuff.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (rubq *RpgUserBuffQuery) IDsX(ctx context.Context) []int {
+	ids, err := rubq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgUserBuffQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgUserBuffQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (rubq *RpgUserBuffQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, rubq.ctx, ent.OpQueryCount)
+	if err := rubq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgUserBuffQuery](), _q.inters)
+	return withInterceptors[int](ctx, rubq, querierCount[*RpgUserBuffQuery](), rubq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (rubq *RpgUserBuffQuery) CountX(ctx context.Context) int {
+	count, err := rubq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgUserBuffQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgUserBuffQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (rubq *RpgUserBuffQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, rubq.ctx, ent.OpQueryExist)
+	switch _, err := rubq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgUserBuffQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgUserBuffQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (rubq *RpgUserBuffQuery) ExistX(ctx context.Context) bool {
+	exist, err := rubq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgUserBuffQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgUserBuffQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgUserBuffQuery) Clone() *RpgUserBuffQuery {
-	if _q == nil {
+func (rubq *RpgUserBuffQuery) Clone() *RpgUserBuffQuery {
+	if rubq == nil {
 		return nil
 	}
 	return &RpgUserBuffQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpguserbuff.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgUserBuff{}, _q.predicates...),
+		config:     rubq.config,
+		ctx:        rubq.ctx.Clone(),
+		order:      append([]rpguserbuff.OrderOption{}, rubq.order...),
+		inters:     append([]Interceptor{}, rubq.inters...),
+		predicates: append([]predicate.RpgUserBuff{}, rubq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  rubq.sql.Clone(),
+		path: rubq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgUserBuffQuery) Clone() *RpgUserBuffQuery {
 //		GroupBy(rpguserbuff.FieldCreateTime).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgUserBuffQuery) GroupBy(field string, fields ...string) *RpgUserBuffGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgUserBuffGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (rubq *RpgUserBuffQuery) GroupBy(field string, fields ...string) *RpgUserBuffGroupBy {
+	rubq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgUserBuffGroupBy{build: rubq}
+	grbuild.flds = &rubq.ctx.Fields
 	grbuild.label = rpguserbuff.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgUserBuffQuery) GroupBy(field string, fields ...string) *RpgUserBuff
 //	client.RpgUserBuff.Query().
 //		Select(rpguserbuff.FieldCreateTime).
 //		Scan(ctx, &v)
-func (_q *RpgUserBuffQuery) Select(fields ...string) *RpgUserBuffSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgUserBuffSelect{RpgUserBuffQuery: _q}
+func (rubq *RpgUserBuffQuery) Select(fields ...string) *RpgUserBuffSelect {
+	rubq.ctx.Fields = append(rubq.ctx.Fields, fields...)
+	sbuild := &RpgUserBuffSelect{RpgUserBuffQuery: rubq}
 	sbuild.label = rpguserbuff.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &rubq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgUserBuffSelect configured with the given aggregations.
-func (_q *RpgUserBuffQuery) Aggregate(fns ...AggregateFunc) *RpgUserBuffSelect {
-	return _q.Select().Aggregate(fns...)
+func (rubq *RpgUserBuffQuery) Aggregate(fns ...AggregateFunc) *RpgUserBuffSelect {
+	return rubq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgUserBuffQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (rubq *RpgUserBuffQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range rubq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, rubq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range rubq.ctx.Fields {
 		if !rpguserbuff.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if rubq.path != nil {
+		prev, err := rubq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		rubq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgUserBuffQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserBuff, error) {
+func (rubq *RpgUserBuffQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserBuff, error) {
 	var (
 		nodes = []*RpgUserBuff{}
-		_spec = _q.querySpec()
+		_spec = rubq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgUserBuff).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgUserBuff{config: _q.config}
+		node := &RpgUserBuff{config: rubq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, rubq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgUserBuffQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 	return nodes, nil
 }
 
-func (_q *RpgUserBuffQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (rubq *RpgUserBuffQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := rubq.querySpec()
+	_spec.Node.Columns = rubq.ctx.Fields
+	if len(rubq.ctx.Fields) > 0 {
+		_spec.Unique = rubq.ctx.Unique != nil && *rubq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, rubq.driver, _spec)
 }
 
-func (_q *RpgUserBuffQuery) querySpec() *sqlgraph.QuerySpec {
+func (rubq *RpgUserBuffQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpguserbuff.Table, rpguserbuff.Columns, sqlgraph.NewFieldSpec(rpguserbuff.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = rubq.sql
+	if unique := rubq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if rubq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := rubq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserbuff.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgUserBuffQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := rubq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rubq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rubq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := rubq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgUserBuffQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgUserBuffQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (rubq *RpgUserBuffQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(rubq.driver.Dialect())
 	t1 := builder.Table(rpguserbuff.Table)
-	columns := _q.ctx.Fields
+	columns := rubq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpguserbuff.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if rubq.sql != nil {
+		selector = rubq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if rubq.ctx.Unique != nil && *rubq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range rubq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range rubq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := rubq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := rubq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgUserBuffGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgUserBuffGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserBuffGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (rubgb *RpgUserBuffGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserBuffGroupBy {
+	rubgb.fns = append(rubgb.fns, fns...)
+	return rubgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgUserBuffGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (rubgb *RpgUserBuffGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rubgb.build.ctx, ent.OpQueryGroupBy)
+	if err := rubgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserBuffQuery, *RpgUserBuffGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgUserBuffQuery, *RpgUserBuffGroupBy](ctx, rubgb.build, rubgb, rubgb.build.inters, v)
 }
 
-func (_g *RpgUserBuffGroupBy) sqlScan(ctx context.Context, root *RpgUserBuffQuery, v any) error {
+func (rubgb *RpgUserBuffGroupBy) sqlScan(ctx context.Context, root *RpgUserBuffQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(rubgb.fns))
+	for _, fn := range rubgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*rubgb.flds)+len(rubgb.fns))
+		for _, f := range *rubgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*rubgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rubgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgUserBuffSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgUserBuffSelect) Aggregate(fns ...AggregateFunc) *RpgUserBuffSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (rubs *RpgUserBuffSelect) Aggregate(fns ...AggregateFunc) *RpgUserBuffSelect {
+	rubs.fns = append(rubs.fns, fns...)
+	return rubs
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgUserBuffSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (rubs *RpgUserBuffSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, rubs.ctx, ent.OpQuerySelect)
+	if err := rubs.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserBuffQuery, *RpgUserBuffSelect](ctx, _s.RpgUserBuffQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgUserBuffQuery, *RpgUserBuffSelect](ctx, rubs.RpgUserBuffQuery, rubs, rubs.inters, v)
 }
 
-func (_s *RpgUserBuffSelect) sqlScan(ctx context.Context, root *RpgUserBuffQuery, v any) error {
+func (rubs *RpgUserBuffSelect) sqlScan(ctx context.Context, root *RpgUserBuffQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(rubs.fns))
+	for _, fn := range rubs.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*rubs.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgUserBuffSelect) sqlScan(ctx context.Context, root *RpgUserBuffQuery
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := rubs.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

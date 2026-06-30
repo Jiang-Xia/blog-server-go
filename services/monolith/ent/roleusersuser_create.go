@@ -22,30 +22,30 @@ type RoleUsersUserCreate struct {
 }
 
 // SetUserId sets the "userId" field.
-func (_c *RoleUsersUserCreate) SetUserId(v int) *RoleUsersUserCreate {
-	_c.mutation.SetUserId(v)
-	return _c
+func (ruuc *RoleUsersUserCreate) SetUserId(i int) *RoleUsersUserCreate {
+	ruuc.mutation.SetUserId(i)
+	return ruuc
 }
 
 // SetRoleId sets the "roleId" field.
-func (_c *RoleUsersUserCreate) SetRoleId(v int) *RoleUsersUserCreate {
-	_c.mutation.SetRoleId(v)
-	return _c
+func (ruuc *RoleUsersUserCreate) SetRoleId(i int) *RoleUsersUserCreate {
+	ruuc.mutation.SetRoleId(i)
+	return ruuc
 }
 
 // Mutation returns the RoleUsersUserMutation object of the builder.
-func (_c *RoleUsersUserCreate) Mutation() *RoleUsersUserMutation {
-	return _c.mutation
+func (ruuc *RoleUsersUserCreate) Mutation() *RoleUsersUserMutation {
+	return ruuc.mutation
 }
 
 // Save creates the RoleUsersUser in the database.
-func (_c *RoleUsersUserCreate) Save(ctx context.Context) (*RoleUsersUser, error) {
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (ruuc *RoleUsersUserCreate) Save(ctx context.Context) (*RoleUsersUser, error) {
+	return withHooks(ctx, ruuc.sqlSave, ruuc.mutation, ruuc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RoleUsersUserCreate) SaveX(ctx context.Context) *RoleUsersUser {
-	v, err := _c.Save(ctx)
+func (ruuc *RoleUsersUserCreate) SaveX(ctx context.Context) *RoleUsersUser {
+	v, err := ruuc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -53,35 +53,35 @@ func (_c *RoleUsersUserCreate) SaveX(ctx context.Context) *RoleUsersUser {
 }
 
 // Exec executes the query.
-func (_c *RoleUsersUserCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruuc *RoleUsersUserCreate) Exec(ctx context.Context) error {
+	_, err := ruuc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RoleUsersUserCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruuc *RoleUsersUserCreate) ExecX(ctx context.Context) {
+	if err := ruuc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RoleUsersUserCreate) check() error {
-	if _, ok := _c.mutation.UserId(); !ok {
+func (ruuc *RoleUsersUserCreate) check() error {
+	if _, ok := ruuc.mutation.UserId(); !ok {
 		return &ValidationError{Name: "userId", err: errors.New(`ent: missing required field "RoleUsersUser.userId"`)}
 	}
-	if _, ok := _c.mutation.RoleId(); !ok {
+	if _, ok := ruuc.mutation.RoleId(); !ok {
 		return &ValidationError{Name: "roleId", err: errors.New(`ent: missing required field "RoleUsersUser.roleId"`)}
 	}
 	return nil
 }
 
-func (_c *RoleUsersUserCreate) sqlSave(ctx context.Context) (*RoleUsersUser, error) {
-	if err := _c.check(); err != nil {
+func (ruuc *RoleUsersUserCreate) sqlSave(ctx context.Context) (*RoleUsersUser, error) {
+	if err := ruuc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := ruuc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, ruuc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -89,22 +89,22 @@ func (_c *RoleUsersUserCreate) sqlSave(ctx context.Context) (*RoleUsersUser, err
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	ruuc.mutation.id = &_node.ID
+	ruuc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RoleUsersUserCreate) createSpec() (*RoleUsersUser, *sqlgraph.CreateSpec) {
+func (ruuc *RoleUsersUserCreate) createSpec() (*RoleUsersUser, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RoleUsersUser{config: _c.config}
+		_node = &RoleUsersUser{config: ruuc.config}
 		_spec = sqlgraph.NewCreateSpec(roleusersuser.Table, sqlgraph.NewFieldSpec(roleusersuser.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if value, ok := _c.mutation.UserId(); ok {
+	_spec.OnConflict = ruuc.conflict
+	if value, ok := ruuc.mutation.UserId(); ok {
 		_spec.SetField(roleusersuser.FieldUserId, field.TypeInt, value)
 		_node.UserId = value
 	}
-	if value, ok := _c.mutation.RoleId(); ok {
+	if value, ok := ruuc.mutation.RoleId(); ok {
 		_spec.SetField(roleusersuser.FieldRoleId, field.TypeInt, value)
 		_node.RoleId = value
 	}
@@ -127,10 +127,10 @@ func (_c *RoleUsersUserCreate) createSpec() (*RoleUsersUser, *sqlgraph.CreateSpe
 //			SetUserId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RoleUsersUserCreate) OnConflict(opts ...sql.ConflictOption) *RoleUsersUserUpsertOne {
-	_c.conflict = opts
+func (ruuc *RoleUsersUserCreate) OnConflict(opts ...sql.ConflictOption) *RoleUsersUserUpsertOne {
+	ruuc.conflict = opts
 	return &RoleUsersUserUpsertOne{
-		create: _c,
+		create: ruuc,
 	}
 }
 
@@ -140,10 +140,10 @@ func (_c *RoleUsersUserCreate) OnConflict(opts ...sql.ConflictOption) *RoleUsers
 //	client.RoleUsersUser.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RoleUsersUserCreate) OnConflictColumns(columns ...string) *RoleUsersUserUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruuc *RoleUsersUserCreate) OnConflictColumns(columns ...string) *RoleUsersUserUpsertOne {
+	ruuc.conflict = append(ruuc.conflict, sql.ConflictColumns(columns...))
 	return &RoleUsersUserUpsertOne{
-		create: _c,
+		create: ruuc,
 	}
 }
 
@@ -320,16 +320,16 @@ type RoleUsersUserCreateBulk struct {
 }
 
 // Save creates the RoleUsersUser entities in the database.
-func (_c *RoleUsersUserCreateBulk) Save(ctx context.Context) ([]*RoleUsersUser, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (ruucb *RoleUsersUserCreateBulk) Save(ctx context.Context) ([]*RoleUsersUser, error) {
+	if ruucb.err != nil {
+		return nil, ruucb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RoleUsersUser, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(ruucb.builders))
+	nodes := make([]*RoleUsersUser, len(ruucb.builders))
+	mutators := make([]Mutator, len(ruucb.builders))
+	for i := range ruucb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := ruucb.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RoleUsersUserMutation)
 				if !ok {
@@ -342,12 +342,12 @@ func (_c *RoleUsersUserCreateBulk) Save(ctx context.Context) ([]*RoleUsersUser, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, ruucb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = ruucb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, ruucb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -371,7 +371,7 @@ func (_c *RoleUsersUserCreateBulk) Save(ctx context.Context) ([]*RoleUsersUser, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, ruucb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -379,8 +379,8 @@ func (_c *RoleUsersUserCreateBulk) Save(ctx context.Context) ([]*RoleUsersUser, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RoleUsersUserCreateBulk) SaveX(ctx context.Context) []*RoleUsersUser {
-	v, err := _c.Save(ctx)
+func (ruucb *RoleUsersUserCreateBulk) SaveX(ctx context.Context) []*RoleUsersUser {
+	v, err := ruucb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -388,14 +388,14 @@ func (_c *RoleUsersUserCreateBulk) SaveX(ctx context.Context) []*RoleUsersUser {
 }
 
 // Exec executes the query.
-func (_c *RoleUsersUserCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (ruucb *RoleUsersUserCreateBulk) Exec(ctx context.Context) error {
+	_, err := ruucb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RoleUsersUserCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (ruucb *RoleUsersUserCreateBulk) ExecX(ctx context.Context) {
+	if err := ruucb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -415,10 +415,10 @@ func (_c *RoleUsersUserCreateBulk) ExecX(ctx context.Context) {
 //			SetUserId(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RoleUsersUserCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleUsersUserUpsertBulk {
-	_c.conflict = opts
+func (ruucb *RoleUsersUserCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleUsersUserUpsertBulk {
+	ruucb.conflict = opts
 	return &RoleUsersUserUpsertBulk{
-		create: _c,
+		create: ruucb,
 	}
 }
 
@@ -428,10 +428,10 @@ func (_c *RoleUsersUserCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleU
 //	client.RoleUsersUser.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RoleUsersUserCreateBulk) OnConflictColumns(columns ...string) *RoleUsersUserUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (ruucb *RoleUsersUserCreateBulk) OnConflictColumns(columns ...string) *RoleUsersUserUpsertBulk {
+	ruucb.conflict = append(ruucb.conflict, sql.ConflictColumns(columns...))
 	return &RoleUsersUserUpsertBulk{
-		create: _c,
+		create: ruucb,
 	}
 }
 

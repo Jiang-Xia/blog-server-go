@@ -28,40 +28,40 @@ type KnowledgeChunkQuery struct {
 }
 
 // Where adds a new predicate for the KnowledgeChunkQuery builder.
-func (_q *KnowledgeChunkQuery) Where(ps ...predicate.KnowledgeChunk) *KnowledgeChunkQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (kcq *KnowledgeChunkQuery) Where(ps ...predicate.KnowledgeChunk) *KnowledgeChunkQuery {
+	kcq.predicates = append(kcq.predicates, ps...)
+	return kcq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *KnowledgeChunkQuery) Limit(limit int) *KnowledgeChunkQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (kcq *KnowledgeChunkQuery) Limit(limit int) *KnowledgeChunkQuery {
+	kcq.ctx.Limit = &limit
+	return kcq
 }
 
 // Offset to start from.
-func (_q *KnowledgeChunkQuery) Offset(offset int) *KnowledgeChunkQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (kcq *KnowledgeChunkQuery) Offset(offset int) *KnowledgeChunkQuery {
+	kcq.ctx.Offset = &offset
+	return kcq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *KnowledgeChunkQuery) Unique(unique bool) *KnowledgeChunkQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (kcq *KnowledgeChunkQuery) Unique(unique bool) *KnowledgeChunkQuery {
+	kcq.ctx.Unique = &unique
+	return kcq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *KnowledgeChunkQuery) Order(o ...knowledgechunk.OrderOption) *KnowledgeChunkQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (kcq *KnowledgeChunkQuery) Order(o ...knowledgechunk.OrderOption) *KnowledgeChunkQuery {
+	kcq.order = append(kcq.order, o...)
+	return kcq
 }
 
 // First returns the first KnowledgeChunk entity from the query.
 // Returns a *NotFoundError when no KnowledgeChunk was found.
-func (_q *KnowledgeChunkQuery) First(ctx context.Context) (*KnowledgeChunk, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (kcq *KnowledgeChunkQuery) First(ctx context.Context) (*KnowledgeChunk, error) {
+	nodes, err := kcq.Limit(1).All(setContextOp(ctx, kcq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *KnowledgeChunkQuery) First(ctx context.Context) (*KnowledgeChunk, erro
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) FirstX(ctx context.Context) *KnowledgeChunk {
-	node, err := _q.First(ctx)
+func (kcq *KnowledgeChunkQuery) FirstX(ctx context.Context) *KnowledgeChunk {
+	node, err := kcq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *KnowledgeChunkQuery) FirstX(ctx context.Context) *KnowledgeChunk {
 
 // FirstID returns the first KnowledgeChunk ID from the query.
 // Returns a *NotFoundError when no KnowledgeChunk ID was found.
-func (_q *KnowledgeChunkQuery) FirstID(ctx context.Context) (id int, err error) {
+func (kcq *KnowledgeChunkQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = kcq.Limit(1).IDs(setContextOp(ctx, kcq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *KnowledgeChunkQuery) FirstID(ctx context.Context) (id int, err error) 
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (kcq *KnowledgeChunkQuery) FirstIDX(ctx context.Context) int {
+	id, err := kcq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *KnowledgeChunkQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single KnowledgeChunk entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one KnowledgeChunk entity is found.
 // Returns a *NotFoundError when no KnowledgeChunk entities are found.
-func (_q *KnowledgeChunkQuery) Only(ctx context.Context) (*KnowledgeChunk, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (kcq *KnowledgeChunkQuery) Only(ctx context.Context) (*KnowledgeChunk, error) {
+	nodes, err := kcq.Limit(2).All(setContextOp(ctx, kcq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *KnowledgeChunkQuery) Only(ctx context.Context) (*KnowledgeChunk, error
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) OnlyX(ctx context.Context) *KnowledgeChunk {
-	node, err := _q.Only(ctx)
+func (kcq *KnowledgeChunkQuery) OnlyX(ctx context.Context) *KnowledgeChunk {
+	node, err := kcq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *KnowledgeChunkQuery) OnlyX(ctx context.Context) *KnowledgeChunk {
 // OnlyID is like Only, but returns the only KnowledgeChunk ID in the query.
 // Returns a *NotSingularError when more than one KnowledgeChunk ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *KnowledgeChunkQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (kcq *KnowledgeChunkQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = kcq.Limit(2).IDs(setContextOp(ctx, kcq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *KnowledgeChunkQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (kcq *KnowledgeChunkQuery) OnlyIDX(ctx context.Context) int {
+	id, err := kcq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *KnowledgeChunkQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of KnowledgeChunks.
-func (_q *KnowledgeChunkQuery) All(ctx context.Context) ([]*KnowledgeChunk, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (kcq *KnowledgeChunkQuery) All(ctx context.Context) ([]*KnowledgeChunk, error) {
+	ctx = setContextOp(ctx, kcq.ctx, ent.OpQueryAll)
+	if err := kcq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*KnowledgeChunk, *KnowledgeChunkQuery]()
-	return withInterceptors[[]*KnowledgeChunk](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*KnowledgeChunk](ctx, kcq, qr, kcq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) AllX(ctx context.Context) []*KnowledgeChunk {
-	nodes, err := _q.All(ctx)
+func (kcq *KnowledgeChunkQuery) AllX(ctx context.Context) []*KnowledgeChunk {
+	nodes, err := kcq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *KnowledgeChunkQuery) AllX(ctx context.Context) []*KnowledgeChunk {
 }
 
 // IDs executes the query and returns a list of KnowledgeChunk IDs.
-func (_q *KnowledgeChunkQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (kcq *KnowledgeChunkQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if kcq.ctx.Unique == nil && kcq.path != nil {
+		kcq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(knowledgechunk.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, kcq.ctx, ent.OpQueryIDs)
+	if err = kcq.Select(knowledgechunk.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (kcq *KnowledgeChunkQuery) IDsX(ctx context.Context) []int {
+	ids, err := kcq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *KnowledgeChunkQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *KnowledgeChunkQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (kcq *KnowledgeChunkQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, kcq.ctx, ent.OpQueryCount)
+	if err := kcq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*KnowledgeChunkQuery](), _q.inters)
+	return withInterceptors[int](ctx, kcq, querierCount[*KnowledgeChunkQuery](), kcq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (kcq *KnowledgeChunkQuery) CountX(ctx context.Context) int {
+	count, err := kcq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *KnowledgeChunkQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *KnowledgeChunkQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (kcq *KnowledgeChunkQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, kcq.ctx, ent.OpQueryExist)
+	switch _, err := kcq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *KnowledgeChunkQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *KnowledgeChunkQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (kcq *KnowledgeChunkQuery) ExistX(ctx context.Context) bool {
+	exist, err := kcq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *KnowledgeChunkQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the KnowledgeChunkQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *KnowledgeChunkQuery) Clone() *KnowledgeChunkQuery {
-	if _q == nil {
+func (kcq *KnowledgeChunkQuery) Clone() *KnowledgeChunkQuery {
+	if kcq == nil {
 		return nil
 	}
 	return &KnowledgeChunkQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]knowledgechunk.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.KnowledgeChunk{}, _q.predicates...),
+		config:     kcq.config,
+		ctx:        kcq.ctx.Clone(),
+		order:      append([]knowledgechunk.OrderOption{}, kcq.order...),
+		inters:     append([]Interceptor{}, kcq.inters...),
+		predicates: append([]predicate.KnowledgeChunk{}, kcq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  kcq.sql.Clone(),
+		path: kcq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *KnowledgeChunkQuery) Clone() *KnowledgeChunkQuery {
 //		GroupBy(knowledgechunk.FieldArticleID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *KnowledgeChunkQuery) GroupBy(field string, fields ...string) *KnowledgeChunkGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &KnowledgeChunkGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (kcq *KnowledgeChunkQuery) GroupBy(field string, fields ...string) *KnowledgeChunkGroupBy {
+	kcq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &KnowledgeChunkGroupBy{build: kcq}
+	grbuild.flds = &kcq.ctx.Fields
 	grbuild.label = knowledgechunk.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *KnowledgeChunkQuery) GroupBy(field string, fields ...string) *Knowledg
 //	client.KnowledgeChunk.Query().
 //		Select(knowledgechunk.FieldArticleID).
 //		Scan(ctx, &v)
-func (_q *KnowledgeChunkQuery) Select(fields ...string) *KnowledgeChunkSelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &KnowledgeChunkSelect{KnowledgeChunkQuery: _q}
+func (kcq *KnowledgeChunkQuery) Select(fields ...string) *KnowledgeChunkSelect {
+	kcq.ctx.Fields = append(kcq.ctx.Fields, fields...)
+	sbuild := &KnowledgeChunkSelect{KnowledgeChunkQuery: kcq}
 	sbuild.label = knowledgechunk.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &kcq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a KnowledgeChunkSelect configured with the given aggregations.
-func (_q *KnowledgeChunkQuery) Aggregate(fns ...AggregateFunc) *KnowledgeChunkSelect {
-	return _q.Select().Aggregate(fns...)
+func (kcq *KnowledgeChunkQuery) Aggregate(fns ...AggregateFunc) *KnowledgeChunkSelect {
+	return kcq.Select().Aggregate(fns...)
 }
 
-func (_q *KnowledgeChunkQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (kcq *KnowledgeChunkQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range kcq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, kcq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range kcq.ctx.Fields {
 		if !knowledgechunk.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if kcq.path != nil {
+		prev, err := kcq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		kcq.sql = prev
 	}
 	return nil
 }
 
-func (_q *KnowledgeChunkQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*KnowledgeChunk, error) {
+func (kcq *KnowledgeChunkQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*KnowledgeChunk, error) {
 	var (
 		nodes = []*KnowledgeChunk{}
-		_spec = _q.querySpec()
+		_spec = kcq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*KnowledgeChunk).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &KnowledgeChunk{config: _q.config}
+		node := &KnowledgeChunk{config: kcq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, kcq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *KnowledgeChunkQuery) sqlAll(ctx context.Context, hooks ...queryHook) (
 	return nodes, nil
 }
 
-func (_q *KnowledgeChunkQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (kcq *KnowledgeChunkQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := kcq.querySpec()
+	_spec.Node.Columns = kcq.ctx.Fields
+	if len(kcq.ctx.Fields) > 0 {
+		_spec.Unique = kcq.ctx.Unique != nil && *kcq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, kcq.driver, _spec)
 }
 
-func (_q *KnowledgeChunkQuery) querySpec() *sqlgraph.QuerySpec {
+func (kcq *KnowledgeChunkQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(knowledgechunk.Table, knowledgechunk.Columns, sqlgraph.NewFieldSpec(knowledgechunk.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = kcq.sql
+	if unique := kcq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if kcq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := kcq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, knowledgechunk.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *KnowledgeChunkQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := kcq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := kcq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := kcq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := kcq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *KnowledgeChunkQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *KnowledgeChunkQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (kcq *KnowledgeChunkQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(kcq.driver.Dialect())
 	t1 := builder.Table(knowledgechunk.Table)
-	columns := _q.ctx.Fields
+	columns := kcq.ctx.Fields
 	if len(columns) == 0 {
 		columns = knowledgechunk.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if kcq.sql != nil {
+		selector = kcq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if kcq.ctx.Unique != nil && *kcq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range kcq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range kcq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := kcq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := kcq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type KnowledgeChunkGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *KnowledgeChunkGroupBy) Aggregate(fns ...AggregateFunc) *KnowledgeChunkGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (kcgb *KnowledgeChunkGroupBy) Aggregate(fns ...AggregateFunc) *KnowledgeChunkGroupBy {
+	kcgb.fns = append(kcgb.fns, fns...)
+	return kcgb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *KnowledgeChunkGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (kcgb *KnowledgeChunkGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, kcgb.build.ctx, ent.OpQueryGroupBy)
+	if err := kcgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*KnowledgeChunkQuery, *KnowledgeChunkGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*KnowledgeChunkQuery, *KnowledgeChunkGroupBy](ctx, kcgb.build, kcgb, kcgb.build.inters, v)
 }
 
-func (_g *KnowledgeChunkGroupBy) sqlScan(ctx context.Context, root *KnowledgeChunkQuery, v any) error {
+func (kcgb *KnowledgeChunkGroupBy) sqlScan(ctx context.Context, root *KnowledgeChunkQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(kcgb.fns))
+	for _, fn := range kcgb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*kcgb.flds)+len(kcgb.fns))
+		for _, f := range *kcgb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*kcgb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := kcgb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type KnowledgeChunkSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *KnowledgeChunkSelect) Aggregate(fns ...AggregateFunc) *KnowledgeChunkSelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (kcs *KnowledgeChunkSelect) Aggregate(fns ...AggregateFunc) *KnowledgeChunkSelect {
+	kcs.fns = append(kcs.fns, fns...)
+	return kcs
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *KnowledgeChunkSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (kcs *KnowledgeChunkSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, kcs.ctx, ent.OpQuerySelect)
+	if err := kcs.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*KnowledgeChunkQuery, *KnowledgeChunkSelect](ctx, _s.KnowledgeChunkQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*KnowledgeChunkQuery, *KnowledgeChunkSelect](ctx, kcs.KnowledgeChunkQuery, kcs, kcs.inters, v)
 }
 
-func (_s *KnowledgeChunkSelect) sqlScan(ctx context.Context, root *KnowledgeChunkQuery, v any) error {
+func (kcs *KnowledgeChunkSelect) sqlScan(ctx context.Context, root *KnowledgeChunkQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(kcs.fns))
+	for _, fn := range kcs.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*kcs.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *KnowledgeChunkSelect) sqlScan(ctx context.Context, root *KnowledgeChun
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := kcs.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()

@@ -23,113 +23,113 @@ type RoleDataScopeCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RoleDataScopeCreate) SetCreateTime(v time.Time) *RoleDataScopeCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetCreateTime(t time.Time) *RoleDataScopeCreate {
+	rdsc.mutation.SetCreateTime(t)
+	return rdsc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RoleDataScopeCreate) SetNillableCreateTime(v *time.Time) *RoleDataScopeCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (rdsc *RoleDataScopeCreate) SetNillableCreateTime(t *time.Time) *RoleDataScopeCreate {
+	if t != nil {
+		rdsc.SetCreateTime(*t)
 	}
-	return _c
+	return rdsc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RoleDataScopeCreate) SetUpdateTime(v time.Time) *RoleDataScopeCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetUpdateTime(t time.Time) *RoleDataScopeCreate {
+	rdsc.mutation.SetUpdateTime(t)
+	return rdsc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RoleDataScopeCreate) SetNillableUpdateTime(v *time.Time) *RoleDataScopeCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (rdsc *RoleDataScopeCreate) SetNillableUpdateTime(t *time.Time) *RoleDataScopeCreate {
+	if t != nil {
+		rdsc.SetUpdateTime(*t)
 	}
-	return _c
+	return rdsc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RoleDataScopeCreate) SetIsDelete(v bool) *RoleDataScopeCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetIsDelete(b bool) *RoleDataScopeCreate {
+	rdsc.mutation.SetIsDelete(b)
+	return rdsc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RoleDataScopeCreate) SetNillableIsDelete(v *bool) *RoleDataScopeCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (rdsc *RoleDataScopeCreate) SetNillableIsDelete(b *bool) *RoleDataScopeCreate {
+	if b != nil {
+		rdsc.SetIsDelete(*b)
 	}
-	return _c
+	return rdsc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RoleDataScopeCreate) SetVersion(v int) *RoleDataScopeCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetVersion(i int) *RoleDataScopeCreate {
+	rdsc.mutation.SetVersion(i)
+	return rdsc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RoleDataScopeCreate) SetNillableVersion(v *int) *RoleDataScopeCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (rdsc *RoleDataScopeCreate) SetNillableVersion(i *int) *RoleDataScopeCreate {
+	if i != nil {
+		rdsc.SetVersion(*i)
 	}
-	return _c
+	return rdsc
 }
 
 // SetRoleId sets the "roleId" field.
-func (_c *RoleDataScopeCreate) SetRoleId(v int) *RoleDataScopeCreate {
-	_c.mutation.SetRoleId(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetRoleId(i int) *RoleDataScopeCreate {
+	rdsc.mutation.SetRoleId(i)
+	return rdsc
 }
 
 // SetResourceType sets the "resourceType" field.
-func (_c *RoleDataScopeCreate) SetResourceType(v string) *RoleDataScopeCreate {
-	_c.mutation.SetResourceType(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetResourceType(s string) *RoleDataScopeCreate {
+	rdsc.mutation.SetResourceType(s)
+	return rdsc
 }
 
 // SetNillableResourceType sets the "resourceType" field if the given value is not nil.
-func (_c *RoleDataScopeCreate) SetNillableResourceType(v *string) *RoleDataScopeCreate {
-	if v != nil {
-		_c.SetResourceType(*v)
+func (rdsc *RoleDataScopeCreate) SetNillableResourceType(s *string) *RoleDataScopeCreate {
+	if s != nil {
+		rdsc.SetResourceType(*s)
 	}
-	return _c
+	return rdsc
 }
 
 // SetScopeType sets the "scopeType" field.
-func (_c *RoleDataScopeCreate) SetScopeType(v string) *RoleDataScopeCreate {
-	_c.mutation.SetScopeType(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetScopeType(s string) *RoleDataScopeCreate {
+	rdsc.mutation.SetScopeType(s)
+	return rdsc
 }
 
 // SetDeptIds sets the "deptIds" field.
-func (_c *RoleDataScopeCreate) SetDeptIds(v map[string]interface{}) *RoleDataScopeCreate {
-	_c.mutation.SetDeptIds(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetDeptIds(m map[string]interface{}) *RoleDataScopeCreate {
+	rdsc.mutation.SetDeptIds(m)
+	return rdsc
 }
 
 // SetID sets the "id" field.
-func (_c *RoleDataScopeCreate) SetID(v int) *RoleDataScopeCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rdsc *RoleDataScopeCreate) SetID(i int) *RoleDataScopeCreate {
+	rdsc.mutation.SetID(i)
+	return rdsc
 }
 
 // Mutation returns the RoleDataScopeMutation object of the builder.
-func (_c *RoleDataScopeCreate) Mutation() *RoleDataScopeMutation {
-	return _c.mutation
+func (rdsc *RoleDataScopeCreate) Mutation() *RoleDataScopeMutation {
+	return rdsc.mutation
 }
 
 // Save creates the RoleDataScope in the database.
-func (_c *RoleDataScopeCreate) Save(ctx context.Context) (*RoleDataScope, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rdsc *RoleDataScopeCreate) Save(ctx context.Context) (*RoleDataScope, error) {
+	rdsc.defaults()
+	return withHooks(ctx, rdsc.sqlSave, rdsc.mutation, rdsc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RoleDataScopeCreate) SaveX(ctx context.Context) *RoleDataScope {
-	v, err := _c.Save(ctx)
+func (rdsc *RoleDataScopeCreate) SaveX(ctx context.Context) *RoleDataScope {
+	v, err := rdsc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -137,74 +137,74 @@ func (_c *RoleDataScopeCreate) SaveX(ctx context.Context) *RoleDataScope {
 }
 
 // Exec executes the query.
-func (_c *RoleDataScopeCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rdsc *RoleDataScopeCreate) Exec(ctx context.Context) error {
+	_, err := rdsc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RoleDataScopeCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rdsc *RoleDataScopeCreate) ExecX(ctx context.Context) {
+	if err := rdsc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RoleDataScopeCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rdsc *RoleDataScopeCreate) defaults() {
+	if _, ok := rdsc.mutation.CreateTime(); !ok {
 		v := roledatascope.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		rdsc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rdsc.mutation.UpdateTime(); !ok {
 		v := roledatascope.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		rdsc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rdsc.mutation.IsDelete(); !ok {
 		v := roledatascope.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		rdsc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rdsc.mutation.Version(); !ok {
 		v := roledatascope.DefaultVersion
-		_c.mutation.SetVersion(v)
+		rdsc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.ResourceType(); !ok {
+	if _, ok := rdsc.mutation.ResourceType(); !ok {
 		v := roledatascope.DefaultResourceType
-		_c.mutation.SetResourceType(v)
+		rdsc.mutation.SetResourceType(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RoleDataScopeCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rdsc *RoleDataScopeCreate) check() error {
+	if _, ok := rdsc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RoleDataScope.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rdsc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RoleDataScope.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rdsc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RoleDataScope.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rdsc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RoleDataScope.version"`)}
 	}
-	if _, ok := _c.mutation.RoleId(); !ok {
+	if _, ok := rdsc.mutation.RoleId(); !ok {
 		return &ValidationError{Name: "roleId", err: errors.New(`ent: missing required field "RoleDataScope.roleId"`)}
 	}
-	if _, ok := _c.mutation.ResourceType(); !ok {
+	if _, ok := rdsc.mutation.ResourceType(); !ok {
 		return &ValidationError{Name: "resourceType", err: errors.New(`ent: missing required field "RoleDataScope.resourceType"`)}
 	}
-	if _, ok := _c.mutation.ScopeType(); !ok {
+	if _, ok := rdsc.mutation.ScopeType(); !ok {
 		return &ValidationError{Name: "scopeType", err: errors.New(`ent: missing required field "RoleDataScope.scopeType"`)}
 	}
 	return nil
 }
 
-func (_c *RoleDataScopeCreate) sqlSave(ctx context.Context) (*RoleDataScope, error) {
-	if err := _c.check(); err != nil {
+func (rdsc *RoleDataScopeCreate) sqlSave(ctx context.Context) (*RoleDataScope, error) {
+	if err := rdsc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rdsc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rdsc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -214,50 +214,50 @@ func (_c *RoleDataScopeCreate) sqlSave(ctx context.Context) (*RoleDataScope, err
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rdsc.mutation.id = &_node.ID
+	rdsc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RoleDataScopeCreate) createSpec() (*RoleDataScope, *sqlgraph.CreateSpec) {
+func (rdsc *RoleDataScopeCreate) createSpec() (*RoleDataScope, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RoleDataScope{config: _c.config}
+		_node = &RoleDataScope{config: rdsc.config}
 		_spec = sqlgraph.NewCreateSpec(roledatascope.Table, sqlgraph.NewFieldSpec(roledatascope.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rdsc.conflict
+	if id, ok := rdsc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := rdsc.mutation.CreateTime(); ok {
 		_spec.SetField(roledatascope.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := rdsc.mutation.UpdateTime(); ok {
 		_spec.SetField(roledatascope.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := rdsc.mutation.IsDelete(); ok {
 		_spec.SetField(roledatascope.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := rdsc.mutation.Version(); ok {
 		_spec.SetField(roledatascope.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.RoleId(); ok {
+	if value, ok := rdsc.mutation.RoleId(); ok {
 		_spec.SetField(roledatascope.FieldRoleId, field.TypeInt, value)
 		_node.RoleId = value
 	}
-	if value, ok := _c.mutation.ResourceType(); ok {
+	if value, ok := rdsc.mutation.ResourceType(); ok {
 		_spec.SetField(roledatascope.FieldResourceType, field.TypeString, value)
 		_node.ResourceType = value
 	}
-	if value, ok := _c.mutation.ScopeType(); ok {
+	if value, ok := rdsc.mutation.ScopeType(); ok {
 		_spec.SetField(roledatascope.FieldScopeType, field.TypeString, value)
 		_node.ScopeType = value
 	}
-	if value, ok := _c.mutation.DeptIds(); ok {
+	if value, ok := rdsc.mutation.DeptIds(); ok {
 		_spec.SetField(roledatascope.FieldDeptIds, field.TypeJSON, value)
 		_node.DeptIds = value
 	}
@@ -280,10 +280,10 @@ func (_c *RoleDataScopeCreate) createSpec() (*RoleDataScope, *sqlgraph.CreateSpe
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RoleDataScopeCreate) OnConflict(opts ...sql.ConflictOption) *RoleDataScopeUpsertOne {
-	_c.conflict = opts
+func (rdsc *RoleDataScopeCreate) OnConflict(opts ...sql.ConflictOption) *RoleDataScopeUpsertOne {
+	rdsc.conflict = opts
 	return &RoleDataScopeUpsertOne{
-		create: _c,
+		create: rdsc,
 	}
 }
 
@@ -293,10 +293,10 @@ func (_c *RoleDataScopeCreate) OnConflict(opts ...sql.ConflictOption) *RoleDataS
 //	client.RoleDataScope.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RoleDataScopeCreate) OnConflictColumns(columns ...string) *RoleDataScopeUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rdsc *RoleDataScopeCreate) OnConflictColumns(columns ...string) *RoleDataScopeUpsertOne {
+	rdsc.conflict = append(rdsc.conflict, sql.ConflictColumns(columns...))
 	return &RoleDataScopeUpsertOne{
-		create: _c,
+		create: rdsc,
 	}
 }
 
@@ -627,16 +627,16 @@ type RoleDataScopeCreateBulk struct {
 }
 
 // Save creates the RoleDataScope entities in the database.
-func (_c *RoleDataScopeCreateBulk) Save(ctx context.Context) ([]*RoleDataScope, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rdscb *RoleDataScopeCreateBulk) Save(ctx context.Context) ([]*RoleDataScope, error) {
+	if rdscb.err != nil {
+		return nil, rdscb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RoleDataScope, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rdscb.builders))
+	nodes := make([]*RoleDataScope, len(rdscb.builders))
+	mutators := make([]Mutator, len(rdscb.builders))
+	for i := range rdscb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rdscb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RoleDataScopeMutation)
@@ -650,12 +650,12 @@ func (_c *RoleDataScopeCreateBulk) Save(ctx context.Context) ([]*RoleDataScope, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rdscb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rdscb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rdscb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -679,7 +679,7 @@ func (_c *RoleDataScopeCreateBulk) Save(ctx context.Context) ([]*RoleDataScope, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rdscb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -687,8 +687,8 @@ func (_c *RoleDataScopeCreateBulk) Save(ctx context.Context) ([]*RoleDataScope, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RoleDataScopeCreateBulk) SaveX(ctx context.Context) []*RoleDataScope {
-	v, err := _c.Save(ctx)
+func (rdscb *RoleDataScopeCreateBulk) SaveX(ctx context.Context) []*RoleDataScope {
+	v, err := rdscb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -696,14 +696,14 @@ func (_c *RoleDataScopeCreateBulk) SaveX(ctx context.Context) []*RoleDataScope {
 }
 
 // Exec executes the query.
-func (_c *RoleDataScopeCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rdscb *RoleDataScopeCreateBulk) Exec(ctx context.Context) error {
+	_, err := rdscb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RoleDataScopeCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rdscb *RoleDataScopeCreateBulk) ExecX(ctx context.Context) {
+	if err := rdscb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -723,10 +723,10 @@ func (_c *RoleDataScopeCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RoleDataScopeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleDataScopeUpsertBulk {
-	_c.conflict = opts
+func (rdscb *RoleDataScopeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleDataScopeUpsertBulk {
+	rdscb.conflict = opts
 	return &RoleDataScopeUpsertBulk{
-		create: _c,
+		create: rdscb,
 	}
 }
 
@@ -736,10 +736,10 @@ func (_c *RoleDataScopeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RoleD
 //	client.RoleDataScope.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RoleDataScopeCreateBulk) OnConflictColumns(columns ...string) *RoleDataScopeUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rdscb *RoleDataScopeCreateBulk) OnConflictColumns(columns ...string) *RoleDataScopeUpsertBulk {
+	rdscb.conflict = append(rdscb.conflict, sql.ConflictColumns(columns...))
 	return &RoleDataScopeUpsertBulk{
-		create: _c,
+		create: rdscb,
 	}
 }
 

@@ -65,7 +65,7 @@ func (*SensitiveWord) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the SensitiveWord fields.
-func (_m *SensitiveWord) assignValues(columns []string, values []any) error {
+func (sw *SensitiveWord) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -76,75 +76,75 @@ func (_m *SensitiveWord) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			sw.ID = int(value.Int64)
 		case sensitiveword.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				sw.CreateTime = value.Time
 			}
 		case sensitiveword.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				sw.UpdateTime = value.Time
 			}
 		case sensitiveword.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				sw.IsDelete = value.Bool
 			}
 		case sensitiveword.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				sw.Version = int(value.Int64)
 			}
 		case sensitiveword.FieldWord:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field word", values[i])
 			} else if value.Valid {
-				_m.Word = value.String
+				sw.Word = value.String
 			}
 		case sensitiveword.FieldCategory:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field category", values[i])
 			} else if value.Valid {
-				_m.Category = value.String
+				sw.Category = value.String
 			}
 		case sensitiveword.FieldStatus:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = int(value.Int64)
+				sw.Status = int(value.Int64)
 			}
 		case sensitiveword.FieldLevel:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field level", values[i])
 			} else if value.Valid {
-				_m.Level = int(value.Int64)
+				sw.Level = int(value.Int64)
 			}
 		case sensitiveword.FieldHpPenalty:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field hpPenalty", values[i])
 			} else if value.Valid {
-				_m.HpPenalty = int(value.Int64)
+				sw.HpPenalty = int(value.Int64)
 			}
 		case sensitiveword.FieldNeedReview:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field needReview", values[i])
 			} else if value.Valid {
-				_m.NeedReview = int(value.Int64)
+				sw.NeedReview = int(value.Int64)
 			}
 		case sensitiveword.FieldAction:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field action", values[i])
 			} else if value.Valid {
-				_m.Action = int(value.Int64)
+				sw.Action = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			sw.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -152,65 +152,65 @@ func (_m *SensitiveWord) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the SensitiveWord.
 // This includes values selected through modifiers, order, etc.
-func (_m *SensitiveWord) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (sw *SensitiveWord) Value(name string) (ent.Value, error) {
+	return sw.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this SensitiveWord.
 // Note that you need to call SensitiveWord.Unwrap() before calling this method if this SensitiveWord
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *SensitiveWord) Update() *SensitiveWordUpdateOne {
-	return NewSensitiveWordClient(_m.config).UpdateOne(_m)
+func (sw *SensitiveWord) Update() *SensitiveWordUpdateOne {
+	return NewSensitiveWordClient(sw.config).UpdateOne(sw)
 }
 
 // Unwrap unwraps the SensitiveWord entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *SensitiveWord) Unwrap() *SensitiveWord {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (sw *SensitiveWord) Unwrap() *SensitiveWord {
+	_tx, ok := sw.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: SensitiveWord is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	sw.config.driver = _tx.drv
+	return sw
 }
 
 // String implements the fmt.Stringer.
-func (_m *SensitiveWord) String() string {
+func (sw *SensitiveWord) String() string {
 	var builder strings.Builder
 	builder.WriteString("SensitiveWord(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", sw.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(sw.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(sw.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", sw.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", sw.Version))
 	builder.WriteString(", ")
 	builder.WriteString("word=")
-	builder.WriteString(_m.Word)
+	builder.WriteString(sw.Word)
 	builder.WriteString(", ")
 	builder.WriteString("category=")
-	builder.WriteString(_m.Category)
+	builder.WriteString(sw.Category)
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Status))
+	builder.WriteString(fmt.Sprintf("%v", sw.Status))
 	builder.WriteString(", ")
 	builder.WriteString("level=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Level))
+	builder.WriteString(fmt.Sprintf("%v", sw.Level))
 	builder.WriteString(", ")
 	builder.WriteString("hpPenalty=")
-	builder.WriteString(fmt.Sprintf("%v", _m.HpPenalty))
+	builder.WriteString(fmt.Sprintf("%v", sw.HpPenalty))
 	builder.WriteString(", ")
 	builder.WriteString("needReview=")
-	builder.WriteString(fmt.Sprintf("%v", _m.NeedReview))
+	builder.WriteString(fmt.Sprintf("%v", sw.NeedReview))
 	builder.WriteString(", ")
 	builder.WriteString("action=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Action))
+	builder.WriteString(fmt.Sprintf("%v", sw.Action))
 	builder.WriteByte(')')
 	return builder.String()
 }

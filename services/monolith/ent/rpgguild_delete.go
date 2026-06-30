@@ -20,56 +20,56 @@ type RpgGuildDelete struct {
 }
 
 // Where appends a list predicates to the RpgGuildDelete builder.
-func (_d *RpgGuildDelete) Where(ps ...predicate.RpgGuild) *RpgGuildDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (rgd *RpgGuildDelete) Where(ps ...predicate.RpgGuild) *RpgGuildDelete {
+	rgd.mutation.Where(ps...)
+	return rgd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgGuildDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (rgd *RpgGuildDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, rgd.sqlExec, rgd.mutation, rgd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgGuildDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (rgd *RpgGuildDelete) ExecX(ctx context.Context) int {
+	n, err := rgd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgGuildDelete) sqlExec(ctx context.Context) (int, error) {
+func (rgd *RpgGuildDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpgguild.Table, sqlgraph.NewFieldSpec(rpgguild.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := rgd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, rgd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	rgd.mutation.done = true
 	return affected, err
 }
 
 // RpgGuildDeleteOne is the builder for deleting a single RpgGuild entity.
 type RpgGuildDeleteOne struct {
-	_d *RpgGuildDelete
+	rgd *RpgGuildDelete
 }
 
 // Where appends a list predicates to the RpgGuildDelete builder.
-func (_d *RpgGuildDeleteOne) Where(ps ...predicate.RpgGuild) *RpgGuildDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (rgdo *RpgGuildDeleteOne) Where(ps ...predicate.RpgGuild) *RpgGuildDeleteOne {
+	rgdo.rgd.mutation.Where(ps...)
+	return rgdo
 }
 
 // Exec executes the deletion query.
-func (_d *RpgGuildDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (rgdo *RpgGuildDeleteOne) Exec(ctx context.Context) error {
+	n, err := rgdo.rgd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgGuildDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgGuildDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (rgdo *RpgGuildDeleteOne) ExecX(ctx context.Context) {
+	if err := rgdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

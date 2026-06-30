@@ -61,7 +61,7 @@ func (*RpgUserSocialLog) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgUserSocialLog fields.
-func (_m *RpgUserSocialLog) assignValues(columns []string, values []any) error {
+func (rusl *RpgUserSocialLog) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -72,63 +72,63 @@ func (_m *RpgUserSocialLog) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			rusl.ID = int(value.Int64)
 		case rpgusersociallog.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				rusl.CreateTime = value.Time
 			}
 		case rpgusersociallog.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				rusl.UpdateTime = value.Time
 			}
 		case rpgusersociallog.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				rusl.IsDelete = value.Bool
 			}
 		case rpgusersociallog.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				rusl.Version = int(value.Int64)
 			}
 		case rpgusersociallog.FieldFromUid:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field fromUid", values[i])
 			} else if value.Valid {
-				_m.FromUid = int(value.Int64)
+				rusl.FromUid = int(value.Int64)
 			}
 		case rpgusersociallog.FieldToUid:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field toUid", values[i])
 			} else if value.Valid {
-				_m.ToUid = int(value.Int64)
+				rusl.ToUid = int(value.Int64)
 			}
 		case rpgusersociallog.FieldCostCurrency:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field costCurrency", values[i])
 			} else if value.Valid {
-				_m.CostCurrency = int(value.Int64)
+				rusl.CostCurrency = int(value.Int64)
 			}
 		case rpgusersociallog.FieldHpDelta:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field hpDelta", values[i])
 			} else if value.Valid {
-				_m.HpDelta = int(value.Int64)
+				rusl.HpDelta = int(value.Int64)
 			}
 		case rpgusersociallog.FieldAction:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field action", values[i])
 			} else if value.Valid {
-				_m.Action = value.String
+				rusl.Action = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			rusl.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -136,59 +136,59 @@ func (_m *RpgUserSocialLog) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgUserSocialLog.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgUserSocialLog) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (rusl *RpgUserSocialLog) Value(name string) (ent.Value, error) {
+	return rusl.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgUserSocialLog.
 // Note that you need to call RpgUserSocialLog.Unwrap() before calling this method if this RpgUserSocialLog
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgUserSocialLog) Update() *RpgUserSocialLogUpdateOne {
-	return NewRpgUserSocialLogClient(_m.config).UpdateOne(_m)
+func (rusl *RpgUserSocialLog) Update() *RpgUserSocialLogUpdateOne {
+	return NewRpgUserSocialLogClient(rusl.config).UpdateOne(rusl)
 }
 
 // Unwrap unwraps the RpgUserSocialLog entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgUserSocialLog) Unwrap() *RpgUserSocialLog {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (rusl *RpgUserSocialLog) Unwrap() *RpgUserSocialLog {
+	_tx, ok := rusl.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgUserSocialLog is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	rusl.config.driver = _tx.drv
+	return rusl
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgUserSocialLog) String() string {
+func (rusl *RpgUserSocialLog) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgUserSocialLog(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", rusl.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(rusl.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(rusl.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", rusl.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", rusl.Version))
 	builder.WriteString(", ")
 	builder.WriteString("fromUid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.FromUid))
+	builder.WriteString(fmt.Sprintf("%v", rusl.FromUid))
 	builder.WriteString(", ")
 	builder.WriteString("toUid=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ToUid))
+	builder.WriteString(fmt.Sprintf("%v", rusl.ToUid))
 	builder.WriteString(", ")
 	builder.WriteString("costCurrency=")
-	builder.WriteString(fmt.Sprintf("%v", _m.CostCurrency))
+	builder.WriteString(fmt.Sprintf("%v", rusl.CostCurrency))
 	builder.WriteString(", ")
 	builder.WriteString("hpDelta=")
-	builder.WriteString(fmt.Sprintf("%v", _m.HpDelta))
+	builder.WriteString(fmt.Sprintf("%v", rusl.HpDelta))
 	builder.WriteString(", ")
 	builder.WriteString("action=")
-	builder.WriteString(_m.Action)
+	builder.WriteString(rusl.Action)
 	builder.WriteByte(')')
 	return builder.String()
 }

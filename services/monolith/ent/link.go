@@ -65,7 +65,7 @@ func (*Link) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Link fields.
-func (_m *Link) assignValues(columns []string, values []any) error {
+func (l *Link) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -76,76 +76,76 @@ func (_m *Link) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			l.ID = int(value.Int64)
 		case link.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				l.CreateTime = value.Time
 			}
 		case link.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				l.UpdateTime = value.Time
 			}
 		case link.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				l.IsDelete = value.Bool
 			}
 		case link.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				l.Version = int(value.Int64)
 			}
 		case link.FieldIcon:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field icon", values[i])
 			} else if value.Valid {
-				_m.Icon = value.String
+				l.Icon = value.String
 			}
 		case link.FieldURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field url", values[i])
 			} else if value.Valid {
-				_m.URL = value.String
+				l.URL = value.String
 			}
 		case link.FieldTitle:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field title", values[i])
 			} else if value.Valid {
-				_m.Title = value.String
+				l.Title = value.String
 			}
 		case link.FieldDesp:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field desp", values[i])
 			} else if value.Valid {
-				_m.Desp = value.String
+				l.Desp = value.String
 			}
 		case link.FieldAgreed:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field agreed", values[i])
 			} else if value.Valid {
-				_m.Agreed = int(value.Int64)
+				l.Agreed = int(value.Int64)
 			}
 		case link.FieldLastCheckStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field lastCheckStatus", values[i])
 			} else if value.Valid {
-				_m.LastCheckStatus = value.String
+				l.LastCheckStatus = value.String
 			}
 		case link.FieldLastCheckTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field lastCheckTime", values[i])
 			} else if value.Valid {
-				_m.LastCheckTime = new(time.Time)
-				*_m.LastCheckTime = value.Time
+				l.LastCheckTime = new(time.Time)
+				*l.LastCheckTime = value.Time
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			l.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -153,64 +153,64 @@ func (_m *Link) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Link.
 // This includes values selected through modifiers, order, etc.
-func (_m *Link) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (l *Link) Value(name string) (ent.Value, error) {
+	return l.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Link.
 // Note that you need to call Link.Unwrap() before calling this method if this Link
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *Link) Update() *LinkUpdateOne {
-	return NewLinkClient(_m.config).UpdateOne(_m)
+func (l *Link) Update() *LinkUpdateOne {
+	return NewLinkClient(l.config).UpdateOne(l)
 }
 
 // Unwrap unwraps the Link entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *Link) Unwrap() *Link {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (l *Link) Unwrap() *Link {
+	_tx, ok := l.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Link is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	l.config.driver = _tx.drv
+	return l
 }
 
 // String implements the fmt.Stringer.
-func (_m *Link) String() string {
+func (l *Link) String() string {
 	var builder strings.Builder
 	builder.WriteString("Link(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", l.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(l.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(l.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", l.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", l.Version))
 	builder.WriteString(", ")
 	builder.WriteString("icon=")
-	builder.WriteString(_m.Icon)
+	builder.WriteString(l.Icon)
 	builder.WriteString(", ")
 	builder.WriteString("url=")
-	builder.WriteString(_m.URL)
+	builder.WriteString(l.URL)
 	builder.WriteString(", ")
 	builder.WriteString("title=")
-	builder.WriteString(_m.Title)
+	builder.WriteString(l.Title)
 	builder.WriteString(", ")
 	builder.WriteString("desp=")
-	builder.WriteString(_m.Desp)
+	builder.WriteString(l.Desp)
 	builder.WriteString(", ")
 	builder.WriteString("agreed=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Agreed))
+	builder.WriteString(fmt.Sprintf("%v", l.Agreed))
 	builder.WriteString(", ")
 	builder.WriteString("lastCheckStatus=")
-	builder.WriteString(_m.LastCheckStatus)
+	builder.WriteString(l.LastCheckStatus)
 	builder.WriteString(", ")
-	if v := _m.LastCheckTime; v != nil {
+	if v := l.LastCheckTime; v != nil {
 		builder.WriteString("lastCheckTime=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}

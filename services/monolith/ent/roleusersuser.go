@@ -39,7 +39,7 @@ func (*RoleUsersUser) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RoleUsersUser fields.
-func (_m *RoleUsersUser) assignValues(columns []string, values []any) error {
+func (ruu *RoleUsersUser) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -50,21 +50,21 @@ func (_m *RoleUsersUser) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			ruu.ID = int(value.Int64)
 		case roleusersuser.FieldUserId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field userId", values[i])
 			} else if value.Valid {
-				_m.UserId = int(value.Int64)
+				ruu.UserId = int(value.Int64)
 			}
 		case roleusersuser.FieldRoleId:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field roleId", values[i])
 			} else if value.Valid {
-				_m.RoleId = int(value.Int64)
+				ruu.RoleId = int(value.Int64)
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			ruu.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -72,38 +72,38 @@ func (_m *RoleUsersUser) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RoleUsersUser.
 // This includes values selected through modifiers, order, etc.
-func (_m *RoleUsersUser) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (ruu *RoleUsersUser) Value(name string) (ent.Value, error) {
+	return ruu.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RoleUsersUser.
 // Note that you need to call RoleUsersUser.Unwrap() before calling this method if this RoleUsersUser
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RoleUsersUser) Update() *RoleUsersUserUpdateOne {
-	return NewRoleUsersUserClient(_m.config).UpdateOne(_m)
+func (ruu *RoleUsersUser) Update() *RoleUsersUserUpdateOne {
+	return NewRoleUsersUserClient(ruu.config).UpdateOne(ruu)
 }
 
 // Unwrap unwraps the RoleUsersUser entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RoleUsersUser) Unwrap() *RoleUsersUser {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (ruu *RoleUsersUser) Unwrap() *RoleUsersUser {
+	_tx, ok := ruu.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RoleUsersUser is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	ruu.config.driver = _tx.drv
+	return ruu
 }
 
 // String implements the fmt.Stringer.
-func (_m *RoleUsersUser) String() string {
+func (ruu *RoleUsersUser) String() string {
 	var builder strings.Builder
 	builder.WriteString("RoleUsersUser(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", ruu.ID))
 	builder.WriteString("userId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.UserId))
+	builder.WriteString(fmt.Sprintf("%v", ruu.UserId))
 	builder.WriteString(", ")
 	builder.WriteString("roleId=")
-	builder.WriteString(fmt.Sprintf("%v", _m.RoleId))
+	builder.WriteString(fmt.Sprintf("%v", ruu.RoleId))
 	builder.WriteByte(')')
 	return builder.String()
 }

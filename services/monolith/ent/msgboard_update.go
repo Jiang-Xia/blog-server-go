@@ -23,300 +23,300 @@ type MsgboardUpdate struct {
 }
 
 // Where appends a list predicates to the MsgboardUpdate builder.
-func (_u *MsgboardUpdate) Where(ps ...predicate.Msgboard) *MsgboardUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (mu *MsgboardUpdate) Where(ps ...predicate.Msgboard) *MsgboardUpdate {
+	mu.mutation.Where(ps...)
+	return mu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *MsgboardUpdate) SetUpdateTime(v time.Time) *MsgboardUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (mu *MsgboardUpdate) SetUpdateTime(t time.Time) *MsgboardUpdate {
+	mu.mutation.SetUpdateTime(t)
+	return mu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *MsgboardUpdate) SetIsDelete(v bool) *MsgboardUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (mu *MsgboardUpdate) SetIsDelete(b bool) *MsgboardUpdate {
+	mu.mutation.SetIsDelete(b)
+	return mu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableIsDelete(v *bool) *MsgboardUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (mu *MsgboardUpdate) SetNillableIsDelete(b *bool) *MsgboardUpdate {
+	if b != nil {
+		mu.SetIsDelete(*b)
 	}
-	return _u
+	return mu
 }
 
 // SetVersion sets the "version" field.
-func (_u *MsgboardUpdate) SetVersion(v int) *MsgboardUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (mu *MsgboardUpdate) SetVersion(i int) *MsgboardUpdate {
+	mu.mutation.ResetVersion()
+	mu.mutation.SetVersion(i)
+	return mu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableVersion(v *int) *MsgboardUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (mu *MsgboardUpdate) SetNillableVersion(i *int) *MsgboardUpdate {
+	if i != nil {
+		mu.SetVersion(*i)
 	}
-	return _u
+	return mu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *MsgboardUpdate) AddVersion(v int) *MsgboardUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (mu *MsgboardUpdate) AddVersion(i int) *MsgboardUpdate {
+	mu.mutation.AddVersion(i)
+	return mu
 }
 
 // SetName sets the "name" field.
-func (_u *MsgboardUpdate) SetName(v string) *MsgboardUpdate {
-	_u.mutation.SetName(v)
-	return _u
+func (mu *MsgboardUpdate) SetName(s string) *MsgboardUpdate {
+	mu.mutation.SetName(s)
+	return mu
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableName(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetName(*v)
+func (mu *MsgboardUpdate) SetNillableName(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetName(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetEamil sets the "eamil" field.
-func (_u *MsgboardUpdate) SetEamil(v string) *MsgboardUpdate {
-	_u.mutation.SetEamil(v)
-	return _u
+func (mu *MsgboardUpdate) SetEamil(s string) *MsgboardUpdate {
+	mu.mutation.SetEamil(s)
+	return mu
 }
 
 // SetNillableEamil sets the "eamil" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableEamil(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetEamil(*v)
+func (mu *MsgboardUpdate) SetNillableEamil(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetEamil(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetAddress sets the "address" field.
-func (_u *MsgboardUpdate) SetAddress(v string) *MsgboardUpdate {
-	_u.mutation.SetAddress(v)
-	return _u
+func (mu *MsgboardUpdate) SetAddress(s string) *MsgboardUpdate {
+	mu.mutation.SetAddress(s)
+	return mu
 }
 
 // SetNillableAddress sets the "address" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableAddress(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetAddress(*v)
+func (mu *MsgboardUpdate) SetNillableAddress(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetAddress(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetComment sets the "comment" field.
-func (_u *MsgboardUpdate) SetComment(v string) *MsgboardUpdate {
-	_u.mutation.SetComment(v)
-	return _u
+func (mu *MsgboardUpdate) SetComment(s string) *MsgboardUpdate {
+	mu.mutation.SetComment(s)
+	return mu
 }
 
 // SetNillableComment sets the "comment" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableComment(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetComment(*v)
+func (mu *MsgboardUpdate) SetNillableComment(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetComment(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetAvatar sets the "avatar" field.
-func (_u *MsgboardUpdate) SetAvatar(v string) *MsgboardUpdate {
-	_u.mutation.SetAvatar(v)
-	return _u
+func (mu *MsgboardUpdate) SetAvatar(s string) *MsgboardUpdate {
+	mu.mutation.SetAvatar(s)
+	return mu
 }
 
 // SetNillableAvatar sets the "avatar" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableAvatar(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetAvatar(*v)
+func (mu *MsgboardUpdate) SetNillableAvatar(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetAvatar(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetLocation sets the "location" field.
-func (_u *MsgboardUpdate) SetLocation(v string) *MsgboardUpdate {
-	_u.mutation.SetLocation(v)
-	return _u
+func (mu *MsgboardUpdate) SetLocation(s string) *MsgboardUpdate {
+	mu.mutation.SetLocation(s)
+	return mu
 }
 
 // SetNillableLocation sets the "location" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableLocation(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetLocation(*v)
+func (mu *MsgboardUpdate) SetNillableLocation(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetLocation(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetSystem sets the "system" field.
-func (_u *MsgboardUpdate) SetSystem(v string) *MsgboardUpdate {
-	_u.mutation.SetSystem(v)
-	return _u
+func (mu *MsgboardUpdate) SetSystem(s string) *MsgboardUpdate {
+	mu.mutation.SetSystem(s)
+	return mu
 }
 
 // SetNillableSystem sets the "system" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableSystem(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetSystem(*v)
+func (mu *MsgboardUpdate) SetNillableSystem(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetSystem(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetBrowser sets the "browser" field.
-func (_u *MsgboardUpdate) SetBrowser(v string) *MsgboardUpdate {
-	_u.mutation.SetBrowser(v)
-	return _u
+func (mu *MsgboardUpdate) SetBrowser(s string) *MsgboardUpdate {
+	mu.mutation.SetBrowser(s)
+	return mu
 }
 
 // SetNillableBrowser sets the "browser" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableBrowser(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetBrowser(*v)
+func (mu *MsgboardUpdate) SetNillableBrowser(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetBrowser(*s)
 	}
-	return _u
+	return mu
 }
 
 // SetRespondent sets the "respondent" field.
-func (_u *MsgboardUpdate) SetRespondent(v string) *MsgboardUpdate {
-	_u.mutation.SetRespondent(v)
-	return _u
+func (mu *MsgboardUpdate) SetRespondent(s string) *MsgboardUpdate {
+	mu.mutation.SetRespondent(s)
+	return mu
 }
 
 // SetNillableRespondent sets the "respondent" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableRespondent(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetRespondent(*v)
+func (mu *MsgboardUpdate) SetNillableRespondent(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetRespondent(*s)
 	}
-	return _u
+	return mu
 }
 
 // ClearRespondent clears the value of the "respondent" field.
-func (_u *MsgboardUpdate) ClearRespondent() *MsgboardUpdate {
-	_u.mutation.ClearRespondent()
-	return _u
+func (mu *MsgboardUpdate) ClearRespondent() *MsgboardUpdate {
+	mu.mutation.ClearRespondent()
+	return mu
 }
 
 // SetImgUrl sets the "imgUrl" field.
-func (_u *MsgboardUpdate) SetImgUrl(v string) *MsgboardUpdate {
-	_u.mutation.SetImgUrl(v)
-	return _u
+func (mu *MsgboardUpdate) SetImgUrl(s string) *MsgboardUpdate {
+	mu.mutation.SetImgUrl(s)
+	return mu
 }
 
 // SetNillableImgUrl sets the "imgUrl" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableImgUrl(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetImgUrl(*v)
+func (mu *MsgboardUpdate) SetNillableImgUrl(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetImgUrl(*s)
 	}
-	return _u
+	return mu
 }
 
 // ClearImgUrl clears the value of the "imgUrl" field.
-func (_u *MsgboardUpdate) ClearImgUrl() *MsgboardUpdate {
-	_u.mutation.ClearImgUrl()
-	return _u
+func (mu *MsgboardUpdate) ClearImgUrl() *MsgboardUpdate {
+	mu.mutation.ClearImgUrl()
+	return mu
 }
 
 // SetIP sets the "ip" field.
-func (_u *MsgboardUpdate) SetIP(v string) *MsgboardUpdate {
-	_u.mutation.SetIP(v)
-	return _u
+func (mu *MsgboardUpdate) SetIP(s string) *MsgboardUpdate {
+	mu.mutation.SetIP(s)
+	return mu
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableIP(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetIP(*v)
+func (mu *MsgboardUpdate) SetNillableIP(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetIP(*s)
 	}
-	return _u
+	return mu
 }
 
 // ClearIP clears the value of the "ip" field.
-func (_u *MsgboardUpdate) ClearIP() *MsgboardUpdate {
-	_u.mutation.ClearIP()
-	return _u
+func (mu *MsgboardUpdate) ClearIP() *MsgboardUpdate {
+	mu.mutation.ClearIP()
+	return mu
 }
 
 // SetPId sets the "pId" field.
-func (_u *MsgboardUpdate) SetPId(v int) *MsgboardUpdate {
-	_u.mutation.ResetPId()
-	_u.mutation.SetPId(v)
-	return _u
+func (mu *MsgboardUpdate) SetPId(i int) *MsgboardUpdate {
+	mu.mutation.ResetPId()
+	mu.mutation.SetPId(i)
+	return mu
 }
 
 // SetNillablePId sets the "pId" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillablePId(v *int) *MsgboardUpdate {
-	if v != nil {
-		_u.SetPId(*v)
+func (mu *MsgboardUpdate) SetNillablePId(i *int) *MsgboardUpdate {
+	if i != nil {
+		mu.SetPId(*i)
 	}
-	return _u
+	return mu
 }
 
-// AddPId adds value to the "pId" field.
-func (_u *MsgboardUpdate) AddPId(v int) *MsgboardUpdate {
-	_u.mutation.AddPId(v)
-	return _u
+// AddPId adds i to the "pId" field.
+func (mu *MsgboardUpdate) AddPId(i int) *MsgboardUpdate {
+	mu.mutation.AddPId(i)
+	return mu
 }
 
 // SetReplyId sets the "replyId" field.
-func (_u *MsgboardUpdate) SetReplyId(v int) *MsgboardUpdate {
-	_u.mutation.ResetReplyId()
-	_u.mutation.SetReplyId(v)
-	return _u
+func (mu *MsgboardUpdate) SetReplyId(i int) *MsgboardUpdate {
+	mu.mutation.ResetReplyId()
+	mu.mutation.SetReplyId(i)
+	return mu
 }
 
 // SetNillableReplyId sets the "replyId" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableReplyId(v *int) *MsgboardUpdate {
-	if v != nil {
-		_u.SetReplyId(*v)
+func (mu *MsgboardUpdate) SetNillableReplyId(i *int) *MsgboardUpdate {
+	if i != nil {
+		mu.SetReplyId(*i)
 	}
-	return _u
+	return mu
 }
 
-// AddReplyId adds value to the "replyId" field.
-func (_u *MsgboardUpdate) AddReplyId(v int) *MsgboardUpdate {
-	_u.mutation.AddReplyId(v)
-	return _u
+// AddReplyId adds i to the "replyId" field.
+func (mu *MsgboardUpdate) AddReplyId(i int) *MsgboardUpdate {
+	mu.mutation.AddReplyId(i)
+	return mu
 }
 
 // ClearReplyId clears the value of the "replyId" field.
-func (_u *MsgboardUpdate) ClearReplyId() *MsgboardUpdate {
-	_u.mutation.ClearReplyId()
-	return _u
+func (mu *MsgboardUpdate) ClearReplyId() *MsgboardUpdate {
+	mu.mutation.ClearReplyId()
+	return mu
 }
 
 // SetStatus sets the "status" field.
-func (_u *MsgboardUpdate) SetStatus(v string) *MsgboardUpdate {
-	_u.mutation.SetStatus(v)
-	return _u
+func (mu *MsgboardUpdate) SetStatus(s string) *MsgboardUpdate {
+	mu.mutation.SetStatus(s)
+	return mu
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *MsgboardUpdate) SetNillableStatus(v *string) *MsgboardUpdate {
-	if v != nil {
-		_u.SetStatus(*v)
+func (mu *MsgboardUpdate) SetNillableStatus(s *string) *MsgboardUpdate {
+	if s != nil {
+		mu.SetStatus(*s)
 	}
-	return _u
+	return mu
 }
 
 // Mutation returns the MsgboardMutation object of the builder.
-func (_u *MsgboardUpdate) Mutation() *MsgboardMutation {
-	return _u.mutation
+func (mu *MsgboardUpdate) Mutation() *MsgboardMutation {
+	return mu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *MsgboardUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (mu *MsgboardUpdate) Save(ctx context.Context) (int, error) {
+	mu.defaults()
+	return withHooks(ctx, mu.sqlSave, mu.mutation, mu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *MsgboardUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (mu *MsgboardUpdate) SaveX(ctx context.Context) int {
+	affected, err := mu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -324,108 +324,108 @@ func (_u *MsgboardUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *MsgboardUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (mu *MsgboardUpdate) Exec(ctx context.Context) error {
+	_, err := mu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *MsgboardUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (mu *MsgboardUpdate) ExecX(ctx context.Context) {
+	if err := mu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *MsgboardUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (mu *MsgboardUpdate) defaults() {
+	if _, ok := mu.mutation.UpdateTime(); !ok {
 		v := msgboard.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		mu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *MsgboardUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (mu *MsgboardUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(msgboard.Table, msgboard.Columns, sqlgraph.NewFieldSpec(msgboard.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := mu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := mu.mutation.UpdateTime(); ok {
 		_spec.SetField(msgboard.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := mu.mutation.IsDelete(); ok {
 		_spec.SetField(msgboard.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := mu.mutation.Version(); ok {
 		_spec.SetField(msgboard.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := mu.mutation.AddedVersion(); ok {
 		_spec.AddField(msgboard.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := mu.mutation.Name(); ok {
 		_spec.SetField(msgboard.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Eamil(); ok {
+	if value, ok := mu.mutation.Eamil(); ok {
 		_spec.SetField(msgboard.FieldEamil, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Address(); ok {
+	if value, ok := mu.mutation.Address(); ok {
 		_spec.SetField(msgboard.FieldAddress, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Comment(); ok {
+	if value, ok := mu.mutation.Comment(); ok {
 		_spec.SetField(msgboard.FieldComment, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Avatar(); ok {
+	if value, ok := mu.mutation.Avatar(); ok {
 		_spec.SetField(msgboard.FieldAvatar, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Location(); ok {
+	if value, ok := mu.mutation.Location(); ok {
 		_spec.SetField(msgboard.FieldLocation, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.System(); ok {
+	if value, ok := mu.mutation.System(); ok {
 		_spec.SetField(msgboard.FieldSystem, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Browser(); ok {
+	if value, ok := mu.mutation.Browser(); ok {
 		_spec.SetField(msgboard.FieldBrowser, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Respondent(); ok {
+	if value, ok := mu.mutation.Respondent(); ok {
 		_spec.SetField(msgboard.FieldRespondent, field.TypeString, value)
 	}
-	if _u.mutation.RespondentCleared() {
+	if mu.mutation.RespondentCleared() {
 		_spec.ClearField(msgboard.FieldRespondent, field.TypeString)
 	}
-	if value, ok := _u.mutation.ImgUrl(); ok {
+	if value, ok := mu.mutation.ImgUrl(); ok {
 		_spec.SetField(msgboard.FieldImgUrl, field.TypeString, value)
 	}
-	if _u.mutation.ImgUrlCleared() {
+	if mu.mutation.ImgUrlCleared() {
 		_spec.ClearField(msgboard.FieldImgUrl, field.TypeString)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := mu.mutation.IP(); ok {
 		_spec.SetField(msgboard.FieldIP, field.TypeString, value)
 	}
-	if _u.mutation.IPCleared() {
+	if mu.mutation.IPCleared() {
 		_spec.ClearField(msgboard.FieldIP, field.TypeString)
 	}
-	if value, ok := _u.mutation.PId(); ok {
+	if value, ok := mu.mutation.PId(); ok {
 		_spec.SetField(msgboard.FieldPId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedPId(); ok {
+	if value, ok := mu.mutation.AddedPId(); ok {
 		_spec.AddField(msgboard.FieldPId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ReplyId(); ok {
+	if value, ok := mu.mutation.ReplyId(); ok {
 		_spec.SetField(msgboard.FieldReplyId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedReplyId(); ok {
+	if value, ok := mu.mutation.AddedReplyId(); ok {
 		_spec.AddField(msgboard.FieldReplyId, field.TypeInt, value)
 	}
-	if _u.mutation.ReplyIdCleared() {
+	if mu.mutation.ReplyIdCleared() {
 		_spec.ClearField(msgboard.FieldReplyId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := mu.mutation.Status(); ok {
 		_spec.SetField(msgboard.FieldStatus, field.TypeString, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, mu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{msgboard.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -433,8 +433,8 @@ func (_u *MsgboardUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	mu.mutation.done = true
+	return n, nil
 }
 
 // MsgboardUpdateOne is the builder for updating a single Msgboard entity.
@@ -446,307 +446,307 @@ type MsgboardUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *MsgboardUpdateOne) SetUpdateTime(v time.Time) *MsgboardUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetUpdateTime(t time.Time) *MsgboardUpdateOne {
+	muo.mutation.SetUpdateTime(t)
+	return muo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *MsgboardUpdateOne) SetIsDelete(v bool) *MsgboardUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetIsDelete(b bool) *MsgboardUpdateOne {
+	muo.mutation.SetIsDelete(b)
+	return muo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableIsDelete(v *bool) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (muo *MsgboardUpdateOne) SetNillableIsDelete(b *bool) *MsgboardUpdateOne {
+	if b != nil {
+		muo.SetIsDelete(*b)
 	}
-	return _u
+	return muo
 }
 
 // SetVersion sets the "version" field.
-func (_u *MsgboardUpdateOne) SetVersion(v int) *MsgboardUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetVersion(i int) *MsgboardUpdateOne {
+	muo.mutation.ResetVersion()
+	muo.mutation.SetVersion(i)
+	return muo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableVersion(v *int) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (muo *MsgboardUpdateOne) SetNillableVersion(i *int) *MsgboardUpdateOne {
+	if i != nil {
+		muo.SetVersion(*i)
 	}
-	return _u
+	return muo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *MsgboardUpdateOne) AddVersion(v int) *MsgboardUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (muo *MsgboardUpdateOne) AddVersion(i int) *MsgboardUpdateOne {
+	muo.mutation.AddVersion(i)
+	return muo
 }
 
 // SetName sets the "name" field.
-func (_u *MsgboardUpdateOne) SetName(v string) *MsgboardUpdateOne {
-	_u.mutation.SetName(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetName(s string) *MsgboardUpdateOne {
+	muo.mutation.SetName(s)
+	return muo
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableName(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetName(*v)
+func (muo *MsgboardUpdateOne) SetNillableName(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetName(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetEamil sets the "eamil" field.
-func (_u *MsgboardUpdateOne) SetEamil(v string) *MsgboardUpdateOne {
-	_u.mutation.SetEamil(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetEamil(s string) *MsgboardUpdateOne {
+	muo.mutation.SetEamil(s)
+	return muo
 }
 
 // SetNillableEamil sets the "eamil" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableEamil(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetEamil(*v)
+func (muo *MsgboardUpdateOne) SetNillableEamil(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetEamil(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetAddress sets the "address" field.
-func (_u *MsgboardUpdateOne) SetAddress(v string) *MsgboardUpdateOne {
-	_u.mutation.SetAddress(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetAddress(s string) *MsgboardUpdateOne {
+	muo.mutation.SetAddress(s)
+	return muo
 }
 
 // SetNillableAddress sets the "address" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableAddress(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetAddress(*v)
+func (muo *MsgboardUpdateOne) SetNillableAddress(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetAddress(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetComment sets the "comment" field.
-func (_u *MsgboardUpdateOne) SetComment(v string) *MsgboardUpdateOne {
-	_u.mutation.SetComment(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetComment(s string) *MsgboardUpdateOne {
+	muo.mutation.SetComment(s)
+	return muo
 }
 
 // SetNillableComment sets the "comment" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableComment(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetComment(*v)
+func (muo *MsgboardUpdateOne) SetNillableComment(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetComment(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetAvatar sets the "avatar" field.
-func (_u *MsgboardUpdateOne) SetAvatar(v string) *MsgboardUpdateOne {
-	_u.mutation.SetAvatar(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetAvatar(s string) *MsgboardUpdateOne {
+	muo.mutation.SetAvatar(s)
+	return muo
 }
 
 // SetNillableAvatar sets the "avatar" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableAvatar(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetAvatar(*v)
+func (muo *MsgboardUpdateOne) SetNillableAvatar(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetAvatar(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetLocation sets the "location" field.
-func (_u *MsgboardUpdateOne) SetLocation(v string) *MsgboardUpdateOne {
-	_u.mutation.SetLocation(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetLocation(s string) *MsgboardUpdateOne {
+	muo.mutation.SetLocation(s)
+	return muo
 }
 
 // SetNillableLocation sets the "location" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableLocation(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetLocation(*v)
+func (muo *MsgboardUpdateOne) SetNillableLocation(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetLocation(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetSystem sets the "system" field.
-func (_u *MsgboardUpdateOne) SetSystem(v string) *MsgboardUpdateOne {
-	_u.mutation.SetSystem(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetSystem(s string) *MsgboardUpdateOne {
+	muo.mutation.SetSystem(s)
+	return muo
 }
 
 // SetNillableSystem sets the "system" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableSystem(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetSystem(*v)
+func (muo *MsgboardUpdateOne) SetNillableSystem(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetSystem(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetBrowser sets the "browser" field.
-func (_u *MsgboardUpdateOne) SetBrowser(v string) *MsgboardUpdateOne {
-	_u.mutation.SetBrowser(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetBrowser(s string) *MsgboardUpdateOne {
+	muo.mutation.SetBrowser(s)
+	return muo
 }
 
 // SetNillableBrowser sets the "browser" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableBrowser(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetBrowser(*v)
+func (muo *MsgboardUpdateOne) SetNillableBrowser(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetBrowser(*s)
 	}
-	return _u
+	return muo
 }
 
 // SetRespondent sets the "respondent" field.
-func (_u *MsgboardUpdateOne) SetRespondent(v string) *MsgboardUpdateOne {
-	_u.mutation.SetRespondent(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetRespondent(s string) *MsgboardUpdateOne {
+	muo.mutation.SetRespondent(s)
+	return muo
 }
 
 // SetNillableRespondent sets the "respondent" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableRespondent(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetRespondent(*v)
+func (muo *MsgboardUpdateOne) SetNillableRespondent(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetRespondent(*s)
 	}
-	return _u
+	return muo
 }
 
 // ClearRespondent clears the value of the "respondent" field.
-func (_u *MsgboardUpdateOne) ClearRespondent() *MsgboardUpdateOne {
-	_u.mutation.ClearRespondent()
-	return _u
+func (muo *MsgboardUpdateOne) ClearRespondent() *MsgboardUpdateOne {
+	muo.mutation.ClearRespondent()
+	return muo
 }
 
 // SetImgUrl sets the "imgUrl" field.
-func (_u *MsgboardUpdateOne) SetImgUrl(v string) *MsgboardUpdateOne {
-	_u.mutation.SetImgUrl(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetImgUrl(s string) *MsgboardUpdateOne {
+	muo.mutation.SetImgUrl(s)
+	return muo
 }
 
 // SetNillableImgUrl sets the "imgUrl" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableImgUrl(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetImgUrl(*v)
+func (muo *MsgboardUpdateOne) SetNillableImgUrl(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetImgUrl(*s)
 	}
-	return _u
+	return muo
 }
 
 // ClearImgUrl clears the value of the "imgUrl" field.
-func (_u *MsgboardUpdateOne) ClearImgUrl() *MsgboardUpdateOne {
-	_u.mutation.ClearImgUrl()
-	return _u
+func (muo *MsgboardUpdateOne) ClearImgUrl() *MsgboardUpdateOne {
+	muo.mutation.ClearImgUrl()
+	return muo
 }
 
 // SetIP sets the "ip" field.
-func (_u *MsgboardUpdateOne) SetIP(v string) *MsgboardUpdateOne {
-	_u.mutation.SetIP(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetIP(s string) *MsgboardUpdateOne {
+	muo.mutation.SetIP(s)
+	return muo
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableIP(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetIP(*v)
+func (muo *MsgboardUpdateOne) SetNillableIP(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetIP(*s)
 	}
-	return _u
+	return muo
 }
 
 // ClearIP clears the value of the "ip" field.
-func (_u *MsgboardUpdateOne) ClearIP() *MsgboardUpdateOne {
-	_u.mutation.ClearIP()
-	return _u
+func (muo *MsgboardUpdateOne) ClearIP() *MsgboardUpdateOne {
+	muo.mutation.ClearIP()
+	return muo
 }
 
 // SetPId sets the "pId" field.
-func (_u *MsgboardUpdateOne) SetPId(v int) *MsgboardUpdateOne {
-	_u.mutation.ResetPId()
-	_u.mutation.SetPId(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetPId(i int) *MsgboardUpdateOne {
+	muo.mutation.ResetPId()
+	muo.mutation.SetPId(i)
+	return muo
 }
 
 // SetNillablePId sets the "pId" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillablePId(v *int) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetPId(*v)
+func (muo *MsgboardUpdateOne) SetNillablePId(i *int) *MsgboardUpdateOne {
+	if i != nil {
+		muo.SetPId(*i)
 	}
-	return _u
+	return muo
 }
 
-// AddPId adds value to the "pId" field.
-func (_u *MsgboardUpdateOne) AddPId(v int) *MsgboardUpdateOne {
-	_u.mutation.AddPId(v)
-	return _u
+// AddPId adds i to the "pId" field.
+func (muo *MsgboardUpdateOne) AddPId(i int) *MsgboardUpdateOne {
+	muo.mutation.AddPId(i)
+	return muo
 }
 
 // SetReplyId sets the "replyId" field.
-func (_u *MsgboardUpdateOne) SetReplyId(v int) *MsgboardUpdateOne {
-	_u.mutation.ResetReplyId()
-	_u.mutation.SetReplyId(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetReplyId(i int) *MsgboardUpdateOne {
+	muo.mutation.ResetReplyId()
+	muo.mutation.SetReplyId(i)
+	return muo
 }
 
 // SetNillableReplyId sets the "replyId" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableReplyId(v *int) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetReplyId(*v)
+func (muo *MsgboardUpdateOne) SetNillableReplyId(i *int) *MsgboardUpdateOne {
+	if i != nil {
+		muo.SetReplyId(*i)
 	}
-	return _u
+	return muo
 }
 
-// AddReplyId adds value to the "replyId" field.
-func (_u *MsgboardUpdateOne) AddReplyId(v int) *MsgboardUpdateOne {
-	_u.mutation.AddReplyId(v)
-	return _u
+// AddReplyId adds i to the "replyId" field.
+func (muo *MsgboardUpdateOne) AddReplyId(i int) *MsgboardUpdateOne {
+	muo.mutation.AddReplyId(i)
+	return muo
 }
 
 // ClearReplyId clears the value of the "replyId" field.
-func (_u *MsgboardUpdateOne) ClearReplyId() *MsgboardUpdateOne {
-	_u.mutation.ClearReplyId()
-	return _u
+func (muo *MsgboardUpdateOne) ClearReplyId() *MsgboardUpdateOne {
+	muo.mutation.ClearReplyId()
+	return muo
 }
 
 // SetStatus sets the "status" field.
-func (_u *MsgboardUpdateOne) SetStatus(v string) *MsgboardUpdateOne {
-	_u.mutation.SetStatus(v)
-	return _u
+func (muo *MsgboardUpdateOne) SetStatus(s string) *MsgboardUpdateOne {
+	muo.mutation.SetStatus(s)
+	return muo
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_u *MsgboardUpdateOne) SetNillableStatus(v *string) *MsgboardUpdateOne {
-	if v != nil {
-		_u.SetStatus(*v)
+func (muo *MsgboardUpdateOne) SetNillableStatus(s *string) *MsgboardUpdateOne {
+	if s != nil {
+		muo.SetStatus(*s)
 	}
-	return _u
+	return muo
 }
 
 // Mutation returns the MsgboardMutation object of the builder.
-func (_u *MsgboardUpdateOne) Mutation() *MsgboardMutation {
-	return _u.mutation
+func (muo *MsgboardUpdateOne) Mutation() *MsgboardMutation {
+	return muo.mutation
 }
 
 // Where appends a list predicates to the MsgboardUpdate builder.
-func (_u *MsgboardUpdateOne) Where(ps ...predicate.Msgboard) *MsgboardUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (muo *MsgboardUpdateOne) Where(ps ...predicate.Msgboard) *MsgboardUpdateOne {
+	muo.mutation.Where(ps...)
+	return muo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *MsgboardUpdateOne) Select(field string, fields ...string) *MsgboardUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (muo *MsgboardUpdateOne) Select(field string, fields ...string) *MsgboardUpdateOne {
+	muo.fields = append([]string{field}, fields...)
+	return muo
 }
 
 // Save executes the query and returns the updated Msgboard entity.
-func (_u *MsgboardUpdateOne) Save(ctx context.Context) (*Msgboard, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (muo *MsgboardUpdateOne) Save(ctx context.Context) (*Msgboard, error) {
+	muo.defaults()
+	return withHooks(ctx, muo.sqlSave, muo.mutation, muo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *MsgboardUpdateOne) SaveX(ctx context.Context) *Msgboard {
-	node, err := _u.Save(ctx)
+func (muo *MsgboardUpdateOne) SaveX(ctx context.Context) *Msgboard {
+	node, err := muo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -754,34 +754,34 @@ func (_u *MsgboardUpdateOne) SaveX(ctx context.Context) *Msgboard {
 }
 
 // Exec executes the query on the entity.
-func (_u *MsgboardUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (muo *MsgboardUpdateOne) Exec(ctx context.Context) error {
+	_, err := muo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *MsgboardUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (muo *MsgboardUpdateOne) ExecX(ctx context.Context) {
+	if err := muo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *MsgboardUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (muo *MsgboardUpdateOne) defaults() {
+	if _, ok := muo.mutation.UpdateTime(); !ok {
 		v := msgboard.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		muo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *MsgboardUpdateOne) sqlSave(ctx context.Context) (_node *Msgboard, err error) {
+func (muo *MsgboardUpdateOne) sqlSave(ctx context.Context) (_node *Msgboard, err error) {
 	_spec := sqlgraph.NewUpdateSpec(msgboard.Table, msgboard.Columns, sqlgraph.NewFieldSpec(msgboard.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := muo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Msgboard.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := muo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, msgboard.FieldID)
 		for _, f := range fields {
@@ -793,89 +793,89 @@ func (_u *MsgboardUpdateOne) sqlSave(ctx context.Context) (_node *Msgboard, err 
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := muo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := muo.mutation.UpdateTime(); ok {
 		_spec.SetField(msgboard.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := muo.mutation.IsDelete(); ok {
 		_spec.SetField(msgboard.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := muo.mutation.Version(); ok {
 		_spec.SetField(msgboard.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := muo.mutation.AddedVersion(); ok {
 		_spec.AddField(msgboard.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.Name(); ok {
+	if value, ok := muo.mutation.Name(); ok {
 		_spec.SetField(msgboard.FieldName, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Eamil(); ok {
+	if value, ok := muo.mutation.Eamil(); ok {
 		_spec.SetField(msgboard.FieldEamil, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Address(); ok {
+	if value, ok := muo.mutation.Address(); ok {
 		_spec.SetField(msgboard.FieldAddress, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Comment(); ok {
+	if value, ok := muo.mutation.Comment(); ok {
 		_spec.SetField(msgboard.FieldComment, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Avatar(); ok {
+	if value, ok := muo.mutation.Avatar(); ok {
 		_spec.SetField(msgboard.FieldAvatar, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Location(); ok {
+	if value, ok := muo.mutation.Location(); ok {
 		_spec.SetField(msgboard.FieldLocation, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.System(); ok {
+	if value, ok := muo.mutation.System(); ok {
 		_spec.SetField(msgboard.FieldSystem, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Browser(); ok {
+	if value, ok := muo.mutation.Browser(); ok {
 		_spec.SetField(msgboard.FieldBrowser, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Respondent(); ok {
+	if value, ok := muo.mutation.Respondent(); ok {
 		_spec.SetField(msgboard.FieldRespondent, field.TypeString, value)
 	}
-	if _u.mutation.RespondentCleared() {
+	if muo.mutation.RespondentCleared() {
 		_spec.ClearField(msgboard.FieldRespondent, field.TypeString)
 	}
-	if value, ok := _u.mutation.ImgUrl(); ok {
+	if value, ok := muo.mutation.ImgUrl(); ok {
 		_spec.SetField(msgboard.FieldImgUrl, field.TypeString, value)
 	}
-	if _u.mutation.ImgUrlCleared() {
+	if muo.mutation.ImgUrlCleared() {
 		_spec.ClearField(msgboard.FieldImgUrl, field.TypeString)
 	}
-	if value, ok := _u.mutation.IP(); ok {
+	if value, ok := muo.mutation.IP(); ok {
 		_spec.SetField(msgboard.FieldIP, field.TypeString, value)
 	}
-	if _u.mutation.IPCleared() {
+	if muo.mutation.IPCleared() {
 		_spec.ClearField(msgboard.FieldIP, field.TypeString)
 	}
-	if value, ok := _u.mutation.PId(); ok {
+	if value, ok := muo.mutation.PId(); ok {
 		_spec.SetField(msgboard.FieldPId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedPId(); ok {
+	if value, ok := muo.mutation.AddedPId(); ok {
 		_spec.AddField(msgboard.FieldPId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.ReplyId(); ok {
+	if value, ok := muo.mutation.ReplyId(); ok {
 		_spec.SetField(msgboard.FieldReplyId, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedReplyId(); ok {
+	if value, ok := muo.mutation.AddedReplyId(); ok {
 		_spec.AddField(msgboard.FieldReplyId, field.TypeInt, value)
 	}
-	if _u.mutation.ReplyIdCleared() {
+	if muo.mutation.ReplyIdCleared() {
 		_spec.ClearField(msgboard.FieldReplyId, field.TypeInt)
 	}
-	if value, ok := _u.mutation.Status(); ok {
+	if value, ok := muo.mutation.Status(); ok {
 		_spec.SetField(msgboard.FieldStatus, field.TypeString, value)
 	}
-	_node = &Msgboard{config: _u.config}
+	_node = &Msgboard{config: muo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, muo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{msgboard.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -883,6 +883,6 @@ func (_u *MsgboardUpdateOne) sqlSave(ctx context.Context) (_node *Msgboard, err 
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	muo.mutation.done = true
 	return _node, nil
 }

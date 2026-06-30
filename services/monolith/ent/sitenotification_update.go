@@ -23,136 +23,136 @@ type SiteNotificationUpdate struct {
 }
 
 // Where appends a list predicates to the SiteNotificationUpdate builder.
-func (_u *SiteNotificationUpdate) Where(ps ...predicate.SiteNotification) *SiteNotificationUpdate {
-	_u.mutation.Where(ps...)
-	return _u
+func (snu *SiteNotificationUpdate) Where(ps ...predicate.SiteNotification) *SiteNotificationUpdate {
+	snu.mutation.Where(ps...)
+	return snu
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *SiteNotificationUpdate) SetUpdateTime(v time.Time) *SiteNotificationUpdate {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (snu *SiteNotificationUpdate) SetUpdateTime(t time.Time) *SiteNotificationUpdate {
+	snu.mutation.SetUpdateTime(t)
+	return snu
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *SiteNotificationUpdate) SetIsDelete(v bool) *SiteNotificationUpdate {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (snu *SiteNotificationUpdate) SetIsDelete(b bool) *SiteNotificationUpdate {
+	snu.mutation.SetIsDelete(b)
+	return snu
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *SiteNotificationUpdate) SetNillableIsDelete(v *bool) *SiteNotificationUpdate {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (snu *SiteNotificationUpdate) SetNillableIsDelete(b *bool) *SiteNotificationUpdate {
+	if b != nil {
+		snu.SetIsDelete(*b)
 	}
-	return _u
+	return snu
 }
 
 // SetVersion sets the "version" field.
-func (_u *SiteNotificationUpdate) SetVersion(v int) *SiteNotificationUpdate {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (snu *SiteNotificationUpdate) SetVersion(i int) *SiteNotificationUpdate {
+	snu.mutation.ResetVersion()
+	snu.mutation.SetVersion(i)
+	return snu
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *SiteNotificationUpdate) SetNillableVersion(v *int) *SiteNotificationUpdate {
-	if v != nil {
-		_u.SetVersion(*v)
+func (snu *SiteNotificationUpdate) SetNillableVersion(i *int) *SiteNotificationUpdate {
+	if i != nil {
+		snu.SetVersion(*i)
 	}
-	return _u
+	return snu
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *SiteNotificationUpdate) AddVersion(v int) *SiteNotificationUpdate {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (snu *SiteNotificationUpdate) AddVersion(i int) *SiteNotificationUpdate {
+	snu.mutation.AddVersion(i)
+	return snu
 }
 
 // SetUID sets the "uid" field.
-func (_u *SiteNotificationUpdate) SetUID(v int) *SiteNotificationUpdate {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (snu *SiteNotificationUpdate) SetUID(i int) *SiteNotificationUpdate {
+	snu.mutation.ResetUID()
+	snu.mutation.SetUID(i)
+	return snu
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *SiteNotificationUpdate) SetNillableUID(v *int) *SiteNotificationUpdate {
-	if v != nil {
-		_u.SetUID(*v)
+func (snu *SiteNotificationUpdate) SetNillableUID(i *int) *SiteNotificationUpdate {
+	if i != nil {
+		snu.SetUID(*i)
 	}
-	return _u
+	return snu
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *SiteNotificationUpdate) AddUID(v int) *SiteNotificationUpdate {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (snu *SiteNotificationUpdate) AddUID(i int) *SiteNotificationUpdate {
+	snu.mutation.AddUID(i)
+	return snu
 }
 
 // SetType sets the "type" field.
-func (_u *SiteNotificationUpdate) SetType(v string) *SiteNotificationUpdate {
-	_u.mutation.SetType(v)
-	return _u
+func (snu *SiteNotificationUpdate) SetType(s string) *SiteNotificationUpdate {
+	snu.mutation.SetType(s)
+	return snu
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (_u *SiteNotificationUpdate) SetNillableType(v *string) *SiteNotificationUpdate {
-	if v != nil {
-		_u.SetType(*v)
+func (snu *SiteNotificationUpdate) SetNillableType(s *string) *SiteNotificationUpdate {
+	if s != nil {
+		snu.SetType(*s)
 	}
-	return _u
+	return snu
 }
 
 // SetPayload sets the "payload" field.
-func (_u *SiteNotificationUpdate) SetPayload(v string) *SiteNotificationUpdate {
-	_u.mutation.SetPayload(v)
-	return _u
+func (snu *SiteNotificationUpdate) SetPayload(s string) *SiteNotificationUpdate {
+	snu.mutation.SetPayload(s)
+	return snu
 }
 
 // SetNillablePayload sets the "payload" field if the given value is not nil.
-func (_u *SiteNotificationUpdate) SetNillablePayload(v *string) *SiteNotificationUpdate {
-	if v != nil {
-		_u.SetPayload(*v)
+func (snu *SiteNotificationUpdate) SetNillablePayload(s *string) *SiteNotificationUpdate {
+	if s != nil {
+		snu.SetPayload(*s)
 	}
-	return _u
+	return snu
 }
 
 // SetRead sets the "read" field.
-func (_u *SiteNotificationUpdate) SetRead(v int) *SiteNotificationUpdate {
-	_u.mutation.ResetRead()
-	_u.mutation.SetRead(v)
-	return _u
+func (snu *SiteNotificationUpdate) SetRead(i int) *SiteNotificationUpdate {
+	snu.mutation.ResetRead()
+	snu.mutation.SetRead(i)
+	return snu
 }
 
 // SetNillableRead sets the "read" field if the given value is not nil.
-func (_u *SiteNotificationUpdate) SetNillableRead(v *int) *SiteNotificationUpdate {
-	if v != nil {
-		_u.SetRead(*v)
+func (snu *SiteNotificationUpdate) SetNillableRead(i *int) *SiteNotificationUpdate {
+	if i != nil {
+		snu.SetRead(*i)
 	}
-	return _u
+	return snu
 }
 
-// AddRead adds value to the "read" field.
-func (_u *SiteNotificationUpdate) AddRead(v int) *SiteNotificationUpdate {
-	_u.mutation.AddRead(v)
-	return _u
+// AddRead adds i to the "read" field.
+func (snu *SiteNotificationUpdate) AddRead(i int) *SiteNotificationUpdate {
+	snu.mutation.AddRead(i)
+	return snu
 }
 
 // Mutation returns the SiteNotificationMutation object of the builder.
-func (_u *SiteNotificationUpdate) Mutation() *SiteNotificationMutation {
-	return _u.mutation
+func (snu *SiteNotificationUpdate) Mutation() *SiteNotificationMutation {
+	return snu.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (_u *SiteNotificationUpdate) Save(ctx context.Context) (int, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (snu *SiteNotificationUpdate) Save(ctx context.Context) (int, error) {
+	snu.defaults()
+	return withHooks(ctx, snu.sqlSave, snu.mutation, snu.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *SiteNotificationUpdate) SaveX(ctx context.Context) int {
-	affected, err := _u.Save(ctx)
+func (snu *SiteNotificationUpdate) SaveX(ctx context.Context) int {
+	affected, err := snu.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -160,66 +160,66 @@ func (_u *SiteNotificationUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (_u *SiteNotificationUpdate) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (snu *SiteNotificationUpdate) Exec(ctx context.Context) error {
+	_, err := snu.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *SiteNotificationUpdate) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (snu *SiteNotificationUpdate) ExecX(ctx context.Context) {
+	if err := snu.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *SiteNotificationUpdate) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (snu *SiteNotificationUpdate) defaults() {
+	if _, ok := snu.mutation.UpdateTime(); !ok {
 		v := sitenotification.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		snu.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *SiteNotificationUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+func (snu *SiteNotificationUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sitenotification.Table, sitenotification.Columns, sqlgraph.NewFieldSpec(sitenotification.FieldID, field.TypeInt))
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := snu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := snu.mutation.UpdateTime(); ok {
 		_spec.SetField(sitenotification.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := snu.mutation.IsDelete(); ok {
 		_spec.SetField(sitenotification.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := snu.mutation.Version(); ok {
 		_spec.SetField(sitenotification.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := snu.mutation.AddedVersion(); ok {
 		_spec.AddField(sitenotification.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := snu.mutation.UID(); ok {
 		_spec.SetField(sitenotification.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := snu.mutation.AddedUID(); ok {
 		_spec.AddField(sitenotification.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.GetType(); ok {
+	if value, ok := snu.mutation.GetType(); ok {
 		_spec.SetField(sitenotification.FieldType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Payload(); ok {
+	if value, ok := snu.mutation.Payload(); ok {
 		_spec.SetField(sitenotification.FieldPayload, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Read(); ok {
+	if value, ok := snu.mutation.Read(); ok {
 		_spec.SetField(sitenotification.FieldRead, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRead(); ok {
+	if value, ok := snu.mutation.AddedRead(); ok {
 		_spec.AddField(sitenotification.FieldRead, field.TypeInt, value)
 	}
-	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
+	if n, err = sqlgraph.UpdateNodes(ctx, snu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{sitenotification.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -227,8 +227,8 @@ func (_u *SiteNotificationUpdate) sqlSave(ctx context.Context) (_node int, err e
 		}
 		return 0, err
 	}
-	_u.mutation.done = true
-	return _node, nil
+	snu.mutation.done = true
+	return n, nil
 }
 
 // SiteNotificationUpdateOne is the builder for updating a single SiteNotification entity.
@@ -240,143 +240,143 @@ type SiteNotificationUpdateOne struct {
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_u *SiteNotificationUpdateOne) SetUpdateTime(v time.Time) *SiteNotificationUpdateOne {
-	_u.mutation.SetUpdateTime(v)
-	return _u
+func (snuo *SiteNotificationUpdateOne) SetUpdateTime(t time.Time) *SiteNotificationUpdateOne {
+	snuo.mutation.SetUpdateTime(t)
+	return snuo
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_u *SiteNotificationUpdateOne) SetIsDelete(v bool) *SiteNotificationUpdateOne {
-	_u.mutation.SetIsDelete(v)
-	return _u
+func (snuo *SiteNotificationUpdateOne) SetIsDelete(b bool) *SiteNotificationUpdateOne {
+	snuo.mutation.SetIsDelete(b)
+	return snuo
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_u *SiteNotificationUpdateOne) SetNillableIsDelete(v *bool) *SiteNotificationUpdateOne {
-	if v != nil {
-		_u.SetIsDelete(*v)
+func (snuo *SiteNotificationUpdateOne) SetNillableIsDelete(b *bool) *SiteNotificationUpdateOne {
+	if b != nil {
+		snuo.SetIsDelete(*b)
 	}
-	return _u
+	return snuo
 }
 
 // SetVersion sets the "version" field.
-func (_u *SiteNotificationUpdateOne) SetVersion(v int) *SiteNotificationUpdateOne {
-	_u.mutation.ResetVersion()
-	_u.mutation.SetVersion(v)
-	return _u
+func (snuo *SiteNotificationUpdateOne) SetVersion(i int) *SiteNotificationUpdateOne {
+	snuo.mutation.ResetVersion()
+	snuo.mutation.SetVersion(i)
+	return snuo
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_u *SiteNotificationUpdateOne) SetNillableVersion(v *int) *SiteNotificationUpdateOne {
-	if v != nil {
-		_u.SetVersion(*v)
+func (snuo *SiteNotificationUpdateOne) SetNillableVersion(i *int) *SiteNotificationUpdateOne {
+	if i != nil {
+		snuo.SetVersion(*i)
 	}
-	return _u
+	return snuo
 }
 
-// AddVersion adds value to the "version" field.
-func (_u *SiteNotificationUpdateOne) AddVersion(v int) *SiteNotificationUpdateOne {
-	_u.mutation.AddVersion(v)
-	return _u
+// AddVersion adds i to the "version" field.
+func (snuo *SiteNotificationUpdateOne) AddVersion(i int) *SiteNotificationUpdateOne {
+	snuo.mutation.AddVersion(i)
+	return snuo
 }
 
 // SetUID sets the "uid" field.
-func (_u *SiteNotificationUpdateOne) SetUID(v int) *SiteNotificationUpdateOne {
-	_u.mutation.ResetUID()
-	_u.mutation.SetUID(v)
-	return _u
+func (snuo *SiteNotificationUpdateOne) SetUID(i int) *SiteNotificationUpdateOne {
+	snuo.mutation.ResetUID()
+	snuo.mutation.SetUID(i)
+	return snuo
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (_u *SiteNotificationUpdateOne) SetNillableUID(v *int) *SiteNotificationUpdateOne {
-	if v != nil {
-		_u.SetUID(*v)
+func (snuo *SiteNotificationUpdateOne) SetNillableUID(i *int) *SiteNotificationUpdateOne {
+	if i != nil {
+		snuo.SetUID(*i)
 	}
-	return _u
+	return snuo
 }
 
-// AddUID adds value to the "uid" field.
-func (_u *SiteNotificationUpdateOne) AddUID(v int) *SiteNotificationUpdateOne {
-	_u.mutation.AddUID(v)
-	return _u
+// AddUID adds i to the "uid" field.
+func (snuo *SiteNotificationUpdateOne) AddUID(i int) *SiteNotificationUpdateOne {
+	snuo.mutation.AddUID(i)
+	return snuo
 }
 
 // SetType sets the "type" field.
-func (_u *SiteNotificationUpdateOne) SetType(v string) *SiteNotificationUpdateOne {
-	_u.mutation.SetType(v)
-	return _u
+func (snuo *SiteNotificationUpdateOne) SetType(s string) *SiteNotificationUpdateOne {
+	snuo.mutation.SetType(s)
+	return snuo
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (_u *SiteNotificationUpdateOne) SetNillableType(v *string) *SiteNotificationUpdateOne {
-	if v != nil {
-		_u.SetType(*v)
+func (snuo *SiteNotificationUpdateOne) SetNillableType(s *string) *SiteNotificationUpdateOne {
+	if s != nil {
+		snuo.SetType(*s)
 	}
-	return _u
+	return snuo
 }
 
 // SetPayload sets the "payload" field.
-func (_u *SiteNotificationUpdateOne) SetPayload(v string) *SiteNotificationUpdateOne {
-	_u.mutation.SetPayload(v)
-	return _u
+func (snuo *SiteNotificationUpdateOne) SetPayload(s string) *SiteNotificationUpdateOne {
+	snuo.mutation.SetPayload(s)
+	return snuo
 }
 
 // SetNillablePayload sets the "payload" field if the given value is not nil.
-func (_u *SiteNotificationUpdateOne) SetNillablePayload(v *string) *SiteNotificationUpdateOne {
-	if v != nil {
-		_u.SetPayload(*v)
+func (snuo *SiteNotificationUpdateOne) SetNillablePayload(s *string) *SiteNotificationUpdateOne {
+	if s != nil {
+		snuo.SetPayload(*s)
 	}
-	return _u
+	return snuo
 }
 
 // SetRead sets the "read" field.
-func (_u *SiteNotificationUpdateOne) SetRead(v int) *SiteNotificationUpdateOne {
-	_u.mutation.ResetRead()
-	_u.mutation.SetRead(v)
-	return _u
+func (snuo *SiteNotificationUpdateOne) SetRead(i int) *SiteNotificationUpdateOne {
+	snuo.mutation.ResetRead()
+	snuo.mutation.SetRead(i)
+	return snuo
 }
 
 // SetNillableRead sets the "read" field if the given value is not nil.
-func (_u *SiteNotificationUpdateOne) SetNillableRead(v *int) *SiteNotificationUpdateOne {
-	if v != nil {
-		_u.SetRead(*v)
+func (snuo *SiteNotificationUpdateOne) SetNillableRead(i *int) *SiteNotificationUpdateOne {
+	if i != nil {
+		snuo.SetRead(*i)
 	}
-	return _u
+	return snuo
 }
 
-// AddRead adds value to the "read" field.
-func (_u *SiteNotificationUpdateOne) AddRead(v int) *SiteNotificationUpdateOne {
-	_u.mutation.AddRead(v)
-	return _u
+// AddRead adds i to the "read" field.
+func (snuo *SiteNotificationUpdateOne) AddRead(i int) *SiteNotificationUpdateOne {
+	snuo.mutation.AddRead(i)
+	return snuo
 }
 
 // Mutation returns the SiteNotificationMutation object of the builder.
-func (_u *SiteNotificationUpdateOne) Mutation() *SiteNotificationMutation {
-	return _u.mutation
+func (snuo *SiteNotificationUpdateOne) Mutation() *SiteNotificationMutation {
+	return snuo.mutation
 }
 
 // Where appends a list predicates to the SiteNotificationUpdate builder.
-func (_u *SiteNotificationUpdateOne) Where(ps ...predicate.SiteNotification) *SiteNotificationUpdateOne {
-	_u.mutation.Where(ps...)
-	return _u
+func (snuo *SiteNotificationUpdateOne) Where(ps ...predicate.SiteNotification) *SiteNotificationUpdateOne {
+	snuo.mutation.Where(ps...)
+	return snuo
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (_u *SiteNotificationUpdateOne) Select(field string, fields ...string) *SiteNotificationUpdateOne {
-	_u.fields = append([]string{field}, fields...)
-	return _u
+func (snuo *SiteNotificationUpdateOne) Select(field string, fields ...string) *SiteNotificationUpdateOne {
+	snuo.fields = append([]string{field}, fields...)
+	return snuo
 }
 
 // Save executes the query and returns the updated SiteNotification entity.
-func (_u *SiteNotificationUpdateOne) Save(ctx context.Context) (*SiteNotification, error) {
-	_u.defaults()
-	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
+func (snuo *SiteNotificationUpdateOne) Save(ctx context.Context) (*SiteNotification, error) {
+	snuo.defaults()
+	return withHooks(ctx, snuo.sqlSave, snuo.mutation, snuo.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_u *SiteNotificationUpdateOne) SaveX(ctx context.Context) *SiteNotification {
-	node, err := _u.Save(ctx)
+func (snuo *SiteNotificationUpdateOne) SaveX(ctx context.Context) *SiteNotification {
+	node, err := snuo.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -384,34 +384,34 @@ func (_u *SiteNotificationUpdateOne) SaveX(ctx context.Context) *SiteNotificatio
 }
 
 // Exec executes the query on the entity.
-func (_u *SiteNotificationUpdateOne) Exec(ctx context.Context) error {
-	_, err := _u.Save(ctx)
+func (snuo *SiteNotificationUpdateOne) Exec(ctx context.Context) error {
+	_, err := snuo.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_u *SiteNotificationUpdateOne) ExecX(ctx context.Context) {
-	if err := _u.Exec(ctx); err != nil {
+func (snuo *SiteNotificationUpdateOne) ExecX(ctx context.Context) {
+	if err := snuo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_u *SiteNotificationUpdateOne) defaults() {
-	if _, ok := _u.mutation.UpdateTime(); !ok {
+func (snuo *SiteNotificationUpdateOne) defaults() {
+	if _, ok := snuo.mutation.UpdateTime(); !ok {
 		v := sitenotification.UpdateDefaultUpdateTime()
-		_u.mutation.SetUpdateTime(v)
+		snuo.mutation.SetUpdateTime(v)
 	}
 }
 
-func (_u *SiteNotificationUpdateOne) sqlSave(ctx context.Context) (_node *SiteNotification, err error) {
+func (snuo *SiteNotificationUpdateOne) sqlSave(ctx context.Context) (_node *SiteNotification, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sitenotification.Table, sitenotification.Columns, sqlgraph.NewFieldSpec(sitenotification.FieldID, field.TypeInt))
-	id, ok := _u.mutation.ID()
+	id, ok := snuo.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "SiteNotification.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := _u.fields; len(fields) > 0 {
+	if fields := snuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, sitenotification.FieldID)
 		for _, f := range fields {
@@ -423,47 +423,47 @@ func (_u *SiteNotificationUpdateOne) sqlSave(ctx context.Context) (_node *SiteNo
 			}
 		}
 	}
-	if ps := _u.mutation.predicates; len(ps) > 0 {
+	if ps := snuo.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := _u.mutation.UpdateTime(); ok {
+	if value, ok := snuo.mutation.UpdateTime(); ok {
 		_spec.SetField(sitenotification.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := _u.mutation.IsDelete(); ok {
+	if value, ok := snuo.mutation.IsDelete(); ok {
 		_spec.SetField(sitenotification.FieldIsDelete, field.TypeBool, value)
 	}
-	if value, ok := _u.mutation.Version(); ok {
+	if value, ok := snuo.mutation.Version(); ok {
 		_spec.SetField(sitenotification.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedVersion(); ok {
+	if value, ok := snuo.mutation.AddedVersion(); ok {
 		_spec.AddField(sitenotification.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.UID(); ok {
+	if value, ok := snuo.mutation.UID(); ok {
 		_spec.SetField(sitenotification.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedUID(); ok {
+	if value, ok := snuo.mutation.AddedUID(); ok {
 		_spec.AddField(sitenotification.FieldUID, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.GetType(); ok {
+	if value, ok := snuo.mutation.GetType(); ok {
 		_spec.SetField(sitenotification.FieldType, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Payload(); ok {
+	if value, ok := snuo.mutation.Payload(); ok {
 		_spec.SetField(sitenotification.FieldPayload, field.TypeString, value)
 	}
-	if value, ok := _u.mutation.Read(); ok {
+	if value, ok := snuo.mutation.Read(); ok {
 		_spec.SetField(sitenotification.FieldRead, field.TypeInt, value)
 	}
-	if value, ok := _u.mutation.AddedRead(); ok {
+	if value, ok := snuo.mutation.AddedRead(); ok {
 		_spec.AddField(sitenotification.FieldRead, field.TypeInt, value)
 	}
-	_node = &SiteNotification{config: _u.config}
+	_node = &SiteNotification{config: snuo.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, snuo.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{sitenotification.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -471,6 +471,6 @@ func (_u *SiteNotificationUpdateOne) sqlSave(ctx context.Context) (_node *SiteNo
 		}
 		return nil, err
 	}
-	_u.mutation.done = true
+	snuo.mutation.done = true
 	return _node, nil
 }

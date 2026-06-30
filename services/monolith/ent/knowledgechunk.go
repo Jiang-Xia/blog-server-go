@@ -78,7 +78,7 @@ func (*KnowledgeChunk) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the KnowledgeChunk fields.
-func (_m *KnowledgeChunk) assignValues(columns []string, values []any) error {
+func (kc *KnowledgeChunk) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -89,49 +89,49 @@ func (_m *KnowledgeChunk) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			kc.ID = int(value.Int64)
 		case knowledgechunk.FieldArticleID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field article_id", values[i])
 			} else if value.Valid {
-				_m.ArticleID = int(value.Int64)
+				kc.ArticleID = int(value.Int64)
 			}
 		case knowledgechunk.FieldChunkIndex:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field chunk_index", values[i])
 			} else if value.Valid {
-				_m.ChunkIndex = int(value.Int64)
+				kc.ChunkIndex = int(value.Int64)
 			}
 		case knowledgechunk.FieldTitle:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field title", values[i])
 			} else if value.Valid {
-				_m.Title = value.String
+				kc.Title = value.String
 			}
 		case knowledgechunk.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content", values[i])
 			} else if value.Valid {
-				_m.Content = value.String
+				kc.Content = value.String
 			}
 		case knowledgechunk.FieldURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field url", values[i])
 			} else if value.Valid {
-				_m.URL = value.String
+				kc.URL = value.String
 			}
 		case knowledgechunk.FieldCategory:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field category", values[i])
 			} else if value.Valid {
-				_m.Category = new(string)
-				*_m.Category = value.String
+				kc.Category = new(string)
+				*kc.Category = value.String
 			}
 		case knowledgechunk.FieldTags:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field tags", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &_m.Tags); err != nil {
+				if err := json.Unmarshal(*value, &kc.Tags); err != nil {
 					return fmt.Errorf("unmarshal field tags: %w", err)
 				}
 			}
@@ -139,7 +139,7 @@ func (_m *KnowledgeChunk) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field embedding_json", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &_m.EmbeddingJSON); err != nil {
+				if err := json.Unmarshal(*value, &kc.EmbeddingJSON); err != nil {
 					return fmt.Errorf("unmarshal field embedding_json: %w", err)
 				}
 			}
@@ -147,60 +147,60 @@ func (_m *KnowledgeChunk) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field status", values[i])
 			} else if value.Valid {
-				_m.Status = value.String
+				kc.Status = value.String
 			}
 		case knowledgechunk.FieldIndexedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field indexed_at", values[i])
 			} else if value.Valid {
-				_m.IndexedAt = value.Time
+				kc.IndexedAt = value.Time
 			}
 		case knowledgechunk.FieldCreateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field create_at", values[i])
 			} else if value.Valid {
-				_m.CreateAt = value.Time
+				kc.CreateAt = value.Time
 			}
 		case knowledgechunk.FieldUpdateAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field update_at", values[i])
 			} else if value.Valid {
-				_m.UpdateAt = value.Time
+				kc.UpdateAt = value.Time
 			}
 		case knowledgechunk.FieldSourceType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field source_type", values[i])
 			} else if value.Valid {
-				_m.SourceType = value.String
+				kc.SourceType = value.String
 			}
 		case knowledgechunk.FieldSourceKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field source_key", values[i])
 			} else if value.Valid {
-				_m.SourceKey = value.String
+				kc.SourceKey = value.String
 			}
 		case knowledgechunk.FieldHeadingPath:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field heading_path", values[i])
 			} else if value.Valid {
-				_m.HeadingPath = new(string)
-				*_m.HeadingPath = value.String
+				kc.HeadingPath = new(string)
+				*kc.HeadingPath = value.String
 			}
 		case knowledgechunk.FieldContentType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content_type", values[i])
 			} else if value.Valid {
-				_m.ContentType = value.String
+				kc.ContentType = value.String
 			}
 		case knowledgechunk.FieldSearchText:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field search_text", values[i])
 			} else if value.Valid {
-				_m.SearchText = new(string)
-				*_m.SearchText = value.String
+				kc.SearchText = new(string)
+				*kc.SearchText = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			kc.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -208,86 +208,86 @@ func (_m *KnowledgeChunk) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the KnowledgeChunk.
 // This includes values selected through modifiers, order, etc.
-func (_m *KnowledgeChunk) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (kc *KnowledgeChunk) Value(name string) (ent.Value, error) {
+	return kc.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this KnowledgeChunk.
 // Note that you need to call KnowledgeChunk.Unwrap() before calling this method if this KnowledgeChunk
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *KnowledgeChunk) Update() *KnowledgeChunkUpdateOne {
-	return NewKnowledgeChunkClient(_m.config).UpdateOne(_m)
+func (kc *KnowledgeChunk) Update() *KnowledgeChunkUpdateOne {
+	return NewKnowledgeChunkClient(kc.config).UpdateOne(kc)
 }
 
 // Unwrap unwraps the KnowledgeChunk entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *KnowledgeChunk) Unwrap() *KnowledgeChunk {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (kc *KnowledgeChunk) Unwrap() *KnowledgeChunk {
+	_tx, ok := kc.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: KnowledgeChunk is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	kc.config.driver = _tx.drv
+	return kc
 }
 
 // String implements the fmt.Stringer.
-func (_m *KnowledgeChunk) String() string {
+func (kc *KnowledgeChunk) String() string {
 	var builder strings.Builder
 	builder.WriteString("KnowledgeChunk(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", kc.ID))
 	builder.WriteString("article_id=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ArticleID))
+	builder.WriteString(fmt.Sprintf("%v", kc.ArticleID))
 	builder.WriteString(", ")
 	builder.WriteString("chunk_index=")
-	builder.WriteString(fmt.Sprintf("%v", _m.ChunkIndex))
+	builder.WriteString(fmt.Sprintf("%v", kc.ChunkIndex))
 	builder.WriteString(", ")
 	builder.WriteString("title=")
-	builder.WriteString(_m.Title)
+	builder.WriteString(kc.Title)
 	builder.WriteString(", ")
 	builder.WriteString("content=")
-	builder.WriteString(_m.Content)
+	builder.WriteString(kc.Content)
 	builder.WriteString(", ")
 	builder.WriteString("url=")
-	builder.WriteString(_m.URL)
+	builder.WriteString(kc.URL)
 	builder.WriteString(", ")
-	if v := _m.Category; v != nil {
+	if v := kc.Category; v != nil {
 		builder.WriteString("category=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("tags=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Tags))
+	builder.WriteString(fmt.Sprintf("%v", kc.Tags))
 	builder.WriteString(", ")
 	builder.WriteString("embedding_json=")
-	builder.WriteString(fmt.Sprintf("%v", _m.EmbeddingJSON))
+	builder.WriteString(fmt.Sprintf("%v", kc.EmbeddingJSON))
 	builder.WriteString(", ")
 	builder.WriteString("status=")
-	builder.WriteString(_m.Status)
+	builder.WriteString(kc.Status)
 	builder.WriteString(", ")
 	builder.WriteString("indexed_at=")
-	builder.WriteString(_m.IndexedAt.Format(time.ANSIC))
+	builder.WriteString(kc.IndexedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("create_at=")
-	builder.WriteString(_m.CreateAt.Format(time.ANSIC))
+	builder.WriteString(kc.CreateAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("update_at=")
-	builder.WriteString(_m.UpdateAt.Format(time.ANSIC))
+	builder.WriteString(kc.UpdateAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("source_type=")
-	builder.WriteString(_m.SourceType)
+	builder.WriteString(kc.SourceType)
 	builder.WriteString(", ")
 	builder.WriteString("source_key=")
-	builder.WriteString(_m.SourceKey)
+	builder.WriteString(kc.SourceKey)
 	builder.WriteString(", ")
-	if v := _m.HeadingPath; v != nil {
+	if v := kc.HeadingPath; v != nil {
 		builder.WriteString("heading_path=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("content_type=")
-	builder.WriteString(_m.ContentType)
+	builder.WriteString(kc.ContentType)
 	builder.WriteString(", ")
-	if v := _m.SearchText; v != nil {
+	if v := kc.SearchText; v != nil {
 		builder.WriteString("search_text=")
 		builder.WriteString(*v)
 	}

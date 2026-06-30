@@ -23,183 +23,183 @@ type KnowledgeChunkCreate struct {
 }
 
 // SetArticleID sets the "article_id" field.
-func (_c *KnowledgeChunkCreate) SetArticleID(v int) *KnowledgeChunkCreate {
-	_c.mutation.SetArticleID(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetArticleID(i int) *KnowledgeChunkCreate {
+	kcc.mutation.SetArticleID(i)
+	return kcc
 }
 
 // SetChunkIndex sets the "chunk_index" field.
-func (_c *KnowledgeChunkCreate) SetChunkIndex(v int) *KnowledgeChunkCreate {
-	_c.mutation.SetChunkIndex(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetChunkIndex(i int) *KnowledgeChunkCreate {
+	kcc.mutation.SetChunkIndex(i)
+	return kcc
 }
 
 // SetTitle sets the "title" field.
-func (_c *KnowledgeChunkCreate) SetTitle(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetTitle(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetTitle(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetTitle(s)
+	return kcc
 }
 
 // SetContent sets the "content" field.
-func (_c *KnowledgeChunkCreate) SetContent(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetContent(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetContent(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetContent(s)
+	return kcc
 }
 
 // SetURL sets the "url" field.
-func (_c *KnowledgeChunkCreate) SetURL(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetURL(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetURL(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetURL(s)
+	return kcc
 }
 
 // SetCategory sets the "category" field.
-func (_c *KnowledgeChunkCreate) SetCategory(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetCategory(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetCategory(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetCategory(s)
+	return kcc
 }
 
 // SetNillableCategory sets the "category" field if the given value is not nil.
-func (_c *KnowledgeChunkCreate) SetNillableCategory(v *string) *KnowledgeChunkCreate {
-	if v != nil {
-		_c.SetCategory(*v)
+func (kcc *KnowledgeChunkCreate) SetNillableCategory(s *string) *KnowledgeChunkCreate {
+	if s != nil {
+		kcc.SetCategory(*s)
 	}
-	return _c
+	return kcc
 }
 
 // SetTags sets the "tags" field.
-func (_c *KnowledgeChunkCreate) SetTags(v map[string]interface{}) *KnowledgeChunkCreate {
-	_c.mutation.SetTags(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetTags(m map[string]interface{}) *KnowledgeChunkCreate {
+	kcc.mutation.SetTags(m)
+	return kcc
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (_c *KnowledgeChunkCreate) SetEmbeddingJSON(v map[string]interface{}) *KnowledgeChunkCreate {
-	_c.mutation.SetEmbeddingJSON(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetEmbeddingJSON(m map[string]interface{}) *KnowledgeChunkCreate {
+	kcc.mutation.SetEmbeddingJSON(m)
+	return kcc
 }
 
 // SetStatus sets the "status" field.
-func (_c *KnowledgeChunkCreate) SetStatus(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetStatus(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetStatus(s)
+	return kcc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *KnowledgeChunkCreate) SetNillableStatus(v *string) *KnowledgeChunkCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (kcc *KnowledgeChunkCreate) SetNillableStatus(s *string) *KnowledgeChunkCreate {
+	if s != nil {
+		kcc.SetStatus(*s)
 	}
-	return _c
+	return kcc
 }
 
 // SetIndexedAt sets the "indexed_at" field.
-func (_c *KnowledgeChunkCreate) SetIndexedAt(v time.Time) *KnowledgeChunkCreate {
-	_c.mutation.SetIndexedAt(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetIndexedAt(t time.Time) *KnowledgeChunkCreate {
+	kcc.mutation.SetIndexedAt(t)
+	return kcc
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_c *KnowledgeChunkCreate) SetCreateAt(v time.Time) *KnowledgeChunkCreate {
-	_c.mutation.SetCreateAt(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetCreateAt(t time.Time) *KnowledgeChunkCreate {
+	kcc.mutation.SetCreateAt(t)
+	return kcc
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_c *KnowledgeChunkCreate) SetUpdateAt(v time.Time) *KnowledgeChunkCreate {
-	_c.mutation.SetUpdateAt(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetUpdateAt(t time.Time) *KnowledgeChunkCreate {
+	kcc.mutation.SetUpdateAt(t)
+	return kcc
 }
 
 // SetSourceType sets the "source_type" field.
-func (_c *KnowledgeChunkCreate) SetSourceType(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetSourceType(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetSourceType(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetSourceType(s)
+	return kcc
 }
 
 // SetNillableSourceType sets the "source_type" field if the given value is not nil.
-func (_c *KnowledgeChunkCreate) SetNillableSourceType(v *string) *KnowledgeChunkCreate {
-	if v != nil {
-		_c.SetSourceType(*v)
+func (kcc *KnowledgeChunkCreate) SetNillableSourceType(s *string) *KnowledgeChunkCreate {
+	if s != nil {
+		kcc.SetSourceType(*s)
 	}
-	return _c
+	return kcc
 }
 
 // SetSourceKey sets the "source_key" field.
-func (_c *KnowledgeChunkCreate) SetSourceKey(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetSourceKey(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetSourceKey(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetSourceKey(s)
+	return kcc
 }
 
 // SetNillableSourceKey sets the "source_key" field if the given value is not nil.
-func (_c *KnowledgeChunkCreate) SetNillableSourceKey(v *string) *KnowledgeChunkCreate {
-	if v != nil {
-		_c.SetSourceKey(*v)
+func (kcc *KnowledgeChunkCreate) SetNillableSourceKey(s *string) *KnowledgeChunkCreate {
+	if s != nil {
+		kcc.SetSourceKey(*s)
 	}
-	return _c
+	return kcc
 }
 
 // SetHeadingPath sets the "heading_path" field.
-func (_c *KnowledgeChunkCreate) SetHeadingPath(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetHeadingPath(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetHeadingPath(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetHeadingPath(s)
+	return kcc
 }
 
 // SetNillableHeadingPath sets the "heading_path" field if the given value is not nil.
-func (_c *KnowledgeChunkCreate) SetNillableHeadingPath(v *string) *KnowledgeChunkCreate {
-	if v != nil {
-		_c.SetHeadingPath(*v)
+func (kcc *KnowledgeChunkCreate) SetNillableHeadingPath(s *string) *KnowledgeChunkCreate {
+	if s != nil {
+		kcc.SetHeadingPath(*s)
 	}
-	return _c
+	return kcc
 }
 
 // SetContentType sets the "content_type" field.
-func (_c *KnowledgeChunkCreate) SetContentType(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetContentType(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetContentType(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetContentType(s)
+	return kcc
 }
 
 // SetNillableContentType sets the "content_type" field if the given value is not nil.
-func (_c *KnowledgeChunkCreate) SetNillableContentType(v *string) *KnowledgeChunkCreate {
-	if v != nil {
-		_c.SetContentType(*v)
+func (kcc *KnowledgeChunkCreate) SetNillableContentType(s *string) *KnowledgeChunkCreate {
+	if s != nil {
+		kcc.SetContentType(*s)
 	}
-	return _c
+	return kcc
 }
 
 // SetSearchText sets the "search_text" field.
-func (_c *KnowledgeChunkCreate) SetSearchText(v string) *KnowledgeChunkCreate {
-	_c.mutation.SetSearchText(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetSearchText(s string) *KnowledgeChunkCreate {
+	kcc.mutation.SetSearchText(s)
+	return kcc
 }
 
 // SetNillableSearchText sets the "search_text" field if the given value is not nil.
-func (_c *KnowledgeChunkCreate) SetNillableSearchText(v *string) *KnowledgeChunkCreate {
-	if v != nil {
-		_c.SetSearchText(*v)
+func (kcc *KnowledgeChunkCreate) SetNillableSearchText(s *string) *KnowledgeChunkCreate {
+	if s != nil {
+		kcc.SetSearchText(*s)
 	}
-	return _c
+	return kcc
 }
 
 // SetID sets the "id" field.
-func (_c *KnowledgeChunkCreate) SetID(v int) *KnowledgeChunkCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (kcc *KnowledgeChunkCreate) SetID(i int) *KnowledgeChunkCreate {
+	kcc.mutation.SetID(i)
+	return kcc
 }
 
 // Mutation returns the KnowledgeChunkMutation object of the builder.
-func (_c *KnowledgeChunkCreate) Mutation() *KnowledgeChunkMutation {
-	return _c.mutation
+func (kcc *KnowledgeChunkCreate) Mutation() *KnowledgeChunkMutation {
+	return kcc.mutation
 }
 
 // Save creates the KnowledgeChunk in the database.
-func (_c *KnowledgeChunkCreate) Save(ctx context.Context) (*KnowledgeChunk, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (kcc *KnowledgeChunkCreate) Save(ctx context.Context) (*KnowledgeChunk, error) {
+	kcc.defaults()
+	return withHooks(ctx, kcc.sqlSave, kcc.mutation, kcc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *KnowledgeChunkCreate) SaveX(ctx context.Context) *KnowledgeChunk {
-	v, err := _c.Save(ctx)
+func (kcc *KnowledgeChunkCreate) SaveX(ctx context.Context) *KnowledgeChunk {
+	v, err := kcc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -207,88 +207,88 @@ func (_c *KnowledgeChunkCreate) SaveX(ctx context.Context) *KnowledgeChunk {
 }
 
 // Exec executes the query.
-func (_c *KnowledgeChunkCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (kcc *KnowledgeChunkCreate) Exec(ctx context.Context) error {
+	_, err := kcc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *KnowledgeChunkCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (kcc *KnowledgeChunkCreate) ExecX(ctx context.Context) {
+	if err := kcc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *KnowledgeChunkCreate) defaults() {
-	if _, ok := _c.mutation.Status(); !ok {
+func (kcc *KnowledgeChunkCreate) defaults() {
+	if _, ok := kcc.mutation.Status(); !ok {
 		v := knowledgechunk.DefaultStatus
-		_c.mutation.SetStatus(v)
+		kcc.mutation.SetStatus(v)
 	}
-	if _, ok := _c.mutation.SourceType(); !ok {
+	if _, ok := kcc.mutation.SourceType(); !ok {
 		v := knowledgechunk.DefaultSourceType
-		_c.mutation.SetSourceType(v)
+		kcc.mutation.SetSourceType(v)
 	}
-	if _, ok := _c.mutation.SourceKey(); !ok {
+	if _, ok := kcc.mutation.SourceKey(); !ok {
 		v := knowledgechunk.DefaultSourceKey
-		_c.mutation.SetSourceKey(v)
+		kcc.mutation.SetSourceKey(v)
 	}
-	if _, ok := _c.mutation.ContentType(); !ok {
+	if _, ok := kcc.mutation.ContentType(); !ok {
 		v := knowledgechunk.DefaultContentType
-		_c.mutation.SetContentType(v)
+		kcc.mutation.SetContentType(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *KnowledgeChunkCreate) check() error {
-	if _, ok := _c.mutation.ArticleID(); !ok {
+func (kcc *KnowledgeChunkCreate) check() error {
+	if _, ok := kcc.mutation.ArticleID(); !ok {
 		return &ValidationError{Name: "article_id", err: errors.New(`ent: missing required field "KnowledgeChunk.article_id"`)}
 	}
-	if _, ok := _c.mutation.ChunkIndex(); !ok {
+	if _, ok := kcc.mutation.ChunkIndex(); !ok {
 		return &ValidationError{Name: "chunk_index", err: errors.New(`ent: missing required field "KnowledgeChunk.chunk_index"`)}
 	}
-	if _, ok := _c.mutation.Title(); !ok {
+	if _, ok := kcc.mutation.Title(); !ok {
 		return &ValidationError{Name: "title", err: errors.New(`ent: missing required field "KnowledgeChunk.title"`)}
 	}
-	if _, ok := _c.mutation.Content(); !ok {
+	if _, ok := kcc.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "KnowledgeChunk.content"`)}
 	}
-	if _, ok := _c.mutation.URL(); !ok {
+	if _, ok := kcc.mutation.URL(); !ok {
 		return &ValidationError{Name: "url", err: errors.New(`ent: missing required field "KnowledgeChunk.url"`)}
 	}
-	if _, ok := _c.mutation.EmbeddingJSON(); !ok {
+	if _, ok := kcc.mutation.EmbeddingJSON(); !ok {
 		return &ValidationError{Name: "embedding_json", err: errors.New(`ent: missing required field "KnowledgeChunk.embedding_json"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := kcc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "KnowledgeChunk.status"`)}
 	}
-	if _, ok := _c.mutation.IndexedAt(); !ok {
+	if _, ok := kcc.mutation.IndexedAt(); !ok {
 		return &ValidationError{Name: "indexed_at", err: errors.New(`ent: missing required field "KnowledgeChunk.indexed_at"`)}
 	}
-	if _, ok := _c.mutation.CreateAt(); !ok {
+	if _, ok := kcc.mutation.CreateAt(); !ok {
 		return &ValidationError{Name: "create_at", err: errors.New(`ent: missing required field "KnowledgeChunk.create_at"`)}
 	}
-	if _, ok := _c.mutation.UpdateAt(); !ok {
+	if _, ok := kcc.mutation.UpdateAt(); !ok {
 		return &ValidationError{Name: "update_at", err: errors.New(`ent: missing required field "KnowledgeChunk.update_at"`)}
 	}
-	if _, ok := _c.mutation.SourceType(); !ok {
+	if _, ok := kcc.mutation.SourceType(); !ok {
 		return &ValidationError{Name: "source_type", err: errors.New(`ent: missing required field "KnowledgeChunk.source_type"`)}
 	}
-	if _, ok := _c.mutation.SourceKey(); !ok {
+	if _, ok := kcc.mutation.SourceKey(); !ok {
 		return &ValidationError{Name: "source_key", err: errors.New(`ent: missing required field "KnowledgeChunk.source_key"`)}
 	}
-	if _, ok := _c.mutation.ContentType(); !ok {
+	if _, ok := kcc.mutation.ContentType(); !ok {
 		return &ValidationError{Name: "content_type", err: errors.New(`ent: missing required field "KnowledgeChunk.content_type"`)}
 	}
 	return nil
 }
 
-func (_c *KnowledgeChunkCreate) sqlSave(ctx context.Context) (*KnowledgeChunk, error) {
-	if err := _c.check(); err != nil {
+func (kcc *KnowledgeChunkCreate) sqlSave(ctx context.Context) (*KnowledgeChunk, error) {
+	if err := kcc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := kcc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, kcc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -298,86 +298,86 @@ func (_c *KnowledgeChunkCreate) sqlSave(ctx context.Context) (*KnowledgeChunk, e
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	kcc.mutation.id = &_node.ID
+	kcc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *KnowledgeChunkCreate) createSpec() (*KnowledgeChunk, *sqlgraph.CreateSpec) {
+func (kcc *KnowledgeChunkCreate) createSpec() (*KnowledgeChunk, *sqlgraph.CreateSpec) {
 	var (
-		_node = &KnowledgeChunk{config: _c.config}
+		_node = &KnowledgeChunk{config: kcc.config}
 		_spec = sqlgraph.NewCreateSpec(knowledgechunk.Table, sqlgraph.NewFieldSpec(knowledgechunk.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = kcc.conflict
+	if id, ok := kcc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.ArticleID(); ok {
+	if value, ok := kcc.mutation.ArticleID(); ok {
 		_spec.SetField(knowledgechunk.FieldArticleID, field.TypeInt, value)
 		_node.ArticleID = value
 	}
-	if value, ok := _c.mutation.ChunkIndex(); ok {
+	if value, ok := kcc.mutation.ChunkIndex(); ok {
 		_spec.SetField(knowledgechunk.FieldChunkIndex, field.TypeInt, value)
 		_node.ChunkIndex = value
 	}
-	if value, ok := _c.mutation.Title(); ok {
+	if value, ok := kcc.mutation.Title(); ok {
 		_spec.SetField(knowledgechunk.FieldTitle, field.TypeString, value)
 		_node.Title = value
 	}
-	if value, ok := _c.mutation.Content(); ok {
+	if value, ok := kcc.mutation.Content(); ok {
 		_spec.SetField(knowledgechunk.FieldContent, field.TypeString, value)
 		_node.Content = value
 	}
-	if value, ok := _c.mutation.URL(); ok {
+	if value, ok := kcc.mutation.URL(); ok {
 		_spec.SetField(knowledgechunk.FieldURL, field.TypeString, value)
 		_node.URL = value
 	}
-	if value, ok := _c.mutation.Category(); ok {
+	if value, ok := kcc.mutation.Category(); ok {
 		_spec.SetField(knowledgechunk.FieldCategory, field.TypeString, value)
 		_node.Category = &value
 	}
-	if value, ok := _c.mutation.Tags(); ok {
+	if value, ok := kcc.mutation.Tags(); ok {
 		_spec.SetField(knowledgechunk.FieldTags, field.TypeJSON, value)
 		_node.Tags = value
 	}
-	if value, ok := _c.mutation.EmbeddingJSON(); ok {
+	if value, ok := kcc.mutation.EmbeddingJSON(); ok {
 		_spec.SetField(knowledgechunk.FieldEmbeddingJSON, field.TypeJSON, value)
 		_node.EmbeddingJSON = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := kcc.mutation.Status(); ok {
 		_spec.SetField(knowledgechunk.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
-	if value, ok := _c.mutation.IndexedAt(); ok {
+	if value, ok := kcc.mutation.IndexedAt(); ok {
 		_spec.SetField(knowledgechunk.FieldIndexedAt, field.TypeTime, value)
 		_node.IndexedAt = value
 	}
-	if value, ok := _c.mutation.CreateAt(); ok {
+	if value, ok := kcc.mutation.CreateAt(); ok {
 		_spec.SetField(knowledgechunk.FieldCreateAt, field.TypeTime, value)
 		_node.CreateAt = value
 	}
-	if value, ok := _c.mutation.UpdateAt(); ok {
+	if value, ok := kcc.mutation.UpdateAt(); ok {
 		_spec.SetField(knowledgechunk.FieldUpdateAt, field.TypeTime, value)
 		_node.UpdateAt = value
 	}
-	if value, ok := _c.mutation.SourceType(); ok {
+	if value, ok := kcc.mutation.SourceType(); ok {
 		_spec.SetField(knowledgechunk.FieldSourceType, field.TypeString, value)
 		_node.SourceType = value
 	}
-	if value, ok := _c.mutation.SourceKey(); ok {
+	if value, ok := kcc.mutation.SourceKey(); ok {
 		_spec.SetField(knowledgechunk.FieldSourceKey, field.TypeString, value)
 		_node.SourceKey = value
 	}
-	if value, ok := _c.mutation.HeadingPath(); ok {
+	if value, ok := kcc.mutation.HeadingPath(); ok {
 		_spec.SetField(knowledgechunk.FieldHeadingPath, field.TypeString, value)
 		_node.HeadingPath = &value
 	}
-	if value, ok := _c.mutation.ContentType(); ok {
+	if value, ok := kcc.mutation.ContentType(); ok {
 		_spec.SetField(knowledgechunk.FieldContentType, field.TypeString, value)
 		_node.ContentType = value
 	}
-	if value, ok := _c.mutation.SearchText(); ok {
+	if value, ok := kcc.mutation.SearchText(); ok {
 		_spec.SetField(knowledgechunk.FieldSearchText, field.TypeString, value)
 		_node.SearchText = &value
 	}
@@ -400,10 +400,10 @@ func (_c *KnowledgeChunkCreate) createSpec() (*KnowledgeChunk, *sqlgraph.CreateS
 //			SetArticleID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *KnowledgeChunkCreate) OnConflict(opts ...sql.ConflictOption) *KnowledgeChunkUpsertOne {
-	_c.conflict = opts
+func (kcc *KnowledgeChunkCreate) OnConflict(opts ...sql.ConflictOption) *KnowledgeChunkUpsertOne {
+	kcc.conflict = opts
 	return &KnowledgeChunkUpsertOne{
-		create: _c,
+		create: kcc,
 	}
 }
 
@@ -413,10 +413,10 @@ func (_c *KnowledgeChunkCreate) OnConflict(opts ...sql.ConflictOption) *Knowledg
 //	client.KnowledgeChunk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *KnowledgeChunkCreate) OnConflictColumns(columns ...string) *KnowledgeChunkUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (kcc *KnowledgeChunkCreate) OnConflictColumns(columns ...string) *KnowledgeChunkUpsertOne {
+	kcc.conflict = append(kcc.conflict, sql.ConflictColumns(columns...))
 	return &KnowledgeChunkUpsertOne{
-		create: _c,
+		create: kcc,
 	}
 }
 
@@ -1043,16 +1043,16 @@ type KnowledgeChunkCreateBulk struct {
 }
 
 // Save creates the KnowledgeChunk entities in the database.
-func (_c *KnowledgeChunkCreateBulk) Save(ctx context.Context) ([]*KnowledgeChunk, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (kccb *KnowledgeChunkCreateBulk) Save(ctx context.Context) ([]*KnowledgeChunk, error) {
+	if kccb.err != nil {
+		return nil, kccb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*KnowledgeChunk, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(kccb.builders))
+	nodes := make([]*KnowledgeChunk, len(kccb.builders))
+	mutators := make([]Mutator, len(kccb.builders))
+	for i := range kccb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := kccb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*KnowledgeChunkMutation)
@@ -1066,12 +1066,12 @@ func (_c *KnowledgeChunkCreateBulk) Save(ctx context.Context) ([]*KnowledgeChunk
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, kccb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = kccb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, kccb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1095,7 +1095,7 @@ func (_c *KnowledgeChunkCreateBulk) Save(ctx context.Context) ([]*KnowledgeChunk
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, kccb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1103,8 +1103,8 @@ func (_c *KnowledgeChunkCreateBulk) Save(ctx context.Context) ([]*KnowledgeChunk
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *KnowledgeChunkCreateBulk) SaveX(ctx context.Context) []*KnowledgeChunk {
-	v, err := _c.Save(ctx)
+func (kccb *KnowledgeChunkCreateBulk) SaveX(ctx context.Context) []*KnowledgeChunk {
+	v, err := kccb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1112,14 +1112,14 @@ func (_c *KnowledgeChunkCreateBulk) SaveX(ctx context.Context) []*KnowledgeChunk
 }
 
 // Exec executes the query.
-func (_c *KnowledgeChunkCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (kccb *KnowledgeChunkCreateBulk) Exec(ctx context.Context) error {
+	_, err := kccb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *KnowledgeChunkCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (kccb *KnowledgeChunkCreateBulk) ExecX(ctx context.Context) {
+	if err := kccb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1139,10 +1139,10 @@ func (_c *KnowledgeChunkCreateBulk) ExecX(ctx context.Context) {
 //			SetArticleID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *KnowledgeChunkCreateBulk) OnConflict(opts ...sql.ConflictOption) *KnowledgeChunkUpsertBulk {
-	_c.conflict = opts
+func (kccb *KnowledgeChunkCreateBulk) OnConflict(opts ...sql.ConflictOption) *KnowledgeChunkUpsertBulk {
+	kccb.conflict = opts
 	return &KnowledgeChunkUpsertBulk{
-		create: _c,
+		create: kccb,
 	}
 }
 
@@ -1152,10 +1152,10 @@ func (_c *KnowledgeChunkCreateBulk) OnConflict(opts ...sql.ConflictOption) *Know
 //	client.KnowledgeChunk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *KnowledgeChunkCreateBulk) OnConflictColumns(columns ...string) *KnowledgeChunkUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (kccb *KnowledgeChunkCreateBulk) OnConflictColumns(columns ...string) *KnowledgeChunkUpsertBulk {
+	kccb.conflict = append(kccb.conflict, sql.ConflictColumns(columns...))
 	return &KnowledgeChunkUpsertBulk{
-		create: _c,
+		create: kccb,
 	}
 }
 

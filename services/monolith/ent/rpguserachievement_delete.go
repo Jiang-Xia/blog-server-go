@@ -20,56 +20,56 @@ type RpgUserAchievementDelete struct {
 }
 
 // Where appends a list predicates to the RpgUserAchievementDelete builder.
-func (_d *RpgUserAchievementDelete) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (ruad *RpgUserAchievementDelete) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementDelete {
+	ruad.mutation.Where(ps...)
+	return ruad
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *RpgUserAchievementDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (ruad *RpgUserAchievementDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, ruad.sqlExec, ruad.mutation, ruad.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserAchievementDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (ruad *RpgUserAchievementDelete) ExecX(ctx context.Context) int {
+	n, err := ruad.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *RpgUserAchievementDelete) sqlExec(ctx context.Context) (int, error) {
+func (ruad *RpgUserAchievementDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(rpguserachievement.Table, sqlgraph.NewFieldSpec(rpguserachievement.FieldID, field.TypeInt))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := ruad.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, ruad.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	ruad.mutation.done = true
 	return affected, err
 }
 
 // RpgUserAchievementDeleteOne is the builder for deleting a single RpgUserAchievement entity.
 type RpgUserAchievementDeleteOne struct {
-	_d *RpgUserAchievementDelete
+	ruad *RpgUserAchievementDelete
 }
 
 // Where appends a list predicates to the RpgUserAchievementDelete builder.
-func (_d *RpgUserAchievementDeleteOne) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (ruado *RpgUserAchievementDeleteOne) Where(ps ...predicate.RpgUserAchievement) *RpgUserAchievementDeleteOne {
+	ruado.ruad.mutation.Where(ps...)
+	return ruado
 }
 
 // Exec executes the deletion query.
-func (_d *RpgUserAchievementDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (ruado *RpgUserAchievementDeleteOne) Exec(ctx context.Context) error {
+	n, err := ruado.ruad.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *RpgUserAchievementDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *RpgUserAchievementDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (ruado *RpgUserAchievementDeleteOne) ExecX(ctx context.Context) {
+	if err := ruado.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

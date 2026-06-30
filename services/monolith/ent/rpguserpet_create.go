@@ -23,149 +23,149 @@ type RpgUserPetCreate struct {
 }
 
 // SetCreateTime sets the "createTime" field.
-func (_c *RpgUserPetCreate) SetCreateTime(v time.Time) *RpgUserPetCreate {
-	_c.mutation.SetCreateTime(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetCreateTime(t time.Time) *RpgUserPetCreate {
+	rupc.mutation.SetCreateTime(t)
+	return rupc
 }
 
 // SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableCreateTime(v *time.Time) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetCreateTime(*v)
+func (rupc *RpgUserPetCreate) SetNillableCreateTime(t *time.Time) *RpgUserPetCreate {
+	if t != nil {
+		rupc.SetCreateTime(*t)
 	}
-	return _c
+	return rupc
 }
 
 // SetUpdateTime sets the "updateTime" field.
-func (_c *RpgUserPetCreate) SetUpdateTime(v time.Time) *RpgUserPetCreate {
-	_c.mutation.SetUpdateTime(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetUpdateTime(t time.Time) *RpgUserPetCreate {
+	rupc.mutation.SetUpdateTime(t)
+	return rupc
 }
 
 // SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableUpdateTime(v *time.Time) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetUpdateTime(*v)
+func (rupc *RpgUserPetCreate) SetNillableUpdateTime(t *time.Time) *RpgUserPetCreate {
+	if t != nil {
+		rupc.SetUpdateTime(*t)
 	}
-	return _c
+	return rupc
 }
 
 // SetIsDelete sets the "isDelete" field.
-func (_c *RpgUserPetCreate) SetIsDelete(v bool) *RpgUserPetCreate {
-	_c.mutation.SetIsDelete(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetIsDelete(b bool) *RpgUserPetCreate {
+	rupc.mutation.SetIsDelete(b)
+	return rupc
 }
 
 // SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableIsDelete(v *bool) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetIsDelete(*v)
+func (rupc *RpgUserPetCreate) SetNillableIsDelete(b *bool) *RpgUserPetCreate {
+	if b != nil {
+		rupc.SetIsDelete(*b)
 	}
-	return _c
+	return rupc
 }
 
 // SetVersion sets the "version" field.
-func (_c *RpgUserPetCreate) SetVersion(v int) *RpgUserPetCreate {
-	_c.mutation.SetVersion(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetVersion(i int) *RpgUserPetCreate {
+	rupc.mutation.SetVersion(i)
+	return rupc
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableVersion(v *int) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetVersion(*v)
+func (rupc *RpgUserPetCreate) SetNillableVersion(i *int) *RpgUserPetCreate {
+	if i != nil {
+		rupc.SetVersion(*i)
 	}
-	return _c
+	return rupc
 }
 
 // SetUID sets the "uid" field.
-func (_c *RpgUserPetCreate) SetUID(v int) *RpgUserPetCreate {
-	_c.mutation.SetUID(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetUID(i int) *RpgUserPetCreate {
+	rupc.mutation.SetUID(i)
+	return rupc
 }
 
 // SetPetCode sets the "petCode" field.
-func (_c *RpgUserPetCreate) SetPetCode(v string) *RpgUserPetCreate {
-	_c.mutation.SetPetCode(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetPetCode(s string) *RpgUserPetCreate {
+	rupc.mutation.SetPetCode(s)
+	return rupc
 }
 
 // SetLevel sets the "level" field.
-func (_c *RpgUserPetCreate) SetLevel(v int) *RpgUserPetCreate {
-	_c.mutation.SetLevel(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetLevel(i int) *RpgUserPetCreate {
+	rupc.mutation.SetLevel(i)
+	return rupc
 }
 
 // SetNillableLevel sets the "level" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableLevel(v *int) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetLevel(*v)
+func (rupc *RpgUserPetCreate) SetNillableLevel(i *int) *RpgUserPetCreate {
+	if i != nil {
+		rupc.SetLevel(*i)
 	}
-	return _c
+	return rupc
 }
 
 // SetExp sets the "exp" field.
-func (_c *RpgUserPetCreate) SetExp(v int) *RpgUserPetCreate {
-	_c.mutation.SetExp(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetExp(i int) *RpgUserPetCreate {
+	rupc.mutation.SetExp(i)
+	return rupc
 }
 
 // SetNillableExp sets the "exp" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableExp(v *int) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetExp(*v)
+func (rupc *RpgUserPetCreate) SetNillableExp(i *int) *RpgUserPetCreate {
+	if i != nil {
+		rupc.SetExp(*i)
 	}
-	return _c
+	return rupc
 }
 
 // SetEffectJson sets the "effectJson" field.
-func (_c *RpgUserPetCreate) SetEffectJson(v string) *RpgUserPetCreate {
-	_c.mutation.SetEffectJson(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetEffectJson(s string) *RpgUserPetCreate {
+	rupc.mutation.SetEffectJson(s)
+	return rupc
 }
 
 // SetNillableEffectJson sets the "effectJson" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableEffectJson(v *string) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetEffectJson(*v)
+func (rupc *RpgUserPetCreate) SetNillableEffectJson(s *string) *RpgUserPetCreate {
+	if s != nil {
+		rupc.SetEffectJson(*s)
 	}
-	return _c
+	return rupc
 }
 
 // SetNickname sets the "nickname" field.
-func (_c *RpgUserPetCreate) SetNickname(v string) *RpgUserPetCreate {
-	_c.mutation.SetNickname(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetNickname(s string) *RpgUserPetCreate {
+	rupc.mutation.SetNickname(s)
+	return rupc
 }
 
 // SetNillableNickname sets the "nickname" field if the given value is not nil.
-func (_c *RpgUserPetCreate) SetNillableNickname(v *string) *RpgUserPetCreate {
-	if v != nil {
-		_c.SetNickname(*v)
+func (rupc *RpgUserPetCreate) SetNillableNickname(s *string) *RpgUserPetCreate {
+	if s != nil {
+		rupc.SetNickname(*s)
 	}
-	return _c
+	return rupc
 }
 
 // SetID sets the "id" field.
-func (_c *RpgUserPetCreate) SetID(v int) *RpgUserPetCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rupc *RpgUserPetCreate) SetID(i int) *RpgUserPetCreate {
+	rupc.mutation.SetID(i)
+	return rupc
 }
 
 // Mutation returns the RpgUserPetMutation object of the builder.
-func (_c *RpgUserPetCreate) Mutation() *RpgUserPetMutation {
-	return _c.mutation
+func (rupc *RpgUserPetCreate) Mutation() *RpgUserPetMutation {
+	return rupc.mutation
 }
 
 // Save creates the RpgUserPet in the database.
-func (_c *RpgUserPetCreate) Save(ctx context.Context) (*RpgUserPet, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rupc *RpgUserPetCreate) Save(ctx context.Context) (*RpgUserPet, error) {
+	rupc.defaults()
+	return withHooks(ctx, rupc.sqlSave, rupc.mutation, rupc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RpgUserPetCreate) SaveX(ctx context.Context) *RpgUserPet {
-	v, err := _c.Save(ctx)
+func (rupc *RpgUserPetCreate) SaveX(ctx context.Context) *RpgUserPet {
+	v, err := rupc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -173,88 +173,88 @@ func (_c *RpgUserPetCreate) SaveX(ctx context.Context) *RpgUserPet {
 }
 
 // Exec executes the query.
-func (_c *RpgUserPetCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rupc *RpgUserPetCreate) Exec(ctx context.Context) error {
+	_, err := rupc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserPetCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rupc *RpgUserPetCreate) ExecX(ctx context.Context) {
+	if err := rupc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RpgUserPetCreate) defaults() {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rupc *RpgUserPetCreate) defaults() {
+	if _, ok := rupc.mutation.CreateTime(); !ok {
 		v := rpguserpet.DefaultCreateTime()
-		_c.mutation.SetCreateTime(v)
+		rupc.mutation.SetCreateTime(v)
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rupc.mutation.UpdateTime(); !ok {
 		v := rpguserpet.DefaultUpdateTime()
-		_c.mutation.SetUpdateTime(v)
+		rupc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rupc.mutation.IsDelete(); !ok {
 		v := rpguserpet.DefaultIsDelete
-		_c.mutation.SetIsDelete(v)
+		rupc.mutation.SetIsDelete(v)
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rupc.mutation.Version(); !ok {
 		v := rpguserpet.DefaultVersion
-		_c.mutation.SetVersion(v)
+		rupc.mutation.SetVersion(v)
 	}
-	if _, ok := _c.mutation.Level(); !ok {
+	if _, ok := rupc.mutation.Level(); !ok {
 		v := rpguserpet.DefaultLevel
-		_c.mutation.SetLevel(v)
+		rupc.mutation.SetLevel(v)
 	}
-	if _, ok := _c.mutation.Exp(); !ok {
+	if _, ok := rupc.mutation.Exp(); !ok {
 		v := rpguserpet.DefaultExp
-		_c.mutation.SetExp(v)
+		rupc.mutation.SetExp(v)
 	}
-	if _, ok := _c.mutation.Nickname(); !ok {
+	if _, ok := rupc.mutation.Nickname(); !ok {
 		v := rpguserpet.DefaultNickname
-		_c.mutation.SetNickname(v)
+		rupc.mutation.SetNickname(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RpgUserPetCreate) check() error {
-	if _, ok := _c.mutation.CreateTime(); !ok {
+func (rupc *RpgUserPetCreate) check() error {
+	if _, ok := rupc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserPet.createTime"`)}
 	}
-	if _, ok := _c.mutation.UpdateTime(); !ok {
+	if _, ok := rupc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserPet.updateTime"`)}
 	}
-	if _, ok := _c.mutation.IsDelete(); !ok {
+	if _, ok := rupc.mutation.IsDelete(); !ok {
 		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserPet.isDelete"`)}
 	}
-	if _, ok := _c.mutation.Version(); !ok {
+	if _, ok := rupc.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserPet.version"`)}
 	}
-	if _, ok := _c.mutation.UID(); !ok {
+	if _, ok := rupc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserPet.uid"`)}
 	}
-	if _, ok := _c.mutation.PetCode(); !ok {
+	if _, ok := rupc.mutation.PetCode(); !ok {
 		return &ValidationError{Name: "petCode", err: errors.New(`ent: missing required field "RpgUserPet.petCode"`)}
 	}
-	if _, ok := _c.mutation.Level(); !ok {
+	if _, ok := rupc.mutation.Level(); !ok {
 		return &ValidationError{Name: "level", err: errors.New(`ent: missing required field "RpgUserPet.level"`)}
 	}
-	if _, ok := _c.mutation.Exp(); !ok {
+	if _, ok := rupc.mutation.Exp(); !ok {
 		return &ValidationError{Name: "exp", err: errors.New(`ent: missing required field "RpgUserPet.exp"`)}
 	}
-	if _, ok := _c.mutation.Nickname(); !ok {
+	if _, ok := rupc.mutation.Nickname(); !ok {
 		return &ValidationError{Name: "nickname", err: errors.New(`ent: missing required field "RpgUserPet.nickname"`)}
 	}
 	return nil
 }
 
-func (_c *RpgUserPetCreate) sqlSave(ctx context.Context) (*RpgUserPet, error) {
-	if err := _c.check(); err != nil {
+func (rupc *RpgUserPetCreate) sqlSave(ctx context.Context) (*RpgUserPet, error) {
+	if err := rupc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rupc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rupc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -264,58 +264,58 @@ func (_c *RpgUserPetCreate) sqlSave(ctx context.Context) (*RpgUserPet, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rupc.mutation.id = &_node.ID
+	rupc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RpgUserPetCreate) createSpec() (*RpgUserPet, *sqlgraph.CreateSpec) {
+func (rupc *RpgUserPetCreate) createSpec() (*RpgUserPet, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RpgUserPet{config: _c.config}
+		_node = &RpgUserPet{config: rupc.config}
 		_spec = sqlgraph.NewCreateSpec(rpguserpet.Table, sqlgraph.NewFieldSpec(rpguserpet.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rupc.conflict
+	if id, ok := rupc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.CreateTime(); ok {
+	if value, ok := rupc.mutation.CreateTime(); ok {
 		_spec.SetField(rpguserpet.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
 	}
-	if value, ok := _c.mutation.UpdateTime(); ok {
+	if value, ok := rupc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserpet.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
 	}
-	if value, ok := _c.mutation.IsDelete(); ok {
+	if value, ok := rupc.mutation.IsDelete(); ok {
 		_spec.SetField(rpguserpet.FieldIsDelete, field.TypeBool, value)
 		_node.IsDelete = value
 	}
-	if value, ok := _c.mutation.Version(); ok {
+	if value, ok := rupc.mutation.Version(); ok {
 		_spec.SetField(rpguserpet.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := _c.mutation.UID(); ok {
+	if value, ok := rupc.mutation.UID(); ok {
 		_spec.SetField(rpguserpet.FieldUID, field.TypeInt, value)
 		_node.UID = value
 	}
-	if value, ok := _c.mutation.PetCode(); ok {
+	if value, ok := rupc.mutation.PetCode(); ok {
 		_spec.SetField(rpguserpet.FieldPetCode, field.TypeString, value)
 		_node.PetCode = value
 	}
-	if value, ok := _c.mutation.Level(); ok {
+	if value, ok := rupc.mutation.Level(); ok {
 		_spec.SetField(rpguserpet.FieldLevel, field.TypeInt, value)
 		_node.Level = value
 	}
-	if value, ok := _c.mutation.Exp(); ok {
+	if value, ok := rupc.mutation.Exp(); ok {
 		_spec.SetField(rpguserpet.FieldExp, field.TypeInt, value)
 		_node.Exp = value
 	}
-	if value, ok := _c.mutation.EffectJson(); ok {
+	if value, ok := rupc.mutation.EffectJson(); ok {
 		_spec.SetField(rpguserpet.FieldEffectJson, field.TypeString, value)
 		_node.EffectJson = &value
 	}
-	if value, ok := _c.mutation.Nickname(); ok {
+	if value, ok := rupc.mutation.Nickname(); ok {
 		_spec.SetField(rpguserpet.FieldNickname, field.TypeString, value)
 		_node.Nickname = value
 	}
@@ -338,10 +338,10 @@ func (_c *RpgUserPetCreate) createSpec() (*RpgUserPet, *sqlgraph.CreateSpec) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserPetCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserPetUpsertOne {
-	_c.conflict = opts
+func (rupc *RpgUserPetCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserPetUpsertOne {
+	rupc.conflict = opts
 	return &RpgUserPetUpsertOne{
-		create: _c,
+		create: rupc,
 	}
 }
 
@@ -351,10 +351,10 @@ func (_c *RpgUserPetCreate) OnConflict(opts ...sql.ConflictOption) *RpgUserPetUp
 //	client.RpgUserPet.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserPetCreate) OnConflictColumns(columns ...string) *RpgUserPetUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rupc *RpgUserPetCreate) OnConflictColumns(columns ...string) *RpgUserPetUpsertOne {
+	rupc.conflict = append(rupc.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserPetUpsertOne{
-		create: _c,
+		create: rupc,
 	}
 }
 
@@ -763,16 +763,16 @@ type RpgUserPetCreateBulk struct {
 }
 
 // Save creates the RpgUserPet entities in the database.
-func (_c *RpgUserPetCreateBulk) Save(ctx context.Context) ([]*RpgUserPet, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rupcb *RpgUserPetCreateBulk) Save(ctx context.Context) ([]*RpgUserPet, error) {
+	if rupcb.err != nil {
+		return nil, rupcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RpgUserPet, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rupcb.builders))
+	nodes := make([]*RpgUserPet, len(rupcb.builders))
+	mutators := make([]Mutator, len(rupcb.builders))
+	for i := range rupcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rupcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RpgUserPetMutation)
@@ -786,12 +786,12 @@ func (_c *RpgUserPetCreateBulk) Save(ctx context.Context) ([]*RpgUserPet, error)
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rupcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rupcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rupcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -815,7 +815,7 @@ func (_c *RpgUserPetCreateBulk) Save(ctx context.Context) ([]*RpgUserPet, error)
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rupcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -823,8 +823,8 @@ func (_c *RpgUserPetCreateBulk) Save(ctx context.Context) ([]*RpgUserPet, error)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RpgUserPetCreateBulk) SaveX(ctx context.Context) []*RpgUserPet {
-	v, err := _c.Save(ctx)
+func (rupcb *RpgUserPetCreateBulk) SaveX(ctx context.Context) []*RpgUserPet {
+	v, err := rupcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -832,14 +832,14 @@ func (_c *RpgUserPetCreateBulk) SaveX(ctx context.Context) []*RpgUserPet {
 }
 
 // Exec executes the query.
-func (_c *RpgUserPetCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rupcb *RpgUserPetCreateBulk) Exec(ctx context.Context) error {
+	_, err := rupcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RpgUserPetCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rupcb *RpgUserPetCreateBulk) ExecX(ctx context.Context) {
+	if err := rupcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -859,10 +859,10 @@ func (_c *RpgUserPetCreateBulk) ExecX(ctx context.Context) {
 //			SetCreateTime(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RpgUserPetCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserPetUpsertBulk {
-	_c.conflict = opts
+func (rupcb *RpgUserPetCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserPetUpsertBulk {
+	rupcb.conflict = opts
 	return &RpgUserPetUpsertBulk{
-		create: _c,
+		create: rupcb,
 	}
 }
 
@@ -872,10 +872,10 @@ func (_c *RpgUserPetCreateBulk) OnConflict(opts ...sql.ConflictOption) *RpgUserP
 //	client.RpgUserPet.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RpgUserPetCreateBulk) OnConflictColumns(columns ...string) *RpgUserPetUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rupcb *RpgUserPetCreateBulk) OnConflictColumns(columns ...string) *RpgUserPetUpsertBulk {
+	rupcb.conflict = append(rupcb.conflict, sql.ConflictColumns(columns...))
 	return &RpgUserPetUpsertBulk{
-		create: _c,
+		create: rupcb,
 	}
 }
 

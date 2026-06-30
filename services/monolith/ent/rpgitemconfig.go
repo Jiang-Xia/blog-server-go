@@ -73,7 +73,7 @@ func (*RpgItemConfig) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RpgItemConfig fields.
-func (_m *RpgItemConfig) assignValues(columns []string, values []any) error {
+func (ric *RpgItemConfig) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -84,100 +84,100 @@ func (_m *RpgItemConfig) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			_m.ID = int(value.Int64)
+			ric.ID = int(value.Int64)
 		case rpgitemconfig.FieldCreateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
-				_m.CreateTime = value.Time
+				ric.CreateTime = value.Time
 			}
 		case rpgitemconfig.FieldUpdateTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
-				_m.UpdateTime = value.Time
+				ric.UpdateTime = value.Time
 			}
 		case rpgitemconfig.FieldIsDelete:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
 			} else if value.Valid {
-				_m.IsDelete = value.Bool
+				ric.IsDelete = value.Bool
 			}
 		case rpgitemconfig.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				_m.Version = int(value.Int64)
+				ric.Version = int(value.Int64)
 			}
 		case rpgitemconfig.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				_m.Code = value.String
+				ric.Code = value.String
 			}
 		case rpgitemconfig.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				_m.Name = value.String
+				ric.Name = value.String
 			}
 		case rpgitemconfig.FieldSort:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field sort", values[i])
 			} else if value.Valid {
-				_m.Sort = int(value.Int64)
+				ric.Sort = int(value.Int64)
 			}
 		case rpgitemconfig.FieldActive:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field active", values[i])
 			} else if value.Valid {
-				_m.Active = int(value.Int64)
+				ric.Active = int(value.Int64)
 			}
 		case rpgitemconfig.FieldIsHidden:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field isHidden", values[i])
 			} else if value.Valid {
-				_m.IsHidden = int(value.Int64)
+				ric.IsHidden = int(value.Int64)
 			}
 		case rpgitemconfig.FieldEffectJson:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field effectJson", values[i])
 			} else if value.Valid {
-				_m.EffectJson = new(string)
-				*_m.EffectJson = value.String
+				ric.EffectJson = new(string)
+				*ric.EffectJson = value.String
 			}
 		case rpgitemconfig.FieldItemType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field itemType", values[i])
 			} else if value.Valid {
-				_m.ItemType = value.String
+				ric.ItemType = value.String
 			}
 		case rpgitemconfig.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				_m.Description = value.String
+				ric.Description = value.String
 			}
 		case rpgitemconfig.FieldCategory:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field category", values[i])
 			} else if value.Valid {
-				_m.Category = value.String
+				ric.Category = value.String
 			}
 		case rpgitemconfig.FieldIcon:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field icon", values[i])
 			} else if value.Valid {
-				_m.Icon = value.String
+				ric.Icon = value.String
 			}
 		case rpgitemconfig.FieldRarity:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field rarity", values[i])
 			} else if value.Valid {
-				_m.Rarity = value.String
+				ric.Rarity = value.String
 			}
 		default:
-			_m.selectValues.Set(columns[i], values[i])
+			ric.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -185,79 +185,79 @@ func (_m *RpgItemConfig) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RpgItemConfig.
 // This includes values selected through modifiers, order, etc.
-func (_m *RpgItemConfig) Value(name string) (ent.Value, error) {
-	return _m.selectValues.Get(name)
+func (ric *RpgItemConfig) Value(name string) (ent.Value, error) {
+	return ric.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this RpgItemConfig.
 // Note that you need to call RpgItemConfig.Unwrap() before calling this method if this RpgItemConfig
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (_m *RpgItemConfig) Update() *RpgItemConfigUpdateOne {
-	return NewRpgItemConfigClient(_m.config).UpdateOne(_m)
+func (ric *RpgItemConfig) Update() *RpgItemConfigUpdateOne {
+	return NewRpgItemConfigClient(ric.config).UpdateOne(ric)
 }
 
 // Unwrap unwraps the RpgItemConfig entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (_m *RpgItemConfig) Unwrap() *RpgItemConfig {
-	_tx, ok := _m.config.driver.(*txDriver)
+func (ric *RpgItemConfig) Unwrap() *RpgItemConfig {
+	_tx, ok := ric.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RpgItemConfig is not a transactional entity")
 	}
-	_m.config.driver = _tx.drv
-	return _m
+	ric.config.driver = _tx.drv
+	return ric
 }
 
 // String implements the fmt.Stringer.
-func (_m *RpgItemConfig) String() string {
+func (ric *RpgItemConfig) String() string {
 	var builder strings.Builder
 	builder.WriteString("RpgItemConfig(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", ric.ID))
 	builder.WriteString("createTime=")
-	builder.WriteString(_m.CreateTime.Format(time.ANSIC))
+	builder.WriteString(ric.CreateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
-	builder.WriteString(_m.UpdateTime.Format(time.ANSIC))
+	builder.WriteString(ric.UpdateTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsDelete))
+	builder.WriteString(fmt.Sprintf("%v", ric.IsDelete))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Version))
+	builder.WriteString(fmt.Sprintf("%v", ric.Version))
 	builder.WriteString(", ")
 	builder.WriteString("code=")
-	builder.WriteString(_m.Code)
+	builder.WriteString(ric.Code)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(_m.Name)
+	builder.WriteString(ric.Name)
 	builder.WriteString(", ")
 	builder.WriteString("sort=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Sort))
+	builder.WriteString(fmt.Sprintf("%v", ric.Sort))
 	builder.WriteString(", ")
 	builder.WriteString("active=")
-	builder.WriteString(fmt.Sprintf("%v", _m.Active))
+	builder.WriteString(fmt.Sprintf("%v", ric.Active))
 	builder.WriteString(", ")
 	builder.WriteString("isHidden=")
-	builder.WriteString(fmt.Sprintf("%v", _m.IsHidden))
+	builder.WriteString(fmt.Sprintf("%v", ric.IsHidden))
 	builder.WriteString(", ")
-	if v := _m.EffectJson; v != nil {
+	if v := ric.EffectJson; v != nil {
 		builder.WriteString("effectJson=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("itemType=")
-	builder.WriteString(_m.ItemType)
+	builder.WriteString(ric.ItemType)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(_m.Description)
+	builder.WriteString(ric.Description)
 	builder.WriteString(", ")
 	builder.WriteString("category=")
-	builder.WriteString(_m.Category)
+	builder.WriteString(ric.Category)
 	builder.WriteString(", ")
 	builder.WriteString("icon=")
-	builder.WriteString(_m.Icon)
+	builder.WriteString(ric.Icon)
 	builder.WriteString(", ")
 	builder.WriteString("rarity=")
-	builder.WriteString(_m.Rarity)
+	builder.WriteString(ric.Rarity)
 	builder.WriteByte(')')
 	return builder.String()
 }

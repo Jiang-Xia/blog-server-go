@@ -20,56 +20,56 @@ type MyFileDelete struct {
 }
 
 // Where appends a list predicates to the MyFileDelete builder.
-func (_d *MyFileDelete) Where(ps ...predicate.MyFile) *MyFileDelete {
-	_d.mutation.Where(ps...)
-	return _d
+func (mfd *MyFileDelete) Where(ps ...predicate.MyFile) *MyFileDelete {
+	mfd.mutation.Where(ps...)
+	return mfd
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (_d *MyFileDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
+func (mfd *MyFileDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, mfd.sqlExec, mfd.mutation, mfd.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *MyFileDelete) ExecX(ctx context.Context) int {
-	n, err := _d.Exec(ctx)
+func (mfd *MyFileDelete) ExecX(ctx context.Context) int {
+	n, err := mfd.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (_d *MyFileDelete) sqlExec(ctx context.Context) (int, error) {
+func (mfd *MyFileDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(myfile.Table, sqlgraph.NewFieldSpec(myfile.FieldID, field.TypeString))
-	if ps := _d.mutation.predicates; len(ps) > 0 {
+	if ps := mfd.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, mfd.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	_d.mutation.done = true
+	mfd.mutation.done = true
 	return affected, err
 }
 
 // MyFileDeleteOne is the builder for deleting a single MyFile entity.
 type MyFileDeleteOne struct {
-	_d *MyFileDelete
+	mfd *MyFileDelete
 }
 
 // Where appends a list predicates to the MyFileDelete builder.
-func (_d *MyFileDeleteOne) Where(ps ...predicate.MyFile) *MyFileDeleteOne {
-	_d._d.mutation.Where(ps...)
-	return _d
+func (mfdo *MyFileDeleteOne) Where(ps ...predicate.MyFile) *MyFileDeleteOne {
+	mfdo.mfd.mutation.Where(ps...)
+	return mfdo
 }
 
 // Exec executes the deletion query.
-func (_d *MyFileDeleteOne) Exec(ctx context.Context) error {
-	n, err := _d._d.Exec(ctx)
+func (mfdo *MyFileDeleteOne) Exec(ctx context.Context) error {
+	n, err := mfdo.mfd.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (_d *MyFileDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_d *MyFileDeleteOne) ExecX(ctx context.Context) {
-	if err := _d.Exec(ctx); err != nil {
+func (mfdo *MyFileDeleteOne) ExecX(ctx context.Context) {
+	if err := mfdo.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

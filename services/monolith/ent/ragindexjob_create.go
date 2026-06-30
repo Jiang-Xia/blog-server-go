@@ -23,93 +23,93 @@ type RagIndexJobCreate struct {
 }
 
 // SetArticleID sets the "article_id" field.
-func (_c *RagIndexJobCreate) SetArticleID(v int) *RagIndexJobCreate {
-	_c.mutation.SetArticleID(v)
-	return _c
+func (rijc *RagIndexJobCreate) SetArticleID(i int) *RagIndexJobCreate {
+	rijc.mutation.SetArticleID(i)
+	return rijc
 }
 
 // SetNillableArticleID sets the "article_id" field if the given value is not nil.
-func (_c *RagIndexJobCreate) SetNillableArticleID(v *int) *RagIndexJobCreate {
-	if v != nil {
-		_c.SetArticleID(*v)
+func (rijc *RagIndexJobCreate) SetNillableArticleID(i *int) *RagIndexJobCreate {
+	if i != nil {
+		rijc.SetArticleID(*i)
 	}
-	return _c
+	return rijc
 }
 
 // SetStatus sets the "status" field.
-func (_c *RagIndexJobCreate) SetStatus(v string) *RagIndexJobCreate {
-	_c.mutation.SetStatus(v)
-	return _c
+func (rijc *RagIndexJobCreate) SetStatus(s string) *RagIndexJobCreate {
+	rijc.mutation.SetStatus(s)
+	return rijc
 }
 
 // SetNillableStatus sets the "status" field if the given value is not nil.
-func (_c *RagIndexJobCreate) SetNillableStatus(v *string) *RagIndexJobCreate {
-	if v != nil {
-		_c.SetStatus(*v)
+func (rijc *RagIndexJobCreate) SetNillableStatus(s *string) *RagIndexJobCreate {
+	if s != nil {
+		rijc.SetStatus(*s)
 	}
-	return _c
+	return rijc
 }
 
 // SetChunkCount sets the "chunk_count" field.
-func (_c *RagIndexJobCreate) SetChunkCount(v int) *RagIndexJobCreate {
-	_c.mutation.SetChunkCount(v)
-	return _c
+func (rijc *RagIndexJobCreate) SetChunkCount(i int) *RagIndexJobCreate {
+	rijc.mutation.SetChunkCount(i)
+	return rijc
 }
 
 // SetNillableChunkCount sets the "chunk_count" field if the given value is not nil.
-func (_c *RagIndexJobCreate) SetNillableChunkCount(v *int) *RagIndexJobCreate {
-	if v != nil {
-		_c.SetChunkCount(*v)
+func (rijc *RagIndexJobCreate) SetNillableChunkCount(i *int) *RagIndexJobCreate {
+	if i != nil {
+		rijc.SetChunkCount(*i)
 	}
-	return _c
+	return rijc
 }
 
 // SetErrorMsg sets the "error_msg" field.
-func (_c *RagIndexJobCreate) SetErrorMsg(v string) *RagIndexJobCreate {
-	_c.mutation.SetErrorMsg(v)
-	return _c
+func (rijc *RagIndexJobCreate) SetErrorMsg(s string) *RagIndexJobCreate {
+	rijc.mutation.SetErrorMsg(s)
+	return rijc
 }
 
 // SetNillableErrorMsg sets the "error_msg" field if the given value is not nil.
-func (_c *RagIndexJobCreate) SetNillableErrorMsg(v *string) *RagIndexJobCreate {
-	if v != nil {
-		_c.SetErrorMsg(*v)
+func (rijc *RagIndexJobCreate) SetNillableErrorMsg(s *string) *RagIndexJobCreate {
+	if s != nil {
+		rijc.SetErrorMsg(*s)
 	}
-	return _c
+	return rijc
 }
 
 // SetCreateAt sets the "create_at" field.
-func (_c *RagIndexJobCreate) SetCreateAt(v time.Time) *RagIndexJobCreate {
-	_c.mutation.SetCreateAt(v)
-	return _c
+func (rijc *RagIndexJobCreate) SetCreateAt(t time.Time) *RagIndexJobCreate {
+	rijc.mutation.SetCreateAt(t)
+	return rijc
 }
 
 // SetUpdateAt sets the "update_at" field.
-func (_c *RagIndexJobCreate) SetUpdateAt(v time.Time) *RagIndexJobCreate {
-	_c.mutation.SetUpdateAt(v)
-	return _c
+func (rijc *RagIndexJobCreate) SetUpdateAt(t time.Time) *RagIndexJobCreate {
+	rijc.mutation.SetUpdateAt(t)
+	return rijc
 }
 
 // SetID sets the "id" field.
-func (_c *RagIndexJobCreate) SetID(v int) *RagIndexJobCreate {
-	_c.mutation.SetID(v)
-	return _c
+func (rijc *RagIndexJobCreate) SetID(i int) *RagIndexJobCreate {
+	rijc.mutation.SetID(i)
+	return rijc
 }
 
 // Mutation returns the RagIndexJobMutation object of the builder.
-func (_c *RagIndexJobCreate) Mutation() *RagIndexJobMutation {
-	return _c.mutation
+func (rijc *RagIndexJobCreate) Mutation() *RagIndexJobMutation {
+	return rijc.mutation
 }
 
 // Save creates the RagIndexJob in the database.
-func (_c *RagIndexJobCreate) Save(ctx context.Context) (*RagIndexJob, error) {
-	_c.defaults()
-	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
+func (rijc *RagIndexJobCreate) Save(ctx context.Context) (*RagIndexJob, error) {
+	rijc.defaults()
+	return withHooks(ctx, rijc.sqlSave, rijc.mutation, rijc.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (_c *RagIndexJobCreate) SaveX(ctx context.Context) *RagIndexJob {
-	v, err := _c.Save(ctx)
+func (rijc *RagIndexJobCreate) SaveX(ctx context.Context) *RagIndexJob {
+	v, err := rijc.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -117,60 +117,60 @@ func (_c *RagIndexJobCreate) SaveX(ctx context.Context) *RagIndexJob {
 }
 
 // Exec executes the query.
-func (_c *RagIndexJobCreate) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rijc *RagIndexJobCreate) Exec(ctx context.Context) error {
+	_, err := rijc.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RagIndexJobCreate) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rijc *RagIndexJobCreate) ExecX(ctx context.Context) {
+	if err := rijc.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (_c *RagIndexJobCreate) defaults() {
-	if _, ok := _c.mutation.ArticleID(); !ok {
+func (rijc *RagIndexJobCreate) defaults() {
+	if _, ok := rijc.mutation.ArticleID(); !ok {
 		v := ragindexjob.DefaultArticleID
-		_c.mutation.SetArticleID(v)
+		rijc.mutation.SetArticleID(v)
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := rijc.mutation.Status(); !ok {
 		v := ragindexjob.DefaultStatus
-		_c.mutation.SetStatus(v)
+		rijc.mutation.SetStatus(v)
 	}
-	if _, ok := _c.mutation.ChunkCount(); !ok {
+	if _, ok := rijc.mutation.ChunkCount(); !ok {
 		v := ragindexjob.DefaultChunkCount
-		_c.mutation.SetChunkCount(v)
+		rijc.mutation.SetChunkCount(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (_c *RagIndexJobCreate) check() error {
-	if _, ok := _c.mutation.ArticleID(); !ok {
+func (rijc *RagIndexJobCreate) check() error {
+	if _, ok := rijc.mutation.ArticleID(); !ok {
 		return &ValidationError{Name: "article_id", err: errors.New(`ent: missing required field "RagIndexJob.article_id"`)}
 	}
-	if _, ok := _c.mutation.Status(); !ok {
+	if _, ok := rijc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "RagIndexJob.status"`)}
 	}
-	if _, ok := _c.mutation.ChunkCount(); !ok {
+	if _, ok := rijc.mutation.ChunkCount(); !ok {
 		return &ValidationError{Name: "chunk_count", err: errors.New(`ent: missing required field "RagIndexJob.chunk_count"`)}
 	}
-	if _, ok := _c.mutation.CreateAt(); !ok {
+	if _, ok := rijc.mutation.CreateAt(); !ok {
 		return &ValidationError{Name: "create_at", err: errors.New(`ent: missing required field "RagIndexJob.create_at"`)}
 	}
-	if _, ok := _c.mutation.UpdateAt(); !ok {
+	if _, ok := rijc.mutation.UpdateAt(); !ok {
 		return &ValidationError{Name: "update_at", err: errors.New(`ent: missing required field "RagIndexJob.update_at"`)}
 	}
 	return nil
 }
 
-func (_c *RagIndexJobCreate) sqlSave(ctx context.Context) (*RagIndexJob, error) {
-	if err := _c.check(); err != nil {
+func (rijc *RagIndexJobCreate) sqlSave(ctx context.Context) (*RagIndexJob, error) {
+	if err := rijc.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := _c.createSpec()
-	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
+	_node, _spec := rijc.createSpec()
+	if err := sqlgraph.CreateNode(ctx, rijc.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -180,42 +180,42 @@ func (_c *RagIndexJobCreate) sqlSave(ctx context.Context) (*RagIndexJob, error) 
 		id := _spec.ID.Value.(int64)
 		_node.ID = int(id)
 	}
-	_c.mutation.id = &_node.ID
-	_c.mutation.done = true
+	rijc.mutation.id = &_node.ID
+	rijc.mutation.done = true
 	return _node, nil
 }
 
-func (_c *RagIndexJobCreate) createSpec() (*RagIndexJob, *sqlgraph.CreateSpec) {
+func (rijc *RagIndexJobCreate) createSpec() (*RagIndexJob, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RagIndexJob{config: _c.config}
+		_node = &RagIndexJob{config: rijc.config}
 		_spec = sqlgraph.NewCreateSpec(ragindexjob.Table, sqlgraph.NewFieldSpec(ragindexjob.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = _c.conflict
-	if id, ok := _c.mutation.ID(); ok {
+	_spec.OnConflict = rijc.conflict
+	if id, ok := rijc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := _c.mutation.ArticleID(); ok {
+	if value, ok := rijc.mutation.ArticleID(); ok {
 		_spec.SetField(ragindexjob.FieldArticleID, field.TypeInt, value)
 		_node.ArticleID = value
 	}
-	if value, ok := _c.mutation.Status(); ok {
+	if value, ok := rijc.mutation.Status(); ok {
 		_spec.SetField(ragindexjob.FieldStatus, field.TypeString, value)
 		_node.Status = value
 	}
-	if value, ok := _c.mutation.ChunkCount(); ok {
+	if value, ok := rijc.mutation.ChunkCount(); ok {
 		_spec.SetField(ragindexjob.FieldChunkCount, field.TypeInt, value)
 		_node.ChunkCount = value
 	}
-	if value, ok := _c.mutation.ErrorMsg(); ok {
+	if value, ok := rijc.mutation.ErrorMsg(); ok {
 		_spec.SetField(ragindexjob.FieldErrorMsg, field.TypeString, value)
 		_node.ErrorMsg = &value
 	}
-	if value, ok := _c.mutation.CreateAt(); ok {
+	if value, ok := rijc.mutation.CreateAt(); ok {
 		_spec.SetField(ragindexjob.FieldCreateAt, field.TypeTime, value)
 		_node.CreateAt = value
 	}
-	if value, ok := _c.mutation.UpdateAt(); ok {
+	if value, ok := rijc.mutation.UpdateAt(); ok {
 		_spec.SetField(ragindexjob.FieldUpdateAt, field.TypeTime, value)
 		_node.UpdateAt = value
 	}
@@ -238,10 +238,10 @@ func (_c *RagIndexJobCreate) createSpec() (*RagIndexJob, *sqlgraph.CreateSpec) {
 //			SetArticleID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RagIndexJobCreate) OnConflict(opts ...sql.ConflictOption) *RagIndexJobUpsertOne {
-	_c.conflict = opts
+func (rijc *RagIndexJobCreate) OnConflict(opts ...sql.ConflictOption) *RagIndexJobUpsertOne {
+	rijc.conflict = opts
 	return &RagIndexJobUpsertOne{
-		create: _c,
+		create: rijc,
 	}
 }
 
@@ -251,10 +251,10 @@ func (_c *RagIndexJobCreate) OnConflict(opts ...sql.ConflictOption) *RagIndexJob
 //	client.RagIndexJob.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RagIndexJobCreate) OnConflictColumns(columns ...string) *RagIndexJobUpsertOne {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rijc *RagIndexJobCreate) OnConflictColumns(columns ...string) *RagIndexJobUpsertOne {
+	rijc.conflict = append(rijc.conflict, sql.ConflictColumns(columns...))
 	return &RagIndexJobUpsertOne{
-		create: _c,
+		create: rijc,
 	}
 }
 
@@ -556,16 +556,16 @@ type RagIndexJobCreateBulk struct {
 }
 
 // Save creates the RagIndexJob entities in the database.
-func (_c *RagIndexJobCreateBulk) Save(ctx context.Context) ([]*RagIndexJob, error) {
-	if _c.err != nil {
-		return nil, _c.err
+func (rijcb *RagIndexJobCreateBulk) Save(ctx context.Context) ([]*RagIndexJob, error) {
+	if rijcb.err != nil {
+		return nil, rijcb.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
-	nodes := make([]*RagIndexJob, len(_c.builders))
-	mutators := make([]Mutator, len(_c.builders))
-	for i := range _c.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(rijcb.builders))
+	nodes := make([]*RagIndexJob, len(rijcb.builders))
+	mutators := make([]Mutator, len(rijcb.builders))
+	for i := range rijcb.builders {
 		func(i int, root context.Context) {
-			builder := _c.builders[i]
+			builder := rijcb.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RagIndexJobMutation)
@@ -579,12 +579,12 @@ func (_c *RagIndexJobCreateBulk) Save(ctx context.Context) ([]*RagIndexJob, erro
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, rijcb.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = _c.conflict
+					spec.OnConflict = rijcb.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, rijcb.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -608,7 +608,7 @@ func (_c *RagIndexJobCreateBulk) Save(ctx context.Context) ([]*RagIndexJob, erro
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, rijcb.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -616,8 +616,8 @@ func (_c *RagIndexJobCreateBulk) Save(ctx context.Context) ([]*RagIndexJob, erro
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (_c *RagIndexJobCreateBulk) SaveX(ctx context.Context) []*RagIndexJob {
-	v, err := _c.Save(ctx)
+func (rijcb *RagIndexJobCreateBulk) SaveX(ctx context.Context) []*RagIndexJob {
+	v, err := rijcb.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -625,14 +625,14 @@ func (_c *RagIndexJobCreateBulk) SaveX(ctx context.Context) []*RagIndexJob {
 }
 
 // Exec executes the query.
-func (_c *RagIndexJobCreateBulk) Exec(ctx context.Context) error {
-	_, err := _c.Save(ctx)
+func (rijcb *RagIndexJobCreateBulk) Exec(ctx context.Context) error {
+	_, err := rijcb.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (_c *RagIndexJobCreateBulk) ExecX(ctx context.Context) {
-	if err := _c.Exec(ctx); err != nil {
+func (rijcb *RagIndexJobCreateBulk) ExecX(ctx context.Context) {
+	if err := rijcb.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -652,10 +652,10 @@ func (_c *RagIndexJobCreateBulk) ExecX(ctx context.Context) {
 //			SetArticleID(v+v).
 //		}).
 //		Exec(ctx)
-func (_c *RagIndexJobCreateBulk) OnConflict(opts ...sql.ConflictOption) *RagIndexJobUpsertBulk {
-	_c.conflict = opts
+func (rijcb *RagIndexJobCreateBulk) OnConflict(opts ...sql.ConflictOption) *RagIndexJobUpsertBulk {
+	rijcb.conflict = opts
 	return &RagIndexJobUpsertBulk{
-		create: _c,
+		create: rijcb,
 	}
 }
 
@@ -665,10 +665,10 @@ func (_c *RagIndexJobCreateBulk) OnConflict(opts ...sql.ConflictOption) *RagInde
 //	client.RagIndexJob.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (_c *RagIndexJobCreateBulk) OnConflictColumns(columns ...string) *RagIndexJobUpsertBulk {
-	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
+func (rijcb *RagIndexJobCreateBulk) OnConflictColumns(columns ...string) *RagIndexJobUpsertBulk {
+	rijcb.conflict = append(rijcb.conflict, sql.ConflictColumns(columns...))
 	return &RagIndexJobUpsertBulk{
-		create: _c,
+		create: rijcb,
 	}
 }
 

@@ -28,40 +28,40 @@ type RpgUserInventoryQuery struct {
 }
 
 // Where adds a new predicate for the RpgUserInventoryQuery builder.
-func (_q *RpgUserInventoryQuery) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryQuery {
-	_q.predicates = append(_q.predicates, ps...)
-	return _q
+func (ruiq *RpgUserInventoryQuery) Where(ps ...predicate.RpgUserInventory) *RpgUserInventoryQuery {
+	ruiq.predicates = append(ruiq.predicates, ps...)
+	return ruiq
 }
 
 // Limit the number of records to be returned by this query.
-func (_q *RpgUserInventoryQuery) Limit(limit int) *RpgUserInventoryQuery {
-	_q.ctx.Limit = &limit
-	return _q
+func (ruiq *RpgUserInventoryQuery) Limit(limit int) *RpgUserInventoryQuery {
+	ruiq.ctx.Limit = &limit
+	return ruiq
 }
 
 // Offset to start from.
-func (_q *RpgUserInventoryQuery) Offset(offset int) *RpgUserInventoryQuery {
-	_q.ctx.Offset = &offset
-	return _q
+func (ruiq *RpgUserInventoryQuery) Offset(offset int) *RpgUserInventoryQuery {
+	ruiq.ctx.Offset = &offset
+	return ruiq
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (_q *RpgUserInventoryQuery) Unique(unique bool) *RpgUserInventoryQuery {
-	_q.ctx.Unique = &unique
-	return _q
+func (ruiq *RpgUserInventoryQuery) Unique(unique bool) *RpgUserInventoryQuery {
+	ruiq.ctx.Unique = &unique
+	return ruiq
 }
 
 // Order specifies how the records should be ordered.
-func (_q *RpgUserInventoryQuery) Order(o ...rpguserinventory.OrderOption) *RpgUserInventoryQuery {
-	_q.order = append(_q.order, o...)
-	return _q
+func (ruiq *RpgUserInventoryQuery) Order(o ...rpguserinventory.OrderOption) *RpgUserInventoryQuery {
+	ruiq.order = append(ruiq.order, o...)
+	return ruiq
 }
 
 // First returns the first RpgUserInventory entity from the query.
 // Returns a *NotFoundError when no RpgUserInventory was found.
-func (_q *RpgUserInventoryQuery) First(ctx context.Context) (*RpgUserInventory, error) {
-	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
+func (ruiq *RpgUserInventoryQuery) First(ctx context.Context) (*RpgUserInventory, error) {
+	nodes, err := ruiq.Limit(1).All(setContextOp(ctx, ruiq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +72,8 @@ func (_q *RpgUserInventoryQuery) First(ctx context.Context) (*RpgUserInventory, 
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) FirstX(ctx context.Context) *RpgUserInventory {
-	node, err := _q.First(ctx)
+func (ruiq *RpgUserInventoryQuery) FirstX(ctx context.Context) *RpgUserInventory {
+	node, err := ruiq.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -82,9 +82,9 @@ func (_q *RpgUserInventoryQuery) FirstX(ctx context.Context) *RpgUserInventory {
 
 // FirstID returns the first RpgUserInventory ID from the query.
 // Returns a *NotFoundError when no RpgUserInventory ID was found.
-func (_q *RpgUserInventoryQuery) FirstID(ctx context.Context) (id int, err error) {
+func (ruiq *RpgUserInventoryQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = ruiq.Limit(1).IDs(setContextOp(ctx, ruiq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -95,8 +95,8 @@ func (_q *RpgUserInventoryQuery) FirstID(ctx context.Context) (id int, err error
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) FirstIDX(ctx context.Context) int {
-	id, err := _q.FirstID(ctx)
+func (ruiq *RpgUserInventoryQuery) FirstIDX(ctx context.Context) int {
+	id, err := ruiq.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -106,8 +106,8 @@ func (_q *RpgUserInventoryQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single RpgUserInventory entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one RpgUserInventory entity is found.
 // Returns a *NotFoundError when no RpgUserInventory entities are found.
-func (_q *RpgUserInventoryQuery) Only(ctx context.Context) (*RpgUserInventory, error) {
-	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
+func (ruiq *RpgUserInventoryQuery) Only(ctx context.Context) (*RpgUserInventory, error) {
+	nodes, err := ruiq.Limit(2).All(setContextOp(ctx, ruiq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +122,8 @@ func (_q *RpgUserInventoryQuery) Only(ctx context.Context) (*RpgUserInventory, e
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) OnlyX(ctx context.Context) *RpgUserInventory {
-	node, err := _q.Only(ctx)
+func (ruiq *RpgUserInventoryQuery) OnlyX(ctx context.Context) *RpgUserInventory {
+	node, err := ruiq.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -133,9 +133,9 @@ func (_q *RpgUserInventoryQuery) OnlyX(ctx context.Context) *RpgUserInventory {
 // OnlyID is like Only, but returns the only RpgUserInventory ID in the query.
 // Returns a *NotSingularError when more than one RpgUserInventory ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (_q *RpgUserInventoryQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (ruiq *RpgUserInventoryQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = ruiq.Limit(2).IDs(setContextOp(ctx, ruiq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -150,8 +150,8 @@ func (_q *RpgUserInventoryQuery) OnlyID(ctx context.Context) (id int, err error)
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) OnlyIDX(ctx context.Context) int {
-	id, err := _q.OnlyID(ctx)
+func (ruiq *RpgUserInventoryQuery) OnlyIDX(ctx context.Context) int {
+	id, err := ruiq.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,18 +159,18 @@ func (_q *RpgUserInventoryQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of RpgUserInventories.
-func (_q *RpgUserInventoryQuery) All(ctx context.Context) ([]*RpgUserInventory, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruiq *RpgUserInventoryQuery) All(ctx context.Context) ([]*RpgUserInventory, error) {
+	ctx = setContextOp(ctx, ruiq.ctx, ent.OpQueryAll)
+	if err := ruiq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*RpgUserInventory, *RpgUserInventoryQuery]()
-	return withInterceptors[[]*RpgUserInventory](ctx, _q, qr, _q.inters)
+	return withInterceptors[[]*RpgUserInventory](ctx, ruiq, qr, ruiq.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) AllX(ctx context.Context) []*RpgUserInventory {
-	nodes, err := _q.All(ctx)
+func (ruiq *RpgUserInventoryQuery) AllX(ctx context.Context) []*RpgUserInventory {
+	nodes, err := ruiq.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -178,20 +178,20 @@ func (_q *RpgUserInventoryQuery) AllX(ctx context.Context) []*RpgUserInventory {
 }
 
 // IDs executes the query and returns a list of RpgUserInventory IDs.
-func (_q *RpgUserInventoryQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if _q.ctx.Unique == nil && _q.path != nil {
-		_q.Unique(true)
+func (ruiq *RpgUserInventoryQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if ruiq.ctx.Unique == nil && ruiq.path != nil {
+		ruiq.Unique(true)
 	}
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
-	if err = _q.Select(rpguserinventory.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, ruiq.ctx, ent.OpQueryIDs)
+	if err = ruiq.Select(rpguserinventory.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) IDsX(ctx context.Context) []int {
-	ids, err := _q.IDs(ctx)
+func (ruiq *RpgUserInventoryQuery) IDsX(ctx context.Context) []int {
+	ids, err := ruiq.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -199,17 +199,17 @@ func (_q *RpgUserInventoryQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (_q *RpgUserInventoryQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
-	if err := _q.prepareQuery(ctx); err != nil {
+func (ruiq *RpgUserInventoryQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, ruiq.ctx, ent.OpQueryCount)
+	if err := ruiq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, _q, querierCount[*RpgUserInventoryQuery](), _q.inters)
+	return withInterceptors[int](ctx, ruiq, querierCount[*RpgUserInventoryQuery](), ruiq.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) CountX(ctx context.Context) int {
-	count, err := _q.Count(ctx)
+func (ruiq *RpgUserInventoryQuery) CountX(ctx context.Context) int {
+	count, err := ruiq.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -217,9 +217,9 @@ func (_q *RpgUserInventoryQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (_q *RpgUserInventoryQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
-	switch _, err := _q.FirstID(ctx); {
+func (ruiq *RpgUserInventoryQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, ruiq.ctx, ent.OpQueryExist)
+	switch _, err := ruiq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -230,8 +230,8 @@ func (_q *RpgUserInventoryQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (_q *RpgUserInventoryQuery) ExistX(ctx context.Context) bool {
-	exist, err := _q.Exist(ctx)
+func (ruiq *RpgUserInventoryQuery) ExistX(ctx context.Context) bool {
+	exist, err := ruiq.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -240,19 +240,19 @@ func (_q *RpgUserInventoryQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the RpgUserInventoryQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (_q *RpgUserInventoryQuery) Clone() *RpgUserInventoryQuery {
-	if _q == nil {
+func (ruiq *RpgUserInventoryQuery) Clone() *RpgUserInventoryQuery {
+	if ruiq == nil {
 		return nil
 	}
 	return &RpgUserInventoryQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]rpguserinventory.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.RpgUserInventory{}, _q.predicates...),
+		config:     ruiq.config,
+		ctx:        ruiq.ctx.Clone(),
+		order:      append([]rpguserinventory.OrderOption{}, ruiq.order...),
+		inters:     append([]Interceptor{}, ruiq.inters...),
+		predicates: append([]predicate.RpgUserInventory{}, ruiq.predicates...),
 		// clone intermediate query.
-		sql:  _q.sql.Clone(),
-		path: _q.path,
+		sql:  ruiq.sql.Clone(),
+		path: ruiq.path,
 	}
 }
 
@@ -270,10 +270,10 @@ func (_q *RpgUserInventoryQuery) Clone() *RpgUserInventoryQuery {
 //		GroupBy(rpguserinventory.FieldUID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (_q *RpgUserInventoryQuery) GroupBy(field string, fields ...string) *RpgUserInventoryGroupBy {
-	_q.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &RpgUserInventoryGroupBy{build: _q}
-	grbuild.flds = &_q.ctx.Fields
+func (ruiq *RpgUserInventoryQuery) GroupBy(field string, fields ...string) *RpgUserInventoryGroupBy {
+	ruiq.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &RpgUserInventoryGroupBy{build: ruiq}
+	grbuild.flds = &ruiq.ctx.Fields
 	grbuild.label = rpguserinventory.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -291,62 +291,62 @@ func (_q *RpgUserInventoryQuery) GroupBy(field string, fields ...string) *RpgUse
 //	client.RpgUserInventory.Query().
 //		Select(rpguserinventory.FieldUID).
 //		Scan(ctx, &v)
-func (_q *RpgUserInventoryQuery) Select(fields ...string) *RpgUserInventorySelect {
-	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
-	sbuild := &RpgUserInventorySelect{RpgUserInventoryQuery: _q}
+func (ruiq *RpgUserInventoryQuery) Select(fields ...string) *RpgUserInventorySelect {
+	ruiq.ctx.Fields = append(ruiq.ctx.Fields, fields...)
+	sbuild := &RpgUserInventorySelect{RpgUserInventoryQuery: ruiq}
 	sbuild.label = rpguserinventory.Label
-	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &ruiq.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a RpgUserInventorySelect configured with the given aggregations.
-func (_q *RpgUserInventoryQuery) Aggregate(fns ...AggregateFunc) *RpgUserInventorySelect {
-	return _q.Select().Aggregate(fns...)
+func (ruiq *RpgUserInventoryQuery) Aggregate(fns ...AggregateFunc) *RpgUserInventorySelect {
+	return ruiq.Select().Aggregate(fns...)
 }
 
-func (_q *RpgUserInventoryQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range _q.inters {
+func (ruiq *RpgUserInventoryQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range ruiq.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, _q); err != nil {
+			if err := trv.Traverse(ctx, ruiq); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range _q.ctx.Fields {
+	for _, f := range ruiq.ctx.Fields {
 		if !rpguserinventory.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if _q.path != nil {
-		prev, err := _q.path(ctx)
+	if ruiq.path != nil {
+		prev, err := ruiq.path(ctx)
 		if err != nil {
 			return err
 		}
-		_q.sql = prev
+		ruiq.sql = prev
 	}
 	return nil
 }
 
-func (_q *RpgUserInventoryQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserInventory, error) {
+func (ruiq *RpgUserInventoryQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*RpgUserInventory, error) {
 	var (
 		nodes = []*RpgUserInventory{}
-		_spec = _q.querySpec()
+		_spec = ruiq.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*RpgUserInventory).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &RpgUserInventory{config: _q.config}
+		node := &RpgUserInventory{config: ruiq.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, ruiq.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -355,24 +355,24 @@ func (_q *RpgUserInventoryQuery) sqlAll(ctx context.Context, hooks ...queryHook)
 	return nodes, nil
 }
 
-func (_q *RpgUserInventoryQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := _q.querySpec()
-	_spec.Node.Columns = _q.ctx.Fields
-	if len(_q.ctx.Fields) > 0 {
-		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+func (ruiq *RpgUserInventoryQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := ruiq.querySpec()
+	_spec.Node.Columns = ruiq.ctx.Fields
+	if len(ruiq.ctx.Fields) > 0 {
+		_spec.Unique = ruiq.ctx.Unique != nil && *ruiq.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+	return sqlgraph.CountNodes(ctx, ruiq.driver, _spec)
 }
 
-func (_q *RpgUserInventoryQuery) querySpec() *sqlgraph.QuerySpec {
+func (ruiq *RpgUserInventoryQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(rpguserinventory.Table, rpguserinventory.Columns, sqlgraph.NewFieldSpec(rpguserinventory.FieldID, field.TypeInt))
-	_spec.From = _q.sql
-	if unique := _q.ctx.Unique; unique != nil {
+	_spec.From = ruiq.sql
+	if unique := ruiq.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if _q.path != nil {
+	} else if ruiq.path != nil {
 		_spec.Unique = true
 	}
-	if fields := _q.ctx.Fields; len(fields) > 0 {
+	if fields := ruiq.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rpguserinventory.FieldID)
 		for i := range fields {
@@ -381,20 +381,20 @@ func (_q *RpgUserInventoryQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := _q.predicates; len(ps) > 0 {
+	if ps := ruiq.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruiq.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruiq.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := _q.order; len(ps) > 0 {
+	if ps := ruiq.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -404,33 +404,33 @@ func (_q *RpgUserInventoryQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (_q *RpgUserInventoryQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(_q.driver.Dialect())
+func (ruiq *RpgUserInventoryQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(ruiq.driver.Dialect())
 	t1 := builder.Table(rpguserinventory.Table)
-	columns := _q.ctx.Fields
+	columns := ruiq.ctx.Fields
 	if len(columns) == 0 {
 		columns = rpguserinventory.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if _q.sql != nil {
-		selector = _q.sql
+	if ruiq.sql != nil {
+		selector = ruiq.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if _q.ctx.Unique != nil && *_q.ctx.Unique {
+	if ruiq.ctx.Unique != nil && *ruiq.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, p := range _q.predicates {
+	for _, p := range ruiq.predicates {
 		p(selector)
 	}
-	for _, p := range _q.order {
+	for _, p := range ruiq.order {
 		p(selector)
 	}
-	if offset := _q.ctx.Offset; offset != nil {
+	if offset := ruiq.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := _q.ctx.Limit; limit != nil {
+	if limit := ruiq.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
@@ -443,41 +443,41 @@ type RpgUserInventoryGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (_g *RpgUserInventoryGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserInventoryGroupBy {
-	_g.fns = append(_g.fns, fns...)
-	return _g
+func (ruigb *RpgUserInventoryGroupBy) Aggregate(fns ...AggregateFunc) *RpgUserInventoryGroupBy {
+	ruigb.fns = append(ruigb.fns, fns...)
+	return ruigb
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_g *RpgUserInventoryGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
-	if err := _g.build.prepareQuery(ctx); err != nil {
+func (ruigb *RpgUserInventoryGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruigb.build.ctx, ent.OpQueryGroupBy)
+	if err := ruigb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserInventoryQuery, *RpgUserInventoryGroupBy](ctx, _g.build, _g, _g.build.inters, v)
+	return scanWithInterceptors[*RpgUserInventoryQuery, *RpgUserInventoryGroupBy](ctx, ruigb.build, ruigb, ruigb.build.inters, v)
 }
 
-func (_g *RpgUserInventoryGroupBy) sqlScan(ctx context.Context, root *RpgUserInventoryQuery, v any) error {
+func (ruigb *RpgUserInventoryGroupBy) sqlScan(ctx context.Context, root *RpgUserInventoryQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(_g.fns))
-	for _, fn := range _g.fns {
+	aggregation := make([]string, 0, len(ruigb.fns))
+	for _, fn := range ruigb.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
-		for _, f := range *_g.flds {
+		columns := make([]string, 0, len(*ruigb.flds)+len(ruigb.fns))
+		for _, f := range *ruigb.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*_g.flds...)...)
+	selector.GroupBy(selector.Columns(*ruigb.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruigb.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -491,27 +491,27 @@ type RpgUserInventorySelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (_s *RpgUserInventorySelect) Aggregate(fns ...AggregateFunc) *RpgUserInventorySelect {
-	_s.fns = append(_s.fns, fns...)
-	return _s
+func (ruis *RpgUserInventorySelect) Aggregate(fns ...AggregateFunc) *RpgUserInventorySelect {
+	ruis.fns = append(ruis.fns, fns...)
+	return ruis
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (_s *RpgUserInventorySelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
-	if err := _s.prepareQuery(ctx); err != nil {
+func (ruis *RpgUserInventorySelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, ruis.ctx, ent.OpQuerySelect)
+	if err := ruis.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*RpgUserInventoryQuery, *RpgUserInventorySelect](ctx, _s.RpgUserInventoryQuery, _s, _s.inters, v)
+	return scanWithInterceptors[*RpgUserInventoryQuery, *RpgUserInventorySelect](ctx, ruis.RpgUserInventoryQuery, ruis, ruis.inters, v)
 }
 
-func (_s *RpgUserInventorySelect) sqlScan(ctx context.Context, root *RpgUserInventoryQuery, v any) error {
+func (ruis *RpgUserInventorySelect) sqlScan(ctx context.Context, root *RpgUserInventoryQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(_s.fns))
-	for _, fn := range _s.fns {
+	aggregation := make([]string, 0, len(ruis.fns))
+	for _, fn := range ruis.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*_s.selector.flds); {
+	switch n := len(*ruis.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -519,7 +519,7 @@ func (_s *RpgUserInventorySelect) sqlScan(ctx context.Context, root *RpgUserInve
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
+	if err := ruis.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
