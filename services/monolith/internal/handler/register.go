@@ -1,4 +1,4 @@
-// Package handler 注册全部 HTTP 路由（health / user / captcha / pub）。
+// Package handler 注册全部 HTTP 路由（health / user / admin / captcha / pub）。
 package handler
 
 import (
@@ -13,6 +13,7 @@ import (
 type RegisterDeps struct {
 	Health     *HealthHandler
 	User       *UserHandler
+	Admin      *AdminHandler
 	Captcha    *CaptchaHandler
 	Pub        *PubHandler
 	JWT        *auth.JWTService
@@ -59,4 +60,40 @@ func RegisterAll(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	user.POST("/auth/wechat/miniprogram", deps.User.WechatMiniProgramLogin)
 	user.POST("/admin/create", jwtRequired, deps.User.AdminCreate)
 	user.POST("/admin/update/:id", jwtRequired, deps.User.AdminUpdate)
+
+	// role — Nest RoleController
+	role := v1.Group("/role")
+	role.GET("/menu-privilege-tree", deps.Admin.RoleMenuPrivilegeTree)
+	role.POST("", deps.Admin.RoleCreate)
+	role.GET("", deps.Admin.RoleList)
+	role.GET("/:id/data-scope", deps.Admin.RoleGetDataScope)
+	role.PUT("/:id/data-scope", deps.Admin.RoleUpdateDataScope)
+	role.GET("/:id", deps.Admin.RoleGet)
+	role.PATCH("/:id", deps.Admin.RoleUpdate)
+	role.DELETE("/:id", deps.Admin.RoleDelete)
+
+	// dept — Nest DeptController
+	dept := v1.Group("/dept")
+	dept.POST("", deps.Admin.DeptCreate)
+	dept.GET("/tree", deps.Admin.DeptTree)
+	dept.GET("", deps.Admin.DeptList)
+	dept.GET("/:id", deps.Admin.DeptGet)
+	dept.PATCH("/:id", deps.Admin.DeptUpdate)
+	dept.DELETE("/:id", deps.Admin.DeptDelete)
+
+	// privilege — Nest PrivilegeController
+	priv := v1.Group("/privilege")
+	priv.POST("", deps.Admin.PrivilegeCreate)
+	priv.GET("", deps.Admin.PrivilegeList)
+	priv.GET("/:id", deps.Admin.PrivilegeGet)
+	priv.PATCH("/:id", deps.Admin.PrivilegeUpdate)
+	priv.DELETE("/:id", deps.Admin.PrivilegeDelete)
+
+	// admin/menu — Nest MenuController
+	adminGroup := v1.Group("/admin")
+	adminGroup.GET("/menu", deps.Admin.MenuList)
+	adminGroup.POST("/menu", deps.Admin.MenuCreate)
+	adminGroup.PATCH("/menu", deps.Admin.MenuUpdate)
+	adminGroup.GET("/menu/detail", deps.Admin.MenuDetail)
+	adminGroup.DELETE("/menu", jwtRequired, deps.Admin.MenuDelete)
 }

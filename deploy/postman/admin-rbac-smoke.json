@@ -1,0 +1,168 @@
+{
+  "info": {
+    "name": "blog-server-go admin rbac smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "captchaId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "authCode",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/user/authCode"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('captcha ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.collectionVariables.set('captchaId', j.data.captchaId);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\":\"admin\",\"password\":\"123456\",\"authCode\":\"0000\",\"captchaId\":\"{{captchaId}}\",\"admin\":true}"
+        },
+        "url": "{{baseUrl}}/api/v1/user/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('login ok', () => pm.expect(j.code).to.eql(200));",
+              "if (j.data && j.data.token) pm.collectionVariables.set('token', j.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin menu tree",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/admin/menu"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('menu ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.test('menu is array', () => pm.expect(Array.isArray(j.data)).to.be.true);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "role list",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/role?page=1&pageSize=10"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('role list ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.test('has list', () => pm.expect(j.data.list).to.be.an('array'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "role menu-privilege-tree",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/role/menu-privilege-tree"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('tree ok', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "dept tree",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/dept/tree"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('dept tree ok', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "privilege list",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/privilege?page=1&pageSize=10"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('privilege list ok', () => pm.expect(j.code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "forbidden without token",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/role"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('unauthorized', () => pm.expect(pm.response.json().code).to.eql(401));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

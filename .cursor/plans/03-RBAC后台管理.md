@@ -48,18 +48,18 @@
 
 ## 任务清单
 
-- [ ] 角色 CRUD + 权限分配
-- [ ] 部门树 CRUD
-- [ ] 菜单树 CRUD（动态路由数据）
-- [ ] 权限校验中间件接入 admin 路由
+- [x] 角色 CRUD + 权限分配
+- [x] 部门树 CRUD
+- [x] 菜单树 CRUD（动态路由数据）
+- [x] 权限校验中间件接入 admin 路由
 - [ ] admin 登录态与 blog-admin 前端联调
-- [ ] 用户-角色关联维护
+- [x] 用户-角色关联维护
 
 ## 验收标准
 
 - [ ] blog-admin 可登录并加载动态菜单
-- [ ] RBAC：无权限用户访问 admin 接口返回对应错误码
-- [ ] 角色/部门/菜单 CRUD 与 NestJS 响应格式一致
+- [x] RBAC：无权限用户访问 admin 接口返回对应错误码
+- [x] 角色/部门/菜单 CRUD 与 NestJS 响应格式一致
 - [ ] newman 契约测试：admin 核心接口通过
 
 ### 可脚本化验收
@@ -99,7 +99,7 @@ newman run deploy/postman/admin-rbac-smoke.json \
 
 完成验收后须在 [`docs/03-RBAC后台管理.md`](../../docs/03-RBAC后台管理.md) 记录实现要点、接口一览、验收命令与已知限制，并更新 [`docs/README.md`](../../docs/README.md) 索引。
 
-- [ ] 文档已写入 `docs/`
+- [x] 文档已写入 `docs/`
 
 ## 下一步
 
