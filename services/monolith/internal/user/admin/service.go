@@ -242,6 +242,31 @@ func (s *Service) resolveAccessibleDeptIDs(ctx context.Context, uid int) ([]int,
 	return s.admin.ResolveAccessibleDeptIDs(ctx, deptID, roleIDs, dataScopeResourceArticle)
 }
 
+// ResolveArticleAccessibleDeptIDs 解析用户对 article 资源的可访问机构；nil 表示全部（超管）。
+func (s *Service) ResolveArticleAccessibleDeptIDs(ctx context.Context, uid int) ([]int, error) {
+	return s.resolveAccessibleDeptIDs(ctx, uid)
+}
+
+// AssertArticleDeptAccess 校验用户是否有权访问指定机构下的文章。
+func (s *Service) AssertArticleDeptAccess(ctx context.Context, uid int, articleDeptID *int) error {
+	deptIDs, err := s.resolveAccessibleDeptIDs(ctx, uid)
+	if err != nil {
+		return err
+	}
+	if deptIDs == nil {
+		return nil
+	}
+	if articleDeptID == nil {
+		return errcode.WithMessage(errcode.Forbidden, "权限不足")
+	}
+	for _, id := range deptIDs {
+		if id == *articleDeptID {
+			return nil
+		}
+	}
+	return errcode.WithMessage(errcode.Forbidden, "权限不足")
+}
+
 // UserMenuTree 当前用户动态菜单树。
 func (s *Service) UserMenuTree(ctx context.Context, uid int) (interface{}, error) {
 	if uid == 0 {
