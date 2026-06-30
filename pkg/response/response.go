@@ -9,21 +9,28 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 )
 
-// Body 与 Nest TransformInterceptor 对齐的成功/失败包装（Go 侧成功 code=0）。
+// Body 与 Nest TransformInterceptor 对齐：code/bizCode=200 表示成功。
 type Body struct {
 	Code    int         `json:"code"`
+	BizCode int         `json:"bizCode"`
 	Message string      `json:"message"`
 	Data    interface{} `json:"data,omitempty"`
 }
 
-// Success 返回 code=0 的成功响应。
+// Success 返回 code=200、bizCode=200 的成功响应。
 func Success(ctx context.Context, c *app.RequestContext, data interface{}) {
-	c.JSON(http.StatusOK, Body{Code: 0, Message: "success", Data: data})
+	c.JSON(http.StatusOK, Body{Code: 200, BizCode: 200, Message: "success", Data: data})
 }
 
-// Error 返回业务错误响应。
+// SuccessWithMessage 返回成功响应并自定义 message（如 refresh token）。
+func SuccessWithMessage(ctx context.Context, c *app.RequestContext, message string, data interface{}) {
+	c.JSON(http.StatusOK, Body{Code: 200, BizCode: 200, Message: message, Data: data})
+}
+
+// Error 返回业务错误响应；bizCode 与 code 一致。
 func Error(ctx context.Context, c *app.RequestContext, ec errcode.ErrCode, args ...any) {
-	c.JSON(http.StatusOK, Body{Code: ec.Code(), Message: ec.Message(args...)})
+	code := ec.Code()
+	c.JSON(http.StatusOK, Body{Code: code, BizCode: code, Message: ec.Message(args...)})
 }
 
 // FromError 将 errcode 包装的错误映射为响应。

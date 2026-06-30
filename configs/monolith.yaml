@@ -2,6 +2,7 @@ app:
   name: blog-server-go
   env: development
   api_prefix: /api/v1
+  blog_home: "http://localhost:5050"
 
 http:
   addr: ":5000"
@@ -14,7 +15,6 @@ mysql:
   password: "jiangxia123!@#"
   database: x_my_blog
   table_prefix: x_
-  # Ent schema 生成回退：x_my_blog 未初始化时从 Nest TypeORM 源库读取结构
   schema_source_database: myblog
 
 redis:
@@ -23,5 +23,24 @@ redis:
 
 jwt:
   secret: "xia-007"
-  access_ttl: 720h
-  refresh_ttl: 2160h
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+crypto:
+  rsa_private_key: ""
+
+oauth:
+  github_client_id: ""
+  github_client_secret: ""
+  github_callback_url: "http://127.0.0.1:5000/api/v1/user/auth/github/callback"
+
+mail:
+  host: ""
+  port: 587
+  user: ""
+  pass: ""
+
+wechat:
+  app_id: ""
+  secret: ""

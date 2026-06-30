@@ -47,6 +47,11 @@ func NeedsUpgrade(hashed string) bool {
 	return hashed != "" && !strings.HasPrefix(hashed, bcryptPrefix)
 }
 
+// UpgradeHash 将明文密码哈希为 bcrypt；升级后 salt 字段应清空（仅存 bcrypt 串）。
+func UpgradeHash(plain string) (string, error) {
+	return Hash(plain)
+}
+
 // legacyPBKDF2Verify 校验 Nest crypto-js / Node PBKDF2 哈希（10000 次 SHA1，16 字节）。
 func legacyPBKDF2Verify(password, dbPassword, salt string) bool {
 	if salt == "" {
