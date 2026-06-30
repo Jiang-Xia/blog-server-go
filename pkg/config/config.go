@@ -20,8 +20,9 @@ type Config struct {
 	Crypto CryptoConfig `mapstructure:"crypto"`
 	OAuth  OAuthConfig  `mapstructure:"oauth"`
 	Mail   MailConfig    `mapstructure:"mail"`
-	Wechat WechatConfig  `mapstructure:"wechat"`
+	Wechat  WechatConfig  `mapstructure:"wechat"`
 	Storage StorageConfig `mapstructure:"storage"`
+	Pay     PayConfig     `mapstructure:"pay"`
 }
 
 // AppConfig 应用级元信息。
@@ -116,6 +117,21 @@ type MailConfig struct {
 type WechatConfig struct {
 	AppID  string `mapstructure:"app_id"`
 	Secret string `mapstructure:"secret"`
+}
+
+// PayConfig 支付宝充值配置（env：PAY_ALIPAY_APP_ID 等）。
+type PayConfig struct {
+	AlipayAppID              string `mapstructure:"alipay_app_id"`
+	AlipayPrivateKey         string `mapstructure:"alipay_private_key"`
+	AlipayPublicKey          string `mapstructure:"alipay_public_key"`
+	AlipayGateway            string `mapstructure:"alipay_gateway"`
+	AlipayNotifyURL          string `mapstructure:"alipay_notify_url"`
+	AlipayReturnURL          string `mapstructure:"alipay_return_url"`
+	AlipayMiniCashierPage    string `mapstructure:"alipay_mini_cashier_page"`
+	Sandbox                  bool   `mapstructure:"sandbox"`
+	UseLegacySandboxGateway  bool   `mapstructure:"use_legacy_sandbox_gateway"`
+	WechatAppID              string `mapstructure:"wechat_app_id"`
+	WechatSecret             string `mapstructure:"wechat_secret"`
 }
 
 // StorageConfig 文件上传与静态资源路径。

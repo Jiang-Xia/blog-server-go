@@ -19,6 +19,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
@@ -121,11 +122,27 @@ func InitializeApp(cfgPath string) (*App, error) {
 	wsHandler := handler.NewWSHandler(hub, jwtService)
 	publisher := event.NewPublisher(rueidisClient, zapLogger)
 	devPushHandler := handler.NewDevPushHandler(realtimePusher, publisher, jwtService)
-	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, operationLogHandler, wsHandler, devPushHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
+	module := rpg.NewModule(client, realtimePusher, store, rueidisClient, userRepo, articleRepo, publisher, hub, zapLogger)
+	rpgGameplay := provideRPGGameplay(module, client, articleRepo)
+	rpgHandler := provideRPGHandler(module, rpgGameplay, jwtService)
+	rpgAdminHandler := provideRPGAdminHandler(module, jwtService)
+	rpgProfileHandler := provideRPGProfileHandler(module, articleRepo)
+	payOrderRepo := providePayOrderRepo(client)
+	payService, err := providePayService(configConfig, payOrderRepo, zapLogger)
+	if err != nil {
+		return nil, err
+	}
+	payHandler := handler.NewPayHandler(payService)
+	payOrderService := providePayOrderService(payOrderRepo, payService, module, zapLogger)
+	payOrderHandler := handler.NewPayOrderHandler(payOrderService, jwtService)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, operationLogHandler, wsHandler, devPushHandler, rpgHandler, rpgAdminHandler, rpgProfileHandler, payHandler, payOrderHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	schedulerScheduler := scheduler.New(zapLogger)
-	consumer := provideEventConsumer(rueidisClient, zapLogger)
-	realtimeRuntime := provideRealtimeRuntime(hub, realtimePusher, consumer, publisher, wsHandler, devPushHandler)
-	app := NewApp(hertz, zapLogger, client, rueidisClient, schedulerScheduler, realtimeRuntime)
+	blogEventConsumer := provideBlogEventConsumer(rueidisClient, zapLogger)
+	handlers := provideRPGEventHandlers(module, store)
+	rpgEventConsumer := provideRPGEventConsumer(rueidisClient, zapLogger, handlers)
+	realtimeRuntime := provideRealtimeRuntime(hub, realtimePusher, blogEventConsumer, rpgEventConsumer, publisher, wsHandler, devPushHandler)
+	activityNotifyRunner := provideActivityNotifyScheduler(module, zapLogger)
+	app := NewApp(hertz, zapLogger, client, rueidisClient, schedulerScheduler, realtimeRuntime, module, activityNotifyRunner)
 	return app, nil
 }

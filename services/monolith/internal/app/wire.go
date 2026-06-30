@@ -18,6 +18,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/sensitive"
@@ -75,10 +76,17 @@ func InitializeApp(cfgPath string) (*App, error) {
 		ws.NewRealtimePusher,
 		wire.Bind(new(ws.Pusher), new(*ws.RealtimePusher)),
 		event.NewPublisher,
-		provideEventConsumer,
+		provideBlogEventConsumer,
+		provideRPGEventConsumer,
 		notification.NewService,
 		operationlog.NewService,
 		scheduler.New,
+		rpg.NewModule,
+		provideRPGEventHandlers,
+		providePayOrderRepo,
+		providePayService,
+		providePayOrderService,
+		provideRPGGameplay,
 		captcha.NewService,
 		pub.NewService,
 		handler.NewUserAppAdapter,
@@ -100,6 +108,12 @@ func InitializeApp(cfgPath string) (*App, error) {
 		handler.NewWSHandler,
 		handler.NewDevPushHandler,
 		handler.NewOperationLogHandler,
+		provideRPGHandler,
+		provideRPGAdminHandler,
+		provideRPGProfileHandler,
+		handler.NewPayHandler,
+		handler.NewPayOrderHandler,
+		provideActivityNotifyScheduler,
 		provideRealtimeRuntime,
 		provideCaptchaHandler,
 		providePubHandler,
