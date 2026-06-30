@@ -19,8 +19,9 @@ type Config struct {
 	JWT    JWTConfig    `mapstructure:"jwt"`
 	Crypto CryptoConfig `mapstructure:"crypto"`
 	OAuth  OAuthConfig  `mapstructure:"oauth"`
-	Mail   MailConfig   `mapstructure:"mail"`
-	Wechat WechatConfig `mapstructure:"wechat"`
+	Mail   MailConfig    `mapstructure:"mail"`
+	Wechat WechatConfig  `mapstructure:"wechat"`
+	Storage StorageConfig `mapstructure:"storage"`
 }
 
 // AppConfig 应用级元信息。
@@ -115,6 +116,24 @@ type MailConfig struct {
 type WechatConfig struct {
 	AppID  string `mapstructure:"app_id"`
 	Secret string `mapstructure:"secret"`
+}
+
+// StorageConfig 文件上传与静态资源路径。
+type StorageConfig struct {
+	UploadPath   string `mapstructure:"upload_path"`
+	PublicPrefix string `mapstructure:"public_prefix"`
+}
+
+// PublicPrefixOrDefault 静态 URL 前缀，默认 /static/。
+func (s StorageConfig) PublicPrefixOrDefault() string {
+	p := strings.TrimSpace(s.PublicPrefix)
+	if p == "" {
+		return "/static"
+	}
+	if !strings.HasPrefix(p, "/") {
+		p = "/" + p
+	}
+	return strings.TrimSuffix(p, "/")
 }
 
 // MailConfigured 是否已配置 SMTP。

@@ -19,6 +19,9 @@ func NewHTTPServer(cfg *config.Config, log *zap.Logger, deps handler.RegisterDep
 		middleware.OperationLog(deps.OpLog),
 		middleware.CORS(cfg),
 	)
+	if cfg.Storage.UploadPath != "" {
+		h.Static(cfg.Storage.PublicPrefixOrDefault(), cfg.Storage.UploadPath)
+	}
 	handler.RegisterAll(h, cfg, deps)
 	return h
 }

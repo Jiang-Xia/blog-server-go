@@ -1,5 +1,11 @@
 package config
 
+// DefaultRSAPublicKey 与 Nest blog-server/src/config/ssh.ts 开发环境公钥一致（前端 serverPublicKey）。
+const DefaultRSAPublicKey = `-----BEGIN PUBLIC KEY-----
+MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL9r8jKkfORpiunFylF4XwvNi06sTD3N
+4hYLAmGNmviZ1IhCnu4VZ0sShdj7LYfh/Rw5IuqY55XXr6zVB/LzQ70CAwEAAQ==
+-----END PUBLIC KEY-----`
+
 // DefaultRSAPrivateKey 与 Nest blog-server/src/config/ssh.ts 开发环境私钥一致。
 const DefaultRSAPrivateKey = `-----BEGIN PRIVATE KEY-----
 MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAv2vyMqR85GmK6cXK
@@ -23,4 +29,9 @@ func (c *CryptoConfig) RSAPrivateKeyOrDefault() string {
 		return c.RSAPrivateKey
 	}
 	return DefaultRSAPrivateKey
+}
+
+// RSAPublicKeyOrDefault 返回 RSA 公钥；当前仅支持 Nest 开发默认密钥对。
+func RSAPublicKeyOrDefault() string {
+	return DefaultRSAPublicKey
 }

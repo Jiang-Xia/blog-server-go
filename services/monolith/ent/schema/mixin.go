@@ -20,3 +20,13 @@ func (TimeMixin) Fields() []ent.Field {
 		field.Int("version").StorageKey("version").Comment("乐观锁版本号").Default(0),
 	}
 }
+
+// TimestampMixin 仅 createTime/updateTime（comment/reply/msgboard/link/collect 等 Nest 表无 isDelete）。
+type TimestampMixin struct{ mixin.Schema }
+
+func (TimestampMixin) Fields() []ent.Field {
+	return []ent.Field{
+		field.Time("createTime").StorageKey("createTime").Comment("创建时间").Default(time.Now).Immutable(),
+		field.Time("updateTime").StorageKey("updateTime").Comment("更新时间").Default(time.Now).UpdateDefault(time.Now),
+	}
+}

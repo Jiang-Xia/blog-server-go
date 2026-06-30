@@ -51,34 +51,6 @@ func (rc *ReplyCreate) SetNillableUpdateTime(t *time.Time) *ReplyCreate {
 	return rc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (rc *ReplyCreate) SetIsDelete(b bool) *ReplyCreate {
-	rc.mutation.SetIsDelete(b)
-	return rc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rc *ReplyCreate) SetNillableIsDelete(b *bool) *ReplyCreate {
-	if b != nil {
-		rc.SetIsDelete(*b)
-	}
-	return rc
-}
-
-// SetVersion sets the "version" field.
-func (rc *ReplyCreate) SetVersion(i int) *ReplyCreate {
-	rc.mutation.SetVersion(i)
-	return rc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rc *ReplyCreate) SetNillableVersion(i *int) *ReplyCreate {
-	if i != nil {
-		rc.SetVersion(*i)
-	}
-	return rc
-}
-
 // SetParentId sets the "parentId" field.
 func (rc *ReplyCreate) SetParentId(s string) *ReplyCreate {
 	rc.mutation.SetParentId(s)
@@ -166,14 +138,6 @@ func (rc *ReplyCreate) defaults() {
 		v := reply.DefaultUpdateTime()
 		rc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := rc.mutation.IsDelete(); !ok {
-		v := reply.DefaultIsDelete
-		rc.mutation.SetIsDelete(v)
-	}
-	if _, ok := rc.mutation.Version(); !ok {
-		v := reply.DefaultVersion
-		rc.mutation.SetVersion(v)
-	}
 	if _, ok := rc.mutation.Status(); !ok {
 		v := reply.DefaultStatus
 		rc.mutation.SetStatus(v)
@@ -187,12 +151,6 @@ func (rc *ReplyCreate) check() error {
 	}
 	if _, ok := rc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Reply.updateTime"`)}
-	}
-	if _, ok := rc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Reply.isDelete"`)}
-	}
-	if _, ok := rc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Reply.version"`)}
 	}
 	if _, ok := rc.mutation.ParentId(); !ok {
 		return &ValidationError{Name: "parentId", err: errors.New(`ent: missing required field "Reply.parentId"`)}
@@ -252,14 +210,6 @@ func (rc *ReplyCreate) createSpec() (*Reply, *sqlgraph.CreateSpec) {
 	if value, ok := rc.mutation.UpdateTime(); ok {
 		_spec.SetField(reply.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := rc.mutation.IsDelete(); ok {
-		_spec.SetField(reply.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := rc.mutation.Version(); ok {
-		_spec.SetField(reply.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := rc.mutation.ParentId(); ok {
 		_spec.SetField(reply.FieldParentId, field.TypeString, value)
@@ -342,36 +292,6 @@ func (u *ReplyUpsert) SetUpdateTime(v time.Time) *ReplyUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *ReplyUpsert) UpdateUpdateTime() *ReplyUpsert {
 	u.SetExcluded(reply.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ReplyUpsert) SetIsDelete(v bool) *ReplyUpsert {
-	u.Set(reply.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ReplyUpsert) UpdateIsDelete() *ReplyUpsert {
-	u.SetExcluded(reply.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *ReplyUpsert) SetVersion(v int) *ReplyUpsert {
-	u.Set(reply.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ReplyUpsert) UpdateVersion() *ReplyUpsert {
-	u.SetExcluded(reply.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ReplyUpsert) AddVersion(v int) *ReplyUpsert {
-	u.Add(reply.FieldVersion, v)
 	return u
 }
 
@@ -503,41 +423,6 @@ func (u *ReplyUpsertOne) SetUpdateTime(v time.Time) *ReplyUpsertOne {
 func (u *ReplyUpsertOne) UpdateUpdateTime() *ReplyUpsertOne {
 	return u.Update(func(s *ReplyUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ReplyUpsertOne) SetIsDelete(v bool) *ReplyUpsertOne {
-	return u.Update(func(s *ReplyUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ReplyUpsertOne) UpdateIsDelete() *ReplyUpsertOne {
-	return u.Update(func(s *ReplyUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *ReplyUpsertOne) SetVersion(v int) *ReplyUpsertOne {
-	return u.Update(func(s *ReplyUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ReplyUpsertOne) AddVersion(v int) *ReplyUpsertOne {
-	return u.Update(func(s *ReplyUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ReplyUpsertOne) UpdateVersion() *ReplyUpsertOne {
-	return u.Update(func(s *ReplyUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -847,41 +732,6 @@ func (u *ReplyUpsertBulk) SetUpdateTime(v time.Time) *ReplyUpsertBulk {
 func (u *ReplyUpsertBulk) UpdateUpdateTime() *ReplyUpsertBulk {
 	return u.Update(func(s *ReplyUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ReplyUpsertBulk) SetIsDelete(v bool) *ReplyUpsertBulk {
-	return u.Update(func(s *ReplyUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ReplyUpsertBulk) UpdateIsDelete() *ReplyUpsertBulk {
-	return u.Update(func(s *ReplyUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *ReplyUpsertBulk) SetVersion(v int) *ReplyUpsertBulk {
-	return u.Update(func(s *ReplyUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ReplyUpsertBulk) AddVersion(v int) *ReplyUpsertBulk {
-	return u.Update(func(s *ReplyUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ReplyUpsertBulk) UpdateVersion() *ReplyUpsertBulk {
-	return u.Update(func(s *ReplyUpsert) {
-		s.UpdateVersion()
 	})
 }
 

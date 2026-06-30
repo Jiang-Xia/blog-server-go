@@ -34,41 +34,6 @@ func (cu *CollectUpdate) SetUpdateTime(t time.Time) *CollectUpdate {
 	return cu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (cu *CollectUpdate) SetIsDelete(b bool) *CollectUpdate {
-	cu.mutation.SetIsDelete(b)
-	return cu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (cu *CollectUpdate) SetNillableIsDelete(b *bool) *CollectUpdate {
-	if b != nil {
-		cu.SetIsDelete(*b)
-	}
-	return cu
-}
-
-// SetVersion sets the "version" field.
-func (cu *CollectUpdate) SetVersion(i int) *CollectUpdate {
-	cu.mutation.ResetVersion()
-	cu.mutation.SetVersion(i)
-	return cu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (cu *CollectUpdate) SetNillableVersion(i *int) *CollectUpdate {
-	if i != nil {
-		cu.SetVersion(*i)
-	}
-	return cu
-}
-
-// AddVersion adds i to the "version" field.
-func (cu *CollectUpdate) AddVersion(i int) *CollectUpdate {
-	cu.mutation.AddVersion(i)
-	return cu
-}
-
 // SetUID sets the "uid" field.
 func (cu *CollectUpdate) SetUID(i int) *CollectUpdate {
 	cu.mutation.ResetUID()
@@ -164,15 +129,6 @@ func (cu *CollectUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := cu.mutation.UpdateTime(); ok {
 		_spec.SetField(collect.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := cu.mutation.IsDelete(); ok {
-		_spec.SetField(collect.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := cu.mutation.Version(); ok {
-		_spec.SetField(collect.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := cu.mutation.AddedVersion(); ok {
-		_spec.AddField(collect.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := cu.mutation.UID(); ok {
 		_spec.SetField(collect.FieldUID, field.TypeInt, value)
 	}
@@ -208,41 +164,6 @@ type CollectUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (cuo *CollectUpdateOne) SetUpdateTime(t time.Time) *CollectUpdateOne {
 	cuo.mutation.SetUpdateTime(t)
-	return cuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (cuo *CollectUpdateOne) SetIsDelete(b bool) *CollectUpdateOne {
-	cuo.mutation.SetIsDelete(b)
-	return cuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (cuo *CollectUpdateOne) SetNillableIsDelete(b *bool) *CollectUpdateOne {
-	if b != nil {
-		cuo.SetIsDelete(*b)
-	}
-	return cuo
-}
-
-// SetVersion sets the "version" field.
-func (cuo *CollectUpdateOne) SetVersion(i int) *CollectUpdateOne {
-	cuo.mutation.ResetVersion()
-	cuo.mutation.SetVersion(i)
-	return cuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (cuo *CollectUpdateOne) SetNillableVersion(i *int) *CollectUpdateOne {
-	if i != nil {
-		cuo.SetVersion(*i)
-	}
-	return cuo
-}
-
-// AddVersion adds i to the "version" field.
-func (cuo *CollectUpdateOne) AddVersion(i int) *CollectUpdateOne {
-	cuo.mutation.AddVersion(i)
 	return cuo
 }
 
@@ -370,15 +291,6 @@ func (cuo *CollectUpdateOne) sqlSave(ctx context.Context) (_node *Collect, err e
 	}
 	if value, ok := cuo.mutation.UpdateTime(); ok {
 		_spec.SetField(collect.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := cuo.mutation.IsDelete(); ok {
-		_spec.SetField(collect.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := cuo.mutation.Version(); ok {
-		_spec.SetField(collect.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := cuo.mutation.AddedVersion(); ok {
-		_spec.AddField(collect.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := cuo.mutation.UID(); ok {
 		_spec.SetField(collect.FieldUID, field.TypeInt, value)

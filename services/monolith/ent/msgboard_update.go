@@ -34,41 +34,6 @@ func (mu *MsgboardUpdate) SetUpdateTime(t time.Time) *MsgboardUpdate {
 	return mu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (mu *MsgboardUpdate) SetIsDelete(b bool) *MsgboardUpdate {
-	mu.mutation.SetIsDelete(b)
-	return mu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (mu *MsgboardUpdate) SetNillableIsDelete(b *bool) *MsgboardUpdate {
-	if b != nil {
-		mu.SetIsDelete(*b)
-	}
-	return mu
-}
-
-// SetVersion sets the "version" field.
-func (mu *MsgboardUpdate) SetVersion(i int) *MsgboardUpdate {
-	mu.mutation.ResetVersion()
-	mu.mutation.SetVersion(i)
-	return mu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (mu *MsgboardUpdate) SetNillableVersion(i *int) *MsgboardUpdate {
-	if i != nil {
-		mu.SetVersion(*i)
-	}
-	return mu
-}
-
-// AddVersion adds i to the "version" field.
-func (mu *MsgboardUpdate) AddVersion(i int) *MsgboardUpdate {
-	mu.mutation.AddVersion(i)
-	return mu
-}
-
 // SetName sets the "name" field.
 func (mu *MsgboardUpdate) SetName(s string) *MsgboardUpdate {
 	mu.mutation.SetName(s)
@@ -356,15 +321,6 @@ func (mu *MsgboardUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := mu.mutation.UpdateTime(); ok {
 		_spec.SetField(msgboard.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := mu.mutation.IsDelete(); ok {
-		_spec.SetField(msgboard.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := mu.mutation.Version(); ok {
-		_spec.SetField(msgboard.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := mu.mutation.AddedVersion(); ok {
-		_spec.AddField(msgboard.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := mu.mutation.Name(); ok {
 		_spec.SetField(msgboard.FieldName, field.TypeString, value)
 	}
@@ -448,41 +404,6 @@ type MsgboardUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (muo *MsgboardUpdateOne) SetUpdateTime(t time.Time) *MsgboardUpdateOne {
 	muo.mutation.SetUpdateTime(t)
-	return muo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (muo *MsgboardUpdateOne) SetIsDelete(b bool) *MsgboardUpdateOne {
-	muo.mutation.SetIsDelete(b)
-	return muo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (muo *MsgboardUpdateOne) SetNillableIsDelete(b *bool) *MsgboardUpdateOne {
-	if b != nil {
-		muo.SetIsDelete(*b)
-	}
-	return muo
-}
-
-// SetVersion sets the "version" field.
-func (muo *MsgboardUpdateOne) SetVersion(i int) *MsgboardUpdateOne {
-	muo.mutation.ResetVersion()
-	muo.mutation.SetVersion(i)
-	return muo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (muo *MsgboardUpdateOne) SetNillableVersion(i *int) *MsgboardUpdateOne {
-	if i != nil {
-		muo.SetVersion(*i)
-	}
-	return muo
-}
-
-// AddVersion adds i to the "version" field.
-func (muo *MsgboardUpdateOne) AddVersion(i int) *MsgboardUpdateOne {
-	muo.mutation.AddVersion(i)
 	return muo
 }
 
@@ -802,15 +723,6 @@ func (muo *MsgboardUpdateOne) sqlSave(ctx context.Context) (_node *Msgboard, err
 	}
 	if value, ok := muo.mutation.UpdateTime(); ok {
 		_spec.SetField(msgboard.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := muo.mutation.IsDelete(); ok {
-		_spec.SetField(msgboard.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := muo.mutation.Version(); ok {
-		_spec.SetField(msgboard.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := muo.mutation.AddedVersion(); ok {
-		_spec.AddField(msgboard.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := muo.mutation.Name(); ok {
 		_spec.SetField(msgboard.FieldName, field.TypeString, value)

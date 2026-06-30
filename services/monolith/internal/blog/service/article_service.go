@@ -21,6 +21,7 @@ type ArticleService struct {
 	articles   *blogrepo.ArticleRepo
 	categories *CategoryService
 	tags       *TagService
+	comments   *blogrepo.CommentRepo
 	users      user.UserService
 	userRepo   *userrepo.UserRepo
 	admin      *admin.Service
@@ -31,6 +32,7 @@ func NewArticleService(
 	articles *blogrepo.ArticleRepo,
 	categories *CategoryService,
 	tags *TagService,
+	comments *blogrepo.CommentRepo,
 	users user.UserService,
 	userRepo *userrepo.UserRepo,
 	adminSvc *admin.Service,
@@ -39,6 +41,7 @@ func NewArticleService(
 		articles:   articles,
 		categories: categories,
 		tags:       tags,
+		comments:   comments,
 		users:      users,
 		userRepo:   userRepo,
 		admin:      adminSvc,
@@ -102,10 +105,11 @@ func (s *ArticleService) List(ctx context.Context, q domain.ArticleListQuery) (*
 	tagMap, _ := s.articles.ListTagIDsByArticles(ctx, articleIDs)
 	userMap := s.batchUsers(ctx, uids)
 	deptNames := s.batchDeptNames(ctx, rows)
+	commentCounts, _ := s.comments.CountByArticleIDs(ctx, articleIDs)
 
 	list := make([]domain.ArticleListItem, 0, len(rows))
 	for i, a := range rows {
-		item := s.toListItem(ctx, a, tagMap[a.ID], userMap[uint64(a.UID)], deptNames[i])
+		item := s.toListItem(ctx, a, tagMap[a.ID], userMap[uint64(a.UID)], deptNames[i], commentCounts[a.ID])
 		list = append(list, item)
 	}
 	return &domain.ArticleListResult{
@@ -543,7 +547,7 @@ func (s *ArticleService) UpdateLikes(ctx context.Context, articleID int, status 
 
 // --- helpers ---
 
-func (s *ArticleService) toListItem(ctx context.Context, a *ent.Article, tagIDs []string, author *user.UserDTO, deptName string) domain.ArticleListItem {
+func (s *ArticleService) toListItem(ctx context.Context, a *ent.Article, tagIDs []string, author *user.UserDTO, deptName string, commentCount int) domain.ArticleListItem {
 	var cat *domain.CategoryItem
 	if a.Articles != nil {
 		if c, err := s.categories.FindByID(ctx, *a.Articles); err == nil {
@@ -569,7 +573,7 @@ func (s *ArticleService) toListItem(ctx context.Context, a *ent.Article, tagIDs 
 		Status: a.Status, Topping: a.Topping, Views: a.Views, Likes: a.Likes,
 		CreateTime: a.CreateTime, UpdateTime: a.UpdateTime, UTime: a.UTime,
 		Category: cat, Tags: tags, UserInfo: userInfo, AuthorName: authorName, DeptName: deptName,
-		CommentCount: 0, Content: "", ContentHTML: "",
+		CommentCount: commentCount, Content: "", ContentHTML: "",
 	}
 }
 

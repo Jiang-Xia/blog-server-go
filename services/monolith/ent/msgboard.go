@@ -22,10 +22,6 @@ type Msgboard struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 昵称
 	Name string `json:"name,omitempty"`
 	// 邮箱
@@ -62,9 +58,7 @@ func (*Msgboard) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case msgboard.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case msgboard.FieldID, msgboard.FieldVersion, msgboard.FieldPId, msgboard.FieldReplyId:
+		case msgboard.FieldID, msgboard.FieldPId, msgboard.FieldReplyId:
 			values[i] = new(sql.NullInt64)
 		case msgboard.FieldName, msgboard.FieldEamil, msgboard.FieldAddress, msgboard.FieldComment, msgboard.FieldAvatar, msgboard.FieldLocation, msgboard.FieldSystem, msgboard.FieldBrowser, msgboard.FieldRespondent, msgboard.FieldImgUrl, msgboard.FieldIP, msgboard.FieldStatus:
 			values[i] = new(sql.NullString)
@@ -102,18 +96,6 @@ func (m *Msgboard) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				m.UpdateTime = value.Time
-			}
-		case msgboard.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				m.IsDelete = value.Bool
-			}
-		case msgboard.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				m.Version = int(value.Int64)
 			}
 		case msgboard.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -244,12 +226,6 @@ func (m *Msgboard) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(m.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", m.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", m.Version))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
 	builder.WriteString(m.Name)

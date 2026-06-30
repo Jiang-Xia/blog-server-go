@@ -50,34 +50,6 @@ func (lc *LinkCreate) SetNillableUpdateTime(t *time.Time) *LinkCreate {
 	return lc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (lc *LinkCreate) SetIsDelete(b bool) *LinkCreate {
-	lc.mutation.SetIsDelete(b)
-	return lc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (lc *LinkCreate) SetNillableIsDelete(b *bool) *LinkCreate {
-	if b != nil {
-		lc.SetIsDelete(*b)
-	}
-	return lc
-}
-
-// SetVersion sets the "version" field.
-func (lc *LinkCreate) SetVersion(i int) *LinkCreate {
-	lc.mutation.SetVersion(i)
-	return lc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (lc *LinkCreate) SetNillableVersion(i *int) *LinkCreate {
-	if i != nil {
-		lc.SetVersion(*i)
-	}
-	return lc
-}
-
 // SetIcon sets the "icon" field.
 func (lc *LinkCreate) SetIcon(s string) *LinkCreate {
 	lc.mutation.SetIcon(s)
@@ -193,14 +165,6 @@ func (lc *LinkCreate) defaults() {
 		v := link.DefaultUpdateTime()
 		lc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := lc.mutation.IsDelete(); !ok {
-		v := link.DefaultIsDelete
-		lc.mutation.SetIsDelete(v)
-	}
-	if _, ok := lc.mutation.Version(); !ok {
-		v := link.DefaultVersion
-		lc.mutation.SetVersion(v)
-	}
 	if _, ok := lc.mutation.Agreed(); !ok {
 		v := link.DefaultAgreed
 		lc.mutation.SetAgreed(v)
@@ -218,12 +182,6 @@ func (lc *LinkCreate) check() error {
 	}
 	if _, ok := lc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Link.updateTime"`)}
-	}
-	if _, ok := lc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Link.isDelete"`)}
-	}
-	if _, ok := lc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Link.version"`)}
 	}
 	if _, ok := lc.mutation.Icon(); !ok {
 		return &ValidationError{Name: "icon", err: errors.New(`ent: missing required field "Link.icon"`)}
@@ -283,14 +241,6 @@ func (lc *LinkCreate) createSpec() (*Link, *sqlgraph.CreateSpec) {
 	if value, ok := lc.mutation.UpdateTime(); ok {
 		_spec.SetField(link.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := lc.mutation.IsDelete(); ok {
-		_spec.SetField(link.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := lc.mutation.Version(); ok {
-		_spec.SetField(link.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := lc.mutation.Icon(); ok {
 		_spec.SetField(link.FieldIcon, field.TypeString, value)
@@ -381,36 +331,6 @@ func (u *LinkUpsert) SetUpdateTime(v time.Time) *LinkUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *LinkUpsert) UpdateUpdateTime() *LinkUpsert {
 	u.SetExcluded(link.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *LinkUpsert) SetIsDelete(v bool) *LinkUpsert {
-	u.Set(link.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *LinkUpsert) UpdateIsDelete() *LinkUpsert {
-	u.SetExcluded(link.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *LinkUpsert) SetVersion(v int) *LinkUpsert {
-	u.Set(link.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *LinkUpsert) UpdateVersion() *LinkUpsert {
-	u.SetExcluded(link.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *LinkUpsert) AddVersion(v int) *LinkUpsert {
-	u.Add(link.FieldVersion, v)
 	return u
 }
 
@@ -572,41 +492,6 @@ func (u *LinkUpsertOne) SetUpdateTime(v time.Time) *LinkUpsertOne {
 func (u *LinkUpsertOne) UpdateUpdateTime() *LinkUpsertOne {
 	return u.Update(func(s *LinkUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *LinkUpsertOne) SetIsDelete(v bool) *LinkUpsertOne {
-	return u.Update(func(s *LinkUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *LinkUpsertOne) UpdateIsDelete() *LinkUpsertOne {
-	return u.Update(func(s *LinkUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *LinkUpsertOne) SetVersion(v int) *LinkUpsertOne {
-	return u.Update(func(s *LinkUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *LinkUpsertOne) AddVersion(v int) *LinkUpsertOne {
-	return u.Update(func(s *LinkUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *LinkUpsertOne) UpdateVersion() *LinkUpsertOne {
-	return u.Update(func(s *LinkUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -950,41 +835,6 @@ func (u *LinkUpsertBulk) SetUpdateTime(v time.Time) *LinkUpsertBulk {
 func (u *LinkUpsertBulk) UpdateUpdateTime() *LinkUpsertBulk {
 	return u.Update(func(s *LinkUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *LinkUpsertBulk) SetIsDelete(v bool) *LinkUpsertBulk {
-	return u.Update(func(s *LinkUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *LinkUpsertBulk) UpdateIsDelete() *LinkUpsertBulk {
-	return u.Update(func(s *LinkUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *LinkUpsertBulk) SetVersion(v int) *LinkUpsertBulk {
-	return u.Update(func(s *LinkUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *LinkUpsertBulk) AddVersion(v int) *LinkUpsertBulk {
-	return u.Update(func(s *LinkUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *LinkUpsertBulk) UpdateVersion() *LinkUpsertBulk {
-	return u.Update(func(s *LinkUpsert) {
-		s.UpdateVersion()
 	})
 }
 

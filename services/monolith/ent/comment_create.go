@@ -51,34 +51,6 @@ func (cc *CommentCreate) SetNillableUpdateTime(t *time.Time) *CommentCreate {
 	return cc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (cc *CommentCreate) SetIsDelete(b bool) *CommentCreate {
-	cc.mutation.SetIsDelete(b)
-	return cc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (cc *CommentCreate) SetNillableIsDelete(b *bool) *CommentCreate {
-	if b != nil {
-		cc.SetIsDelete(*b)
-	}
-	return cc
-}
-
-// SetVersion sets the "version" field.
-func (cc *CommentCreate) SetVersion(i int) *CommentCreate {
-	cc.mutation.SetVersion(i)
-	return cc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (cc *CommentCreate) SetNillableVersion(i *int) *CommentCreate {
-	if i != nil {
-		cc.SetVersion(*i)
-	}
-	return cc
-}
-
 // SetContent sets the "content" field.
 func (cc *CommentCreate) SetContent(s string) *CommentCreate {
 	cc.mutation.SetContent(s)
@@ -182,14 +154,6 @@ func (cc *CommentCreate) defaults() {
 		v := comment.DefaultUpdateTime()
 		cc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := cc.mutation.IsDelete(); !ok {
-		v := comment.DefaultIsDelete
-		cc.mutation.SetIsDelete(v)
-	}
-	if _, ok := cc.mutation.Version(); !ok {
-		v := comment.DefaultVersion
-		cc.mutation.SetVersion(v)
-	}
 	if _, ok := cc.mutation.Status(); !ok {
 		v := comment.DefaultStatus
 		cc.mutation.SetStatus(v)
@@ -203,12 +167,6 @@ func (cc *CommentCreate) check() error {
 	}
 	if _, ok := cc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Comment.updateTime"`)}
-	}
-	if _, ok := cc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Comment.isDelete"`)}
-	}
-	if _, ok := cc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Comment.version"`)}
 	}
 	if _, ok := cc.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "Comment.content"`)}
@@ -262,14 +220,6 @@ func (cc *CommentCreate) createSpec() (*Comment, *sqlgraph.CreateSpec) {
 	if value, ok := cc.mutation.UpdateTime(); ok {
 		_spec.SetField(comment.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := cc.mutation.IsDelete(); ok {
-		_spec.SetField(comment.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := cc.mutation.Version(); ok {
-		_spec.SetField(comment.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := cc.mutation.Content(); ok {
 		_spec.SetField(comment.FieldContent, field.TypeString, value)
@@ -352,36 +302,6 @@ func (u *CommentUpsert) SetUpdateTime(v time.Time) *CommentUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *CommentUpsert) UpdateUpdateTime() *CommentUpsert {
 	u.SetExcluded(comment.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *CommentUpsert) SetIsDelete(v bool) *CommentUpsert {
-	u.Set(comment.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *CommentUpsert) UpdateIsDelete() *CommentUpsert {
-	u.SetExcluded(comment.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *CommentUpsert) SetVersion(v int) *CommentUpsert {
-	u.Set(comment.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *CommentUpsert) UpdateVersion() *CommentUpsert {
-	u.SetExcluded(comment.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *CommentUpsert) AddVersion(v int) *CommentUpsert {
-	u.Add(comment.FieldVersion, v)
 	return u
 }
 
@@ -537,41 +457,6 @@ func (u *CommentUpsertOne) SetUpdateTime(v time.Time) *CommentUpsertOne {
 func (u *CommentUpsertOne) UpdateUpdateTime() *CommentUpsertOne {
 	return u.Update(func(s *CommentUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *CommentUpsertOne) SetIsDelete(v bool) *CommentUpsertOne {
-	return u.Update(func(s *CommentUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *CommentUpsertOne) UpdateIsDelete() *CommentUpsertOne {
-	return u.Update(func(s *CommentUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *CommentUpsertOne) SetVersion(v int) *CommentUpsertOne {
-	return u.Update(func(s *CommentUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *CommentUpsertOne) AddVersion(v int) *CommentUpsertOne {
-	return u.Update(func(s *CommentUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *CommentUpsertOne) UpdateVersion() *CommentUpsertOne {
-	return u.Update(func(s *CommentUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -909,41 +794,6 @@ func (u *CommentUpsertBulk) SetUpdateTime(v time.Time) *CommentUpsertBulk {
 func (u *CommentUpsertBulk) UpdateUpdateTime() *CommentUpsertBulk {
 	return u.Update(func(s *CommentUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *CommentUpsertBulk) SetIsDelete(v bool) *CommentUpsertBulk {
-	return u.Update(func(s *CommentUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *CommentUpsertBulk) UpdateIsDelete() *CommentUpsertBulk {
-	return u.Update(func(s *CommentUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *CommentUpsertBulk) SetVersion(v int) *CommentUpsertBulk {
-	return u.Update(func(s *CommentUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *CommentUpsertBulk) AddVersion(v int) *CommentUpsertBulk {
-	return u.Update(func(s *CommentUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *CommentUpsertBulk) UpdateVersion() *CommentUpsertBulk {
-	return u.Update(func(s *CommentUpsert) {
-		s.UpdateVersion()
 	})
 }
 

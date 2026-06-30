@@ -1,0 +1,41 @@
+{
+  "info": {
+    "name": "blog-server-go interaction smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/health" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('code 200', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    },
+    {
+      "name": "comment findAll",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/comment/findAll?articleId=1&page=1&pageSize=10" },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "const j = pm.response.json();",
+        "pm.test('comment list ok', () => pm.expect(j.code).to.eql(200));",
+        "pm.test('has pagination', () => pm.expect(j.data.pagination).to.be.an('object'));"
+      ] } }]
+    },
+    {
+      "name": "like check (no token)",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/like/check?articleId=1" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('like check ok', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    },
+    {
+      "name": "collect count",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/collect/count?articleId=1" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('collect count ok', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    },
+    {
+      "name": "reply findAll",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/reply/findAll?articleId=test-parent-id" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('reply list ok', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    }
+  ]
+}

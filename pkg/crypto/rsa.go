@@ -12,6 +12,22 @@ import (
 	"strings"
 )
 
+// RSAEncrypt 使用公钥加密明文，返回大写十六进制字符串（与 blog-admin rsaEncrypt 对齐）。
+func RSAEncrypt(plain, publicKeyPEM string) (string, error) {
+	if plain == "" || publicKeyPEM == "" {
+		return "", errors.New("plain or public key empty")
+	}
+	pub, err := parseRSAPublicKey(publicKeyPEM)
+	if err != nil {
+		return "", err
+	}
+	cipher, err := rsa.EncryptPKCS1v15(rand.Reader, pub, []byte(plain))
+	if err != nil {
+		return "", err
+	}
+	return strings.ToUpper(hex.EncodeToString(cipher)), nil
+}
+
 // RSADecrypt 解密前端 RSA 密文（大写十六进制），与 Nest rsaDecrypt 行为一致。
 // 解密失败时返回原文，便于兼容明文调试场景。
 func RSADecrypt(encryptedHex, privateKeyPEM string) string {
@@ -39,6 +55,22 @@ func rsaDecrypt(encryptedHex, privateKeyPEM string) (string, error) {
 		return "", err
 	}
 	return string(plain), nil
+}
+
+func parseRSAPublicKey(pemText string) (*rsa.PublicKey, error) {
+	block, _ := pem.Decode([]byte(pemText))
+	if block == nil {
+		return nil, errors.New("invalid PEM block")
+	}
+	pub, err := x509.ParsePKIXPublicKey(block.Bytes)
+	if err != nil {
+		return nil, err
+	}
+	rsaPub, ok := pub.(*rsa.PublicKey)
+	if !ok {
+		return nil, errors.New("not RSA public key")
+	}
+	return rsaPub, nil
 }
 
 func parseRSAPrivateKey(pemText string) (*rsa.PrivateKey, error) {

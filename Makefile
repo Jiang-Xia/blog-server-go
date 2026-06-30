@@ -1,4 +1,4 @@
-.PHONY: dev ent-gen wire migrate-up migrate-down tidy ent-schema bootstrap-db
+.PHONY: dev ent-gen wire migrate-up migrate-down tidy ent-schema bootstrap-db sync-data
 
 GO ?= go
 CONFIG_PATH ?= configs/monolith.yaml
@@ -7,6 +7,12 @@ APP_DIR := services/monolith/internal/app
 
 dev:
 	set CONFIG_PATH=$(CONFIG_PATH)&& $(GO) run ./services/monolith/cmd/main.go
+
+dev-login:
+	$(GO) run scripts/dev_login.go
+
+dev-login-token:
+	$(GO) run scripts/dev_login.go --token-only
 
 ent-gen:
 	cd $(ENT_DIR) && $(GO) generate ./...
@@ -29,6 +35,9 @@ migrate-up:
 
 migrate-down:
 	@echo "local x_my_blog uses bootstrap clone; no migrate-down"
+
+sync-data:
+	$(GO) run scripts/sync_data_x_my_blog.go
 
 tidy:
 	$(GO) mod tidy

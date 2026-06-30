@@ -34,41 +34,6 @@ func (cu *CommentUpdate) SetUpdateTime(t time.Time) *CommentUpdate {
 	return cu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (cu *CommentUpdate) SetIsDelete(b bool) *CommentUpdate {
-	cu.mutation.SetIsDelete(b)
-	return cu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (cu *CommentUpdate) SetNillableIsDelete(b *bool) *CommentUpdate {
-	if b != nil {
-		cu.SetIsDelete(*b)
-	}
-	return cu
-}
-
-// SetVersion sets the "version" field.
-func (cu *CommentUpdate) SetVersion(i int) *CommentUpdate {
-	cu.mutation.ResetVersion()
-	cu.mutation.SetVersion(i)
-	return cu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (cu *CommentUpdate) SetNillableVersion(i *int) *CommentUpdate {
-	if i != nil {
-		cu.SetVersion(*i)
-	}
-	return cu
-}
-
-// AddVersion adds i to the "version" field.
-func (cu *CommentUpdate) AddVersion(i int) *CommentUpdate {
-	cu.mutation.AddVersion(i)
-	return cu
-}
-
 // SetContent sets the "content" field.
 func (cu *CommentUpdate) SetContent(s string) *CommentUpdate {
 	cu.mutation.SetContent(s)
@@ -225,15 +190,6 @@ func (cu *CommentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := cu.mutation.UpdateTime(); ok {
 		_spec.SetField(comment.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := cu.mutation.IsDelete(); ok {
-		_spec.SetField(comment.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := cu.mutation.Version(); ok {
-		_spec.SetField(comment.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := cu.mutation.AddedVersion(); ok {
-		_spec.AddField(comment.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := cu.mutation.Content(); ok {
 		_spec.SetField(comment.FieldContent, field.TypeString, value)
 	}
@@ -287,41 +243,6 @@ type CommentUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (cuo *CommentUpdateOne) SetUpdateTime(t time.Time) *CommentUpdateOne {
 	cuo.mutation.SetUpdateTime(t)
-	return cuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (cuo *CommentUpdateOne) SetIsDelete(b bool) *CommentUpdateOne {
-	cuo.mutation.SetIsDelete(b)
-	return cuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (cuo *CommentUpdateOne) SetNillableIsDelete(b *bool) *CommentUpdateOne {
-	if b != nil {
-		cuo.SetIsDelete(*b)
-	}
-	return cuo
-}
-
-// SetVersion sets the "version" field.
-func (cuo *CommentUpdateOne) SetVersion(i int) *CommentUpdateOne {
-	cuo.mutation.ResetVersion()
-	cuo.mutation.SetVersion(i)
-	return cuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (cuo *CommentUpdateOne) SetNillableVersion(i *int) *CommentUpdateOne {
-	if i != nil {
-		cuo.SetVersion(*i)
-	}
-	return cuo
-}
-
-// AddVersion adds i to the "version" field.
-func (cuo *CommentUpdateOne) AddVersion(i int) *CommentUpdateOne {
-	cuo.mutation.AddVersion(i)
 	return cuo
 }
 
@@ -510,15 +431,6 @@ func (cuo *CommentUpdateOne) sqlSave(ctx context.Context) (_node *Comment, err e
 	}
 	if value, ok := cuo.mutation.UpdateTime(); ok {
 		_spec.SetField(comment.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := cuo.mutation.IsDelete(); ok {
-		_spec.SetField(comment.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := cuo.mutation.Version(); ok {
-		_spec.SetField(comment.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := cuo.mutation.AddedVersion(); ok {
-		_spec.AddField(comment.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := cuo.mutation.Content(); ok {
 		_spec.SetField(comment.FieldContent, field.TypeString, value)

@@ -34,41 +34,6 @@ func (ru *ReplyUpdate) SetUpdateTime(t time.Time) *ReplyUpdate {
 	return ru
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (ru *ReplyUpdate) SetIsDelete(b bool) *ReplyUpdate {
-	ru.mutation.SetIsDelete(b)
-	return ru
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ru *ReplyUpdate) SetNillableIsDelete(b *bool) *ReplyUpdate {
-	if b != nil {
-		ru.SetIsDelete(*b)
-	}
-	return ru
-}
-
-// SetVersion sets the "version" field.
-func (ru *ReplyUpdate) SetVersion(i int) *ReplyUpdate {
-	ru.mutation.ResetVersion()
-	ru.mutation.SetVersion(i)
-	return ru
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ru *ReplyUpdate) SetNillableVersion(i *int) *ReplyUpdate {
-	if i != nil {
-		ru.SetVersion(*i)
-	}
-	return ru
-}
-
-// AddVersion adds i to the "version" field.
-func (ru *ReplyUpdate) AddVersion(i int) *ReplyUpdate {
-	ru.mutation.AddVersion(i)
-	return ru
-}
-
 // SetParentId sets the "parentId" field.
 func (ru *ReplyUpdate) SetParentId(s string) *ReplyUpdate {
 	ru.mutation.SetParentId(s)
@@ -199,15 +164,6 @@ func (ru *ReplyUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := ru.mutation.UpdateTime(); ok {
 		_spec.SetField(reply.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := ru.mutation.IsDelete(); ok {
-		_spec.SetField(reply.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ru.mutation.Version(); ok {
-		_spec.SetField(reply.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ru.mutation.AddedVersion(); ok {
-		_spec.AddField(reply.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := ru.mutation.ParentId(); ok {
 		_spec.SetField(reply.FieldParentId, field.TypeString, value)
 	}
@@ -249,41 +205,6 @@ type ReplyUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (ruo *ReplyUpdateOne) SetUpdateTime(t time.Time) *ReplyUpdateOne {
 	ruo.mutation.SetUpdateTime(t)
-	return ruo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ruo *ReplyUpdateOne) SetIsDelete(b bool) *ReplyUpdateOne {
-	ruo.mutation.SetIsDelete(b)
-	return ruo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruo *ReplyUpdateOne) SetNillableIsDelete(b *bool) *ReplyUpdateOne {
-	if b != nil {
-		ruo.SetIsDelete(*b)
-	}
-	return ruo
-}
-
-// SetVersion sets the "version" field.
-func (ruo *ReplyUpdateOne) SetVersion(i int) *ReplyUpdateOne {
-	ruo.mutation.ResetVersion()
-	ruo.mutation.SetVersion(i)
-	return ruo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruo *ReplyUpdateOne) SetNillableVersion(i *int) *ReplyUpdateOne {
-	if i != nil {
-		ruo.SetVersion(*i)
-	}
-	return ruo
-}
-
-// AddVersion adds i to the "version" field.
-func (ruo *ReplyUpdateOne) AddVersion(i int) *ReplyUpdateOne {
-	ruo.mutation.AddVersion(i)
 	return ruo
 }
 
@@ -446,15 +367,6 @@ func (ruo *ReplyUpdateOne) sqlSave(ctx context.Context) (_node *Reply, err error
 	}
 	if value, ok := ruo.mutation.UpdateTime(); ok {
 		_spec.SetField(reply.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := ruo.mutation.IsDelete(); ok {
-		_spec.SetField(reply.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ruo.mutation.Version(); ok {
-		_spec.SetField(reply.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ruo.mutation.AddedVersion(); ok {
-		_spec.AddField(reply.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := ruo.mutation.ParentId(); ok {
 		_spec.SetField(reply.FieldParentId, field.TypeString, value)

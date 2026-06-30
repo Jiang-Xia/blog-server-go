@@ -1,0 +1,40 @@
+{
+  "info": {
+    "name": "blog-server-go blog peripheral smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" }
+  ],
+  "item": [
+    {
+      "name": "health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/health" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('code 200', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    },
+    {
+      "name": "msgboard list",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/msgboard?page=1&pageSize=10" },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "const j = pm.response.json();",
+        "pm.test('msgboard ok', () => pm.expect(j.code).to.eql(200));",
+        "pm.test('has pagination', () => pm.expect(j.data.pagination).to.be.an('object'));"
+      ] } }]
+    },
+    {
+      "name": "link list (client)",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/link?client=1" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('link ok', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    },
+    {
+      "name": "resources register-avatars",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/resources/register-avatars" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('avatars ok', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    },
+    {
+      "name": "resources files",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/resources/files?page=1&pageSize=10" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('files ok', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    }
+  ]
+}

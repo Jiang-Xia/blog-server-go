@@ -50,34 +50,6 @@ func (mc *MsgboardCreate) SetNillableUpdateTime(t *time.Time) *MsgboardCreate {
 	return mc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (mc *MsgboardCreate) SetIsDelete(b bool) *MsgboardCreate {
-	mc.mutation.SetIsDelete(b)
-	return mc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (mc *MsgboardCreate) SetNillableIsDelete(b *bool) *MsgboardCreate {
-	if b != nil {
-		mc.SetIsDelete(*b)
-	}
-	return mc
-}
-
-// SetVersion sets the "version" field.
-func (mc *MsgboardCreate) SetVersion(i int) *MsgboardCreate {
-	mc.mutation.SetVersion(i)
-	return mc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (mc *MsgboardCreate) SetNillableVersion(i *int) *MsgboardCreate {
-	if i != nil {
-		mc.SetVersion(*i)
-	}
-	return mc
-}
-
 // SetName sets the "name" field.
 func (mc *MsgboardCreate) SetName(s string) *MsgboardCreate {
 	mc.mutation.SetName(s)
@@ -259,14 +231,6 @@ func (mc *MsgboardCreate) defaults() {
 		v := msgboard.DefaultUpdateTime()
 		mc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := mc.mutation.IsDelete(); !ok {
-		v := msgboard.DefaultIsDelete
-		mc.mutation.SetIsDelete(v)
-	}
-	if _, ok := mc.mutation.Version(); !ok {
-		v := msgboard.DefaultVersion
-		mc.mutation.SetVersion(v)
-	}
 	if _, ok := mc.mutation.PId(); !ok {
 		v := msgboard.DefaultPId
 		mc.mutation.SetPId(v)
@@ -284,12 +248,6 @@ func (mc *MsgboardCreate) check() error {
 	}
 	if _, ok := mc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "Msgboard.updateTime"`)}
-	}
-	if _, ok := mc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "Msgboard.isDelete"`)}
-	}
-	if _, ok := mc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Msgboard.version"`)}
 	}
 	if _, ok := mc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Msgboard.name"`)}
@@ -361,14 +319,6 @@ func (mc *MsgboardCreate) createSpec() (*Msgboard, *sqlgraph.CreateSpec) {
 	if value, ok := mc.mutation.UpdateTime(); ok {
 		_spec.SetField(msgboard.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := mc.mutation.IsDelete(); ok {
-		_spec.SetField(msgboard.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := mc.mutation.Version(); ok {
-		_spec.SetField(msgboard.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := mc.mutation.Name(); ok {
 		_spec.SetField(msgboard.FieldName, field.TypeString, value)
@@ -487,36 +437,6 @@ func (u *MsgboardUpsert) SetUpdateTime(v time.Time) *MsgboardUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *MsgboardUpsert) UpdateUpdateTime() *MsgboardUpsert {
 	u.SetExcluded(msgboard.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *MsgboardUpsert) SetIsDelete(v bool) *MsgboardUpsert {
-	u.Set(msgboard.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *MsgboardUpsert) UpdateIsDelete() *MsgboardUpsert {
-	u.SetExcluded(msgboard.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *MsgboardUpsert) SetVersion(v int) *MsgboardUpsert {
-	u.Set(msgboard.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *MsgboardUpsert) UpdateVersion() *MsgboardUpsert {
-	u.SetExcluded(msgboard.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *MsgboardUpsert) AddVersion(v int) *MsgboardUpsert {
-	u.Add(msgboard.FieldVersion, v)
 	return u
 }
 
@@ -786,41 +706,6 @@ func (u *MsgboardUpsertOne) SetUpdateTime(v time.Time) *MsgboardUpsertOne {
 func (u *MsgboardUpsertOne) UpdateUpdateTime() *MsgboardUpsertOne {
 	return u.Update(func(s *MsgboardUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *MsgboardUpsertOne) SetIsDelete(v bool) *MsgboardUpsertOne {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *MsgboardUpsertOne) UpdateIsDelete() *MsgboardUpsertOne {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *MsgboardUpsertOne) SetVersion(v int) *MsgboardUpsertOne {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *MsgboardUpsertOne) AddVersion(v int) *MsgboardUpsertOne {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *MsgboardUpsertOne) UpdateVersion() *MsgboardUpsertOne {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -1290,41 +1175,6 @@ func (u *MsgboardUpsertBulk) SetUpdateTime(v time.Time) *MsgboardUpsertBulk {
 func (u *MsgboardUpsertBulk) UpdateUpdateTime() *MsgboardUpsertBulk {
 	return u.Update(func(s *MsgboardUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *MsgboardUpsertBulk) SetIsDelete(v bool) *MsgboardUpsertBulk {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *MsgboardUpsertBulk) UpdateIsDelete() *MsgboardUpsertBulk {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *MsgboardUpsertBulk) SetVersion(v int) *MsgboardUpsertBulk {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *MsgboardUpsertBulk) AddVersion(v int) *MsgboardUpsertBulk {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *MsgboardUpsertBulk) UpdateVersion() *MsgboardUpsertBulk {
-	return u.Update(func(s *MsgboardUpsert) {
-		s.UpdateVersion()
 	})
 }
 

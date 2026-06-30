@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -407,6 +408,9 @@ func (s *Service) reviewHit(ctx context.Context, hitID, reviewerID int, status s
 	if err != nil {
 		return nil, err
 	}
+	if err := s.syncSourceStatus(ctx, hit.SourceType, hit.SourceId, status); err != nil {
+		s.log.Warn("同步来源实体状态失败", zap.Error(err))
+	}
 	s.log.Info("敏感词命中审核完成",
 		zap.Int("hitId", hitID),
 		zap.String("status", status),
@@ -414,6 +418,34 @@ func (s *Service) reviewHit(ctx context.Context, hitID, reviewerID int, status s
 		zap.String("sourceId", hit.SourceId),
 	)
 	return saved, nil
+}
+
+// syncSourceStatus 审核后同步 comment/reply/msgboard 实体状态。
+func (s *Service) syncSourceStatus(ctx context.Context, sourceType, sourceID, reviewStatus string) error {
+	if sourceID == "" || sourceID == "0" {
+		return nil
+	}
+	entityStatus := "approved"
+	if reviewStatus == "rejected" {
+		entityStatus = "rejected"
+	}
+	switch sourceType {
+	case "comment":
+		_, err := s.client.Comment.UpdateOneID(sourceID).SetStatus(entityStatus).Save(ctx)
+		return err
+	case "reply":
+		_, err := s.client.Reply.UpdateOneID(sourceID).SetStatus(entityStatus).Save(ctx)
+		return err
+	case "msgboard":
+		id, err := strconv.Atoi(sourceID)
+		if err != nil {
+			return err
+		}
+		_, err = s.client.Msgboard.UpdateOneID(id).SetStatus(entityStatus).Save(ctx)
+		return err
+	default:
+		return nil
+	}
 }
 
 func strVal(m map[string]interface{}, key string) string {

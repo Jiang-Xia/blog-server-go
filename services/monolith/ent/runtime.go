@@ -127,14 +127,6 @@ func init() {
 	collect.DefaultUpdateTime = collectDescUpdateTime.Default.(func() time.Time)
 	// collect.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	collect.UpdateDefaultUpdateTime = collectDescUpdateTime.UpdateDefault.(func() time.Time)
-	// collectDescIsDelete is the schema descriptor for isDelete field.
-	collectDescIsDelete := collectMixinFields0[2].Descriptor()
-	// collect.DefaultIsDelete holds the default value on creation for the isDelete field.
-	collect.DefaultIsDelete = collectDescIsDelete.Default.(bool)
-	// collectDescVersion is the schema descriptor for version field.
-	collectDescVersion := collectMixinFields0[3].Descriptor()
-	// collect.DefaultVersion holds the default value on creation for the version field.
-	collect.DefaultVersion = collectDescVersion.Default.(int)
 	commentMixin := schema.Comment{}.Mixin()
 	commentMixinFields0 := commentMixin[0].Fields()
 	_ = commentMixinFields0
@@ -150,14 +142,6 @@ func init() {
 	comment.DefaultUpdateTime = commentDescUpdateTime.Default.(func() time.Time)
 	// comment.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	comment.UpdateDefaultUpdateTime = commentDescUpdateTime.UpdateDefault.(func() time.Time)
-	// commentDescIsDelete is the schema descriptor for isDelete field.
-	commentDescIsDelete := commentMixinFields0[2].Descriptor()
-	// comment.DefaultIsDelete holds the default value on creation for the isDelete field.
-	comment.DefaultIsDelete = commentDescIsDelete.Default.(bool)
-	// commentDescVersion is the schema descriptor for version field.
-	commentDescVersion := commentMixinFields0[3].Descriptor()
-	// comment.DefaultVersion holds the default value on creation for the version field.
-	comment.DefaultVersion = commentDescVersion.Default.(int)
 	// commentDescStatus is the schema descriptor for status field.
 	commentDescStatus := commentFields[5].Descriptor()
 	// comment.DefaultStatus holds the default value on creation for the status field.
@@ -250,14 +234,6 @@ func init() {
 	link.DefaultUpdateTime = linkDescUpdateTime.Default.(func() time.Time)
 	// link.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	link.UpdateDefaultUpdateTime = linkDescUpdateTime.UpdateDefault.(func() time.Time)
-	// linkDescIsDelete is the schema descriptor for isDelete field.
-	linkDescIsDelete := linkMixinFields0[2].Descriptor()
-	// link.DefaultIsDelete holds the default value on creation for the isDelete field.
-	link.DefaultIsDelete = linkDescIsDelete.Default.(bool)
-	// linkDescVersion is the schema descriptor for version field.
-	linkDescVersion := linkMixinFields0[3].Descriptor()
-	// link.DefaultVersion holds the default value on creation for the version field.
-	link.DefaultVersion = linkDescVersion.Default.(int)
 	// linkDescAgreed is the schema descriptor for agreed field.
 	linkDescAgreed := linkFields[5].Descriptor()
 	// link.DefaultAgreed holds the default value on creation for the agreed field.
@@ -311,14 +287,6 @@ func init() {
 	msgboard.DefaultUpdateTime = msgboardDescUpdateTime.Default.(func() time.Time)
 	// msgboard.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	msgboard.UpdateDefaultUpdateTime = msgboardDescUpdateTime.UpdateDefault.(func() time.Time)
-	// msgboardDescIsDelete is the schema descriptor for isDelete field.
-	msgboardDescIsDelete := msgboardMixinFields0[2].Descriptor()
-	// msgboard.DefaultIsDelete holds the default value on creation for the isDelete field.
-	msgboard.DefaultIsDelete = msgboardDescIsDelete.Default.(bool)
-	// msgboardDescVersion is the schema descriptor for version field.
-	msgboardDescVersion := msgboardMixinFields0[3].Descriptor()
-	// msgboard.DefaultVersion holds the default value on creation for the version field.
-	msgboard.DefaultVersion = msgboardDescVersion.Default.(int)
 	// msgboardDescPId is the schema descriptor for pId field.
 	msgboardDescPId := msgboardFields[12].Descriptor()
 	// msgboard.DefaultPId holds the default value on creation for the pId field.
@@ -474,14 +442,6 @@ func init() {
 	reply.DefaultUpdateTime = replyDescUpdateTime.Default.(func() time.Time)
 	// reply.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	reply.UpdateDefaultUpdateTime = replyDescUpdateTime.UpdateDefault.(func() time.Time)
-	// replyDescIsDelete is the schema descriptor for isDelete field.
-	replyDescIsDelete := replyMixinFields0[2].Descriptor()
-	// reply.DefaultIsDelete holds the default value on creation for the isDelete field.
-	reply.DefaultIsDelete = replyDescIsDelete.Default.(bool)
-	// replyDescVersion is the schema descriptor for version field.
-	replyDescVersion := replyMixinFields0[3].Descriptor()
-	// reply.DefaultVersion holds the default value on creation for the version field.
-	reply.DefaultVersion = replyDescVersion.Default.(int)
 	// replyDescStatus is the schema descriptor for status field.
 	replyDescStatus := replyFields[5].Descriptor()
 	// reply.DefaultStatus holds the default value on creation for the status field.

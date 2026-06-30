@@ -44,3 +44,7 @@ mail:
 wechat:
   app_id: ""
   secret: ""
+
+storage:
+  upload_path: "./public/uploads/"
+  public_prefix: "/static/"
