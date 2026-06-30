@@ -262,12 +262,12 @@ func (swq *SensitiveWordQuery) Clone() *SensitiveWordQuery {
 // Example:
 //
 //	var v []struct {
-//		CreateTime time.Time `json:"createTime,omitempty"`
+//		Word string `json:"word,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.SensitiveWord.Query().
-//		GroupBy(sensitiveword.FieldCreateTime).
+//		GroupBy(sensitiveword.FieldWord).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (swq *SensitiveWordQuery) GroupBy(field string, fields ...string) *SensitiveWordGroupBy {
@@ -285,11 +285,11 @@ func (swq *SensitiveWordQuery) GroupBy(field string, fields ...string) *Sensitiv
 // Example:
 //
 //	var v []struct {
-//		CreateTime time.Time `json:"createTime,omitempty"`
+//		Word string `json:"word,omitempty"`
 //	}
 //
 //	client.SensitiveWord.Query().
-//		Select(sensitiveword.FieldCreateTime).
+//		Select(sensitiveword.FieldWord).
 //		Scan(ctx, &v)
 func (swq *SensitiveWordQuery) Select(fields ...string) *SensitiveWordSelect {
 	swq.ctx.Fields = append(swq.ctx.Fields, fields...)

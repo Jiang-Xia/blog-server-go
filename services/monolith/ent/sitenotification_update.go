@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
@@ -25,47 +24,6 @@ type SiteNotificationUpdate struct {
 // Where appends a list predicates to the SiteNotificationUpdate builder.
 func (snu *SiteNotificationUpdate) Where(ps ...predicate.SiteNotification) *SiteNotificationUpdate {
 	snu.mutation.Where(ps...)
-	return snu
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (snu *SiteNotificationUpdate) SetUpdateTime(t time.Time) *SiteNotificationUpdate {
-	snu.mutation.SetUpdateTime(t)
-	return snu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (snu *SiteNotificationUpdate) SetIsDelete(b bool) *SiteNotificationUpdate {
-	snu.mutation.SetIsDelete(b)
-	return snu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (snu *SiteNotificationUpdate) SetNillableIsDelete(b *bool) *SiteNotificationUpdate {
-	if b != nil {
-		snu.SetIsDelete(*b)
-	}
-	return snu
-}
-
-// SetVersion sets the "version" field.
-func (snu *SiteNotificationUpdate) SetVersion(i int) *SiteNotificationUpdate {
-	snu.mutation.ResetVersion()
-	snu.mutation.SetVersion(i)
-	return snu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (snu *SiteNotificationUpdate) SetNillableVersion(i *int) *SiteNotificationUpdate {
-	if i != nil {
-		snu.SetVersion(*i)
-	}
-	return snu
-}
-
-// AddVersion adds i to the "version" field.
-func (snu *SiteNotificationUpdate) AddVersion(i int) *SiteNotificationUpdate {
-	snu.mutation.AddVersion(i)
 	return snu
 }
 
@@ -146,7 +104,6 @@ func (snu *SiteNotificationUpdate) Mutation() *SiteNotificationMutation {
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (snu *SiteNotificationUpdate) Save(ctx context.Context) (int, error) {
-	snu.defaults()
 	return withHooks(ctx, snu.sqlSave, snu.mutation, snu.hooks)
 }
 
@@ -172,14 +129,6 @@ func (snu *SiteNotificationUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (snu *SiteNotificationUpdate) defaults() {
-	if _, ok := snu.mutation.UpdateTime(); !ok {
-		v := sitenotification.UpdateDefaultUpdateTime()
-		snu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (snu *SiteNotificationUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(sitenotification.Table, sitenotification.Columns, sqlgraph.NewFieldSpec(sitenotification.FieldID, field.TypeInt))
 	if ps := snu.mutation.predicates; len(ps) > 0 {
@@ -188,18 +137,6 @@ func (snu *SiteNotificationUpdate) sqlSave(ctx context.Context) (n int, err erro
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := snu.mutation.UpdateTime(); ok {
-		_spec.SetField(sitenotification.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := snu.mutation.IsDelete(); ok {
-		_spec.SetField(sitenotification.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := snu.mutation.Version(); ok {
-		_spec.SetField(sitenotification.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := snu.mutation.AddedVersion(); ok {
-		_spec.AddField(sitenotification.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := snu.mutation.UID(); ok {
 		_spec.SetField(sitenotification.FieldUID, field.TypeInt, value)
@@ -237,47 +174,6 @@ type SiteNotificationUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *SiteNotificationMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (snuo *SiteNotificationUpdateOne) SetUpdateTime(t time.Time) *SiteNotificationUpdateOne {
-	snuo.mutation.SetUpdateTime(t)
-	return snuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (snuo *SiteNotificationUpdateOne) SetIsDelete(b bool) *SiteNotificationUpdateOne {
-	snuo.mutation.SetIsDelete(b)
-	return snuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (snuo *SiteNotificationUpdateOne) SetNillableIsDelete(b *bool) *SiteNotificationUpdateOne {
-	if b != nil {
-		snuo.SetIsDelete(*b)
-	}
-	return snuo
-}
-
-// SetVersion sets the "version" field.
-func (snuo *SiteNotificationUpdateOne) SetVersion(i int) *SiteNotificationUpdateOne {
-	snuo.mutation.ResetVersion()
-	snuo.mutation.SetVersion(i)
-	return snuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (snuo *SiteNotificationUpdateOne) SetNillableVersion(i *int) *SiteNotificationUpdateOne {
-	if i != nil {
-		snuo.SetVersion(*i)
-	}
-	return snuo
-}
-
-// AddVersion adds i to the "version" field.
-func (snuo *SiteNotificationUpdateOne) AddVersion(i int) *SiteNotificationUpdateOne {
-	snuo.mutation.AddVersion(i)
-	return snuo
 }
 
 // SetUID sets the "uid" field.
@@ -370,7 +266,6 @@ func (snuo *SiteNotificationUpdateOne) Select(field string, fields ...string) *S
 
 // Save executes the query and returns the updated SiteNotification entity.
 func (snuo *SiteNotificationUpdateOne) Save(ctx context.Context) (*SiteNotification, error) {
-	snuo.defaults()
 	return withHooks(ctx, snuo.sqlSave, snuo.mutation, snuo.hooks)
 }
 
@@ -393,14 +288,6 @@ func (snuo *SiteNotificationUpdateOne) Exec(ctx context.Context) error {
 func (snuo *SiteNotificationUpdateOne) ExecX(ctx context.Context) {
 	if err := snuo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (snuo *SiteNotificationUpdateOne) defaults() {
-	if _, ok := snuo.mutation.UpdateTime(); !ok {
-		v := sitenotification.UpdateDefaultUpdateTime()
-		snuo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -429,18 +316,6 @@ func (snuo *SiteNotificationUpdateOne) sqlSave(ctx context.Context) (_node *Site
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := snuo.mutation.UpdateTime(); ok {
-		_spec.SetField(sitenotification.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := snuo.mutation.IsDelete(); ok {
-		_spec.SetField(sitenotification.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := snuo.mutation.Version(); ok {
-		_spec.SetField(sitenotification.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := snuo.mutation.AddedVersion(); ok {
-		_spec.AddField(sitenotification.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := snuo.mutation.UID(); ok {
 		_spec.SetField(sitenotification.FieldUID, field.TypeInt, value)

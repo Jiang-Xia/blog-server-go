@@ -22,62 +22,6 @@ type SensitiveWordHitCreate struct {
 	conflict []sql.ConflictOption
 }
 
-// SetCreateTime sets the "createTime" field.
-func (swhc *SensitiveWordHitCreate) SetCreateTime(t time.Time) *SensitiveWordHitCreate {
-	swhc.mutation.SetCreateTime(t)
-	return swhc
-}
-
-// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (swhc *SensitiveWordHitCreate) SetNillableCreateTime(t *time.Time) *SensitiveWordHitCreate {
-	if t != nil {
-		swhc.SetCreateTime(*t)
-	}
-	return swhc
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (swhc *SensitiveWordHitCreate) SetUpdateTime(t time.Time) *SensitiveWordHitCreate {
-	swhc.mutation.SetUpdateTime(t)
-	return swhc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (swhc *SensitiveWordHitCreate) SetNillableUpdateTime(t *time.Time) *SensitiveWordHitCreate {
-	if t != nil {
-		swhc.SetUpdateTime(*t)
-	}
-	return swhc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (swhc *SensitiveWordHitCreate) SetIsDelete(b bool) *SensitiveWordHitCreate {
-	swhc.mutation.SetIsDelete(b)
-	return swhc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (swhc *SensitiveWordHitCreate) SetNillableIsDelete(b *bool) *SensitiveWordHitCreate {
-	if b != nil {
-		swhc.SetIsDelete(*b)
-	}
-	return swhc
-}
-
-// SetVersion sets the "version" field.
-func (swhc *SensitiveWordHitCreate) SetVersion(i int) *SensitiveWordHitCreate {
-	swhc.mutation.SetVersion(i)
-	return swhc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (swhc *SensitiveWordHitCreate) SetNillableVersion(i *int) *SensitiveWordHitCreate {
-	if i != nil {
-		swhc.SetVersion(*i)
-	}
-	return swhc
-}
-
 // SetSourceType sets the "sourceType" field.
 func (swhc *SensitiveWordHitCreate) SetSourceType(s string) *SensitiveWordHitCreate {
 	swhc.mutation.SetSourceType(s)
@@ -172,6 +116,20 @@ func (swhc *SensitiveWordHitCreate) SetNillableReviewTime(t *time.Time) *Sensiti
 	return swhc
 }
 
+// SetCreateTime sets the "createTime" field.
+func (swhc *SensitiveWordHitCreate) SetCreateTime(t time.Time) *SensitiveWordHitCreate {
+	swhc.mutation.SetCreateTime(t)
+	return swhc
+}
+
+// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
+func (swhc *SensitiveWordHitCreate) SetNillableCreateTime(t *time.Time) *SensitiveWordHitCreate {
+	if t != nil {
+		swhc.SetCreateTime(*t)
+	}
+	return swhc
+}
+
 // SetID sets the "id" field.
 func (swhc *SensitiveWordHitCreate) SetID(i int) *SensitiveWordHitCreate {
 	swhc.mutation.SetID(i)
@@ -213,42 +171,18 @@ func (swhc *SensitiveWordHitCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (swhc *SensitiveWordHitCreate) defaults() {
-	if _, ok := swhc.mutation.CreateTime(); !ok {
-		v := sensitivewordhit.DefaultCreateTime()
-		swhc.mutation.SetCreateTime(v)
-	}
-	if _, ok := swhc.mutation.UpdateTime(); !ok {
-		v := sensitivewordhit.DefaultUpdateTime()
-		swhc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := swhc.mutation.IsDelete(); !ok {
-		v := sensitivewordhit.DefaultIsDelete
-		swhc.mutation.SetIsDelete(v)
-	}
-	if _, ok := swhc.mutation.Version(); !ok {
-		v := sensitivewordhit.DefaultVersion
-		swhc.mutation.SetVersion(v)
-	}
 	if _, ok := swhc.mutation.Status(); !ok {
 		v := sensitivewordhit.DefaultStatus
 		swhc.mutation.SetStatus(v)
+	}
+	if _, ok := swhc.mutation.CreateTime(); !ok {
+		v := sensitivewordhit.DefaultCreateTime()
+		swhc.mutation.SetCreateTime(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (swhc *SensitiveWordHitCreate) check() error {
-	if _, ok := swhc.mutation.CreateTime(); !ok {
-		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SensitiveWordHit.createTime"`)}
-	}
-	if _, ok := swhc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "SensitiveWordHit.updateTime"`)}
-	}
-	if _, ok := swhc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "SensitiveWordHit.isDelete"`)}
-	}
-	if _, ok := swhc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "SensitiveWordHit.version"`)}
-	}
 	if _, ok := swhc.mutation.SourceType(); !ok {
 		return &ValidationError{Name: "sourceType", err: errors.New(`ent: missing required field "SensitiveWordHit.sourceType"`)}
 	}
@@ -263,6 +197,9 @@ func (swhc *SensitiveWordHitCreate) check() error {
 	}
 	if _, ok := swhc.mutation.Status(); !ok {
 		return &ValidationError{Name: "status", err: errors.New(`ent: missing required field "SensitiveWordHit.status"`)}
+	}
+	if _, ok := swhc.mutation.CreateTime(); !ok {
+		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SensitiveWordHit.createTime"`)}
 	}
 	return nil
 }
@@ -296,22 +233,6 @@ func (swhc *SensitiveWordHitCreate) createSpec() (*SensitiveWordHit, *sqlgraph.C
 	if id, ok := swhc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
-	}
-	if value, ok := swhc.mutation.CreateTime(); ok {
-		_spec.SetField(sensitivewordhit.FieldCreateTime, field.TypeTime, value)
-		_node.CreateTime = value
-	}
-	if value, ok := swhc.mutation.UpdateTime(); ok {
-		_spec.SetField(sensitivewordhit.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := swhc.mutation.IsDelete(); ok {
-		_spec.SetField(sensitivewordhit.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := swhc.mutation.Version(); ok {
-		_spec.SetField(sensitivewordhit.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := swhc.mutation.SourceType(); ok {
 		_spec.SetField(sensitivewordhit.FieldSourceType, field.TypeString, value)
@@ -349,6 +270,10 @@ func (swhc *SensitiveWordHitCreate) createSpec() (*SensitiveWordHit, *sqlgraph.C
 		_spec.SetField(sensitivewordhit.FieldReviewTime, field.TypeTime, value)
 		_node.ReviewTime = &value
 	}
+	if value, ok := swhc.mutation.CreateTime(); ok {
+		_spec.SetField(sensitivewordhit.FieldCreateTime, field.TypeTime, value)
+		_node.CreateTime = value
+	}
 	return _node, _spec
 }
 
@@ -356,7 +281,7 @@ func (swhc *SensitiveWordHitCreate) createSpec() (*SensitiveWordHit, *sqlgraph.C
 // of the `INSERT` statement. For example:
 //
 //	client.SensitiveWordHit.Create().
-//		SetCreateTime(v).
+//		SetSourceType(v).
 //		OnConflict(
 //			// Update the row with the new values
 //			// the was proposed for insertion.
@@ -365,7 +290,7 @@ func (swhc *SensitiveWordHitCreate) createSpec() (*SensitiveWordHit, *sqlgraph.C
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.SensitiveWordHitUpsert) {
-//			SetCreateTime(v+v).
+//			SetSourceType(v+v).
 //		}).
 //		Exec(ctx)
 func (swhc *SensitiveWordHitCreate) OnConflict(opts ...sql.ConflictOption) *SensitiveWordHitUpsertOne {
@@ -400,48 +325,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SensitiveWordHitUpsert) SetUpdateTime(v time.Time) *SensitiveWordHitUpsert {
-	u.Set(sensitivewordhit.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsert) UpdateUpdateTime() *SensitiveWordHitUpsert {
-	u.SetExcluded(sensitivewordhit.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SensitiveWordHitUpsert) SetIsDelete(v bool) *SensitiveWordHitUpsert {
-	u.Set(sensitivewordhit.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsert) UpdateIsDelete() *SensitiveWordHitUpsert {
-	u.SetExcluded(sensitivewordhit.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *SensitiveWordHitUpsert) SetVersion(v int) *SensitiveWordHitUpsert {
-	u.Set(sensitivewordhit.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsert) UpdateVersion() *SensitiveWordHitUpsert {
-	u.SetExcluded(sensitivewordhit.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SensitiveWordHitUpsert) AddVersion(v int) *SensitiveWordHitUpsert {
-	u.Add(sensitivewordhit.FieldVersion, v)
-	return u
-}
 
 // SetSourceType sets the "sourceType" field.
 func (u *SensitiveWordHitUpsert) SetSourceType(v string) *SensitiveWordHitUpsert {
@@ -636,55 +519,6 @@ func (u *SensitiveWordHitUpsertOne) Update(set func(*SensitiveWordHitUpsert)) *S
 		set(&SensitiveWordHitUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SensitiveWordHitUpsertOne) SetUpdateTime(v time.Time) *SensitiveWordHitUpsertOne {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsertOne) UpdateUpdateTime() *SensitiveWordHitUpsertOne {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SensitiveWordHitUpsertOne) SetIsDelete(v bool) *SensitiveWordHitUpsertOne {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsertOne) UpdateIsDelete() *SensitiveWordHitUpsertOne {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *SensitiveWordHitUpsertOne) SetVersion(v int) *SensitiveWordHitUpsertOne {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SensitiveWordHitUpsertOne) AddVersion(v int) *SensitiveWordHitUpsertOne {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsertOne) UpdateVersion() *SensitiveWordHitUpsertOne {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetSourceType sets the "sourceType" field.
@@ -990,7 +824,7 @@ func (swhcb *SensitiveWordHitCreateBulk) ExecX(ctx context.Context) {
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.SensitiveWordHitUpsert) {
-//			SetCreateTime(v+v).
+//			SetSourceType(v+v).
 //		}).
 //		Exec(ctx)
 func (swhcb *SensitiveWordHitCreateBulk) OnConflict(opts ...sql.ConflictOption) *SensitiveWordHitUpsertBulk {
@@ -1070,55 +904,6 @@ func (u *SensitiveWordHitUpsertBulk) Update(set func(*SensitiveWordHitUpsert)) *
 		set(&SensitiveWordHitUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SensitiveWordHitUpsertBulk) SetUpdateTime(v time.Time) *SensitiveWordHitUpsertBulk {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsertBulk) UpdateUpdateTime() *SensitiveWordHitUpsertBulk {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SensitiveWordHitUpsertBulk) SetIsDelete(v bool) *SensitiveWordHitUpsertBulk {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsertBulk) UpdateIsDelete() *SensitiveWordHitUpsertBulk {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *SensitiveWordHitUpsertBulk) SetVersion(v int) *SensitiveWordHitUpsertBulk {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SensitiveWordHitUpsertBulk) AddVersion(v int) *SensitiveWordHitUpsertBulk {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SensitiveWordHitUpsertBulk) UpdateVersion() *SensitiveWordHitUpsertBulk {
-	return u.Update(func(s *SensitiveWordHitUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetSourceType sets the "sourceType" field.

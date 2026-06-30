@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol"
 	"github.com/google/uuid"
@@ -39,6 +40,13 @@ func resolveCaptchaID(c *app.RequestContext, bodyID string) string {
 		return bodyID
 	}
 	return cookieValue(c, cookieCaptchaID)
+}
+
+func captchaPayload(result *captcha.CaptchaResult) map[string]string {
+	return map[string]string{
+		"captchaBase64": result.CaptchaBase64,
+		"captchaId":     result.ID,
+	}
 }
 
 func captchaIdentity(ip, browserID string) string {

@@ -146,10 +146,7 @@ func (h *UserHandler) AuthCode(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 	setCaptchaIDCookie(c, h.cfg, result.ID)
-	response.Success(ctx, c, map[string]string{
-		"captchaBase64": result.SVG,
-		"captchaId":     result.ID,
-	})
+	response.Success(ctx, c, captchaPayload(result))
 }
 
 // Register POST /user/register — 账号注册（需图形验证码）。

@@ -327,29 +327,8 @@ func init() {
 	msgboardDescStatus := msgboardFields[14].Descriptor()
 	// msgboard.DefaultStatus holds the default value on creation for the status field.
 	msgboard.DefaultStatus = msgboardDescStatus.Default.(string)
-	operationlogMixin := schema.OperationLog{}.Mixin()
-	operationlogMixinFields0 := operationlogMixin[0].Fields()
-	_ = operationlogMixinFields0
 	operationlogFields := schema.OperationLog{}.Fields()
 	_ = operationlogFields
-	// operationlogDescCreateTime is the schema descriptor for createTime field.
-	operationlogDescCreateTime := operationlogMixinFields0[0].Descriptor()
-	// operationlog.DefaultCreateTime holds the default value on creation for the createTime field.
-	operationlog.DefaultCreateTime = operationlogDescCreateTime.Default.(func() time.Time)
-	// operationlogDescUpdateTime is the schema descriptor for updateTime field.
-	operationlogDescUpdateTime := operationlogMixinFields0[1].Descriptor()
-	// operationlog.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	operationlog.DefaultUpdateTime = operationlogDescUpdateTime.Default.(func() time.Time)
-	// operationlog.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	operationlog.UpdateDefaultUpdateTime = operationlogDescUpdateTime.UpdateDefault.(func() time.Time)
-	// operationlogDescIsDelete is the schema descriptor for isDelete field.
-	operationlogDescIsDelete := operationlogMixinFields0[2].Descriptor()
-	// operationlog.DefaultIsDelete holds the default value on creation for the isDelete field.
-	operationlog.DefaultIsDelete = operationlogDescIsDelete.Default.(bool)
-	// operationlogDescVersion is the schema descriptor for version field.
-	operationlogDescVersion := operationlogMixinFields0[3].Descriptor()
-	// operationlog.DefaultVersion holds the default value on creation for the version field.
-	operationlog.DefaultVersion = operationlogDescVersion.Default.(int)
 	// operationlogDescUsername is the schema descriptor for username field.
 	operationlogDescUsername := operationlogFields[2].Descriptor()
 	// operationlog.DefaultUsername holds the default value on creation for the username field.
@@ -366,6 +345,10 @@ func init() {
 	operationlogDescStatusCode := operationlogFields[10].Descriptor()
 	// operationlog.DefaultStatusCode holds the default value on creation for the statusCode field.
 	operationlog.DefaultStatusCode = operationlogDescStatusCode.Default.(int)
+	// operationlogDescCreateTime is the schema descriptor for createTime field.
+	operationlogDescCreateTime := operationlogFields[11].Descriptor()
+	// operationlog.DefaultCreateTime holds the default value on creation for the createTime field.
+	operationlog.DefaultCreateTime = operationlogDescCreateTime.Default.(func() time.Time)
 	payorderMixin := schema.PayOrder{}.Mixin()
 	payorderMixinFields0 := payorderMixin[0].Fields()
 	_ = payorderMixinFields0
@@ -1129,29 +1112,8 @@ func init() {
 	scheduledtasklogDescVersion := scheduledtasklogMixinFields0[3].Descriptor()
 	// scheduledtasklog.DefaultVersion holds the default value on creation for the version field.
 	scheduledtasklog.DefaultVersion = scheduledtasklogDescVersion.Default.(int)
-	sensitivewordMixin := schema.SensitiveWord{}.Mixin()
-	sensitivewordMixinFields0 := sensitivewordMixin[0].Fields()
-	_ = sensitivewordMixinFields0
 	sensitivewordFields := schema.SensitiveWord{}.Fields()
 	_ = sensitivewordFields
-	// sensitivewordDescCreateTime is the schema descriptor for createTime field.
-	sensitivewordDescCreateTime := sensitivewordMixinFields0[0].Descriptor()
-	// sensitiveword.DefaultCreateTime holds the default value on creation for the createTime field.
-	sensitiveword.DefaultCreateTime = sensitivewordDescCreateTime.Default.(func() time.Time)
-	// sensitivewordDescUpdateTime is the schema descriptor for updateTime field.
-	sensitivewordDescUpdateTime := sensitivewordMixinFields0[1].Descriptor()
-	// sensitiveword.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	sensitiveword.DefaultUpdateTime = sensitivewordDescUpdateTime.Default.(func() time.Time)
-	// sensitiveword.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	sensitiveword.UpdateDefaultUpdateTime = sensitivewordDescUpdateTime.UpdateDefault.(func() time.Time)
-	// sensitivewordDescIsDelete is the schema descriptor for isDelete field.
-	sensitivewordDescIsDelete := sensitivewordMixinFields0[2].Descriptor()
-	// sensitiveword.DefaultIsDelete holds the default value on creation for the isDelete field.
-	sensitiveword.DefaultIsDelete = sensitivewordDescIsDelete.Default.(bool)
-	// sensitivewordDescVersion is the schema descriptor for version field.
-	sensitivewordDescVersion := sensitivewordMixinFields0[3].Descriptor()
-	// sensitiveword.DefaultVersion holds the default value on creation for the version field.
-	sensitiveword.DefaultVersion = sensitivewordDescVersion.Default.(int)
 	// sensitivewordDescCategory is the schema descriptor for category field.
 	sensitivewordDescCategory := sensitivewordFields[2].Descriptor()
 	// sensitiveword.DefaultCategory holds the default value on creation for the category field.
@@ -1176,60 +1138,36 @@ func init() {
 	sensitivewordDescAction := sensitivewordFields[7].Descriptor()
 	// sensitiveword.DefaultAction holds the default value on creation for the action field.
 	sensitiveword.DefaultAction = sensitivewordDescAction.Default.(int)
-	sensitivewordhitMixin := schema.SensitiveWordHit{}.Mixin()
-	sensitivewordhitMixinFields0 := sensitivewordhitMixin[0].Fields()
-	_ = sensitivewordhitMixinFields0
+	// sensitivewordDescCreateTime is the schema descriptor for createTime field.
+	sensitivewordDescCreateTime := sensitivewordFields[8].Descriptor()
+	// sensitiveword.DefaultCreateTime holds the default value on creation for the createTime field.
+	sensitiveword.DefaultCreateTime = sensitivewordDescCreateTime.Default.(func() time.Time)
+	// sensitivewordDescUpdateTime is the schema descriptor for updateTime field.
+	sensitivewordDescUpdateTime := sensitivewordFields[9].Descriptor()
+	// sensitiveword.DefaultUpdateTime holds the default value on creation for the updateTime field.
+	sensitiveword.DefaultUpdateTime = sensitivewordDescUpdateTime.Default.(func() time.Time)
+	// sensitiveword.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
+	sensitiveword.UpdateDefaultUpdateTime = sensitivewordDescUpdateTime.UpdateDefault.(func() time.Time)
 	sensitivewordhitFields := schema.SensitiveWordHit{}.Fields()
 	_ = sensitivewordhitFields
-	// sensitivewordhitDescCreateTime is the schema descriptor for createTime field.
-	sensitivewordhitDescCreateTime := sensitivewordhitMixinFields0[0].Descriptor()
-	// sensitivewordhit.DefaultCreateTime holds the default value on creation for the createTime field.
-	sensitivewordhit.DefaultCreateTime = sensitivewordhitDescCreateTime.Default.(func() time.Time)
-	// sensitivewordhitDescUpdateTime is the schema descriptor for updateTime field.
-	sensitivewordhitDescUpdateTime := sensitivewordhitMixinFields0[1].Descriptor()
-	// sensitivewordhit.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	sensitivewordhit.DefaultUpdateTime = sensitivewordhitDescUpdateTime.Default.(func() time.Time)
-	// sensitivewordhit.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	sensitivewordhit.UpdateDefaultUpdateTime = sensitivewordhitDescUpdateTime.UpdateDefault.(func() time.Time)
-	// sensitivewordhitDescIsDelete is the schema descriptor for isDelete field.
-	sensitivewordhitDescIsDelete := sensitivewordhitMixinFields0[2].Descriptor()
-	// sensitivewordhit.DefaultIsDelete holds the default value on creation for the isDelete field.
-	sensitivewordhit.DefaultIsDelete = sensitivewordhitDescIsDelete.Default.(bool)
-	// sensitivewordhitDescVersion is the schema descriptor for version field.
-	sensitivewordhitDescVersion := sensitivewordhitMixinFields0[3].Descriptor()
-	// sensitivewordhit.DefaultVersion holds the default value on creation for the version field.
-	sensitivewordhit.DefaultVersion = sensitivewordhitDescVersion.Default.(int)
 	// sensitivewordhitDescStatus is the schema descriptor for status field.
 	sensitivewordhitDescStatus := sensitivewordhitFields[7].Descriptor()
 	// sensitivewordhit.DefaultStatus holds the default value on creation for the status field.
 	sensitivewordhit.DefaultStatus = sensitivewordhitDescStatus.Default.(string)
-	sitenotificationMixin := schema.SiteNotification{}.Mixin()
-	sitenotificationMixinFields0 := sitenotificationMixin[0].Fields()
-	_ = sitenotificationMixinFields0
+	// sensitivewordhitDescCreateTime is the schema descriptor for createTime field.
+	sensitivewordhitDescCreateTime := sensitivewordhitFields[10].Descriptor()
+	// sensitivewordhit.DefaultCreateTime holds the default value on creation for the createTime field.
+	sensitivewordhit.DefaultCreateTime = sensitivewordhitDescCreateTime.Default.(func() time.Time)
 	sitenotificationFields := schema.SiteNotification{}.Fields()
 	_ = sitenotificationFields
-	// sitenotificationDescCreateTime is the schema descriptor for createTime field.
-	sitenotificationDescCreateTime := sitenotificationMixinFields0[0].Descriptor()
-	// sitenotification.DefaultCreateTime holds the default value on creation for the createTime field.
-	sitenotification.DefaultCreateTime = sitenotificationDescCreateTime.Default.(func() time.Time)
-	// sitenotificationDescUpdateTime is the schema descriptor for updateTime field.
-	sitenotificationDescUpdateTime := sitenotificationMixinFields0[1].Descriptor()
-	// sitenotification.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	sitenotification.DefaultUpdateTime = sitenotificationDescUpdateTime.Default.(func() time.Time)
-	// sitenotification.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	sitenotification.UpdateDefaultUpdateTime = sitenotificationDescUpdateTime.UpdateDefault.(func() time.Time)
-	// sitenotificationDescIsDelete is the schema descriptor for isDelete field.
-	sitenotificationDescIsDelete := sitenotificationMixinFields0[2].Descriptor()
-	// sitenotification.DefaultIsDelete holds the default value on creation for the isDelete field.
-	sitenotification.DefaultIsDelete = sitenotificationDescIsDelete.Default.(bool)
-	// sitenotificationDescVersion is the schema descriptor for version field.
-	sitenotificationDescVersion := sitenotificationMixinFields0[3].Descriptor()
-	// sitenotification.DefaultVersion holds the default value on creation for the version field.
-	sitenotification.DefaultVersion = sitenotificationDescVersion.Default.(int)
 	// sitenotificationDescRead is the schema descriptor for read field.
 	sitenotificationDescRead := sitenotificationFields[4].Descriptor()
 	// sitenotification.DefaultRead holds the default value on creation for the read field.
 	sitenotification.DefaultRead = sitenotificationDescRead.Default.(int)
+	// sitenotificationDescCreateTime is the schema descriptor for createTime field.
+	sitenotificationDescCreateTime := sitenotificationFields[5].Descriptor()
+	// sitenotification.DefaultCreateTime holds the default value on creation for the createTime field.
+	sitenotification.DefaultCreateTime = sitenotificationDescCreateTime.Default.(func() time.Time)
 	userMixin := schema.User{}.Mixin()
 	userMixinFields0 := userMixin[0].Fields()
 	_ = userMixinFields0

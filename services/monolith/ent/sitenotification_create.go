@@ -22,62 +22,6 @@ type SiteNotificationCreate struct {
 	conflict []sql.ConflictOption
 }
 
-// SetCreateTime sets the "createTime" field.
-func (snc *SiteNotificationCreate) SetCreateTime(t time.Time) *SiteNotificationCreate {
-	snc.mutation.SetCreateTime(t)
-	return snc
-}
-
-// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (snc *SiteNotificationCreate) SetNillableCreateTime(t *time.Time) *SiteNotificationCreate {
-	if t != nil {
-		snc.SetCreateTime(*t)
-	}
-	return snc
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (snc *SiteNotificationCreate) SetUpdateTime(t time.Time) *SiteNotificationCreate {
-	snc.mutation.SetUpdateTime(t)
-	return snc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (snc *SiteNotificationCreate) SetNillableUpdateTime(t *time.Time) *SiteNotificationCreate {
-	if t != nil {
-		snc.SetUpdateTime(*t)
-	}
-	return snc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (snc *SiteNotificationCreate) SetIsDelete(b bool) *SiteNotificationCreate {
-	snc.mutation.SetIsDelete(b)
-	return snc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (snc *SiteNotificationCreate) SetNillableIsDelete(b *bool) *SiteNotificationCreate {
-	if b != nil {
-		snc.SetIsDelete(*b)
-	}
-	return snc
-}
-
-// SetVersion sets the "version" field.
-func (snc *SiteNotificationCreate) SetVersion(i int) *SiteNotificationCreate {
-	snc.mutation.SetVersion(i)
-	return snc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (snc *SiteNotificationCreate) SetNillableVersion(i *int) *SiteNotificationCreate {
-	if i != nil {
-		snc.SetVersion(*i)
-	}
-	return snc
-}
-
 // SetUID sets the "uid" field.
 func (snc *SiteNotificationCreate) SetUID(i int) *SiteNotificationCreate {
 	snc.mutation.SetUID(i)
@@ -106,6 +50,20 @@ func (snc *SiteNotificationCreate) SetRead(i int) *SiteNotificationCreate {
 func (snc *SiteNotificationCreate) SetNillableRead(i *int) *SiteNotificationCreate {
 	if i != nil {
 		snc.SetRead(*i)
+	}
+	return snc
+}
+
+// SetCreateTime sets the "createTime" field.
+func (snc *SiteNotificationCreate) SetCreateTime(t time.Time) *SiteNotificationCreate {
+	snc.mutation.SetCreateTime(t)
+	return snc
+}
+
+// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
+func (snc *SiteNotificationCreate) SetNillableCreateTime(t *time.Time) *SiteNotificationCreate {
+	if t != nil {
+		snc.SetCreateTime(*t)
 	}
 	return snc
 }
@@ -151,42 +109,18 @@ func (snc *SiteNotificationCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (snc *SiteNotificationCreate) defaults() {
-	if _, ok := snc.mutation.CreateTime(); !ok {
-		v := sitenotification.DefaultCreateTime()
-		snc.mutation.SetCreateTime(v)
-	}
-	if _, ok := snc.mutation.UpdateTime(); !ok {
-		v := sitenotification.DefaultUpdateTime()
-		snc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := snc.mutation.IsDelete(); !ok {
-		v := sitenotification.DefaultIsDelete
-		snc.mutation.SetIsDelete(v)
-	}
-	if _, ok := snc.mutation.Version(); !ok {
-		v := sitenotification.DefaultVersion
-		snc.mutation.SetVersion(v)
-	}
 	if _, ok := snc.mutation.Read(); !ok {
 		v := sitenotification.DefaultRead
 		snc.mutation.SetRead(v)
+	}
+	if _, ok := snc.mutation.CreateTime(); !ok {
+		v := sitenotification.DefaultCreateTime()
+		snc.mutation.SetCreateTime(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (snc *SiteNotificationCreate) check() error {
-	if _, ok := snc.mutation.CreateTime(); !ok {
-		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SiteNotification.createTime"`)}
-	}
-	if _, ok := snc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "SiteNotification.updateTime"`)}
-	}
-	if _, ok := snc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "SiteNotification.isDelete"`)}
-	}
-	if _, ok := snc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "SiteNotification.version"`)}
-	}
 	if _, ok := snc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "SiteNotification.uid"`)}
 	}
@@ -198,6 +132,9 @@ func (snc *SiteNotificationCreate) check() error {
 	}
 	if _, ok := snc.mutation.Read(); !ok {
 		return &ValidationError{Name: "read", err: errors.New(`ent: missing required field "SiteNotification.read"`)}
+	}
+	if _, ok := snc.mutation.CreateTime(); !ok {
+		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "SiteNotification.createTime"`)}
 	}
 	return nil
 }
@@ -232,22 +169,6 @@ func (snc *SiteNotificationCreate) createSpec() (*SiteNotification, *sqlgraph.Cr
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := snc.mutation.CreateTime(); ok {
-		_spec.SetField(sitenotification.FieldCreateTime, field.TypeTime, value)
-		_node.CreateTime = value
-	}
-	if value, ok := snc.mutation.UpdateTime(); ok {
-		_spec.SetField(sitenotification.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := snc.mutation.IsDelete(); ok {
-		_spec.SetField(sitenotification.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := snc.mutation.Version(); ok {
-		_spec.SetField(sitenotification.FieldVersion, field.TypeInt, value)
-		_node.Version = value
-	}
 	if value, ok := snc.mutation.UID(); ok {
 		_spec.SetField(sitenotification.FieldUID, field.TypeInt, value)
 		_node.UID = value
@@ -264,6 +185,10 @@ func (snc *SiteNotificationCreate) createSpec() (*SiteNotification, *sqlgraph.Cr
 		_spec.SetField(sitenotification.FieldRead, field.TypeInt, value)
 		_node.Read = value
 	}
+	if value, ok := snc.mutation.CreateTime(); ok {
+		_spec.SetField(sitenotification.FieldCreateTime, field.TypeTime, value)
+		_node.CreateTime = value
+	}
 	return _node, _spec
 }
 
@@ -271,7 +196,7 @@ func (snc *SiteNotificationCreate) createSpec() (*SiteNotification, *sqlgraph.Cr
 // of the `INSERT` statement. For example:
 //
 //	client.SiteNotification.Create().
-//		SetCreateTime(v).
+//		SetUID(v).
 //		OnConflict(
 //			// Update the row with the new values
 //			// the was proposed for insertion.
@@ -280,7 +205,7 @@ func (snc *SiteNotificationCreate) createSpec() (*SiteNotification, *sqlgraph.Cr
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.SiteNotificationUpsert) {
-//			SetCreateTime(v+v).
+//			SetUID(v+v).
 //		}).
 //		Exec(ctx)
 func (snc *SiteNotificationCreate) OnConflict(opts ...sql.ConflictOption) *SiteNotificationUpsertOne {
@@ -315,48 +240,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SiteNotificationUpsert) SetUpdateTime(v time.Time) *SiteNotificationUpsert {
-	u.Set(sitenotification.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SiteNotificationUpsert) UpdateUpdateTime() *SiteNotificationUpsert {
-	u.SetExcluded(sitenotification.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SiteNotificationUpsert) SetIsDelete(v bool) *SiteNotificationUpsert {
-	u.Set(sitenotification.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SiteNotificationUpsert) UpdateIsDelete() *SiteNotificationUpsert {
-	u.SetExcluded(sitenotification.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *SiteNotificationUpsert) SetVersion(v int) *SiteNotificationUpsert {
-	u.Set(sitenotification.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SiteNotificationUpsert) UpdateVersion() *SiteNotificationUpsert {
-	u.SetExcluded(sitenotification.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SiteNotificationUpsert) AddVersion(v int) *SiteNotificationUpsert {
-	u.Add(sitenotification.FieldVersion, v)
-	return u
-}
 
 // SetUID sets the "uid" field.
 func (u *SiteNotificationUpsert) SetUID(v int) *SiteNotificationUpsert {
@@ -467,55 +350,6 @@ func (u *SiteNotificationUpsertOne) Update(set func(*SiteNotificationUpsert)) *S
 		set(&SiteNotificationUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SiteNotificationUpsertOne) SetUpdateTime(v time.Time) *SiteNotificationUpsertOne {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SiteNotificationUpsertOne) UpdateUpdateTime() *SiteNotificationUpsertOne {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SiteNotificationUpsertOne) SetIsDelete(v bool) *SiteNotificationUpsertOne {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SiteNotificationUpsertOne) UpdateIsDelete() *SiteNotificationUpsertOne {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *SiteNotificationUpsertOne) SetVersion(v int) *SiteNotificationUpsertOne {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SiteNotificationUpsertOne) AddVersion(v int) *SiteNotificationUpsertOne {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SiteNotificationUpsertOne) UpdateVersion() *SiteNotificationUpsertOne {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.
@@ -723,7 +557,7 @@ func (sncb *SiteNotificationCreateBulk) ExecX(ctx context.Context) {
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.SiteNotificationUpsert) {
-//			SetCreateTime(v+v).
+//			SetUID(v+v).
 //		}).
 //		Exec(ctx)
 func (sncb *SiteNotificationCreateBulk) OnConflict(opts ...sql.ConflictOption) *SiteNotificationUpsertBulk {
@@ -803,55 +637,6 @@ func (u *SiteNotificationUpsertBulk) Update(set func(*SiteNotificationUpsert)) *
 		set(&SiteNotificationUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *SiteNotificationUpsertBulk) SetUpdateTime(v time.Time) *SiteNotificationUpsertBulk {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *SiteNotificationUpsertBulk) UpdateUpdateTime() *SiteNotificationUpsertBulk {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *SiteNotificationUpsertBulk) SetIsDelete(v bool) *SiteNotificationUpsertBulk {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *SiteNotificationUpsertBulk) UpdateIsDelete() *SiteNotificationUpsertBulk {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *SiteNotificationUpsertBulk) SetVersion(v int) *SiteNotificationUpsertBulk {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *SiteNotificationUpsertBulk) AddVersion(v int) *SiteNotificationUpsertBulk {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *SiteNotificationUpsertBulk) UpdateVersion() *SiteNotificationUpsertBulk {
-	return u.Update(func(s *SiteNotificationUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.

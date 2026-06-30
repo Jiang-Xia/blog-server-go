@@ -1,7 +1,9 @@
-// 由 scripts/gen_ent_schema.go 生成，请勿手改。
+// 由 scripts/gen_ent_schema.go 生成；sensitive_word 含 createTime/updateTime（无 isDelete/version）。
 package schema
 
 import (
+	"time"
+
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/entsql"
 	"entgo.io/ent/schema"
@@ -18,11 +20,6 @@ func (SensitiveWord) Annotations() []schema.Annotation {
 	}
 }
 
-// Mixin 注入 TypeORM 公共时间戳与软删除字段。
-func (SensitiveWord) Mixin() []ent.Mixin {
-	return []ent.Mixin{TimeMixin{}}
-}
-
 // Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。
 func (SensitiveWord) Fields() []ent.Field {
 	return []ent.Field{
@@ -34,5 +31,7 @@ func (SensitiveWord) Fields() []ent.Field {
 		field.Int("hpPenalty").StorageKey("hpPenalty").Comment("扣血量").Default(20),
 		field.Int("needReview").StorageKey("needReview").Comment("是否进审核：1是0否").Default(1),
 		field.Int("action").StorageKey("action").Comment("1替换/2拒绝/3仅记录").Default(1),
+		field.Time("createTime").StorageKey("createTime").Comment("创建时间").Default(time.Now).Immutable(),
+		field.Time("updateTime").StorageKey("updateTime").Comment("更新时间").Default(time.Now).UpdateDefault(time.Now),
 	}
 }

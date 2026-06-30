@@ -54,26 +54,6 @@ func IDLTE(id int) predicate.SiteNotification {
 	return predicate.SiteNotification(sql.FieldLTE(FieldID, id))
 }
 
-// CreateTime applies equality check predicate on the "createTime" field. It's identical to CreateTimeEQ.
-func CreateTime(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldEQ(FieldCreateTime, v))
-}
-
-// UpdateTime applies equality check predicate on the "updateTime" field. It's identical to UpdateTimeEQ.
-func UpdateTime(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldEQ(FieldUpdateTime, v))
-}
-
-// IsDelete applies equality check predicate on the "isDelete" field. It's identical to IsDeleteEQ.
-func IsDelete(v bool) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// Version applies equality check predicate on the "version" field. It's identical to VersionEQ.
-func Version(v int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldEQ(FieldVersion, v))
-}
-
 // UID applies equality check predicate on the "uid" field. It's identical to UIDEQ.
 func UID(v int) predicate.SiteNotification {
 	return predicate.SiteNotification(sql.FieldEQ(FieldUID, v))
@@ -94,134 +74,9 @@ func Read(v int) predicate.SiteNotification {
 	return predicate.SiteNotification(sql.FieldEQ(FieldRead, v))
 }
 
-// CreateTimeEQ applies the EQ predicate on the "createTime" field.
-func CreateTimeEQ(v time.Time) predicate.SiteNotification {
+// CreateTime applies equality check predicate on the "createTime" field. It's identical to CreateTimeEQ.
+func CreateTime(v time.Time) predicate.SiteNotification {
 	return predicate.SiteNotification(sql.FieldEQ(FieldCreateTime, v))
-}
-
-// CreateTimeNEQ applies the NEQ predicate on the "createTime" field.
-func CreateTimeNEQ(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldNEQ(FieldCreateTime, v))
-}
-
-// CreateTimeIn applies the In predicate on the "createTime" field.
-func CreateTimeIn(vs ...time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldIn(FieldCreateTime, vs...))
-}
-
-// CreateTimeNotIn applies the NotIn predicate on the "createTime" field.
-func CreateTimeNotIn(vs ...time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldNotIn(FieldCreateTime, vs...))
-}
-
-// CreateTimeGT applies the GT predicate on the "createTime" field.
-func CreateTimeGT(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldGT(FieldCreateTime, v))
-}
-
-// CreateTimeGTE applies the GTE predicate on the "createTime" field.
-func CreateTimeGTE(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldGTE(FieldCreateTime, v))
-}
-
-// CreateTimeLT applies the LT predicate on the "createTime" field.
-func CreateTimeLT(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldLT(FieldCreateTime, v))
-}
-
-// CreateTimeLTE applies the LTE predicate on the "createTime" field.
-func CreateTimeLTE(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldLTE(FieldCreateTime, v))
-}
-
-// UpdateTimeEQ applies the EQ predicate on the "updateTime" field.
-func UpdateTimeEQ(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldEQ(FieldUpdateTime, v))
-}
-
-// UpdateTimeNEQ applies the NEQ predicate on the "updateTime" field.
-func UpdateTimeNEQ(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldNEQ(FieldUpdateTime, v))
-}
-
-// UpdateTimeIn applies the In predicate on the "updateTime" field.
-func UpdateTimeIn(vs ...time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldIn(FieldUpdateTime, vs...))
-}
-
-// UpdateTimeNotIn applies the NotIn predicate on the "updateTime" field.
-func UpdateTimeNotIn(vs ...time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldNotIn(FieldUpdateTime, vs...))
-}
-
-// UpdateTimeGT applies the GT predicate on the "updateTime" field.
-func UpdateTimeGT(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldGT(FieldUpdateTime, v))
-}
-
-// UpdateTimeGTE applies the GTE predicate on the "updateTime" field.
-func UpdateTimeGTE(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldGTE(FieldUpdateTime, v))
-}
-
-// UpdateTimeLT applies the LT predicate on the "updateTime" field.
-func UpdateTimeLT(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldLT(FieldUpdateTime, v))
-}
-
-// UpdateTimeLTE applies the LTE predicate on the "updateTime" field.
-func UpdateTimeLTE(v time.Time) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldLTE(FieldUpdateTime, v))
-}
-
-// IsDeleteEQ applies the EQ predicate on the "isDelete" field.
-func IsDeleteEQ(v bool) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// IsDeleteNEQ applies the NEQ predicate on the "isDelete" field.
-func IsDeleteNEQ(v bool) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldNEQ(FieldIsDelete, v))
-}
-
-// VersionEQ applies the EQ predicate on the "version" field.
-func VersionEQ(v int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldEQ(FieldVersion, v))
-}
-
-// VersionNEQ applies the NEQ predicate on the "version" field.
-func VersionNEQ(v int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldNEQ(FieldVersion, v))
-}
-
-// VersionIn applies the In predicate on the "version" field.
-func VersionIn(vs ...int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldIn(FieldVersion, vs...))
-}
-
-// VersionNotIn applies the NotIn predicate on the "version" field.
-func VersionNotIn(vs ...int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldNotIn(FieldVersion, vs...))
-}
-
-// VersionGT applies the GT predicate on the "version" field.
-func VersionGT(v int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldGT(FieldVersion, v))
-}
-
-// VersionGTE applies the GTE predicate on the "version" field.
-func VersionGTE(v int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldGTE(FieldVersion, v))
-}
-
-// VersionLT applies the LT predicate on the "version" field.
-func VersionLT(v int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldLT(FieldVersion, v))
-}
-
-// VersionLTE applies the LTE predicate on the "version" field.
-func VersionLTE(v int) predicate.SiteNotification {
-	return predicate.SiteNotification(sql.FieldLTE(FieldVersion, v))
 }
 
 // UIDEQ applies the EQ predicate on the "uid" field.
@@ -432,6 +287,46 @@ func ReadLT(v int) predicate.SiteNotification {
 // ReadLTE applies the LTE predicate on the "read" field.
 func ReadLTE(v int) predicate.SiteNotification {
 	return predicate.SiteNotification(sql.FieldLTE(FieldRead, v))
+}
+
+// CreateTimeEQ applies the EQ predicate on the "createTime" field.
+func CreateTimeEQ(v time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldEQ(FieldCreateTime, v))
+}
+
+// CreateTimeNEQ applies the NEQ predicate on the "createTime" field.
+func CreateTimeNEQ(v time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldNEQ(FieldCreateTime, v))
+}
+
+// CreateTimeIn applies the In predicate on the "createTime" field.
+func CreateTimeIn(vs ...time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldIn(FieldCreateTime, vs...))
+}
+
+// CreateTimeNotIn applies the NotIn predicate on the "createTime" field.
+func CreateTimeNotIn(vs ...time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldNotIn(FieldCreateTime, vs...))
+}
+
+// CreateTimeGT applies the GT predicate on the "createTime" field.
+func CreateTimeGT(v time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldGT(FieldCreateTime, v))
+}
+
+// CreateTimeGTE applies the GTE predicate on the "createTime" field.
+func CreateTimeGTE(v time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldGTE(FieldCreateTime, v))
+}
+
+// CreateTimeLT applies the LT predicate on the "createTime" field.
+func CreateTimeLT(v time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldLT(FieldCreateTime, v))
+}
+
+// CreateTimeLTE applies the LTE predicate on the "createTime" field.
+func CreateTimeLTE(v time.Time) predicate.SiteNotification {
+	return predicate.SiteNotification(sql.FieldLTE(FieldCreateTime, v))
 }
 
 // And groups predicates with the AND operator between them.

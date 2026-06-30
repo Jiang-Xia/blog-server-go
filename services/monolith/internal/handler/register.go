@@ -11,14 +11,18 @@ import (
 
 // RegisterDeps 路由注册依赖，由 wire 装配后传入。
 type RegisterDeps struct {
-	Health     *HealthHandler
-	User       *UserHandler
-	Admin      *AdminHandler
-	Captcha    *CaptchaHandler
-	Pub        *PubHandler
-	JWT        *auth.JWTService
-	UserRepo   *repo.UserRepo
-	Permission middleware.PermissionDeps
+	Health       *HealthHandler
+	User         *UserHandler
+	Admin        *AdminHandler
+	Captcha      *CaptchaHandler
+	Pub          *PubHandler
+	Sensitive    *SensitiveWordHandler
+	Notification *NotificationHandler
+	OperationLog *OperationLogHandler
+	JWT          *auth.JWTService
+	UserRepo     *repo.UserRepo
+	Permission   middleware.PermissionDeps
+	OpLog        middleware.OperationLogDeps
 }
 
 // RegisterAll 注册 health、user、captcha、pub 路由；v1 组挂载 Permission 中间件。
@@ -96,4 +100,27 @@ func RegisterAll(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	adminGroup.PATCH("/menu", deps.Admin.MenuUpdate)
 	adminGroup.GET("/menu/detail", deps.Admin.MenuDetail)
 	adminGroup.DELETE("/menu", jwtRequired, deps.Admin.MenuDelete)
+
+	// sensitive-word — Nest SensitiveWordController
+	sw := v1.Group("/sensitive-word")
+	sw.GET("", deps.Sensitive.List)
+	sw.POST("", deps.Sensitive.Create)
+	sw.POST("/batch", deps.Sensitive.BatchCreate)
+	sw.GET("/hit", deps.Sensitive.ListHits)
+	sw.POST("/hit/:id/approve", deps.Sensitive.Approve)
+	sw.POST("/hit/:id/reject", deps.Sensitive.Reject)
+	sw.PATCH("/:id", deps.Sensitive.Update)
+	sw.DELETE("/:id", deps.Sensitive.Delete)
+
+	// notification — Nest NotificationController + since 骨架
+	notify := v1.Group("/notification")
+	notify.GET("/list", jwtRequired, deps.Notification.List)
+	notify.GET("/unread-count", jwtRequired, deps.Notification.UnreadCount)
+	notify.GET("/since", jwtRequired, deps.Notification.Since)
+	notify.PATCH("/read", jwtRequired, deps.Notification.MarkRead)
+
+	// operation-log — Nest OperationLogController
+	opLog := v1.Group("/operation-log")
+	opLog.GET("", deps.OperationLog.List)
+	opLog.DELETE("/clean", deps.OperationLog.Clean)
 }

@@ -8,11 +8,15 @@ package app
 import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/notification"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/sensitive"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
@@ -39,11 +43,18 @@ func InitializeApp(cfgPath string) (*App, error) {
 		auth.NewGitHubOAuth,
 		profile.NewService,
 		admin.NewService,
+		sensitive.NewService,
+		notification.NewService,
+		operationlog.NewService,
+		scheduler.New,
 		captcha.NewService,
 		pub.NewService,
 		handler.NewUserAppAdapter,
 		provideUserHandler,
 		handler.NewAdminHandler,
+		handler.NewSensitiveWordHandler,
+		handler.NewNotificationHandler,
+		handler.NewOperationLogHandler,
 		provideCaptchaHandler,
 		providePubHandler,
 		handler.NewHealthHandler,

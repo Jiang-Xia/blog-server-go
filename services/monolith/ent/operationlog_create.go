@@ -22,62 +22,6 @@ type OperationLogCreate struct {
 	conflict []sql.ConflictOption
 }
 
-// SetCreateTime sets the "createTime" field.
-func (olc *OperationLogCreate) SetCreateTime(t time.Time) *OperationLogCreate {
-	olc.mutation.SetCreateTime(t)
-	return olc
-}
-
-// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (olc *OperationLogCreate) SetNillableCreateTime(t *time.Time) *OperationLogCreate {
-	if t != nil {
-		olc.SetCreateTime(*t)
-	}
-	return olc
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (olc *OperationLogCreate) SetUpdateTime(t time.Time) *OperationLogCreate {
-	olc.mutation.SetUpdateTime(t)
-	return olc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (olc *OperationLogCreate) SetNillableUpdateTime(t *time.Time) *OperationLogCreate {
-	if t != nil {
-		olc.SetUpdateTime(*t)
-	}
-	return olc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (olc *OperationLogCreate) SetIsDelete(b bool) *OperationLogCreate {
-	olc.mutation.SetIsDelete(b)
-	return olc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (olc *OperationLogCreate) SetNillableIsDelete(b *bool) *OperationLogCreate {
-	if b != nil {
-		olc.SetIsDelete(*b)
-	}
-	return olc
-}
-
-// SetVersion sets the "version" field.
-func (olc *OperationLogCreate) SetVersion(i int) *OperationLogCreate {
-	olc.mutation.SetVersion(i)
-	return olc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (olc *OperationLogCreate) SetNillableVersion(i *int) *OperationLogCreate {
-	if i != nil {
-		olc.SetVersion(*i)
-	}
-	return olc
-}
-
 // SetUserId sets the "userId" field.
 func (olc *OperationLogCreate) SetUserId(i int) *OperationLogCreate {
 	olc.mutation.SetUserId(i)
@@ -178,6 +122,20 @@ func (olc *OperationLogCreate) SetNillableStatusCode(i *int) *OperationLogCreate
 	return olc
 }
 
+// SetCreateTime sets the "createTime" field.
+func (olc *OperationLogCreate) SetCreateTime(t time.Time) *OperationLogCreate {
+	olc.mutation.SetCreateTime(t)
+	return olc
+}
+
+// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
+func (olc *OperationLogCreate) SetNillableCreateTime(t *time.Time) *OperationLogCreate {
+	if t != nil {
+		olc.SetCreateTime(*t)
+	}
+	return olc
+}
+
 // SetID sets the "id" field.
 func (olc *OperationLogCreate) SetID(i int) *OperationLogCreate {
 	olc.mutation.SetID(i)
@@ -219,22 +177,6 @@ func (olc *OperationLogCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (olc *OperationLogCreate) defaults() {
-	if _, ok := olc.mutation.CreateTime(); !ok {
-		v := operationlog.DefaultCreateTime()
-		olc.mutation.SetCreateTime(v)
-	}
-	if _, ok := olc.mutation.UpdateTime(); !ok {
-		v := operationlog.DefaultUpdateTime()
-		olc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := olc.mutation.IsDelete(); !ok {
-		v := operationlog.DefaultIsDelete
-		olc.mutation.SetIsDelete(v)
-	}
-	if _, ok := olc.mutation.Version(); !ok {
-		v := operationlog.DefaultVersion
-		olc.mutation.SetVersion(v)
-	}
 	if _, ok := olc.mutation.Username(); !ok {
 		v := operationlog.DefaultUsername
 		olc.mutation.SetUsername(v)
@@ -251,22 +193,14 @@ func (olc *OperationLogCreate) defaults() {
 		v := operationlog.DefaultStatusCode
 		olc.mutation.SetStatusCode(v)
 	}
+	if _, ok := olc.mutation.CreateTime(); !ok {
+		v := operationlog.DefaultCreateTime()
+		olc.mutation.SetCreateTime(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (olc *OperationLogCreate) check() error {
-	if _, ok := olc.mutation.CreateTime(); !ok {
-		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "OperationLog.createTime"`)}
-	}
-	if _, ok := olc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "OperationLog.updateTime"`)}
-	}
-	if _, ok := olc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "OperationLog.isDelete"`)}
-	}
-	if _, ok := olc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "OperationLog.version"`)}
-	}
 	if _, ok := olc.mutation.UserId(); !ok {
 		return &ValidationError{Name: "userId", err: errors.New(`ent: missing required field "OperationLog.userId"`)}
 	}
@@ -293,6 +227,9 @@ func (olc *OperationLogCreate) check() error {
 	}
 	if _, ok := olc.mutation.StatusCode(); !ok {
 		return &ValidationError{Name: "statusCode", err: errors.New(`ent: missing required field "OperationLog.statusCode"`)}
+	}
+	if _, ok := olc.mutation.CreateTime(); !ok {
+		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "OperationLog.createTime"`)}
 	}
 	return nil
 }
@@ -326,22 +263,6 @@ func (olc *OperationLogCreate) createSpec() (*OperationLog, *sqlgraph.CreateSpec
 	if id, ok := olc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
-	}
-	if value, ok := olc.mutation.CreateTime(); ok {
-		_spec.SetField(operationlog.FieldCreateTime, field.TypeTime, value)
-		_node.CreateTime = value
-	}
-	if value, ok := olc.mutation.UpdateTime(); ok {
-		_spec.SetField(operationlog.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := olc.mutation.IsDelete(); ok {
-		_spec.SetField(operationlog.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := olc.mutation.Version(); ok {
-		_spec.SetField(operationlog.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := olc.mutation.UserId(); ok {
 		_spec.SetField(operationlog.FieldUserId, field.TypeInt, value)
@@ -383,6 +304,10 @@ func (olc *OperationLogCreate) createSpec() (*OperationLog, *sqlgraph.CreateSpec
 		_spec.SetField(operationlog.FieldStatusCode, field.TypeInt, value)
 		_node.StatusCode = value
 	}
+	if value, ok := olc.mutation.CreateTime(); ok {
+		_spec.SetField(operationlog.FieldCreateTime, field.TypeTime, value)
+		_node.CreateTime = value
+	}
 	return _node, _spec
 }
 
@@ -390,7 +315,7 @@ func (olc *OperationLogCreate) createSpec() (*OperationLog, *sqlgraph.CreateSpec
 // of the `INSERT` statement. For example:
 //
 //	client.OperationLog.Create().
-//		SetCreateTime(v).
+//		SetUserId(v).
 //		OnConflict(
 //			// Update the row with the new values
 //			// the was proposed for insertion.
@@ -399,7 +324,7 @@ func (olc *OperationLogCreate) createSpec() (*OperationLog, *sqlgraph.CreateSpec
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.OperationLogUpsert) {
-//			SetCreateTime(v+v).
+//			SetUserId(v+v).
 //		}).
 //		Exec(ctx)
 func (olc *OperationLogCreate) OnConflict(opts ...sql.ConflictOption) *OperationLogUpsertOne {
@@ -434,48 +359,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *OperationLogUpsert) SetUpdateTime(v time.Time) *OperationLogUpsert {
-	u.Set(operationlog.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *OperationLogUpsert) UpdateUpdateTime() *OperationLogUpsert {
-	u.SetExcluded(operationlog.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *OperationLogUpsert) SetIsDelete(v bool) *OperationLogUpsert {
-	u.Set(operationlog.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *OperationLogUpsert) UpdateIsDelete() *OperationLogUpsert {
-	u.SetExcluded(operationlog.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *OperationLogUpsert) SetVersion(v int) *OperationLogUpsert {
-	u.Set(operationlog.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *OperationLogUpsert) UpdateVersion() *OperationLogUpsert {
-	u.SetExcluded(operationlog.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *OperationLogUpsert) AddVersion(v int) *OperationLogUpsert {
-	u.Add(operationlog.FieldVersion, v)
-	return u
-}
 
 // SetUserId sets the "userId" field.
 func (u *OperationLogUpsert) SetUserId(v int) *OperationLogUpsert {
@@ -664,55 +547,6 @@ func (u *OperationLogUpsertOne) Update(set func(*OperationLogUpsert)) *Operation
 		set(&OperationLogUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *OperationLogUpsertOne) SetUpdateTime(v time.Time) *OperationLogUpsertOne {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *OperationLogUpsertOne) UpdateUpdateTime() *OperationLogUpsertOne {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *OperationLogUpsertOne) SetIsDelete(v bool) *OperationLogUpsertOne {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *OperationLogUpsertOne) UpdateIsDelete() *OperationLogUpsertOne {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *OperationLogUpsertOne) SetVersion(v int) *OperationLogUpsertOne {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *OperationLogUpsertOne) AddVersion(v int) *OperationLogUpsertOne {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *OperationLogUpsertOne) UpdateVersion() *OperationLogUpsertOne {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUserId sets the "userId" field.
@@ -1011,7 +845,7 @@ func (olcb *OperationLogCreateBulk) ExecX(ctx context.Context) {
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.OperationLogUpsert) {
-//			SetCreateTime(v+v).
+//			SetUserId(v+v).
 //		}).
 //		Exec(ctx)
 func (olcb *OperationLogCreateBulk) OnConflict(opts ...sql.ConflictOption) *OperationLogUpsertBulk {
@@ -1091,55 +925,6 @@ func (u *OperationLogUpsertBulk) Update(set func(*OperationLogUpsert)) *Operatio
 		set(&OperationLogUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *OperationLogUpsertBulk) SetUpdateTime(v time.Time) *OperationLogUpsertBulk {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *OperationLogUpsertBulk) UpdateUpdateTime() *OperationLogUpsertBulk {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *OperationLogUpsertBulk) SetIsDelete(v bool) *OperationLogUpsertBulk {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *OperationLogUpsertBulk) UpdateIsDelete() *OperationLogUpsertBulk {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *OperationLogUpsertBulk) SetVersion(v int) *OperationLogUpsertBulk {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *OperationLogUpsertBulk) AddVersion(v int) *OperationLogUpsertBulk {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *OperationLogUpsertBulk) UpdateVersion() *OperationLogUpsertBulk {
-	return u.Update(func(s *OperationLogUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUserId sets the "userId" field.

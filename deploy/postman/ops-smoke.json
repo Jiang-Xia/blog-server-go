@@ -1,0 +1,203 @@
+{
+  "info": {
+    "name": "blog-server-go ops smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "captchaId", "value": "" },
+    { "key": "sensitiveWordId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "authCode",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/user/authCode"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('captcha ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.collectionVariables.set('captchaId', j.data.captchaId);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\":\"admin\",\"password\":\"123456\",\"authCode\":\"0000\",\"captchaId\":\"{{captchaId}}\",\"admin\":true}"
+        },
+        "url": "{{baseUrl}}/api/v1/user/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('login ok', () => pm.expect(j.code).to.eql(200));",
+              "if (j.data && j.data.token) pm.collectionVariables.set('token', j.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "sensitive-word list",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/sensitive-word?page=1&pageSize=10"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('sensitive list ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.test('has list', () => pm.expect(Array.isArray(j.data.list)).to.be.true);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "sensitive-word create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"word\":\"ops-smoke-test-word\",\"category\":\"自定义\",\"status\":1,\"level\":2,\"action\":1}"
+        },
+        "url": "{{baseUrl}}/api/v1/sensitive-word"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('create ok', () => pm.expect(j.code).to.eql(200));",
+              "if (j.data && j.data.id) pm.collectionVariables.set('sensitiveWordId', j.data.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "sensitive-word delete",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/sensitive-word/{{sensitiveWordId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('delete ok', () => pm.expect(j.code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "notification list",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/notification/list?page=1&pageSize=10"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('notification list ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.test('has list', () => pm.expect(Array.isArray(j.data.list)).to.be.true);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "notification unread-count",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/notification/unread-count"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('unread count ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.test('count is number', () => pm.expect(typeof j.data).to.eql('number'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "notification since",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/notification/since?seq=0"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('since ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.test('since is array', () => pm.expect(Array.isArray(j.data)).to.be.true);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "operation-log list",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/operation-log?page=1&pageSize=10"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('op log list ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.test('has list', () => pm.expect(Array.isArray(j.data.list)).to.be.true);"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

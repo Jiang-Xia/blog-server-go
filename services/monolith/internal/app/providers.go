@@ -4,6 +4,7 @@ package app
 import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/middleware"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
@@ -48,23 +49,33 @@ func provideRegisterDeps(
 	adminH *handler.AdminHandler,
 	captchaH *handler.CaptchaHandler,
 	pubH *handler.PubHandler,
+	sensitiveH *handler.SensitiveWordHandler,
+	notificationH *handler.NotificationHandler,
+	operationLogH *handler.OperationLogHandler,
 	jwt *auth.JWTService,
 	userRepo *repo.UserRepo,
 	cfg *config.Config,
 	redis *redisutil.Store,
 	roleRepo *repo.RoleRepo,
+	opLogSvc *operationlog.Service,
 	log *zap.Logger,
 ) handler.RegisterDeps {
 	return handler.RegisterDeps{
-		Health:  health,
-		User:    userH,
-		Admin:   adminH,
-		Captcha: captchaH,
-		Pub:     pubH,
-		JWT:      jwt,
-		UserRepo: userRepo,
+		Health:       health,
+		User:         userH,
+		Admin:        adminH,
+		Captcha:      captchaH,
+		Pub:          pubH,
+		Sensitive:    sensitiveH,
+		Notification: notificationH,
+		OperationLog: operationLogH,
+		JWT:          jwt,
+		UserRepo:     userRepo,
 		Permission: middleware.PermissionDeps{
 			Cfg: cfg, Redis: redis, RoleRepo: roleRepo, JWT: jwt, Log: log,
+		},
+		OpLog: middleware.OperationLogDeps{
+			Svc: opLogSvc, JWT: jwt, Log: log,
 		},
 	}
 }

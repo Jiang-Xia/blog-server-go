@@ -43,10 +43,7 @@ func (h *CaptchaHandler) Get(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 	setCaptchaIDCookie(c, h.cfg, result.ID)
-	response.Success(ctx, c, map[string]string{
-		"id":  result.ID,
-		"svg": result.SVG,
-	})
+	response.Success(ctx, c, captchaPayload(result))
 }
 
 type captchaVerifyReq struct {

@@ -28,47 +28,6 @@ func (swu *SensitiveWordUpdate) Where(ps ...predicate.SensitiveWord) *SensitiveW
 	return swu
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (swu *SensitiveWordUpdate) SetUpdateTime(t time.Time) *SensitiveWordUpdate {
-	swu.mutation.SetUpdateTime(t)
-	return swu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (swu *SensitiveWordUpdate) SetIsDelete(b bool) *SensitiveWordUpdate {
-	swu.mutation.SetIsDelete(b)
-	return swu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (swu *SensitiveWordUpdate) SetNillableIsDelete(b *bool) *SensitiveWordUpdate {
-	if b != nil {
-		swu.SetIsDelete(*b)
-	}
-	return swu
-}
-
-// SetVersion sets the "version" field.
-func (swu *SensitiveWordUpdate) SetVersion(i int) *SensitiveWordUpdate {
-	swu.mutation.ResetVersion()
-	swu.mutation.SetVersion(i)
-	return swu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (swu *SensitiveWordUpdate) SetNillableVersion(i *int) *SensitiveWordUpdate {
-	if i != nil {
-		swu.SetVersion(*i)
-	}
-	return swu
-}
-
-// AddVersion adds i to the "version" field.
-func (swu *SensitiveWordUpdate) AddVersion(i int) *SensitiveWordUpdate {
-	swu.mutation.AddVersion(i)
-	return swu
-}
-
 // SetWord sets the "word" field.
 func (swu *SensitiveWordUpdate) SetWord(s string) *SensitiveWordUpdate {
 	swu.mutation.SetWord(s)
@@ -202,6 +161,12 @@ func (swu *SensitiveWordUpdate) AddAction(i int) *SensitiveWordUpdate {
 	return swu
 }
 
+// SetUpdateTime sets the "updateTime" field.
+func (swu *SensitiveWordUpdate) SetUpdateTime(t time.Time) *SensitiveWordUpdate {
+	swu.mutation.SetUpdateTime(t)
+	return swu
+}
+
 // Mutation returns the SensitiveWordMutation object of the builder.
 func (swu *SensitiveWordUpdate) Mutation() *SensitiveWordMutation {
 	return swu.mutation
@@ -252,18 +217,6 @@ func (swu *SensitiveWordUpdate) sqlSave(ctx context.Context) (n int, err error) 
 			}
 		}
 	}
-	if value, ok := swu.mutation.UpdateTime(); ok {
-		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := swu.mutation.IsDelete(); ok {
-		_spec.SetField(sensitiveword.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := swu.mutation.Version(); ok {
-		_spec.SetField(sensitiveword.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := swu.mutation.AddedVersion(); ok {
-		_spec.AddField(sensitiveword.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := swu.mutation.Word(); ok {
 		_spec.SetField(sensitiveword.FieldWord, field.TypeString, value)
 	}
@@ -300,6 +253,9 @@ func (swu *SensitiveWordUpdate) sqlSave(ctx context.Context) (n int, err error) 
 	if value, ok := swu.mutation.AddedAction(); ok {
 		_spec.AddField(sensitiveword.FieldAction, field.TypeInt, value)
 	}
+	if value, ok := swu.mutation.UpdateTime(); ok {
+		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
+	}
 	if n, err = sqlgraph.UpdateNodes(ctx, swu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{sensitiveword.Label}
@@ -318,47 +274,6 @@ type SensitiveWordUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *SensitiveWordMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (swuo *SensitiveWordUpdateOne) SetUpdateTime(t time.Time) *SensitiveWordUpdateOne {
-	swuo.mutation.SetUpdateTime(t)
-	return swuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (swuo *SensitiveWordUpdateOne) SetIsDelete(b bool) *SensitiveWordUpdateOne {
-	swuo.mutation.SetIsDelete(b)
-	return swuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (swuo *SensitiveWordUpdateOne) SetNillableIsDelete(b *bool) *SensitiveWordUpdateOne {
-	if b != nil {
-		swuo.SetIsDelete(*b)
-	}
-	return swuo
-}
-
-// SetVersion sets the "version" field.
-func (swuo *SensitiveWordUpdateOne) SetVersion(i int) *SensitiveWordUpdateOne {
-	swuo.mutation.ResetVersion()
-	swuo.mutation.SetVersion(i)
-	return swuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (swuo *SensitiveWordUpdateOne) SetNillableVersion(i *int) *SensitiveWordUpdateOne {
-	if i != nil {
-		swuo.SetVersion(*i)
-	}
-	return swuo
-}
-
-// AddVersion adds i to the "version" field.
-func (swuo *SensitiveWordUpdateOne) AddVersion(i int) *SensitiveWordUpdateOne {
-	swuo.mutation.AddVersion(i)
-	return swuo
 }
 
 // SetWord sets the "word" field.
@@ -494,6 +409,12 @@ func (swuo *SensitiveWordUpdateOne) AddAction(i int) *SensitiveWordUpdateOne {
 	return swuo
 }
 
+// SetUpdateTime sets the "updateTime" field.
+func (swuo *SensitiveWordUpdateOne) SetUpdateTime(t time.Time) *SensitiveWordUpdateOne {
+	swuo.mutation.SetUpdateTime(t)
+	return swuo
+}
+
 // Mutation returns the SensitiveWordMutation object of the builder.
 func (swuo *SensitiveWordUpdateOne) Mutation() *SensitiveWordMutation {
 	return swuo.mutation
@@ -574,18 +495,6 @@ func (swuo *SensitiveWordUpdateOne) sqlSave(ctx context.Context) (_node *Sensiti
 			}
 		}
 	}
-	if value, ok := swuo.mutation.UpdateTime(); ok {
-		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := swuo.mutation.IsDelete(); ok {
-		_spec.SetField(sensitiveword.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := swuo.mutation.Version(); ok {
-		_spec.SetField(sensitiveword.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := swuo.mutation.AddedVersion(); ok {
-		_spec.AddField(sensitiveword.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := swuo.mutation.Word(); ok {
 		_spec.SetField(sensitiveword.FieldWord, field.TypeString, value)
 	}
@@ -621,6 +530,9 @@ func (swuo *SensitiveWordUpdateOne) sqlSave(ctx context.Context) (_node *Sensiti
 	}
 	if value, ok := swuo.mutation.AddedAction(); ok {
 		_spec.AddField(sensitiveword.FieldAction, field.TypeInt, value)
+	}
+	if value, ok := swuo.mutation.UpdateTime(); ok {
+		_spec.SetField(sensitiveword.FieldUpdateTime, field.TypeTime, value)
 	}
 	_node = &SensitiveWord{config: swuo.config}
 	_spec.Assign = _node.assignValues

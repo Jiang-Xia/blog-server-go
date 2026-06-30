@@ -262,12 +262,12 @@ func (olq *OperationLogQuery) Clone() *OperationLogQuery {
 // Example:
 //
 //	var v []struct {
-//		CreateTime time.Time `json:"createTime,omitempty"`
+//		UserId int `json:"userId,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.OperationLog.Query().
-//		GroupBy(operationlog.FieldCreateTime).
+//		GroupBy(operationlog.FieldUserId).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (olq *OperationLogQuery) GroupBy(field string, fields ...string) *OperationLogGroupBy {
@@ -285,11 +285,11 @@ func (olq *OperationLogQuery) GroupBy(field string, fields ...string) *Operation
 // Example:
 //
 //	var v []struct {
-//		CreateTime time.Time `json:"createTime,omitempty"`
+//		UserId int `json:"userId,omitempty"`
 //	}
 //
 //	client.OperationLog.Query().
-//		Select(operationlog.FieldCreateTime).
+//		Select(operationlog.FieldUserId).
 //		Scan(ctx, &v)
 func (olq *OperationLogQuery) Select(fields ...string) *OperationLogSelect {
 	olq.ctx.Fields = append(olq.ctx.Fields, fields...)
