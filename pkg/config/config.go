@@ -12,11 +12,15 @@ import (
 
 // Config 单体应用配置，字段与 configs/monolith.yaml 及 Nest env 语义对齐。
 type Config struct {
-	App   AppConfig   `mapstructure:"app"`
-	HTTP  HTTPConfig  `mapstructure:"http"`
-	MySQL MySQLConfig `mapstructure:"mysql"`
-	Redis RedisConfig `mapstructure:"redis"`
-	JWT   JWTConfig   `mapstructure:"jwt"`
+	App    AppConfig    `mapstructure:"app"`
+	HTTP   HTTPConfig   `mapstructure:"http"`
+	MySQL  MySQLConfig  `mapstructure:"mysql"`
+	Redis  RedisConfig  `mapstructure:"redis"`
+	JWT    JWTConfig    `mapstructure:"jwt"`
+	Crypto CryptoConfig `mapstructure:"crypto"`
+	OAuth  OAuthConfig  `mapstructure:"oauth"`
+	Mail   MailConfig   `mapstructure:"mail"`
+	Wechat WechatConfig `mapstructure:"wechat"`
 }
 
 // AppConfig 应用级元信息。
@@ -24,6 +28,7 @@ type AppConfig struct {
 	Name      string `mapstructure:"name"`
 	Env       string `mapstructure:"env"`
 	APIPrefix string `mapstructure:"api_prefix"`
+	BlogHome  string `mapstructure:"blog_home"`
 }
 
 // HTTPConfig HTTP 服务监听与 CORS。
@@ -86,8 +91,35 @@ type RedisConfig struct {
 // JWTConfig 鉴权密钥与 TTL。
 type JWTConfig struct {
 	Secret     string        `mapstructure:"secret"`
+	LegacyTTL  time.Duration `mapstructure:"legacy_ttl"`
 	AccessTTL  time.Duration `mapstructure:"access_ttl"`
 	RefreshTTL time.Duration `mapstructure:"refresh_ttl"`
+}
+
+// OAuthConfig GitHub OAuth 配置。
+type OAuthConfig struct {
+	GithubClientID     string `mapstructure:"github_client_id"`
+	GithubClientSecret string `mapstructure:"github_client_secret"`
+	GithubCallbackURL  string `mapstructure:"github_callback_url"`
+}
+
+// MailConfig SMTP 邮件发送。
+type MailConfig struct {
+	Host string `mapstructure:"host"`
+	Port int    `mapstructure:"port"`
+	User string `mapstructure:"user"`
+	Pass string `mapstructure:"pass"`
+}
+
+// WechatConfig 微信小程序登录。
+type WechatConfig struct {
+	AppID  string `mapstructure:"app_id"`
+	Secret string `mapstructure:"secret"`
+}
+
+// MailConfigured 是否已配置 SMTP。
+func (m MailConfig) MailConfigured() bool {
+	return m.Host != "" && m.User != "" && m.Pass != ""
 }
 
 // IsDev 是否为开发环境。

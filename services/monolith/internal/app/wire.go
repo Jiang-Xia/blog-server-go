@@ -10,7 +10,13 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/profile"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 	"github.com/google/wire"
 )
 
@@ -21,7 +27,23 @@ func InitializeApp(cfgPath string) (*App, error) {
 		logger.New,
 		data.NewEntClient,
 		data.NewRedisClient,
+		provideRedisStore,
+		repo.NewUserRepo,
+		provideRoleRepo,
+		auth.NewJWTService,
+		providePasswordChecker,
+		email.NewService,
+		auth.NewAuthService,
+		auth.NewGitHubOAuth,
+		profile.NewService,
+		captcha.NewService,
+		pub.NewService,
+		handler.NewUserAppAdapter,
+		provideUserHandler,
+		provideCaptchaHandler,
+		providePubHandler,
 		handler.NewHealthHandler,
+		provideRegisterDeps,
 		server.NewHTTPServer,
 		NewApp,
 	)

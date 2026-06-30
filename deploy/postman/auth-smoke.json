@@ -1,0 +1,79 @@
+{
+  "info": {
+    "name": "blog-server-go auth smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "captchaId", "value": "" },
+    { "key": "refreshToken", "value": "" },
+    { "key": "accessToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('code 200', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "authCode",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/user/authCode"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const j = pm.response.json();",
+              "pm.test('captcha ok', () => pm.expect(j.code).to.eql(200));",
+              "pm.collectionVariables.set('captchaId', j.data.captchaId);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "captcha verify",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"{{captchaId}}\",\"answer\":\"0000\"}"
+        },
+        "url": "{{baseUrl}}/api/v1/captcha/verify"
+      }
+    },
+    {
+      "name": "pub stats",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/pub/stats"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('stats ok', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

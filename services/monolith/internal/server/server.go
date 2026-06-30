@@ -9,8 +9,8 @@ import (
 	"go.uber.org/zap"
 )
 
-// NewHTTPServer 装配中间件并注册基础路由。
-func NewHTTPServer(cfg *config.Config, log *zap.Logger, health *handler.HealthHandler) *server.Hertz {
+// NewHTTPServer 装配中间件并注册全部路由。
+func NewHTTPServer(cfg *config.Config, log *zap.Logger, deps handler.RegisterDeps) *server.Hertz {
 	h := server.Default(server.WithHostPorts(cfg.HTTP.Addr))
 	h.Use(
 		middleware.Recovery(log),
@@ -18,6 +18,6 @@ func NewHTTPServer(cfg *config.Config, log *zap.Logger, health *handler.HealthHa
 		middleware.Logger(log),
 		middleware.CORS(cfg),
 	)
-	handler.Register(h, cfg, health)
+	handler.RegisterAll(h, cfg, deps)
 	return h
 }

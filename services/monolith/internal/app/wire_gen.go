@@ -11,7 +11,13 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/profile"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 )
 
 // Injectors from wire.go:
@@ -35,7 +41,26 @@ func InitializeApp(cfgPath string) (*App, error) {
 		return nil, err
 	}
 	healthHandler := handler.NewHealthHandler(client, rueidisClient)
-	hertz := server.NewHTTPServer(configConfig, zapLogger, healthHandler)
+	userRepo := repo.NewUserRepo(client)
+	roleRepo, err := provideRoleRepo(configConfig)
+	if err != nil {
+		return nil, err
+	}
+	passwordChecker := providePasswordChecker(configConfig, userRepo)
+	jwtService := auth.NewJWTService(configConfig)
+	store := provideRedisStore(rueidisClient)
+	service := email.NewService(configConfig, store)
+	authService := auth.NewAuthService(userRepo, roleRepo, passwordChecker, jwtService, store, configConfig, service)
+	profileService := profile.NewService(userRepo, roleRepo)
+	gitHubOAuth := auth.NewGitHubOAuth(configConfig, authService, userRepo)
+	userAppAdapter := handler.NewUserAppAdapter(configConfig, authService, profileService, gitHubOAuth)
+	captchaService := captcha.NewService(store)
+	userHandler := provideUserHandler(configConfig, userAppAdapter, captchaService)
+	captchaHandler := provideCaptchaHandler(configConfig, captchaService)
+	pubService := pub.NewService(userRepo)
+	pubHandler := providePubHandler(pubService)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, captchaHandler, pubHandler, jwtService, userRepo, configConfig, store, roleRepo, zapLogger)
+	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	app := NewApp(hertz, zapLogger, client, rueidisClient)
 	return app, nil
 }
