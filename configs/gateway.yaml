@@ -27,5 +27,4 @@ observability:
   enable_metrics: true
   enable_pprof: true
   pprof_addr: ":6060"
-  otlp_endpoint: "jaeger:4317"
   service_name: api-gateway
