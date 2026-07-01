@@ -1,4 +1,6 @@
-// Package handler 注册全部 HTTP 路由（health / user / admin / captcha / pub）。
+// Package handler 注册全部 HTTP 路由（health / user / blog / rpg / pub）。
+//
+// 按域拆分：RegisterUser（认证与 RBAC）、RegisterBlog（内容与互动）、RegisterRPG（玩法与支付）。
 package handler
 
 import (
@@ -51,6 +53,7 @@ func RegisterAll(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	RegisterBlog(r, cfg, deps)
 	RegisterRPG(r, cfg, deps)
 
+	// 公开统计（isPublic，无 JWT）
 	perm := middleware.Permission(deps.Permission)
 	v1 := r.Group(cfg.App.APIPrefix, perm)
 	v1.GET("/pub/stats", deps.Pub.Stats)

@@ -1,3 +1,4 @@
+// comment_repo 评论表 Ent 读写。
 package repo
 
 import (
@@ -61,6 +62,8 @@ func (r *CommentRepo) UpdateStatus(ctx context.Context, id, status string) error
 	_, err := r.client.Comment.UpdateOneID(id).SetStatus(status).Save(ctx)
 	return err
 }
+
+// List 分页查询评论，支持按文章/用户/状态筛选。
 func (r *CommentRepo) List(ctx context.Context, f CommentFilter) ([]*ent.Comment, int, error) {
 	page, pageSize := f.Page, f.PageSize
 	if page <= 0 {

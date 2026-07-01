@@ -1,4 +1,5 @@
-﻿package userport
+﻿// grpc user-service gRPC 客户端，实现 UserService 端口。
+package userport
 
 import (
 	"context"

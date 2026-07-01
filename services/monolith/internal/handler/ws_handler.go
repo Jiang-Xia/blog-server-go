@@ -1,3 +1,4 @@
+// ws_handler WebSocket 升级入口 GET /realtime，鉴权 JWT query token。
 package handler
 
 import (
@@ -25,7 +26,8 @@ func NewWSHandler(hub *ws.Hub, jwt *auth.JWTService) *WSHandler {
 var wsUpgrader = websocket.Upgrader{
 	ReadBufferSize:  4096,
 	WriteBufferSize: 4096,
-	CheckOrigin:     func(_ *http.Request) bool { return true },
+	// 开发/H5 跨域：浏览器 WS 无法自定义 Header，依赖 query token 鉴权。
+	CheckOrigin: func(_ *http.Request) bool { return true },
 }
 
 // Register 注册 /realtime WebSocket 路由。
@@ -40,6 +42,7 @@ func (h *WSHandler) serveWS(w http.ResponseWriter, r *http.Request) {
 	}
 	token := strings.TrimSpace(r.URL.Query().Get("token"))
 	if token == "" {
+		// 兼容部分客户端走 Authorization 头（非浏览器 WS 场景）。
 		authz := strings.TrimSpace(r.Header.Get("Authorization"))
 		token = strings.TrimPrefix(authz, "Bearer ")
 		token = strings.TrimSpace(token)

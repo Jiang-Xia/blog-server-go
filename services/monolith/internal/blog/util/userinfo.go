@@ -1,3 +1,4 @@
+// userinfo 从 user 域批量拉取作者展示字段。
 package util
 
 import "github.com/Jiang-Xia/blog-server-go/pkg/usersvc"

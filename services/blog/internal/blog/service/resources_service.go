@@ -1,4 +1,5 @@
-﻿package service
+﻿// resources_service 用户资源/文件上传与列举。
+package service
 
 import (
 	"context"

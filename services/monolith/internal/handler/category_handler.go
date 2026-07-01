@@ -1,3 +1,4 @@
+// category_handler 分类 HTTP 端点。
 package handler
 
 import (

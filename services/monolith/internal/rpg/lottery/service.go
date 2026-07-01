@@ -145,6 +145,7 @@ func (s *Service) Draw(ctx context.Context, uid int, useTicket bool) (map[string
 		return nil, err
 	}
 
+	// 保底计数：史诗/传说出货清零对应计数，否则双计数 +1（传说计数独立累计）。
 	if picked.Rarity == "epic" || picked.Rarity == "legendary" {
 		if picked.Rarity == "legendary" {
 			rpg.LotteryLegendaryPityCounter = 0
@@ -189,6 +190,7 @@ func (s *Service) GetHistory(ctx context.Context, uid, limit int) ([]map[string]
 }
 
 func (s *Service) pickWithPity(pool []*ent.RpgLotteryPool, rpg *ent.Rpg) *ent.RpgLotteryPool {
+	// 传说保底优先于史诗保底；阈值见 Economy.LotteryLegendaryPityThreshold / LotteryEpicPityThreshold。
 	if rpg.LotteryLegendaryPityCounter+1 >= rpgconst.Economy.LotteryLegendaryPityThreshold {
 		if p := firstByRarity(pool, "legendary"); p != nil {
 			return p

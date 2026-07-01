@@ -1,4 +1,5 @@
-﻿package repo
+﻿// file_repo 用户文件/资源表 Ent 读写。
+package repo
 
 import (
 	"context"

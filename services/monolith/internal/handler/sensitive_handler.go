@@ -1,3 +1,4 @@
+// sensitive_handler 敏感词管理 HTTP 端点（管理端）。
 package handler
 
 import (

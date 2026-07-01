@@ -1,4 +1,5 @@
-﻿package handler
+﻿// dev_push_handler 开发环境 WebSocket 推送调试端点。
+package handler
 
 import (
 	"context"

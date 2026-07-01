@@ -1,3 +1,4 @@
+// pusher 向 Hub 推送站内通知等实时消息。
 package ws
 
 import (

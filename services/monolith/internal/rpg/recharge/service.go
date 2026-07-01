@@ -108,6 +108,7 @@ func (s *Service) TryFulfillOrderRecord(ctx context.Context, order *ent.PayOrder
 		return order, nil
 	}
 	if extendBool(order.ExtendParams, "fulfilled") {
+		// 幂等：extendParams.fulfilled 已标记则跳过发钻。
 		return order, nil
 	}
 	uid := extendInt(order.ExtendParams, "uid")

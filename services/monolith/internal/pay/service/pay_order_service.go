@@ -17,6 +17,7 @@ import (
 
 // RechargeManualFulfiller 管理端手工补钻标记接口（由 RPG recharge 实现）。
 type RechargeManualFulfiller interface {
+	// MarkManualFulfillmentAndNotify 标记订单已手工补钻并推送 WS 通知。
 	MarkManualFulfillmentAndNotify(ctx context.Context, outTradeNo string) (interface{}, error)
 }
 

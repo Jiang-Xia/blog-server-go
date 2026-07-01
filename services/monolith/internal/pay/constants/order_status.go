@@ -1,3 +1,4 @@
+// order_status 支付订单状态与渠道常量，对齐 Nest PayOrderStatus。
 package constants
 
 // 订单状态，对齐 Nest PayOrderStatus。

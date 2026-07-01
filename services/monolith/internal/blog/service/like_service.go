@@ -1,3 +1,4 @@
+// like_service 点赞业务逻辑。
 package service
 
 import (

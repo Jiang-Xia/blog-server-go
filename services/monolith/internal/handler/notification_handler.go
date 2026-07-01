@@ -1,3 +1,4 @@
+// notification_handler 站内通知 HTTP 端点。
 package handler
 
 import (

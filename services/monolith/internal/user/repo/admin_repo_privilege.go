@@ -1,3 +1,4 @@
+// admin_repo_privilege AdminRepo 权限 CRUD 与角色-权限关联。
 package repo
 
 import (

@@ -1,3 +1,4 @@
+// comment_service 评论业务逻辑（限流、敏感词、站内通知）。
 package service
 
 import (
@@ -69,12 +70,14 @@ func (s *CommentService) Create(ctx context.Context, uid int, articleID int, con
 		recordSensitiveHit(ctx, s.filter, "comment", "0", content, eval.HitWords, uidPtr, ipPtr)
 		return nil, errcode.WithMessage(errcode.InvalidParam, "内容包含违规词汇，无法发布")
 	}
+	// 审核状态：默认通过；命中需人工复核词时 pending（对齐 Nest 敏感词等级）。
 	status := "approved"
 	if eval.NeedReview {
 		status = "pending"
 	}
 	body := content
 	if len(eval.HitWords) > 0 {
+		// 低等级命中：使用过滤后正文入库，仍允许发布。
 		body = eval.Content
 	}
 	article, err := s.articles.GetByID(ctx, articleID)
@@ -278,7 +281,8 @@ func (s *CommentService) enrichComments(ctx context.Context, rows []*ent.Comment
 		item := map[string]interface{}{
 			"id": c.ID, "content": c.Content, "uid": c.UID, "status": c.Status,
 			"createTime": c.CreateTime, "updateTime": c.UpdateTime,
-			"userInfo":   util.UserInfoMap(userMap[uint64(c.UID)]),
+			// userInfo 由 user 域批量拉取后组装，禁止前端 dict 回显。
+			"userInfo": util.UserInfoMap(userMap[uint64(c.UID)]),
 		}
 		if c.ArticleId != nil {
 			item["articleId"] = *c.ArticleId
@@ -304,6 +308,7 @@ func (s *CommentService) assertRateLimit(ctx context.Context, uid int, ip string
 		return err
 	}
 	if count == 1 {
+		// 滑动窗口：commentRateWindowSec=60s，commentRateMax=6 次/窗口。
 		_ = s.redis.Expire(ctx, key, commentRateWindowSec)
 	}
 	if count > commentRateMax {

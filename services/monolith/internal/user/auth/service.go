@@ -115,6 +115,7 @@ func (s *AuthService) Login(ctx context.Context, in LoginInput, clientIP string)
 		_ = s.recordLoginFailure(ctx, in.Username, clientIP)
 		return nil, errcode.WithMessage(errcode.NotFound, "密码错误")
 	}
+	// 兼容 Nest PBKDF2：RSA 解密后验证通过则静默升级为 bcrypt 写库。
 	if err := s.passwords.UpgradePasswordIfNeeded(ctx, verify); err != nil {
 		return nil, err
 	}

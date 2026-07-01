@@ -1,4 +1,5 @@
-﻿package repo
+﻿// category_repo 分类表 Ent 读写。
+package repo
 
 import (
 	"context"

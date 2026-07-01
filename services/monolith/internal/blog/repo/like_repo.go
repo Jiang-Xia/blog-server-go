@@ -1,3 +1,4 @@
+// like_repo 点赞表 Ent 读写。
 package repo
 
 import (

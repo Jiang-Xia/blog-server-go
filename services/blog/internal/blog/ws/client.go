@@ -1,4 +1,5 @@
-﻿package ws
+﻿// client WebSocket 单连接读写、心跳与 topic 订阅。
+package ws
 
 import (
 	"encoding/json"

@@ -1,4 +1,5 @@
-﻿package repo
+﻿// msgboard_repo 留言板表 Ent 读写。
+package repo
 
 import (
 	"context"

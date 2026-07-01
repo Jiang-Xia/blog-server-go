@@ -1,4 +1,5 @@
-﻿package handler
+﻿// comment_handler 评论 HTTP 端点。
+package handler
 
 import (
 	"context"

@@ -1,4 +1,7 @@
 // Package handler 用户域路由（user / admin / captcha / sensitive-word / operation-log）。
+//
+// 鉴权：登录/注册/OAuth/验证码为公开或 Permission 白名单；jwtRequired 保护个人写操作；
+// role/dept/privilege/admin 等管理端路由由 Permission 按 RBAC 校验（非一律挂 jwtRequired）。
 package handler
 
 import (
@@ -13,9 +16,11 @@ func RegisterUser(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	jwtRequired := middleware.RequiredJWT(deps.JWT, deps.UserRepo)
 	v1 := r.Group(cfg.App.APIPrefix, perm)
 
+	// --- 验证码（公开） ---
 	v1.GET("/captcha", deps.Captcha.Get)
 	v1.POST("/captcha/verify", deps.Captcha.Verify)
 
+	// --- 用户认证与个人资料：公开登录注册 + JWT 写操作 ---
 	user := v1.Group("/user")
 	user.GET("/authCode", deps.User.AuthCode)
 	user.POST("/register", deps.User.Register)
@@ -38,6 +43,7 @@ func RegisterUser(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	user.POST("/admin/create", jwtRequired, deps.User.AdminCreate)
 	user.POST("/admin/update/:id", jwtRequired, deps.User.AdminUpdate)
 
+	// --- RBAC：角色 / 部门 / 权限（Permission 中间件校验） ---
 	role := v1.Group("/role")
 	role.GET("/menu-privilege-tree", deps.Admin.RoleMenuPrivilegeTree)
 	role.POST("", deps.Admin.RoleCreate)
@@ -63,6 +69,7 @@ func RegisterUser(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	priv.PATCH("/:id", deps.Admin.PrivilegeUpdate)
 	priv.DELETE("/:id", deps.Admin.PrivilegeDelete)
 
+	// --- 动态菜单（删除需 JWT） ---
 	adminGroup := v1.Group("/admin")
 	adminGroup.GET("/menu", deps.Admin.MenuList)
 	adminGroup.POST("/menu", deps.Admin.MenuCreate)
@@ -70,6 +77,7 @@ func RegisterUser(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	adminGroup.GET("/menu/detail", deps.Admin.MenuDetail)
 	adminGroup.DELETE("/menu", jwtRequired, deps.Admin.MenuDelete)
 
+	// --- 敏感词与操作日志（管理端，Permission 校验） ---
 	sw := v1.Group("/sensitive-word")
 	sw.GET("", deps.Sensitive.List)
 	sw.POST("", deps.Sensitive.Create)

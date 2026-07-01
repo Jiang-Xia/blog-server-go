@@ -1,3 +1,4 @@
+// blog_handlers Stream 消费侧博客域事件处理（点赞/评论等联动）。
 package event
 
 import (

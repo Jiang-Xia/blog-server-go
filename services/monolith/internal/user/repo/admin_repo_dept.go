@@ -1,3 +1,4 @@
+// admin_repo_dept AdminRepo 部门 CRUD 与部门树组装。
 package repo
 
 import (

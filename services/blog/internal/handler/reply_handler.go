@@ -1,4 +1,5 @@
-﻿package handler
+﻿// reply_handler 回复 HTTP 端点。
+package handler
 
 import (
 	"context"

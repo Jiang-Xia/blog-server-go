@@ -1,3 +1,4 @@
+// like_handler 点赞 HTTP 端点。
 package handler
 
 import (

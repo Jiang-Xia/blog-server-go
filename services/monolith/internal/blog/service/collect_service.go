@@ -1,3 +1,4 @@
+// collect_service 收藏业务逻辑；数据来源 repo(Ent) 与 user 域。
 package service
 
 import (

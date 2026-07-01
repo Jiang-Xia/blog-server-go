@@ -1,3 +1,4 @@
+// msgboard_service 留言板业务逻辑（限流与敏感词）。
 package service
 
 import (
@@ -144,6 +145,7 @@ func (s *MsgboardService) assertRateLimit(ctx context.Context, ip string) error 
 		return err
 	}
 	if count == 1 {
+		// 按 IP 限流：msgboardRateWindowSec=24h，msgboardRateMax=10 条/天。
 		_ = s.redis.Expire(ctx, key, msgboardRateWindowSec)
 	}
 	if count > msgboardRateMax {

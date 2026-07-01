@@ -1,4 +1,7 @@
 // Package handler RPG/支付域路由。
+//
+// 鉴权：C 端公开读（奖池/排行榜等）无 jwtRequired；/rpg 写与个人数据需 JWT；
+// /admin/rpg 与 /pay/order 需 JWT；/pay/notice 为支付宝验签异步回调（无 JWT，靠签名校验）。
 package handler
 
 import (
@@ -13,6 +16,7 @@ func RegisterRPG(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	jwtRequired := middleware.RequiredJWT(deps.JWT, deps.UserRepo)
 	v1 := r.Group(cfg.App.APIPrefix, perm)
 
+	// --- C 端 RPG：公开读 + JWT 写 ---
 	if deps.RPG != nil {
 		rpgGroup := v1.Group("/rpg")
 		rpgGroup.POST("/sign", jwtRequired, deps.RPG.SignIn)
@@ -59,6 +63,7 @@ func RegisterRPG(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 		rpgGroup.GET("/recharge/status", jwtRequired, deps.RPG.RechargeStatus)
 	}
 
+	// --- 管理端 RPG 配置（均需 JWT + RBAC） ---
 	if deps.RPGAdmin != nil {
 		adminRpg := v1.Group("/admin/rpg", jwtRequired)
 		adminRpg.GET("/achievements", deps.RPGAdmin.ListAchievements)
@@ -98,6 +103,7 @@ func RegisterRPG(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 		adminRpg.GET("/social-logs", deps.RPGAdmin.ListSocialLogs)
 	}
 
+	// --- 公开主页（无需 JWT） ---
 	if deps.RPGProfile != nil {
 		v1.GET("/user/public/:uid", deps.RPGProfile.PublicProfile)
 		v1.GET("/user/public/:uid/articles", deps.RPGProfile.PublicArticles)
@@ -107,6 +113,7 @@ func RegisterRPG(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 		v1.GET("/rpg/public/:uid/status", deps.RPGProfile.PublicRpgStatus)
 	}
 
+	// --- 支付：C 端下单公开；notice 为支付宝回调（验签，无 JWT） ---
 	if deps.Pay != nil {
 		payGroup := v1.Group("/pay")
 		payGroup.POST("/trade/create", deps.Pay.TradeCreate)
@@ -118,6 +125,7 @@ func RegisterRPG(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 		payGroup.POST("/notice", deps.Pay.Notice)
 	}
 
+	// --- 管理端支付订单（均需 JWT） ---
 	if deps.PayOrder != nil {
 		payOrder := v1.Group("/pay/order", jwtRequired)
 		payOrder.POST("/create", deps.PayOrder.Create)

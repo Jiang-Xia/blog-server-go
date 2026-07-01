@@ -1,3 +1,4 @@
+// constants 敏感词正能量替换词条，对齐 Nest positive-word-replacements.ts。
 package sensitive
 
 // positiveWordReplacements 2 级敏感词命中时的正能量替换词条（与 Nest positive-word-replacements.ts 对齐）。

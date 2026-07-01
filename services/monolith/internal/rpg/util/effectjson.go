@@ -1,3 +1,4 @@
+// effectjson 解析 Ent 中 effectJson 字段为 map。
 package util
 
 import "encoding/json"

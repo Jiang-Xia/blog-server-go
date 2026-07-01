@@ -1,3 +1,4 @@
+// msgboard_handler 留言板 HTTP 端点。
 package handler
 
 import (

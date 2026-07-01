@@ -1,3 +1,4 @@
+// sign 每日签到：基础经验、连续奖励与 HP 恢复。
 package level
 
 import (
@@ -79,6 +80,7 @@ func (s *SignService) SignIn(ctx context.Context, uid int) (*SignInResult, error
 	if lastSign == yesterday {
 		rpg.ConsecutiveSignDays++
 	} else {
+		// 断签：连续天数重置为 1（非昨日签到则不计入 streak）。
 		rpg.ConsecutiveSignDays = 1
 	}
 

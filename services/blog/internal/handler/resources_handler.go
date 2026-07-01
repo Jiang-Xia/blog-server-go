@@ -1,4 +1,5 @@
-﻿package handler
+﻿// resources_handler 用户资源/文件 HTTP 端点。
+package handler
 
 import (
 	"context"

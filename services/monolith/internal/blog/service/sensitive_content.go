@@ -1,3 +1,4 @@
+// sensitive_content 敏感词命中记录辅助，供评论/留言等 service 复用。
 package service
 
 import (

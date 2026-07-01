@@ -1,3 +1,4 @@
+// publisher 向 blog:events Stream 发布领域事件。
 package event
 
 import (

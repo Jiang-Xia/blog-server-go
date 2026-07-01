@@ -1,3 +1,4 @@
+// user_repo_ext UserRepo 扩展：注册默认角色、敏感词用户名、活跃用户 ID 列表等。
 package repo
 
 import (

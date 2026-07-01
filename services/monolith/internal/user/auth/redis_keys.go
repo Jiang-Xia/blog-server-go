@@ -1,3 +1,4 @@
+// redis_keys 认证相关 Redis 键名与 TTL 常量。
 package auth
 
 import "strings"

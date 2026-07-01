@@ -1,4 +1,5 @@
-﻿package service
+﻿// link_service 友链业务逻辑。
+package service
 
 import (
 	"context"

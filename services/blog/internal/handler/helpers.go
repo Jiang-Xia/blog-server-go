@@ -1,3 +1,4 @@
+// helpers handler 层共用请求解析与响应辅助。
 package handler
 
 import (

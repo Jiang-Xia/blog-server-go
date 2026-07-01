@@ -1,4 +1,6 @@
 ﻿// Package handler 博客域 HTTP 与 WebSocket 路由注册。
+//
+// 入口：/health 无鉴权；业务路由见 RegisterBlog。
 package handler
 
 import (

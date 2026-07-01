@@ -1,4 +1,5 @@
-﻿package contentfilter
+﻿// noop 无 user-service 敏感词能力时的空 Filter 实现。
+package contentfilter
 
 import (
 	"context"

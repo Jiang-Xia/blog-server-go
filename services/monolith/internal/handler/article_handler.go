@@ -1,3 +1,4 @@
+// article_handler 文章 CRUD 与列表 HTTP 端点，鉴权 JWT。
 package handler
 
 import (

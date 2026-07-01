@@ -1,3 +1,4 @@
+// types RPG 核心域展示与经验相关类型定义。
 package core
 
 // ExpReason 经验增加原因（写入 Redis 每日上限分组与 WS 展示）。

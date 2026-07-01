@@ -1,3 +1,4 @@
+// wechat 微信小程序 code 登录与自动建号。
 package auth
 
 import (

@@ -1,4 +1,5 @@
-﻿package ws
+﻿// hub 管理连接注册、topic 路由与消息广播。
+package ws
 
 import (
 	"context"

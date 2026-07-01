@@ -1,4 +1,7 @@
 ﻿// Package handler 博客域路由（文章/互动/资源/通知/WS）。
+//
+// 鉴权约定：v1 组挂 Permission（RBAC + isPublic 白名单）；jwtRequired 为 Bearer JWT 强制登录并校验账号状态。
+// WebSocket 在 API 前缀外注册 /realtime，鉴权见 WSHandler（query token 或 Authorization）。
 package handler
 
 import (
@@ -9,6 +12,7 @@ import (
 
 // RegisterBlog 注册博客域 HTTP 与 WebSocket 路由。
 func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
+	// WS 不经 v1 Permission 组，升级时自行校验 JWT。
 	if deps.WS != nil {
 		deps.WS.Register(r)
 	}
@@ -17,12 +21,14 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	jwtRequired := middleware.RequiredJWT(deps.JWT, deps.Users)
 	v1 := r.Group(cfg.App.APIPrefix, perm)
 
+	// --- 站内通知（均需 JWT） ---
 	notify := v1.Group("/notification")
 	notify.GET("/list", jwtRequired, deps.Notification.List)
 	notify.GET("/unread-count", jwtRequired, deps.Notification.UnreadCount)
 	notify.GET("/since", jwtRequired, deps.Notification.Since)
 	notify.PATCH("/read", jwtRequired, deps.Notification.MarkRead)
 
+	// --- 开发调试（仅 development + JWT） ---
 	if cfg.App.Env == "development" && deps.DevPush != nil {
 		dev := v1.Group("/dev")
 		dev.POST("/ws-push", jwtRequired, deps.DevPush.TestPush)
@@ -30,6 +36,7 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 		dev.POST("/event-publish", jwtRequired, deps.DevPush.TestEvent)
 	}
 
+	// --- 文章：列表/详情公开；写操作需 JWT ---
 	article := v1.Group("/article")
 	article.POST("/list", deps.Article.List)
 	article.GET("/info", deps.Article.Info)
@@ -46,6 +53,7 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	article.GET("/author-stats", jwtRequired, deps.Article.AuthorStats)
 	article.GET("/statistics", deps.Article.Statistics)
 
+	// --- 分类 / 标签：读公开，写需 JWT ---
 	category := v1.Group("/category")
 	category.POST("", jwtRequired, deps.Category.Create)
 	category.GET("", deps.Category.List)
@@ -61,6 +69,7 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	tag.PATCH("/:id", jwtRequired, deps.Tag.Update)
 	tag.DELETE("/:id", jwtRequired, deps.Tag.Delete)
 
+	// --- 评论 / 回复：创建删除需 JWT，列表多公开 ---
 	comment := v1.Group("/comment")
 	comment.POST("/create", jwtRequired, deps.Comment.Create)
 	comment.DELETE("/delete", jwtRequired, deps.Comment.Delete)
@@ -75,6 +84,7 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	reply.GET("/findAll", deps.Reply.FindAll)
 	reply.GET("/my-list", jwtRequired, deps.Reply.MyList)
 
+	// --- 点赞 / 收藏：部分公开读，写操作需 JWT ---
 	v1.POST("/like", deps.Like.Update)
 	v1.GET("/like/check", jwtRequired, deps.Like.Check)
 	v1.GET("/like/my-ids", jwtRequired, deps.Like.MyIDs)
@@ -85,6 +95,7 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	v1.GET("/collect/check", jwtRequired, deps.Collect.Check)
 	v1.GET("/collect/count", deps.Collect.Count)
 
+	// --- 留言板 / 友链：匿名可发，删除需 JWT ---
 	v1.POST("/msgboard", deps.Msgboard.Create)
 	v1.GET("/msgboard", deps.Msgboard.List)
 	v1.POST("/msgboard/delete", jwtRequired, deps.Msgboard.Delete)
@@ -95,6 +106,7 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	v1.PATCH("/link/:id", deps.Link.Update)
 	v1.DELETE("/link", jwtRequired, deps.Link.Delete)
 
+	// --- 大文件分片与资源：上传需 JWT ---
 	fileGroup := v1.Group("/file")
 	fileGroup.POST("/uploadBigFile", jwtRequired, deps.File.UploadBigFile)
 	fileGroup.POST("/uploadBigFile/merge", jwtRequired, deps.File.MergeBigFile)

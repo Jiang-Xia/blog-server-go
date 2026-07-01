@@ -1,3 +1,4 @@
+// tag_repo 标签表 Ent 读写。
 package repo
 
 import (

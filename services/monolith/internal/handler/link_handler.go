@@ -1,3 +1,4 @@
+// link_handler 友链 HTTP 端点。
 package handler
 
 import (

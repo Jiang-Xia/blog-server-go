@@ -43,7 +43,7 @@ func (p *PasswordChecker) VerifyLoginPassword(ctx context.Context, username, enc
 	}
 	return &VerifyResult{
 		UserID:        cred.UserID,
-		NeedsUpgrade:  crypto.NeedsUpgrade(cred.Password),
+		NeedsUpgrade:  crypto.NeedsUpgrade(cred.Password), // PBKDF2 哈希需升级 bcrypt
 		PlainPassword: plain,
 	}, nil
 }

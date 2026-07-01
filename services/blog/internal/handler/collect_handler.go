@@ -1,4 +1,5 @@
-﻿package handler
+﻿// collect_handler 收藏 HTTP 端点。
+package handler
 
 import (
 	"context"

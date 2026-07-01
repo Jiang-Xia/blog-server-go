@@ -17,7 +17,7 @@ import (
 
 var legacyCurrencyCodes = map[string]struct{}{
 	rpgconst.CurrencyItemCode: {},
-	"diamond":                 {},
+	"diamond":                 {}, // 历史种子数据兼容
 }
 
 // LoadoutSlot 装扮槽类型。
@@ -254,6 +254,7 @@ func (s *Service) GetCosmeticSummaries(ctx context.Context, uid int, itemTypes [
 // GrantItem 发放物品；货币类走 AdjustCurrency。
 func (s *Service) GrantItem(ctx context.Context, uid int, itemCode, source string, quantity int) error {
 	if _, ok := legacyCurrencyCodes[itemCode]; ok {
+		// 旧物品编码 currency/diamond 等映射到通用货币背包。
 		_, err := s.AdjustCurrency(ctx, uid, quantity, source)
 		return err
 	}

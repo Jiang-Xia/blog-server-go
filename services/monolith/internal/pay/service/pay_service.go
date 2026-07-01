@@ -139,6 +139,7 @@ func (s *PayService) StartPolling(outTradeNo string) {
 
 	go func() {
 		defer s.StopPolling(outTradeNo)
+		// 轮询兜底：10s 间隔，最多 18 次（约 3 分钟），待支付单才继续查支付宝。
 		for i := 0; i < 18; i++ {
 			select {
 			case <-ctx.Done():
@@ -205,6 +206,7 @@ func (s *PayService) syncOrderFromAlipayStatus(ctx context.Context, order *ent.P
 	s.log.Info("order status synced", zap.String("outTradeNo", order.OutTradeNo), zap.String("status", newStatus))
 	if newStatus == payconst.OrderStatusPaid {
 		s.StopPolling(order.OutTradeNo)
+		// PAID 后触发已注册回调（RPG 充值发钻等），各回调需自行幂等。
 		InvokePayPaidCallbacks(ctx, order)
 	}
 	if newStatus == payconst.OrderStatusClosed {
@@ -255,6 +257,7 @@ func (s *PayService) HandleAlipayNotify(ctx context.Context, postData map[string
 	order, err := s.repo.FindByOutTradeNo(ctx, notifyOutTradeNo)
 	directIsRpg := err == nil && bizTypeOf(order) == payconst.PAY_BIZ_RPG_RECHARGE
 
+	// 博客 RPG 充值：notify 的 out_trade_no 可能与本地意向单号不同，尝试关联解析。
 	if err != nil || !directIsRpg {
 		if ent.IsNotFound(err) {
 			order = nil
@@ -278,6 +281,7 @@ func (s *PayService) HandleAlipayNotify(ctx context.Context, postData map[string
 	if noti.TotalAmount != "" {
 		notifyAmount, _ := parseFloat(noti.TotalAmount)
 		orderAmount := order.TotalAmount
+		// 金额容差 0.01 元，防止浮点/格式化差异导致拒单。
 		if math.Abs(notifyAmount-orderAmount) > 0.01 {
 			s.log.Warn("alipay notify amount mismatch",
 				zap.String("outTradeNo", order.OutTradeNo),

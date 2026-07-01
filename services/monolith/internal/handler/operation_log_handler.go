@@ -1,3 +1,4 @@
+// operation_log_handler 操作日志查询 HTTP 端点（管理端）。
 package handler
 
 import (

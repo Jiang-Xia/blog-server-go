@@ -1,3 +1,4 @@
+// collect_repo 收藏表 Ent 读写。
 package repo
 
 import (

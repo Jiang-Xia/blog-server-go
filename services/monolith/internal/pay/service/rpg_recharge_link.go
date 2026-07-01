@@ -1,3 +1,4 @@
+// rpg_recharge_link 博客 RPG 充值单与支付回调关联解析。
 package service
 
 import (
@@ -16,9 +17,12 @@ import (
 // RpgRechargeLinkMode RPG 充值单关联方式。
 type RpgRechargeLinkMode string
 
+// RPG 充值单关联模式常量。
 const (
+	// RpgLinkExplicitOutTradeNo 通过商户单号 out_trade_no 显式关联待支付单。
 	RpgLinkExplicitOutTradeNo RpgRechargeLinkMode = "explicit_out_trade_no"
-	RpgLinkNone               RpgRechargeLinkMode = "none"
+	// RpgLinkNone 未关联到 RPG 充值意向单。
+	RpgLinkNone RpgRechargeLinkMode = "none"
 )
 
 // RpgRechargeLinkResult 博客 RPG 充值单关联结果。

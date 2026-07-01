@@ -1,3 +1,4 @@
+// article_tag_junction 文章-标签多对多联结表直查（复合主键，Ent 未映射）。
 package repo
 
 import (
@@ -93,6 +94,7 @@ func (j *articleTagJunction) tagIDsByArticleIDs(ctx context.Context, articleIDs 
 }
 
 func (j *articleTagJunction) replaceTags(ctx context.Context, articleID int, tagIDs []string) error {
+	// 联结表无 Ent 映射：先删后插，事务保证文章标签一致性。
 	tx, err := j.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err

@@ -1,3 +1,4 @@
+// callback_registry 支付订单 PAID 后业务回调注册表（如 RPG 充值发钻）。
 package service
 
 import (

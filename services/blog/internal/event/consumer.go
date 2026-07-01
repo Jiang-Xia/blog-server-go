@@ -1,4 +1,5 @@
-﻿package event
+﻿// consumer Redis Stream 消费者循环，分发至已注册 handler。
+package event
 
 import (
 	"context"
@@ -100,6 +101,7 @@ func (c *Consumer) processEntry(ctx context.Context, d rueidis.DedicatedClient, 
 		return
 	}
 	doneKey := DoneKeyPrefix + entry.ID
+	// 幂等：同一 Stream 消息 ID 仅处理一次（7 天 TTL），重复投递直接 ACK。
 	okNX, err := c.rds.Do(ctx, c.rds.B().Set().Key(doneKey).Value("1").Nx().ExSeconds(IdempotencyTTL).Build()).AsBool()
 	if err == nil && !okNX {
 		_ = d.Do(ctx, d.B().Xack().Key(StreamBlogEvents).Group(c.group).Id(entry.ID).Build()).Error()

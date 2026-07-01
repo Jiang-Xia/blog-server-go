@@ -1,3 +1,4 @@
+// admin_repo_menu AdminRepo 菜单树组装与权限菜单查询。
 package repo
 
 import (

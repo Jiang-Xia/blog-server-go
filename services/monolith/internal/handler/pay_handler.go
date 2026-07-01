@@ -1,4 +1,6 @@
 // Package handler 支付 HTTP 端点，路径对齐 Nest PayController。
+//
+// 鉴权：/pay/notice 为支付宝异步回调（RSA 验签，无 JWT）；其余 C 端下单由 Permission 白名单放行。
 package handler
 
 import (
@@ -118,12 +120,13 @@ func (h *PayHandler) H5OpenMini(ctx context.Context, c *app.RequestContext) {
 	handleAdminResult(ctx, c, data, err)
 }
 
-// Notice 支付宝异步通知；成功返回纯文本 success。
+// Notice 支付宝异步通知；成功返回纯文本 success（支付宝要求，非 JSON）。
 func (h *PayHandler) Notice(ctx context.Context, c *app.RequestContext) {
 	postData := map[string]string{}
 	c.Request.PostArgs().VisitAll(func(k, v []byte) {
 		postData[string(k)] = string(v)
 	})
+	// 兼容部分网关以 JSON body 回调。
 	if len(postData) == 0 {
 		var body map[string]string
 		if err := c.Bind(&body); err == nil {

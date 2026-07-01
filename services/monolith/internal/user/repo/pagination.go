@@ -1,3 +1,4 @@
+// pagination Nest 风格分页元信息计算（page/pages）。
 package repo
 
 import "math"

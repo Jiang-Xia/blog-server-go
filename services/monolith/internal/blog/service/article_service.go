@@ -63,12 +63,14 @@ func (s *ArticleService) List(ctx context.Context, q domain.ArticleListQuery) (*
 		OnlyNotDeleted: q.Client,
 	}
 	if q.Client {
+		// C 端列表：仅展示未锁定作者的公开文章（同库 user 表过滤，禁止展示锁定用户内容）。
 		activeUIDs, err := s.userRepo.ListActiveUserIDs(ctx)
 		if err != nil {
 			return nil, err
 		}
 		filter.AuthorUIDs = activeUIDs
 	} else if q.CallerUID > 0 {
+		// 管理端：按 RBAC 数据权限过滤可访问部门下的作者。
 		deptIDs, err := s.admin.ResolveArticleAccessibleDeptIDs(ctx, q.CallerUID)
 		if err != nil {
 			return nil, err

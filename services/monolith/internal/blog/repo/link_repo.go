@@ -1,3 +1,4 @@
+// link_repo 友链表 Ent 读写。
 package repo
 
 import (

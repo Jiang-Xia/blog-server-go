@@ -1,4 +1,5 @@
-﻿package ws
+﻿// message WebSocket 下行消息结构与 JSON 序列化。
+package ws
 
 import "encoding/json"
 

@@ -1,3 +1,4 @@
+// oauth_github GitHub OAuth2 授权登录与回调处理。
 package auth
 
 import (

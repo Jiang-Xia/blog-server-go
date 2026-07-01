@@ -1,3 +1,4 @@
+// reply_repo 回复表 Ent 读写。
 package repo
 
 import (
