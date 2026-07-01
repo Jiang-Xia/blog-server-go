@@ -1,4 +1,4 @@
-.PHONY: dev dev-gateway dev-user dev-blog dev-rpg proto ent-gen wire build up down logs tidy
+.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen wire build up down logs tidy
 
 GO ?= go
 CONFIG_PATH ?= configs/monolith.yaml
@@ -20,6 +20,15 @@ dev-blog:
 
 dev-rpg:
 	set CONFIG_PATH=configs/rpg.yaml&& $(GO) run ./services/monolith/cmd/rpg/main.go
+
+dev-all:
+	powershell -ExecutionPolicy Bypass -File scripts/dev-all.ps1
+
+dev-all-windows:
+	powershell -ExecutionPolicy Bypass -File scripts/dev-all.ps1 -Windows
+
+dev-all-stop:
+	powershell -ExecutionPolicy Bypass -File scripts/dev-all-stop.ps1
 
 dev-login:
 	$(GO) run scripts/dev_login.go

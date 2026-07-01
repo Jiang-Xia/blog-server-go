@@ -18,6 +18,7 @@
 | 08 WebSocket 与事件驱动 | [08-WebSocket与事件驱动.md](./08-WebSocket与事件驱动.md) | ✅ 已交付 |
 | 09 RPG 与支付 | [09-RPG与支付.md](./09-RPG与支付.md) | ✅ 已交付 |
 | 10 微服务拆分与生产上线 | [10-微服务拆分与生产上线.md](./10-微服务拆分与生产上线.md) | ✅ 已交付 |
+| 11 微服务代码物理拆分 | [11-微服务代码物理拆分.md](./11-微服务代码物理拆分.md) | ⏳ 待交付 |
 
 ## 写作约定
 
@@ -28,6 +29,6 @@
 
 ## 相关
 
-- 十阶段计划索引：[`.cursor/plans/README.md`](../.cursor/plans/README.md)
+- 十一阶段计划索引：[`.cursor/plans/README.md`](../.cursor/plans/README.md)
 - 架构总方案：[`blog-server-go-重构方案.md`](../blog-server-go-重构方案.md)
 - Agent 规则：[`.cursor/rules/hertz-13-plan-docs.mdc`](../.cursor/rules/hertz-13-plan-docs.mdc)
