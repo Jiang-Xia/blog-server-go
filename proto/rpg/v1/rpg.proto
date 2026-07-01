@@ -7,6 +7,7 @@ option go_package = "github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1;rpg
 // RpgService RPG 域 gRPC 契约（Plan 01 仅占位，Plan 10 启用）。
 service RpgService {
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+  rpc GetPublicProfile(GetPublicProfileRequest) returns (GetPublicProfileResponse);
 }
 
 message GetProfileRequest {
@@ -17,4 +18,12 @@ message GetProfileResponse {
   uint64 user_id = 1;
   int32 level = 2;
   int64 exp = 3;
+}
+
+message GetPublicProfileRequest {
+  uint64 user_id = 1;
+}
+
+message GetPublicProfileResponse {
+  bytes profile_json = 1;
 }

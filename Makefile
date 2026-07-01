@@ -1,9 +1,15 @@
-.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen wire build up down logs tidy
+.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs tidy
 
 GO ?= go
 CONFIG_PATH ?= configs/monolith.yaml
 ENT_DIR := services/monolith/ent
+USER_ENT_DIR := services/user/ent
+BLOG_ENT_DIR := services/blog/ent
+RPG_ENT_DIR := services/rpg/ent
 APP_DIR := services/monolith/internal/app
+USER_APP_DIR := services/user/internal/app
+BLOG_APP_DIR := services/blog/internal/app
+RPG_APP_DIR := services/rpg/internal/app
 COMPOSE_FILE := deploy/docker/docker-compose.yml
 
 dev:
@@ -13,13 +19,13 @@ dev-gateway:
 	set CONFIG_PATH=configs/gateway.yaml&& $(GO) run ./services/gateway/cmd/main.go
 
 dev-user:
-	set CONFIG_PATH=configs/user.yaml&& $(GO) run ./services/monolith/cmd/user/main.go
+	set CONFIG_PATH=configs/user.yaml&& $(GO) run ./services/user/cmd/main.go
 
 dev-blog:
-	set CONFIG_PATH=configs/blog.yaml&& $(GO) run ./services/monolith/cmd/blog/main.go
+	set CONFIG_PATH=configs/blog.yaml&& $(GO) run ./services/blog/cmd/main.go
 
 dev-rpg:
-	set CONFIG_PATH=configs/rpg.yaml&& $(GO) run ./services/monolith/cmd/rpg/main.go
+	set CONFIG_PATH=configs/rpg.yaml&& $(GO) run ./services/rpg/cmd/main.go
 
 dev-all:
 	powershell -ExecutionPolicy Bypass -File scripts/dev-all.ps1
@@ -42,6 +48,15 @@ proto:
 ent-gen:
 	cd $(ENT_DIR) && $(GO) generate ./...
 
+ent-gen-user:
+	cd $(USER_ENT_DIR) && $(GO) generate ./...
+
+ent-gen-blog:
+	cd $(BLOG_ENT_DIR) && $(GO) generate ./...
+
+ent-gen-rpg:
+	cd $(RPG_ENT_DIR) && $(GO) generate ./...
+
 ent-schema:
 	$(GO) run scripts/gen_ent_schema.go
 
@@ -55,12 +70,21 @@ bootstrap-db:
 wire:
 	$(GO) run github.com/google/wire/cmd/wire@latest ./$(APP_DIR)
 
+wire-user:
+	$(GO) run github.com/google/wire/cmd/wire@latest ./$(USER_APP_DIR)
+
+wire-blog:
+	$(GO) run github.com/google/wire/cmd/wire@latest ./$(BLOG_APP_DIR)
+
+wire-rpg:
+	$(GO) run github.com/google/wire/cmd/wire@latest ./$(RPG_APP_DIR)
+
 build:
 	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/gateway ./services/gateway/cmd
 	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/monolith ./services/monolith/cmd
-	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/user ./services/monolith/cmd/user
-	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/blog ./services/monolith/cmd/blog
-	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/rpg ./services/monolith/cmd/rpg
+	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/user ./services/user/cmd
+	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/blog ./services/blog/cmd
+	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o bin/rpg ./services/rpg/cmd
 
 up:
 	docker compose -f $(COMPOSE_FILE) up -d --build

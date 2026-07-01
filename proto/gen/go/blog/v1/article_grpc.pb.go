@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,8 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArticleService_GetArticle_FullMethodName   = "/blog.v1.ArticleService/GetArticle"
-	ArticleService_ListArticles_FullMethodName = "/blog.v1.ArticleService/ListArticles"
+	ArticleService_GetArticle_FullMethodName       = "/blog.v1.ArticleService/GetArticle"
+	ArticleService_ListArticles_FullMethodName     = "/blog.v1.ArticleService/ListArticles"
+	ArticleService_GetArticleDetail_FullMethodName = "/blog.v1.ArticleService/GetArticleDetail"
+	ArticleService_GetPubStats_FullMethodName      = "/blog.v1.ArticleService/GetPubStats"
 )
 
 // ArticleServiceClient is the client API for ArticleService service.
@@ -31,6 +34,8 @@ const (
 type ArticleServiceClient interface {
 	GetArticle(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*GetArticleResponse, error)
 	ListArticles(ctx context.Context, in *ListArticlesRequest, opts ...grpc.CallOption) (*ListArticlesResponse, error)
+	GetArticleDetail(ctx context.Context, in *GetArticleDetailRequest, opts ...grpc.CallOption) (*GetArticleDetailResponse, error)
+	GetPubStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPubStatsResponse, error)
 }
 
 type articleServiceClient struct {
@@ -61,6 +66,26 @@ func (c *articleServiceClient) ListArticles(ctx context.Context, in *ListArticle
 	return out, nil
 }
 
+func (c *articleServiceClient) GetArticleDetail(ctx context.Context, in *GetArticleDetailRequest, opts ...grpc.CallOption) (*GetArticleDetailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetArticleDetailResponse)
+	err := c.cc.Invoke(ctx, ArticleService_GetArticleDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *articleServiceClient) GetPubStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPubStatsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPubStatsResponse)
+	err := c.cc.Invoke(ctx, ArticleService_GetPubStats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArticleServiceServer is the server API for ArticleService service.
 // All implementations must embed UnimplementedArticleServiceServer
 // for forward compatibility.
@@ -69,6 +94,8 @@ func (c *articleServiceClient) ListArticles(ctx context.Context, in *ListArticle
 type ArticleServiceServer interface {
 	GetArticle(context.Context, *GetArticleRequest) (*GetArticleResponse, error)
 	ListArticles(context.Context, *ListArticlesRequest) (*ListArticlesResponse, error)
+	GetArticleDetail(context.Context, *GetArticleDetailRequest) (*GetArticleDetailResponse, error)
+	GetPubStats(context.Context, *emptypb.Empty) (*GetPubStatsResponse, error)
 	mustEmbedUnimplementedArticleServiceServer()
 }
 
@@ -84,6 +111,12 @@ func (UnimplementedArticleServiceServer) GetArticle(context.Context, *GetArticle
 }
 func (UnimplementedArticleServiceServer) ListArticles(context.Context, *ListArticlesRequest) (*ListArticlesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListArticles not implemented")
+}
+func (UnimplementedArticleServiceServer) GetArticleDetail(context.Context, *GetArticleDetailRequest) (*GetArticleDetailResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetArticleDetail not implemented")
+}
+func (UnimplementedArticleServiceServer) GetPubStats(context.Context, *emptypb.Empty) (*GetPubStatsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPubStats not implemented")
 }
 func (UnimplementedArticleServiceServer) mustEmbedUnimplementedArticleServiceServer() {}
 func (UnimplementedArticleServiceServer) testEmbeddedByValue()                        {}
@@ -142,6 +175,42 @@ func _ArticleService_ListArticles_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArticleService_GetArticleDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetArticleDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).GetArticleDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_GetArticleDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).GetArticleDetail(ctx, req.(*GetArticleDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArticleService_GetPubStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).GetPubStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_GetPubStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).GetPubStats(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArticleService_ServiceDesc is the grpc.ServiceDesc for ArticleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +225,14 @@ var ArticleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListArticles",
 			Handler:    _ArticleService_ListArticles_Handler,
+		},
+		{
+			MethodName: "GetArticleDetail",
+			Handler:    _ArticleService_GetArticleDetail_Handler,
+		},
+		{
+			MethodName: "GetPubStats",
+			Handler:    _ArticleService_GetPubStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

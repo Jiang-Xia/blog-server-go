@@ -9,6 +9,7 @@ package userv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -333,11 +334,55 @@ func (x *VerifyTokenResponse) GetRoles() []string {
 	return nil
 }
 
+type CountUsersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Total         int32                  `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CountUsersResponse) Reset() {
+	*x = CountUsersResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CountUsersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountUsersResponse) ProtoMessage() {}
+
+func (x *CountUsersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountUsersResponse.ProtoReflect.Descriptor instead.
+func (*CountUsersResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CountUsersResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
 var File_user_v1_user_proto protoreflect.FileDescriptor
 
 const file_user_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x12user/v1/user.proto\x12\auser.v1\" \n" +
+	"\x12user/v1/user.proto\x12\auser.v1\x1a\x1bgoogle/protobuf/empty.proto\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"\x9f\x01\n" +
 	"\x0fGetUserResponse\x12\x0e\n" +
@@ -355,11 +400,15 @@ const file_user_v1_user_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"D\n" +
 	"\x13VerifyTokenResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x04R\x06userId\x12\x14\n" +
-	"\x05roles\x18\x02 \x03(\tR\x05roles2\xe2\x01\n" +
+	"\x05roles\x18\x02 \x03(\tR\x05roles\"*\n" +
+	"\x12CountUsersResponse\x12\x14\n" +
+	"\x05total\x18\x01 \x01(\x05R\x05total2\xa5\x02\n" +
 	"\vUserService\x12<\n" +
 	"\aGetUser\x12\x17.user.v1.GetUserRequest\x1a\x18.user.v1.GetUserResponse\x12K\n" +
 	"\fGetUserBatch\x12\x1c.user.v1.GetUserBatchRequest\x1a\x1d.user.v1.GetUserBatchResponse\x12H\n" +
-	"\vVerifyToken\x12\x1b.user.v1.VerifyTokenRequest\x1a\x1c.user.v1.VerifyTokenResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1;userv1b\x06proto3"
+	"\vVerifyToken\x12\x1b.user.v1.VerifyTokenRequest\x1a\x1c.user.v1.VerifyTokenResponse\x12A\n" +
+	"\n" +
+	"CountUsers\x12\x16.google.protobuf.Empty\x1a\x1b.user.v1.CountUsersResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_v1_user_proto_rawDescOnce sync.Once
@@ -373,7 +422,7 @@ func file_user_v1_user_proto_rawDescGZIP() []byte {
 	return file_user_v1_user_proto_rawDescData
 }
 
-var file_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_user_v1_user_proto_goTypes = []any{
 	(*GetUserRequest)(nil),       // 0: user.v1.GetUserRequest
 	(*GetUserResponse)(nil),      // 1: user.v1.GetUserResponse
@@ -381,17 +430,21 @@ var file_user_v1_user_proto_goTypes = []any{
 	(*GetUserBatchResponse)(nil), // 3: user.v1.GetUserBatchResponse
 	(*VerifyTokenRequest)(nil),   // 4: user.v1.VerifyTokenRequest
 	(*VerifyTokenResponse)(nil),  // 5: user.v1.VerifyTokenResponse
+	(*CountUsersResponse)(nil),   // 6: user.v1.CountUsersResponse
+	(*emptypb.Empty)(nil),        // 7: google.protobuf.Empty
 }
 var file_user_v1_user_proto_depIdxs = []int32{
 	1, // 0: user.v1.GetUserBatchResponse.users:type_name -> user.v1.GetUserResponse
 	0, // 1: user.v1.UserService.GetUser:input_type -> user.v1.GetUserRequest
 	2, // 2: user.v1.UserService.GetUserBatch:input_type -> user.v1.GetUserBatchRequest
 	4, // 3: user.v1.UserService.VerifyToken:input_type -> user.v1.VerifyTokenRequest
-	1, // 4: user.v1.UserService.GetUser:output_type -> user.v1.GetUserResponse
-	3, // 5: user.v1.UserService.GetUserBatch:output_type -> user.v1.GetUserBatchResponse
-	5, // 6: user.v1.UserService.VerifyToken:output_type -> user.v1.VerifyTokenResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
+	7, // 4: user.v1.UserService.CountUsers:input_type -> google.protobuf.Empty
+	1, // 5: user.v1.UserService.GetUser:output_type -> user.v1.GetUserResponse
+	3, // 6: user.v1.UserService.GetUserBatch:output_type -> user.v1.GetUserBatchResponse
+	5, // 7: user.v1.UserService.VerifyToken:output_type -> user.v1.VerifyTokenResponse
+	6, // 8: user.v1.UserService.CountUsers:output_type -> user.v1.CountUsersResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -408,7 +461,7 @@ func file_user_v1_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_v1_user_proto_rawDesc), len(file_user_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

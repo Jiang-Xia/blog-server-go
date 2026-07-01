@@ -9,7 +9,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/util"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
+	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/sensitive"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 	"github.com/google/uuid"
@@ -20,7 +20,7 @@ type ReplyService struct {
 	replies  *blogrepo.ReplyRepo
 	comments *blogrepo.CommentRepo
 	articles *blogrepo.ArticleRepo
-	users    user.UserService
+	users    usersvc.UserService
 	filter   sensitive.FilterService
 }
 
@@ -29,7 +29,7 @@ func NewReplyService(
 	replies *blogrepo.ReplyRepo,
 	comments *blogrepo.CommentRepo,
 	articles *blogrepo.ArticleRepo,
-	users user.UserService,
+	users usersvc.UserService,
 	filter sensitive.FilterService,
 ) *ReplyService {
 	return &ReplyService{
@@ -152,7 +152,7 @@ func (s *ReplyService) enrichReplies(ctx context.Context, rows []*ent.Reply) ([]
 		}
 	}
 	users, _ := s.users.GetUserBatch(ctx, uids)
-	userMap := map[uint64]*user.UserDTO{}
+	userMap := map[uint64]*usersvc.UserDTO{}
 	for _, u := range users {
 		if u != nil {
 			userMap[u.ID] = u

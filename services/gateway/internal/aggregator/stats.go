@@ -3,32 +3,21 @@ package aggregator
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"io"
-	"net/http"
-	"strings"
-	"time"
 
-	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
+	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/grpcclient"
 	"github.com/cloudwego/hertz/pkg/app"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 // StatsHandler GET /pub/stats BFF：合并 blog 统计与 user 用户数。
 type StatsHandler struct {
-	userURL string
-	blogURL string
-	client  *http.Client
+	clients *grpcclient.Clients
 }
 
 // NewStatsHandler 构造 pub/stats 聚合 handler。
-func NewStatsHandler(cfg *config.Config) *StatsHandler {
-	return &StatsHandler{
-		userURL: strings.TrimSuffix(cfg.Proxy.UserURL, "/"),
-		blogURL: strings.TrimSuffix(cfg.Proxy.BlogURL, "/"),
-		client:  &http.Client{Timeout: 5 * time.Second},
-	}
+func NewStatsHandler(clients *grpcclient.Clients) *StatsHandler {
+	return &StatsHandler{clients: clients}
 }
 
 type pubStats struct {
@@ -38,43 +27,20 @@ type pubStats struct {
 	UserCount     int `json:"userCount"`
 }
 
-type apiEnvelope struct {
-	Data pubStats `json:"data"`
-}
-
-// Stats 聚合各服务统计；blog 暂 mock，userCount 读 user-service。
+// Stats 经 gRPC 聚合各服务统计。
 func (h *StatsHandler) Stats(ctx context.Context, c *app.RequestContext) {
-	stats := pubStats{ArticleCount: 128, CategoryCount: 12, TagCount: 36}
-	if h.userURL != "" {
-		if count, err := h.fetchUserCount(ctx); err == nil {
-			stats.UserCount = count
+	stats := pubStats{}
+	if h.clients != nil && h.clients.Blog != nil {
+		if blogStats, err := h.clients.Blog.GetPubStats(ctx, &emptypb.Empty{}); err == nil && blogStats != nil {
+			stats.ArticleCount = int(blogStats.GetArticleCount())
+			stats.CategoryCount = int(blogStats.GetCategoryCount())
+			stats.TagCount = int(blogStats.GetTagCount())
+		}
+	}
+	if h.clients != nil && h.clients.User != nil {
+		if userStats, err := h.clients.User.CountUsers(ctx, &emptypb.Empty{}); err == nil && userStats != nil {
+			stats.UserCount = int(userStats.GetTotal())
 		}
 	}
 	response.Success(ctx, c, stats)
-}
-
-func (h *StatsHandler) fetchUserCount(ctx context.Context) (int, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, h.userURL+"/api/v1/user/list", strings.NewReader(`{"page":1,"pageSize":1}`))
-	if err != nil {
-		return 0, err
-	}
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := h.client.Do(req)
-	if err != nil {
-		return 0, err
-	}
-	defer resp.Body.Close()
-	body, _ := io.ReadAll(resp.Body)
-	var env struct {
-		Data struct {
-			Total int `json:"total"`
-		} `json:"data"`
-	}
-	if err := json.Unmarshal(body, &env); err != nil {
-		return 0, err
-	}
-	if env.Data.Total > 0 {
-		return env.Data.Total, nil
-	}
-	return 0, fmt.Errorf("empty user total")
 }

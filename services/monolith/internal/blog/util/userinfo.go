@@ -1,9 +1,9 @@
 package util
 
-import "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
+import "github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 
 // UserInfoMap 将 UserDTO 转为 Nest setUserInfo 风格 map。
-func UserInfoMap(u *user.UserDTO, fields ...string) map[string]interface{} {
+func UserInfoMap(u *usersvc.UserDTO, fields ...string) map[string]interface{} {
 	if u == nil {
 		return map[string]interface{}{}
 	}

@@ -17,6 +17,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
 	rpgactivity "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/activity"
 	rpgevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/event"
+	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	userpkg "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
 	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/grpcserver"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
@@ -34,10 +35,10 @@ func provideUserGRPCServer(cfg *config.Config, profileSvc *profile.Service, jwt 
 	return usersgrpc.New(profileSvc, jwt)
 }
 
-func provideUserServicePort(cfg *config.Config, profileSvc *profile.Service) (userpkg.UserService, error) {
+func provideUserServicePort(cfg *config.Config, profileSvc *profile.Service) (usersvc.UserService, error) {
 	mode := cfg.App.ServiceModeOrDefault()
 	if cfg.GRPC.UserAddr != "" && mode != config.ModeMonolith && mode != config.ModeUser {
-		return userpkg.NewGRPCUserService(cfg.GRPC.UserAddr)
+		return usersvc.NewGRPCUserService(cfg.GRPC.UserAddr)
 	}
 	return userpkg.NewUserService(profileSvc), nil
 }

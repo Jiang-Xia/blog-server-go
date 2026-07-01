@@ -4,10 +4,14 @@ package blog.v1;
 
 option go_package = "github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1";
 
+import "google/protobuf/empty.proto";
+
 // ArticleService 博客域 gRPC 契约（Plan 01 仅占位，Plan 10 启用）。
 service ArticleService {
   rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
   rpc ListArticles(ListArticlesRequest) returns (ListArticlesResponse);
+  rpc GetArticleDetail(GetArticleDetailRequest) returns (GetArticleDetailResponse);
+  rpc GetPubStats(google.protobuf.Empty) returns (GetPubStatsResponse);
 }
 
 message GetArticleRequest {
@@ -28,4 +32,18 @@ message ListArticlesRequest {
 message ListArticlesResponse {
   repeated GetArticleResponse items = 1;
   int32 total = 2;
+}
+
+message GetArticleDetailRequest {
+  string key = 1;
+}
+
+message GetArticleDetailResponse {
+  bytes detail_json = 1;
+}
+
+message GetPubStatsResponse {
+  int32 article_count = 1;
+  int32 category_count = 2;
+  int32 tag_count = 3;
 }

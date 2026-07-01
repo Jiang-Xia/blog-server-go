@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"strconv"
 	"strings"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
@@ -96,6 +97,12 @@ func (r *Router) pick(path, apiPrefix string) *httputil.ReverseProxy {
 	if strings.HasPrefix(rel, "pub/") {
 		return nil
 	}
+	if rel == "article/info" {
+		return nil
+	}
+	if isPublicProfileBFF(rel) {
+		return nil
+	}
 	if isUserRoute(rel) {
 		return r.user
 	}
@@ -127,4 +134,14 @@ func isRPGRoute(rel string) bool {
 		strings.HasPrefix(rel, "pay") ||
 		strings.HasPrefix(rel, "user/public/") ||
 		strings.HasPrefix(rel, "rpg/public/")
+}
+
+// isPublicProfileBFF 精确匹配 user/public/:uid（不含 articles/collects/likes 子路径）。
+func isPublicProfileBFF(rel string) bool {
+	parts := strings.Split(rel, "/")
+	if len(parts) != 3 || parts[0] != "user" || parts[1] != "public" {
+		return false
+	}
+	_, err := strconv.Atoi(parts[2])
+	return err == nil
 }

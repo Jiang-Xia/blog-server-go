@@ -14,8 +14,10 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
 	"github.com/Jiang-Xia/blog-server-go/pkg/metrics"
 	"github.com/Jiang-Xia/blog-server-go/pkg/otel"
+	"github.com/Jiang-Xia/blog-server-go/pkg/response"
 	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/aggregator"
 	gwmw "github.com/Jiang-Xia/blog-server-go/services/gateway/internal/middleware"
+	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/grpcclient"
 	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/proxy"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -46,18 +48,29 @@ func Run(cfgPath string) error {
 		return fmt.Errorf("proxy router: %w", err)
 	}
 
+	clients, err := grpcclient.New(cfg.GRPC.UserAddr, cfg.GRPC.BlogAddr, cfg.GRPC.RPGAddr)
+	if err != nil {
+		return fmt.Errorf("grpc clients: %w", err)
+	}
+
 	h := server.Default(server.WithHostPorts(cfg.HTTP.Addr))
 	h.Use(gwmw.JWTPassthrough(cfg))
 
 	h.GET("/health", func(ctx context.Context, c *app.RequestContext) {
-		c.JSON(http.StatusOK, map[string]string{"status": "ok"})
+		response.Success(ctx, c, "ok")
 	})
 	h.GET(cfg.App.APIPrefix+"/health", func(ctx context.Context, c *app.RequestContext) {
-		c.JSON(http.StatusOK, map[string]string{"status": "ok"})
+		response.Success(ctx, c, "ok")
 	})
 
-	stats := aggregator.NewStatsHandler(cfg)
+	stats := aggregator.NewStatsHandler(clients)
 	h.GET(cfg.App.APIPrefix+"/pub/stats", stats.Stats)
+
+	article := aggregator.NewArticleHandler(clients)
+	h.GET(cfg.App.APIPrefix+"/article/info", article.Info)
+
+	profile := aggregator.NewProfileHandler(clients)
+	h.GET(cfg.App.APIPrefix+"/user/public/:uid", profile.PublicProfile)
 
 	if cfg.Observability.EnableMetrics {
 		h.GET("/metrics", adaptor.HertzHandler(metrics.Handler()))
