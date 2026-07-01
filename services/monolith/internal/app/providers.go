@@ -17,12 +17,30 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
 	rpgactivity "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/activity"
 	rpgevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/event"
+	userpkg "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
+	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/grpcserver"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 	"github.com/redis/rueidis"
 	"go.uber.org/zap"
 )
+
+func provideUserGRPCServer(cfg *config.Config, profileSvc *profile.Service, jwt *auth.JWTService) *usersgrpc.Server {
+	if cfg.App.ServiceModeOrDefault() != config.ModeUser {
+		return nil
+	}
+	return usersgrpc.New(profileSvc, jwt)
+}
+
+func provideUserServicePort(cfg *config.Config, profileSvc *profile.Service) (userpkg.UserService, error) {
+	mode := cfg.App.ServiceModeOrDefault()
+	if cfg.GRPC.UserAddr != "" && mode != config.ModeMonolith && mode != config.ModeUser {
+		return userpkg.NewGRPCUserService(cfg.GRPC.UserAddr)
+	}
+	return userpkg.NewUserService(profileSvc), nil
+}
 
 func provideAdminRepo(cfg *config.Config) (*repo.AdminRepo, error) {
 	return repo.NewAdminRepo(cfg)

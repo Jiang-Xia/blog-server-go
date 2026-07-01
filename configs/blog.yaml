@@ -1,0 +1,46 @@
+# blog-service 配置（Plan 10）
+app:
+  name: blog-service
+  env: development
+  service_mode: blog
+  api_prefix: /api/v1
+  blog_home: "http://localhost:5050"
+
+http:
+  addr: ":5001"
+  cors_origins: []
+
+grpc:
+  user_addr: "127.0.0.1:50052"
+
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  user: jiangxia
+  password: "jiangxia123!@#"
+  database: x_my_blog
+  table_prefix: x_
+  schema_source_database: myblog
+
+redis:
+  addr: "127.0.0.1:6379"
+  db: 1
+
+jwt:
+  secret: "xia-007"
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+crypto:
+  rsa_private_key: ""
+
+storage:
+  upload_path: "./public/uploads/"
+  public_prefix: "/static/"
+
+observability:
+  enable_metrics: true
+  enable_pprof: true
+  pprof_addr: ":6061"
+  service_name: blog-service

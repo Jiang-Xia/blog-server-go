@@ -1,3 +1,6 @@
+# 开发环境配置（字段语义对齐 blog-server/.env.development）
+# 敏感项可用环境变量覆盖，见 pkg/config 与 .cursor/rules/hertz-07-config-env.mdc
+
 app:
   name: blog-server-go
   env: development
@@ -31,15 +34,15 @@ crypto:
   rsa_private_key: ""
 
 oauth:
-  github_client_id: ""
-  github_client_secret: ""
+  github_client_id: "Ov23liurYo0uiNMCFLKU"
+  github_client_secret: "375ec8db32fa747f0fcbbe26f51d33688cf4d25e"
   github_callback_url: "http://127.0.0.1:5000/api/v1/user/auth/github/callback"
 
 mail:
-  host: ""
-  port: 587
-  user: ""
-  pass: ""
+  host: smtp.163.com
+  port: 465
+  user: jiang_xia_top@163.com
+  pass: "MZkPymjGg4czGHCw"
 
 wechat:
   app_id: ""
@@ -49,16 +52,16 @@ storage:
   upload_path: "./public/uploads/"
   public_prefix: "/static/"
 
-# 支付（env：PAY_ALIPAY_APP_ID、PAY_ALIPAY_PRIVATE_KEY、PAY_ALIPAY_PUBLIC_KEY、PAY_ALIPAY_NOTIFY_URL）
+# 支付（对齐 blog-server pay_*；env：PAY_ALIPAY_APP_ID、PAY_ALIPAY_PRIVATE_KEY 等）
 pay:
-  alipay_app_id: ""
-  alipay_private_key: ""
-  alipay_public_key: ""
+  alipay_app_id: "2021005172682351"
+  alipay_private_key: "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCw/pzVKtPKWwONEYDU85mkGA1LjEiln+UDbqGxA2zneZTpKmVxstPi1A5cn1nnULNE5DU5av0z4DYcqa7WDtaPsVCCWbDk5cGcUO7qRSi7k+FFhV+dR5qRNgAHVop78Pl2+LOgc+r7LXKpZ1BSpGyDfP8xbbBOUqMZlAKGAp04ePDG4TzeynwUMDlUlEjNH0UvmzjVmoJQ3QdzEZwObO9Ji0XSgTgxBFbm4XmSj6cAiYvI9hjzcRerRHc0JDppgBvfvvM+cQ8IU9GnfDjCx9K3/eJJhGBUtGzdKjBIrpcQJGlzuVp2IlXFWmiXSjFW+/DDmGbbPBS5zulEVdipDc4FAgMBAAECggEBAKRMdgFbNCbPvcghy1nil2i/+vd6TaWRe+FnvSi4aUumjRi0hl65Bf+1oW9RbP9Q5li5Dr8yFcEmDJUm3mlOdNYGXxnhcFfK/6K/bkiB0oHtkFwcptk1MsJBQl2NdBgBZVGPJA96C1MGqT2f7ewJPcIBMlML43GRPF3uCzmjC5by/vA+k67mMM1oyYnqVcI1s/dbZmZa3wea3D/YWqzjiKfh8IR2BVz5as9gZvAWmWmgy/AzJbPqX/Z/DMF81Md0o2LNwgeFKFgpYcSXvVQdyEqzgo8iKlcZ9ya5ks7JZ6Ea25tAyFx0ibC0d1TyFdL8BDj+PjmZ26EGnOWFTYzk8jECgYEA8jeNC3VJkVKKLL6tRSSKn6hrEW691Vjqyj47QOfO7kaizE3RilVmIXnEo1PEX9MNwORXlkTtBLjM9pA9+1RSCjKXLtb7e48SZ4a0yI0TI+QZLxNowVoG1VueshsVnD/KuoIJHNv4S8mFNJtuO3HbE6ru3G4WNNzwMsB4fk1RTFcCgYEAuxDyYbshrpmdeB1eNDvY6JmFXh2eukFpG7dEXD1dberx7sLJQZ1YHt4pHVeZIPe+/ycTiUz5LPuYDxrt+sslcGSnjaTQ23narg3jFd9PZvgiP/eoWSvGsiX96UvcYd3SiP7dyj8QnQp3u+oLe5rkEb42esGcfEE/VpJDgtjjvwMCgYABj0YDOuAcZXGqVBf9h/y0hnsaA6KJSydH4hqzkkqM0jueISomP+KGeKhBfPqYu10tTssZlpwIGcCIHemoQqS8mBLNJGk+JG+z5vQnDnF/G6rl2LQl+pRsr0hYUUBUXzzI8qloXCo/Iq8O5alSDKuidslO9g6CjKGnUgH0nj7VxQKBgEryajnPsJn0f8uM8J460Be40l83vM1gwYzSKzhNea49MDr5nYqFULXlSlGwM/CqccJmVIRw63AjSPPcVTZix5g1K5ArVWZpdry/YZj0xCo8BfTc83zudggQAp/CvgQTzHMIsbGC/NP+SqRmC720++VD8S3Tfi+mMIstxJCa9vwjAoGBAMD9KMKXY8URoc1uj7zGn8xsZcZolZf8VPB6sxM8vh1EY2mgKws747h2tD/H56zX2YKW5XgGMDWFNImlAWLzfk25aHTYwBDeZlwmM1JJJCYdR/JA+hk0PsXZ//nnTgmibf8AYKPAu1oiIG+2axyEtElApv4bjrjtdJWyRn8bg4ab"
+  alipay_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsP6c1SrTylsDjRGA1POZpBgNS4xIpZ/lA26hsQNs53mU6SplcbLT4tQOXJ9Z51CzROQ1OWr9M+A2HKmu1g7Wj7FQglmw5OXBnFDu6kUou5PhRYVfnUeakTYAB1aKe/D5dvizoHPq+y1yqWdQUqRsg3z/MW2wTlKjGZQChgKdOHjwxuE83sp8FDA5VJRIzR9FL5s41ZqCUN0HcxGcDmzvSYtF0oE4MQRW5uF5ko+nAImLyPYY83EXq0R3NCQ6aYAb377zPnEPCFPRp3w4wsfSt/3iSYRgVLRs3SowSK6XECRpc7ladiJVxVpol0oxVvvww5hm2zwUuc7pRFXYqQ3OBQIDAQAB"
   alipay_gateway: "https://openapi.alipay.com/gateway.do"
-  alipay_notify_url: "http://127.0.0.1:5000/api/v1/pay/notice"
+  alipay_notify_url: "https://jiang-xia.top/x-zone/api/v1/pay/notice"
   alipay_return_url: ""
   alipay_mini_cashier_page: "packageB/pages/business/pay/all-pay/all-pay"
-  sandbox: true
+  sandbox: false
   use_legacy_sandbox_gateway: false
   wechat_app_id: ""
   wechat_secret: ""
