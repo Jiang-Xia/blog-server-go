@@ -4,11 +4,14 @@ package user.v1;
 
 option go_package = "github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1;userv1";
 
+import "google/protobuf/empty.proto";
+
 // UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权）。
 service UserService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   rpc GetUserBatch(GetUserBatchRequest) returns (GetUserBatchResponse);
   rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
+  rpc CountUsers(google.protobuf.Empty) returns (CountUsersResponse);
 }
 
 message GetUserRequest {
@@ -39,4 +42,8 @@ message VerifyTokenRequest {
 message VerifyTokenResponse {
   uint64 user_id = 1;
   repeated string roles = 2;
+}
+
+message CountUsersResponse {
+  int32 total = 1;
 }

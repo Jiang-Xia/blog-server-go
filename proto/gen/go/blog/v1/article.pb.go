@@ -9,6 +9,7 @@ package blogv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -229,11 +230,159 @@ func (x *ListArticlesResponse) GetTotal() int32 {
 	return 0
 }
 
+type GetArticleDetailRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetArticleDetailRequest) Reset() {
+	*x = GetArticleDetailRequest{}
+	mi := &file_blog_v1_article_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetArticleDetailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetArticleDetailRequest) ProtoMessage() {}
+
+func (x *GetArticleDetailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetArticleDetailRequest.ProtoReflect.Descriptor instead.
+func (*GetArticleDetailRequest) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetArticleDetailRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+type GetArticleDetailResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DetailJson    []byte                 `protobuf:"bytes,1,opt,name=detail_json,json=detailJson,proto3" json:"detail_json,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetArticleDetailResponse) Reset() {
+	*x = GetArticleDetailResponse{}
+	mi := &file_blog_v1_article_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetArticleDetailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetArticleDetailResponse) ProtoMessage() {}
+
+func (x *GetArticleDetailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetArticleDetailResponse.ProtoReflect.Descriptor instead.
+func (*GetArticleDetailResponse) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetArticleDetailResponse) GetDetailJson() []byte {
+	if x != nil {
+		return x.DetailJson
+	}
+	return nil
+}
+
+type GetPubStatsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArticleCount  int32                  `protobuf:"varint,1,opt,name=article_count,json=articleCount,proto3" json:"article_count,omitempty"`
+	CategoryCount int32                  `protobuf:"varint,2,opt,name=category_count,json=categoryCount,proto3" json:"category_count,omitempty"`
+	TagCount      int32                  `protobuf:"varint,3,opt,name=tag_count,json=tagCount,proto3" json:"tag_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPubStatsResponse) Reset() {
+	*x = GetPubStatsResponse{}
+	mi := &file_blog_v1_article_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPubStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPubStatsResponse) ProtoMessage() {}
+
+func (x *GetPubStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPubStatsResponse.ProtoReflect.Descriptor instead.
+func (*GetPubStatsResponse) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetPubStatsResponse) GetArticleCount() int32 {
+	if x != nil {
+		return x.ArticleCount
+	}
+	return 0
+}
+
+func (x *GetPubStatsResponse) GetCategoryCount() int32 {
+	if x != nil {
+		return x.CategoryCount
+	}
+	return 0
+}
+
+func (x *GetPubStatsResponse) GetTagCount() int32 {
+	if x != nil {
+		return x.TagCount
+	}
+	return 0
+}
+
 var File_blog_v1_article_proto protoreflect.FileDescriptor
 
 const file_blog_v1_article_proto_rawDesc = "" +
 	"\n" +
-	"\x15blog/v1/article.proto\x12\ablog.v1\"#\n" +
+	"\x15blog/v1/article.proto\x12\ablog.v1\x1a\x1bgoogle/protobuf/empty.proto\"#\n" +
 	"\x11GetArticleRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"W\n" +
 	"\x12GetArticleResponse\x12\x0e\n" +
@@ -245,11 +394,22 @@ const file_blog_v1_article_proto_rawDesc = "" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\"_\n" +
 	"\x14ListArticlesResponse\x121\n" +
 	"\x05items\x18\x01 \x03(\v2\x1b.blog.v1.GetArticleResponseR\x05items\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total2\xa4\x01\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"+\n" +
+	"\x17GetArticleDetailRequest\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\";\n" +
+	"\x18GetArticleDetailResponse\x12\x1f\n" +
+	"\vdetail_json\x18\x01 \x01(\fR\n" +
+	"detailJson\"~\n" +
+	"\x13GetPubStatsResponse\x12#\n" +
+	"\rarticle_count\x18\x01 \x01(\x05R\farticleCount\x12%\n" +
+	"\x0ecategory_count\x18\x02 \x01(\x05R\rcategoryCount\x12\x1b\n" +
+	"\ttag_count\x18\x03 \x01(\x05R\btagCount2\xc2\x02\n" +
 	"\x0eArticleService\x12E\n" +
 	"\n" +
 	"GetArticle\x12\x1a.blog.v1.GetArticleRequest\x1a\x1b.blog.v1.GetArticleResponse\x12K\n" +
-	"\fListArticles\x12\x1c.blog.v1.ListArticlesRequest\x1a\x1d.blog.v1.ListArticlesResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1b\x06proto3"
+	"\fListArticles\x12\x1c.blog.v1.ListArticlesRequest\x1a\x1d.blog.v1.ListArticlesResponse\x12W\n" +
+	"\x10GetArticleDetail\x12 .blog.v1.GetArticleDetailRequest\x1a!.blog.v1.GetArticleDetailResponse\x12C\n" +
+	"\vGetPubStats\x12\x16.google.protobuf.Empty\x1a\x1c.blog.v1.GetPubStatsResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1b\x06proto3"
 
 var (
 	file_blog_v1_article_proto_rawDescOnce sync.Once
@@ -263,21 +423,29 @@ func file_blog_v1_article_proto_rawDescGZIP() []byte {
 	return file_blog_v1_article_proto_rawDescData
 }
 
-var file_blog_v1_article_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_blog_v1_article_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_blog_v1_article_proto_goTypes = []any{
-	(*GetArticleRequest)(nil),    // 0: blog.v1.GetArticleRequest
-	(*GetArticleResponse)(nil),   // 1: blog.v1.GetArticleResponse
-	(*ListArticlesRequest)(nil),  // 2: blog.v1.ListArticlesRequest
-	(*ListArticlesResponse)(nil), // 3: blog.v1.ListArticlesResponse
+	(*GetArticleRequest)(nil),        // 0: blog.v1.GetArticleRequest
+	(*GetArticleResponse)(nil),       // 1: blog.v1.GetArticleResponse
+	(*ListArticlesRequest)(nil),      // 2: blog.v1.ListArticlesRequest
+	(*ListArticlesResponse)(nil),     // 3: blog.v1.ListArticlesResponse
+	(*GetArticleDetailRequest)(nil),  // 4: blog.v1.GetArticleDetailRequest
+	(*GetArticleDetailResponse)(nil), // 5: blog.v1.GetArticleDetailResponse
+	(*GetPubStatsResponse)(nil),      // 6: blog.v1.GetPubStatsResponse
+	(*emptypb.Empty)(nil),            // 7: google.protobuf.Empty
 }
 var file_blog_v1_article_proto_depIdxs = []int32{
 	1, // 0: blog.v1.ListArticlesResponse.items:type_name -> blog.v1.GetArticleResponse
 	0, // 1: blog.v1.ArticleService.GetArticle:input_type -> blog.v1.GetArticleRequest
 	2, // 2: blog.v1.ArticleService.ListArticles:input_type -> blog.v1.ListArticlesRequest
-	1, // 3: blog.v1.ArticleService.GetArticle:output_type -> blog.v1.GetArticleResponse
-	3, // 4: blog.v1.ArticleService.ListArticles:output_type -> blog.v1.ListArticlesResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
+	4, // 3: blog.v1.ArticleService.GetArticleDetail:input_type -> blog.v1.GetArticleDetailRequest
+	7, // 4: blog.v1.ArticleService.GetPubStats:input_type -> google.protobuf.Empty
+	1, // 5: blog.v1.ArticleService.GetArticle:output_type -> blog.v1.GetArticleResponse
+	3, // 6: blog.v1.ArticleService.ListArticles:output_type -> blog.v1.ListArticlesResponse
+	5, // 7: blog.v1.ArticleService.GetArticleDetail:output_type -> blog.v1.GetArticleDetailResponse
+	6, // 8: blog.v1.ArticleService.GetPubStats:output_type -> blog.v1.GetPubStatsResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -294,7 +462,7 @@ func file_blog_v1_article_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blog_v1_article_proto_rawDesc), len(file_blog_v1_article_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

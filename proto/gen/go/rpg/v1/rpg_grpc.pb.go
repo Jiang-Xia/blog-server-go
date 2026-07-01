@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RpgService_GetProfile_FullMethodName = "/rpg.v1.RpgService/GetProfile"
+	RpgService_GetProfile_FullMethodName       = "/rpg.v1.RpgService/GetProfile"
+	RpgService_GetPublicProfile_FullMethodName = "/rpg.v1.RpgService/GetPublicProfile"
 )
 
 // RpgServiceClient is the client API for RpgService service.
@@ -29,6 +30,7 @@ const (
 // RpgService RPG 域 gRPC 契约（Plan 01 仅占位，Plan 10 启用）。
 type RpgServiceClient interface {
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
+	GetPublicProfile(ctx context.Context, in *GetPublicProfileRequest, opts ...grpc.CallOption) (*GetPublicProfileResponse, error)
 }
 
 type rpgServiceClient struct {
@@ -49,6 +51,16 @@ func (c *rpgServiceClient) GetProfile(ctx context.Context, in *GetProfileRequest
 	return out, nil
 }
 
+func (c *rpgServiceClient) GetPublicProfile(ctx context.Context, in *GetPublicProfileRequest, opts ...grpc.CallOption) (*GetPublicProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPublicProfileResponse)
+	err := c.cc.Invoke(ctx, RpgService_GetPublicProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RpgServiceServer is the server API for RpgService service.
 // All implementations must embed UnimplementedRpgServiceServer
 // for forward compatibility.
@@ -56,6 +68,7 @@ func (c *rpgServiceClient) GetProfile(ctx context.Context, in *GetProfileRequest
 // RpgService RPG 域 gRPC 契约（Plan 01 仅占位，Plan 10 启用）。
 type RpgServiceServer interface {
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
+	GetPublicProfile(context.Context, *GetPublicProfileRequest) (*GetPublicProfileResponse, error)
 	mustEmbedUnimplementedRpgServiceServer()
 }
 
@@ -68,6 +81,9 @@ type UnimplementedRpgServiceServer struct{}
 
 func (UnimplementedRpgServiceServer) GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetProfile not implemented")
+}
+func (UnimplementedRpgServiceServer) GetPublicProfile(context.Context, *GetPublicProfileRequest) (*GetPublicProfileResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPublicProfile not implemented")
 }
 func (UnimplementedRpgServiceServer) mustEmbedUnimplementedRpgServiceServer() {}
 func (UnimplementedRpgServiceServer) testEmbeddedByValue()                    {}
@@ -108,6 +124,24 @@ func _RpgService_GetProfile_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RpgService_GetPublicProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPublicProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RpgServiceServer).GetPublicProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RpgService_GetPublicProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RpgServiceServer).GetPublicProfile(ctx, req.(*GetPublicProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RpgService_ServiceDesc is the grpc.ServiceDesc for RpgService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -118,6 +152,10 @@ var RpgService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProfile",
 			Handler:    _RpgService_GetProfile_Handler,
+		},
+		{
+			MethodName: "GetPublicProfile",
+			Handler:    _RpgService_GetPublicProfile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

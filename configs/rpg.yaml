@@ -11,6 +11,7 @@ http:
   cors_origins: []
 
 grpc:
+  addr: ":50053"
   user_addr: "127.0.0.1:50052"
 
 mysql:

@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,6 +23,7 @@ const (
 	UserService_GetUser_FullMethodName      = "/user.v1.UserService/GetUser"
 	UserService_GetUserBatch_FullMethodName = "/user.v1.UserService/GetUserBatch"
 	UserService_VerifyToken_FullMethodName  = "/user.v1.UserService/VerifyToken"
+	UserService_CountUsers_FullMethodName   = "/user.v1.UserService/CountUsers"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -33,6 +35,7 @@ type UserServiceClient interface {
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
 	GetUserBatch(ctx context.Context, in *GetUserBatchRequest, opts ...grpc.CallOption) (*GetUserBatchResponse, error)
 	VerifyToken(ctx context.Context, in *VerifyTokenRequest, opts ...grpc.CallOption) (*VerifyTokenResponse, error)
+	CountUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CountUsersResponse, error)
 }
 
 type userServiceClient struct {
@@ -73,6 +76,16 @@ func (c *userServiceClient) VerifyToken(ctx context.Context, in *VerifyTokenRequ
 	return out, nil
 }
 
+func (c *userServiceClient) CountUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CountUsersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CountUsersResponse)
+	err := c.cc.Invoke(ctx, UserService_CountUsers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -82,6 +95,7 @@ type UserServiceServer interface {
 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
 	GetUserBatch(context.Context, *GetUserBatchRequest) (*GetUserBatchResponse, error)
 	VerifyToken(context.Context, *VerifyTokenRequest) (*VerifyTokenResponse, error)
+	CountUsers(context.Context, *emptypb.Empty) (*CountUsersResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -100,6 +114,9 @@ func (UnimplementedUserServiceServer) GetUserBatch(context.Context, *GetUserBatc
 }
 func (UnimplementedUserServiceServer) VerifyToken(context.Context, *VerifyTokenRequest) (*VerifyTokenResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method VerifyToken not implemented")
+}
+func (UnimplementedUserServiceServer) CountUsers(context.Context, *emptypb.Empty) (*CountUsersResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CountUsers not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -176,6 +193,24 @@ func _UserService_VerifyToken_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_CountUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CountUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_CountUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CountUsers(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -194,6 +229,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VerifyToken",
 			Handler:    _UserService_VerifyToken_Handler,
+		},
+		{
+			MethodName: "CountUsers",
+			Handler:    _UserService_CountUsers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

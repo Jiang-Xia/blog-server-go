@@ -3,7 +3,7 @@ WORKDIR /src
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /out/service ./services/monolith/cmd/user
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /out/service ./services/user/cmd
 
 FROM gcr.io/distroless/static-debian12:nonroot
 ENV GOMEMLIMIT=70MiB

@@ -125,6 +125,94 @@ func (x *GetProfileResponse) GetExp() int64 {
 	return 0
 }
 
+type GetPublicProfileRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        uint64                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPublicProfileRequest) Reset() {
+	*x = GetPublicProfileRequest{}
+	mi := &file_rpg_v1_rpg_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPublicProfileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPublicProfileRequest) ProtoMessage() {}
+
+func (x *GetPublicProfileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_rpg_v1_rpg_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPublicProfileRequest.ProtoReflect.Descriptor instead.
+func (*GetPublicProfileRequest) Descriptor() ([]byte, []int) {
+	return file_rpg_v1_rpg_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetPublicProfileRequest) GetUserId() uint64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type GetPublicProfileResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProfileJson   []byte                 `protobuf:"bytes,1,opt,name=profile_json,json=profileJson,proto3" json:"profile_json,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPublicProfileResponse) Reset() {
+	*x = GetPublicProfileResponse{}
+	mi := &file_rpg_v1_rpg_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPublicProfileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPublicProfileResponse) ProtoMessage() {}
+
+func (x *GetPublicProfileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_rpg_v1_rpg_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPublicProfileResponse.ProtoReflect.Descriptor instead.
+func (*GetPublicProfileResponse) Descriptor() ([]byte, []int) {
+	return file_rpg_v1_rpg_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetPublicProfileResponse) GetProfileJson() []byte {
+	if x != nil {
+		return x.ProfileJson
+	}
+	return nil
+}
+
 var File_rpg_v1_rpg_proto protoreflect.FileDescriptor
 
 const file_rpg_v1_rpg_proto_rawDesc = "" +
@@ -135,11 +223,16 @@ const file_rpg_v1_rpg_proto_rawDesc = "" +
 	"\x12GetProfileResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x04R\x06userId\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x10\n" +
-	"\x03exp\x18\x03 \x01(\x03R\x03exp2Q\n" +
+	"\x03exp\x18\x03 \x01(\x03R\x03exp\"2\n" +
+	"\x17GetPublicProfileRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId\"=\n" +
+	"\x18GetPublicProfileResponse\x12!\n" +
+	"\fprofile_json\x18\x01 \x01(\fR\vprofileJson2\xa8\x01\n" +
 	"\n" +
 	"RpgService\x12C\n" +
 	"\n" +
-	"GetProfile\x12\x19.rpg.v1.GetProfileRequest\x1a\x1a.rpg.v1.GetProfileResponseB?Z=github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1;rpgv1b\x06proto3"
+	"GetProfile\x12\x19.rpg.v1.GetProfileRequest\x1a\x1a.rpg.v1.GetProfileResponse\x12U\n" +
+	"\x10GetPublicProfile\x12\x1f.rpg.v1.GetPublicProfileRequest\x1a .rpg.v1.GetPublicProfileResponseB?Z=github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1;rpgv1b\x06proto3"
 
 var (
 	file_rpg_v1_rpg_proto_rawDescOnce sync.Once
@@ -153,16 +246,20 @@ func file_rpg_v1_rpg_proto_rawDescGZIP() []byte {
 	return file_rpg_v1_rpg_proto_rawDescData
 }
 
-var file_rpg_v1_rpg_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_rpg_v1_rpg_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_rpg_v1_rpg_proto_goTypes = []any{
-	(*GetProfileRequest)(nil),  // 0: rpg.v1.GetProfileRequest
-	(*GetProfileResponse)(nil), // 1: rpg.v1.GetProfileResponse
+	(*GetProfileRequest)(nil),        // 0: rpg.v1.GetProfileRequest
+	(*GetProfileResponse)(nil),       // 1: rpg.v1.GetProfileResponse
+	(*GetPublicProfileRequest)(nil),  // 2: rpg.v1.GetPublicProfileRequest
+	(*GetPublicProfileResponse)(nil), // 3: rpg.v1.GetPublicProfileResponse
 }
 var file_rpg_v1_rpg_proto_depIdxs = []int32{
 	0, // 0: rpg.v1.RpgService.GetProfile:input_type -> rpg.v1.GetProfileRequest
-	1, // 1: rpg.v1.RpgService.GetProfile:output_type -> rpg.v1.GetProfileResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: rpg.v1.RpgService.GetPublicProfile:input_type -> rpg.v1.GetPublicProfileRequest
+	1, // 2: rpg.v1.RpgService.GetProfile:output_type -> rpg.v1.GetProfileResponse
+	3, // 3: rpg.v1.RpgService.GetPublicProfile:output_type -> rpg.v1.GetPublicProfileResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -179,7 +276,7 @@ func file_rpg_v1_rpg_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rpg_v1_rpg_proto_rawDesc), len(file_rpg_v1_rpg_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

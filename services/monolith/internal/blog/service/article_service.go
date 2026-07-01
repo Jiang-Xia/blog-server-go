@@ -11,7 +11,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/domain"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
+	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 )
@@ -22,7 +22,7 @@ type ArticleService struct {
 	categories *CategoryService
 	tags       *TagService
 	comments   *blogrepo.CommentRepo
-	users      user.UserService
+	users      usersvc.UserService
 	userRepo   *userrepo.UserRepo
 	admin      *admin.Service
 }
@@ -33,7 +33,7 @@ func NewArticleService(
 	categories *CategoryService,
 	tags *TagService,
 	comments *blogrepo.CommentRepo,
-	users user.UserService,
+	users usersvc.UserService,
 	userRepo *userrepo.UserRepo,
 	adminSvc *admin.Service,
 ) *ArticleService {
@@ -547,7 +547,7 @@ func (s *ArticleService) UpdateLikes(ctx context.Context, articleID int, status 
 
 // --- helpers ---
 
-func (s *ArticleService) toListItem(ctx context.Context, a *ent.Article, tagIDs []string, author *user.UserDTO, deptName string, commentCount int) domain.ArticleListItem {
+func (s *ArticleService) toListItem(ctx context.Context, a *ent.Article, tagIDs []string, author *usersvc.UserDTO, deptName string, commentCount int) domain.ArticleListItem {
 	var cat *domain.CategoryItem
 	if a.Articles != nil {
 		if c, err := s.categories.FindByID(ctx, *a.Articles); err == nil {
@@ -577,7 +577,7 @@ func (s *ArticleService) toListItem(ctx context.Context, a *ent.Article, tagIDs 
 	}
 }
 
-func (s *ArticleService) toDetailItem(a *ent.Article, cat *ent.Category, tagRows []*ent.Tag, author *user.UserDTO) domain.ArticleDetailItem {
+func (s *ArticleService) toDetailItem(a *ent.Article, cat *ent.Category, tagRows []*ent.Tag, author *usersvc.UserDTO) domain.ArticleDetailItem {
 	tags := make([]domain.TagItem, 0, len(tagRows))
 	for _, t := range tagRows {
 		tags = append(tags, domain.TagItem{ID: t.ID, Label: t.Label, Value: t.Value, Color: t.Color})
@@ -632,8 +632,8 @@ func (s *ArticleService) adjacentArticles(ctx context.Context, row *ent.Article)
 	return prev, next
 }
 
-func (s *ArticleService) batchUsers(ctx context.Context, ids []uint64) map[uint64]*user.UserDTO {
-	out := map[uint64]*user.UserDTO{}
+func (s *ArticleService) batchUsers(ctx context.Context, ids []uint64) map[uint64]*usersvc.UserDTO {
+	out := map[uint64]*usersvc.UserDTO{}
 	if len(ids) == 0 {
 		return out
 	}

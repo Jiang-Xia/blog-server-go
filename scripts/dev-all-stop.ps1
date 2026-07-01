@@ -3,7 +3,7 @@ $ErrorActionPreference = "SilentlyContinue"
 $Root = Split-Path -Parent $PSScriptRoot
 $PidFile = Join-Path $Root ".dev-all.pids"
 
-$ports = @(5001, 5002, 5003, 8000, 50052)
+$ports = @(5001, 5002, 5003, 8000, 50051, 50052, 50053)
 $killed = @()
 
 foreach ($port in $ports) {

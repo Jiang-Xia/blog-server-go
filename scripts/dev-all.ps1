@@ -15,9 +15,9 @@ $PidFile = Join-Path $Root ".dev-all.pids"
 $LogDir = Join-Path $Root ".dev-logs"
 
 $services = @(
-    @{ Name = "user";    Config = "configs/user.yaml";    Main = "./services/monolith/cmd/user/main.go";    Port = 5002; AfterStart = $true }
-    @{ Name = "blog";    Config = "configs/blog.yaml";    Main = "./services/monolith/cmd/blog/main.go";    Port = 5001 }
-    @{ Name = "rpg";     Config = "configs/rpg.yaml";     Main = "./services/monolith/cmd/rpg/main.go";     Port = 5003 }
+    @{ Name = "user";    Config = "configs/user.yaml";    Main = "./services/user/cmd/main.go";    Port = 5002; AfterStart = $true }
+    @{ Name = "blog";    Config = "configs/blog.yaml";    Main = "./services/blog/cmd/main.go";    Port = 5001 }
+    @{ Name = "rpg";     Config = "configs/rpg.yaml";     Main = "./services/rpg/cmd/main.go";     Port = 5003 }
     @{ Name = "gateway"; Config = "configs/gateway.yaml"; Main = "./services/gateway/cmd/main.go";          Port = 8000; AfterStart = $true }
 )
 
@@ -70,8 +70,8 @@ $pids = @()
 
 foreach ($svc in $services) {
     Write-Host "  -> $($svc.Name) :$($svc.Port)"
-    $pid = Start-DevService $svc
-    $pids += "$($svc.Name)=$pid"
+    $procId = Start-DevService $svc
+    $pids += "$($svc.Name)=$procId"
 
     if ($svc.AfterStart) {
         if (-not (Wait-Health $svc.Port)) {
