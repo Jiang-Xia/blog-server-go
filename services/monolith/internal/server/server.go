@@ -2,10 +2,15 @@
 package server
 
 import (
+	"net/http"
+	_ "net/http/pprof"
+
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/pkg/metrics"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/middleware"
 	"github.com/cloudwego/hertz/pkg/app/server"
+	"github.com/cloudwego/hertz/pkg/common/adaptor"
 	"go.uber.org/zap"
 )
 
@@ -23,6 +28,19 @@ func NewHTTPServer(cfg *config.Config, log *zap.Logger, deps handler.RegisterDep
 	if cfg.Storage.UploadPath != "" {
 		h.Static(cfg.Storage.PublicPrefixOrDefault(), cfg.Storage.UploadPath)
 	}
-	handler.RegisterAll(h, cfg, deps)
+	if cfg.Observability.EnableMetrics {
+		h.GET("/metrics", adaptor.HertzHandler(metrics.Handler()))
+	}
+	if cfg.Observability.EnablePprof {
+		addr := cfg.Observability.PprofAddr
+		if addr == "" {
+			addr = ":6060"
+		}
+		go func() {
+			_ = http.ListenAndServe(addr, nil)
+		}()
+		log.Info("pprof listening", zap.String("addr", addr))
+	}
+	handler.RegisterByMode(h, cfg, deps)
 	return h
 }

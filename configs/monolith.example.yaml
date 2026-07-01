@@ -1,0 +1,66 @@
+# 配置模板（无密钥；复制为 monolith.yaml 后填写）
+# Nest 对照见 blog-server/.env.example
+
+app:
+  name: blog-server-go
+  env: development
+  api_prefix: /api/v1
+  blog_home: "http://localhost:5050"
+
+http:
+  addr: ":5000"
+  cors_origins: []
+
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  user: jiangxia
+  password: ""
+  database: x_my_blog
+  table_prefix: x_
+  schema_source_database: myblog
+
+redis:
+  addr: "127.0.0.1:6379"
+  db: 1
+
+jwt:
+  secret: "xia-007"
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+crypto:
+  rsa_private_key: ""
+
+oauth:
+  github_client_id: ""
+  github_client_secret: ""
+  github_callback_url: "http://127.0.0.1:5000/api/v1/user/auth/github/callback"
+
+mail:
+  host: ""
+  port: 465
+  user: ""
+  pass: ""
+
+wechat:
+  app_id: ""
+  secret: ""
+
+storage:
+  upload_path: "./public/uploads/"
+  public_prefix: "/static/"
+
+pay:
+  alipay_app_id: ""
+  alipay_private_key: ""
+  alipay_public_key: ""
+  alipay_gateway: "https://openapi.alipay.com/gateway.do"
+  alipay_notify_url: ""
+  alipay_return_url: ""
+  alipay_mini_cashier_page: "packageB/pages/business/pay/all-pay/all-pay"
+  sandbox: false
+  use_legacy_sandbox_gateway: false
+  wechat_app_id: ""
+  wechat_secret: ""

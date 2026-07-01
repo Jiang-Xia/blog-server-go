@@ -4,9 +4,10 @@ package user.v1;
 
 option go_package = "github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1;userv1";
 
-// UserService 用户域 gRPC 契约（Plan 01 仅占位，Plan 10 启用）。
+// UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权）。
 service UserService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUserBatch(GetUserBatchRequest) returns (GetUserBatchResponse);
   rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
 }
 
@@ -17,7 +18,18 @@ message GetUserRequest {
 message GetUserResponse {
   uint64 id = 1;
   string nickname = 2;
-  string avatar = 3;
+  string username = 3;
+  string avatar = 4;
+  string email = 5;
+  string status = 6;
+}
+
+message GetUserBatchRequest {
+  repeated uint64 ids = 1;
+}
+
+message GetUserBatchResponse {
+  repeated GetUserResponse users = 1;
 }
 
 message VerifyTokenRequest {

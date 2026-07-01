@@ -27,7 +27,6 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
-	userpkg "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
 	"github.com/google/wire"
 )
 
@@ -70,7 +69,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		blogsvc.NewMsgboardService,
 		blogsvc.NewLinkService,
 		blogsvc.NewResourcesService,
-		userpkg.NewUserService,
+		provideUserServicePort,
 		blogsvc.NewArticleService,
 		ws.NewHub,
 		ws.NewRealtimePusher,
@@ -119,6 +118,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		providePubHandler,
 		handler.NewHealthHandler,
 		provideRegisterDeps,
+		provideUserGRPCServer,
 		server.NewHTTPServer,
 		NewApp,
 	)

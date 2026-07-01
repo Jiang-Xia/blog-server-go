@@ -1,0 +1,99 @@
+services:
+  gateway:
+    build:
+      context: ../..
+      dockerfile: services/gateway/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - CONFIG_PATH=/app/configs/gateway.yaml
+      - GOMEMLIMIT=60MiB
+      - GOGC=50
+    depends_on:
+      - blog
+      - user
+      - rpg
+    restart: unless-stopped
+
+  blog:
+    build:
+      context: ../..
+      dockerfile: services/blog/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - CONFIG_PATH=/app/configs/blog.yaml
+      - GOMEMLIMIT=90MiB
+      - GOGC=50
+    depends_on:
+      - mysql
+      - redis
+      - user
+    restart: unless-stopped
+
+  user:
+    build:
+      context: ../..
+      dockerfile: services/user/Dockerfile
+    ports:
+      - "5002:5002"
+      - "50052:50052"
+    environment:
+      - CONFIG_PATH=/app/configs/user.yaml
+      - GOMEMLIMIT=70MiB
+      - GOGC=50
+    depends_on:
+      - mysql
+      - redis
+    restart: unless-stopped
+
+  rpg:
+    build:
+      context: ../..
+      dockerfile: services/rpg/Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      - CONFIG_PATH=/app/configs/rpg.yaml
+      - GOMEMLIMIT=90MiB
+      - GOGC=50
+    depends_on:
+      - mysql
+      - redis
+      - user
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: x_my_blog
+      MYSQL_USER: jiangxia
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-jiangxia123!@#}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --maxmemory 64mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.57
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  redis_data:

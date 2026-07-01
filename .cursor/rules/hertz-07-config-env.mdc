@@ -44,7 +44,9 @@ Viper 支持 env 覆盖：`APP_ENV` → `app.env`（AutomaticEnv + `SetEnvKeyRep
 | `MYSQL_` / `DB_` | `MYSQL_DSN` | `mysql.*` |
 | `REDIS_` | `REDIS_ADDR`, `REDIS_DB` | `redis.*` |
 | `JWT_` | `JWT_SECRET` | `jwt.*` |
-| `PAY_` | `PAY_ALIPAY_APP_ID` | `pay.*` |
+| `PAY_` | `PAY_ALIPAY_APP_ID`, `PAY_ALIPAY_NOTIFY_URL` | `pay.*` |
+| `OAUTH_` | `OAUTH_GITHUB_CLIENT_SECRET` | `oauth.*` |
+| `MAIL_` | `MAIL_PASS` | `mail.*` |
 
 新增 key 须同时：yaml 示例 + `Config` struct 字段 + 上表登记。
 

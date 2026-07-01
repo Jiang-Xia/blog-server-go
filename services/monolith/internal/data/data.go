@@ -3,9 +3,12 @@ package data
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"time"
 
+	"entgo.io/ent/dialect"
+	entsql "entgo.io/ent/dialect/sql"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	_ "github.com/go-sql-driver/mysql"
@@ -15,10 +18,18 @@ import (
 
 // NewEntClient 创建 Ent MySQL 客户端并验证连通性。
 func NewEntClient(cfg *config.Config, log *zap.Logger) (*ent.Client, error) {
-	client, err := ent.Open("mysql", cfg.MySQL.FormatDSN())
+	dsn := cfg.MySQL.FormatDSN()
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
-		return nil, fmt.Errorf("open ent client: %w", err)
+		return nil, fmt.Errorf("open sql db: %w", err)
 	}
+	// Plan 10：4 服务 × 15 = 60 连接 < MySQL max_connections 100
+	db.SetMaxOpenConns(15)
+	db.SetMaxIdleConns(5)
+	db.SetConnMaxLifetime(5 * time.Minute)
+
+	drv := entsql.OpenDB(dialect.MySQL, db)
+	client := ent.NewClient(ent.Driver(drv))
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if _, err := client.User.Query().Limit(1).All(ctx); err != nil {

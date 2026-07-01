@@ -21,7 +21,6 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/server"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
@@ -58,10 +57,10 @@ func InitializeApp(cfgPath string) (*App, error) {
 		return nil, err
 	}
 	passwordChecker := providePasswordChecker(configConfig, userRepo)
-	jwtService := auth.NewJWTService(configConfig)
+	jwtauthService := auth.NewJWTService(configConfig)
 	store := provideRedisStore(rueidisClient)
 	emailService := email.NewService(configConfig, store)
-	authService := auth.NewAuthService(userRepo, roleRepo, passwordChecker, jwtService, store, configConfig, emailService)
+	authService := auth.NewAuthService(userRepo, roleRepo, passwordChecker, jwtauthService, store, configConfig, emailService)
 	profileService := profile.NewService(userRepo, roleRepo)
 	gitHubOAuth := auth.NewGitHubOAuth(configConfig, authService, userRepo)
 	userAppAdapter := handler.NewUserAppAdapter(configConfig, authService, profileService, gitHubOAuth)
@@ -72,12 +71,12 @@ func InitializeApp(cfgPath string) (*App, error) {
 		return nil, err
 	}
 	adminService := admin.NewService(adminRepo, roleRepo, userRepo)
-	adminHandler := handler.NewAdminHandler(adminService, jwtService)
+	adminHandler := handler.NewAdminHandler(adminService, jwtauthService)
 	captchaHandler := provideCaptchaHandler(configConfig, captchaService)
 	pubService := pub.NewService(userRepo)
 	pubHandler := providePubHandler(pubService)
 	sensitiveService := sensitive.NewService(client, zapLogger)
-	sensitiveWordHandler := handler.NewSensitiveWordHandler(sensitiveService, jwtService)
+	sensitiveWordHandler := handler.NewSensitiveWordHandler(sensitiveService, jwtauthService)
 	articleRepo, err := repo2.NewArticleRepo(client, configConfig)
 	if err != nil {
 		return nil, err
@@ -87,45 +86,48 @@ func InitializeApp(cfgPath string) (*App, error) {
 	tagRepo := repo2.NewTagRepo(client)
 	tagService := service.NewTagService(tagRepo, articleRepo)
 	commentRepo := repo2.NewCommentRepo(client)
-	userService := user.NewUserService(profileService)
+	userService, err := provideUserServicePort(configConfig, profileService)
+	if err != nil {
+		return nil, err
+	}
 	articleService := service.NewArticleService(articleRepo, categoryService, tagService, commentRepo, userService, userRepo, adminService)
-	articleHandler := handler.NewArticleHandler(articleService, jwtService)
-	categoryHandler := handler.NewCategoryHandler(categoryService, jwtService)
-	tagHandler := handler.NewTagHandler(tagService, jwtService)
+	articleHandler := handler.NewArticleHandler(articleService, jwtauthService)
+	categoryHandler := handler.NewCategoryHandler(categoryService, jwtauthService)
+	tagHandler := handler.NewTagHandler(tagService, jwtauthService)
 	replyRepo := repo2.NewReplyRepo(client)
 	replyService := service.NewReplyService(replyRepo, commentRepo, articleRepo, userService, sensitiveService)
 	hub := ws.NewHub()
 	realtimePusher := ws.NewRealtimePusher(hub, rueidisClient)
 	notificationService := notification.NewService(client, realtimePusher)
 	commentService := service.NewCommentService(commentRepo, replyService, articleRepo, userService, sensitiveService, store, notificationService)
-	commentHandler := handler.NewCommentHandler(commentService, jwtService)
-	replyHandler := handler.NewReplyHandler(replyService, jwtService)
+	commentHandler := handler.NewCommentHandler(commentService, jwtauthService)
+	replyHandler := handler.NewReplyHandler(replyService, jwtauthService)
 	likeRepo := repo2.NewLikeRepo(client)
 	likeService := service.NewLikeService(likeRepo, articleRepo)
-	likeHandler := handler.NewLikeHandler(likeService, jwtService)
+	likeHandler := handler.NewLikeHandler(likeService, jwtauthService)
 	collectRepo := repo2.NewCollectRepo(client)
 	collectService := service.NewCollectService(collectRepo, articleRepo, categoryService, tagService)
-	collectHandler := handler.NewCollectHandler(collectService, jwtService)
+	collectHandler := handler.NewCollectHandler(collectService, jwtauthService)
 	msgboardRepo := repo2.NewMsgboardRepo(client)
 	msgboardService := service.NewMsgboardService(msgboardRepo, sensitiveService, store)
-	msgboardHandler := handler.NewMsgboardHandler(msgboardService, jwtService)
+	msgboardHandler := handler.NewMsgboardHandler(msgboardService, jwtauthService)
 	linkRepo := repo2.NewLinkRepo(client)
 	linkService := service.NewLinkService(linkRepo)
-	linkHandler := handler.NewLinkHandler(linkService, jwtService)
+	linkHandler := handler.NewLinkHandler(linkService, jwtauthService)
 	fileRepo := repo2.NewFileRepo(client)
 	resourcesService := service.NewResourcesService(fileRepo, configConfig)
-	fileHandler := handler.NewFileHandler(resourcesService, jwtService)
-	resourcesHandler := handler.NewResourcesHandler(resourcesService, jwtService)
-	notificationHandler := handler.NewNotificationHandler(notificationService, jwtService)
+	fileHandler := handler.NewFileHandler(resourcesService, jwtauthService)
+	resourcesHandler := handler.NewResourcesHandler(resourcesService, jwtauthService)
+	notificationHandler := handler.NewNotificationHandler(notificationService, jwtauthService)
 	operationlogService := operationlog.NewService(client)
 	operationLogHandler := handler.NewOperationLogHandler(operationlogService)
-	wsHandler := handler.NewWSHandler(hub, jwtService)
+	wsHandler := handler.NewWSHandler(hub, jwtauthService)
 	publisher := event.NewPublisher(rueidisClient, zapLogger)
-	devPushHandler := handler.NewDevPushHandler(realtimePusher, publisher, jwtService)
+	devPushHandler := handler.NewDevPushHandler(realtimePusher, publisher, jwtauthService)
 	module := rpg.NewModule(client, realtimePusher, store, rueidisClient, userRepo, articleRepo, publisher, hub, zapLogger)
 	rpgGameplay := provideRPGGameplay(module, client, articleRepo)
-	rpgHandler := provideRPGHandler(module, rpgGameplay, jwtService)
-	rpgAdminHandler := provideRPGAdminHandler(module, jwtService)
+	rpgHandler := provideRPGHandler(module, rpgGameplay, jwtauthService)
+	rpgAdminHandler := provideRPGAdminHandler(module, jwtauthService)
 	rpgProfileHandler := provideRPGProfileHandler(module, articleRepo)
 	payOrderRepo := providePayOrderRepo(client)
 	payService, err := providePayService(configConfig, payOrderRepo, zapLogger)
@@ -134,8 +136,8 @@ func InitializeApp(cfgPath string) (*App, error) {
 	}
 	payHandler := handler.NewPayHandler(payService)
 	payOrderService := providePayOrderService(payOrderRepo, payService, module, zapLogger)
-	payOrderHandler := handler.NewPayOrderHandler(payOrderService, jwtService)
-	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, operationLogHandler, wsHandler, devPushHandler, rpgHandler, rpgAdminHandler, rpgProfileHandler, payHandler, payOrderHandler, jwtService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
+	payOrderHandler := handler.NewPayOrderHandler(payOrderService, jwtauthService)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, pubHandler, sensitiveWordHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, operationLogHandler, wsHandler, devPushHandler, rpgHandler, rpgAdminHandler, rpgProfileHandler, payHandler, payOrderHandler, jwtauthService, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	schedulerScheduler := scheduler.New(zapLogger)
 	blogEventConsumer := provideBlogEventConsumer(rueidisClient, zapLogger)
@@ -143,6 +145,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 	rpgEventConsumer := provideRPGEventConsumer(rueidisClient, zapLogger, handlers)
 	realtimeRuntime := provideRealtimeRuntime(hub, realtimePusher, blogEventConsumer, rpgEventConsumer, publisher, wsHandler, devPushHandler)
 	activityNotifyRunner := provideActivityNotifyScheduler(module, zapLogger)
-	app := NewApp(hertz, zapLogger, client, rueidisClient, schedulerScheduler, realtimeRuntime, module, activityNotifyRunner)
+	grpcserverServer := provideUserGRPCServer(configConfig, profileService, jwtauthService)
+	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, schedulerScheduler, realtimeRuntime, module, activityNotifyRunner, grpcserverServer)
 	return app, nil
 }

@@ -10,10 +10,23 @@ import (
 	"github.com/spf13/viper"
 )
 
-// Config 单体应用配置，字段与 configs/monolith.yaml 及 Nest env 语义对齐。
+// ServiceMode 运行形态：monolith 单体；user/blog/rpg 微服务；gateway 仅 BFF/代理。
+type ServiceMode string
+
+const (
+	ModeMonolith ServiceMode = "monolith"
+	ModeGateway  ServiceMode = "gateway"
+	ModeUser     ServiceMode = "user"
+	ModeBlog     ServiceMode = "blog"
+	ModeRPG      ServiceMode = "rpg"
+)
+
+// Config 应用配置，字段与 configs/*.yaml 及 Nest env 语义对齐。
 type Config struct {
 	App    AppConfig    `mapstructure:"app"`
 	HTTP   HTTPConfig   `mapstructure:"http"`
+	GRPC   GRPCConfig   `mapstructure:"grpc"`
+	Proxy  ProxyConfig  `mapstructure:"proxy"`
 	MySQL  MySQLConfig  `mapstructure:"mysql"`
 	Redis  RedisConfig  `mapstructure:"redis"`
 	JWT    JWTConfig    `mapstructure:"jwt"`
@@ -23,20 +36,54 @@ type Config struct {
 	Wechat  WechatConfig  `mapstructure:"wechat"`
 	Storage StorageConfig `mapstructure:"storage"`
 	Pay     PayConfig     `mapstructure:"pay"`
+	Observability ObservabilityConfig `mapstructure:"observability"`
 }
 
 // AppConfig 应用级元信息。
 type AppConfig struct {
-	Name      string `mapstructure:"name"`
-	Env       string `mapstructure:"env"`
-	APIPrefix string `mapstructure:"api_prefix"`
-	BlogHome  string `mapstructure:"blog_home"`
+	Name        string      `mapstructure:"name"`
+	Env         string      `mapstructure:"env"`
+	ServiceMode ServiceMode `mapstructure:"service_mode"`
+	APIPrefix   string      `mapstructure:"api_prefix"`
+	BlogHome    string      `mapstructure:"blog_home"`
+}
+
+// ServiceModeOrDefault 未配置时视为 monolith。
+func (a AppConfig) ServiceModeOrDefault() ServiceMode {
+	if a.ServiceMode == "" {
+		return ModeMonolith
+	}
+	return a.ServiceMode
 }
 
 // HTTPConfig HTTP 服务监听与 CORS。
 type HTTPConfig struct {
 	Addr        string   `mapstructure:"addr"`
 	CORSOrigins []string `mapstructure:"cors_origins"`
+}
+
+// GRPCConfig gRPC 监听与上游地址（微服务间通信）。
+type GRPCConfig struct {
+	Addr     string `mapstructure:"addr"`
+	UserAddr string `mapstructure:"user_addr"`
+	BlogAddr string `mapstructure:"blog_addr"`
+	RPGAddr  string `mapstructure:"rpg_addr"`
+}
+
+// ProxyConfig gateway 反向代理上游 HTTP 地址。
+type ProxyConfig struct {
+	UserURL string `mapstructure:"user_url"`
+	BlogURL string `mapstructure:"blog_url"`
+	RPGURL  string `mapstructure:"rpg_url"`
+}
+
+// ObservabilityConfig 可观测性开关。
+type ObservabilityConfig struct {
+	EnableMetrics bool   `mapstructure:"enable_metrics"`
+	EnablePprof   bool   `mapstructure:"enable_pprof"`
+	PprofAddr     string `mapstructure:"pprof_addr"`
+	OTLPEndpoint  string `mapstructure:"otlp_endpoint"`
+	ServiceName   string `mapstructure:"service_name"`
 }
 
 // MySQLConfig 数据库连接（password 含特殊字符时用结构化字段，避免 DSN 解析失败）。
@@ -160,6 +207,16 @@ func (m MailConfig) MailConfigured() bool {
 // IsDev 是否为开发环境。
 func (c *Config) IsDev() bool {
 	return strings.EqualFold(c.App.Env, "development") || strings.EqualFold(c.App.Env, "dev")
+}
+
+// IsMicroservice 是否为拆分后的内部服务或 gateway。
+func (c *Config) IsMicroservice() bool {
+	switch c.App.ServiceModeOrDefault() {
+	case ModeUser, ModeBlog, ModeRPG, ModeGateway:
+		return true
+	default:
+		return false
+	}
 }
 
 // MustLoad 从 path 加载配置；path 为空时使用 CONFIG_PATH 或默认 configs/monolith.yaml。
