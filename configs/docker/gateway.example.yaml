@@ -1,0 +1,28 @@
+# api-gateway Docker 配置模板（复制为 gateway.yaml 后填写）
+
+app:
+  name: api-gateway
+  env: production
+  service_mode: gateway
+  api_prefix: /api/v1
+
+http:
+  addr: ":8000"
+
+proxy:
+  user_url: "http://user:5002"
+  blog_url: "http://blog:5001"
+  rpg_url: "http://rpg:5003"
+
+jwt:
+  secret: ""
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+observability:
+  enable_metrics: true
+  enable_pprof: true
+  pprof_addr: ":6060"
+  otlp_endpoint: "jaeger:4317"
+  service_name: api-gateway

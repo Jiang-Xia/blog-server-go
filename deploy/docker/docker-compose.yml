@@ -69,8 +69,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
       MYSQL_DATABASE: x_my_blog
-      MYSQL_USER: jiangxia
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-jiangxia123!@#}
+      MYSQL_USER: ${MYSQL_USER:-blogdev}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme}
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro

@@ -1,23 +1,25 @@
-# 开发配置模板（无密钥；复制为 monolith.yaml 后填写，该文件 gitignore）
-# Nest 对照：blog-server/.env.example → 真实值在 blog-server/.env.development（亦 gitignore）
-# 初始化：pwsh scripts/setup-config.ps1
+# 生产配置模板（无密钥；复制为 monolith.production.yaml 后填写）
+# Nest 对照见 blog-server/deploy/pm2/env.production（该文件亦 gitignore，勿提交）
+# 启动：CONFIG_PATH=configs/monolith.production.yaml
 
 app:
   name: blog-server-go
-  env: development
+  env: production
   api_prefix: /api/v1
-  blog_home: "http://localhost:5050"
+  blog_home: "https://your-domain.example"
 
 http:
   addr: ":5000"
-  cors_origins: []
+  cors_origins:
+    - "https://your-domain.example"
+    - "https://admin.your-domain.example"
 
 mysql:
   host: 127.0.0.1
   port: 3306
   user: ""
   password: ""
-  database: x_my_blog
+  database: myblog
   table_prefix: x_
   schema_source_database: myblog
 
@@ -37,7 +39,7 @@ crypto:
 oauth:
   github_client_id: ""
   github_client_secret: ""
-  github_callback_url: "http://127.0.0.1:5000/api/v1/user/auth/github/callback"
+  github_callback_url: "https://your-domain.example/api/v1/user/auth/github/callback"
 
 mail:
   host: ""

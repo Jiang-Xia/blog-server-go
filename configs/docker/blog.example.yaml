@@ -1,0 +1,39 @@
+# blog-service Docker 配置模板（复制为 blog.yaml 后填写）
+
+app:
+  name: blog-service
+  env: production
+  service_mode: blog
+  api_prefix: /api/v1
+
+http:
+  addr: ":5001"
+
+grpc:
+  user_addr: "user:50052"
+
+mysql:
+  host: mysql
+  port: 3306
+  user: ""
+  password: ""
+  database: x_my_blog
+  table_prefix: x_
+
+redis:
+  addr: "redis:6379"
+  db: 1
+
+jwt:
+  secret: ""
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+storage:
+  upload_path: "/tmp/uploads/"
+  public_prefix: "/static/"
+
+observability:
+  enable_metrics: true
+  service_name: blog-service

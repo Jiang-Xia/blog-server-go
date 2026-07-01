@@ -52,8 +52,10 @@ Viper 支持 env 覆盖：`APP_ENV` → `app.env`（AutomaticEnv + `SetEnvKeyRep
 
 ## 敏感信息
 
-- 密钥、DSN 只来自 env 或 `.env.local`（gitignore），禁止提交仓库
-- 日志打印配置时脱敏（JWT secret、DSN 密码）
+- 真实配置：`configs/monolith.yaml`、`configs/monolith.production.yaml`、`configs/{user,blog,rpg,gateway}.yaml`、`configs/docker/*.yaml` — **gitignore**，勿提交
+- 仓库只保留 `configs/*.example.yaml`；首次本地：`pwsh scripts/setup-config.ps1`（已存在不覆盖）
+- 对照 Nest：`blog-server/.env.development`、`deploy/pm2/env.production` 同样 gitignore
+- 密钥也可用环境变量覆盖；日志打印配置时脱敏（JWT secret、DSN 密码）
 
 ## 多服务
 

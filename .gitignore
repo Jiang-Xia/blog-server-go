@@ -27,6 +27,21 @@ coverage.txt
 .env.*
 !.env.example
 
+# 真实 YAML 配置（对齐 blog-server .env.development / deploy/pm2/env.production，勿提交）
+configs/monolith.yaml
+configs/monolith.production.yaml
+configs/user.yaml
+configs/blog.yaml
+configs/rpg.yaml
+configs/gateway.yaml
+configs/docker/user.yaml
+configs/docker/blog.yaml
+configs/docker/rpg.yaml
+configs/docker/gateway.yaml
+
+# 本地 dev 进程 PID 文件
+.dev-all.pids
+
 # OS
 .DS_Store
 Thumbs.db
