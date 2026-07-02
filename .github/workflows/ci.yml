@@ -1,0 +1,156 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-and-quality:
+    name: 单元测试与质量门禁
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      - name: go mod download
+        run: go mod download
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: 单元测试与覆盖率门禁
+        run: bash scripts/ci/check-coverage.sh
+        env:
+          MIN_PKG_COVERAGE: "40"
+
+      - name: 编译全部服务
+        run: |
+          set -e
+          for svc in gateway user blog rpg monolith; do
+            CGO_ENABLED=0 go build -o "/tmp/$svc" "./services/$svc/cmd"
+          done
+
+      - name: 上传覆盖率
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.out
+
+  integration-e2e:
+    name: 冒烟 / 集成 / E2E
+    runs-on: ubuntu-latest
+    needs: unit-and-quality
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: testpass
+          MYSQL_DATABASE: x_my_blog
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -ptestpass"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      - name: 安装 wait 依赖
+        run: sudo apt-get update && sudo apt-get install -y mysql-client redis-tools
+
+      - name: 准备 CI 配置与数据库
+        run: |
+          bash scripts/ci/wait-for.sh
+          go run ./scripts/ci/env.go ./scripts/ci/prepare_config.go
+          go run ./scripts/ci/env.go ./scripts/ci/migrate_schemas.go
+          go run ./scripts/ci/env.go ./scripts/ci/seed_test_data.go
+        env:
+          CI_MYSQL_HOST: 127.0.0.1
+          CI_MYSQL_PORT: 3306
+          CI_MYSQL_USER: root
+          CI_MYSQL_PASSWORD: testpass
+          CI_MYSQL_DATABASE: x_my_blog
+          CI_REDIS_ADDR: 127.0.0.1:6379
+          CI_REDIS_DB: 2
+          CI_JWT_SECRET: ci-integration-test-secret
+
+      - name: 启动四微服务
+        run: bash scripts/ci/start-services.sh
+
+      - name: 冒烟 / 集成 / E2E
+        run: |
+          export DEV_LOGIN_BASE=http://127.0.0.1:8000
+          export TEST_BASE=http://127.0.0.1:8000
+          export RUN_UNIT=0
+          bash scripts/ci/run-layer-tests.sh
+
+      - name: 停止服务
+        if: always()
+        run: bash scripts/ci/stop-services.sh
+
+  integration-manual:
+    name: 全量测试（手动触发）
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: testpass
+          MYSQL_DATABASE: x_my_blog
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -ptestpass"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: sudo apt-get update && sudo apt-get install -y mysql-client redis-tools
+      - run: bash scripts/test-run.sh
+        env:
+          USE_DOCKER: "0"
+          CI_MYSQL_PORT: 3306
+          CI_REDIS_ADDR: 127.0.0.1:6379

@@ -249,6 +249,8 @@ go run scripts/dev_login.go --token-only
 | 说明 | 命令 |
 |------|------|
 | 四微服务启 / 停 | `.\scripts\dev-all.ps1` / `.\scripts\dev-all-stop.ps1` |
+| 单元 + 覆盖率（PR 门禁） | `.\scripts\test-run.ps1 -UnitOnly` |
+| 全量四层测试 | `.\scripts\test-run.ps1` |
 | 四窗口看日志 | `.\scripts\dev-all.ps1 -Windows` |
 | 单体 monolith | `.\scripts\dev.ps1` |
 | 初始化库 + Ent | `.\scripts\bootstrap-db.ps1` |
@@ -304,16 +306,18 @@ go run scripts/dev_login.go --token-only
 
 ## 冒烟验收
 
+PR 合并前至少通过单元门禁；合并 `main` 后 CI 自动跑冒烟/集成/E2E。
+
 ```powershell
-.\scripts\dev-all.ps1
-curl.exe -sf http://localhost:8000/api/v1/health
-npx newman run deploy/postman/auth-smoke.json --env-var baseUrl=http://localhost:8000
-$env:DEV_LOGIN_BASE='http://127.0.0.1:8000'; $env:BASE_URL='http://localhost:8000'
-node scripts/ws-smoke.mjs
-.\scripts\dev-all-stop.ps1
+# 本地全量（行业规范一键）
+.\scripts\test-run.ps1 -UnitOnly   # 仅 PR 级
+.\scripts\test-run.ps1             # 四层全量（Docker 测试库）
+
+# 或已有 dev-all 时分层
+go test -tags=smoke ./test/smoke/... -count=1 -v
 ```
 
-Postman 集合目录：`deploy/postman/`。
+完整说明见 [`test/README.md`](test/README.md) 与 [`.github/workflows/ci.yml`](.github/workflows/ci.yml)。
 
 ## 目录结构
 

@@ -1,4 +1,5 @@
-.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs tidy
+.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs tidy \
+	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run
 
 GO ?= go
 CONFIG_PATH ?= configs/monolith.yaml
@@ -106,3 +107,31 @@ sync-data:
 
 tidy:
 	$(GO) mod tidy
+
+test-unit:
+	$(GO) test ./pkg/... -count=1
+
+test-coverage:
+	bash scripts/ci/check-coverage.sh
+
+test-smoke:
+	$(GO) test -tags=smoke ./test/smoke/... -count=1 -v
+
+test-integration:
+	$(GO) test -tags=integration ./test/integration/... -count=1 -v
+
+test-e2e:
+	$(GO) test -tags=e2e ./test/e2e/... -count=1 -v
+
+test-all: test-coverage test-smoke test-integration test-e2e
+
+test-infra-up:
+	docker compose -f deploy/docker/docker-compose.test.yml up -d --wait
+
+test-infra-down:
+	docker compose -f deploy/docker/docker-compose.test.yml down -v
+
+test-run:
+	bash scripts/test-run.sh
+
+test-ci: test-coverage

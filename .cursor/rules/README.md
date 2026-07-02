@@ -21,6 +21,7 @@ Hertz + Ent + wire 单体/微服务重构项目的 Agent 规则。从 **blog-ser
 | `hertz-12-commit-message.mdc` | Conventional Commits 中文 subject | always |
 | `hertz-13-plan-docs.mdc` | 计划验收后写入 `docs/` 交付文档 | always |
 | `hertz-14-dev-test-account.mdc` | 本地联调默认账号 18888888888/super | always |
+| `hertz-15-testing-required.mdc` | 四层测试 + CI 流水线交付要求 | always |
 | `karpathy-guidelines.mdc` | LLM 行为准则（简化为先、小 diff） | always |
 
 ## 相关文档

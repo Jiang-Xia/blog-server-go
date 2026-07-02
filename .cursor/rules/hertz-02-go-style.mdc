@@ -64,4 +64,6 @@ if err := repo.Save(ctx, u); err != nil {
 ## 测试
 
 - 表驱动 `_test.go`；mock repo **interface** 而非 concrete Ent client
-- 集成测试用 testcontainers-go；测试文件与源文件同包或 `package xxx_test`
+- 测试文件与源文件同包或 `package xxx_test`
+- **四层验收**（单元 / 冒烟 / 集成 / E2E）见 [`hertz-15-testing-required.mdc`](./hertz-15-testing-required.mdc) 与 [`test/README.md`](../../test/README.md)
+- 集成/E2E 放 `test/integration`、`test/e2e`（build tags），HTTP 断言用 `test/testutil`

@@ -1,0 +1,87 @@
+---
+description: blog-server-go 功能开发须按四层测试验收（单元/冒烟/集成/E2E）
+alwaysApply: true
+---
+
+# 四层测试要求（单元 / 冒烟 / 集成 / E2E）
+
+新增或修改 **HTTP 接口、service 业务逻辑、pkg 公共包** 后，须完成对应层级的 Go 测试，**不能**只做 `go build` 或改完即交付。
+
+完整说明见 [`test/README.md`](../../test/README.md)。
+
+## 四层定义
+
+| 层级 | 目录 / 文件 | 命令 | 前置 |
+|------|-------------|------|------|
+| **单元** | `pkg/**/*_test.go`、`services/**/internal/**/*_test.go` | `go test ./pkg/... -count=1` | 无，不启服务 |
+| **冒烟** | `test/smoke/`（`//go:build smoke`） | `go test -tags=smoke ./test/smoke/... -v` | `dev-all` + gateway `:8000` |
+| **集成** | `test/integration/`（`//go:build integration`） | `go test -tags=integration ./test/integration/... -v` | 同上 |
+| **E2E** | `test/e2e/`（`//go:build e2e`） | `go test -tags=e2e ./test/e2e/... -v` | 同上 + 测试数据（`sync-data`） |
+
+Makefile 对照：`make test-ci`（PR 门禁）/ `test-coverage` / `test-smoke` / `test-integration` / `test-e2e` / `test-run`（全量）。
+
+## CI 流水线（行业规范）
+
+| 时机 | 执行内容 |
+|------|----------|
+| **每个 PR** | `go vet` + 单元覆盖率门禁（`scripts/ci/check-coverage.*`，≥40%）+ 编译四服务 |
+| **合并 main** | 上述 + MySQL/Redis 服务容器 → Ent migrate → seed 测试账号 → 冒烟/集成/E2E |
+| **本地交付** | `.\scripts\test-run.ps1` 或 `bash scripts/test-run.sh` |
+| **手动全量** | GitHub Actions → `workflow_dispatch` |
+
+详见 [`test/README.md`](../../test/README.md) 与 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)。
+
+默认 API：`http://127.0.0.1:8000/api/v1`；登录见 `hertz-14-dev-test-account.mdc`（`go run scripts/dev_login.go --token-only`）。
+
+## 变更类型 → 必做测试
+
+| 变更 | 单元 | 冒烟 | 集成 | E2E |
+|------|------|------|------|-----|
+| `pkg/` 工具、密码/JWT/分页等 | ✅ 必补 `_test.go` | — | — | — |
+| 新 **service** 纯逻辑（无 HTTP） | ✅ 表驱动 + mock repo interface | — | — | — |
+| 新/改 **HTTP 读接口**（GET/公开列表） | 可选（复杂组装逻辑时补） | 核心路径宜覆盖 | ✅ 在 `test/integration/` 补 GET 断言 | 跨模块链路时补 |
+| 新/改 **HTTP 写接口**（POST/PATCH/DELETE） | 可选 | — | ✅ 正常 + 401/400 至少各 1 条 | ✅ 完整业务链路（登录→写→读验证） |
+| **WebSocket / 通知 / dev 推送** | — | ✅ `test/smoke` WS ping/pong | ✅ since/list 等 HTTP 侧 | 关键推送链路 |
+| **RBAC 新权限** | — | — | ✅ 带 super token 的管理读/写 | — |
+| **gateway BFF**（`article/info`、`pub/stats` 等） | aggregator 单测可选 | ✅ | ✅ | 宜有 E2E |
+
+## 断言约定（Go 服务）
+
+- HTTP 状态码恒 **200**，业务成败看 **`body.code`**（200 成功，401/400/403 等失败）
+- 使用 [`test/testutil`](../../test/testutil/)：`AssertOK`、`IsUnauthorized`、`MustLogin`、`FirstArticleID`
+- 集成/E2E 服务未启动时允许 `t.Skip`，但 Agent 本地验收须 **实际跑通** 后再交付
+
+## 新接口自检清单
+
+1. 路由是否登记 [`docs/api-routes.md`](../../docs/api-routes.md)（若项目约定要求同步）？
+2. **单元**：复杂逻辑是否有 `_test.go`？
+3. **集成**：是否在 `test/integration/` 增加至少 **成功路径**；写接口加 **未登录/非法参数**？
+4. **E2E**：是否属于用户可见主流程？是则在 `test/e2e/` 补 **跨步骤** 用例
+5. **冒烟**：是否为 gateway 核心路径（health、登录、WS）？变更相关则更新 `test/smoke/`
+6. RBAC 增量后是否刷新 Redis：`DEL public_api_paths api_permission_mappings`（db=1）
+
+## Agent 交付（强制）
+
+完成 `services/**`、`pkg/**` 功能改动后：
+
+1. **必跑** `make test-ci` 或 `scripts/ci/check-coverage.ps1`（PR 级单元门禁）
+2. **合并前 / 本地交付** 跑全量：`.\scripts\test-run.ps1` 或 `bash scripts/test-run.sh`
+3. **或** 分层跑（需 `dev-all` 或 test-run 已启服务）：
+   - user/RBAC → `go test -tags=integration ./test/integration/... -run 'Login|Admin|User' -v`
+   - blog/互动 → `-run 'Blog|IntegrationBlog'`
+   - rpg → `-run 'RPG'`
+   - 端到端流程 → `go test -tags=e2e ./test/e2e/... -v`
+3. 新增响应字段或行为：**在对应 `test/integration/` 或 `test/e2e/` 补断言**，勿只改 handler
+4. 回复中列出 **执行的命令与结果**（通过 / skip 原因）
+5. 验证后 **关闭 dev 进程**（见 `hertz-11-dev-service-cleanup.mdc`），勿占用 8000/5001–5003
+
+## 禁止
+
+- 仅 `go build` / `wire` 无测试即交付
+- 把集成/E2E 逻辑塞进 `pkg/*_test.go` 打真实 HTTP（应放 `test/integration` / `test/e2e`）
+- 依赖 Node/newman 作为 **唯一** 自动化验收（Postman 集合可手工对照，正式 CI 以 `go test` 为准）
+
+## 参考
+
+- Nest 对照：[`blog-server/.cursor/rules/server-09-api-testing-required.mdc`](../../blog-server/.cursor/rules/server-09-api-testing-required.mdc)
+- 测试账号：[`hertz-14-dev-test-account.mdc`](./hertz-14-dev-test-account.mdc)
