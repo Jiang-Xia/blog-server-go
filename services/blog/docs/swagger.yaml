@@ -1,0 +1,1713 @@
+basePath: /
+definitions:
+  apidoc.ErrorBody:
+    properties:
+      bizCode:
+        example: 40001
+        type: integer
+      code:
+        example: 40001
+        type: integer
+      message:
+        example: 参数错误
+        type: string
+    type: object
+  apidoc.SuccessBody:
+    properties:
+      bizCode:
+        example: 200
+        type: integer
+      code:
+        example: 200
+        type: integer
+      data: {}
+      message:
+        example: success
+        type: string
+    type: object
+info:
+  contact: {}
+  description: 文章、互动、资源、通知、WebSocket（blog-service :5001）
+  title: Blog Service API
+  version: "1.0"
+paths:
+  /api/v1/article/archives:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/author-stats:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT；代理
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/create:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT；代理
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/delete:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT；代理
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/disabled:
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/edit:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT；代理
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/info:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；BFF-gRPC（gateway 拦截，不经 blog HTTP）
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: BFF-gRPC（gateway 拦截，不经 blog HTTP）
+      tags:
+      - 文章
+  /api/v1/article/likes:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/list:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/my-list:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT；代理
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/related:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/statistics:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/topping:
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/article/views:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理
+      tags:
+      - 文章
+  /api/v1/category:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET category
+      tags:
+      - 分类
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST category
+      tags:
+      - 分类
+  /api/v1/category/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE category/:id
+      tags:
+      - 分类
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET category/:id
+      tags:
+      - 分类
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH category/:id
+      tags:
+      - 分类
+  /api/v1/collect:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST collect
+      tags:
+      - 收藏
+  /api/v1/collect/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE collect/:id
+      tags:
+      - 收藏
+  /api/v1/collect/check:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET collect/check
+      tags:
+      - 收藏
+  /api/v1/collect/count:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET collect/count
+      tags:
+      - 收藏
+  /api/v1/collect/list:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET collect/list
+      tags:
+      - 收藏
+  /api/v1/comment/admin:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET comment/admin
+      tags:
+      - 评论
+  /api/v1/comment/create:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST comment/create
+      tags:
+      - 评论
+  /api/v1/comment/delete:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE comment/delete
+      tags:
+      - 评论
+  /api/v1/comment/findAll:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET comment/findAll
+      tags:
+      - 评论
+  /api/v1/comment/my-list:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET comment/my-list
+      tags:
+      - 评论
+  /api/v1/comment/on-my-articles:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET comment/on-my-articles
+      tags:
+      - 评论
+  /api/v1/dev/event-publish:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST dev/event-publish
+      tags:
+      - 开发调试
+  /api/v1/dev/ws-push:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST dev/ws-push
+      tags:
+      - 开发调试
+  /api/v1/dev/ws-push-redis:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST dev/ws-push-redis
+      tags:
+      - 开发调试
+  /api/v1/file/uploadBigFile:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST file/uploadBigFile
+      tags:
+      - 大文件
+  /api/v1/file/uploadBigFile/checkFile:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET file/uploadBigFile/checkFile
+      tags:
+      - 大文件
+  /api/v1/file/uploadBigFile/merge:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST file/uploadBigFile/merge
+      tags:
+      - 大文件
+  /api/v1/health:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；健康检查
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 健康检查
+      tags:
+      - 系统
+  /api/v1/like:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: POST like
+      tags:
+      - 点赞
+  /api/v1/like/check:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET like/check
+      tags:
+      - 点赞
+  /api/v1/like/my-ids:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET like/my-ids
+      tags:
+      - 点赞
+  /api/v1/link:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE link
+      tags:
+      - 友链
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET link
+      tags:
+      - 友链
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: POST link
+      tags:
+      - 友链
+  /api/v1/link/:id:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET link/:id
+      tags:
+      - 友链
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: PATCH link/:id
+      tags:
+      - 友链
+  /api/v1/msgboard:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET msgboard
+      tags:
+      - 留言板
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: POST msgboard
+      tags:
+      - 留言板
+  /api/v1/msgboard/delete:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST msgboard/delete
+      tags:
+      - 留言板
+  /api/v1/notification/list:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET notification/list
+      tags:
+      - 站内通知
+  /api/v1/notification/read:
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH notification/read
+      tags:
+      - 站内通知
+  /api/v1/notification/since:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET notification/since
+      tags:
+      - 站内通知
+  /api/v1/notification/unread-count:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET notification/unread-count
+      tags:
+      - 站内通知
+  /api/v1/reply/create:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST reply/create
+      tags:
+      - 回复
+  /api/v1/reply/delete:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE reply/delete
+      tags:
+      - 回复
+  /api/v1/reply/findAll:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET reply/findAll
+      tags:
+      - 回复
+  /api/v1/reply/my-list:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET reply/my-list
+      tags:
+      - 回复
+  /api/v1/resources/daily-img:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET resources/daily-img
+      tags:
+      - 资源
+  /api/v1/resources/file:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE resources/file
+      tags:
+      - 资源
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: PATCH resources/file
+      tags:
+      - 资源
+  /api/v1/resources/file/:id:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET resources/file/:id
+      tags:
+      - 资源
+  /api/v1/resources/files:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET resources/files
+      tags:
+      - 资源
+  /api/v1/resources/folder:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: POST resources/folder
+      tags:
+      - 资源
+  /api/v1/resources/register-avatars:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET resources/register-avatars
+      tags:
+      - 资源
+  /api/v1/resources/upload-media:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST resources/upload-media
+      tags:
+      - 资源
+  /api/v1/resources/upload-media/register-avatar:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: POST resources/upload-media/register-avatar
+      tags:
+      - 资源
+  /api/v1/resources/uploadFile:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST resources/uploadFile
+      tags:
+      - 资源
+  /api/v1/resources/weather:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET resources/weather
+      tags:
+      - 资源
+  /api/v1/tag:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET tag
+      tags:
+      - 标签
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST tag
+      tags:
+      - 标签
+  /api/v1/tag/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE tag/:id
+      tags:
+      - 标签
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET tag/:id
+      tags:
+      - 标签
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH tag/:id
+      tags:
+      - 标签
+  /api/v1/tag/:id/article:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET tag/:id/article
+      tags:
+      - 标签
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；健康检查
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 健康检查
+      tags:
+      - 健康检查
+  /metrics:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；Prometheus
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: Prometheus
+      tags:
+      - 可观测性
+  /realtime:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT（WS）；WebSocket Hub
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: WebSocket Hub
+      tags:
+      - WebSocket
+  /static/{path}:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；上传静态文件
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 上传静态文件
+      tags:
+      - 静态资源
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    description: JWT Bearer Token，格式：Bearer {token}
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -20,6 +20,7 @@
 | 10 微服务拆分与生产上线 | [10-微服务拆分与生产上线.md](./10-微服务拆分与生产上线.md) | ✅ 已交付 |
 | 11 微服务代码物理拆分 | [11-微服务代码物理拆分.md](./11-微服务代码物理拆分.md) | ✅ 已交付 |
 | — HTTP/gRPC 路由全表 | [api-routes.md](./api-routes.md) | ✅ 已维护 |
+| — Swagger / OpenAPI | [12-swagger-api-doc.md](./12-swagger-api-doc.md) | ✅ 已交付 |
 
 ## 写作约定
 

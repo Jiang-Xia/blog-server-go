@@ -37,6 +37,13 @@ type Config struct {
 	Storage StorageConfig `mapstructure:"storage"`
 	Pay     PayConfig     `mapstructure:"pay"`
 	Observability ObservabilityConfig `mapstructure:"observability"`
+	Swagger       SwaggerConfig       `mapstructure:"swagger"`
+}
+
+// SwaggerConfig OpenAPI/Swagger UI 开关与路径。
+type SwaggerConfig struct {
+	Enabled     bool   `mapstructure:"enabled"`
+	PathPrefix  string `mapstructure:"path_prefix"`
 }
 
 // AppConfig 应用级元信息。

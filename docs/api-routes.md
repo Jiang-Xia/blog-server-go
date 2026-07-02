@@ -507,7 +507,7 @@
 
 ## 7. 维护说明
 
-1. **改路由后须同步本文**：修改 `register_*.go` 或 gateway `app.go` / `proxy/router.go` 时更新对应章节。
+1. **改路由后须同步本文**：修改 `register_*.go` 或 gateway `app.go` / `proxy/router.go` 时更新对应章节，并执行 `make swag-all` 刷新 OpenAPI（见 [12-swagger-api-doc.md](./12-swagger-api-doc.md)）。
 2. **RBAC 公开路径**：除 handler 层 JWT 外，是否在未登录时可访问还取决于 DB `x_privilege` / Redis 缓存；fallback 列表见各服务 `middleware/permission.go`。
 3. **Postman 冒烟**：`deploy/postman/*-smoke.json`，`baseUrl=http://127.0.0.1:8000`。
 4. **相关文档**：[10-微服务拆分与生产上线](./10-微服务拆分与生产上线.md)、[11-微服务代码物理拆分](./11-微服务代码物理拆分.md)。

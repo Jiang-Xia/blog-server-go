@@ -9,7 +9,7 @@ set -euo pipefail
 : "${DEPLOY_ECOSYSTEM_FILE:?}"
 : "${DEPLOY_TAR_PATH:?}"
 
-DEPLOY_PM2_APPS="${DEPLOY_PM2_APPS:-gateway,user,blog,rpg}"
+DEPLOY_PM2_APPS="${DEPLOY_PM2_APPS:-BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway}"
 DEPLOY_PUBLIC_DIR="${DEPLOY_PUBLIC_DIR:-${DEPLOY_REMOTE_DIR}/public}"
 
 source /tmp/release-lib.sh
@@ -43,7 +43,7 @@ migrate_legacy_layout_if_needed() {
   release_switch "$rid"
   link_shared_public "$rid"
   echo "==> migrated legacy layout -> ${rid}"
-  if release_pm2 describe "gateway" >/dev/null 2>&1; then
+  if release_pm2 describe "BlogGo_Gateway" >/dev/null 2>&1; then
     echo "==> pm2 reload after legacy migration"
     release_pm2_reload_ecosystem "${DEPLOY_ECOSYSTEM_FILE}" "${DEPLOY_PM2_APPS}"
   fi
@@ -108,4 +108,4 @@ release_cleanup
 rm -f "${DEPLOY_TAR_PATH}"
 
 echo "==> done"
-release_pm2_verify_all "${DEPLOY_PM2_APPS}"
+release_pm2_verify_all_retry "${DEPLOY_PM2_APPS}" 5 3

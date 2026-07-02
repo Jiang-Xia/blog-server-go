@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/Jiang-Xia/blog-server-go/pkg/apidoc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/logger"
 	"github.com/Jiang-Xia/blog-server-go/pkg/metrics"
@@ -87,6 +88,7 @@ func Run(cfgPath string) error {
 	}
 
 	router.Register(h, cfg.App.APIPrefix)
+	apidoc.Mount(h, cfg)
 
 	go func() {
 		log.Info("gateway starting", zap.String("addr", cfg.HTTP.Addr))

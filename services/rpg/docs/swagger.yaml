@@ -1,0 +1,2290 @@
+basePath: /
+definitions:
+  apidoc.ErrorBody:
+    properties:
+      bizCode:
+        example: 40001
+        type: integer
+      code:
+        example: 40001
+        type: integer
+      message:
+        example: 参数错误
+        type: string
+    type: object
+  apidoc.SuccessBody:
+    properties:
+      bizCode:
+        example: 200
+        type: integer
+      code:
+        example: 200
+        type: integer
+      data: {}
+      message:
+        example: success
+        type: string
+    type: object
+info:
+  contact: {}
+  description: RPG 玩法、支付、公开主页（rpg-service :5003）
+  title: RPG Service API
+  version: "1.0"
+paths:
+  /api/v1/admin/rpg/achievements:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/achievements
+      tags:
+      - 后台管理
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/achievements
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/achievements/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/achievements/:id
+      tags:
+      - 后台管理
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH admin/rpg/achievements/:id
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/activities:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/activities
+      tags:
+      - 后台管理
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/activities
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/activities/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/activities/:id
+      tags:
+      - 后台管理
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH admin/rpg/activities/:id
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/guilds:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/guilds
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/guilds/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/guilds/:id
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/guilds/:id/members:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/guilds/:id/members
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/guilds/:id/members/:uid:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/guilds/:id/members/:uid
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/items:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/items
+      tags:
+      - 后台管理
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/items
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/items/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/items/:id
+      tags:
+      - 后台管理
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH admin/rpg/items/:id
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/items/asset:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/items/asset
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/items/upload-asset:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/items/upload-asset
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/lottery/pool:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/lottery/pool
+      tags:
+      - 后台管理
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/lottery/pool
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/lottery/pool/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/lottery/pool/:id
+      tags:
+      - 后台管理
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH admin/rpg/lottery/pool/:id
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/lottery/records:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/lottery/records
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/quests:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/quests
+      tags:
+      - 后台管理
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/quests
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/quests/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: DELETE admin/rpg/quests/:id
+      tags:
+      - 后台管理
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH admin/rpg/quests/:id
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/social-logs:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/social-logs
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/stats:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/stats
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/tips:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/tips
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/users:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/users
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/users/:uid:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET admin/rpg/users/:uid
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/users/:uid/currency:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/users/:uid/currency
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/users/:uid/currency/deduct:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/users/:uid/currency/deduct
+      tags:
+      - 后台管理
+  /api/v1/admin/rpg/users/:uid/unban:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST admin/rpg/users/:uid/unban
+      tags:
+      - 后台管理
+  /api/v1/health:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET health
+      tags:
+      - 系统
+  /api/v1/pay/h5-open-mini:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；H5 唤起小程序
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: H5 唤起小程序
+      tags:
+      - 支付
+  /api/v1/pay/notice:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；支付宝/微信异步通知
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 支付宝/微信异步通知
+      tags:
+      - 支付
+  /api/v1/pay/openid:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；微信 openid
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 微信 openid
+      tags:
+      - 支付
+  /api/v1/pay/order/close:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST pay/order/close
+      tags:
+      - 支付
+  /api/v1/pay/order/create:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST pay/order/create
+      tags:
+      - 支付
+  /api/v1/pay/order/delete:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST pay/order/delete
+      tags:
+      - 支付
+  /api/v1/pay/order/list:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET pay/order/list
+      tags:
+      - 支付
+  /api/v1/pay/order/mark-recharge-fulfilled:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST pay/order/mark-recharge-fulfilled
+      tags:
+      - 支付
+  /api/v1/pay/order/query:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET pay/order/query
+      tags:
+      - 支付
+  /api/v1/pay/order/refund:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST pay/order/refund
+      tags:
+      - 支付
+  /api/v1/pay/trade/close:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；关单
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 关单
+      tags:
+      - 支付
+  /api/v1/pay/trade/create:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；下单
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 下单
+      tags:
+      - 支付
+  /api/v1/pay/trade/query:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；查询
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 查询
+      tags:
+      - 支付
+  /api/v1/pay/trade/refund:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：公开；退款
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 退款
+      tags:
+      - 支付
+  /api/v1/rpg/activities/current:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/activities/current
+      tags:
+      - RPG
+  /api/v1/rpg/activities/share-poster:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/activities/share-poster
+      tags:
+      - RPG
+  /api/v1/rpg/article/tip:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/article/tip
+      tags:
+      - RPG
+  /api/v1/rpg/ban-status:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/ban-status
+      tags:
+      - RPG
+  /api/v1/rpg/buff/:id/activate:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/buff/:id/activate
+      tags:
+      - RPG
+  /api/v1/rpg/buff/:id/deactivate:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/buff/:id/deactivate
+      tags:
+      - RPG
+  /api/v1/rpg/guild/:id:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/guild/:id
+      tags:
+      - RPG
+  /api/v1/rpg/guild/create:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/guild/create
+      tags:
+      - RPG
+  /api/v1/rpg/guild/join:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/guild/join
+      tags:
+      - RPG
+  /api/v1/rpg/guild/leave:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/guild/leave
+      tags:
+      - RPG
+  /api/v1/rpg/guild/my:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/guild/my
+      tags:
+      - RPG
+  /api/v1/rpg/guilds:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/guilds
+      tags:
+      - RPG
+  /api/v1/rpg/hit-records:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/hit-records
+      tags:
+      - RPG
+  /api/v1/rpg/inventory:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/inventory
+      tags:
+      - RPG
+  /api/v1/rpg/leaderboard:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/leaderboard
+      tags:
+      - RPG
+  /api/v1/rpg/level-rewards:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/level-rewards
+      tags:
+      - RPG
+  /api/v1/rpg/loadout:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/loadout
+      tags:
+      - RPG
+  /api/v1/rpg/loadout/equip:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/loadout/equip
+      tags:
+      - RPG
+  /api/v1/rpg/loadout/unequip:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/loadout/unequip
+      tags:
+      - RPG
+  /api/v1/rpg/lottery/draw:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/lottery/draw
+      tags:
+      - RPG
+  /api/v1/rpg/lottery/history:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/lottery/history
+      tags:
+      - RPG
+  /api/v1/rpg/lottery/pool:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/lottery/pool
+      tags:
+      - RPG
+  /api/v1/rpg/lottery/tickets:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/lottery/tickets
+      tags:
+      - RPG
+  /api/v1/rpg/my-achievements:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/my-achievements
+      tags:
+      - RPG
+  /api/v1/rpg/my-buffs:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/my-buffs
+      tags:
+      - RPG
+  /api/v1/rpg/my-quests:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/my-quests
+      tags:
+      - RPG
+  /api/v1/rpg/pets:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/pets
+      tags:
+      - RPG
+  /api/v1/rpg/pets/:id/rename:
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: PATCH rpg/pets/:id/rename
+      tags:
+      - RPG
+  /api/v1/rpg/pets/catalog:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/pets/catalog
+      tags:
+      - RPG
+  /api/v1/rpg/pets/exchange:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/pets/exchange
+      tags:
+      - RPG
+  /api/v1/rpg/pets/summon:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/pets/summon
+      tags:
+      - RPG
+  /api/v1/rpg/public/:uid/status:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理→rpg
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理→rpg
+      tags:
+      - RPG
+  /api/v1/rpg/public/status/batch:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理→rpg
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理→rpg
+      tags:
+      - RPG
+  /api/v1/rpg/quest/claim:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/quest/claim
+      tags:
+      - RPG
+  /api/v1/rpg/quests:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/quests
+      tags:
+      - RPG
+  /api/v1/rpg/recharge/create:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/recharge/create
+      tags:
+      - RPG
+  /api/v1/rpg/recharge/status:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/recharge/status
+      tags:
+      - RPG
+  /api/v1/rpg/sign:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/sign
+      tags:
+      - RPG
+  /api/v1/rpg/sign-info:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/sign-info
+      tags:
+      - RPG
+  /api/v1/rpg/social/cheer:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/social/cheer
+      tags:
+      - RPG
+  /api/v1/rpg/social/egg:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/social/egg
+      tags:
+      - RPG
+  /api/v1/rpg/social/flower:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: POST rpg/social/flower
+      tags:
+      - RPG
+  /api/v1/rpg/status:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: GET rpg/status
+      tags:
+      - RPG
+  /api/v1/rpg/weather-buff:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET rpg/weather-buff
+      tags:
+      - RPG
+  /api/v1/user/public/:uid:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；BFF-gRPC
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: BFF-gRPC
+      tags:
+      - 用户
+  /api/v1/user/public/:uid/articles:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理→rpg
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理→rpg
+      tags:
+      - 用户
+  /api/v1/user/public/:uid/collects:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理→rpg
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理→rpg
+      tags:
+      - 用户
+  /api/v1/user/public/:uid/likes:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开；代理→rpg
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 代理→rpg
+      tags:
+      - 用户
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET /health
+      tags:
+      - 健康检查
+  /metrics:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET /metrics
+      tags:
+      - 可观测性
+  /static/{path}:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：公开
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: GET /static/{path}
+      tags:
+      - 静态资源
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    description: JWT Bearer Token，格式：Bearer {token}
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

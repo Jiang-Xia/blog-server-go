@@ -1,0 +1,2720 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "文章、互动、资源、通知、WebSocket（blog-service :5001）",
+        "title": "Blog Service API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/api/v1/article/archives": {
+            "get": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/author-stats": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/disabled": {
+            "patch": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/edit": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/info": {
+            "get": {
+                "description": "鉴权：公开；BFF-gRPC（gateway 拦截，不经 blog HTTP）",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "BFF-gRPC（gateway 拦截，不经 blog HTTP）",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/likes": {
+            "post": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/list": {
+            "post": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/my-list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/related": {
+            "get": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/statistics": {
+            "get": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/topping": {
+            "patch": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/views": {
+            "post": {
+                "description": "鉴权：公开；代理",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "代理",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/category": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类"
+                ],
+                "summary": "GET category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类"
+                ],
+                "summary": "POST category",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/category/:id": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类"
+                ],
+                "summary": "GET category/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类"
+                ],
+                "summary": "DELETE category/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类"
+                ],
+                "summary": "PATCH category/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/collect": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "收藏"
+                ],
+                "summary": "POST collect",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/collect/:id": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "收藏"
+                ],
+                "summary": "DELETE collect/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/collect/check": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "收藏"
+                ],
+                "summary": "GET collect/check",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/collect/count": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "收藏"
+                ],
+                "summary": "GET collect/count",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/collect/list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "收藏"
+                ],
+                "summary": "GET collect/list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/comment/admin": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "GET comment/admin",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/comment/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "POST comment/create",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/comment/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "DELETE comment/delete",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/comment/findAll": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "GET comment/findAll",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/comment/my-list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "GET comment/my-list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/comment/on-my-articles": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "GET comment/on-my-articles",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/dev/event-publish": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "开发调试"
+                ],
+                "summary": "POST dev/event-publish",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/dev/ws-push": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "开发调试"
+                ],
+                "summary": "POST dev/ws-push",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/dev/ws-push-redis": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "开发调试"
+                ],
+                "summary": "POST dev/ws-push-redis",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/file/uploadBigFile": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "大文件"
+                ],
+                "summary": "POST file/uploadBigFile",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/file/uploadBigFile/checkFile": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "大文件"
+                ],
+                "summary": "GET file/uploadBigFile/checkFile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/file/uploadBigFile/merge": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "大文件"
+                ],
+                "summary": "POST file/uploadBigFile/merge",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/health": {
+            "get": {
+                "description": "鉴权：公开；健康检查",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "系统"
+                ],
+                "summary": "健康检查",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/like": {
+            "post": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "点赞"
+                ],
+                "summary": "POST like",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/like/check": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "点赞"
+                ],
+                "summary": "GET like/check",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/like/my-ids": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "点赞"
+                ],
+                "summary": "GET like/my-ids",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/link": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "友链"
+                ],
+                "summary": "GET link",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "友链"
+                ],
+                "summary": "POST link",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "友链"
+                ],
+                "summary": "DELETE link",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/link/:id": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "友链"
+                ],
+                "summary": "GET link/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "友链"
+                ],
+                "summary": "PATCH link/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/msgboard": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "留言板"
+                ],
+                "summary": "GET msgboard",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "留言板"
+                ],
+                "summary": "POST msgboard",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/msgboard/delete": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "留言板"
+                ],
+                "summary": "POST msgboard/delete",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/notification/list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "站内通知"
+                ],
+                "summary": "GET notification/list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/notification/read": {
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "站内通知"
+                ],
+                "summary": "PATCH notification/read",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/notification/since": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "站内通知"
+                ],
+                "summary": "GET notification/since",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/notification/unread-count": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "站内通知"
+                ],
+                "summary": "GET notification/unread-count",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/reply/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "回复"
+                ],
+                "summary": "POST reply/create",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/reply/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "回复"
+                ],
+                "summary": "DELETE reply/delete",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/reply/findAll": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "回复"
+                ],
+                "summary": "GET reply/findAll",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/reply/my-list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "回复"
+                ],
+                "summary": "GET reply/my-list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/daily-img": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "GET resources/daily-img",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/file": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "DELETE resources/file",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "PATCH resources/file",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/file/:id": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "GET resources/file/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/files": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "GET resources/files",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/folder": {
+            "post": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "POST resources/folder",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/register-avatars": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "GET resources/register-avatars",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/upload-media": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "POST resources/upload-media",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/upload-media/register-avatar": {
+            "post": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "POST resources/upload-media/register-avatar",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/uploadFile": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "POST resources/uploadFile",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/weather": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源"
+                ],
+                "summary": "GET resources/weather",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tag": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "GET tag",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "POST tag",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tag/:id": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "GET tag/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "DELETE tag/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "PATCH tag/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tag/:id/article": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "GET tag/:id/article",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "鉴权：公开；健康检查",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "健康检查"
+                ],
+                "summary": "健康检查",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/metrics": {
+            "get": {
+                "description": "鉴权：公开；Prometheus",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "可观测性"
+                ],
+                "summary": "Prometheus",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/realtime": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT（WS）；WebSocket Hub",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WebSocket"
+                ],
+                "summary": "WebSocket Hub",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/static/{path}": {
+            "get": {
+                "description": "鉴权：公开；上传静态文件",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "静态资源"
+                ],
+                "summary": "上传静态文件",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "apidoc.ErrorBody": {
+            "type": "object",
+            "properties": {
+                "bizCode": {
+                    "type": "integer",
+                    "example": 40001
+                },
+                "code": {
+                    "type": "integer",
+                    "example": 40001
+                },
+                "message": {
+                    "type": "string",
+                    "example": "参数错误"
+                }
+            }
+        },
+        "apidoc.SuccessBody": {
+            "type": "object",
+            "properties": {
+                "bizCode": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "code": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "data": {},
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "description": "JWT Bearer Token，格式：Bearer {token}",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

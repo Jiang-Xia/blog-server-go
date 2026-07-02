@@ -41,7 +41,7 @@
 | rpg | 5003 | RPG、支付、公开主页 |
 | monolith（deprecated） | 5000 | 单体回滚入口，与 Nest 端口二选一 |
 
-路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。
+路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。Swagger UI（swaggo）见 [`docs/12-swagger-api-doc.md`](docs/12-swagger-api-doc.md)，开发默认 `http://127.0.0.1:8000/api/v1/doc/index.html`。
 
 ## 环境要求
 
@@ -348,6 +348,7 @@ blog-server-go/
 |------|------|
 | [`docs/README.md`](docs/README.md) | 阶段交付文档索引（Plan 01–11） |
 | [`docs/api-routes.md`](docs/api-routes.md) | HTTP / gRPC 路由全表 |
+| [`docs/12-swagger-api-doc.md`](docs/12-swagger-api-doc.md) | Swagger / OpenAPI（swaggo） |
 | [`docs/11-微服务代码物理拆分.md`](docs/11-微服务代码物理拆分.md) | 当前微服务目录、BFF、验收命令 |
 | [`blog-server-go-重构方案.md`](blog-server-go-重构方案.md) | 架构与技术选型总方案 |
 | [`.cursor/plans/README.md`](.cursor/plans/README.md) | 实施计划索引 |

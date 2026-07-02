@@ -23,7 +23,7 @@ func main() {
 	files := map[string]string{
 		"configs/user.yaml": userYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
 		"configs/blog.yaml": serviceYAML("blog-service", "blog", ":5001", ":50051", mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret, ":6061"),
-		"configs/rpg.yaml":  serviceYAML("rpg-service", "rpg", ":5003", "", mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret, ":6063"),
+		"configs/rpg.yaml":  serviceYAML("rpg-service", "rpg", ":5003", ":50053", mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret, ":6063"),
 		"configs/gateway.yaml": gatewayYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
 		"configs/monolith.yaml": userYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
 	}
@@ -84,7 +84,17 @@ observability:
 func serviceYAML(name, mode, httpAddr, grpcAddr, host string, port int, user, pass, db, redis string, redisDB int, secret, pprof string) string {
 	grpcBlock := ""
 	if grpcAddr != "" {
-		grpcBlock = fmt.Sprintf("\ngrpc:\n  addr: \"%s\"\n", grpcAddr)
+		grpcBlock = fmt.Sprintf(`
+grpc:
+  addr: "%s"
+  user_addr: "127.0.0.1:50052"
+`, grpcAddr)
+	} else if mode == "rpg" {
+		grpcBlock = `
+grpc:
+  addr: ":50053"
+  user_addr: "127.0.0.1:50052"
+`
 	}
 	return fmt.Sprintf(`app:
   name: %s

@@ -1,5 +1,6 @@
 .PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs deploy rollback rollback-list sync-pm2-config tidy \
-	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run
+	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run \
+	swag-apidoc swag-user swag-blog swag-rpg swag-gateway swag-all
 
 GO ?= go
 CONFIG_PATH ?= configs/monolith.yaml
@@ -122,6 +123,27 @@ sync-data:
 
 tidy:
 	$(GO) mod tidy
+
+# Swagger：从 api-routes.md 生成 apidoc 桩，再 swag init 各微服务 docs/
+swag-apidoc:
+	$(GO) run scripts/gen_swag_apidoc.go
+
+SWAG_DIRS = .,../../pkg/apidoc
+SWAG_FLAGS = --parseDependency --parseInternal -d $(SWAG_DIRS)
+
+swag-user: swag-apidoc
+	cd services/user && swag init -g internal/apidoc/doc.go -o docs $(SWAG_FLAGS)
+
+swag-blog: swag-apidoc
+	cd services/blog && swag init -g internal/apidoc/doc.go -o docs $(SWAG_FLAGS)
+
+swag-rpg: swag-apidoc
+	cd services/rpg && swag init -g internal/apidoc/doc.go -o docs $(SWAG_FLAGS)
+
+swag-gateway: swag-apidoc
+	cd services/gateway && swag init -g internal/apidoc/doc.go -o docs $(SWAG_FLAGS)
+
+swag-all: swag-user swag-blog swag-rpg swag-gateway
 
 test-unit:
 	$(GO) test ./pkg/... -count=1

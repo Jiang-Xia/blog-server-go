@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 
+	_ "github.com/Jiang-Xia/blog-server-go/services/blog/docs"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/app"
 )
 

@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 
+	_ "github.com/Jiang-Xia/blog-server-go/services/gateway/docs"
 	gwapp "github.com/Jiang-Xia/blog-server-go/services/gateway/internal/app"
 )
 

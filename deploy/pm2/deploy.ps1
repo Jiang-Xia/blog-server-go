@@ -38,7 +38,7 @@ $DeployPassword = $cfg['DEPLOY_PASSWORD']
 $RemoteDir = $cfg['DEPLOY_REMOTE_DIR']
 $HostKey = $cfg['DEPLOY_HOSTKEY']
 $PublicDir = $cfg['DEPLOY_PUBLIC_DIR']
-$Pm2Apps = if ($cfg['DEPLOY_PM2_APPS']) { $cfg['DEPLOY_PM2_APPS'] } else { 'gateway,user,blog,rpg' }
+$Pm2Apps = if ($cfg['DEPLOY_PM2_APPS']) { $cfg['DEPLOY_PM2_APPS'] } else { 'BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway' }
 $EcosystemFile = if ($cfg['DEPLOY_ECOSYSTEM_FILE']) { $cfg['DEPLOY_ECOSYSTEM_FILE'] } else { 'ecosystem.config.js' }
 $TarName = if ($cfg['DEPLOY_TAR_NAME']) { $cfg['DEPLOY_TAR_NAME'] } else { 'blog-server-go.tar.gz' }
 $DeployEnvFile = $cfg['DEPLOY_ENV_FILE']
@@ -215,9 +215,9 @@ $publicEnv = if ($ePublicDir) { " DEPLOY_PUBLIC_DIR='$ePublicDir'" } else { '' }
 $remoteCmd = "chmod +x /tmp/remote-deploy.sh && DEPLOY_REMOTE_DIR='$eRemoteDir' DEPLOY_PM2_APPS='$ePm2Apps' DEPLOY_ECOSYSTEM_FILE='$eEcosystemFile' DEPLOY_TAR_PATH='$eRemoteTar'${publicEnv} bash /tmp/remote-deploy.sh"
 Invoke-Remote $remoteCmd
 
-# ---------- [5/5] 验证 ----------
+# ---------- [5/5] 验证（独立 SSH 会话，带重试避免冷启动误报）----------
 Write-Host '==> [5/5] Verify'
 $eAppsForVerify = Escape-ShellSingleQuoted $Pm2Apps
-Invoke-Remote "source ~/.nvm/nvm.sh && nvm use default && DEPLOY_REMOTE_DIR='$eRemoteDir' source /tmp/release-lib.sh && release_pm2_verify_all '$eAppsForVerify'"
+Invoke-Remote "source ~/.nvm/nvm.sh && nvm use default >/dev/null && DEPLOY_REMOTE_DIR='$eRemoteDir' source /tmp/release-lib.sh && release_pm2_verify_all_retry '$eAppsForVerify' 5 3"
 
-Write-Host '==> Deploy finished'
+Write-Host '==> Deploy finished OK' -ForegroundColor Green

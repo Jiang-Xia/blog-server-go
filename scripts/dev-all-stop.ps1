@@ -1,5 +1,6 @@
-# 停止 dev-all.ps1 启动的四服务（按端口 5001–5003、8000、50052）
+﻿# 停止 dev-all.ps1 启动的四服务（按端口 5001–5003、8000、50052）
 $ErrorActionPreference = "SilentlyContinue"
+. (Join-Path $PSScriptRoot "ps-console-utf8.ps1")
 $Root = Split-Path -Parent $PSScriptRoot
 $PidFile = Join-Path $Root ".dev-all.pids"
 

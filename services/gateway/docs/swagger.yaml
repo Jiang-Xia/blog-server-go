@@ -1,0 +1,203 @@
+basePath: /
+definitions:
+  apidoc.ErrorBody:
+    properties:
+      bizCode:
+        example: 40001
+        type: integer
+      code:
+        example: 40001
+        type: integer
+      message:
+        example: 参数错误
+        type: string
+    type: object
+  apidoc.SuccessBody:
+    properties:
+      bizCode:
+        example: 200
+        type: integer
+      code:
+        example: 200
+        type: integer
+      data: {}
+      message:
+        example: success
+        type: string
+    type: object
+info:
+  contact: {}
+  description: 统一 REST 入口 BFF 与反向代理（gateway :8000）；未列出的 /api/v1/* 按前缀代理至 user/blog/rpg
+    微服务
+  title: Blog Gateway API
+  version: "1.0"
+paths:
+  /api/v1/article/info:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：BFF-gRPC；blog.GetArticleDetail
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: blog.GetArticleDetail
+      tags:
+      - 文章
+  /api/v1/health:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：本地；健康检查
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 健康检查
+      tags:
+      - 系统
+  /api/v1/pub/stats:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：BFF-gRPC；blog.GetPubStats + user.CountUsers
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: blog.GetPubStats + user.CountUsers
+      tags:
+      - 公开统计
+  /api/v1/user/public/:uid:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：BFF-gRPC；rpg.GetPublicProfile
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: rpg.GetPublicProfile
+      tags:
+      - 用户
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：本地；健康检查
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: 健康检查
+      tags:
+      - 健康检查
+  /metrics:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：本地；Prometheus（`enable_metrics`）
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: Prometheus（`enable_metrics`）
+      tags:
+      - 可观测性
+  /realtime:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：代理→blog；WebSocket 升级
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: WebSocket 升级
+      tags:
+      - WebSocket
+  /realtime/{path}:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：代理→blog；WS 子路径
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      summary: WS 子路径
+      tags:
+      - WebSocket
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    description: JWT Bearer Token，格式：Bearer {token}
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

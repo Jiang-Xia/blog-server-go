@@ -1,0 +1,3678 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "RPG 玩法、支付、公开主页（rpg-service :5003）",
+        "title": "RPG Service API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/api/v1/admin/rpg/achievements": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/achievements",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/achievements",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/achievements/:id": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/achievements/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "PATCH admin/rpg/achievements/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/activities": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/activities",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/activities",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/activities/:id": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/activities/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "PATCH admin/rpg/activities/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/guilds": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/guilds",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/guilds/:id": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/guilds/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/guilds/:id/members": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/guilds/:id/members",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/guilds/:id/members/:uid": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/guilds/:id/members/:uid",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/items": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/items",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/items",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/items/:id": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/items/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "PATCH admin/rpg/items/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/items/asset": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/items/asset",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/items/upload-asset": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/items/upload-asset",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/lottery/pool": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/lottery/pool",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/lottery/pool",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/lottery/pool/:id": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/lottery/pool/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "PATCH admin/rpg/lottery/pool/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/lottery/records": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/lottery/records",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/quests": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/quests",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/quests",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/quests/:id": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "DELETE admin/rpg/quests/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "PATCH admin/rpg/quests/:id",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/social-logs": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/social-logs",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/stats": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/stats",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/tips": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/tips",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/users": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/users",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/users/:uid": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "GET admin/rpg/users/:uid",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/users/:uid/currency": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/users/:uid/currency",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/users/:uid/currency/deduct": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/users/:uid/currency/deduct",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/rpg/users/:uid/unban": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT+RBAC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "后台管理"
+                ],
+                "summary": "POST admin/rpg/users/:uid/unban",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/health": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "系统"
+                ],
+                "summary": "GET health",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/h5-open-mini": {
+            "post": {
+                "description": "鉴权：公开；H5 唤起小程序",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "H5 唤起小程序",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/notice": {
+            "post": {
+                "description": "鉴权：公开；支付宝/微信异步通知",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "支付宝/微信异步通知",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/openid": {
+            "post": {
+                "description": "鉴权：公开；微信 openid",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "微信 openid",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/order/close": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "POST pay/order/close",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/order/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "POST pay/order/create",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/order/delete": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "POST pay/order/delete",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/order/list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "GET pay/order/list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/order/mark-recharge-fulfilled": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "POST pay/order/mark-recharge-fulfilled",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/order/query": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "GET pay/order/query",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/order/refund": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "POST pay/order/refund",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/trade/close": {
+            "post": {
+                "description": "鉴权：公开；关单",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "关单",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/trade/create": {
+            "post": {
+                "description": "鉴权：公开；下单",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "下单",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/trade/query": {
+            "get": {
+                "description": "鉴权：公开；查询",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "查询",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pay/trade/refund": {
+            "post": {
+                "description": "鉴权：公开；退款",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "支付"
+                ],
+                "summary": "退款",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/activities/current": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/activities/current",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/activities/share-poster": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/activities/share-poster",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/article/tip": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/article/tip",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/ban-status": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/ban-status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/buff/:id/activate": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/buff/:id/activate",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/buff/:id/deactivate": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/buff/:id/deactivate",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/guild/:id": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/guild/:id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/guild/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/guild/create",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/guild/join": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/guild/join",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/guild/leave": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/guild/leave",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/guild/my": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/guild/my",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/guilds": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/guilds",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/hit-records": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/hit-records",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/inventory": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/inventory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/leaderboard": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/leaderboard",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/level-rewards": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/level-rewards",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/loadout": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/loadout",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/loadout/equip": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/loadout/equip",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/loadout/unequip": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/loadout/unequip",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/lottery/draw": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/lottery/draw",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/lottery/history": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/lottery/history",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/lottery/pool": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/lottery/pool",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/lottery/tickets": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/lottery/tickets",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/my-achievements": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/my-achievements",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/my-buffs": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/my-buffs",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/my-quests": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/my-quests",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/pets": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/pets",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/pets/:id/rename": {
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "PATCH rpg/pets/:id/rename",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/pets/catalog": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/pets/catalog",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/pets/exchange": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/pets/exchange",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/pets/summon": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/pets/summon",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/public/:uid/status": {
+            "get": {
+                "description": "鉴权：公开；代理→rpg",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "代理→rpg",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/public/status/batch": {
+            "get": {
+                "description": "鉴权：公开；代理→rpg",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "代理→rpg",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/quest/claim": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/quest/claim",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/quests": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/quests",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/recharge/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/recharge/create",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/recharge/status": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/recharge/status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/sign": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/sign",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/sign-info": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/sign-info",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/social/cheer": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/social/cheer",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/social/egg": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/social/egg",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/social/flower": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "POST rpg/social/flower",
+                "parameters": [
+                    {
+                        "description": "请求体 JSON",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/status": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "鉴权：JWT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rpg/weather-buff": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RPG"
+                ],
+                "summary": "GET rpg/weather-buff",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/public/:uid": {
+            "get": {
+                "description": "鉴权：公开；BFF-gRPC",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "BFF-gRPC",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/public/:uid/articles": {
+            "get": {
+                "description": "鉴权：公开；代理→rpg",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "代理→rpg",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/public/:uid/collects": {
+            "get": {
+                "description": "鉴权：公开；代理→rpg",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "代理→rpg",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/public/:uid/likes": {
+            "get": {
+                "description": "鉴权：公开；代理→rpg",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "代理→rpg",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "健康检查"
+                ],
+                "summary": "GET /health",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/metrics": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "可观测性"
+                ],
+                "summary": "GET /metrics",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/static/{path}": {
+            "get": {
+                "description": "鉴权：公开",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "静态资源"
+                ],
+                "summary": "GET /static/{path}",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Query 参数",
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "业务错误（HTTP 仍为 200）",
+                        "schema": {
+                            "$ref": "#/definitions/apidoc.ErrorBody"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "apidoc.ErrorBody": {
+            "type": "object",
+            "properties": {
+                "bizCode": {
+                    "type": "integer",
+                    "example": 40001
+                },
+                "code": {
+                    "type": "integer",
+                    "example": 40001
+                },
+                "message": {
+                    "type": "string",
+                    "example": "参数错误"
+                }
+            }
+        },
+        "apidoc.SuccessBody": {
+            "type": "object",
+            "properties": {
+                "bizCode": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "code": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "data": {},
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "description": "JWT Bearer Token，格式：Bearer {token}",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

@@ -5,6 +5,7 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 
+	"github.com/Jiang-Xia/blog-server-go/pkg/apidoc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/metrics"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/handler"
@@ -41,5 +42,6 @@ func NewHTTPServer(cfg *config.Config, log *zap.Logger, deps handler.RegisterDep
 		log.Info("pprof listening", zap.String("addr", addr))
 	}
 	handler.Register(h, cfg, deps)
+	apidoc.Mount(h, cfg)
 	return h
 }

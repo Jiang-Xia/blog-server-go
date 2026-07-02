@@ -8,7 +8,7 @@ set -euo pipefail
 : "${DEPLOY_REMOTE_DIR:?}"
 
 DEPLOY_ECOSYSTEM_FILE="${DEPLOY_ECOSYSTEM_FILE:-ecosystem.config.js}"
-DEPLOY_PM2_APPS="${DEPLOY_PM2_APPS:-gateway,user,blog,rpg}"
+DEPLOY_PM2_APPS="${DEPLOY_PM2_APPS:-BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway}"
 DEPLOY_PUBLIC_DIR="${DEPLOY_PUBLIC_DIR:-${DEPLOY_REMOTE_DIR}/public}"
 
 source /tmp/release-lib.sh
@@ -96,4 +96,4 @@ release_prune_legacy_root
 release_pm2_reload_ecosystem "${DEPLOY_ECOSYSTEM_FILE}" "${DEPLOY_PM2_APPS}"
 
 echo "==> rollback done"
-release_pm2_verify_all "${DEPLOY_PM2_APPS}"
+release_pm2_verify_all_retry "${DEPLOY_PM2_APPS}" 5 3

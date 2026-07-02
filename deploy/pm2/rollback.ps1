@@ -38,7 +38,7 @@ $DeployPassword = $cfg['DEPLOY_PASSWORD']
 $RemoteDir = $cfg['DEPLOY_REMOTE_DIR']
 $HostKey = $cfg['DEPLOY_HOSTKEY']
 $PublicDir = $cfg['DEPLOY_PUBLIC_DIR']
-$Pm2Apps = if ($cfg['DEPLOY_PM2_APPS']) { $cfg['DEPLOY_PM2_APPS'] } else { 'gateway,user,blog,rpg' }
+$Pm2Apps = if ($cfg['DEPLOY_PM2_APPS']) { $cfg['DEPLOY_PM2_APPS'] } else { 'BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway' }
 $EcosystemFile = if ($cfg['DEPLOY_ECOSYSTEM_FILE']) { $cfg['DEPLOY_ECOSYSTEM_FILE'] } else { 'ecosystem.config.js' }
 
 if (-not $DeployHost -or -not $DeployUser -or -not $RemoteDir) {

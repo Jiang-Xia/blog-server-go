@@ -1,4 +1,4 @@
-# 一键启动 Plan 10 四服务（user → blog/rpg → gateway）
+﻿# 一键启动 Plan 10 四服务（user → blog/rpg → gateway）
 # 用法（blog-server-go 根目录）：
 #   .\scripts\dev-all.ps1              # 后台启动，日志写入 .dev-logs/
 #   .\scripts\dev-all.ps1 -Windows     # 四个独立 PowerShell 窗口（方便看日志）
@@ -10,6 +10,7 @@ param(
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
+. (Join-Path $PSScriptRoot "ps-console-utf8.ps1")
 
 $PidFile = Join-Path $Root ".dev-all.pids"
 $LogDir = Join-Path $Root ".dev-logs"
