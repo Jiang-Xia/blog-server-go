@@ -16,6 +16,7 @@ $pairs = @(
     @{ Example = "configs/docker/blog.example.yaml";        Target = "configs/docker/blog.yaml" }
     @{ Example = "configs/docker/rpg.example.yaml";         Target = "configs/docker/rpg.yaml" }
     @{ Example = "configs/docker/gateway.example.yaml";     Target = "configs/docker/gateway.yaml" }
+    @{ Example = "deploy/pm2/env.production.example";       Target = "deploy/pm2/env.production" }
 )
 
 $created = 0
@@ -49,5 +50,5 @@ foreach ($p in $pairs) {
 Write-Host ""
 Write-Host "done: created=$created skipped=$skipped"
 if ($created -gt 0) {
-    Write-Host "fill secrets in configs/*.yaml (see blog-server/.env.development and deploy/pm2/env.production)"
+    Write-Host "fill secrets: dev configs/*.yaml; prod deploy/pm2/env.production (format same as blog-server, maintained in this repo)"
 }

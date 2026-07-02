@@ -1,5 +1,5 @@
 # 生产配置模板（无密钥；复制为 monolith.production.yaml 后填写）
-# Nest 对照见 blog-server/deploy/pm2/env.production（该文件亦 gitignore，勿提交）
+# 字段对照见 deploy/pm2/env.production.example（PM2 部署用 env.production，格式与 blog-server 相同）
 # 启动：CONFIG_PATH=configs/monolith.production.yaml
 
 app:

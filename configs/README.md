@@ -9,7 +9,9 @@
 | `configs/monolith.yaml` | `monolith.example.yaml` | `.env.development` |
 | `configs/monolith.production.yaml` | `monolith.production.example.yaml` | `deploy/pm2/env.production` |
 | `configs/{user,blog,rpg,gateway}.yaml` | `*.example.yaml` | 同上（微服务拆分） |
-| `configs/docker/*.yaml` | `configs/docker/*.example.yaml` | Docker 内网主机名版 |
+| `configs/docker/*.yaml` | `configs/docker/*.example.yaml` | Docker 内网主机名版（含 MySQL/Redis 容器） |
+| `deploy/pm2/env.production` | `deploy/pm2/env.production.example` | 生产 PM2（与 Nest `deploy/pm2/env.production` **同格式**，本仓库独立维护） |
+| `deploy/pm2/configs/*.yaml` | （`deploy.ps1` 从 `env.production` 自动生成） | 打包进 tar |
 
 ## 首次初始化
 
@@ -20,8 +22,8 @@ pwsh scripts/setup-config.ps1
 
 然后按 `blog-server` 中已有真实配置填写：
 
-- 开发：`blog-server/.env.development`
-- 生产：`blog-server/deploy/pm2/env.production`
+- 开发：`blog-server/.env.development`（或本仓库 `configs/*.yaml`）
+- 生产 PM2：本仓库 `deploy/pm2/env.production`（格式对照 `blog-server/deploy/pm2/env.production`，可一次性拷贝后独立维护）
 
 也可直接把你现有的 `configs/*.yaml` 保留在本地——它们已被 `.gitignore`，不会被提交。
 

@@ -257,7 +257,8 @@ go run scripts/dev_login.go --token-only
 | 同步 Nest 数据 | `.\scripts\sync-data-x-my-blog.ps1` |
 | 本地配置 | `.\scripts\setup-config.ps1` |
 | JWT | `go run scripts/dev_login.go --token-only` |
-| Docker 全栈 | `docker compose -f deploy/docker/docker-compose.yml up -d --build` |
+| Docker 全栈（本地/CI，含 MySQL/Redis） | `docker compose -f deploy/docker/docker-compose.yml up -d --build` |
+| **生产远程部署（PM2 四服务）** | `powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1` 或 `make deploy` |
 | proto | `buf generate` |
 | 整理依赖 | `go mod tidy` |
 
@@ -286,7 +287,7 @@ $env:CGO_ENABLED=0; md bin -Force | Out-Null
 <details>
 <summary>Linux / macOS（make 对照）</summary>
 
-`make dev-all` · `make dev-all-stop` · `make dev` · `make bootstrap-db` · `make build` · `make proto` · `make ent-gen-user` · `make wire-user` · `make up` · `make down`
+`make dev-all` · `make dev-all-stop` · `make dev` · `make bootstrap-db` · `make build` · `make deploy` · `make proto` · `make ent-gen-user` · `make wire-user` · `make up` · `make down`
 
 </details>
 
@@ -333,7 +334,8 @@ blog-server-go/
 │   └── monolith/          # deprecated 单体回滚
 ├── configs/               # 本地 yaml（gitignore，见 *.example.yaml）
 ├── deploy/
-│   ├── docker/            # docker-compose、Dockerfile
+│   ├── docker/            # docker-compose（本地/CI 全栈）
+│   ├── pm2/               # 生产：二进制 + PM2 远程部署
 │   └── postman/           # newman 冒烟集合
 ├── docs/                  # Plan 01–11 阶段交付文档
 ├── scripts/               # bootstrap、dev-all、ws-smoke 等
@@ -359,4 +361,10 @@ blog-server-go/
 
 ## 生产部署
 
-docker-compose 与 Nginx 切流、Nest 下线 checklist 见 [`docs/10-微服务拆分与生产上线.md`](docs/10-微服务拆分与生产上线.md)。
+**2G 机器推荐**：Go 二进制 + PM2。生产配置见本仓库 `deploy/pm2/env.production`（格式与 blog-server 相同，独立维护）→ [`deploy/pm2/README.md`](deploy/pm2/README.md)。
+
+```powershell
+powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1
+```
+
+Nginx 切流、Nest 下线 checklist 见 [`docs/10-微服务拆分与生产上线.md`](docs/10-微服务拆分与生产上线.md)。本地全栈 Docker 见 [`deploy/docker/README.md`](deploy/docker/README.md)。

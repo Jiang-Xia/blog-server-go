@@ -1,4 +1,4 @@
-.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs tidy \
+.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs deploy rollback rollback-list sync-pm2-config tidy \
 	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run
 
 GO ?= go
@@ -95,6 +95,21 @@ down:
 
 logs:
 	docker compose -f $(COMPOSE_FILE) logs -f
+
+deploy:
+	powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1
+
+rollback:
+	powershell -ExecutionPolicy Bypass -File deploy/pm2/rollback.ps1
+
+rollback-list:
+	powershell -ExecutionPolicy Bypass -File deploy/pm2/rollback.ps1 -List
+
+sync-pm2-config:
+	go run ./scripts/sync_pm2_config_from_nest.go --env deploy/pm2/env.production
+
+bootstrap-prod-db:
+	go run ./scripts/bootstrap_prod_db.go --env deploy/pm2/env.production
 
 migrate-up:
 	$(GO) run scripts/bootstrap_x_my_blog.go

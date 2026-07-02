@@ -1,35 +1,67 @@
-// 清空 x_my_blog 并全量从 Nest 源库拷贝数据（表名加 x_ 前缀），随后 FLUSHDB 当前 Redis DB。
-// 用法：go run scripts/sync_data_x_my_blog.go
-// 环境变量 SYNC_SOURCE_DB 可指定源库，默认 myblog；SYNC_SKIP_REDIS=1 跳过 Redis 清空。
+// 全量从 Nest 源库拷贝数据到目标库 x_* 表；可选 FLUSHDB Redis。
+// 用法：go run scripts/sync_data_x_my_blog.go --env deploy/pm2/env.production --source myblog
 package main
 
 import (
 	"context"
 	"database/sql"
+	"flag"
 	"fmt"
 	"os"
 	"strings"
 	"time"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/pkg/nestenv"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/redis/rueidis"
 )
 
+func loadSyncConfig() (*config.Config, string, error) {
+	envPath := flag.String("env", "", "deploy/pm2/env.production 路径")
+	sourceDB := flag.String("source", "", "源库名")
+	flag.Parse()
+
+	src := strings.TrimSpace(*sourceDB)
+	if src == "" {
+		src = strings.TrimSpace(os.Getenv("SYNC_SOURCE_DB"))
+	}
+
+	if strings.TrimSpace(*envPath) != "" {
+		cfg, err := nestenv.ConfigFromFile(*envPath)
+		if err != nil {
+			return nil, "", err
+		}
+		if src == "" {
+			src = "myblog"
+		}
+		return cfg, src, nil
+	}
+
+	path := strings.TrimSpace(os.Getenv("CONFIG_PATH"))
+	if path == "" {
+		path = "configs/monolith.yaml"
+	}
+	cfg, err := config.MustLoad(path)
+	if err != nil {
+		return nil, "", err
+	}
+	if src == "" {
+		src = strings.TrimSpace(cfg.MySQL.SchemaSourceDatabase)
+	}
+	if src == "" {
+		src = "myblog"
+	}
+	return cfg, src, nil
+}
+
 func main() {
-	cfg, err := config.MustLoad("configs/monolith.yaml")
+	cfg, sourceDB, err := loadSyncConfig()
 	if err != nil {
 		panic(err)
 	}
 	prefix := cfg.MySQL.TablePrefixOrDefault()
 	targetDB := cfg.MySQL.Database
-	sourceDB := strings.TrimSpace(os.Getenv("SYNC_SOURCE_DB"))
-	if sourceDB == "" {
-		sourceDB = strings.TrimSpace(cfg.MySQL.SchemaSourceDatabase)
-	}
-	if sourceDB == "" {
-		sourceDB = "myblog"
-	}
 	skipRedis := strings.TrimSpace(os.Getenv("SYNC_SKIP_REDIS")) == "1"
 
 	base := cfg.MySQL
@@ -61,6 +93,9 @@ func main() {
 
 	fmt.Printf("truncating %d tables in %s ...\n", len(tables), targetDB)
 	for _, t := range tables {
+		if strings.HasPrefix(t, prefix) {
+			continue
+		}
 		dest := prefix + t
 		q := fmt.Sprintf("TRUNCATE TABLE `%s`.`%s`", targetDB, dest)
 		if _, err := db.ExecContext(ctx, q); err != nil {
@@ -71,6 +106,9 @@ func main() {
 	fmt.Printf("copying data %s -> %s (prefix %q) ...\n", sourceDB, targetDB, prefix)
 	var total int64
 	for _, t := range tables {
+		if strings.HasPrefix(t, prefix) {
+			continue
+		}
 		dest := prefix + t
 		q := fmt.Sprintf("INSERT INTO `%s`.`%s` SELECT * FROM `%s`.`%s`", targetDB, dest, sourceDB, t)
 		res, err := db.ExecContext(ctx, q)
@@ -82,10 +120,16 @@ func main() {
 		fmt.Printf("  %s.%s -> %s.%s (%d rows)\n", sourceDB, t, targetDB, dest, n)
 	}
 
-	if err := verifyCounts(ctx, db, sourceDB, targetDB, prefix, tables); err != nil {
+	filtered := make([]string, 0, len(tables))
+	for _, t := range tables {
+		if !strings.HasPrefix(t, prefix) {
+			filtered = append(filtered, t)
+		}
+	}
+	if err := verifyCounts(ctx, db, sourceDB, targetDB, prefix, filtered); err != nil {
 		panic(err)
 	}
-	fmt.Printf("mysql sync done: %d tables, %d rows copied\n", len(tables), total)
+	fmt.Printf("mysql sync done: %d tables, %d rows copied (source %s unchanged)\n", len(filtered), total, sourceDB)
 
 	if skipRedis {
 		fmt.Println("redis flush skipped (SYNC_SKIP_REDIS=1)")

@@ -1,0 +1,12 @@
+-- 可选：为已有 jxblog 账户授权 x_my_blog（root 手工执行，勿盲目 GRANT 到不存在的 user@host）
+--
+-- 1) 先查 Nest 实际使用的账户与 host：
+--    SELECT user, host FROM mysql.user WHERE user = 'jxblog';
+--
+-- 2) 将下面一行中的 host 改成上一步查到的（常见为 127.0.0.1 或 localhost），再执行：
+--
+-- GRANT ALL PRIVILEGES ON `x_my_blog`.* TO 'jxblog'@'127.0.0.1';
+-- FLUSH PRIVILEGES;
+--
+-- MySQL 8 若报 "You are not allowed to create a user with GRANT"：
+-- 说明该 user@host 不存在，不能靠 GRANT 隐式建用户；请 GRANT 到已存在的那一行 host。
