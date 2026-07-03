@@ -25,8 +25,7 @@
 | 15 RAG 知识库模块 | [15-RAG知识库模块.md](./15-RAG知识库模块.md) | ✅ 已交付 |
 | 16 百度统计代理 | [16-百度统计代理.md](./16-百度统计代理.md) | ✅ 已交付 |
 | 17 微服务跨服务协作补齐 | [17-微服务跨服务协作补齐.md](./17-微服务跨服务协作补齐.md) | ✅ 已交付 |
-| 18 领域事件发布补齐 | [18-领域事件发布补齐.md](./18-领域事件发布补齐.md) | ⏳ 待执行 |
-| 19 微信支付补齐 | [19-微信支付补齐.md](./19-微信支付补齐.md) | ⏳ 可选 |
+| 18 领域事件发布补齐 | [18-领域事件发布补齐.md](./18-领域事件发布补齐.md) | ✅ 已交付 |
 | — HTTP/gRPC 路由全表 | [api-routes.md](./api-routes.md) | ✅ 已维护 |
 | — Swagger / OpenAPI | [12-swagger-api-doc.md](./12-swagger-api-doc.md) | ✅ 已交付 |
 
@@ -39,6 +38,6 @@
 
 ## 相关
 
-- 十九阶段计划索引：[`.cursor/plans/README.md`](../.cursor/plans/README.md)（01–19）
+- 十八阶段计划索引：[`.cursor/plans/README.md`](../.cursor/plans/README.md)（01–18）
 - 架构总方案：[`blog-server-go-重构方案.md`](../blog-server-go-重构方案.md)
 - Agent 规则：[`.cursor/rules/hertz-13-plan-docs.mdc`](../.cursor/rules/hertz-13-plan-docs.mdc)

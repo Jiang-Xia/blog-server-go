@@ -14,6 +14,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/util"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/sensitive"
+	blogevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 	"github.com/google/uuid"
 )
@@ -32,6 +33,7 @@ type CommentService struct {
 	filter   sensitive.FilterService
 	redis    *redisutil.Store
 	notify   *notification.Service
+	events   domainEventPublisher
 }
 
 // NewCommentService 构造 CommentService。
@@ -43,6 +45,7 @@ func NewCommentService(
 	filter sensitive.FilterService,
 	redis *redisutil.Store,
 	notify *notification.Service,
+	publisher *blogevent.Publisher,
 ) *CommentService {
 	return &CommentService{
 		comments: comments,
@@ -52,6 +55,7 @@ func NewCommentService(
 		filter:   filter,
 		redis:    redis,
 		notify:   notify,
+		events:   publisher,
 	}
 }
 
@@ -66,9 +70,12 @@ func (s *CommentService) Create(ctx context.Context, uid int, articleID int, con
 	if err != nil {
 		return nil, err
 	}
-	if len(eval.HitWords) > 0 && eval.Rejected {
-		recordSensitiveHit(ctx, s.filter, "comment", "0", content, eval.HitWords, uidPtr, ipPtr)
-		return nil, errcode.WithMessage(errcode.InvalidParam, "内容包含违规词汇，无法发布")
+	if len(eval.HitWords) > 0 {
+		publishSensitiveWordHit(ctx, s.events, uid, eval.HpPenalty)
+		if eval.Rejected {
+			recordSensitiveHit(ctx, s.filter, "comment", "0", content, eval.HitWords, uidPtr, ipPtr)
+			return nil, errcode.WithMessage(errcode.InvalidParam, "内容包含违规词汇，无法发布")
+		}
 	}
 	// 审核状态：默认通过；命中需人工复核词时 pending（对齐 Nest 敏感词等级）。
 	status := "approved"
@@ -107,6 +114,11 @@ func (s *CommentService) Create(ctx context.Context, uid int, articleID int, con
 			"articleTitle": article.Title,
 			"fromUid":      uid,
 			"status":       status,
+		})
+	}
+	if uid > 0 && article.UID > 0 && s.events != nil {
+		s.events.Publish(ctx, blogevent.EventCommentCreated, blogevent.CommentCreatedPayload{
+			UID: uid, ArticleID: articleID, AuthorUID: article.UID,
 		})
 	}
 	return map[string]interface{}{"id": row.ID, "status": row.Status}, nil

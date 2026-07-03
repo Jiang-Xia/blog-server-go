@@ -12,6 +12,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/util"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	contentfilter "github.com/Jiang-Xia/blog-server-go/services/blog/internal/contentfilter"
+	blogevent "github.com/Jiang-Xia/blog-server-go/services/blog/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/pkg/pagination"
 	"github.com/google/uuid"
 )
@@ -23,6 +24,7 @@ type ReplyService struct {
 	articles *blogrepo.ArticleRepo
 	users    usersvc.UserService
 	filter   contentfilter.FilterService
+	events   domainEventPublisher
 }
 
 // NewReplyService 构造 ReplyService。
@@ -32,6 +34,7 @@ func NewReplyService(
 	articles *blogrepo.ArticleRepo,
 	users usersvc.UserService,
 	filter contentfilter.FilterService,
+	publisher *blogevent.Publisher,
 ) *ReplyService {
 	return &ReplyService{
 		replies:  replies,
@@ -39,6 +42,7 @@ func NewReplyService(
 		articles: articles,
 		users:    users,
 		filter:   filter,
+		events:   publisher,
 	}
 }
 
@@ -49,9 +53,12 @@ func (s *ReplyService) Create(ctx context.Context, uid int, parentID, replyUID, 
 	if err != nil {
 		return nil, err
 	}
-	if len(eval.HitWords) > 0 && eval.Rejected {
-		recordSensitiveHit(ctx, s.filter, "reply", "0", content, eval.HitWords, uidPtr, nil)
-		return nil, errcode.WithMessage(errcode.InvalidParam, "内容包含违规词汇，无法发布")
+	if len(eval.HitWords) > 0 {
+		publishSensitiveWordHit(ctx, s.events, uid, eval.HpPenalty)
+		if eval.Rejected {
+			recordSensitiveHit(ctx, s.filter, "reply", "0", content, eval.HitWords, uidPtr, nil)
+			return nil, errcode.WithMessage(errcode.InvalidParam, "内容包含违规词汇，无法发布")
+		}
 	}
 	status := "approved"
 	if eval.NeedReview {
@@ -74,6 +81,9 @@ func (s *ReplyService) Create(ctx context.Context, uid int, parentID, replyUID, 
 		return nil, err
 	}
 	recordSensitiveHit(ctx, s.filter, "reply", id, content, eval.HitWords, uidPtr, nil)
+	if uid > 0 && s.events != nil {
+		s.events.Publish(ctx, blogevent.EventReplyCreated, blogevent.ReplyCreatedPayload{UID: uid})
+	}
 	return row, nil
 }
 

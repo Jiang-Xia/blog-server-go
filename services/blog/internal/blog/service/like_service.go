@@ -6,6 +6,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/repo"
+	blogevent "github.com/Jiang-Xia/blog-server-go/services/blog/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent"
 	"github.com/google/uuid"
 )
@@ -14,11 +15,12 @@ import (
 type LikeService struct {
 	likes    *blogrepo.LikeRepo
 	articles *blogrepo.ArticleRepo
+	events   domainEventPublisher
 }
 
 // NewLikeService 构造 LikeService。
-func NewLikeService(likes *blogrepo.LikeRepo, articles *blogrepo.ArticleRepo) *LikeService {
-	return &LikeService{likes: likes, articles: articles}
+func NewLikeService(likes *blogrepo.LikeRepo, articles *blogrepo.ArticleRepo, publisher *blogevent.Publisher) *LikeService {
+	return &LikeService{likes: likes, articles: articles, events: publisher}
 }
 
 // UpdateLike 点赞或取消点赞。
@@ -45,6 +47,13 @@ func (s *LikeService) UpdateLike(ctx context.Context, articleID, uid int, ip str
 		})
 		if err != nil {
 			return err
+		}
+		if uid > 0 && s.events != nil {
+			if art, err := s.articles.GetByID(ctx, articleID); err == nil && art.UID > 0 {
+				s.events.Publish(ctx, blogevent.EventLikeCreated, blogevent.LikeCreatedPayload{
+					UID: uid, ArticleID: articleID, AuthorUID: art.UID, DailyLimit: 10,
+				})
+			}
 		}
 	} else {
 		row, err := s.likes.FindFirst(ctx, articleID, uid, ip)

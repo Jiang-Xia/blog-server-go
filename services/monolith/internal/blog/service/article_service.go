@@ -11,6 +11,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/domain"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
+	blogevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/admin"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
@@ -25,6 +26,7 @@ type ArticleService struct {
 	users      usersvc.UserService
 	userRepo   *userrepo.UserRepo
 	admin      *admin.Service
+	events     domainEventPublisher
 }
 
 // NewArticleService 构造 ArticleService。
@@ -36,6 +38,7 @@ func NewArticleService(
 	users usersvc.UserService,
 	userRepo *userrepo.UserRepo,
 	adminSvc *admin.Service,
+	publisher *blogevent.Publisher,
 ) *ArticleService {
 	return &ArticleService{
 		articles:   articles,
@@ -45,6 +48,7 @@ func NewArticleService(
 		users:      users,
 		userRepo:   userRepo,
 		admin:      adminSvc,
+		events:     publisher,
 	}
 }
 
@@ -213,6 +217,11 @@ func (s *ArticleService) Create(ctx context.Context, uid int, in domain.CreateAr
 		tagIDs[i] = t.ID
 	}
 	_ = s.articles.ReplaceTags(ctx, created.ID, tagIDs)
+	if status == "publish" && s.events != nil {
+		s.events.Publish(ctx, blogevent.EventArticlePublished, blogevent.ArticlePublishedPayload{
+			UID: uid, ArticleID: created.ID,
+		})
+	}
 	return created, nil
 }
 
@@ -230,6 +239,8 @@ func (s *ArticleService) Edit(ctx context.Context, callerUID int, in domain.Edit
 			return nil, err
 		}
 	}
+	prevStatus := row.Status
+	prevIsDelete := row.IsDelete
 	fields := map[string]interface{}{"uTime": time.Now().Format(time.RFC3339)}
 	if in.Title != nil {
 		exists, err := s.articles.ExistsByTitle(ctx, *in.Title, in.ID)
@@ -296,6 +307,7 @@ func (s *ArticleService) Edit(ctx context.Context, callerUID int, in domain.Edit
 		}
 		_ = s.articles.ReplaceTags(ctx, in.ID, tagIDs)
 	}
+	publishArticleLifecycleEvents(ctx, s.events, updated, prevStatus, prevIsDelete)
 	return map[string]interface{}{"info": updated}, nil
 }
 
@@ -313,6 +325,11 @@ func (s *ArticleService) Delete(ctx context.Context, callerUID, id int) (interfa
 			return nil, err
 		}
 	}
+	if s.events != nil {
+		s.events.Publish(ctx, blogevent.EventArticleDeleted, blogevent.ArticleLifecyclePayload{
+			UID: row.UID, ArticleID: row.ID,
+		})
+	}
 	if err := s.articles.HardDelete(ctx, id); err != nil {
 		return nil, err
 	}
@@ -321,7 +338,26 @@ func (s *ArticleService) Delete(ctx context.Context, callerUID, id int) (interfa
 
 // UpdateViews 阅读量 +1。
 func (s *ArticleService) UpdateViews(ctx context.Context, id int) (bool, error) {
-	return s.articles.IncrementViews(ctx, id)
+	row, err := s.articles.GetByID(ctx, id)
+	if err != nil {
+		if ent.IsNotFound(err) {
+			return false, errcode.WithMessage(errcode.NotFound, "文章不存在")
+		}
+		return false, err
+	}
+	if row.IsDelete {
+		return false, nil
+	}
+	ok, err := s.articles.IncrementViews(ctx, id)
+	if err != nil || !ok {
+		return ok, err
+	}
+	if s.events != nil {
+		s.events.Publish(ctx, blogevent.EventArticleViewed, blogevent.ArticleViewedPayload{
+			ArticleID: row.ID, AuthorUID: row.UID,
+		})
+	}
+	return true, nil
 }
 
 // UpdateField 禁用/置顶等字段更新。
@@ -338,11 +374,14 @@ func (s *ArticleService) UpdateField(ctx context.Context, callerUID int, id int,
 			return nil, err
 		}
 	}
+	prevStatus := row.Status
+	prevIsDelete := row.IsDelete
 	fields["uTime"] = time.Now().Format(time.RFC3339)
 	updated, err := s.articles.UpdateFields(ctx, id, fields)
 	if err != nil {
 		return nil, err
 	}
+	publishArticleLifecycleEvents(ctx, s.events, updated, prevStatus, prevIsDelete)
 	return updated, nil
 }
 

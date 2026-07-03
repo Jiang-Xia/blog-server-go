@@ -15,6 +15,7 @@ import (
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/util"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/sensitive"
+	blogevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 )
 
@@ -28,6 +29,7 @@ type MsgboardService struct {
 	msgboards *blogrepo.MsgboardRepo
 	filter    sensitive.FilterService
 	redis     *redisutil.Store
+	events    domainEventPublisher
 }
 
 // NewMsgboardService 构造 MsgboardService。
@@ -35,8 +37,9 @@ func NewMsgboardService(
 	msgboards *blogrepo.MsgboardRepo,
 	filter sensitive.FilterService,
 	redis *redisutil.Store,
+	publisher *blogevent.Publisher,
 ) *MsgboardService {
-	return &MsgboardService{msgboards: msgboards, filter: filter, redis: redis}
+	return &MsgboardService{msgboards: msgboards, filter: filter, redis: redis, events: publisher}
 }
 
 // Create 创建留言。
@@ -46,14 +49,18 @@ func (s *MsgboardService) Create(ctx context.Context, in map[string]interface{},
 	}
 	ip = normalizeIP(ip)
 	commentText := strField(in, "comment")
+	uid := intField(in, "uid", 0)
 	eval, err := s.filter.EvaluateContent(ctx, commentText)
 	if err != nil {
 		return nil, err
 	}
-	if len(eval.HitWords) > 0 && eval.Rejected {
-		ipPtr := &ip
-		recordSensitiveHit(ctx, s.filter, "msgboard", "0", commentText, eval.HitWords, nil, ipPtr)
-		return nil, errcode.WithMessage(errcode.InvalidParam, "内容包含违规词汇，无法发布")
+	if len(eval.HitWords) > 0 {
+		publishSensitiveWordHit(ctx, s.events, uid, eval.HpPenalty)
+		if eval.Rejected {
+			ipPtr := &ip
+			recordSensitiveHit(ctx, s.filter, "msgboard", "0", commentText, eval.HitWords, intPtr(uid), ipPtr)
+			return nil, errcode.WithMessage(errcode.InvalidParam, "内容包含违规词汇，无法发布")
+		}
 	}
 	status := "approved"
 	if eval.NeedReview {
@@ -94,7 +101,10 @@ func (s *MsgboardService) Create(ctx context.Context, in map[string]interface{},
 		return nil, err
 	}
 	ipPtr := &ip
-	recordSensitiveHit(ctx, s.filter, "msgboard", fmt.Sprintf("%d", row.ID), commentText, eval.HitWords, nil, ipPtr)
+	recordSensitiveHit(ctx, s.filter, "msgboard", fmt.Sprintf("%d", row.ID), commentText, eval.HitWords, intPtr(uid), ipPtr)
+	if uid > 0 && s.events != nil {
+		s.events.Publish(ctx, blogevent.EventMsgboardCreated, blogevent.MsgboardCreatedPayload{UID: uid})
+	}
 	return row, nil
 }
 
@@ -220,4 +230,11 @@ func strPtr(s string) *string {
 		return nil
 	}
 	return &s
+}
+
+func intPtr(v int) *int {
+	if v <= 0 {
+		return nil
+	}
+	return &v
 }

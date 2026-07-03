@@ -56,19 +56,20 @@ func InitializeApp(cfgPath string) (*App, error) {
 	}
 	articleUserPort := provideArticleUserPort(crossClient)
 	articleAdminPort := provideArticleAdminPort(crossClient)
-	articleService := service.NewArticleService(articleRepo, categoryService, tagService, commentRepo, crossClient, articleUserPort, articleAdminPort)
+	publisher := event.NewPublisher(rueidisClient, zapLogger)
+	articleService := service.NewArticleService(articleRepo, categoryService, tagService, commentRepo, crossClient, articleUserPort, articleAdminPort, publisher)
 	jwtauthService := provideJWT(configConfig)
 	articleHandler := handler.NewArticleHandler(articleService, jwtauthService)
 	categoryHandler := handler.NewCategoryHandler(categoryService, jwtauthService)
 	tagHandler := handler.NewTagHandler(tagService, jwtauthService)
 	replyRepo := repo.NewReplyRepo(client)
 	filterService := provideContentFilter(crossClient)
-	replyService := service.NewReplyService(replyRepo, commentRepo, articleRepo, crossClient, filterService)
+	replyService := service.NewReplyService(replyRepo, commentRepo, articleRepo, crossClient, filterService, publisher)
 	store := provideRedisStore(rueidisClient)
 	hub := ws.NewHub()
 	realtimePusher := ws.NewRealtimePusher(hub, rueidisClient)
 	notificationService := notification.NewService(client, realtimePusher)
-	commentService := service.NewCommentService(commentRepo, replyService, articleRepo, crossClient, filterService, store, notificationService)
+	commentService := service.NewCommentService(commentRepo, replyService, articleRepo, crossClient, filterService, store, notificationService, publisher)
 	banChecker, err := provideBanChecker(configConfig)
 	if err != nil {
 		return nil, err
@@ -76,13 +77,13 @@ func InitializeApp(cfgPath string) (*App, error) {
 	commentHandler := handler.NewCommentHandler(commentService, jwtauthService, banChecker)
 	replyHandler := handler.NewReplyHandler(replyService, jwtauthService, banChecker)
 	likeRepo := repo.NewLikeRepo(client)
-	likeService := service.NewLikeService(likeRepo, articleRepo)
+	likeService := service.NewLikeService(likeRepo, articleRepo, publisher)
 	likeHandler := handler.NewLikeHandler(likeService, jwtauthService)
 	collectRepo := repo.NewCollectRepo(client)
-	collectService := service.NewCollectService(collectRepo, articleRepo, categoryService, tagService)
+	collectService := service.NewCollectService(collectRepo, articleRepo, categoryService, tagService, publisher)
 	collectHandler := handler.NewCollectHandler(collectService, jwtauthService)
 	msgboardRepo := repo.NewMsgboardRepo(client)
-	msgboardService := service.NewMsgboardService(msgboardRepo, filterService, store)
+	msgboardService := service.NewMsgboardService(msgboardRepo, filterService, store, publisher)
 	msgboardHandler := handler.NewMsgboardHandler(msgboardService, jwtauthService)
 	linkRepo := repo.NewLinkRepo(client)
 	linkService := service.NewLinkService(linkRepo)
@@ -101,7 +102,6 @@ func InitializeApp(cfgPath string) (*App, error) {
 	if err != nil {
 		return nil, err
 	}
-	publisher := event.NewPublisher(rueidisClient, zapLogger)
 	runner := provideScheduledTaskJobs(client, configConfig, articleRepo, linkRepo, scheduledtaskRepo, crossDB, systemEmailSender, publisher)
 	scheduledtaskService := provideScheduledTaskService(scheduledtaskRepo, crossDB, configConfig, store, runner, zapLogger, resourcesService)
 	scheduledTaskHandler := handler.NewScheduledTaskHandler(scheduledtaskService, jwtauthService)

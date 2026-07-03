@@ -7,6 +7,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
+	blogevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 	"github.com/google/uuid"
 )
@@ -17,6 +18,7 @@ type CollectService struct {
 	articles   *blogrepo.ArticleRepo
 	categories *CategoryService
 	tags       *TagService
+	events     domainEventPublisher
 }
 
 // NewCollectService 构造 CollectService。
@@ -25,12 +27,14 @@ func NewCollectService(
 	articles *blogrepo.ArticleRepo,
 	categories *CategoryService,
 	tags *TagService,
+	publisher *blogevent.Publisher,
 ) *CollectService {
 	return &CollectService{
 		collects:   collects,
 		articles:   articles,
 		categories: categories,
 		tags:       tags,
+		events:     publisher,
 	}
 }
 
@@ -53,6 +57,13 @@ func (s *CollectService) ToggleCollect(ctx context.Context, articleID, uid int) 
 	})
 	if err != nil {
 		return nil, err
+	}
+	if s.events != nil {
+		if art, err := s.articles.GetByID(ctx, articleID); err == nil && art.UID > 0 {
+			s.events.Publish(ctx, blogevent.EventCollectCreated, blogevent.CollectCreatedPayload{
+				UID: uid, ArticleID: articleID, AuthorUID: art.UID, DailyLimit: 15,
+			})
+		}
 	}
 	return map[string]interface{}{"collected": true}, nil
 }

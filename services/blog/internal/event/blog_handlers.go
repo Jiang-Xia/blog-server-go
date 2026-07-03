@@ -8,12 +8,6 @@ import (
 	"go.uber.org/zap"
 )
 
-// ArticlePublishedPayload 文章发布事件 payload。
-type ArticlePublishedPayload struct {
-	UID       int `json:"uid"`
-	ArticleID int `json:"articleId"`
-}
-
 // RegisterBlogHandlers 注册 blog 域 Stream 消费者（骨架；RPG 事件 Plan 09 接入）。
 func RegisterBlogHandlers(c *Consumer, log *zap.Logger) {
 	c.Register(EventArticlePublished, func(ctx context.Context, raw json.RawMessage) error {
