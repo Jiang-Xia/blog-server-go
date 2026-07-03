@@ -9,9 +9,12 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/collect"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/comment"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/file"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/knowledgechunk"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/like"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/link"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/msgboard"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragindexjob"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragquerylog"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/reply"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/scheduledtask"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/schema"
@@ -125,6 +128,24 @@ func init() {
 	fileDescIsFolder := fileFields[2].Descriptor()
 	// file.DefaultIsFolder holds the default value on creation for the isFolder field.
 	file.DefaultIsFolder = fileDescIsFolder.Default.(int)
+	knowledgechunkFields := schema.KnowledgeChunk{}.Fields()
+	_ = knowledgechunkFields
+	// knowledgechunkDescStatus is the schema descriptor for status field.
+	knowledgechunkDescStatus := knowledgechunkFields[9].Descriptor()
+	// knowledgechunk.DefaultStatus holds the default value on creation for the status field.
+	knowledgechunk.DefaultStatus = knowledgechunkDescStatus.Default.(string)
+	// knowledgechunkDescSourceType is the schema descriptor for source_type field.
+	knowledgechunkDescSourceType := knowledgechunkFields[13].Descriptor()
+	// knowledgechunk.DefaultSourceType holds the default value on creation for the source_type field.
+	knowledgechunk.DefaultSourceType = knowledgechunkDescSourceType.Default.(string)
+	// knowledgechunkDescSourceKey is the schema descriptor for source_key field.
+	knowledgechunkDescSourceKey := knowledgechunkFields[14].Descriptor()
+	// knowledgechunk.DefaultSourceKey holds the default value on creation for the source_key field.
+	knowledgechunk.DefaultSourceKey = knowledgechunkDescSourceKey.Default.(string)
+	// knowledgechunkDescContentType is the schema descriptor for content_type field.
+	knowledgechunkDescContentType := knowledgechunkFields[16].Descriptor()
+	// knowledgechunk.DefaultContentType holds the default value on creation for the content_type field.
+	knowledgechunk.DefaultContentType = knowledgechunkDescContentType.Default.(string)
 	likeFields := schema.Like{}.Fields()
 	_ = likeFields
 	// likeDescUID is the schema descriptor for uid field.
@@ -181,6 +202,30 @@ func init() {
 	msgboardDescStatus := msgboardFields[14].Descriptor()
 	// msgboard.DefaultStatus holds the default value on creation for the status field.
 	msgboard.DefaultStatus = msgboardDescStatus.Default.(string)
+	ragindexjobFields := schema.RagIndexJob{}.Fields()
+	_ = ragindexjobFields
+	// ragindexjobDescArticleID is the schema descriptor for article_id field.
+	ragindexjobDescArticleID := ragindexjobFields[1].Descriptor()
+	// ragindexjob.DefaultArticleID holds the default value on creation for the article_id field.
+	ragindexjob.DefaultArticleID = ragindexjobDescArticleID.Default.(int)
+	// ragindexjobDescStatus is the schema descriptor for status field.
+	ragindexjobDescStatus := ragindexjobFields[2].Descriptor()
+	// ragindexjob.DefaultStatus holds the default value on creation for the status field.
+	ragindexjob.DefaultStatus = ragindexjobDescStatus.Default.(string)
+	// ragindexjobDescChunkCount is the schema descriptor for chunk_count field.
+	ragindexjobDescChunkCount := ragindexjobFields[3].Descriptor()
+	// ragindexjob.DefaultChunkCount holds the default value on creation for the chunk_count field.
+	ragindexjob.DefaultChunkCount = ragindexjobDescChunkCount.Default.(int)
+	ragquerylogFields := schema.RagQueryLog{}.Fields()
+	_ = ragquerylogFields
+	// ragquerylogDescLatencyMs is the schema descriptor for latency_ms field.
+	ragquerylogDescLatencyMs := ragquerylogFields[5].Descriptor()
+	// ragquerylog.DefaultLatencyMs holds the default value on creation for the latency_ms field.
+	ragquerylog.DefaultLatencyMs = ragquerylogDescLatencyMs.Default.(int)
+	// ragquerylogDescStatus is the schema descriptor for status field.
+	ragquerylogDescStatus := ragquerylogFields[6].Descriptor()
+	// ragquerylog.DefaultStatus holds the default value on creation for the status field.
+	ragquerylog.DefaultStatus = ragquerylogDescStatus.Default.(string)
 	replyMixin := schema.Reply{}.Mixin()
 	replyMixinFields0 := replyMixin[0].Fields()
 	_ = replyMixinFields0

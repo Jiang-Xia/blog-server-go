@@ -144,4 +144,19 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	st.GET("/backups/download", jwtRequired, deps.ScheduledTask.DownloadLatestBackup)
 	st.GET("/backups/:fileName/download", jwtRequired, deps.ScheduledTask.DownloadBackup)
 	st.GET("", jwtRequired, deps.ScheduledTask.ListLogs)
+
+	// --- RAG 知识库 ---
+	if deps.Rag != nil {
+		ragGroup := v1.Group("/rag")
+		ragGroup.GET("/quota", jwtRequired, deps.Rag.Quota)
+		ragGroup.GET("/status", deps.Rag.Status)
+		ragGroup.POST("/query-stream", jwtRequired, deps.Rag.QueryStream)
+
+		adminRag := v1.Group("/admin/rag")
+		adminRag.GET("/stats", jwtRequired, deps.Rag.AdminStats)
+		adminRag.GET("/query-logs", jwtRequired, deps.Rag.AdminQueryLogs)
+		adminRag.GET("/index-jobs", jwtRequired, deps.Rag.AdminIndexJobs)
+		adminRag.GET("/chunks", jwtRequired, deps.Rag.AdminChunks)
+		adminRag.POST("/reindex", jwtRequired, deps.Rag.AdminReindex)
+	}
 }

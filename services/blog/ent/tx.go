@@ -24,6 +24,8 @@ type Tx struct {
 	Comment *CommentClient
 	// File is the client for interacting with the File builders.
 	File *FileClient
+	// KnowledgeChunk is the client for interacting with the KnowledgeChunk builders.
+	KnowledgeChunk *KnowledgeChunkClient
 	// Like is the client for interacting with the Like builders.
 	Like *LikeClient
 	// Link is the client for interacting with the Link builders.
@@ -32,6 +34,10 @@ type Tx struct {
 	Msgboard *MsgboardClient
 	// MyFile is the client for interacting with the MyFile builders.
 	MyFile *MyFileClient
+	// RagIndexJob is the client for interacting with the RagIndexJob builders.
+	RagIndexJob *RagIndexJobClient
+	// RagQueryLog is the client for interacting with the RagQueryLog builders.
+	RagQueryLog *RagQueryLogClient
 	// Reply is the client for interacting with the Reply builders.
 	Reply *ReplyClient
 	// ScheduledTask is the client for interacting with the ScheduledTask builders.
@@ -179,10 +185,13 @@ func (tx *Tx) init() {
 	tx.Collect = NewCollectClient(tx.config)
 	tx.Comment = NewCommentClient(tx.config)
 	tx.File = NewFileClient(tx.config)
+	tx.KnowledgeChunk = NewKnowledgeChunkClient(tx.config)
 	tx.Like = NewLikeClient(tx.config)
 	tx.Link = NewLinkClient(tx.config)
 	tx.Msgboard = NewMsgboardClient(tx.config)
 	tx.MyFile = NewMyFileClient(tx.config)
+	tx.RagIndexJob = NewRagIndexJobClient(tx.config)
+	tx.RagQueryLog = NewRagQueryLogClient(tx.config)
 	tx.Reply = NewReplyClient(tx.config)
 	tx.ScheduledTask = NewScheduledTaskClient(tx.config)
 	tx.ScheduledTaskLog = NewScheduledTaskLogClient(tx.config)

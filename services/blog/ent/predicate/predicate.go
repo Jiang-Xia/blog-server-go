@@ -24,6 +24,9 @@ type Comment func(*sql.Selector)
 // File is the predicate function for file builders.
 type File func(*sql.Selector)
 
+// KnowledgeChunk is the predicate function for knowledgechunk builders.
+type KnowledgeChunk func(*sql.Selector)
+
 // Like is the predicate function for like builders.
 type Like func(*sql.Selector)
 
@@ -35,6 +38,12 @@ type Msgboard func(*sql.Selector)
 
 // MyFile is the predicate function for myfile builders.
 type MyFile func(*sql.Selector)
+
+// RagIndexJob is the predicate function for ragindexjob builders.
+type RagIndexJob func(*sql.Selector)
+
+// RagQueryLog is the predicate function for ragquerylog builders.
+type RagQueryLog func(*sql.Selector)
 
 // Reply is the predicate function for reply builders.
 type Reply func(*sql.Selector)

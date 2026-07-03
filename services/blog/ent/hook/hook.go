@@ -81,6 +81,18 @@ func (f FileFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error)
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.FileMutation", m)
 }
 
+// The KnowledgeChunkFunc type is an adapter to allow the use of ordinary
+// function as KnowledgeChunk mutator.
+type KnowledgeChunkFunc func(context.Context, *ent.KnowledgeChunkMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f KnowledgeChunkFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.KnowledgeChunkMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.KnowledgeChunkMutation", m)
+}
+
 // The LikeFunc type is an adapter to allow the use of ordinary
 // function as Like mutator.
 type LikeFunc func(context.Context, *ent.LikeMutation) (ent.Value, error)
@@ -127,6 +139,30 @@ func (f MyFileFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, erro
 		return f(ctx, mv)
 	}
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MyFileMutation", m)
+}
+
+// The RagIndexJobFunc type is an adapter to allow the use of ordinary
+// function as RagIndexJob mutator.
+type RagIndexJobFunc func(context.Context, *ent.RagIndexJobMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f RagIndexJobFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.RagIndexJobMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.RagIndexJobMutation", m)
+}
+
+// The RagQueryLogFunc type is an adapter to allow the use of ordinary
+// function as RagQueryLog mutator.
+type RagQueryLogFunc func(context.Context, *ent.RagQueryLogMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f RagQueryLogFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.RagQueryLogMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.RagQueryLogMutation", m)
 }
 
 // The ReplyFunc type is an adapter to allow the use of ordinary

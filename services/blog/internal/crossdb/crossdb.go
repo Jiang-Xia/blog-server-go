@@ -83,3 +83,32 @@ func (c *CrossDB) DeleteOldTaskLogs(ctx context.Context, before interface{}) (in
 	n, _ := res.RowsAffected()
 	return int(n), nil
 }
+
+// IsUserActive 作者是否 active 且未删除（RAG 索引过滤）。
+func (c *CrossDB) IsUserActive(ctx context.Context, uid int) (bool, error) {
+	var n int
+	err := c.db.QueryRowContext(ctx,
+		"SELECT COUNT(*) FROM x_user WHERE id = ? AND status = 'active' AND isDelete = 0", uid).Scan(&n)
+	return n > 0, err
+}
+
+// ArticleTagLabels 文章标签 label 列表。
+func (c *CrossDB) ArticleTagLabels(ctx context.Context, articleID int) ([]string, error) {
+	rows, err := c.db.QueryContext(ctx,
+		`SELECT t.label FROM x_tag t
+		 INNER JOIN x_article_tags_tag j ON j.tagId = t.id
+		 WHERE j.articleId = ?`, articleID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var labels []string
+	for rows.Next() {
+		var label string
+		if err := rows.Scan(&label); err != nil {
+			return nil, err
+		}
+		labels = append(labels, label)
+	}
+	return labels, rows.Err()
+}

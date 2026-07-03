@@ -346,6 +346,26 @@
 
 > Gateway：`scheduled-task/*` 显式代理 → blog-service。
 
+### 3.16 RAG 知识库 `/api/v1/rag`（Plan 15）
+
+| 方法 | 路径 | 鉴权 | 说明 |
+|------|------|------|------|
+| GET | `/api/v1/rag/quota` | JWT | 今日问答配额 |
+| GET | `/api/v1/rag/status` | 公开 | enabled、chunkCount、embedding 模式 |
+| POST | `/api/v1/rag/query-stream` | JWT | SSE（AI SDK UI Message Stream） |
+
+### 3.17 RAG 管理 `/api/v1/admin/rag`（Plan 15）
+
+| 方法 | 路径 | 鉴权 | 说明 |
+|------|------|------|------|
+| GET | `/api/v1/admin/rag/stats` | JWT+RBAC | 概览统计 |
+| GET | `/api/v1/admin/rag/query-logs` | JWT+RBAC | 查询日志分页 |
+| GET | `/api/v1/admin/rag/index-jobs` | JWT+RBAC | 索引任务 |
+| GET | `/api/v1/admin/rag/chunks` | JWT+RBAC | 知识块列表 |
+| POST | `/api/v1/admin/rag/reindex` | JWT+RBAC | 全量或单篇重建 |
+
+> Gateway：`rag/*`、`admin/rag/*` 显式代理 → blog-service（`admin/rag` 优先于 user-service 的 `admin/` 路由）。
+
 ---
 
 ## 4. rpg-service（`:5003`）

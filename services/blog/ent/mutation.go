@@ -17,10 +17,13 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/collect"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/comment"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/file"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/knowledgechunk"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/like"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/link"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/msgboard"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/predicate"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragindexjob"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragquerylog"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/reply"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/scheduledtask"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/scheduledtasklog"
@@ -43,10 +46,13 @@ const (
 	TypeCollect          = "Collect"
 	TypeComment          = "Comment"
 	TypeFile             = "File"
+	TypeKnowledgeChunk   = "KnowledgeChunk"
 	TypeLike             = "Like"
 	TypeLink             = "Link"
 	TypeMsgboard         = "Msgboard"
 	TypeMyFile           = "MyFile"
+	TypeRagIndexJob      = "RagIndexJob"
+	TypeRagQueryLog      = "RagQueryLog"
 	TypeReply            = "Reply"
 	TypeScheduledTask    = "ScheduledTask"
 	TypeScheduledTaskLog = "ScheduledTaskLog"
@@ -5305,6 +5311,1383 @@ func (m *FileMutation) ResetEdge(name string) error {
 	return fmt.Errorf("unknown File edge %s", name)
 }
 
+// KnowledgeChunkMutation represents an operation that mutates the KnowledgeChunk nodes in the graph.
+type KnowledgeChunkMutation struct {
+	config
+	op                   Op
+	typ                  string
+	id                   *int
+	article_id           *int
+	addarticle_id        *int
+	chunk_index          *int
+	addchunk_index       *int
+	title                *string
+	content              *string
+	url                  *string
+	category             *string
+	tags                 *[]string
+	appendtags           []string
+	embedding_json       *[]float64
+	appendembedding_json []float64
+	status               *string
+	indexed_at           *time.Time
+	create_at            *time.Time
+	update_at            *time.Time
+	source_type          *string
+	source_key           *string
+	heading_path         *string
+	content_type         *string
+	search_text          *string
+	clearedFields        map[string]struct{}
+	done                 bool
+	oldValue             func(context.Context) (*KnowledgeChunk, error)
+	predicates           []predicate.KnowledgeChunk
+}
+
+var _ ent.Mutation = (*KnowledgeChunkMutation)(nil)
+
+// knowledgechunkOption allows management of the mutation configuration using functional options.
+type knowledgechunkOption func(*KnowledgeChunkMutation)
+
+// newKnowledgeChunkMutation creates new mutation for the KnowledgeChunk entity.
+func newKnowledgeChunkMutation(c config, op Op, opts ...knowledgechunkOption) *KnowledgeChunkMutation {
+	m := &KnowledgeChunkMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeKnowledgeChunk,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withKnowledgeChunkID sets the ID field of the mutation.
+func withKnowledgeChunkID(id int) knowledgechunkOption {
+	return func(m *KnowledgeChunkMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *KnowledgeChunk
+		)
+		m.oldValue = func(ctx context.Context) (*KnowledgeChunk, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().KnowledgeChunk.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withKnowledgeChunk sets the old KnowledgeChunk of the mutation.
+func withKnowledgeChunk(node *KnowledgeChunk) knowledgechunkOption {
+	return func(m *KnowledgeChunkMutation) {
+		m.oldValue = func(context.Context) (*KnowledgeChunk, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m KnowledgeChunkMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m KnowledgeChunkMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// SetID sets the value of the id field. Note that this
+// operation is only accepted on creation of KnowledgeChunk entities.
+func (m *KnowledgeChunkMutation) SetID(id int) {
+	m.id = &id
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *KnowledgeChunkMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *KnowledgeChunkMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().KnowledgeChunk.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetArticleID sets the "article_id" field.
+func (m *KnowledgeChunkMutation) SetArticleID(i int) {
+	m.article_id = &i
+	m.addarticle_id = nil
+}
+
+// ArticleID returns the value of the "article_id" field in the mutation.
+func (m *KnowledgeChunkMutation) ArticleID() (r int, exists bool) {
+	v := m.article_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldArticleID returns the old "article_id" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldArticleID(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldArticleID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldArticleID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldArticleID: %w", err)
+	}
+	return oldValue.ArticleID, nil
+}
+
+// AddArticleID adds i to the "article_id" field.
+func (m *KnowledgeChunkMutation) AddArticleID(i int) {
+	if m.addarticle_id != nil {
+		*m.addarticle_id += i
+	} else {
+		m.addarticle_id = &i
+	}
+}
+
+// AddedArticleID returns the value that was added to the "article_id" field in this mutation.
+func (m *KnowledgeChunkMutation) AddedArticleID() (r int, exists bool) {
+	v := m.addarticle_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetArticleID resets all changes to the "article_id" field.
+func (m *KnowledgeChunkMutation) ResetArticleID() {
+	m.article_id = nil
+	m.addarticle_id = nil
+}
+
+// SetChunkIndex sets the "chunk_index" field.
+func (m *KnowledgeChunkMutation) SetChunkIndex(i int) {
+	m.chunk_index = &i
+	m.addchunk_index = nil
+}
+
+// ChunkIndex returns the value of the "chunk_index" field in the mutation.
+func (m *KnowledgeChunkMutation) ChunkIndex() (r int, exists bool) {
+	v := m.chunk_index
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldChunkIndex returns the old "chunk_index" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldChunkIndex(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldChunkIndex is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldChunkIndex requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldChunkIndex: %w", err)
+	}
+	return oldValue.ChunkIndex, nil
+}
+
+// AddChunkIndex adds i to the "chunk_index" field.
+func (m *KnowledgeChunkMutation) AddChunkIndex(i int) {
+	if m.addchunk_index != nil {
+		*m.addchunk_index += i
+	} else {
+		m.addchunk_index = &i
+	}
+}
+
+// AddedChunkIndex returns the value that was added to the "chunk_index" field in this mutation.
+func (m *KnowledgeChunkMutation) AddedChunkIndex() (r int, exists bool) {
+	v := m.addchunk_index
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetChunkIndex resets all changes to the "chunk_index" field.
+func (m *KnowledgeChunkMutation) ResetChunkIndex() {
+	m.chunk_index = nil
+	m.addchunk_index = nil
+}
+
+// SetTitle sets the "title" field.
+func (m *KnowledgeChunkMutation) SetTitle(s string) {
+	m.title = &s
+}
+
+// Title returns the value of the "title" field in the mutation.
+func (m *KnowledgeChunkMutation) Title() (r string, exists bool) {
+	v := m.title
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldTitle returns the old "title" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldTitle(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldTitle is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldTitle requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldTitle: %w", err)
+	}
+	return oldValue.Title, nil
+}
+
+// ResetTitle resets all changes to the "title" field.
+func (m *KnowledgeChunkMutation) ResetTitle() {
+	m.title = nil
+}
+
+// SetContent sets the "content" field.
+func (m *KnowledgeChunkMutation) SetContent(s string) {
+	m.content = &s
+}
+
+// Content returns the value of the "content" field in the mutation.
+func (m *KnowledgeChunkMutation) Content() (r string, exists bool) {
+	v := m.content
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldContent returns the old "content" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldContent(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldContent is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldContent requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldContent: %w", err)
+	}
+	return oldValue.Content, nil
+}
+
+// ResetContent resets all changes to the "content" field.
+func (m *KnowledgeChunkMutation) ResetContent() {
+	m.content = nil
+}
+
+// SetURL sets the "url" field.
+func (m *KnowledgeChunkMutation) SetURL(s string) {
+	m.url = &s
+}
+
+// URL returns the value of the "url" field in the mutation.
+func (m *KnowledgeChunkMutation) URL() (r string, exists bool) {
+	v := m.url
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldURL returns the old "url" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldURL(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldURL is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldURL requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldURL: %w", err)
+	}
+	return oldValue.URL, nil
+}
+
+// ResetURL resets all changes to the "url" field.
+func (m *KnowledgeChunkMutation) ResetURL() {
+	m.url = nil
+}
+
+// SetCategory sets the "category" field.
+func (m *KnowledgeChunkMutation) SetCategory(s string) {
+	m.category = &s
+}
+
+// Category returns the value of the "category" field in the mutation.
+func (m *KnowledgeChunkMutation) Category() (r string, exists bool) {
+	v := m.category
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCategory returns the old "category" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldCategory(ctx context.Context) (v *string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCategory is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCategory requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCategory: %w", err)
+	}
+	return oldValue.Category, nil
+}
+
+// ClearCategory clears the value of the "category" field.
+func (m *KnowledgeChunkMutation) ClearCategory() {
+	m.category = nil
+	m.clearedFields[knowledgechunk.FieldCategory] = struct{}{}
+}
+
+// CategoryCleared returns if the "category" field was cleared in this mutation.
+func (m *KnowledgeChunkMutation) CategoryCleared() bool {
+	_, ok := m.clearedFields[knowledgechunk.FieldCategory]
+	return ok
+}
+
+// ResetCategory resets all changes to the "category" field.
+func (m *KnowledgeChunkMutation) ResetCategory() {
+	m.category = nil
+	delete(m.clearedFields, knowledgechunk.FieldCategory)
+}
+
+// SetTags sets the "tags" field.
+func (m *KnowledgeChunkMutation) SetTags(s []string) {
+	m.tags = &s
+	m.appendtags = nil
+}
+
+// Tags returns the value of the "tags" field in the mutation.
+func (m *KnowledgeChunkMutation) Tags() (r []string, exists bool) {
+	v := m.tags
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldTags returns the old "tags" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldTags(ctx context.Context) (v []string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldTags is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldTags requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldTags: %w", err)
+	}
+	return oldValue.Tags, nil
+}
+
+// AppendTags adds s to the "tags" field.
+func (m *KnowledgeChunkMutation) AppendTags(s []string) {
+	m.appendtags = append(m.appendtags, s...)
+}
+
+// AppendedTags returns the list of values that were appended to the "tags" field in this mutation.
+func (m *KnowledgeChunkMutation) AppendedTags() ([]string, bool) {
+	if len(m.appendtags) == 0 {
+		return nil, false
+	}
+	return m.appendtags, true
+}
+
+// ClearTags clears the value of the "tags" field.
+func (m *KnowledgeChunkMutation) ClearTags() {
+	m.tags = nil
+	m.appendtags = nil
+	m.clearedFields[knowledgechunk.FieldTags] = struct{}{}
+}
+
+// TagsCleared returns if the "tags" field was cleared in this mutation.
+func (m *KnowledgeChunkMutation) TagsCleared() bool {
+	_, ok := m.clearedFields[knowledgechunk.FieldTags]
+	return ok
+}
+
+// ResetTags resets all changes to the "tags" field.
+func (m *KnowledgeChunkMutation) ResetTags() {
+	m.tags = nil
+	m.appendtags = nil
+	delete(m.clearedFields, knowledgechunk.FieldTags)
+}
+
+// SetEmbeddingJSON sets the "embedding_json" field.
+func (m *KnowledgeChunkMutation) SetEmbeddingJSON(f []float64) {
+	m.embedding_json = &f
+	m.appendembedding_json = nil
+}
+
+// EmbeddingJSON returns the value of the "embedding_json" field in the mutation.
+func (m *KnowledgeChunkMutation) EmbeddingJSON() (r []float64, exists bool) {
+	v := m.embedding_json
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldEmbeddingJSON returns the old "embedding_json" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldEmbeddingJSON(ctx context.Context) (v []float64, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldEmbeddingJSON is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldEmbeddingJSON requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldEmbeddingJSON: %w", err)
+	}
+	return oldValue.EmbeddingJSON, nil
+}
+
+// AppendEmbeddingJSON adds f to the "embedding_json" field.
+func (m *KnowledgeChunkMutation) AppendEmbeddingJSON(f []float64) {
+	m.appendembedding_json = append(m.appendembedding_json, f...)
+}
+
+// AppendedEmbeddingJSON returns the list of values that were appended to the "embedding_json" field in this mutation.
+func (m *KnowledgeChunkMutation) AppendedEmbeddingJSON() ([]float64, bool) {
+	if len(m.appendembedding_json) == 0 {
+		return nil, false
+	}
+	return m.appendembedding_json, true
+}
+
+// ResetEmbeddingJSON resets all changes to the "embedding_json" field.
+func (m *KnowledgeChunkMutation) ResetEmbeddingJSON() {
+	m.embedding_json = nil
+	m.appendembedding_json = nil
+}
+
+// SetStatus sets the "status" field.
+func (m *KnowledgeChunkMutation) SetStatus(s string) {
+	m.status = &s
+}
+
+// Status returns the value of the "status" field in the mutation.
+func (m *KnowledgeChunkMutation) Status() (r string, exists bool) {
+	v := m.status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldStatus returns the old "status" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldStatus(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldStatus is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldStatus requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldStatus: %w", err)
+	}
+	return oldValue.Status, nil
+}
+
+// ResetStatus resets all changes to the "status" field.
+func (m *KnowledgeChunkMutation) ResetStatus() {
+	m.status = nil
+}
+
+// SetIndexedAt sets the "indexed_at" field.
+func (m *KnowledgeChunkMutation) SetIndexedAt(t time.Time) {
+	m.indexed_at = &t
+}
+
+// IndexedAt returns the value of the "indexed_at" field in the mutation.
+func (m *KnowledgeChunkMutation) IndexedAt() (r time.Time, exists bool) {
+	v := m.indexed_at
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIndexedAt returns the old "indexed_at" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldIndexedAt(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIndexedAt is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIndexedAt requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIndexedAt: %w", err)
+	}
+	return oldValue.IndexedAt, nil
+}
+
+// ResetIndexedAt resets all changes to the "indexed_at" field.
+func (m *KnowledgeChunkMutation) ResetIndexedAt() {
+	m.indexed_at = nil
+}
+
+// SetCreateAt sets the "create_at" field.
+func (m *KnowledgeChunkMutation) SetCreateAt(t time.Time) {
+	m.create_at = &t
+}
+
+// CreateAt returns the value of the "create_at" field in the mutation.
+func (m *KnowledgeChunkMutation) CreateAt() (r time.Time, exists bool) {
+	v := m.create_at
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreateAt returns the old "create_at" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldCreateAt(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreateAt is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreateAt requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreateAt: %w", err)
+	}
+	return oldValue.CreateAt, nil
+}
+
+// ResetCreateAt resets all changes to the "create_at" field.
+func (m *KnowledgeChunkMutation) ResetCreateAt() {
+	m.create_at = nil
+}
+
+// SetUpdateAt sets the "update_at" field.
+func (m *KnowledgeChunkMutation) SetUpdateAt(t time.Time) {
+	m.update_at = &t
+}
+
+// UpdateAt returns the value of the "update_at" field in the mutation.
+func (m *KnowledgeChunkMutation) UpdateAt() (r time.Time, exists bool) {
+	v := m.update_at
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUpdateAt returns the old "update_at" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldUpdateAt(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUpdateAt is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUpdateAt requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUpdateAt: %w", err)
+	}
+	return oldValue.UpdateAt, nil
+}
+
+// ResetUpdateAt resets all changes to the "update_at" field.
+func (m *KnowledgeChunkMutation) ResetUpdateAt() {
+	m.update_at = nil
+}
+
+// SetSourceType sets the "source_type" field.
+func (m *KnowledgeChunkMutation) SetSourceType(s string) {
+	m.source_type = &s
+}
+
+// SourceType returns the value of the "source_type" field in the mutation.
+func (m *KnowledgeChunkMutation) SourceType() (r string, exists bool) {
+	v := m.source_type
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSourceType returns the old "source_type" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldSourceType(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSourceType is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSourceType requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSourceType: %w", err)
+	}
+	return oldValue.SourceType, nil
+}
+
+// ResetSourceType resets all changes to the "source_type" field.
+func (m *KnowledgeChunkMutation) ResetSourceType() {
+	m.source_type = nil
+}
+
+// SetSourceKey sets the "source_key" field.
+func (m *KnowledgeChunkMutation) SetSourceKey(s string) {
+	m.source_key = &s
+}
+
+// SourceKey returns the value of the "source_key" field in the mutation.
+func (m *KnowledgeChunkMutation) SourceKey() (r string, exists bool) {
+	v := m.source_key
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSourceKey returns the old "source_key" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldSourceKey(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSourceKey is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSourceKey requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSourceKey: %w", err)
+	}
+	return oldValue.SourceKey, nil
+}
+
+// ResetSourceKey resets all changes to the "source_key" field.
+func (m *KnowledgeChunkMutation) ResetSourceKey() {
+	m.source_key = nil
+}
+
+// SetHeadingPath sets the "heading_path" field.
+func (m *KnowledgeChunkMutation) SetHeadingPath(s string) {
+	m.heading_path = &s
+}
+
+// HeadingPath returns the value of the "heading_path" field in the mutation.
+func (m *KnowledgeChunkMutation) HeadingPath() (r string, exists bool) {
+	v := m.heading_path
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldHeadingPath returns the old "heading_path" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldHeadingPath(ctx context.Context) (v *string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldHeadingPath is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldHeadingPath requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldHeadingPath: %w", err)
+	}
+	return oldValue.HeadingPath, nil
+}
+
+// ClearHeadingPath clears the value of the "heading_path" field.
+func (m *KnowledgeChunkMutation) ClearHeadingPath() {
+	m.heading_path = nil
+	m.clearedFields[knowledgechunk.FieldHeadingPath] = struct{}{}
+}
+
+// HeadingPathCleared returns if the "heading_path" field was cleared in this mutation.
+func (m *KnowledgeChunkMutation) HeadingPathCleared() bool {
+	_, ok := m.clearedFields[knowledgechunk.FieldHeadingPath]
+	return ok
+}
+
+// ResetHeadingPath resets all changes to the "heading_path" field.
+func (m *KnowledgeChunkMutation) ResetHeadingPath() {
+	m.heading_path = nil
+	delete(m.clearedFields, knowledgechunk.FieldHeadingPath)
+}
+
+// SetContentType sets the "content_type" field.
+func (m *KnowledgeChunkMutation) SetContentType(s string) {
+	m.content_type = &s
+}
+
+// ContentType returns the value of the "content_type" field in the mutation.
+func (m *KnowledgeChunkMutation) ContentType() (r string, exists bool) {
+	v := m.content_type
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldContentType returns the old "content_type" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldContentType(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldContentType is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldContentType requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldContentType: %w", err)
+	}
+	return oldValue.ContentType, nil
+}
+
+// ResetContentType resets all changes to the "content_type" field.
+func (m *KnowledgeChunkMutation) ResetContentType() {
+	m.content_type = nil
+}
+
+// SetSearchText sets the "search_text" field.
+func (m *KnowledgeChunkMutation) SetSearchText(s string) {
+	m.search_text = &s
+}
+
+// SearchText returns the value of the "search_text" field in the mutation.
+func (m *KnowledgeChunkMutation) SearchText() (r string, exists bool) {
+	v := m.search_text
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSearchText returns the old "search_text" field's value of the KnowledgeChunk entity.
+// If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *KnowledgeChunkMutation) OldSearchText(ctx context.Context) (v *string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSearchText is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSearchText requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSearchText: %w", err)
+	}
+	return oldValue.SearchText, nil
+}
+
+// ClearSearchText clears the value of the "search_text" field.
+func (m *KnowledgeChunkMutation) ClearSearchText() {
+	m.search_text = nil
+	m.clearedFields[knowledgechunk.FieldSearchText] = struct{}{}
+}
+
+// SearchTextCleared returns if the "search_text" field was cleared in this mutation.
+func (m *KnowledgeChunkMutation) SearchTextCleared() bool {
+	_, ok := m.clearedFields[knowledgechunk.FieldSearchText]
+	return ok
+}
+
+// ResetSearchText resets all changes to the "search_text" field.
+func (m *KnowledgeChunkMutation) ResetSearchText() {
+	m.search_text = nil
+	delete(m.clearedFields, knowledgechunk.FieldSearchText)
+}
+
+// Where appends a list predicates to the KnowledgeChunkMutation builder.
+func (m *KnowledgeChunkMutation) Where(ps ...predicate.KnowledgeChunk) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the KnowledgeChunkMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *KnowledgeChunkMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.KnowledgeChunk, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *KnowledgeChunkMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *KnowledgeChunkMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (KnowledgeChunk).
+func (m *KnowledgeChunkMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *KnowledgeChunkMutation) Fields() []string {
+	fields := make([]string, 0, 17)
+	if m.article_id != nil {
+		fields = append(fields, knowledgechunk.FieldArticleID)
+	}
+	if m.chunk_index != nil {
+		fields = append(fields, knowledgechunk.FieldChunkIndex)
+	}
+	if m.title != nil {
+		fields = append(fields, knowledgechunk.FieldTitle)
+	}
+	if m.content != nil {
+		fields = append(fields, knowledgechunk.FieldContent)
+	}
+	if m.url != nil {
+		fields = append(fields, knowledgechunk.FieldURL)
+	}
+	if m.category != nil {
+		fields = append(fields, knowledgechunk.FieldCategory)
+	}
+	if m.tags != nil {
+		fields = append(fields, knowledgechunk.FieldTags)
+	}
+	if m.embedding_json != nil {
+		fields = append(fields, knowledgechunk.FieldEmbeddingJSON)
+	}
+	if m.status != nil {
+		fields = append(fields, knowledgechunk.FieldStatus)
+	}
+	if m.indexed_at != nil {
+		fields = append(fields, knowledgechunk.FieldIndexedAt)
+	}
+	if m.create_at != nil {
+		fields = append(fields, knowledgechunk.FieldCreateAt)
+	}
+	if m.update_at != nil {
+		fields = append(fields, knowledgechunk.FieldUpdateAt)
+	}
+	if m.source_type != nil {
+		fields = append(fields, knowledgechunk.FieldSourceType)
+	}
+	if m.source_key != nil {
+		fields = append(fields, knowledgechunk.FieldSourceKey)
+	}
+	if m.heading_path != nil {
+		fields = append(fields, knowledgechunk.FieldHeadingPath)
+	}
+	if m.content_type != nil {
+		fields = append(fields, knowledgechunk.FieldContentType)
+	}
+	if m.search_text != nil {
+		fields = append(fields, knowledgechunk.FieldSearchText)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *KnowledgeChunkMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case knowledgechunk.FieldArticleID:
+		return m.ArticleID()
+	case knowledgechunk.FieldChunkIndex:
+		return m.ChunkIndex()
+	case knowledgechunk.FieldTitle:
+		return m.Title()
+	case knowledgechunk.FieldContent:
+		return m.Content()
+	case knowledgechunk.FieldURL:
+		return m.URL()
+	case knowledgechunk.FieldCategory:
+		return m.Category()
+	case knowledgechunk.FieldTags:
+		return m.Tags()
+	case knowledgechunk.FieldEmbeddingJSON:
+		return m.EmbeddingJSON()
+	case knowledgechunk.FieldStatus:
+		return m.Status()
+	case knowledgechunk.FieldIndexedAt:
+		return m.IndexedAt()
+	case knowledgechunk.FieldCreateAt:
+		return m.CreateAt()
+	case knowledgechunk.FieldUpdateAt:
+		return m.UpdateAt()
+	case knowledgechunk.FieldSourceType:
+		return m.SourceType()
+	case knowledgechunk.FieldSourceKey:
+		return m.SourceKey()
+	case knowledgechunk.FieldHeadingPath:
+		return m.HeadingPath()
+	case knowledgechunk.FieldContentType:
+		return m.ContentType()
+	case knowledgechunk.FieldSearchText:
+		return m.SearchText()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *KnowledgeChunkMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case knowledgechunk.FieldArticleID:
+		return m.OldArticleID(ctx)
+	case knowledgechunk.FieldChunkIndex:
+		return m.OldChunkIndex(ctx)
+	case knowledgechunk.FieldTitle:
+		return m.OldTitle(ctx)
+	case knowledgechunk.FieldContent:
+		return m.OldContent(ctx)
+	case knowledgechunk.FieldURL:
+		return m.OldURL(ctx)
+	case knowledgechunk.FieldCategory:
+		return m.OldCategory(ctx)
+	case knowledgechunk.FieldTags:
+		return m.OldTags(ctx)
+	case knowledgechunk.FieldEmbeddingJSON:
+		return m.OldEmbeddingJSON(ctx)
+	case knowledgechunk.FieldStatus:
+		return m.OldStatus(ctx)
+	case knowledgechunk.FieldIndexedAt:
+		return m.OldIndexedAt(ctx)
+	case knowledgechunk.FieldCreateAt:
+		return m.OldCreateAt(ctx)
+	case knowledgechunk.FieldUpdateAt:
+		return m.OldUpdateAt(ctx)
+	case knowledgechunk.FieldSourceType:
+		return m.OldSourceType(ctx)
+	case knowledgechunk.FieldSourceKey:
+		return m.OldSourceKey(ctx)
+	case knowledgechunk.FieldHeadingPath:
+		return m.OldHeadingPath(ctx)
+	case knowledgechunk.FieldContentType:
+		return m.OldContentType(ctx)
+	case knowledgechunk.FieldSearchText:
+		return m.OldSearchText(ctx)
+	}
+	return nil, fmt.Errorf("unknown KnowledgeChunk field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *KnowledgeChunkMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case knowledgechunk.FieldArticleID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetArticleID(v)
+		return nil
+	case knowledgechunk.FieldChunkIndex:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetChunkIndex(v)
+		return nil
+	case knowledgechunk.FieldTitle:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetTitle(v)
+		return nil
+	case knowledgechunk.FieldContent:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetContent(v)
+		return nil
+	case knowledgechunk.FieldURL:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetURL(v)
+		return nil
+	case knowledgechunk.FieldCategory:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCategory(v)
+		return nil
+	case knowledgechunk.FieldTags:
+		v, ok := value.([]string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetTags(v)
+		return nil
+	case knowledgechunk.FieldEmbeddingJSON:
+		v, ok := value.([]float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetEmbeddingJSON(v)
+		return nil
+	case knowledgechunk.FieldStatus:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetStatus(v)
+		return nil
+	case knowledgechunk.FieldIndexedAt:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIndexedAt(v)
+		return nil
+	case knowledgechunk.FieldCreateAt:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreateAt(v)
+		return nil
+	case knowledgechunk.FieldUpdateAt:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUpdateAt(v)
+		return nil
+	case knowledgechunk.FieldSourceType:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSourceType(v)
+		return nil
+	case knowledgechunk.FieldSourceKey:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSourceKey(v)
+		return nil
+	case knowledgechunk.FieldHeadingPath:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetHeadingPath(v)
+		return nil
+	case knowledgechunk.FieldContentType:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetContentType(v)
+		return nil
+	case knowledgechunk.FieldSearchText:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSearchText(v)
+		return nil
+	}
+	return fmt.Errorf("unknown KnowledgeChunk field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *KnowledgeChunkMutation) AddedFields() []string {
+	var fields []string
+	if m.addarticle_id != nil {
+		fields = append(fields, knowledgechunk.FieldArticleID)
+	}
+	if m.addchunk_index != nil {
+		fields = append(fields, knowledgechunk.FieldChunkIndex)
+	}
+	return fields
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *KnowledgeChunkMutation) AddedField(name string) (ent.Value, bool) {
+	switch name {
+	case knowledgechunk.FieldArticleID:
+		return m.AddedArticleID()
+	case knowledgechunk.FieldChunkIndex:
+		return m.AddedChunkIndex()
+	}
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *KnowledgeChunkMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	case knowledgechunk.FieldArticleID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddArticleID(v)
+		return nil
+	case knowledgechunk.FieldChunkIndex:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddChunkIndex(v)
+		return nil
+	}
+	return fmt.Errorf("unknown KnowledgeChunk numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *KnowledgeChunkMutation) ClearedFields() []string {
+	var fields []string
+	if m.FieldCleared(knowledgechunk.FieldCategory) {
+		fields = append(fields, knowledgechunk.FieldCategory)
+	}
+	if m.FieldCleared(knowledgechunk.FieldTags) {
+		fields = append(fields, knowledgechunk.FieldTags)
+	}
+	if m.FieldCleared(knowledgechunk.FieldHeadingPath) {
+		fields = append(fields, knowledgechunk.FieldHeadingPath)
+	}
+	if m.FieldCleared(knowledgechunk.FieldSearchText) {
+		fields = append(fields, knowledgechunk.FieldSearchText)
+	}
+	return fields
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *KnowledgeChunkMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *KnowledgeChunkMutation) ClearField(name string) error {
+	switch name {
+	case knowledgechunk.FieldCategory:
+		m.ClearCategory()
+		return nil
+	case knowledgechunk.FieldTags:
+		m.ClearTags()
+		return nil
+	case knowledgechunk.FieldHeadingPath:
+		m.ClearHeadingPath()
+		return nil
+	case knowledgechunk.FieldSearchText:
+		m.ClearSearchText()
+		return nil
+	}
+	return fmt.Errorf("unknown KnowledgeChunk nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *KnowledgeChunkMutation) ResetField(name string) error {
+	switch name {
+	case knowledgechunk.FieldArticleID:
+		m.ResetArticleID()
+		return nil
+	case knowledgechunk.FieldChunkIndex:
+		m.ResetChunkIndex()
+		return nil
+	case knowledgechunk.FieldTitle:
+		m.ResetTitle()
+		return nil
+	case knowledgechunk.FieldContent:
+		m.ResetContent()
+		return nil
+	case knowledgechunk.FieldURL:
+		m.ResetURL()
+		return nil
+	case knowledgechunk.FieldCategory:
+		m.ResetCategory()
+		return nil
+	case knowledgechunk.FieldTags:
+		m.ResetTags()
+		return nil
+	case knowledgechunk.FieldEmbeddingJSON:
+		m.ResetEmbeddingJSON()
+		return nil
+	case knowledgechunk.FieldStatus:
+		m.ResetStatus()
+		return nil
+	case knowledgechunk.FieldIndexedAt:
+		m.ResetIndexedAt()
+		return nil
+	case knowledgechunk.FieldCreateAt:
+		m.ResetCreateAt()
+		return nil
+	case knowledgechunk.FieldUpdateAt:
+		m.ResetUpdateAt()
+		return nil
+	case knowledgechunk.FieldSourceType:
+		m.ResetSourceType()
+		return nil
+	case knowledgechunk.FieldSourceKey:
+		m.ResetSourceKey()
+		return nil
+	case knowledgechunk.FieldHeadingPath:
+		m.ResetHeadingPath()
+		return nil
+	case knowledgechunk.FieldContentType:
+		m.ResetContentType()
+		return nil
+	case knowledgechunk.FieldSearchText:
+		m.ResetSearchText()
+		return nil
+	}
+	return fmt.Errorf("unknown KnowledgeChunk field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *KnowledgeChunkMutation) AddedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *KnowledgeChunkMutation) AddedIDs(name string) []ent.Value {
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *KnowledgeChunkMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *KnowledgeChunkMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *KnowledgeChunkMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *KnowledgeChunkMutation) EdgeCleared(name string) bool {
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *KnowledgeChunkMutation) ClearEdge(name string) error {
+	return fmt.Errorf("unknown KnowledgeChunk unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *KnowledgeChunkMutation) ResetEdge(name string) error {
+	return fmt.Errorf("unknown KnowledgeChunk edge %s", name)
+}
+
 // LikeMutation represents an operation that mutates the Like nodes in the graph.
 type LikeMutation struct {
 	config
@@ -8249,6 +9632,1482 @@ func (m *MyFileMutation) ClearEdge(name string) error {
 // It returns an error if the edge is not defined in the schema.
 func (m *MyFileMutation) ResetEdge(name string) error {
 	return fmt.Errorf("unknown MyFile edge %s", name)
+}
+
+// RagIndexJobMutation represents an operation that mutates the RagIndexJob nodes in the graph.
+type RagIndexJobMutation struct {
+	config
+	op             Op
+	typ            string
+	id             *int
+	article_id     *int
+	addarticle_id  *int
+	status         *string
+	chunk_count    *int
+	addchunk_count *int
+	error_msg      *string
+	create_at      *time.Time
+	update_at      *time.Time
+	clearedFields  map[string]struct{}
+	done           bool
+	oldValue       func(context.Context) (*RagIndexJob, error)
+	predicates     []predicate.RagIndexJob
+}
+
+var _ ent.Mutation = (*RagIndexJobMutation)(nil)
+
+// ragindexjobOption allows management of the mutation configuration using functional options.
+type ragindexjobOption func(*RagIndexJobMutation)
+
+// newRagIndexJobMutation creates new mutation for the RagIndexJob entity.
+func newRagIndexJobMutation(c config, op Op, opts ...ragindexjobOption) *RagIndexJobMutation {
+	m := &RagIndexJobMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeRagIndexJob,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withRagIndexJobID sets the ID field of the mutation.
+func withRagIndexJobID(id int) ragindexjobOption {
+	return func(m *RagIndexJobMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *RagIndexJob
+		)
+		m.oldValue = func(ctx context.Context) (*RagIndexJob, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().RagIndexJob.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withRagIndexJob sets the old RagIndexJob of the mutation.
+func withRagIndexJob(node *RagIndexJob) ragindexjobOption {
+	return func(m *RagIndexJobMutation) {
+		m.oldValue = func(context.Context) (*RagIndexJob, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m RagIndexJobMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m RagIndexJobMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// SetID sets the value of the id field. Note that this
+// operation is only accepted on creation of RagIndexJob entities.
+func (m *RagIndexJobMutation) SetID(id int) {
+	m.id = &id
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *RagIndexJobMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *RagIndexJobMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().RagIndexJob.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetArticleID sets the "article_id" field.
+func (m *RagIndexJobMutation) SetArticleID(i int) {
+	m.article_id = &i
+	m.addarticle_id = nil
+}
+
+// ArticleID returns the value of the "article_id" field in the mutation.
+func (m *RagIndexJobMutation) ArticleID() (r int, exists bool) {
+	v := m.article_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldArticleID returns the old "article_id" field's value of the RagIndexJob entity.
+// If the RagIndexJob object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagIndexJobMutation) OldArticleID(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldArticleID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldArticleID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldArticleID: %w", err)
+	}
+	return oldValue.ArticleID, nil
+}
+
+// AddArticleID adds i to the "article_id" field.
+func (m *RagIndexJobMutation) AddArticleID(i int) {
+	if m.addarticle_id != nil {
+		*m.addarticle_id += i
+	} else {
+		m.addarticle_id = &i
+	}
+}
+
+// AddedArticleID returns the value that was added to the "article_id" field in this mutation.
+func (m *RagIndexJobMutation) AddedArticleID() (r int, exists bool) {
+	v := m.addarticle_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetArticleID resets all changes to the "article_id" field.
+func (m *RagIndexJobMutation) ResetArticleID() {
+	m.article_id = nil
+	m.addarticle_id = nil
+}
+
+// SetStatus sets the "status" field.
+func (m *RagIndexJobMutation) SetStatus(s string) {
+	m.status = &s
+}
+
+// Status returns the value of the "status" field in the mutation.
+func (m *RagIndexJobMutation) Status() (r string, exists bool) {
+	v := m.status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldStatus returns the old "status" field's value of the RagIndexJob entity.
+// If the RagIndexJob object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagIndexJobMutation) OldStatus(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldStatus is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldStatus requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldStatus: %w", err)
+	}
+	return oldValue.Status, nil
+}
+
+// ResetStatus resets all changes to the "status" field.
+func (m *RagIndexJobMutation) ResetStatus() {
+	m.status = nil
+}
+
+// SetChunkCount sets the "chunk_count" field.
+func (m *RagIndexJobMutation) SetChunkCount(i int) {
+	m.chunk_count = &i
+	m.addchunk_count = nil
+}
+
+// ChunkCount returns the value of the "chunk_count" field in the mutation.
+func (m *RagIndexJobMutation) ChunkCount() (r int, exists bool) {
+	v := m.chunk_count
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldChunkCount returns the old "chunk_count" field's value of the RagIndexJob entity.
+// If the RagIndexJob object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagIndexJobMutation) OldChunkCount(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldChunkCount is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldChunkCount requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldChunkCount: %w", err)
+	}
+	return oldValue.ChunkCount, nil
+}
+
+// AddChunkCount adds i to the "chunk_count" field.
+func (m *RagIndexJobMutation) AddChunkCount(i int) {
+	if m.addchunk_count != nil {
+		*m.addchunk_count += i
+	} else {
+		m.addchunk_count = &i
+	}
+}
+
+// AddedChunkCount returns the value that was added to the "chunk_count" field in this mutation.
+func (m *RagIndexJobMutation) AddedChunkCount() (r int, exists bool) {
+	v := m.addchunk_count
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetChunkCount resets all changes to the "chunk_count" field.
+func (m *RagIndexJobMutation) ResetChunkCount() {
+	m.chunk_count = nil
+	m.addchunk_count = nil
+}
+
+// SetErrorMsg sets the "error_msg" field.
+func (m *RagIndexJobMutation) SetErrorMsg(s string) {
+	m.error_msg = &s
+}
+
+// ErrorMsg returns the value of the "error_msg" field in the mutation.
+func (m *RagIndexJobMutation) ErrorMsg() (r string, exists bool) {
+	v := m.error_msg
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldErrorMsg returns the old "error_msg" field's value of the RagIndexJob entity.
+// If the RagIndexJob object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagIndexJobMutation) OldErrorMsg(ctx context.Context) (v *string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldErrorMsg is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldErrorMsg requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldErrorMsg: %w", err)
+	}
+	return oldValue.ErrorMsg, nil
+}
+
+// ClearErrorMsg clears the value of the "error_msg" field.
+func (m *RagIndexJobMutation) ClearErrorMsg() {
+	m.error_msg = nil
+	m.clearedFields[ragindexjob.FieldErrorMsg] = struct{}{}
+}
+
+// ErrorMsgCleared returns if the "error_msg" field was cleared in this mutation.
+func (m *RagIndexJobMutation) ErrorMsgCleared() bool {
+	_, ok := m.clearedFields[ragindexjob.FieldErrorMsg]
+	return ok
+}
+
+// ResetErrorMsg resets all changes to the "error_msg" field.
+func (m *RagIndexJobMutation) ResetErrorMsg() {
+	m.error_msg = nil
+	delete(m.clearedFields, ragindexjob.FieldErrorMsg)
+}
+
+// SetCreateAt sets the "create_at" field.
+func (m *RagIndexJobMutation) SetCreateAt(t time.Time) {
+	m.create_at = &t
+}
+
+// CreateAt returns the value of the "create_at" field in the mutation.
+func (m *RagIndexJobMutation) CreateAt() (r time.Time, exists bool) {
+	v := m.create_at
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreateAt returns the old "create_at" field's value of the RagIndexJob entity.
+// If the RagIndexJob object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagIndexJobMutation) OldCreateAt(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreateAt is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreateAt requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreateAt: %w", err)
+	}
+	return oldValue.CreateAt, nil
+}
+
+// ResetCreateAt resets all changes to the "create_at" field.
+func (m *RagIndexJobMutation) ResetCreateAt() {
+	m.create_at = nil
+}
+
+// SetUpdateAt sets the "update_at" field.
+func (m *RagIndexJobMutation) SetUpdateAt(t time.Time) {
+	m.update_at = &t
+}
+
+// UpdateAt returns the value of the "update_at" field in the mutation.
+func (m *RagIndexJobMutation) UpdateAt() (r time.Time, exists bool) {
+	v := m.update_at
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUpdateAt returns the old "update_at" field's value of the RagIndexJob entity.
+// If the RagIndexJob object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagIndexJobMutation) OldUpdateAt(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUpdateAt is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUpdateAt requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUpdateAt: %w", err)
+	}
+	return oldValue.UpdateAt, nil
+}
+
+// ResetUpdateAt resets all changes to the "update_at" field.
+func (m *RagIndexJobMutation) ResetUpdateAt() {
+	m.update_at = nil
+}
+
+// Where appends a list predicates to the RagIndexJobMutation builder.
+func (m *RagIndexJobMutation) Where(ps ...predicate.RagIndexJob) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the RagIndexJobMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *RagIndexJobMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.RagIndexJob, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *RagIndexJobMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *RagIndexJobMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (RagIndexJob).
+func (m *RagIndexJobMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *RagIndexJobMutation) Fields() []string {
+	fields := make([]string, 0, 6)
+	if m.article_id != nil {
+		fields = append(fields, ragindexjob.FieldArticleID)
+	}
+	if m.status != nil {
+		fields = append(fields, ragindexjob.FieldStatus)
+	}
+	if m.chunk_count != nil {
+		fields = append(fields, ragindexjob.FieldChunkCount)
+	}
+	if m.error_msg != nil {
+		fields = append(fields, ragindexjob.FieldErrorMsg)
+	}
+	if m.create_at != nil {
+		fields = append(fields, ragindexjob.FieldCreateAt)
+	}
+	if m.update_at != nil {
+		fields = append(fields, ragindexjob.FieldUpdateAt)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *RagIndexJobMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case ragindexjob.FieldArticleID:
+		return m.ArticleID()
+	case ragindexjob.FieldStatus:
+		return m.Status()
+	case ragindexjob.FieldChunkCount:
+		return m.ChunkCount()
+	case ragindexjob.FieldErrorMsg:
+		return m.ErrorMsg()
+	case ragindexjob.FieldCreateAt:
+		return m.CreateAt()
+	case ragindexjob.FieldUpdateAt:
+		return m.UpdateAt()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *RagIndexJobMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case ragindexjob.FieldArticleID:
+		return m.OldArticleID(ctx)
+	case ragindexjob.FieldStatus:
+		return m.OldStatus(ctx)
+	case ragindexjob.FieldChunkCount:
+		return m.OldChunkCount(ctx)
+	case ragindexjob.FieldErrorMsg:
+		return m.OldErrorMsg(ctx)
+	case ragindexjob.FieldCreateAt:
+		return m.OldCreateAt(ctx)
+	case ragindexjob.FieldUpdateAt:
+		return m.OldUpdateAt(ctx)
+	}
+	return nil, fmt.Errorf("unknown RagIndexJob field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *RagIndexJobMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case ragindexjob.FieldArticleID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetArticleID(v)
+		return nil
+	case ragindexjob.FieldStatus:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetStatus(v)
+		return nil
+	case ragindexjob.FieldChunkCount:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetChunkCount(v)
+		return nil
+	case ragindexjob.FieldErrorMsg:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetErrorMsg(v)
+		return nil
+	case ragindexjob.FieldCreateAt:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreateAt(v)
+		return nil
+	case ragindexjob.FieldUpdateAt:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUpdateAt(v)
+		return nil
+	}
+	return fmt.Errorf("unknown RagIndexJob field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *RagIndexJobMutation) AddedFields() []string {
+	var fields []string
+	if m.addarticle_id != nil {
+		fields = append(fields, ragindexjob.FieldArticleID)
+	}
+	if m.addchunk_count != nil {
+		fields = append(fields, ragindexjob.FieldChunkCount)
+	}
+	return fields
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *RagIndexJobMutation) AddedField(name string) (ent.Value, bool) {
+	switch name {
+	case ragindexjob.FieldArticleID:
+		return m.AddedArticleID()
+	case ragindexjob.FieldChunkCount:
+		return m.AddedChunkCount()
+	}
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *RagIndexJobMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	case ragindexjob.FieldArticleID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddArticleID(v)
+		return nil
+	case ragindexjob.FieldChunkCount:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddChunkCount(v)
+		return nil
+	}
+	return fmt.Errorf("unknown RagIndexJob numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *RagIndexJobMutation) ClearedFields() []string {
+	var fields []string
+	if m.FieldCleared(ragindexjob.FieldErrorMsg) {
+		fields = append(fields, ragindexjob.FieldErrorMsg)
+	}
+	return fields
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *RagIndexJobMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *RagIndexJobMutation) ClearField(name string) error {
+	switch name {
+	case ragindexjob.FieldErrorMsg:
+		m.ClearErrorMsg()
+		return nil
+	}
+	return fmt.Errorf("unknown RagIndexJob nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *RagIndexJobMutation) ResetField(name string) error {
+	switch name {
+	case ragindexjob.FieldArticleID:
+		m.ResetArticleID()
+		return nil
+	case ragindexjob.FieldStatus:
+		m.ResetStatus()
+		return nil
+	case ragindexjob.FieldChunkCount:
+		m.ResetChunkCount()
+		return nil
+	case ragindexjob.FieldErrorMsg:
+		m.ResetErrorMsg()
+		return nil
+	case ragindexjob.FieldCreateAt:
+		m.ResetCreateAt()
+		return nil
+	case ragindexjob.FieldUpdateAt:
+		m.ResetUpdateAt()
+		return nil
+	}
+	return fmt.Errorf("unknown RagIndexJob field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *RagIndexJobMutation) AddedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *RagIndexJobMutation) AddedIDs(name string) []ent.Value {
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *RagIndexJobMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *RagIndexJobMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *RagIndexJobMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *RagIndexJobMutation) EdgeCleared(name string) bool {
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *RagIndexJobMutation) ClearEdge(name string) error {
+	return fmt.Errorf("unknown RagIndexJob unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *RagIndexJobMutation) ResetEdge(name string) error {
+	return fmt.Errorf("unknown RagIndexJob edge %s", name)
+}
+
+// RagQueryLogMutation represents an operation that mutates the RagQueryLog nodes in the graph.
+type RagQueryLogMutation struct {
+	config
+	op                   Op
+	typ                  string
+	id                   *int
+	uid                  *int
+	adduid               *int
+	question             *string
+	answer_preview       *string
+	citations_json       *[]map[string]interface{}
+	appendcitations_json []map[string]interface{}
+	latency_ms           *int
+	addlatency_ms        *int
+	status               *string
+	create_at            *time.Time
+	clearedFields        map[string]struct{}
+	done                 bool
+	oldValue             func(context.Context) (*RagQueryLog, error)
+	predicates           []predicate.RagQueryLog
+}
+
+var _ ent.Mutation = (*RagQueryLogMutation)(nil)
+
+// ragquerylogOption allows management of the mutation configuration using functional options.
+type ragquerylogOption func(*RagQueryLogMutation)
+
+// newRagQueryLogMutation creates new mutation for the RagQueryLog entity.
+func newRagQueryLogMutation(c config, op Op, opts ...ragquerylogOption) *RagQueryLogMutation {
+	m := &RagQueryLogMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeRagQueryLog,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withRagQueryLogID sets the ID field of the mutation.
+func withRagQueryLogID(id int) ragquerylogOption {
+	return func(m *RagQueryLogMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *RagQueryLog
+		)
+		m.oldValue = func(ctx context.Context) (*RagQueryLog, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().RagQueryLog.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withRagQueryLog sets the old RagQueryLog of the mutation.
+func withRagQueryLog(node *RagQueryLog) ragquerylogOption {
+	return func(m *RagQueryLogMutation) {
+		m.oldValue = func(context.Context) (*RagQueryLog, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m RagQueryLogMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m RagQueryLogMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// SetID sets the value of the id field. Note that this
+// operation is only accepted on creation of RagQueryLog entities.
+func (m *RagQueryLogMutation) SetID(id int) {
+	m.id = &id
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *RagQueryLogMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *RagQueryLogMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().RagQueryLog.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetUID sets the "uid" field.
+func (m *RagQueryLogMutation) SetUID(i int) {
+	m.uid = &i
+	m.adduid = nil
+}
+
+// UID returns the value of the "uid" field in the mutation.
+func (m *RagQueryLogMutation) UID() (r int, exists bool) {
+	v := m.uid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUID returns the old "uid" field's value of the RagQueryLog entity.
+// If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagQueryLogMutation) OldUID(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUID: %w", err)
+	}
+	return oldValue.UID, nil
+}
+
+// AddUID adds i to the "uid" field.
+func (m *RagQueryLogMutation) AddUID(i int) {
+	if m.adduid != nil {
+		*m.adduid += i
+	} else {
+		m.adduid = &i
+	}
+}
+
+// AddedUID returns the value that was added to the "uid" field in this mutation.
+func (m *RagQueryLogMutation) AddedUID() (r int, exists bool) {
+	v := m.adduid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetUID resets all changes to the "uid" field.
+func (m *RagQueryLogMutation) ResetUID() {
+	m.uid = nil
+	m.adduid = nil
+}
+
+// SetQuestion sets the "question" field.
+func (m *RagQueryLogMutation) SetQuestion(s string) {
+	m.question = &s
+}
+
+// Question returns the value of the "question" field in the mutation.
+func (m *RagQueryLogMutation) Question() (r string, exists bool) {
+	v := m.question
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldQuestion returns the old "question" field's value of the RagQueryLog entity.
+// If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagQueryLogMutation) OldQuestion(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldQuestion is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldQuestion requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldQuestion: %w", err)
+	}
+	return oldValue.Question, nil
+}
+
+// ResetQuestion resets all changes to the "question" field.
+func (m *RagQueryLogMutation) ResetQuestion() {
+	m.question = nil
+}
+
+// SetAnswerPreview sets the "answer_preview" field.
+func (m *RagQueryLogMutation) SetAnswerPreview(s string) {
+	m.answer_preview = &s
+}
+
+// AnswerPreview returns the value of the "answer_preview" field in the mutation.
+func (m *RagQueryLogMutation) AnswerPreview() (r string, exists bool) {
+	v := m.answer_preview
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAnswerPreview returns the old "answer_preview" field's value of the RagQueryLog entity.
+// If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagQueryLogMutation) OldAnswerPreview(ctx context.Context) (v *string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAnswerPreview is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAnswerPreview requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAnswerPreview: %w", err)
+	}
+	return oldValue.AnswerPreview, nil
+}
+
+// ClearAnswerPreview clears the value of the "answer_preview" field.
+func (m *RagQueryLogMutation) ClearAnswerPreview() {
+	m.answer_preview = nil
+	m.clearedFields[ragquerylog.FieldAnswerPreview] = struct{}{}
+}
+
+// AnswerPreviewCleared returns if the "answer_preview" field was cleared in this mutation.
+func (m *RagQueryLogMutation) AnswerPreviewCleared() bool {
+	_, ok := m.clearedFields[ragquerylog.FieldAnswerPreview]
+	return ok
+}
+
+// ResetAnswerPreview resets all changes to the "answer_preview" field.
+func (m *RagQueryLogMutation) ResetAnswerPreview() {
+	m.answer_preview = nil
+	delete(m.clearedFields, ragquerylog.FieldAnswerPreview)
+}
+
+// SetCitationsJSON sets the "citations_json" field.
+func (m *RagQueryLogMutation) SetCitationsJSON(value []map[string]interface{}) {
+	m.citations_json = &value
+	m.appendcitations_json = nil
+}
+
+// CitationsJSON returns the value of the "citations_json" field in the mutation.
+func (m *RagQueryLogMutation) CitationsJSON() (r []map[string]interface{}, exists bool) {
+	v := m.citations_json
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCitationsJSON returns the old "citations_json" field's value of the RagQueryLog entity.
+// If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagQueryLogMutation) OldCitationsJSON(ctx context.Context) (v []map[string]interface{}, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCitationsJSON is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCitationsJSON requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCitationsJSON: %w", err)
+	}
+	return oldValue.CitationsJSON, nil
+}
+
+// AppendCitationsJSON adds value to the "citations_json" field.
+func (m *RagQueryLogMutation) AppendCitationsJSON(value []map[string]interface{}) {
+	m.appendcitations_json = append(m.appendcitations_json, value...)
+}
+
+// AppendedCitationsJSON returns the list of values that were appended to the "citations_json" field in this mutation.
+func (m *RagQueryLogMutation) AppendedCitationsJSON() ([]map[string]interface{}, bool) {
+	if len(m.appendcitations_json) == 0 {
+		return nil, false
+	}
+	return m.appendcitations_json, true
+}
+
+// ClearCitationsJSON clears the value of the "citations_json" field.
+func (m *RagQueryLogMutation) ClearCitationsJSON() {
+	m.citations_json = nil
+	m.appendcitations_json = nil
+	m.clearedFields[ragquerylog.FieldCitationsJSON] = struct{}{}
+}
+
+// CitationsJSONCleared returns if the "citations_json" field was cleared in this mutation.
+func (m *RagQueryLogMutation) CitationsJSONCleared() bool {
+	_, ok := m.clearedFields[ragquerylog.FieldCitationsJSON]
+	return ok
+}
+
+// ResetCitationsJSON resets all changes to the "citations_json" field.
+func (m *RagQueryLogMutation) ResetCitationsJSON() {
+	m.citations_json = nil
+	m.appendcitations_json = nil
+	delete(m.clearedFields, ragquerylog.FieldCitationsJSON)
+}
+
+// SetLatencyMs sets the "latency_ms" field.
+func (m *RagQueryLogMutation) SetLatencyMs(i int) {
+	m.latency_ms = &i
+	m.addlatency_ms = nil
+}
+
+// LatencyMs returns the value of the "latency_ms" field in the mutation.
+func (m *RagQueryLogMutation) LatencyMs() (r int, exists bool) {
+	v := m.latency_ms
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldLatencyMs returns the old "latency_ms" field's value of the RagQueryLog entity.
+// If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagQueryLogMutation) OldLatencyMs(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldLatencyMs is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldLatencyMs requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldLatencyMs: %w", err)
+	}
+	return oldValue.LatencyMs, nil
+}
+
+// AddLatencyMs adds i to the "latency_ms" field.
+func (m *RagQueryLogMutation) AddLatencyMs(i int) {
+	if m.addlatency_ms != nil {
+		*m.addlatency_ms += i
+	} else {
+		m.addlatency_ms = &i
+	}
+}
+
+// AddedLatencyMs returns the value that was added to the "latency_ms" field in this mutation.
+func (m *RagQueryLogMutation) AddedLatencyMs() (r int, exists bool) {
+	v := m.addlatency_ms
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetLatencyMs resets all changes to the "latency_ms" field.
+func (m *RagQueryLogMutation) ResetLatencyMs() {
+	m.latency_ms = nil
+	m.addlatency_ms = nil
+}
+
+// SetStatus sets the "status" field.
+func (m *RagQueryLogMutation) SetStatus(s string) {
+	m.status = &s
+}
+
+// Status returns the value of the "status" field in the mutation.
+func (m *RagQueryLogMutation) Status() (r string, exists bool) {
+	v := m.status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldStatus returns the old "status" field's value of the RagQueryLog entity.
+// If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagQueryLogMutation) OldStatus(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldStatus is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldStatus requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldStatus: %w", err)
+	}
+	return oldValue.Status, nil
+}
+
+// ResetStatus resets all changes to the "status" field.
+func (m *RagQueryLogMutation) ResetStatus() {
+	m.status = nil
+}
+
+// SetCreateAt sets the "create_at" field.
+func (m *RagQueryLogMutation) SetCreateAt(t time.Time) {
+	m.create_at = &t
+}
+
+// CreateAt returns the value of the "create_at" field in the mutation.
+func (m *RagQueryLogMutation) CreateAt() (r time.Time, exists bool) {
+	v := m.create_at
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreateAt returns the old "create_at" field's value of the RagQueryLog entity.
+// If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RagQueryLogMutation) OldCreateAt(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreateAt is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreateAt requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreateAt: %w", err)
+	}
+	return oldValue.CreateAt, nil
+}
+
+// ResetCreateAt resets all changes to the "create_at" field.
+func (m *RagQueryLogMutation) ResetCreateAt() {
+	m.create_at = nil
+}
+
+// Where appends a list predicates to the RagQueryLogMutation builder.
+func (m *RagQueryLogMutation) Where(ps ...predicate.RagQueryLog) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the RagQueryLogMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *RagQueryLogMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.RagQueryLog, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *RagQueryLogMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *RagQueryLogMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (RagQueryLog).
+func (m *RagQueryLogMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *RagQueryLogMutation) Fields() []string {
+	fields := make([]string, 0, 7)
+	if m.uid != nil {
+		fields = append(fields, ragquerylog.FieldUID)
+	}
+	if m.question != nil {
+		fields = append(fields, ragquerylog.FieldQuestion)
+	}
+	if m.answer_preview != nil {
+		fields = append(fields, ragquerylog.FieldAnswerPreview)
+	}
+	if m.citations_json != nil {
+		fields = append(fields, ragquerylog.FieldCitationsJSON)
+	}
+	if m.latency_ms != nil {
+		fields = append(fields, ragquerylog.FieldLatencyMs)
+	}
+	if m.status != nil {
+		fields = append(fields, ragquerylog.FieldStatus)
+	}
+	if m.create_at != nil {
+		fields = append(fields, ragquerylog.FieldCreateAt)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *RagQueryLogMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case ragquerylog.FieldUID:
+		return m.UID()
+	case ragquerylog.FieldQuestion:
+		return m.Question()
+	case ragquerylog.FieldAnswerPreview:
+		return m.AnswerPreview()
+	case ragquerylog.FieldCitationsJSON:
+		return m.CitationsJSON()
+	case ragquerylog.FieldLatencyMs:
+		return m.LatencyMs()
+	case ragquerylog.FieldStatus:
+		return m.Status()
+	case ragquerylog.FieldCreateAt:
+		return m.CreateAt()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *RagQueryLogMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case ragquerylog.FieldUID:
+		return m.OldUID(ctx)
+	case ragquerylog.FieldQuestion:
+		return m.OldQuestion(ctx)
+	case ragquerylog.FieldAnswerPreview:
+		return m.OldAnswerPreview(ctx)
+	case ragquerylog.FieldCitationsJSON:
+		return m.OldCitationsJSON(ctx)
+	case ragquerylog.FieldLatencyMs:
+		return m.OldLatencyMs(ctx)
+	case ragquerylog.FieldStatus:
+		return m.OldStatus(ctx)
+	case ragquerylog.FieldCreateAt:
+		return m.OldCreateAt(ctx)
+	}
+	return nil, fmt.Errorf("unknown RagQueryLog field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *RagQueryLogMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case ragquerylog.FieldUID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUID(v)
+		return nil
+	case ragquerylog.FieldQuestion:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetQuestion(v)
+		return nil
+	case ragquerylog.FieldAnswerPreview:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAnswerPreview(v)
+		return nil
+	case ragquerylog.FieldCitationsJSON:
+		v, ok := value.([]map[string]interface{})
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCitationsJSON(v)
+		return nil
+	case ragquerylog.FieldLatencyMs:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetLatencyMs(v)
+		return nil
+	case ragquerylog.FieldStatus:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetStatus(v)
+		return nil
+	case ragquerylog.FieldCreateAt:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreateAt(v)
+		return nil
+	}
+	return fmt.Errorf("unknown RagQueryLog field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *RagQueryLogMutation) AddedFields() []string {
+	var fields []string
+	if m.adduid != nil {
+		fields = append(fields, ragquerylog.FieldUID)
+	}
+	if m.addlatency_ms != nil {
+		fields = append(fields, ragquerylog.FieldLatencyMs)
+	}
+	return fields
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *RagQueryLogMutation) AddedField(name string) (ent.Value, bool) {
+	switch name {
+	case ragquerylog.FieldUID:
+		return m.AddedUID()
+	case ragquerylog.FieldLatencyMs:
+		return m.AddedLatencyMs()
+	}
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *RagQueryLogMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	case ragquerylog.FieldUID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddUID(v)
+		return nil
+	case ragquerylog.FieldLatencyMs:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddLatencyMs(v)
+		return nil
+	}
+	return fmt.Errorf("unknown RagQueryLog numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *RagQueryLogMutation) ClearedFields() []string {
+	var fields []string
+	if m.FieldCleared(ragquerylog.FieldAnswerPreview) {
+		fields = append(fields, ragquerylog.FieldAnswerPreview)
+	}
+	if m.FieldCleared(ragquerylog.FieldCitationsJSON) {
+		fields = append(fields, ragquerylog.FieldCitationsJSON)
+	}
+	return fields
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *RagQueryLogMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *RagQueryLogMutation) ClearField(name string) error {
+	switch name {
+	case ragquerylog.FieldAnswerPreview:
+		m.ClearAnswerPreview()
+		return nil
+	case ragquerylog.FieldCitationsJSON:
+		m.ClearCitationsJSON()
+		return nil
+	}
+	return fmt.Errorf("unknown RagQueryLog nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *RagQueryLogMutation) ResetField(name string) error {
+	switch name {
+	case ragquerylog.FieldUID:
+		m.ResetUID()
+		return nil
+	case ragquerylog.FieldQuestion:
+		m.ResetQuestion()
+		return nil
+	case ragquerylog.FieldAnswerPreview:
+		m.ResetAnswerPreview()
+		return nil
+	case ragquerylog.FieldCitationsJSON:
+		m.ResetCitationsJSON()
+		return nil
+	case ragquerylog.FieldLatencyMs:
+		m.ResetLatencyMs()
+		return nil
+	case ragquerylog.FieldStatus:
+		m.ResetStatus()
+		return nil
+	case ragquerylog.FieldCreateAt:
+		m.ResetCreateAt()
+		return nil
+	}
+	return fmt.Errorf("unknown RagQueryLog field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *RagQueryLogMutation) AddedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *RagQueryLogMutation) AddedIDs(name string) []ent.Value {
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *RagQueryLogMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *RagQueryLogMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *RagQueryLogMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 0)
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *RagQueryLogMutation) EdgeCleared(name string) bool {
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *RagQueryLogMutation) ClearEdge(name string) error {
+	return fmt.Errorf("unknown RagQueryLog unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *RagQueryLogMutation) ResetEdge(name string) error {
+	return fmt.Errorf("unknown RagQueryLog edge %s", name)
 }
 
 // ReplyMutation represents an operation that mutates the Reply nodes in the graph.

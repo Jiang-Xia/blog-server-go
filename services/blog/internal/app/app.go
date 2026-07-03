@@ -77,6 +77,10 @@ func (a *App) Run() error {
 		a.realtime.BlogConsumer.Consumer.Start(ctx)
 		a.log.Info("blog event consumer started")
 	}
+	if a.realtime != nil && a.realtime.RagConsumer.Consumer != nil {
+		a.realtime.RagConsumer.Consumer.Start(ctx)
+		a.log.Info("rag event consumer started")
+	}
 
 	if a.schedTask != nil && a.schedTask.Sched != nil {
 		if err := a.schedTask.Svc.Bootstrap(ctx); err != nil {
@@ -126,11 +130,17 @@ type BlogEventConsumer struct {
 	*event.Consumer
 }
 
+// RagEventConsumer RAG 增量索引 Stream 消费器。
+type RagEventConsumer struct {
+	*event.Consumer
+}
+
 // RealtimeRuntime Hub 与 Stream 消费者生命周期。
 type RealtimeRuntime struct {
 	Hub          *ws.Hub
 	Pusher       *ws.RealtimePusher
 	BlogConsumer BlogEventConsumer
+	RagConsumer  RagEventConsumer
 	Publisher    *event.Publisher
 	WS           *handler.WSHandler
 	DevPush      *handler.DevPushHandler

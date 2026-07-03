@@ -362,6 +362,7 @@ func defaultBlogPublicPaths() []publicPathEntry {
 		{Pattern: "/resources/file/:id", Methods: []string{"GET"}},
 		{Pattern: "/resources/upload-media/register-avatar", Methods: []string{"POST"}},
 		{Pattern: "/resources/folder", Methods: []string{"POST"}},
+		{Pattern: "/rag/status", Methods: []string{"GET"}},
 	}
 	return append(base, blog...)
 }

@@ -18,10 +18,13 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/collect"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/comment"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/file"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/knowledgechunk"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/like"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/link"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/msgboard"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/myfile"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragindexjob"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragquerylog"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/reply"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/scheduledtask"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/scheduledtasklog"
@@ -93,10 +96,13 @@ func checkColumn(table, column string) error {
 			collect.Table:          collect.ValidColumn,
 			comment.Table:          comment.ValidColumn,
 			file.Table:             file.ValidColumn,
+			knowledgechunk.Table:   knowledgechunk.ValidColumn,
 			like.Table:             like.ValidColumn,
 			link.Table:             link.ValidColumn,
 			msgboard.Table:         msgboard.ValidColumn,
 			myfile.Table:           myfile.ValidColumn,
+			ragindexjob.Table:      ragindexjob.ValidColumn,
+			ragquerylog.Table:      ragquerylog.ValidColumn,
 			reply.Table:            reply.ValidColumn,
 			scheduledtask.Table:    scheduledtask.ValidColumn,
 			scheduledtasklog.Table: scheduledtasklog.ValidColumn,

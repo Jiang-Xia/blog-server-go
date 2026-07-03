@@ -120,6 +120,33 @@ var (
 		Columns:    XFileColumns,
 		PrimaryKey: []*schema.Column{XFileColumns[0]},
 	}
+	// XKnowledgeChunkColumns holds the columns for the "x_knowledge_chunk" table.
+	XKnowledgeChunkColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "article_id", Type: field.TypeInt},
+		{Name: "chunk_index", Type: field.TypeInt},
+		{Name: "title", Type: field.TypeString},
+		{Name: "content", Type: field.TypeString, Size: 2147483647},
+		{Name: "url", Type: field.TypeString},
+		{Name: "category", Type: field.TypeString, Nullable: true},
+		{Name: "tags", Type: field.TypeJSON, Nullable: true},
+		{Name: "embedding_json", Type: field.TypeJSON},
+		{Name: "status", Type: field.TypeString, Default: "active"},
+		{Name: "indexed_at", Type: field.TypeTime},
+		{Name: "create_at", Type: field.TypeTime},
+		{Name: "update_at", Type: field.TypeTime},
+		{Name: "source_type", Type: field.TypeString, Default: "article"},
+		{Name: "source_key", Type: field.TypeString, Default: ""},
+		{Name: "heading_path", Type: field.TypeString, Nullable: true},
+		{Name: "content_type", Type: field.TypeString, Default: "prose"},
+		{Name: "search_text", Type: field.TypeString, Nullable: true, Size: 2147483647},
+	}
+	// XKnowledgeChunkTable holds the schema information for the "x_knowledge_chunk" table.
+	XKnowledgeChunkTable = &schema.Table{
+		Name:       "x_knowledge_chunk",
+		Columns:    XKnowledgeChunkColumns,
+		PrimaryKey: []*schema.Column{XKnowledgeChunkColumns[0]},
+	}
 	// XLikeColumns holds the columns for the "x_like" table.
 	XLikeColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeString},
@@ -188,6 +215,39 @@ var (
 		Name:       "x_my_file",
 		Columns:    XMyFileColumns,
 		PrimaryKey: []*schema.Column{XMyFileColumns[0]},
+	}
+	// XRagIndexJobColumns holds the columns for the "x_rag_index_job" table.
+	XRagIndexJobColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "article_id", Type: field.TypeInt, Default: 0},
+		{Name: "status", Type: field.TypeString, Default: "pending"},
+		{Name: "chunk_count", Type: field.TypeInt, Default: 0},
+		{Name: "error_msg", Type: field.TypeString, Nullable: true, Size: 2147483647},
+		{Name: "create_at", Type: field.TypeTime},
+		{Name: "update_at", Type: field.TypeTime},
+	}
+	// XRagIndexJobTable holds the schema information for the "x_rag_index_job" table.
+	XRagIndexJobTable = &schema.Table{
+		Name:       "x_rag_index_job",
+		Columns:    XRagIndexJobColumns,
+		PrimaryKey: []*schema.Column{XRagIndexJobColumns[0]},
+	}
+	// XRagQueryLogColumns holds the columns for the "x_rag_query_log" table.
+	XRagQueryLogColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "uid", Type: field.TypeInt},
+		{Name: "question", Type: field.TypeString},
+		{Name: "answer_preview", Type: field.TypeString, Nullable: true},
+		{Name: "citations_json", Type: field.TypeJSON, Nullable: true},
+		{Name: "latency_ms", Type: field.TypeInt, Default: 0},
+		{Name: "status", Type: field.TypeString, Default: "success"},
+		{Name: "create_at", Type: field.TypeTime},
+	}
+	// XRagQueryLogTable holds the schema information for the "x_rag_query_log" table.
+	XRagQueryLogTable = &schema.Table{
+		Name:       "x_rag_query_log",
+		Columns:    XRagQueryLogColumns,
+		PrimaryKey: []*schema.Column{XRagQueryLogColumns[0]},
 	}
 	// XReplyColumns holds the columns for the "x_reply" table.
 	XReplyColumns = []*schema.Column{
@@ -281,10 +341,13 @@ var (
 		XCollectTable,
 		XCommentTable,
 		XFileTable,
+		XKnowledgeChunkTable,
 		XLikeTable,
 		XLinkTable,
 		XMsgboardTable,
 		XMyFileTable,
+		XRagIndexJobTable,
+		XRagQueryLogTable,
 		XReplyTable,
 		XScheduledTaskTable,
 		XScheduledTaskLogTable,
@@ -312,6 +375,9 @@ func init() {
 	XFileTable.Annotation = &entsql.Annotation{
 		Table: "x_file",
 	}
+	XKnowledgeChunkTable.Annotation = &entsql.Annotation{
+		Table: "x_knowledge_chunk",
+	}
 	XLikeTable.Annotation = &entsql.Annotation{
 		Table: "x_like",
 	}
@@ -323,6 +389,12 @@ func init() {
 	}
 	XMyFileTable.Annotation = &entsql.Annotation{
 		Table: "x_my_file",
+	}
+	XRagIndexJobTable.Annotation = &entsql.Annotation{
+		Table: "x_rag_index_job",
+	}
+	XRagQueryLogTable.Annotation = &entsql.Annotation{
+		Table: "x_rag_query_log",
 	}
 	XReplyTable.Annotation = &entsql.Annotation{
 		Table: "x_reply",

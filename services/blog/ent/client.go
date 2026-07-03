@@ -20,10 +20,13 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/collect"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/comment"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/file"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/knowledgechunk"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/like"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/link"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/msgboard"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/myfile"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragindexjob"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/ragquerylog"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/reply"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/scheduledtask"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/scheduledtasklog"
@@ -48,6 +51,8 @@ type Client struct {
 	Comment *CommentClient
 	// File is the client for interacting with the File builders.
 	File *FileClient
+	// KnowledgeChunk is the client for interacting with the KnowledgeChunk builders.
+	KnowledgeChunk *KnowledgeChunkClient
 	// Like is the client for interacting with the Like builders.
 	Like *LikeClient
 	// Link is the client for interacting with the Link builders.
@@ -56,6 +61,10 @@ type Client struct {
 	Msgboard *MsgboardClient
 	// MyFile is the client for interacting with the MyFile builders.
 	MyFile *MyFileClient
+	// RagIndexJob is the client for interacting with the RagIndexJob builders.
+	RagIndexJob *RagIndexJobClient
+	// RagQueryLog is the client for interacting with the RagQueryLog builders.
+	RagQueryLog *RagQueryLogClient
 	// Reply is the client for interacting with the Reply builders.
 	Reply *ReplyClient
 	// ScheduledTask is the client for interacting with the ScheduledTask builders.
@@ -83,10 +92,13 @@ func (c *Client) init() {
 	c.Collect = NewCollectClient(c.config)
 	c.Comment = NewCommentClient(c.config)
 	c.File = NewFileClient(c.config)
+	c.KnowledgeChunk = NewKnowledgeChunkClient(c.config)
 	c.Like = NewLikeClient(c.config)
 	c.Link = NewLinkClient(c.config)
 	c.Msgboard = NewMsgboardClient(c.config)
 	c.MyFile = NewMyFileClient(c.config)
+	c.RagIndexJob = NewRagIndexJobClient(c.config)
+	c.RagQueryLog = NewRagQueryLogClient(c.config)
 	c.Reply = NewReplyClient(c.config)
 	c.ScheduledTask = NewScheduledTaskClient(c.config)
 	c.ScheduledTaskLog = NewScheduledTaskLogClient(c.config)
@@ -190,10 +202,13 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		Collect:          NewCollectClient(cfg),
 		Comment:          NewCommentClient(cfg),
 		File:             NewFileClient(cfg),
+		KnowledgeChunk:   NewKnowledgeChunkClient(cfg),
 		Like:             NewLikeClient(cfg),
 		Link:             NewLinkClient(cfg),
 		Msgboard:         NewMsgboardClient(cfg),
 		MyFile:           NewMyFileClient(cfg),
+		RagIndexJob:      NewRagIndexJobClient(cfg),
+		RagQueryLog:      NewRagQueryLogClient(cfg),
 		Reply:            NewReplyClient(cfg),
 		ScheduledTask:    NewScheduledTaskClient(cfg),
 		ScheduledTaskLog: NewScheduledTaskLogClient(cfg),
@@ -224,10 +239,13 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		Collect:          NewCollectClient(cfg),
 		Comment:          NewCommentClient(cfg),
 		File:             NewFileClient(cfg),
+		KnowledgeChunk:   NewKnowledgeChunkClient(cfg),
 		Like:             NewLikeClient(cfg),
 		Link:             NewLinkClient(cfg),
 		Msgboard:         NewMsgboardClient(cfg),
 		MyFile:           NewMyFileClient(cfg),
+		RagIndexJob:      NewRagIndexJobClient(cfg),
+		RagQueryLog:      NewRagQueryLogClient(cfg),
 		Reply:            NewReplyClient(cfg),
 		ScheduledTask:    NewScheduledTaskClient(cfg),
 		ScheduledTaskLog: NewScheduledTaskLogClient(cfg),
@@ -262,8 +280,9 @@ func (c *Client) Close() error {
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
 	for _, n := range []interface{ Use(...Hook) }{
-		c.Article, c.ArticleTagsTag, c.Category, c.Collect, c.Comment, c.File, c.Like,
-		c.Link, c.Msgboard, c.MyFile, c.Reply, c.ScheduledTask, c.ScheduledTaskLog,
+		c.Article, c.ArticleTagsTag, c.Category, c.Collect, c.Comment, c.File,
+		c.KnowledgeChunk, c.Like, c.Link, c.Msgboard, c.MyFile, c.RagIndexJob,
+		c.RagQueryLog, c.Reply, c.ScheduledTask, c.ScheduledTaskLog,
 		c.SiteNotification, c.Tag,
 	} {
 		n.Use(hooks...)
@@ -274,8 +293,9 @@ func (c *Client) Use(hooks ...Hook) {
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	for _, n := range []interface{ Intercept(...Interceptor) }{
-		c.Article, c.ArticleTagsTag, c.Category, c.Collect, c.Comment, c.File, c.Like,
-		c.Link, c.Msgboard, c.MyFile, c.Reply, c.ScheduledTask, c.ScheduledTaskLog,
+		c.Article, c.ArticleTagsTag, c.Category, c.Collect, c.Comment, c.File,
+		c.KnowledgeChunk, c.Like, c.Link, c.Msgboard, c.MyFile, c.RagIndexJob,
+		c.RagQueryLog, c.Reply, c.ScheduledTask, c.ScheduledTaskLog,
 		c.SiteNotification, c.Tag,
 	} {
 		n.Intercept(interceptors...)
@@ -297,6 +317,8 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.Comment.mutate(ctx, m)
 	case *FileMutation:
 		return c.File.mutate(ctx, m)
+	case *KnowledgeChunkMutation:
+		return c.KnowledgeChunk.mutate(ctx, m)
 	case *LikeMutation:
 		return c.Like.mutate(ctx, m)
 	case *LinkMutation:
@@ -305,6 +327,10 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.Msgboard.mutate(ctx, m)
 	case *MyFileMutation:
 		return c.MyFile.mutate(ctx, m)
+	case *RagIndexJobMutation:
+		return c.RagIndexJob.mutate(ctx, m)
+	case *RagQueryLogMutation:
+		return c.RagQueryLog.mutate(ctx, m)
 	case *ReplyMutation:
 		return c.Reply.mutate(ctx, m)
 	case *ScheduledTaskMutation:
@@ -1118,6 +1144,139 @@ func (c *FileClient) mutate(ctx context.Context, m *FileMutation) (Value, error)
 	}
 }
 
+// KnowledgeChunkClient is a client for the KnowledgeChunk schema.
+type KnowledgeChunkClient struct {
+	config
+}
+
+// NewKnowledgeChunkClient returns a client for the KnowledgeChunk from the given config.
+func NewKnowledgeChunkClient(c config) *KnowledgeChunkClient {
+	return &KnowledgeChunkClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `knowledgechunk.Hooks(f(g(h())))`.
+func (c *KnowledgeChunkClient) Use(hooks ...Hook) {
+	c.hooks.KnowledgeChunk = append(c.hooks.KnowledgeChunk, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `knowledgechunk.Intercept(f(g(h())))`.
+func (c *KnowledgeChunkClient) Intercept(interceptors ...Interceptor) {
+	c.inters.KnowledgeChunk = append(c.inters.KnowledgeChunk, interceptors...)
+}
+
+// Create returns a builder for creating a KnowledgeChunk entity.
+func (c *KnowledgeChunkClient) Create() *KnowledgeChunkCreate {
+	mutation := newKnowledgeChunkMutation(c.config, OpCreate)
+	return &KnowledgeChunkCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of KnowledgeChunk entities.
+func (c *KnowledgeChunkClient) CreateBulk(builders ...*KnowledgeChunkCreate) *KnowledgeChunkCreateBulk {
+	return &KnowledgeChunkCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *KnowledgeChunkClient) MapCreateBulk(slice any, setFunc func(*KnowledgeChunkCreate, int)) *KnowledgeChunkCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &KnowledgeChunkCreateBulk{err: fmt.Errorf("calling to KnowledgeChunkClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*KnowledgeChunkCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &KnowledgeChunkCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for KnowledgeChunk.
+func (c *KnowledgeChunkClient) Update() *KnowledgeChunkUpdate {
+	mutation := newKnowledgeChunkMutation(c.config, OpUpdate)
+	return &KnowledgeChunkUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *KnowledgeChunkClient) UpdateOne(kc *KnowledgeChunk) *KnowledgeChunkUpdateOne {
+	mutation := newKnowledgeChunkMutation(c.config, OpUpdateOne, withKnowledgeChunk(kc))
+	return &KnowledgeChunkUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *KnowledgeChunkClient) UpdateOneID(id int) *KnowledgeChunkUpdateOne {
+	mutation := newKnowledgeChunkMutation(c.config, OpUpdateOne, withKnowledgeChunkID(id))
+	return &KnowledgeChunkUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for KnowledgeChunk.
+func (c *KnowledgeChunkClient) Delete() *KnowledgeChunkDelete {
+	mutation := newKnowledgeChunkMutation(c.config, OpDelete)
+	return &KnowledgeChunkDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *KnowledgeChunkClient) DeleteOne(kc *KnowledgeChunk) *KnowledgeChunkDeleteOne {
+	return c.DeleteOneID(kc.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *KnowledgeChunkClient) DeleteOneID(id int) *KnowledgeChunkDeleteOne {
+	builder := c.Delete().Where(knowledgechunk.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &KnowledgeChunkDeleteOne{builder}
+}
+
+// Query returns a query builder for KnowledgeChunk.
+func (c *KnowledgeChunkClient) Query() *KnowledgeChunkQuery {
+	return &KnowledgeChunkQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeKnowledgeChunk},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a KnowledgeChunk entity by its id.
+func (c *KnowledgeChunkClient) Get(ctx context.Context, id int) (*KnowledgeChunk, error) {
+	return c.Query().Where(knowledgechunk.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *KnowledgeChunkClient) GetX(ctx context.Context, id int) *KnowledgeChunk {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *KnowledgeChunkClient) Hooks() []Hook {
+	return c.hooks.KnowledgeChunk
+}
+
+// Interceptors returns the client interceptors.
+func (c *KnowledgeChunkClient) Interceptors() []Interceptor {
+	return c.inters.KnowledgeChunk
+}
+
+func (c *KnowledgeChunkClient) mutate(ctx context.Context, m *KnowledgeChunkMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&KnowledgeChunkCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&KnowledgeChunkUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&KnowledgeChunkUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&KnowledgeChunkDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown KnowledgeChunk mutation op: %q", m.Op())
+	}
+}
+
 // LikeClient is a client for the Like schema.
 type LikeClient struct {
 	config
@@ -1647,6 +1806,272 @@ func (c *MyFileClient) mutate(ctx context.Context, m *MyFileMutation) (Value, er
 		return (&MyFileDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown MyFile mutation op: %q", m.Op())
+	}
+}
+
+// RagIndexJobClient is a client for the RagIndexJob schema.
+type RagIndexJobClient struct {
+	config
+}
+
+// NewRagIndexJobClient returns a client for the RagIndexJob from the given config.
+func NewRagIndexJobClient(c config) *RagIndexJobClient {
+	return &RagIndexJobClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `ragindexjob.Hooks(f(g(h())))`.
+func (c *RagIndexJobClient) Use(hooks ...Hook) {
+	c.hooks.RagIndexJob = append(c.hooks.RagIndexJob, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `ragindexjob.Intercept(f(g(h())))`.
+func (c *RagIndexJobClient) Intercept(interceptors ...Interceptor) {
+	c.inters.RagIndexJob = append(c.inters.RagIndexJob, interceptors...)
+}
+
+// Create returns a builder for creating a RagIndexJob entity.
+func (c *RagIndexJobClient) Create() *RagIndexJobCreate {
+	mutation := newRagIndexJobMutation(c.config, OpCreate)
+	return &RagIndexJobCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of RagIndexJob entities.
+func (c *RagIndexJobClient) CreateBulk(builders ...*RagIndexJobCreate) *RagIndexJobCreateBulk {
+	return &RagIndexJobCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *RagIndexJobClient) MapCreateBulk(slice any, setFunc func(*RagIndexJobCreate, int)) *RagIndexJobCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &RagIndexJobCreateBulk{err: fmt.Errorf("calling to RagIndexJobClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*RagIndexJobCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &RagIndexJobCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for RagIndexJob.
+func (c *RagIndexJobClient) Update() *RagIndexJobUpdate {
+	mutation := newRagIndexJobMutation(c.config, OpUpdate)
+	return &RagIndexJobUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *RagIndexJobClient) UpdateOne(rij *RagIndexJob) *RagIndexJobUpdateOne {
+	mutation := newRagIndexJobMutation(c.config, OpUpdateOne, withRagIndexJob(rij))
+	return &RagIndexJobUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *RagIndexJobClient) UpdateOneID(id int) *RagIndexJobUpdateOne {
+	mutation := newRagIndexJobMutation(c.config, OpUpdateOne, withRagIndexJobID(id))
+	return &RagIndexJobUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for RagIndexJob.
+func (c *RagIndexJobClient) Delete() *RagIndexJobDelete {
+	mutation := newRagIndexJobMutation(c.config, OpDelete)
+	return &RagIndexJobDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *RagIndexJobClient) DeleteOne(rij *RagIndexJob) *RagIndexJobDeleteOne {
+	return c.DeleteOneID(rij.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *RagIndexJobClient) DeleteOneID(id int) *RagIndexJobDeleteOne {
+	builder := c.Delete().Where(ragindexjob.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &RagIndexJobDeleteOne{builder}
+}
+
+// Query returns a query builder for RagIndexJob.
+func (c *RagIndexJobClient) Query() *RagIndexJobQuery {
+	return &RagIndexJobQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeRagIndexJob},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a RagIndexJob entity by its id.
+func (c *RagIndexJobClient) Get(ctx context.Context, id int) (*RagIndexJob, error) {
+	return c.Query().Where(ragindexjob.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *RagIndexJobClient) GetX(ctx context.Context, id int) *RagIndexJob {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *RagIndexJobClient) Hooks() []Hook {
+	return c.hooks.RagIndexJob
+}
+
+// Interceptors returns the client interceptors.
+func (c *RagIndexJobClient) Interceptors() []Interceptor {
+	return c.inters.RagIndexJob
+}
+
+func (c *RagIndexJobClient) mutate(ctx context.Context, m *RagIndexJobMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&RagIndexJobCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&RagIndexJobUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&RagIndexJobUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&RagIndexJobDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown RagIndexJob mutation op: %q", m.Op())
+	}
+}
+
+// RagQueryLogClient is a client for the RagQueryLog schema.
+type RagQueryLogClient struct {
+	config
+}
+
+// NewRagQueryLogClient returns a client for the RagQueryLog from the given config.
+func NewRagQueryLogClient(c config) *RagQueryLogClient {
+	return &RagQueryLogClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `ragquerylog.Hooks(f(g(h())))`.
+func (c *RagQueryLogClient) Use(hooks ...Hook) {
+	c.hooks.RagQueryLog = append(c.hooks.RagQueryLog, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `ragquerylog.Intercept(f(g(h())))`.
+func (c *RagQueryLogClient) Intercept(interceptors ...Interceptor) {
+	c.inters.RagQueryLog = append(c.inters.RagQueryLog, interceptors...)
+}
+
+// Create returns a builder for creating a RagQueryLog entity.
+func (c *RagQueryLogClient) Create() *RagQueryLogCreate {
+	mutation := newRagQueryLogMutation(c.config, OpCreate)
+	return &RagQueryLogCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of RagQueryLog entities.
+func (c *RagQueryLogClient) CreateBulk(builders ...*RagQueryLogCreate) *RagQueryLogCreateBulk {
+	return &RagQueryLogCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *RagQueryLogClient) MapCreateBulk(slice any, setFunc func(*RagQueryLogCreate, int)) *RagQueryLogCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &RagQueryLogCreateBulk{err: fmt.Errorf("calling to RagQueryLogClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*RagQueryLogCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &RagQueryLogCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for RagQueryLog.
+func (c *RagQueryLogClient) Update() *RagQueryLogUpdate {
+	mutation := newRagQueryLogMutation(c.config, OpUpdate)
+	return &RagQueryLogUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *RagQueryLogClient) UpdateOne(rql *RagQueryLog) *RagQueryLogUpdateOne {
+	mutation := newRagQueryLogMutation(c.config, OpUpdateOne, withRagQueryLog(rql))
+	return &RagQueryLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *RagQueryLogClient) UpdateOneID(id int) *RagQueryLogUpdateOne {
+	mutation := newRagQueryLogMutation(c.config, OpUpdateOne, withRagQueryLogID(id))
+	return &RagQueryLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for RagQueryLog.
+func (c *RagQueryLogClient) Delete() *RagQueryLogDelete {
+	mutation := newRagQueryLogMutation(c.config, OpDelete)
+	return &RagQueryLogDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *RagQueryLogClient) DeleteOne(rql *RagQueryLog) *RagQueryLogDeleteOne {
+	return c.DeleteOneID(rql.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *RagQueryLogClient) DeleteOneID(id int) *RagQueryLogDeleteOne {
+	builder := c.Delete().Where(ragquerylog.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &RagQueryLogDeleteOne{builder}
+}
+
+// Query returns a query builder for RagQueryLog.
+func (c *RagQueryLogClient) Query() *RagQueryLogQuery {
+	return &RagQueryLogQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeRagQueryLog},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a RagQueryLog entity by its id.
+func (c *RagQueryLogClient) Get(ctx context.Context, id int) (*RagQueryLog, error) {
+	return c.Query().Where(ragquerylog.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *RagQueryLogClient) GetX(ctx context.Context, id int) *RagQueryLog {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *RagQueryLogClient) Hooks() []Hook {
+	return c.hooks.RagQueryLog
+}
+
+// Interceptors returns the client interceptors.
+func (c *RagQueryLogClient) Interceptors() []Interceptor {
+	return c.inters.RagQueryLog
+}
+
+func (c *RagQueryLogClient) mutate(ctx context.Context, m *RagQueryLogMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&RagQueryLogCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&RagQueryLogUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&RagQueryLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&RagQueryLogDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown RagQueryLog mutation op: %q", m.Op())
 	}
 }
 
@@ -2318,13 +2743,13 @@ func (c *TagClient) mutate(ctx context.Context, m *TagMutation) (Value, error) {
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		Article, ArticleTagsTag, Category, Collect, Comment, File, Like, Link, Msgboard,
-		MyFile, Reply, ScheduledTask, ScheduledTaskLog, SiteNotification,
-		Tag []ent.Hook
+		Article, ArticleTagsTag, Category, Collect, Comment, File, KnowledgeChunk, Like,
+		Link, Msgboard, MyFile, RagIndexJob, RagQueryLog, Reply, ScheduledTask,
+		ScheduledTaskLog, SiteNotification, Tag []ent.Hook
 	}
 	inters struct {
-		Article, ArticleTagsTag, Category, Collect, Comment, File, Like, Link, Msgboard,
-		MyFile, Reply, ScheduledTask, ScheduledTaskLog, SiteNotification,
-		Tag []ent.Interceptor
+		Article, ArticleTagsTag, Category, Collect, Comment, File, KnowledgeChunk, Like,
+		Link, Msgboard, MyFile, RagIndexJob, RagQueryLog, Reply, ScheduledTask,
+		ScheduledTaskLog, SiteNotification, Tag []ent.Interceptor
 	}
 )

@@ -116,16 +116,16 @@ Nest `RagModule` imports `RpgModule` 用于 quota 与用户信息；Go 通过 us
 
 ## 任务清单
 
-- [ ] Ent schema 对齐现网三表 + migrate 如需
-- [ ] embedding + chunk + indexer MVP（先支持 article 正文）
-- [ ] hybrid search + query prepare
-- [ ] `query-stream` SSE handler（Hertz 流式写）
-- [ ] quota Redis
-- [ ] admin 5 接口
-- [ ] Stream consumer 增量索引
-- [ ] gateway 路由 + permission fallback 公开 `/rag/status`
-- [ ] `deploy/postman/rag-smoke.json`
-- [ ] 单元测试：chunk、quota、SSE 帧格式
+- [x] Ent schema 对齐现网三表 + migrate 如需
+- [x] embedding + chunk + indexer MVP（先支持 article 正文）
+- [x] hybrid search + query prepare
+- [x] `query-stream` SSE handler（Hertz 流式写）
+- [x] quota Redis
+- [x] admin 5 接口
+- [x] Stream consumer 增量索引
+- [x] gateway 路由 + permission fallback 公开 `/rag/status`
+- [x] `deploy/postman/rag-smoke.json`
+- [x] 单元测试：chunk、quota、SSE 帧格式
 - [ ] 集成测试：reindex 1 篇文章 → query 返回 citations（mock LLM 可选）
 
 ## 验收标准
@@ -174,7 +174,7 @@ curl -N -X POST http://127.0.0.1:8000/api/v1/rag/query-stream \
 - 根工作区 `feature-doc-sync`：更新 `blog-server/docs/feature-backlog.md` 若 RAG 从待办移除
 - home README / `blog-home-nuxt/api/` 若封装变更
 
-- [ ] 文档已写入 `docs/`
+- [x] 文档已写入 `docs/`
 
 ## 下一步
 

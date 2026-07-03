@@ -15,6 +15,8 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/middleware"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/rag"
+	raglistener "github.com/Jiang-Xia/blog-server-go/services/blog/internal/rag/listener"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/userport"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent"
 	bloggrpc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/grpcserver"
@@ -74,10 +76,24 @@ func provideBlogEventConsumer(rds rueidis.Client, log *zap.Logger) BlogEventCons
 	return BlogEventConsumer{c}
 }
 
+func provideRagModule(cfg *config.Config, client *ent.Client, redis *redisutil.Store, articles *repo.ArticleRepo, cross *crossdb.CrossDB, log *zap.Logger) *rag.Module {
+	return rag.NewModule(cfg, client, redis, articles, cross, log)
+}
+
+func provideRagEventConsumer(rds rueidis.Client, mod *rag.Module, log *zap.Logger) RagEventConsumer {
+	if mod == nil || !mod.Cfg.Rag.Enabled {
+		return RagEventConsumer{}
+	}
+	c := event.NewConsumer(rds, log, event.ConsumerGroupRAG)
+	raglistener.RegisterRAGHandlers(c, mod, log)
+	return RagEventConsumer{c}
+}
+
 func provideRealtimeRuntime(
 	hub *ws.Hub,
 	pusher *ws.RealtimePusher,
 	blogConsumer BlogEventConsumer,
+	ragConsumer RagEventConsumer,
 	publisher *event.Publisher,
 	wsH *handler.WSHandler,
 	dev *handler.DevPushHandler,
@@ -85,6 +101,7 @@ func provideRealtimeRuntime(
 	return &RealtimeRuntime{
 		Hub: hub, Pusher: pusher,
 		BlogConsumer: blogConsumer,
+		RagConsumer:  ragConsumer,
 		Publisher:    publisher,
 		WS:           wsH,
 		DevPush:      dev,
@@ -106,6 +123,7 @@ func provideRegisterDeps(
 	resourcesH *handler.ResourcesHandler,
 	notificationH *handler.NotificationHandler,
 	scheduledTaskH *handler.ScheduledTaskHandler,
+	ragH *handler.RagHandler,
 	wsH *handler.WSHandler,
 	devPushH *handler.DevPushHandler,
 	jwt *auth.JWTService,
@@ -129,6 +147,7 @@ func provideRegisterDeps(
 		Resources:    resourcesH,
 		Notification: notificationH,
 		ScheduledTask: scheduledTaskH,
+		Rag:           ragH,
 		WS:           wsH,
 		DevPush:      devPushH,
 		JWT:          jwt,

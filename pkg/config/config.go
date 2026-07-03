@@ -39,6 +39,55 @@ type Config struct {
 	Observability ObservabilityConfig `mapstructure:"observability"`
 	Swagger       SwaggerConfig       `mapstructure:"swagger"`
 	Backup        BackupConfig        `mapstructure:"backup"`
+	Rag           RagConfig           `mapstructure:"rag"`
+}
+
+// RagConfig RAG 知识库开关、配额、Embedding 与 LLM 配置（对齐 Nest ragConfig）。
+type RagConfig struct {
+	Enabled            bool              `mapstructure:"enabled"`
+	DailyQuota         int               `mapstructure:"daily_quota"`
+	TopK               int               `mapstructure:"top_k"`
+	AllowLocalFallback bool              `mapstructure:"allow_local_fallback"`
+	Embedding          RagEmbeddingConfig `mapstructure:"embedding"`
+	LLM                RagLLMConfig       `mapstructure:"llm"`
+	Chunk              RagChunkConfig     `mapstructure:"chunk"`
+}
+
+// RagEmbeddingConfig OpenAI 兼容 Embedding API。
+type RagEmbeddingConfig struct {
+	Mode      string `mapstructure:"mode"`
+	RemoteURL string `mapstructure:"remote_url"`
+	APIKey    string `mapstructure:"api_key"`
+	Model     string `mapstructure:"model"`
+}
+
+// RagLLMConfig 对话模型（OpenAI 兼容 chat/completions）。
+type RagLLMConfig struct {
+	BaseURL string `mapstructure:"base_url"`
+	APIKey  string `mapstructure:"api_key"`
+	Model   string `mapstructure:"model"`
+}
+
+// RagChunkConfig Markdown 分块参数。
+type RagChunkConfig struct {
+	Size    int `mapstructure:"size"`
+	Overlap int `mapstructure:"overlap"`
+}
+
+// RagDailyQuotaOrDefault 每日问答配额，默认 20。
+func (r RagConfig) RagDailyQuotaOrDefault() int {
+	if r.DailyQuota > 0 {
+		return r.DailyQuota
+	}
+	return 20
+}
+
+// RagTopKOrDefault 检索 Top-K，默认 6。
+func (r RagConfig) RagTopKOrDefault() int {
+	if r.TopK > 0 {
+		return r.TopK
+	}
+	return 6
 }
 
 // SwaggerConfig OpenAPI/Swagger UI 开关与路径。

@@ -8,6 +8,8 @@ const (
 	ConsumerGroupBlog = "blog-handlers"
 	// ConsumerGroupRPG 消费组名（RPG 域，Plan 09 接入）。
 	ConsumerGroupRPG = "rpg-handlers"
+	// ConsumerGroupRAG RAG 增量索引消费组。
+	ConsumerGroupRAG = "rag-indexer"
 	// DoneKeyPrefix 幂等标记前缀。
 	DoneKeyPrefix = "blog:event:done:"
 	// IdempotencyTTL 幂等标记 TTL（7 天）。

@@ -32,6 +32,7 @@ var (
 	Forbidden      = newCode(403, "无权限")
 	NotFound       = newCode(404, "资源不存在")
 	Conflict       = newCode(409, "资源冲突")
+	ServiceUnavailable = newCode(503, "服务不可用")
 	InternalError  = newCode(500, "服务器内部错误")
 	TokenExpired   = newCode(401, "登录已过期")
 	CaptchaRefresh = newCode(10001, "验证码需要刷新")
