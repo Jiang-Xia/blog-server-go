@@ -9,6 +9,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/services/user/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/user/ent/sensitiveword"
@@ -21,8 +22,9 @@ const cacheTTL = 5 * time.Minute
 
 // Service 敏感词业务逻辑；实现 FilterService。
 type Service struct {
-	client *ent.Client
-	log    *zap.Logger
+	client   *ent.Client
+	log      *zap.Logger
+	blogSync blogsvc.ContentModerationSyncer
 
 	cacheMu        sync.RWMutex
 	cachedWords    []string
@@ -30,8 +32,8 @@ type Service struct {
 }
 
 // NewService 构造敏感词服务。
-func NewService(client *ent.Client, log *zap.Logger) *Service {
-	return &Service{client: client, log: log}
+func NewService(client *ent.Client, log *zap.Logger, blogSync blogsvc.ContentModerationSyncer) *Service {
+	return &Service{client: client, log: log, blogSync: blogSync}
 }
 
 // --- FilterService ---
@@ -419,17 +421,19 @@ func (s *Service) reviewHit(ctx context.Context, hitID, reviewerID int, status s
 	return saved, nil
 }
 
-// syncSourceStatus 审核后同步 blog 域实体状态；Plan 11 跨域经 blog gRPC 补齐，暂仅记录日志。
+// syncSourceStatus 审核后同步 blog 域实体状态（经 blog gRPC）。
 func (s *Service) syncSourceStatus(ctx context.Context, sourceType, sourceID, reviewStatus string) error {
 	if sourceID == "" || sourceID == "0" {
 		return nil
 	}
-	s.log.Info("sensitive hit sync deferred to blog-service",
-		zap.String("sourceType", sourceType),
-		zap.String("sourceId", sourceID),
-		zap.String("reviewStatus", reviewStatus),
-	)
-	return nil
+	if s.blogSync == nil {
+		s.log.Info("sensitive hit sync skipped: blog grpc not configured",
+			zap.String("sourceType", sourceType),
+			zap.String("sourceId", sourceID),
+		)
+		return nil
+	}
+	return s.blogSync.UpdateContentModerationStatus(ctx, sourceType, sourceID, reviewStatus)
 }
 
 func strVal(m map[string]interface{}, key string) string {

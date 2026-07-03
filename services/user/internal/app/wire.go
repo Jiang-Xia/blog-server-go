@@ -30,6 +30,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		data.NewEntClient,
 		data.NewRedisClient,
 		provideRedisStore,
+		provideBlogModerationSyncer,
 		repo.NewUserRepo,
 		provideRoleRepo,
 		provideAdminRepo,

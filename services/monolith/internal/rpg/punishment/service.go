@@ -58,6 +58,26 @@ func (s *PunishmentService) GetBanStatus(ctx context.Context, uid int) (*BanStat
 	return &BanStatus{}, nil
 }
 
+// AdminUnban 管理员手动解禁：清除禁言时间。
+func (s *PunishmentService) AdminUnban(ctx context.Context, uid int) (map[string]interface{}, error) {
+	if uid <= 0 {
+		return nil, errcode.WithMessage(errcode.InvalidParam, "无效用户")
+	}
+	rpg, err := s.rpg.FindByUid(ctx, uid)
+	if err != nil {
+		return nil, err
+	}
+	if rpg == nil {
+		return nil, errcode.WithMessage(errcode.NotFound, "用户RPG数据不存在")
+	}
+	rpg.BanStartTime = nil
+	rpg.BanEndTime = nil
+	if _, err := s.rpg.SaveRpg(ctx, rpg); err != nil {
+		return nil, err
+	}
+	return map[string]interface{}{"uid": uid, "unbanned": true}, nil
+}
+
 // AssertNotBanned 检查禁言，被禁则返回 Forbidden 业务错误。
 func (s *PunishmentService) AssertNotBanned(ctx context.Context, uid int) error {
 	status, err := s.GetBanStatus(ctx, uid)

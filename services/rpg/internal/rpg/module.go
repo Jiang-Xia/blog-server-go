@@ -2,6 +2,7 @@
 package rpg
 
 import (
+	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/articleport"
@@ -66,6 +67,7 @@ func NewModule(
 	users userport.UserReader,
 	articles articleport.ArticleReader,
 	publisher *event.Publisher,
+	cfg *config.Config,
 	log *zap.Logger,
 ) *Module {
 	repo := rpgrepo.NewRpgRepo(client)
@@ -94,7 +96,7 @@ func NewModule(
 	tipSvc := rpgsocial.NewTipService(articles, repo, inventorySvc, reputationSvc, publisher, notify)
 	socialSvc := rpgsocial.NewInteractService(repo, rpgSvc, inventorySvc, reputationSvc, redis, achievementSvc, questSvc)
 	rechargeSvc := rpgrecharge.NewService(repo, rpgSvc, inventorySvc, notify)
-	adminSvc := rpgadmin.NewService(repo, rpgSvc, inventorySvc, lotterySvc, guildSvc)
+	adminSvc := rpgadmin.NewService(repo, rpgSvc, inventorySvc, lotterySvc, guildSvc, punishSvc, storageUploadRoot(cfg), cfg.Storage.PublicPrefixOrDefault())
 	profileSvc := rpgprofile.NewService(users, repo, rpgSvc, inventorySvc, achievementSvc)
 
 	return &Module{
@@ -121,4 +123,11 @@ func NewModule(
 		Admin:       adminSvc,
 		Profile:     profileSvc,
 	}
+}
+
+func storageUploadRoot(cfg *config.Config) string {
+	if cfg == nil || cfg.Storage.UploadPath == "" {
+		return "./public/uploads/"
+	}
+	return cfg.Storage.UploadPath
 }

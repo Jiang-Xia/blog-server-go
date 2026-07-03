@@ -14,6 +14,7 @@ http:
 
 grpc:
   addr: ":50052"
+  blog_addr: "127.0.0.1:50051"
 
 mysql:
   host: 127.0.0.1

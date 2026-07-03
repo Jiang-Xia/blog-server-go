@@ -209,6 +209,35 @@ func (s *Service) trackGuildJoin(ctx context.Context, uid int) {
 	}
 }
 
+// AdminRemoveMember 管理端移除公会成员（会长不可移除）。
+func (s *Service) AdminRemoveMember(ctx context.Context, guildID, uid int) (map[string]interface{}, error) {
+	guild, err := s.repo.FindGuildByID(ctx, guildID)
+	if err != nil {
+		return nil, errcode.WithMessage(errcode.NotFound, "公会不存在")
+	}
+	member, err := s.repo.FindGuildMemberByUID(ctx, uid)
+	if err != nil {
+		return nil, errcode.WithMessage(errcode.NotFound, "成员不存在")
+	}
+	if member.GuildId != guildID {
+		return nil, errcode.WithMessage(errcode.NotFound, "成员不存在")
+	}
+	if member.Role == "leader" {
+		return nil, errcode.WithMessage(errcode.InvalidParam, "不可移除会长，请先转让或解散公会")
+	}
+	if err := s.repo.DeleteGuildMember(ctx, member.ID); err != nil {
+		return nil, err
+	}
+	guild.MemberCount--
+	if guild.MemberCount < 0 {
+		guild.MemberCount = 0
+	}
+	if _, err := s.repo.UpdateGuild(ctx, guild); err != nil {
+		return nil, err
+	}
+	return map[string]interface{}{"success": true}, nil
+}
+
 func strPtr(s string) *string {
 	if s == "" {
 		return nil

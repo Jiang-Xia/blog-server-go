@@ -4,6 +4,7 @@ package app
 import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
+	"github.com/Jiang-Xia/blog-server-go/pkg/rpgsvc"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
@@ -15,6 +16,7 @@ import (
 	paysvc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pay/service"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpgport"
 	rpgactivity "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/activity"
 	rpgevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/event"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
@@ -27,6 +29,14 @@ import (
 	"github.com/redis/rueidis"
 	"go.uber.org/zap"
 )
+
+func provideBanChecker(mod *rpg.Module) rpgsvc.BanChecker {
+	if mod == nil {
+		c, _ := rpgsvc.NewGRPCBanChecker("")
+		return c
+	}
+	return rpgport.NewLocalBanChecker(mod.Punishment)
+}
 
 func provideUserGRPCServer(cfg *config.Config, profileSvc *profile.Service, jwt *auth.JWTService) *usersgrpc.Server {
 	if cfg.App.ServiceModeOrDefault() != config.ModeUser {

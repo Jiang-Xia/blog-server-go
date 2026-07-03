@@ -20,10 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArticleService_GetArticle_FullMethodName       = "/blog.v1.ArticleService/GetArticle"
-	ArticleService_ListArticles_FullMethodName     = "/blog.v1.ArticleService/ListArticles"
-	ArticleService_GetArticleDetail_FullMethodName = "/blog.v1.ArticleService/GetArticleDetail"
-	ArticleService_GetPubStats_FullMethodName      = "/blog.v1.ArticleService/GetPubStats"
+	ArticleService_GetArticle_FullMethodName                    = "/blog.v1.ArticleService/GetArticle"
+	ArticleService_ListArticles_FullMethodName                  = "/blog.v1.ArticleService/ListArticles"
+	ArticleService_GetArticleDetail_FullMethodName              = "/blog.v1.ArticleService/GetArticleDetail"
+	ArticleService_GetPubStats_FullMethodName                   = "/blog.v1.ArticleService/GetPubStats"
+	ArticleService_UpdateContentModerationStatus_FullMethodName = "/blog.v1.ArticleService/UpdateContentModerationStatus"
 )
 
 // ArticleServiceClient is the client API for ArticleService service.
@@ -36,6 +37,8 @@ type ArticleServiceClient interface {
 	ListArticles(ctx context.Context, in *ListArticlesRequest, opts ...grpc.CallOption) (*ListArticlesResponse, error)
 	GetArticleDetail(ctx context.Context, in *GetArticleDetailRequest, opts ...grpc.CallOption) (*GetArticleDetailResponse, error)
 	GetPubStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPubStatsResponse, error)
+	// UpdateContentModerationStatus 敏感词审核后同步 comment/msgboard/reply 状态。
+	UpdateContentModerationStatus(ctx context.Context, in *UpdateContentModerationStatusRequest, opts ...grpc.CallOption) (*UpdateContentModerationStatusResponse, error)
 }
 
 type articleServiceClient struct {
@@ -86,6 +89,16 @@ func (c *articleServiceClient) GetPubStats(ctx context.Context, in *emptypb.Empt
 	return out, nil
 }
 
+func (c *articleServiceClient) UpdateContentModerationStatus(ctx context.Context, in *UpdateContentModerationStatusRequest, opts ...grpc.CallOption) (*UpdateContentModerationStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateContentModerationStatusResponse)
+	err := c.cc.Invoke(ctx, ArticleService_UpdateContentModerationStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArticleServiceServer is the server API for ArticleService service.
 // All implementations must embed UnimplementedArticleServiceServer
 // for forward compatibility.
@@ -96,6 +109,8 @@ type ArticleServiceServer interface {
 	ListArticles(context.Context, *ListArticlesRequest) (*ListArticlesResponse, error)
 	GetArticleDetail(context.Context, *GetArticleDetailRequest) (*GetArticleDetailResponse, error)
 	GetPubStats(context.Context, *emptypb.Empty) (*GetPubStatsResponse, error)
+	// UpdateContentModerationStatus 敏感词审核后同步 comment/msgboard/reply 状态。
+	UpdateContentModerationStatus(context.Context, *UpdateContentModerationStatusRequest) (*UpdateContentModerationStatusResponse, error)
 	mustEmbedUnimplementedArticleServiceServer()
 }
 
@@ -117,6 +132,9 @@ func (UnimplementedArticleServiceServer) GetArticleDetail(context.Context, *GetA
 }
 func (UnimplementedArticleServiceServer) GetPubStats(context.Context, *emptypb.Empty) (*GetPubStatsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPubStats not implemented")
+}
+func (UnimplementedArticleServiceServer) UpdateContentModerationStatus(context.Context, *UpdateContentModerationStatusRequest) (*UpdateContentModerationStatusResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateContentModerationStatus not implemented")
 }
 func (UnimplementedArticleServiceServer) mustEmbedUnimplementedArticleServiceServer() {}
 func (UnimplementedArticleServiceServer) testEmbeddedByValue()                        {}
@@ -211,6 +229,24 @@ func _ArticleService_GetPubStats_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArticleService_UpdateContentModerationStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateContentModerationStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).UpdateContentModerationStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_UpdateContentModerationStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).UpdateContentModerationStatus(ctx, req.(*UpdateContentModerationStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArticleService_ServiceDesc is the grpc.ServiceDesc for ArticleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -233,6 +269,10 @@ var ArticleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPubStats",
 			Handler:    _ArticleService_GetPubStats_Handler,
+		},
+		{
+			MethodName: "UpdateContentModerationStatus",
+			Handler:    _ArticleService_UpdateContentModerationStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

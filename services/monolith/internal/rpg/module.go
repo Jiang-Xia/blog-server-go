@@ -99,7 +99,7 @@ func NewModule(
 	tipSvc := rpgsocial.NewTipService(articles, repo, inventorySvc, reputationSvc, publisher, notify)
 	socialSvc := rpgsocial.NewInteractService(repo, rpgSvc, inventorySvc, reputationSvc, redis, achievementSvc, questSvc)
 	rechargeSvc := rpgrecharge.NewService(repo, rpgSvc, inventorySvc, notify)
-	adminSvc := rpgadmin.NewService(repo, rpgSvc, inventorySvc, lotterySvc, guildSvc)
+	adminSvc := rpgadmin.NewService(repo, rpgSvc, inventorySvc, lotterySvc, guildSvc, punishSvc, "./public/uploads/", "/static/")
 	profileSvc := rpgprofile.NewService(users, repo, rpgSvc, inventorySvc, achievementSvc)
 
 	return &Module{

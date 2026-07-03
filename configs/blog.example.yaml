@@ -14,6 +14,7 @@ http:
 grpc:
   addr: ":50051"
   user_addr: "127.0.0.1:50052"
+  rpg_addr: "127.0.0.1:50053"
 
 mysql:
   host: 127.0.0.1

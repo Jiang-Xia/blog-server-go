@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	RpgService_GetProfile_FullMethodName       = "/rpg.v1.RpgService/GetProfile"
 	RpgService_GetPublicProfile_FullMethodName = "/rpg.v1.RpgService/GetPublicProfile"
+	RpgService_AssertNotBanned_FullMethodName  = "/rpg.v1.RpgService/AssertNotBanned"
 )
 
 // RpgServiceClient is the client API for RpgService service.
@@ -31,6 +32,8 @@ const (
 type RpgServiceClient interface {
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	GetPublicProfile(ctx context.Context, in *GetPublicProfileRequest, opts ...grpc.CallOption) (*GetPublicProfileResponse, error)
+	// AssertNotBanned 检查用户是否处于 RPG 禁言期（blog BanGuard 调用）。
+	AssertNotBanned(ctx context.Context, in *AssertNotBannedRequest, opts ...grpc.CallOption) (*AssertNotBannedResponse, error)
 }
 
 type rpgServiceClient struct {
@@ -61,6 +64,16 @@ func (c *rpgServiceClient) GetPublicProfile(ctx context.Context, in *GetPublicPr
 	return out, nil
 }
 
+func (c *rpgServiceClient) AssertNotBanned(ctx context.Context, in *AssertNotBannedRequest, opts ...grpc.CallOption) (*AssertNotBannedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AssertNotBannedResponse)
+	err := c.cc.Invoke(ctx, RpgService_AssertNotBanned_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RpgServiceServer is the server API for RpgService service.
 // All implementations must embed UnimplementedRpgServiceServer
 // for forward compatibility.
@@ -69,6 +82,8 @@ func (c *rpgServiceClient) GetPublicProfile(ctx context.Context, in *GetPublicPr
 type RpgServiceServer interface {
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	GetPublicProfile(context.Context, *GetPublicProfileRequest) (*GetPublicProfileResponse, error)
+	// AssertNotBanned 检查用户是否处于 RPG 禁言期（blog BanGuard 调用）。
+	AssertNotBanned(context.Context, *AssertNotBannedRequest) (*AssertNotBannedResponse, error)
 	mustEmbedUnimplementedRpgServiceServer()
 }
 
@@ -84,6 +99,9 @@ func (UnimplementedRpgServiceServer) GetProfile(context.Context, *GetProfileRequ
 }
 func (UnimplementedRpgServiceServer) GetPublicProfile(context.Context, *GetPublicProfileRequest) (*GetPublicProfileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPublicProfile not implemented")
+}
+func (UnimplementedRpgServiceServer) AssertNotBanned(context.Context, *AssertNotBannedRequest) (*AssertNotBannedResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AssertNotBanned not implemented")
 }
 func (UnimplementedRpgServiceServer) mustEmbedUnimplementedRpgServiceServer() {}
 func (UnimplementedRpgServiceServer) testEmbeddedByValue()                    {}
@@ -142,6 +160,24 @@ func _RpgService_GetPublicProfile_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RpgService_AssertNotBanned_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssertNotBannedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RpgServiceServer).AssertNotBanned(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RpgService_AssertNotBanned_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RpgServiceServer).AssertNotBanned(ctx, req.(*AssertNotBannedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RpgService_ServiceDesc is the grpc.ServiceDesc for RpgService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +192,10 @@ var RpgService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPublicProfile",
 			Handler:    _RpgService_GetPublicProfile_Handler,
+		},
+		{
+			MethodName: "AssertNotBanned",
+			Handler:    _RpgService_AssertNotBanned_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -1493,6 +1493,393 @@ paths:
       summary: GET resources/weather
       tags:
       - 资源
+  /api/v1/scheduled-task:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；分页执行日志
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 分页执行日志
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/backups:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT 超管；备份文件列表
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 备份文件列表
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/backups/:fileName/download:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT 超管；下载指定备份
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 下载指定备份
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/backups/download:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT 超管；下载最新备份
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 下载最新备份
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/cache/clear-permissions:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT 超管；清 RBAC Redis
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 清 RBAC Redis
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/cache/refresh-tongji-token:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT 超管；刷新百度 token（Plan 16）
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 刷新百度 token（Plan 16）
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/log-recording/:taskName:
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；切换执行日志
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 切换执行日志
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/start/:taskName:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；启动 cron
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 启动 cron
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/status/:taskName:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；运行状态
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 运行状态
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/stop/:taskName:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；停止 cron
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 停止 cron
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/tasks:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；已注册任务列表（含 running）
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 已注册任务列表（含 running）
+      tags:
+      - scheduled-task
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；创建任务
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 创建任务
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/tasks/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；删除任务
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 删除任务
+      tags:
+      - scheduled-task
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；单个任务
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 单个任务
+      tags:
+      - scheduled-task
+    patch:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；更新 cron/启用等
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 更新 cron/启用等
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/tasks/all:
+    get:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；分页任务定义
+      parameters:
+      - description: Query 参数
+        in: query
+        name: query
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 分页任务定义
+      tags:
+      - scheduled-task
+  /api/v1/scheduled-task/trigger/:taskName:
+    post:
+      consumes:
+      - application/json
+      description: 鉴权：JWT+RBAC；手动触发
+      parameters:
+      - description: 请求体 JSON
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 业务错误（HTTP 仍为 200）
+          schema:
+            $ref: '#/definitions/apidoc.ErrorBody'
+      security:
+      - BearerAuth: []
+      summary: 手动触发
+      tags:
+      - scheduled-task
   /api/v1/tag:
     get:
       consumes:

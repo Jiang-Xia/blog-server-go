@@ -386,32 +386,31 @@ func pageFromQuery(q map[string]string) (page, pageSize int) {
 	return page, pageSize
 }
 
-func notReady(msg string) error {
-	return errcode.WithMessage(errcode.InternalError, msg)
-}
-
 func (a adminAdapter) ListAchievements(ctx context.Context, query map[string]string) (interface{}, error) {
 	p, ps := pageFromQuery(query)
 	return a.Service.ListAchievements(ctx, p, ps)
 }
 func (a adminAdapter) CreateAchievement(ctx context.Context, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("成就创建待完善")
+	return a.Service.CreateAchievement(ctx, body)
 }
 func (a adminAdapter) UpdateAchievement(ctx context.Context, id string, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("成就更新待完善")
+	qid, _ := strconv.Atoi(id)
+	return a.Service.UpdateAchievement(ctx, qid, body)
 }
 func (a adminAdapter) DeleteAchievement(ctx context.Context, id string) (interface{}, error) {
-	return map[string]bool{"success": true}, notReady("成就删除待完善")
+	qid, _ := strconv.Atoi(id)
+	return a.Service.DeleteAchievement(ctx, qid)
 }
 func (a adminAdapter) ListQuests(ctx context.Context, query map[string]string) (interface{}, error) {
 	p, ps := pageFromQuery(query)
 	return a.Service.ListQuests(ctx, p, ps)
 }
 func (a adminAdapter) CreateQuest(ctx context.Context, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("任务创建待完善")
+	return a.Service.CreateQuestFromBody(ctx, body)
 }
 func (a adminAdapter) UpdateQuest(ctx context.Context, id string, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("任务更新待完善")
+	qid, _ := strconv.Atoi(id)
+	return a.Service.UpdateQuestFromBody(ctx, qid, body)
 }
 func (a adminAdapter) DeleteQuest(ctx context.Context, id string) (interface{}, error) {
 	qid, _ := strconv.Atoi(id)
@@ -422,13 +421,15 @@ func (a adminAdapter) ListLotteryPool(ctx context.Context, query map[string]stri
 	return a.Service.ListLotteryPool(ctx, p, ps)
 }
 func (a adminAdapter) CreateLotteryPool(ctx context.Context, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("奖池创建待完善")
+	return a.Service.CreateLotteryPoolFromBody(ctx, body)
 }
 func (a adminAdapter) UpdateLotteryPool(ctx context.Context, id string, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("奖池更新待完善")
+	qid, _ := strconv.Atoi(id)
+	return a.Service.UpdateLotteryPoolFromBody(ctx, qid, body)
 }
 func (a adminAdapter) DeleteLotteryPool(ctx context.Context, id string) (interface{}, error) {
-	return map[string]bool{"success": true}, notReady("奖池删除待完善")
+	qid, _ := strconv.Atoi(id)
+	return a.Service.DeleteLotteryPool(ctx, qid)
 }
 func (a adminAdapter) ListLotteryRecords(ctx context.Context, query map[string]string) (interface{}, error) {
 	p, ps := pageFromQuery(query)
@@ -455,7 +456,8 @@ func (a adminAdapter) DeductCurrency(ctx context.Context, uid string, body map[s
 	return map[string]int{"currency": bal}, err
 }
 func (a adminAdapter) UnbanUser(ctx context.Context, uid string, _ int) (interface{}, error) {
-	return map[string]bool{"success": true}, notReady("解封待完善")
+	id, _ := strconv.Atoi(uid)
+	return a.Service.UnbanUser(ctx, id)
 }
 func (a adminAdapter) GetStats(ctx context.Context) (interface{}, error) { return a.Service.GetStats(ctx) }
 func (a adminAdapter) ListItems(ctx context.Context, query map[string]string) (interface{}, error) {
@@ -463,27 +465,28 @@ func (a adminAdapter) ListItems(ctx context.Context, query map[string]string) (i
 	return a.Service.ListItems(ctx, p, ps)
 }
 func (a adminAdapter) CreateItem(ctx context.Context, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("物品创建待完善")
+	return a.Service.CreateItemFromBody(ctx, body)
 }
 func (a adminAdapter) UpdateItem(ctx context.Context, id string, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("物品更新待完善")
+	iid, _ := strconv.Atoi(id)
+	return a.Service.UpdateItemFromBody(ctx, iid, body)
 }
 func (a adminAdapter) DeleteItem(ctx context.Context, id string) (interface{}, error) {
 	iid, _ := strconv.Atoi(id)
 	return map[string]bool{"success": true}, a.Service.DeleteItem(ctx, iid)
 }
-func (a adminAdapter) UploadItemAsset(ctx context.Context, _, _ string, _ []byte, _ string) (interface{}, error) {
-	return nil, notReady("素材上传待完善")
+func (a adminAdapter) UploadItemAsset(ctx context.Context, icon, assetType string, data []byte, filename string) (interface{}, error) {
+	return a.Service.UploadItemAsset(ctx, icon, assetType, data, filename, "")
 }
-func (a adminAdapter) DeleteItemAsset(ctx context.Context, _, _ string) (interface{}, error) {
-	return nil, notReady("素材删除待完善")
+func (a adminAdapter) DeleteItemAsset(ctx context.Context, icon, assetType string) (interface{}, error) {
+	return a.Service.DeleteItemAsset(ctx, icon, assetType)
 }
 func (a adminAdapter) ListActivities(ctx context.Context, query map[string]string) (interface{}, error) {
 	p, ps := pageFromQuery(query)
 	return a.Service.ListActivities(ctx, p, ps)
 }
 func (a adminAdapter) CreateActivity(ctx context.Context, body map[string]interface{}) (interface{}, error) {
-	return body, notReady("活动创建待完善")
+	return a.Service.CreateActivityFromBody(ctx, body)
 }
 func (a adminAdapter) UpdateActivity(ctx context.Context, id string, body map[string]interface{}) (interface{}, error) {
 	aid, _ := strconv.Atoi(id)
@@ -498,13 +501,17 @@ func (a adminAdapter) ListGuilds(ctx context.Context, query map[string]string) (
 	return a.Service.ListGuilds(ctx, p, ps)
 }
 func (a adminAdapter) DeleteGuild(ctx context.Context, id string) (interface{}, error) {
-	return map[string]bool{"success": true}, notReady("公会删除待完善")
+	gid, _ := strconv.Atoi(id)
+	return a.Service.DeleteGuild(ctx, gid)
 }
 func (a adminAdapter) ListGuildMembers(ctx context.Context, id string) (interface{}, error) {
-	return map[string]interface{}{"members": []interface{}{}}, nil
+	gid, _ := strconv.Atoi(id)
+	return a.Service.ListGuildMembers(ctx, gid)
 }
-func (a adminAdapter) RemoveGuildMember(ctx context.Context, _, _ string) (interface{}, error) {
-	return map[string]bool{"success": true}, notReady("移除成员待完善")
+func (a adminAdapter) RemoveGuildMember(ctx context.Context, guildID, uid string) (interface{}, error) {
+	gid, _ := strconv.Atoi(guildID)
+	muid, _ := strconv.Atoi(uid)
+	return a.Service.RemoveGuildMember(ctx, gid, muid)
 }
 func (a adminAdapter) ListTips(ctx context.Context, query map[string]string) (interface{}, error) {
 	p, ps := pageFromQuery(query)

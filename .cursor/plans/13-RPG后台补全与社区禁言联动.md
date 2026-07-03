@@ -91,24 +91,24 @@ Go 现状：`user/internal/user/sensitive/service.go` 的 `reviewHit` 仅改 hit
 
 ## 任务清单
 
-- [ ] 梳理 `adapters.go` 全部 `notReady`，逐项对照 Nest 实现
-- [ ] rpg admin service 补全 + 测试
-- [ ] rpg gRPC：`AssertNotBanned`（或等价）
-- [ ] blog comment/reply/msgboard 接入 BanGuard
-- [ ] rpg sign 等路由接入 BanGuard
-- [ ] user sensitive approve/reject → blog gRPC 状态同步
+- [x] 梳理 `adapters.go` 全部 `notReady`，逐项对照 Nest 实现
+- [x] rpg admin service 补全 + 测试
+- [x] rpg gRPC：`AssertNotBanned`（或等价）
+- [x] blog comment/reply/msgboard 接入 BanGuard
+- [x] rpg sign 等路由接入 BanGuard
+- [x] user sensitive approve/reject → blog gRPC 状态同步
 - [ ] （建议）comment/msgboard create 敏感词 HP/ban 与 Nest diff 测试
-- [ ] `deploy/postman/rpg-admin-write-smoke.json` 扩展
-- [ ] 更新 Swagger / `make swag-all`
+- [x] `deploy/postman/rpg-admin-write-smoke.json` 扩展
+- [x] 更新 Swagger / `make swag-all`
 
 ## 验收标准
 
-- [ ] blog-admin RPG 后台：创建/编辑成就、任务、奖池、物品、活动可成功并列表可见
-- [ ] admin 解封用户后 BanGuard 不再拦截
-- [ ] 禁言用户调用 comment/create 被拒绝（文案与 Nest 一致）
-- [ ] sensitive-word hit approve 后对应评论从 pending → approved（admin 评论列表可见）
-- [ ] hit reject 后评论 status=rejected
-- [ ] 无 `notReady("…待完善")` 残留于 admin 写路径（grep 验收）
+- [x] blog-admin RPG 后台：创建/编辑成就、任务、奖池、物品、活动可成功并列表可见
+- [x] admin 解封用户后 BanGuard 不再拦截
+- [x] 禁言用户调用 comment/create 被拒绝（文案与 Nest 一致）
+- [x] sensitive-word hit approve 后对应评论从 pending → approved（admin 评论列表可见）
+- [x] hit reject 后评论 status=rejected
+- [x] 无 `notReady("…待完善")` 残留于 admin 写路径（grep 验收）
 
 ### 可脚本化验收
 
@@ -139,7 +139,7 @@ go test ./services/rpg/internal/rpg/admin/... ./services/user/internal/user/sens
 
 [`docs/13-RPG后台补全与社区禁言联动.md`](../../docs/13-RPG后台补全与社区禁言联动.md)
 
-- [ ] 文档已写入 `docs/`
+- [x] 文档已写入 `docs/`
 
 ## 下一步
 

@@ -81,6 +81,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		operationlog.NewService,
 		scheduler.New,
 		rpg.NewModule,
+		provideBanChecker,
 		provideRPGEventHandlers,
 		providePayOrderRepo,
 		providePayService,

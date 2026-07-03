@@ -81,9 +81,9 @@ func providePayOrderService(orderRepo *payrepo.PayOrderRepo, pay *paysvc.PayServ
 
 func provideRPGGRPCServer(mod *rpg.Module) *rpggrpc.Server {
 	if mod == nil {
-		return rpggrpc.New(nil, nil)
+		return rpggrpc.New(nil, nil, nil)
 	}
-	return rpggrpc.New(mod.Rpg, mod.Profile)
+	return rpggrpc.New(mod.Rpg, mod.Profile, mod.Punishment)
 }
 
 func provideRPGHandler(mod *rpg.Module, game *handler.RPGGameplay, jwt *auth.JWTService) *handler.RPGHandler {

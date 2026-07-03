@@ -6,6 +6,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
+	"github.com/Jiang-Xia/blog-server-go/pkg/rpgsvc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/contentfilter"
@@ -38,6 +39,10 @@ func provideUserService(cfg *config.Config) (usersvc.UserService, error) {
 	return userport.ProvideUserService(cfg)
 }
 
+func provideBanChecker(cfg *config.Config) (rpgsvc.BanChecker, error) {
+	return rpgsvc.NewGRPCBanChecker(cfg.GRPC.RPGAddr)
+}
+
 func provideArticleUserPort(users usersvc.UserService) userport.ArticleUserPort {
 	return userport.NewGRPCArticleUserPort(users)
 }
@@ -54,8 +59,8 @@ func provideJWT(cfg *config.Config) *auth.JWTService {
 	return auth.NewJWTService(cfg)
 }
 
-func provideBlogGRPCServer(articles *blogsvc.ArticleService, client *ent.Client) *bloggrpc.Server {
-	return bloggrpc.New(articles, client)
+func provideBlogGRPCServer(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client) *bloggrpc.Server {
+	return bloggrpc.New(articles, moderation, client)
 }
 
 func provideBlogEventConsumer(rds rueidis.Client, log *zap.Logger) BlogEventConsumer {

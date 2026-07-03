@@ -250,6 +250,11 @@ func (r *RpgRepo) FindItemConfigByCode(ctx context.Context, code string) (*ent.R
 	return r.client.RpgItemConfig.Query().Where(rpgitemconfig.CodeEQ(code)).First(ctx)
 }
 
+// FindItemConfigByID 按 ID 查物品配置。
+func (r *RpgRepo) FindItemConfigByID(ctx context.Context, id int) (*ent.RpgItemConfig, error) {
+	return r.client.RpgItemConfig.Get(ctx, id)
+}
+
 // ListItemConfigsByCodes 批量查配置。
 func (r *RpgRepo) ListItemConfigsByCodes(ctx context.Context, codes []string) ([]*ent.RpgItemConfig, error) {
 	if len(codes) == 0 {
@@ -764,6 +769,16 @@ func (r *RpgRepo) CreateGuildMember(ctx context.Context, row *ent.RpgUserGuildMe
 // DeleteGuildMember 退出公会。
 func (r *RpgRepo) DeleteGuildMember(ctx context.Context, id int) error {
 	return r.client.RpgUserGuildMember.DeleteOneID(id).Exec(ctx)
+}
+
+// DeleteGuild 删除公会及其成员记录。
+func (r *RpgRepo) DeleteGuild(ctx context.Context, id int) error {
+	return r.WithTx(ctx, func(tx *ent.Tx) error {
+		if _, err := tx.RpgUserGuildMember.Delete().Where(rpguserguildmember.GuildIdEQ(id)).Exec(ctx); err != nil {
+			return err
+		}
+		return tx.RpgGuild.DeleteOneID(id).Exec(ctx)
+	})
 }
 
 // --- Activity ---

@@ -2,6 +2,7 @@
 package app
 
 import (
+	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/handler"
@@ -31,6 +32,10 @@ func provideRoleRepo(cfg *config.Config) (*repo.RoleRepo, error) {
 
 func provideRedisStore(client rueidis.Client) *redisutil.Store {
 	return redisutil.New(client)
+}
+
+func provideBlogModerationSyncer(cfg *config.Config) (blogsvc.ContentModerationSyncer, error) {
+	return blogsvc.NewGRPCModerationSyncer(cfg.GRPC.BlogAddr)
 }
 
 func providePasswordChecker(cfg *config.Config, userRepo *repo.UserRepo) *auth.PasswordChecker {

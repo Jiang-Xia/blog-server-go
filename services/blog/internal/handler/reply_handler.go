@@ -7,6 +7,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
+	"github.com/Jiang-Xia/blog-server-go/pkg/rpgsvc"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/repo"
 	blogsvc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/service"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/auth"
@@ -17,11 +18,12 @@ import (
 type ReplyHandler struct {
 	svc *blogsvc.ReplyService
 	jwt *auth.JWTService
+	ban rpgsvc.BanChecker
 }
 
 // NewReplyHandler 构造 ReplyHandler。
-func NewReplyHandler(svc *blogsvc.ReplyService, jwt *auth.JWTService) *ReplyHandler {
-	return &ReplyHandler{svc: svc, jwt: jwt}
+func NewReplyHandler(svc *blogsvc.ReplyService, jwt *auth.JWTService, ban rpgsvc.BanChecker) *ReplyHandler {
+	return &ReplyHandler{svc: svc, jwt: jwt, ban: ban}
 }
 
 func (h *ReplyHandler) Create(ctx context.Context, c *app.RequestContext) {
@@ -29,6 +31,12 @@ func (h *ReplyHandler) Create(ctx context.Context, c *app.RequestContext) {
 	if uid == 0 {
 		response.Error(ctx, c, errcode.WithMessage(errcode.Unauthorized, "请先登录！"))
 		return
+	}
+	if h.ban != nil {
+		if err := h.ban.AssertNotBanned(ctx, uid); err != nil {
+			handleAdminResult(ctx, c, nil, err)
+			return
+		}
 	}
 	var body map[string]interface{}
 	if err := c.Bind(&body); err != nil {

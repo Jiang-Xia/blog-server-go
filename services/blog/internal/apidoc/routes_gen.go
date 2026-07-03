@@ -968,3 +968,224 @@ func swagger_POST_resources_folder() {}
 // @Router       /api/v1/resources/file [patch]
 func swagger_PATCH_resources_file() {}
 
+// swagger_GET_scheduled_task_tasks godoc
+// @Summary      已注册任务列表（含 running）
+// @Description  鉴权：JWT+RBAC；已注册任务列表（含 running）
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/tasks [get]
+func swagger_GET_scheduled_task_tasks() {}
+
+// swagger_GET_scheduled_task_tasks_all godoc
+// @Summary      分页任务定义
+// @Description  鉴权：JWT+RBAC；分页任务定义
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/tasks/all [get]
+func swagger_GET_scheduled_task_tasks_all() {}
+
+// swagger_GET_scheduled_task_tasks_id godoc
+// @Summary      单个任务
+// @Description  鉴权：JWT+RBAC；单个任务
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/tasks/:id [get]
+func swagger_GET_scheduled_task_tasks_id() {}
+
+// swagger_POST_scheduled_task_tasks godoc
+// @Summary      创建任务
+// @Description  鉴权：JWT+RBAC；创建任务
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/tasks [post]
+func swagger_POST_scheduled_task_tasks() {}
+
+// swagger_PATCH_scheduled_task_tasks_id godoc
+// @Summary      更新 cron/启用等
+// @Description  鉴权：JWT+RBAC；更新 cron/启用等
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/tasks/:id [patch]
+func swagger_PATCH_scheduled_task_tasks_id() {}
+
+// swagger_DELETE_scheduled_task_tasks_id godoc
+// @Summary      删除任务
+// @Description  鉴权：JWT+RBAC；删除任务
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/tasks/:id [delete]
+func swagger_DELETE_scheduled_task_tasks_id() {}
+
+// swagger_GET_scheduled_task_status_taskName godoc
+// @Summary      运行状态
+// @Description  鉴权：JWT+RBAC；运行状态
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/status/:taskName [get]
+func swagger_GET_scheduled_task_status_taskName() {}
+
+// swagger_POST_scheduled_task_trigger_taskName godoc
+// @Summary      手动触发
+// @Description  鉴权：JWT+RBAC；手动触发
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/trigger/:taskName [post]
+func swagger_POST_scheduled_task_trigger_taskName() {}
+
+// swagger_POST_scheduled_task_stop_taskName godoc
+// @Summary      停止 cron
+// @Description  鉴权：JWT+RBAC；停止 cron
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/stop/:taskName [post]
+func swagger_POST_scheduled_task_stop_taskName() {}
+
+// swagger_POST_scheduled_task_start_taskName godoc
+// @Summary      启动 cron
+// @Description  鉴权：JWT+RBAC；启动 cron
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/start/:taskName [post]
+func swagger_POST_scheduled_task_start_taskName() {}
+
+// swagger_PATCH_scheduled_task_log_recording_taskName godoc
+// @Summary      切换执行日志
+// @Description  鉴权：JWT+RBAC；切换执行日志
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/log-recording/:taskName [patch]
+func swagger_PATCH_scheduled_task_log_recording_taskName() {}
+
+// swagger_POST_scheduled_task_cache_clear_permissions godoc
+// @Summary      清 RBAC Redis
+// @Description  鉴权：JWT 超管；清 RBAC Redis
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/cache/clear-permissions [post]
+func swagger_POST_scheduled_task_cache_clear_permissions() {}
+
+// swagger_POST_scheduled_task_cache_refresh_tongji_token godoc
+// @Summary      刷新百度 token（Plan 16）
+// @Description  鉴权：JWT 超管；刷新百度 token（Plan 16）
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/cache/refresh-tongji-token [post]
+func swagger_POST_scheduled_task_cache_refresh_tongji_token() {}
+
+// swagger_GET_scheduled_task godoc
+// @Summary      分页执行日志
+// @Description  鉴权：JWT+RBAC；分页执行日志
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task [get]
+func swagger_GET_scheduled_task() {}
+
+// swagger_GET_scheduled_task_backups godoc
+// @Summary      备份文件列表
+// @Description  鉴权：JWT 超管；备份文件列表
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/backups [get]
+func swagger_GET_scheduled_task_backups() {}
+
+// swagger_GET_scheduled_task_backups_download godoc
+// @Summary      下载最新备份
+// @Description  鉴权：JWT 超管；下载最新备份
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/backups/download [get]
+func swagger_GET_scheduled_task_backups_download() {}
+
+// swagger_GET_scheduled_task_backups_fileName_download godoc
+// @Summary      下载指定备份
+// @Description  鉴权：JWT 超管；下载指定备份
+// @Tags         scheduled-task
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/scheduled-task/backups/:fileName/download [get]
+func swagger_GET_scheduled_task_backups_fileName_download() {}
+

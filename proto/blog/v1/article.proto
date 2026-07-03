@@ -12,6 +12,8 @@ service ArticleService {
   rpc ListArticles(ListArticlesRequest) returns (ListArticlesResponse);
   rpc GetArticleDetail(GetArticleDetailRequest) returns (GetArticleDetailResponse);
   rpc GetPubStats(google.protobuf.Empty) returns (GetPubStatsResponse);
+  // UpdateContentModerationStatus 敏感词审核后同步 comment/msgboard/reply 状态。
+  rpc UpdateContentModerationStatus(UpdateContentModerationStatusRequest) returns (UpdateContentModerationStatusResponse);
 }
 
 message GetArticleRequest {
@@ -46,4 +48,14 @@ message GetPubStatsResponse {
   int32 article_count = 1;
   int32 category_count = 2;
   int32 tag_count = 3;
+}
+
+message UpdateContentModerationStatusRequest {
+  string source_type = 1;
+  string source_id = 2;
+  string status = 3;
+}
+
+message UpdateContentModerationStatusResponse {
+  bool updated = 1;
 }

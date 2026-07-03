@@ -18,13 +18,14 @@ import (
 // Server 实现 ArticleService gRPC。
 type Server struct {
 	blogv1.UnimplementedArticleServiceServer
-	articles *blogsvc.ArticleService
-	ent      *ent.Client
+	articles   *blogsvc.ArticleService
+	moderation *blogsvc.ModerationService
+	ent        *ent.Client
 }
 
 // New 构造 gRPC ArticleService 实现。
-func New(articles *blogsvc.ArticleService, client *ent.Client) *Server {
-	return &Server{articles: articles, ent: client}
+func New(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client) *Server {
+	return &Server{articles: articles, moderation: moderation, ent: client}
 }
 
 // GetArticle 按 ID 返回文章摘要。
@@ -92,4 +93,16 @@ func (s *Server) GetPubStats(ctx context.Context, _ *emptypb.Empty) (*blogv1.Get
 		CategoryCount: int32(categoryCount),
 		TagCount:      int32(tagCount),
 	}, nil
+}
+
+// UpdateContentModerationStatus 敏感词审核后同步来源实体状态。
+func (s *Server) UpdateContentModerationStatus(ctx context.Context, req *blogv1.UpdateContentModerationStatusRequest) (*blogv1.UpdateContentModerationStatusResponse, error) {
+	if s.moderation == nil {
+		return &blogv1.UpdateContentModerationStatusResponse{}, nil
+	}
+	updated, err := s.moderation.UpdateContentModerationStatus(ctx, req.GetSourceType(), req.GetSourceId(), req.GetStatus())
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "update moderation status: %v", err)
+	}
+	return &blogv1.UpdateContentModerationStatusResponse{Updated: updated}, nil
 }

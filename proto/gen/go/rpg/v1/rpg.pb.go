@@ -213,6 +213,102 @@ func (x *GetPublicProfileResponse) GetProfileJson() []byte {
 	return nil
 }
 
+type AssertNotBannedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        uint64                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssertNotBannedRequest) Reset() {
+	*x = AssertNotBannedRequest{}
+	mi := &file_rpg_v1_rpg_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssertNotBannedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssertNotBannedRequest) ProtoMessage() {}
+
+func (x *AssertNotBannedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_rpg_v1_rpg_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssertNotBannedRequest.ProtoReflect.Descriptor instead.
+func (*AssertNotBannedRequest) Descriptor() ([]byte, []int) {
+	return file_rpg_v1_rpg_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AssertNotBannedRequest) GetUserId() uint64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type AssertNotBannedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Banned        bool                   `protobuf:"varint,1,opt,name=banned,proto3" json:"banned,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssertNotBannedResponse) Reset() {
+	*x = AssertNotBannedResponse{}
+	mi := &file_rpg_v1_rpg_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssertNotBannedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssertNotBannedResponse) ProtoMessage() {}
+
+func (x *AssertNotBannedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_rpg_v1_rpg_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssertNotBannedResponse.ProtoReflect.Descriptor instead.
+func (*AssertNotBannedResponse) Descriptor() ([]byte, []int) {
+	return file_rpg_v1_rpg_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *AssertNotBannedResponse) GetBanned() bool {
+	if x != nil {
+		return x.Banned
+	}
+	return false
+}
+
+func (x *AssertNotBannedResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_rpg_v1_rpg_proto protoreflect.FileDescriptor
 
 const file_rpg_v1_rpg_proto_rawDesc = "" +
@@ -227,12 +323,18 @@ const file_rpg_v1_rpg_proto_rawDesc = "" +
 	"\x17GetPublicProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x04R\x06userId\"=\n" +
 	"\x18GetPublicProfileResponse\x12!\n" +
-	"\fprofile_json\x18\x01 \x01(\fR\vprofileJson2\xa8\x01\n" +
+	"\fprofile_json\x18\x01 \x01(\fR\vprofileJson\"1\n" +
+	"\x16AssertNotBannedRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId\"K\n" +
+	"\x17AssertNotBannedResponse\x12\x16\n" +
+	"\x06banned\x18\x01 \x01(\bR\x06banned\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\xfc\x01\n" +
 	"\n" +
 	"RpgService\x12C\n" +
 	"\n" +
 	"GetProfile\x12\x19.rpg.v1.GetProfileRequest\x1a\x1a.rpg.v1.GetProfileResponse\x12U\n" +
-	"\x10GetPublicProfile\x12\x1f.rpg.v1.GetPublicProfileRequest\x1a .rpg.v1.GetPublicProfileResponseB?Z=github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1;rpgv1b\x06proto3"
+	"\x10GetPublicProfile\x12\x1f.rpg.v1.GetPublicProfileRequest\x1a .rpg.v1.GetPublicProfileResponse\x12R\n" +
+	"\x0fAssertNotBanned\x12\x1e.rpg.v1.AssertNotBannedRequest\x1a\x1f.rpg.v1.AssertNotBannedResponseB?Z=github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1;rpgv1b\x06proto3"
 
 var (
 	file_rpg_v1_rpg_proto_rawDescOnce sync.Once
@@ -246,20 +348,24 @@ func file_rpg_v1_rpg_proto_rawDescGZIP() []byte {
 	return file_rpg_v1_rpg_proto_rawDescData
 }
 
-var file_rpg_v1_rpg_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_rpg_v1_rpg_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_rpg_v1_rpg_proto_goTypes = []any{
 	(*GetProfileRequest)(nil),        // 0: rpg.v1.GetProfileRequest
 	(*GetProfileResponse)(nil),       // 1: rpg.v1.GetProfileResponse
 	(*GetPublicProfileRequest)(nil),  // 2: rpg.v1.GetPublicProfileRequest
 	(*GetPublicProfileResponse)(nil), // 3: rpg.v1.GetPublicProfileResponse
+	(*AssertNotBannedRequest)(nil),   // 4: rpg.v1.AssertNotBannedRequest
+	(*AssertNotBannedResponse)(nil),  // 5: rpg.v1.AssertNotBannedResponse
 }
 var file_rpg_v1_rpg_proto_depIdxs = []int32{
 	0, // 0: rpg.v1.RpgService.GetProfile:input_type -> rpg.v1.GetProfileRequest
 	2, // 1: rpg.v1.RpgService.GetPublicProfile:input_type -> rpg.v1.GetPublicProfileRequest
-	1, // 2: rpg.v1.RpgService.GetProfile:output_type -> rpg.v1.GetProfileResponse
-	3, // 3: rpg.v1.RpgService.GetPublicProfile:output_type -> rpg.v1.GetPublicProfileResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: rpg.v1.RpgService.AssertNotBanned:input_type -> rpg.v1.AssertNotBannedRequest
+	1, // 3: rpg.v1.RpgService.GetProfile:output_type -> rpg.v1.GetProfileResponse
+	3, // 4: rpg.v1.RpgService.GetPublicProfile:output_type -> rpg.v1.GetPublicProfileResponse
+	5, // 5: rpg.v1.RpgService.AssertNotBanned:output_type -> rpg.v1.AssertNotBannedResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -276,7 +382,7 @@ func file_rpg_v1_rpg_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rpg_v1_rpg_proto_rawDesc), len(file_rpg_v1_rpg_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

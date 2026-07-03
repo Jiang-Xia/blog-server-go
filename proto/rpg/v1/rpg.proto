@@ -8,6 +8,8 @@ option go_package = "github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1;rpg
 service RpgService {
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
   rpc GetPublicProfile(GetPublicProfileRequest) returns (GetPublicProfileResponse);
+  // AssertNotBanned 检查用户是否处于 RPG 禁言期（blog BanGuard 调用）。
+  rpc AssertNotBanned(AssertNotBannedRequest) returns (AssertNotBannedResponse);
 }
 
 message GetProfileRequest {
@@ -26,4 +28,13 @@ message GetPublicProfileRequest {
 
 message GetPublicProfileResponse {
   bytes profile_json = 1;
+}
+
+message AssertNotBannedRequest {
+  uint64 user_id = 1;
+}
+
+message AssertNotBannedResponse {
+  bool banned = 1;
+  string message = 2;
 }

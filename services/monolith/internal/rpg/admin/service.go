@@ -9,6 +9,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/guild"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/inventory"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/lottery"
+	rpgpunish "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/punishment"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/rpgitemconfig"
@@ -17,11 +18,14 @@ import (
 
 // Service 管理端业务。
 type Service struct {
-	repo      *rpgrepo.RpgRepo
-	core      *rpgcore.RpgService
-	inventory *inventory.Service
-	lottery   *lottery.Service
-	guild     *guild.Service
+	repo         *rpgrepo.RpgRepo
+	core         *rpgcore.RpgService
+	inventory    *inventory.Service
+	lottery      *lottery.Service
+	guild        *guild.Service
+	punishment   *rpgpunish.PunishmentService
+	uploadRoot   string
+	staticPrefix string
 }
 
 // NewService 构造 Admin Service。
@@ -31,8 +35,13 @@ func NewService(
 	inventory *inventory.Service,
 	lottery *lottery.Service,
 	guild *guild.Service,
+	punishment *rpgpunish.PunishmentService,
+	uploadRoot, staticPrefix string,
 ) *Service {
-	return &Service{repo: repo, core: core, inventory: inventory, lottery: lottery, guild: guild}
+	return &Service{
+		repo: repo, core: core, inventory: inventory, lottery: lottery, guild: guild,
+		punishment: punishment, uploadRoot: uploadRoot, staticPrefix: staticPrefix,
+	}
 }
 
 // --- 成就 ---
