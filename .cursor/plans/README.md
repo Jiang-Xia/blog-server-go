@@ -7,10 +7,11 @@
 ## 双层索引
 
 - **5 里程碑（M1–M5）**：架构阶段分组，便于汇报进度
-- **18 执行计划（01–18）**：Agent/人工逐步执行，每份 ~1–2 周、单一验收点
+- **21 执行计划（01–21）**：Agent/人工逐步执行，每份 ~1–2 周、单一验收点
 
 > 原 5 计划（`02-用户与认证域`、`03-博客内容域`、`04-实时通信与RPG支付`、`05-微服务拆分与生产上线`）已 supersede，由 01–11 替代。  
-> **Plan 12–18** 为 v3 交付后与 Nest 差异补齐（M6），在 11 验收通过后按序执行。
+> **Plan 12–18** 为 v3 交付后与 Nest 差异补齐（M6），在 11 验收通过后按序执行。  
+> **Plan 19–21** 为 M7 **RPG 玩法缺失补齐**（见 [`nest-parity-matrix.md`](../../docs/nest-parity-matrix.md) §5），在 **18 验收后**按序执行。
 
 ## 里程碑与执行计划
 
@@ -46,6 +47,11 @@ flowchart TB
     P15["15 RAG"]
     P16["16 百度统计"]
   end
+  subgraph M7 [M7 RPG玩法债]
+    P19["19 文章等级"]
+    P20["20 惩罚链"]
+    P21["21 WS通知"]
+  end
   P01 --> P02 --> P03 --> P04 --> P05 --> P06 --> P07 --> P08 --> P09 --> P10 --> P11
   P11 --> P17 --> P18
   P17 --> P13
@@ -53,6 +59,7 @@ flowchart TB
   P18 --> P12
   P12 --> P16
   P13 --> P15
+  P18 --> P19 --> P20 --> P21
 ```
 
 | 里程碑 | 计划 | 文件 | 周期 | 架构 | 对应原方案周次 |
@@ -75,8 +82,11 @@ flowchart TB
 | M6 Nest差异补齐 | 16 | [16-百度统计代理.md](./16-百度统计代理.md) | ~3-5 天 | 4 微服务 | 依赖 12 |
 | M6 Nest差异补齐 | 17 | [17-微服务跨服务协作补齐.md](./17-微服务跨服务协作补齐.md) | ~1-1.5 周 | 4 微服务 gRPC | **11 后优先** |
 | M6 Nest差异补齐 | 18 | [18-领域事件发布补齐.md](./18-领域事件发布补齐.md) | ~1-1.5 周 | blog 发布 + rpg 消费 | 依赖 17 |
+| M7 RPG玩法债 | 19 | [19-RPG文章等级与Stream消费对齐.md](./19-RPG文章等级与Stream消费对齐.md) | ~1-1.5 周 | ArticleLevel + Stream | 依赖 18 |
+| M7 RPG玩法债 | 20 | [20-RPG惩罚链与禁言WS对齐.md](./20-RPG惩罚链与禁言WS对齐.md) | ~1 周 | Punishment + 护盾 | 依赖 18 |
+| M7 RPG玩法债 | 21 | [21-RPG实时通知与成就接线补齐.md](./21-RPG实时通知与成就接线补齐.md) | ~1-1.5 周 | WS + 成就埋点 | 依赖 19+20 |
 
-**总周期**：约 17–20 周（Plan 01–11）+ 约 8–10 周（Plan 12–18，部分可并行）
+**总周期**：约 17–20 周（Plan 01–11）+ 约 8–10 周（Plan 12–18，部分可并行）+ 约 3–4 周（Plan 19–21，19→20 可部分并行）
 
 ### M6 推荐执行顺序
 
@@ -90,6 +100,17 @@ flowchart TB
  ├─► 16 百度统计（依赖 12）
  └─► 15 RAG（依赖 13，事件可接 18）
 ```
+
+### M7 推荐执行顺序（RPG 玩法缺失补齐）
+
+```
+18 完成
+ ├─► 19 文章等级 + Stream 消费深度（P-02）
+ ├─► 20 惩罚链 + 护盾 + banStatus WS（P-01/P-03）  ← 可与 19 后半并行
+ └─► 21 RPG WS 通知 + 成就/任务接线（P-04）
+```
+
+> M7 完成后，Nest 与 Go 在 **RPG 核心玩法** 上对齐；其余差异见 [`nest-parity-matrix.md`](../../docs/nest-parity-matrix.md) §3.6 **明确不做**。
 
 ## 实施约定
 
@@ -109,16 +130,26 @@ flowchart TB
 - RAG 模块 → Plan 15
 - 百度统计 `/resources/baidutongji` → Plan 16
 
-## 仍不在范围（或极小 patch，不单独成计划）
+## 仍不在范围（明确不做，不单独成计划）
 
-- 微信支付（JSAPI/小程序支付、商户回调）— 需企业商户号；充值主链路已走支付宝（Plan 09）
-- Pub SSE（`/pub/ai-stream`）、gateway 全局限流 — 按产品决策暂不做
-- Kubernetes 部署 — 2G 机器用 docker-compose
-- 留言板 vvhan IP 归属、敏感词种子导入 — 可随 Plan 17/13 顺手补
+| 项 | 说明 |
+|----|------|
+| **微信支付** JSAPI/小程序 | 需企业商户号；充值主链路已走支付宝（Plan 09） |
+| **Postman 全量回归** `full-regression.json` | 现有 `*-smoke.json` + 单元/集成测试已覆盖主路径 |
+| **Nest 并行 diff 脚本** | 不维护双栈自动化对比 |
+| **公开主页 `articles` 分页** | 简化列表可接受；collects/likes 已在 Plan 14 对齐 |
+| **`article.published` blog 侧统计缓存** | 非 RPG 闭环必需 |
+| **RAG LLM function calling / Tool 接 rpg gRPC** | Plan 15 规则 Tool 已交付；深度 LLM 路由不做 |
+| **WS `CheckOrigin` 生产白名单** | 运维配置项，随部署文档处理 |
+| **Stream XADD MAXLEN** | 低优运维，不做专项 |
+| **monolith 代码副本清理** | 保留作对照，不删 |
+| **Pub SSE**（`/pub/ai-stream`）、**gateway 全局限流** | 产品决策暂不做 |
+| **Kubernetes 部署** | 2G 机器用 docker-compose / PM2 |
+| 留言板 vvhan IP 归属、敏感词种子导入 | 可随运维顺手补，非迁移阻塞项 |
 
 ## 使用方式
 
-1. Plan 01→11 按序执行；**Plan 12→18** 在 11 验收通过后执行（**推荐先 17→18，再 12/13**，见上文 M6 顺序表）。
+1. Plan 01→11 按序执行；**Plan 12→18** 在 11 验收通过后执行（**推荐先 17→18，再 12/13**，见上文 M6 顺序表）；**Plan 19→21** 在 18 后执行以补齐 RPG 玩法债（见 M7）。
 2. 每份计划末尾有 `- [ ]` 任务清单与「本计划不做」边界，完成后勾选。
 3. **验收通过后须在 [`docs/`](../../docs/) 写入对应交付文档**（见各计划「文档交付」与 [`hertz-13-plan-docs.mdc`](../rules/hertz-13-plan-docs.mdc)），再进入下一计划。
 4. 验收优先用可脚本化方式：`curl` smoke、Postman/newman、`make test` 子集。
@@ -128,6 +159,7 @@ flowchart TB
 
 | 计划 | 交付文档 |
 |------|----------|
-| 01–18 | [`docs/{同序号与标题}.md`](../../docs/README.md) |
+| 01–21 | [`docs/{同序号与标题}.md`](../../docs/README.md) |
 
-索引与模板：[`docs/README.md`](../../docs/README.md)、[`docs/_template.md`](../../docs/_template.md)。
+索引与模板：[`docs/README.md`](../../docs/README.md)、[`docs/_template.md`](../../docs/_template.md)。  
+**Nest 对等总表**：[`docs/nest-parity-matrix.md`](../../docs/nest-parity-matrix.md)。

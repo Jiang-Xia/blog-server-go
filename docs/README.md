@@ -2,7 +2,8 @@
 
 > 与 [`.cursor/plans/`](../.cursor/plans/) 一一对应：**每完成一个执行计划，须在 `docs/` 写入对应交付文档**，再进入下一计划。
 >
-> 计划文件描述「要做什么」；交付文档记录「实际做了什么」——目录、命令、接口、与 Nest 差异、已知限制。
+> 计划文件描述「要做什么」；交付文档记录「实际做了什么」——目录、命令、接口、与 Nest 差异、已知限制。  
+> **整体是否对齐 Nest**：见 [nest-parity-matrix.md](./nest-parity-matrix.md)。
 
 ## 文档索引
 
@@ -26,6 +27,10 @@
 | 16 百度统计代理 | [16-百度统计代理.md](./16-百度统计代理.md) | ✅ 已交付 |
 | 17 微服务跨服务协作补齐 | [17-微服务跨服务协作补齐.md](./17-微服务跨服务协作补齐.md) | ✅ 已交付 |
 | 18 领域事件发布补齐 | [18-领域事件发布补齐.md](./18-领域事件发布补齐.md) | ✅ 已交付 |
+| 19 RPG 文章等级与 Stream 消费对齐 | [19-RPG文章等级与Stream消费对齐.md](./19-RPG文章等级与Stream消费对齐.md) | ⏳ 待执行 |
+| 20 RPG 惩罚链与禁言 WS 对齐 | [20-RPG惩罚链与禁言WS对齐.md](./20-RPG惩罚链与禁言WS对齐.md) | ⏳ 待执行 |
+| 21 RPG 实时通知与成就接线补齐 | [21-RPG实时通知与成就接线补齐.md](./21-RPG实时通知与成就接线补齐.md) | ⏳ 待执行 |
+| — **Nest ↔ Go 对等矩阵** | [nest-parity-matrix.md](./nest-parity-matrix.md) | ✅ 已维护 |
 | — HTTP/gRPC 路由全表 | [api-routes.md](./api-routes.md) | ✅ 已维护 |
 | — Swagger / OpenAPI | [12-swagger-api-doc.md](./12-swagger-api-doc.md) | ✅ 已交付 |
 
@@ -38,6 +43,7 @@
 
 ## 相关
 
-- 十八阶段计划索引：[`.cursor/plans/README.md`](../.cursor/plans/README.md)（01–18）
+- 二十一阶段计划索引：[`.cursor/plans/README.md`](../.cursor/plans/README.md)（01–21；M7 为 19–21 RPG 缺失补齐）
+- **Nest 功能是否迁完**：[nest-parity-matrix.md](./nest-parity-matrix.md)（模块/行为/开放债总表）
 - 架构总方案：[`blog-server-go-重构方案.md`](../blog-server-go-重构方案.md)
 - Agent 规则：[`.cursor/rules/hertz-13-plan-docs.mdc`](../.cursor/rules/hertz-13-plan-docs.mdc)
