@@ -11,7 +11,6 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent"
-	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/scheduler"
 	bloggrpc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/grpcserver"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/ws"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/data"
@@ -24,16 +23,16 @@ import (
 
 // App 聚合 HTTP 服务与基础设施。
 type App struct {
-	cfg      *config.Config
-	h        *server.Hertz
-	log      *zap.Logger
-	ent      *ent.Client
-	redis    rueidis.Client
-	scheduler *scheduler.Scheduler
-	realtime *RealtimeRuntime
-	blogGRPC *bloggrpc.Server
-	cancel   context.CancelFunc
-	grpcStop func()
+	cfg       *config.Config
+	h         *server.Hertz
+	log       *zap.Logger
+	ent       *ent.Client
+	redis     rueidis.Client
+	schedTask *ScheduledTaskRuntime
+	realtime  *RealtimeRuntime
+	blogGRPC  *bloggrpc.Server
+	cancel    context.CancelFunc
+	grpcStop  func()
 }
 
 // NewApp 构造 blog-service 实例。
@@ -43,13 +42,13 @@ func NewApp(
 	log *zap.Logger,
 	entClient *ent.Client,
 	redisClient rueidis.Client,
-	sched *scheduler.Scheduler,
+	schedTask *ScheduledTaskRuntime,
 	rt *RealtimeRuntime,
 	blogGRPC *bloggrpc.Server,
 ) *App {
 	return &App{
 		cfg: cfg, h: h, log: log, ent: entClient, redis: redisClient,
-		scheduler: sched, realtime: rt, blogGRPC: blogGRPC,
+		schedTask: schedTask, realtime: rt, blogGRPC: blogGRPC,
 	}
 }
 
@@ -79,11 +78,11 @@ func (a *App) Run() error {
 		a.log.Info("blog event consumer started")
 	}
 
-	if a.scheduler != nil {
-		if err := a.scheduler.RegisterPlaceholder(); err != nil {
-			a.log.Warn("register placeholder cron failed", zap.Error(err))
+	if a.schedTask != nil && a.schedTask.Sched != nil {
+		if err := a.schedTask.Svc.Bootstrap(ctx); err != nil {
+			a.log.Warn("scheduled task bootstrap failed", zap.Error(err))
 		}
-		a.scheduler.Start()
+		a.schedTask.Sched.Start()
 		a.log.Info("cron scheduler started")
 	}
 
@@ -109,8 +108,8 @@ func (a *App) Shutdown() error {
 	if err := a.h.Shutdown(ctx); err != nil {
 		a.log.Warn("hertz shutdown", zap.Error(err))
 	}
-	if a.scheduler != nil {
-		a.scheduler.Stop()
+	if a.schedTask != nil && a.schedTask.Sched != nil {
+		a.schedTask.Sched.Stop()
 	}
 	if a.grpcStop != nil {
 		a.grpcStop()

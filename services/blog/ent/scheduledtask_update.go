@@ -34,41 +34,6 @@ func (stu *ScheduledTaskUpdate) SetUpdateTime(t time.Time) *ScheduledTaskUpdate 
 	return stu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (stu *ScheduledTaskUpdate) SetIsDelete(b bool) *ScheduledTaskUpdate {
-	stu.mutation.SetIsDelete(b)
-	return stu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (stu *ScheduledTaskUpdate) SetNillableIsDelete(b *bool) *ScheduledTaskUpdate {
-	if b != nil {
-		stu.SetIsDelete(*b)
-	}
-	return stu
-}
-
-// SetVersion sets the "version" field.
-func (stu *ScheduledTaskUpdate) SetVersion(i int) *ScheduledTaskUpdate {
-	stu.mutation.ResetVersion()
-	stu.mutation.SetVersion(i)
-	return stu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (stu *ScheduledTaskUpdate) SetNillableVersion(i *int) *ScheduledTaskUpdate {
-	if i != nil {
-		stu.SetVersion(*i)
-	}
-	return stu
-}
-
-// AddVersion adds i to the "version" field.
-func (stu *ScheduledTaskUpdate) AddVersion(i int) *ScheduledTaskUpdate {
-	stu.mutation.AddVersion(i)
-	return stu
-}
-
 // SetName sets the "name" field.
 func (stu *ScheduledTaskUpdate) SetName(s string) *ScheduledTaskUpdate {
 	stu.mutation.SetName(s)
@@ -241,15 +206,6 @@ func (stu *ScheduledTaskUpdate) sqlSave(ctx context.Context) (n int, err error) 
 	if value, ok := stu.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtask.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := stu.mutation.IsDelete(); ok {
-		_spec.SetField(scheduledtask.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := stu.mutation.Version(); ok {
-		_spec.SetField(scheduledtask.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := stu.mutation.AddedVersion(); ok {
-		_spec.AddField(scheduledtask.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := stu.mutation.Name(); ok {
 		_spec.SetField(scheduledtask.FieldName, field.TypeString, value)
 	}
@@ -303,41 +259,6 @@ type ScheduledTaskUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (stuo *ScheduledTaskUpdateOne) SetUpdateTime(t time.Time) *ScheduledTaskUpdateOne {
 	stuo.mutation.SetUpdateTime(t)
-	return stuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (stuo *ScheduledTaskUpdateOne) SetIsDelete(b bool) *ScheduledTaskUpdateOne {
-	stuo.mutation.SetIsDelete(b)
-	return stuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (stuo *ScheduledTaskUpdateOne) SetNillableIsDelete(b *bool) *ScheduledTaskUpdateOne {
-	if b != nil {
-		stuo.SetIsDelete(*b)
-	}
-	return stuo
-}
-
-// SetVersion sets the "version" field.
-func (stuo *ScheduledTaskUpdateOne) SetVersion(i int) *ScheduledTaskUpdateOne {
-	stuo.mutation.ResetVersion()
-	stuo.mutation.SetVersion(i)
-	return stuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (stuo *ScheduledTaskUpdateOne) SetNillableVersion(i *int) *ScheduledTaskUpdateOne {
-	if i != nil {
-		stuo.SetVersion(*i)
-	}
-	return stuo
-}
-
-// AddVersion adds i to the "version" field.
-func (stuo *ScheduledTaskUpdateOne) AddVersion(i int) *ScheduledTaskUpdateOne {
-	stuo.mutation.AddVersion(i)
 	return stuo
 }
 
@@ -542,15 +463,6 @@ func (stuo *ScheduledTaskUpdateOne) sqlSave(ctx context.Context) (_node *Schedul
 	}
 	if value, ok := stuo.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtask.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := stuo.mutation.IsDelete(); ok {
-		_spec.SetField(scheduledtask.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := stuo.mutation.Version(); ok {
-		_spec.SetField(scheduledtask.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := stuo.mutation.AddedVersion(); ok {
-		_spec.AddField(scheduledtask.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := stuo.mutation.Name(); ok {
 		_spec.SetField(scheduledtask.FieldName, field.TypeString, value)

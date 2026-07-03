@@ -18,3 +18,8 @@ type UserService interface {
 	GetUser(ctx context.Context, id uint64) (*UserDTO, error)
 	GetUserBatch(ctx context.Context, ids []uint64) ([]*UserDTO, error)
 }
+
+// SystemEmailSender 系统邮件发送（user-service gRPC）。
+type SystemEmailSender interface {
+	SendSystemEmail(ctx context.Context, to, subject, htmlBody string) (bool, error)
+}

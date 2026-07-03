@@ -122,6 +122,9 @@ func (r *Router) pick(path, apiPrefix string) (service string, proxy *httputil.R
 	if isRPGRoute(rel) {
 		return "rpg", r.rpg
 	}
+	if isBlogRoute(rel) {
+		return "blog", r.blog
+	}
 	return "blog", r.blog
 }
 
@@ -136,6 +139,13 @@ func isUserRoute(rel string) bool {
 		}
 	}
 	if strings.HasPrefix(rel, "admin/") && !strings.HasPrefix(rel, "admin/rpg") {
+		return true
+	}
+	return false
+}
+
+func isBlogRoute(rel string) bool {
+	if rel == "scheduled-task" || strings.HasPrefix(rel, "scheduled-task/") {
 		return true
 	}
 	return false

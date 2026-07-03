@@ -1,0 +1,83 @@
+{
+  "info": {
+    "name": "blog-server-go scheduled-task smoke",
+    "description": "Plan 12 定时任务冒烟。先 `go run scripts/dev_login.go --token-only` 获取 token。gateway 默认 8000。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8000" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "list tasks",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/scheduled-task/tasks"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "const j = pm.response.json();",
+            "pm.test('tasks ok', () => pm.expect(j.code).to.eql(200));",
+            "pm.test('8 seeds', () => pm.expect(j.data.length).to.be.at.least(8));"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "trigger scheduled_publish",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/scheduled-task/trigger/scheduled_publish"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "const j = pm.response.json();",
+            "pm.test('trigger ok', () => pm.expect(j.code).to.eql(200));"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "list logs",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/scheduled-task?page=1&pageSize=10"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "const j = pm.response.json();",
+            "pm.test('logs ok', () => pm.expect(j.code).to.eql(200));",
+            "pm.test('has list', () => pm.expect(Array.isArray(j.data.list)).to.be.true);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "task status",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/scheduled-task/status/scheduled_publish"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "const j = pm.response.json();",
+            "pm.test('status ok', () => pm.expect(j.code).to.eql(200));"
+          ]
+        }
+      }]
+    }
+  ]
+}

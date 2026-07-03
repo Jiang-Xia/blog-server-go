@@ -59,21 +59,6 @@ func CreateTime(v time.Time) predicate.ScheduledTaskLog {
 	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldCreateTime, v))
 }
 
-// UpdateTime applies equality check predicate on the "updateTime" field. It's identical to UpdateTimeEQ.
-func UpdateTime(v time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldUpdateTime, v))
-}
-
-// IsDelete applies equality check predicate on the "isDelete" field. It's identical to IsDeleteEQ.
-func IsDelete(v bool) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// Version applies equality check predicate on the "version" field. It's identical to VersionEQ.
-func Version(v int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldVersion, v))
-}
-
 // TaskName applies equality check predicate on the "taskName" field. It's identical to TaskNameEQ.
 func TaskName(v string) predicate.ScheduledTaskLog {
 	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldTaskName, v))
@@ -142,96 +127,6 @@ func CreateTimeLT(v time.Time) predicate.ScheduledTaskLog {
 // CreateTimeLTE applies the LTE predicate on the "createTime" field.
 func CreateTimeLTE(v time.Time) predicate.ScheduledTaskLog {
 	return predicate.ScheduledTaskLog(sql.FieldLTE(FieldCreateTime, v))
-}
-
-// UpdateTimeEQ applies the EQ predicate on the "updateTime" field.
-func UpdateTimeEQ(v time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldUpdateTime, v))
-}
-
-// UpdateTimeNEQ applies the NEQ predicate on the "updateTime" field.
-func UpdateTimeNEQ(v time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldNEQ(FieldUpdateTime, v))
-}
-
-// UpdateTimeIn applies the In predicate on the "updateTime" field.
-func UpdateTimeIn(vs ...time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldIn(FieldUpdateTime, vs...))
-}
-
-// UpdateTimeNotIn applies the NotIn predicate on the "updateTime" field.
-func UpdateTimeNotIn(vs ...time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldNotIn(FieldUpdateTime, vs...))
-}
-
-// UpdateTimeGT applies the GT predicate on the "updateTime" field.
-func UpdateTimeGT(v time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldGT(FieldUpdateTime, v))
-}
-
-// UpdateTimeGTE applies the GTE predicate on the "updateTime" field.
-func UpdateTimeGTE(v time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldGTE(FieldUpdateTime, v))
-}
-
-// UpdateTimeLT applies the LT predicate on the "updateTime" field.
-func UpdateTimeLT(v time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldLT(FieldUpdateTime, v))
-}
-
-// UpdateTimeLTE applies the LTE predicate on the "updateTime" field.
-func UpdateTimeLTE(v time.Time) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldLTE(FieldUpdateTime, v))
-}
-
-// IsDeleteEQ applies the EQ predicate on the "isDelete" field.
-func IsDeleteEQ(v bool) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// IsDeleteNEQ applies the NEQ predicate on the "isDelete" field.
-func IsDeleteNEQ(v bool) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldNEQ(FieldIsDelete, v))
-}
-
-// VersionEQ applies the EQ predicate on the "version" field.
-func VersionEQ(v int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldEQ(FieldVersion, v))
-}
-
-// VersionNEQ applies the NEQ predicate on the "version" field.
-func VersionNEQ(v int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldNEQ(FieldVersion, v))
-}
-
-// VersionIn applies the In predicate on the "version" field.
-func VersionIn(vs ...int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldIn(FieldVersion, vs...))
-}
-
-// VersionNotIn applies the NotIn predicate on the "version" field.
-func VersionNotIn(vs ...int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldNotIn(FieldVersion, vs...))
-}
-
-// VersionGT applies the GT predicate on the "version" field.
-func VersionGT(v int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldGT(FieldVersion, v))
-}
-
-// VersionGTE applies the GTE predicate on the "version" field.
-func VersionGTE(v int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldGTE(FieldVersion, v))
-}
-
-// VersionLT applies the LT predicate on the "version" field.
-func VersionLT(v int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldLT(FieldVersion, v))
-}
-
-// VersionLTE applies the LTE predicate on the "version" field.
-func VersionLTE(v int) predicate.ScheduledTaskLog {
-	return predicate.ScheduledTaskLog(sql.FieldLTE(FieldVersion, v))
 }
 
 // TaskNameEQ applies the EQ predicate on the "taskName" field.

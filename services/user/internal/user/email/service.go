@@ -78,6 +78,24 @@ func (s *Service) CheckSendFrequency(ctx context.Context, emailAddr, codeType st
 	return s.redis.Set(ctx, key, "1", frequencyTTLSec)
 }
 
+// SendSystemEmail 发送系统 HTML 邮件；to 为空时使用 app.notify_email。
+func (s *Service) SendSystemEmail(_ context.Context, to, subject, htmlBody string) (bool, error) {
+	if !s.cfg.Mail.MailConfigured() {
+		return false, errcode.WithMessage(errcode.InternalError, "邮件发送未配置")
+	}
+	recipient := strings.TrimSpace(to)
+	if recipient == "" {
+		recipient = strings.TrimSpace(s.cfg.App.NotifyEmail)
+	}
+	if recipient == "" {
+		return false, errcode.WithMessage(errcode.InternalError, "未配置博主通知邮箱")
+	}
+	if err := s.sendSMTP(recipient, subject, htmlBody); err != nil {
+		return false, err
+	}
+	return true, nil
+}
+
 func verificationKey(codeType, emailAddr string) string {
 	return fmt.Sprintf("email_verification_code:%s:%s", codeType, emailAddr)
 }

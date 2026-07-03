@@ -78,3 +78,44 @@ func ParseInt(v string) int64 {
 	n, _ := strconv.ParseInt(v, 10, 64)
 	return n
 }
+
+// DelByPattern 按前缀/模式删除键（SCAN + DEL，用于 role_permissions:*）。
+func (s *Store) DelByPattern(ctx context.Context, pattern string) (int, error) {
+	var cursor uint64
+	deleted := 0
+	for {
+		resp := s.client.Do(ctx, s.client.B().Scan().Cursor(cursor).Match(pattern).Count(100).Build())
+		arr, err := resp.AsScanEntry()
+		if err != nil {
+			return deleted, err
+		}
+		if len(arr.Elements) > 0 {
+			if err := s.Del(ctx, arr.Elements...); err != nil {
+				return deleted, err
+			}
+			deleted += len(arr.Elements)
+		}
+		cursor = arr.Cursor
+		if cursor == 0 {
+			break
+		}
+	}
+	return deleted, nil
+}
+
+// TryAcquireLock SET NX EX 分布式锁。
+func (s *Store) TryAcquireLock(ctx context.Context, key, owner string, ttlSec int) (bool, error) {
+	return s.SetNX(ctx, key, owner, ttlSec)
+}
+
+// ReleaseLock 仅释放自己持有的锁（GET 比对后 DEL）。
+func (s *Store) ReleaseLock(ctx context.Context, key, owner string) error {
+	current, err := s.Get(ctx, key)
+	if err != nil {
+		return err
+	}
+	if current == "" || current != owner {
+		return nil
+	}
+	return s.Del(ctx, key)
+}

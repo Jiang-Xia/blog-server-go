@@ -8951,9 +8951,6 @@ type ScheduledTaskMutation struct {
 	id              *int
 	createTime      *time.Time
 	updateTime      *time.Time
-	isDelete        *bool
-	version         *int
-	addversion      *int
 	name            *string
 	description     *string
 	cron            *string
@@ -9144,98 +9141,6 @@ func (m *ScheduledTaskMutation) OldUpdateTime(ctx context.Context) (v time.Time,
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *ScheduledTaskMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *ScheduledTaskMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *ScheduledTaskMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the ScheduledTask entity.
-// If the ScheduledTask object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ScheduledTaskMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *ScheduledTaskMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *ScheduledTaskMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *ScheduledTaskMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the ScheduledTask entity.
-// If the ScheduledTask object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ScheduledTaskMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *ScheduledTaskMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *ScheduledTaskMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *ScheduledTaskMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetName sets the "name" field.
@@ -9584,18 +9489,12 @@ func (m *ScheduledTaskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *ScheduledTaskMutation) Fields() []string {
-	fields := make([]string, 0, 11)
+	fields := make([]string, 0, 9)
 	if m.createTime != nil {
 		fields = append(fields, scheduledtask.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, scheduledtask.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, scheduledtask.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, scheduledtask.FieldVersion)
 	}
 	if m.name != nil {
 		fields = append(fields, scheduledtask.FieldName)
@@ -9630,10 +9529,6 @@ func (m *ScheduledTaskMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case scheduledtask.FieldUpdateTime:
 		return m.UpdateTime()
-	case scheduledtask.FieldIsDelete:
-		return m.IsDelete()
-	case scheduledtask.FieldVersion:
-		return m.Version()
 	case scheduledtask.FieldName:
 		return m.Name()
 	case scheduledtask.FieldDescription:
@@ -9661,10 +9556,6 @@ func (m *ScheduledTaskMutation) OldField(ctx context.Context, name string) (ent.
 		return m.OldCreateTime(ctx)
 	case scheduledtask.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case scheduledtask.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case scheduledtask.FieldVersion:
-		return m.OldVersion(ctx)
 	case scheduledtask.FieldName:
 		return m.OldName(ctx)
 	case scheduledtask.FieldDescription:
@@ -9701,20 +9592,6 @@ func (m *ScheduledTaskMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case scheduledtask.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case scheduledtask.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case scheduledtask.FieldName:
 		v, ok := value.(string)
@@ -9773,9 +9650,6 @@ func (m *ScheduledTaskMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *ScheduledTaskMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, scheduledtask.FieldVersion)
-	}
 	if m.addenabled != nil {
 		fields = append(fields, scheduledtask.FieldEnabled)
 	}
@@ -9793,8 +9667,6 @@ func (m *ScheduledTaskMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *ScheduledTaskMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case scheduledtask.FieldVersion:
-		return m.AddedVersion()
 	case scheduledtask.FieldEnabled:
 		return m.AddedEnabled()
 	case scheduledtask.FieldLogRecording:
@@ -9810,13 +9682,6 @@ func (m *ScheduledTaskMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *ScheduledTaskMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case scheduledtask.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case scheduledtask.FieldEnabled:
 		v, ok := value.(int)
 		if !ok {
@@ -9870,12 +9735,6 @@ func (m *ScheduledTaskMutation) ResetField(name string) error {
 		return nil
 	case scheduledtask.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case scheduledtask.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case scheduledtask.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case scheduledtask.FieldName:
 		m.ResetName()
@@ -9957,10 +9816,6 @@ type ScheduledTaskLogMutation struct {
 	typ           string
 	id            *int
 	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	taskName      *string
 	status        *string
 	startTime     *time.Time
@@ -10111,134 +9966,6 @@ func (m *ScheduledTaskLogMutation) OldCreateTime(ctx context.Context) (v time.Ti
 // ResetCreateTime resets all changes to the "createTime" field.
 func (m *ScheduledTaskLogMutation) ResetCreateTime() {
 	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *ScheduledTaskLogMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *ScheduledTaskLogMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the ScheduledTaskLog entity.
-// If the ScheduledTaskLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ScheduledTaskLogMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *ScheduledTaskLogMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *ScheduledTaskLogMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *ScheduledTaskLogMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the ScheduledTaskLog entity.
-// If the ScheduledTaskLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ScheduledTaskLogMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *ScheduledTaskLogMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *ScheduledTaskLogMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *ScheduledTaskLogMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the ScheduledTaskLog entity.
-// If the ScheduledTaskLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ScheduledTaskLogMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *ScheduledTaskLogMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *ScheduledTaskLogMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *ScheduledTaskLogMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetTaskName sets the "taskName" field.
@@ -10530,18 +10257,9 @@ func (m *ScheduledTaskLogMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *ScheduledTaskLogMutation) Fields() []string {
-	fields := make([]string, 0, 10)
+	fields := make([]string, 0, 7)
 	if m.createTime != nil {
 		fields = append(fields, scheduledtasklog.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, scheduledtasklog.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, scheduledtasklog.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, scheduledtasklog.FieldVersion)
 	}
 	if m.taskName != nil {
 		fields = append(fields, scheduledtasklog.FieldTaskName)
@@ -10571,12 +10289,6 @@ func (m *ScheduledTaskLogMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case scheduledtasklog.FieldCreateTime:
 		return m.CreateTime()
-	case scheduledtasklog.FieldUpdateTime:
-		return m.UpdateTime()
-	case scheduledtasklog.FieldIsDelete:
-		return m.IsDelete()
-	case scheduledtasklog.FieldVersion:
-		return m.Version()
 	case scheduledtasklog.FieldTaskName:
 		return m.TaskName()
 	case scheduledtasklog.FieldStatus:
@@ -10600,12 +10312,6 @@ func (m *ScheduledTaskLogMutation) OldField(ctx context.Context, name string) (e
 	switch name {
 	case scheduledtasklog.FieldCreateTime:
 		return m.OldCreateTime(ctx)
-	case scheduledtasklog.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case scheduledtasklog.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case scheduledtasklog.FieldVersion:
-		return m.OldVersion(ctx)
 	case scheduledtasklog.FieldTaskName:
 		return m.OldTaskName(ctx)
 	case scheduledtasklog.FieldStatus:
@@ -10633,27 +10339,6 @@ func (m *ScheduledTaskLogMutation) SetField(name string, value ent.Value) error 
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCreateTime(v)
-		return nil
-	case scheduledtasklog.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case scheduledtasklog.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case scheduledtasklog.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case scheduledtasklog.FieldTaskName:
 		v, ok := value.(string)
@@ -10704,21 +10389,13 @@ func (m *ScheduledTaskLogMutation) SetField(name string, value ent.Value) error 
 // AddedFields returns all numeric fields that were incremented/decremented during
 // this mutation.
 func (m *ScheduledTaskLogMutation) AddedFields() []string {
-	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, scheduledtasklog.FieldVersion)
-	}
-	return fields
+	return nil
 }
 
 // AddedField returns the numeric value that was incremented/decremented on a field
 // with the given name. The second boolean return value indicates that this field
 // was not set, or was not defined in the schema.
 func (m *ScheduledTaskLogMutation) AddedField(name string) (ent.Value, bool) {
-	switch name {
-	case scheduledtasklog.FieldVersion:
-		return m.AddedVersion()
-	}
 	return nil, false
 }
 
@@ -10727,13 +10404,6 @@ func (m *ScheduledTaskLogMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *ScheduledTaskLogMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case scheduledtasklog.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	}
 	return fmt.Errorf("unknown ScheduledTaskLog numeric field %s", name)
 }
@@ -10784,15 +10454,6 @@ func (m *ScheduledTaskLogMutation) ResetField(name string) error {
 	switch name {
 	case scheduledtasklog.FieldCreateTime:
 		m.ResetCreateTime()
-		return nil
-	case scheduledtasklog.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case scheduledtasklog.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case scheduledtasklog.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case scheduledtasklog.FieldTaskName:
 		m.ResetTaskName()

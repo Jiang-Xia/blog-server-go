@@ -28,56 +28,6 @@ func (stlc *ScheduledTaskLogCreate) SetCreateTime(t time.Time) *ScheduledTaskLog
 	return stlc
 }
 
-// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
-func (stlc *ScheduledTaskLogCreate) SetNillableCreateTime(t *time.Time) *ScheduledTaskLogCreate {
-	if t != nil {
-		stlc.SetCreateTime(*t)
-	}
-	return stlc
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (stlc *ScheduledTaskLogCreate) SetUpdateTime(t time.Time) *ScheduledTaskLogCreate {
-	stlc.mutation.SetUpdateTime(t)
-	return stlc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (stlc *ScheduledTaskLogCreate) SetNillableUpdateTime(t *time.Time) *ScheduledTaskLogCreate {
-	if t != nil {
-		stlc.SetUpdateTime(*t)
-	}
-	return stlc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (stlc *ScheduledTaskLogCreate) SetIsDelete(b bool) *ScheduledTaskLogCreate {
-	stlc.mutation.SetIsDelete(b)
-	return stlc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (stlc *ScheduledTaskLogCreate) SetNillableIsDelete(b *bool) *ScheduledTaskLogCreate {
-	if b != nil {
-		stlc.SetIsDelete(*b)
-	}
-	return stlc
-}
-
-// SetVersion sets the "version" field.
-func (stlc *ScheduledTaskLogCreate) SetVersion(i int) *ScheduledTaskLogCreate {
-	stlc.mutation.SetVersion(i)
-	return stlc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (stlc *ScheduledTaskLogCreate) SetNillableVersion(i *int) *ScheduledTaskLogCreate {
-	if i != nil {
-		stlc.SetVersion(*i)
-	}
-	return stlc
-}
-
 // SetTaskName sets the "taskName" field.
 func (stlc *ScheduledTaskLogCreate) SetTaskName(s string) *ScheduledTaskLogCreate {
 	stlc.mutation.SetTaskName(s)
@@ -151,7 +101,6 @@ func (stlc *ScheduledTaskLogCreate) Mutation() *ScheduledTaskLogMutation {
 
 // Save creates the ScheduledTaskLog in the database.
 func (stlc *ScheduledTaskLogCreate) Save(ctx context.Context) (*ScheduledTaskLog, error) {
-	stlc.defaults()
 	return withHooks(ctx, stlc.sqlSave, stlc.mutation, stlc.hooks)
 }
 
@@ -177,39 +126,10 @@ func (stlc *ScheduledTaskLogCreate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (stlc *ScheduledTaskLogCreate) defaults() {
-	if _, ok := stlc.mutation.CreateTime(); !ok {
-		v := scheduledtasklog.DefaultCreateTime()
-		stlc.mutation.SetCreateTime(v)
-	}
-	if _, ok := stlc.mutation.UpdateTime(); !ok {
-		v := scheduledtasklog.DefaultUpdateTime()
-		stlc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := stlc.mutation.IsDelete(); !ok {
-		v := scheduledtasklog.DefaultIsDelete
-		stlc.mutation.SetIsDelete(v)
-	}
-	if _, ok := stlc.mutation.Version(); !ok {
-		v := scheduledtasklog.DefaultVersion
-		stlc.mutation.SetVersion(v)
-	}
-}
-
 // check runs all checks and user-defined validators on the builder.
 func (stlc *ScheduledTaskLogCreate) check() error {
 	if _, ok := stlc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "ScheduledTaskLog.createTime"`)}
-	}
-	if _, ok := stlc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "ScheduledTaskLog.updateTime"`)}
-	}
-	if _, ok := stlc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "ScheduledTaskLog.isDelete"`)}
-	}
-	if _, ok := stlc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "ScheduledTaskLog.version"`)}
 	}
 	if _, ok := stlc.mutation.TaskName(); !ok {
 		return &ValidationError{Name: "taskName", err: errors.New(`ent: missing required field "ScheduledTaskLog.taskName"`)}
@@ -256,18 +176,6 @@ func (stlc *ScheduledTaskLogCreate) createSpec() (*ScheduledTaskLog, *sqlgraph.C
 	if value, ok := stlc.mutation.CreateTime(); ok {
 		_spec.SetField(scheduledtasklog.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
-	}
-	if value, ok := stlc.mutation.UpdateTime(); ok {
-		_spec.SetField(scheduledtasklog.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := stlc.mutation.IsDelete(); ok {
-		_spec.SetField(scheduledtasklog.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := stlc.mutation.Version(); ok {
-		_spec.SetField(scheduledtasklog.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := stlc.mutation.TaskName(); ok {
 		_spec.SetField(scheduledtasklog.FieldTaskName, field.TypeString, value)
@@ -345,45 +253,15 @@ type (
 	}
 )
 
-// SetUpdateTime sets the "updateTime" field.
-func (u *ScheduledTaskLogUpsert) SetUpdateTime(v time.Time) *ScheduledTaskLogUpsert {
-	u.Set(scheduledtasklog.FieldUpdateTime, v)
+// SetCreateTime sets the "createTime" field.
+func (u *ScheduledTaskLogUpsert) SetCreateTime(v time.Time) *ScheduledTaskLogUpsert {
+	u.Set(scheduledtasklog.FieldCreateTime, v)
 	return u
 }
 
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsert) UpdateUpdateTime() *ScheduledTaskLogUpsert {
-	u.SetExcluded(scheduledtasklog.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ScheduledTaskLogUpsert) SetIsDelete(v bool) *ScheduledTaskLogUpsert {
-	u.Set(scheduledtasklog.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsert) UpdateIsDelete() *ScheduledTaskLogUpsert {
-	u.SetExcluded(scheduledtasklog.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *ScheduledTaskLogUpsert) SetVersion(v int) *ScheduledTaskLogUpsert {
-	u.Set(scheduledtasklog.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsert) UpdateVersion() *ScheduledTaskLogUpsert {
-	u.SetExcluded(scheduledtasklog.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ScheduledTaskLogUpsert) AddVersion(v int) *ScheduledTaskLogUpsert {
-	u.Add(scheduledtasklog.FieldVersion, v)
+// UpdateCreateTime sets the "createTime" field to the value that was provided on create.
+func (u *ScheduledTaskLogUpsert) UpdateCreateTime() *ScheduledTaskLogUpsert {
+	u.SetExcluded(scheduledtasklog.FieldCreateTime)
 	return u
 }
 
@@ -494,9 +372,6 @@ func (u *ScheduledTaskLogUpsertOne) UpdateNewValues() *ScheduledTaskLogUpsertOne
 		if _, exists := u.create.mutation.ID(); exists {
 			s.SetIgnore(scheduledtasklog.FieldID)
 		}
-		if _, exists := u.create.mutation.CreateTime(); exists {
-			s.SetIgnore(scheduledtasklog.FieldCreateTime)
-		}
 	}))
 	return u
 }
@@ -528,52 +403,17 @@ func (u *ScheduledTaskLogUpsertOne) Update(set func(*ScheduledTaskLogUpsert)) *S
 	return u
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (u *ScheduledTaskLogUpsertOne) SetUpdateTime(v time.Time) *ScheduledTaskLogUpsertOne {
+// SetCreateTime sets the "createTime" field.
+func (u *ScheduledTaskLogUpsertOne) SetCreateTime(v time.Time) *ScheduledTaskLogUpsertOne {
 	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.SetUpdateTime(v)
+		s.SetCreateTime(v)
 	})
 }
 
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsertOne) UpdateUpdateTime() *ScheduledTaskLogUpsertOne {
+// UpdateCreateTime sets the "createTime" field to the value that was provided on create.
+func (u *ScheduledTaskLogUpsertOne) UpdateCreateTime() *ScheduledTaskLogUpsertOne {
 	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ScheduledTaskLogUpsertOne) SetIsDelete(v bool) *ScheduledTaskLogUpsertOne {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsertOne) UpdateIsDelete() *ScheduledTaskLogUpsertOne {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *ScheduledTaskLogUpsertOne) SetVersion(v int) *ScheduledTaskLogUpsertOne {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ScheduledTaskLogUpsertOne) AddVersion(v int) *ScheduledTaskLogUpsertOne {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsertOne) UpdateVersion() *ScheduledTaskLogUpsertOne {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.UpdateVersion()
+		s.UpdateCreateTime()
 	})
 }
 
@@ -734,7 +574,6 @@ func (stlcb *ScheduledTaskLogCreateBulk) Save(ctx context.Context) ([]*Scheduled
 	for i := range stlcb.builders {
 		func(i int, root context.Context) {
 			builder := stlcb.builders[i]
-			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ScheduledTaskLogMutation)
 				if !ok {
@@ -864,9 +703,6 @@ func (u *ScheduledTaskLogUpsertBulk) UpdateNewValues() *ScheduledTaskLogUpsertBu
 			if _, exists := b.mutation.ID(); exists {
 				s.SetIgnore(scheduledtasklog.FieldID)
 			}
-			if _, exists := b.mutation.CreateTime(); exists {
-				s.SetIgnore(scheduledtasklog.FieldCreateTime)
-			}
 		}
 	}))
 	return u
@@ -899,52 +735,17 @@ func (u *ScheduledTaskLogUpsertBulk) Update(set func(*ScheduledTaskLogUpsert)) *
 	return u
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (u *ScheduledTaskLogUpsertBulk) SetUpdateTime(v time.Time) *ScheduledTaskLogUpsertBulk {
+// SetCreateTime sets the "createTime" field.
+func (u *ScheduledTaskLogUpsertBulk) SetCreateTime(v time.Time) *ScheduledTaskLogUpsertBulk {
 	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.SetUpdateTime(v)
+		s.SetCreateTime(v)
 	})
 }
 
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsertBulk) UpdateUpdateTime() *ScheduledTaskLogUpsertBulk {
+// UpdateCreateTime sets the "createTime" field to the value that was provided on create.
+func (u *ScheduledTaskLogUpsertBulk) UpdateCreateTime() *ScheduledTaskLogUpsertBulk {
 	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ScheduledTaskLogUpsertBulk) SetIsDelete(v bool) *ScheduledTaskLogUpsertBulk {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsertBulk) UpdateIsDelete() *ScheduledTaskLogUpsertBulk {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *ScheduledTaskLogUpsertBulk) SetVersion(v int) *ScheduledTaskLogUpsertBulk {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ScheduledTaskLogUpsertBulk) AddVersion(v int) *ScheduledTaskLogUpsertBulk {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ScheduledTaskLogUpsertBulk) UpdateVersion() *ScheduledTaskLogUpsertBulk {
-	return u.Update(func(s *ScheduledTaskLogUpsert) {
-		s.UpdateVersion()
+		s.UpdateCreateTime()
 	})
 }
 

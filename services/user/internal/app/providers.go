@@ -9,6 +9,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/operationlog"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/captcha"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/repo"
 	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/user/internal/user/grpcserver"
@@ -16,8 +17,8 @@ import (
 	"go.uber.org/zap"
 )
 
-func provideUserGRPCServer(profileSvc *profile.Service, jwt *auth.JWTService) *usersgrpc.Server {
-	return usersgrpc.New(profileSvc, jwt)
+func provideUserGRPCServer(profileSvc *profile.Service, jwt *auth.JWTService, emailSvc *email.Service) *usersgrpc.Server {
+	return usersgrpc.New(profileSvc, jwt, emailSvc)
 }
 
 func provideAdminRepo(cfg *config.Config) (*repo.AdminRepo, error) {

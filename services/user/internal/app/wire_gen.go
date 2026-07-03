@@ -71,7 +71,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 	operationLogHandler := handler.NewOperationLogHandler(operationlogService)
 	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, sensitiveWordHandler, operationLogHandler, service, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
-	grpcserverServer := provideUserGRPCServer(profileService, service)
+	grpcserverServer := provideUserGRPCServer(profileService, service, emailService)
 	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, grpcserverServer)
 	return app, nil
 }

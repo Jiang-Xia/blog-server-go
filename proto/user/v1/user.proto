@@ -12,6 +12,8 @@ service UserService {
   rpc GetUserBatch(GetUserBatchRequest) returns (GetUserBatchResponse);
   rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
   rpc CountUsers(google.protobuf.Empty) returns (CountUsersResponse);
+  // SendSystemEmail 系统邮件（定时任务告警等；SMTP 与验证码同源配置）。
+  rpc SendSystemEmail(SendSystemEmailRequest) returns (SendSystemEmailResponse);
 }
 
 message GetUserRequest {
@@ -46,4 +48,14 @@ message VerifyTokenResponse {
 
 message CountUsersResponse {
   int32 total = 1;
+}
+
+message SendSystemEmailRequest {
+  string to = 1;
+  string subject = 2;
+  string html_body = 3;
+}
+
+message SendSystemEmailResponse {
+  bool sent = 1;
 }

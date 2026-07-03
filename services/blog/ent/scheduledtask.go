@@ -22,10 +22,6 @@ type ScheduledTask struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 任务唯一标识
 	Name string `json:"name,omitempty"`
 	// 任务描述
@@ -48,9 +44,7 @@ func (*ScheduledTask) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case scheduledtask.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case scheduledtask.FieldID, scheduledtask.FieldVersion, scheduledtask.FieldEnabled, scheduledtask.FieldLogRecording, scheduledtask.FieldSortOrder:
+		case scheduledtask.FieldID, scheduledtask.FieldEnabled, scheduledtask.FieldLogRecording, scheduledtask.FieldSortOrder:
 			values[i] = new(sql.NullInt64)
 		case scheduledtask.FieldName, scheduledtask.FieldDescription, scheduledtask.FieldCron, scheduledtask.FieldCronHuman:
 			values[i] = new(sql.NullString)
@@ -88,18 +82,6 @@ func (st *ScheduledTask) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				st.UpdateTime = value.Time
-			}
-		case scheduledtask.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				st.IsDelete = value.Bool
-			}
-		case scheduledtask.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				st.Version = int(value.Int64)
 			}
 		case scheduledtask.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -184,12 +166,6 @@ func (st *ScheduledTask) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(st.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", st.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", st.Version))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
 	builder.WriteString(st.Name)

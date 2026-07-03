@@ -22,6 +22,7 @@ type RegisterDeps struct {
 	File         *FileHandler
 	Resources    *ResourcesHandler
 	Notification *NotificationHandler
+	ScheduledTask *ScheduledTaskHandler
 	WS           *WSHandler
 	DevPush      *DevPushHandler
 	JWT          *auth.JWTService

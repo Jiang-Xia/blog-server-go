@@ -50,34 +50,6 @@ func (stc *ScheduledTaskCreate) SetNillableUpdateTime(t *time.Time) *ScheduledTa
 	return stc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (stc *ScheduledTaskCreate) SetIsDelete(b bool) *ScheduledTaskCreate {
-	stc.mutation.SetIsDelete(b)
-	return stc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (stc *ScheduledTaskCreate) SetNillableIsDelete(b *bool) *ScheduledTaskCreate {
-	if b != nil {
-		stc.SetIsDelete(*b)
-	}
-	return stc
-}
-
-// SetVersion sets the "version" field.
-func (stc *ScheduledTaskCreate) SetVersion(i int) *ScheduledTaskCreate {
-	stc.mutation.SetVersion(i)
-	return stc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (stc *ScheduledTaskCreate) SetNillableVersion(i *int) *ScheduledTaskCreate {
-	if i != nil {
-		stc.SetVersion(*i)
-	}
-	return stc
-}
-
 // SetName sets the "name" field.
 func (stc *ScheduledTaskCreate) SetName(s string) *ScheduledTaskCreate {
 	stc.mutation.SetName(s)
@@ -209,14 +181,6 @@ func (stc *ScheduledTaskCreate) defaults() {
 		v := scheduledtask.DefaultUpdateTime()
 		stc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := stc.mutation.IsDelete(); !ok {
-		v := scheduledtask.DefaultIsDelete
-		stc.mutation.SetIsDelete(v)
-	}
-	if _, ok := stc.mutation.Version(); !ok {
-		v := scheduledtask.DefaultVersion
-		stc.mutation.SetVersion(v)
-	}
 	if _, ok := stc.mutation.Description(); !ok {
 		v := scheduledtask.DefaultDescription
 		stc.mutation.SetDescription(v)
@@ -246,12 +210,6 @@ func (stc *ScheduledTaskCreate) check() error {
 	}
 	if _, ok := stc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "ScheduledTask.updateTime"`)}
-	}
-	if _, ok := stc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "ScheduledTask.isDelete"`)}
-	}
-	if _, ok := stc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "ScheduledTask.version"`)}
 	}
 	if _, ok := stc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "ScheduledTask.name"`)}
@@ -314,14 +272,6 @@ func (stc *ScheduledTaskCreate) createSpec() (*ScheduledTask, *sqlgraph.CreateSp
 	if value, ok := stc.mutation.UpdateTime(); ok {
 		_spec.SetField(scheduledtask.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := stc.mutation.IsDelete(); ok {
-		_spec.SetField(scheduledtask.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := stc.mutation.Version(); ok {
-		_spec.SetField(scheduledtask.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := stc.mutation.Name(); ok {
 		_spec.SetField(scheduledtask.FieldName, field.TypeString, value)
@@ -412,36 +362,6 @@ func (u *ScheduledTaskUpsert) SetUpdateTime(v time.Time) *ScheduledTaskUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *ScheduledTaskUpsert) UpdateUpdateTime() *ScheduledTaskUpsert {
 	u.SetExcluded(scheduledtask.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ScheduledTaskUpsert) SetIsDelete(v bool) *ScheduledTaskUpsert {
-	u.Set(scheduledtask.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ScheduledTaskUpsert) UpdateIsDelete() *ScheduledTaskUpsert {
-	u.SetExcluded(scheduledtask.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *ScheduledTaskUpsert) SetVersion(v int) *ScheduledTaskUpsert {
-	u.Set(scheduledtask.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ScheduledTaskUpsert) UpdateVersion() *ScheduledTaskUpsert {
-	u.SetExcluded(scheduledtask.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ScheduledTaskUpsert) AddVersion(v int) *ScheduledTaskUpsert {
-	u.Add(scheduledtask.FieldVersion, v)
 	return u
 }
 
@@ -609,41 +529,6 @@ func (u *ScheduledTaskUpsertOne) SetUpdateTime(v time.Time) *ScheduledTaskUpsert
 func (u *ScheduledTaskUpsertOne) UpdateUpdateTime() *ScheduledTaskUpsertOne {
 	return u.Update(func(s *ScheduledTaskUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ScheduledTaskUpsertOne) SetIsDelete(v bool) *ScheduledTaskUpsertOne {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ScheduledTaskUpsertOne) UpdateIsDelete() *ScheduledTaskUpsertOne {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *ScheduledTaskUpsertOne) SetVersion(v int) *ScheduledTaskUpsertOne {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ScheduledTaskUpsertOne) AddVersion(v int) *ScheduledTaskUpsertOne {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ScheduledTaskUpsertOne) UpdateVersion() *ScheduledTaskUpsertOne {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -994,41 +879,6 @@ func (u *ScheduledTaskUpsertBulk) SetUpdateTime(v time.Time) *ScheduledTaskUpser
 func (u *ScheduledTaskUpsertBulk) UpdateUpdateTime() *ScheduledTaskUpsertBulk {
 	return u.Update(func(s *ScheduledTaskUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *ScheduledTaskUpsertBulk) SetIsDelete(v bool) *ScheduledTaskUpsertBulk {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *ScheduledTaskUpsertBulk) UpdateIsDelete() *ScheduledTaskUpsertBulk {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *ScheduledTaskUpsertBulk) SetVersion(v int) *ScheduledTaskUpsertBulk {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *ScheduledTaskUpsertBulk) AddVersion(v int) *ScheduledTaskUpsertBulk {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *ScheduledTaskUpsertBulk) UpdateVersion() *ScheduledTaskUpsertBulk {
-	return u.Update(func(s *ScheduledTaskUpsert) {
-		s.UpdateVersion()
 	})
 }
 

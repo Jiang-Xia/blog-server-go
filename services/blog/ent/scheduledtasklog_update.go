@@ -28,44 +28,17 @@ func (stlu *ScheduledTaskLogUpdate) Where(ps ...predicate.ScheduledTaskLog) *Sch
 	return stlu
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (stlu *ScheduledTaskLogUpdate) SetUpdateTime(t time.Time) *ScheduledTaskLogUpdate {
-	stlu.mutation.SetUpdateTime(t)
+// SetCreateTime sets the "createTime" field.
+func (stlu *ScheduledTaskLogUpdate) SetCreateTime(t time.Time) *ScheduledTaskLogUpdate {
+	stlu.mutation.SetCreateTime(t)
 	return stlu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (stlu *ScheduledTaskLogUpdate) SetIsDelete(b bool) *ScheduledTaskLogUpdate {
-	stlu.mutation.SetIsDelete(b)
-	return stlu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (stlu *ScheduledTaskLogUpdate) SetNillableIsDelete(b *bool) *ScheduledTaskLogUpdate {
-	if b != nil {
-		stlu.SetIsDelete(*b)
+// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
+func (stlu *ScheduledTaskLogUpdate) SetNillableCreateTime(t *time.Time) *ScheduledTaskLogUpdate {
+	if t != nil {
+		stlu.SetCreateTime(*t)
 	}
-	return stlu
-}
-
-// SetVersion sets the "version" field.
-func (stlu *ScheduledTaskLogUpdate) SetVersion(i int) *ScheduledTaskLogUpdate {
-	stlu.mutation.ResetVersion()
-	stlu.mutation.SetVersion(i)
-	return stlu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (stlu *ScheduledTaskLogUpdate) SetNillableVersion(i *int) *ScheduledTaskLogUpdate {
-	if i != nil {
-		stlu.SetVersion(*i)
-	}
-	return stlu
-}
-
-// AddVersion adds i to the "version" field.
-func (stlu *ScheduledTaskLogUpdate) AddVersion(i int) *ScheduledTaskLogUpdate {
-	stlu.mutation.AddVersion(i)
 	return stlu
 }
 
@@ -178,7 +151,6 @@ func (stlu *ScheduledTaskLogUpdate) Mutation() *ScheduledTaskLogMutation {
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (stlu *ScheduledTaskLogUpdate) Save(ctx context.Context) (int, error) {
-	stlu.defaults()
 	return withHooks(ctx, stlu.sqlSave, stlu.mutation, stlu.hooks)
 }
 
@@ -204,14 +176,6 @@ func (stlu *ScheduledTaskLogUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (stlu *ScheduledTaskLogUpdate) defaults() {
-	if _, ok := stlu.mutation.UpdateTime(); !ok {
-		v := scheduledtasklog.UpdateDefaultUpdateTime()
-		stlu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (stlu *ScheduledTaskLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(scheduledtasklog.Table, scheduledtasklog.Columns, sqlgraph.NewFieldSpec(scheduledtasklog.FieldID, field.TypeInt))
 	if ps := stlu.mutation.predicates; len(ps) > 0 {
@@ -221,17 +185,8 @@ func (stlu *ScheduledTaskLogUpdate) sqlSave(ctx context.Context) (n int, err err
 			}
 		}
 	}
-	if value, ok := stlu.mutation.UpdateTime(); ok {
-		_spec.SetField(scheduledtasklog.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := stlu.mutation.IsDelete(); ok {
-		_spec.SetField(scheduledtasklog.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := stlu.mutation.Version(); ok {
-		_spec.SetField(scheduledtasklog.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := stlu.mutation.AddedVersion(); ok {
-		_spec.AddField(scheduledtasklog.FieldVersion, field.TypeInt, value)
+	if value, ok := stlu.mutation.CreateTime(); ok {
+		_spec.SetField(scheduledtasklog.FieldCreateTime, field.TypeTime, value)
 	}
 	if value, ok := stlu.mutation.TaskName(); ok {
 		_spec.SetField(scheduledtasklog.FieldTaskName, field.TypeString, value)
@@ -280,44 +235,17 @@ type ScheduledTaskLogUpdateOne struct {
 	mutation *ScheduledTaskLogMutation
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (stluo *ScheduledTaskLogUpdateOne) SetUpdateTime(t time.Time) *ScheduledTaskLogUpdateOne {
-	stluo.mutation.SetUpdateTime(t)
+// SetCreateTime sets the "createTime" field.
+func (stluo *ScheduledTaskLogUpdateOne) SetCreateTime(t time.Time) *ScheduledTaskLogUpdateOne {
+	stluo.mutation.SetCreateTime(t)
 	return stluo
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (stluo *ScheduledTaskLogUpdateOne) SetIsDelete(b bool) *ScheduledTaskLogUpdateOne {
-	stluo.mutation.SetIsDelete(b)
-	return stluo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (stluo *ScheduledTaskLogUpdateOne) SetNillableIsDelete(b *bool) *ScheduledTaskLogUpdateOne {
-	if b != nil {
-		stluo.SetIsDelete(*b)
+// SetNillableCreateTime sets the "createTime" field if the given value is not nil.
+func (stluo *ScheduledTaskLogUpdateOne) SetNillableCreateTime(t *time.Time) *ScheduledTaskLogUpdateOne {
+	if t != nil {
+		stluo.SetCreateTime(*t)
 	}
-	return stluo
-}
-
-// SetVersion sets the "version" field.
-func (stluo *ScheduledTaskLogUpdateOne) SetVersion(i int) *ScheduledTaskLogUpdateOne {
-	stluo.mutation.ResetVersion()
-	stluo.mutation.SetVersion(i)
-	return stluo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (stluo *ScheduledTaskLogUpdateOne) SetNillableVersion(i *int) *ScheduledTaskLogUpdateOne {
-	if i != nil {
-		stluo.SetVersion(*i)
-	}
-	return stluo
-}
-
-// AddVersion adds i to the "version" field.
-func (stluo *ScheduledTaskLogUpdateOne) AddVersion(i int) *ScheduledTaskLogUpdateOne {
-	stluo.mutation.AddVersion(i)
 	return stluo
 }
 
@@ -443,7 +371,6 @@ func (stluo *ScheduledTaskLogUpdateOne) Select(field string, fields ...string) *
 
 // Save executes the query and returns the updated ScheduledTaskLog entity.
 func (stluo *ScheduledTaskLogUpdateOne) Save(ctx context.Context) (*ScheduledTaskLog, error) {
-	stluo.defaults()
 	return withHooks(ctx, stluo.sqlSave, stluo.mutation, stluo.hooks)
 }
 
@@ -466,14 +393,6 @@ func (stluo *ScheduledTaskLogUpdateOne) Exec(ctx context.Context) error {
 func (stluo *ScheduledTaskLogUpdateOne) ExecX(ctx context.Context) {
 	if err := stluo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (stluo *ScheduledTaskLogUpdateOne) defaults() {
-	if _, ok := stluo.mutation.UpdateTime(); !ok {
-		v := scheduledtasklog.UpdateDefaultUpdateTime()
-		stluo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -503,17 +422,8 @@ func (stluo *ScheduledTaskLogUpdateOne) sqlSave(ctx context.Context) (_node *Sch
 			}
 		}
 	}
-	if value, ok := stluo.mutation.UpdateTime(); ok {
-		_spec.SetField(scheduledtasklog.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := stluo.mutation.IsDelete(); ok {
-		_spec.SetField(scheduledtasklog.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := stluo.mutation.Version(); ok {
-		_spec.SetField(scheduledtasklog.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := stluo.mutation.AddedVersion(); ok {
-		_spec.AddField(scheduledtasklog.FieldVersion, field.TypeInt, value)
+	if value, ok := stluo.mutation.CreateTime(); ok {
+		_spec.SetField(scheduledtasklog.FieldCreateTime, field.TypeTime, value)
 	}
 	if value, ok := stluo.mutation.TaskName(); ok {
 		_spec.SetField(scheduledtasklog.FieldTaskName, field.TypeString, value)

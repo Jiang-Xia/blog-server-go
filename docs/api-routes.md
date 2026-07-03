@@ -18,7 +18,7 @@
 | 服务 | HTTP | gRPC | 说明 |
 |------|------|------|------|
 | gateway | `:8000` | — | 统一 REST 入口 |
-| blog-service | `:5001` | `:50051` | 文章/互动/WS/通知 |
+| blog-service | `:5001` | `:50051` | 文章/互动/WS/通知/定时任务 |
 | user-service | `:5002` | `:50052` | 用户/RBAC/敏感词 |
 | rpg-service | `:5003` | `:50053` | RPG/支付/公开主页 |
 
@@ -322,6 +322,30 @@
 | POST | `/api/v1/resources/folder` | 公开 |
 | PATCH | `/api/v1/resources/file` | 公开 |
 
+### 3.15 定时任务 `/api/v1/scheduled-task`（Plan 12）
+
+| 方法 | 路径 | 鉴权 | 说明 |
+|------|------|------|------|
+| GET | `/api/v1/scheduled-task/tasks` | JWT+RBAC | 已注册任务列表（含 running） |
+| GET | `/api/v1/scheduled-task/tasks/all` | JWT+RBAC | 分页任务定义 |
+| GET | `/api/v1/scheduled-task/tasks/:id` | JWT+RBAC | 单个任务 |
+| POST | `/api/v1/scheduled-task/tasks` | JWT+RBAC | 创建任务 |
+| PATCH | `/api/v1/scheduled-task/tasks/:id` | JWT+RBAC | 更新 cron/启用等 |
+| DELETE | `/api/v1/scheduled-task/tasks/:id` | JWT+RBAC | 删除任务 |
+| GET | `/api/v1/scheduled-task/status/:taskName` | JWT+RBAC | 运行状态 |
+| POST | `/api/v1/scheduled-task/trigger/:taskName` | JWT+RBAC | 手动触发 |
+| POST | `/api/v1/scheduled-task/stop/:taskName` | JWT+RBAC | 停止 cron |
+| POST | `/api/v1/scheduled-task/start/:taskName` | JWT+RBAC | 启动 cron |
+| PATCH | `/api/v1/scheduled-task/log-recording/:taskName` | JWT+RBAC | 切换执行日志 |
+| POST | `/api/v1/scheduled-task/cache/clear-permissions` | JWT **超管** | 清 RBAC Redis |
+| POST | `/api/v1/scheduled-task/cache/refresh-tongji-token` | JWT **超管** | 刷新百度 token（Plan 16） |
+| GET | `/api/v1/scheduled-task` | JWT+RBAC | 分页执行日志 |
+| GET | `/api/v1/scheduled-task/backups` | JWT **超管** | 备份文件列表 |
+| GET | `/api/v1/scheduled-task/backups/download` | JWT **超管** | 下载最新备份 |
+| GET | `/api/v1/scheduled-task/backups/:fileName/download` | JWT **超管** | 下载指定备份 |
+
+> Gateway：`scheduled-task/*` 显式代理 → blog-service。
+
 ---
 
 ## 4. rpg-service（`:5003`）
@@ -474,6 +498,7 @@
 | GetUserBatch | blog | 批量用户 |
 | VerifyToken | 内部 | JWT 校验 |
 | CountUsers | gateway BFF | 用户总数（pub/stats） |
+| SendSystemEmail | blog 定时任务 | 系统 HTML 邮件（SMTP 同源） |
 
 ### 5.2 blog.v1.ArticleService（`:50051`）
 

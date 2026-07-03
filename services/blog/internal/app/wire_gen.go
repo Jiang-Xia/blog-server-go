@@ -88,15 +88,28 @@ func InitializeApp(cfgPath string) (*App, error) {
 	fileHandler := handler.NewFileHandler(resourcesService, jwtauthService)
 	resourcesHandler := handler.NewResourcesHandler(resourcesService, jwtauthService)
 	notificationHandler := handler.NewNotificationHandler(notificationService, jwtauthService)
-	wsHandler := handler.NewWSHandler(hub, jwtauthService)
+	scheduledtaskRepo := provideScheduledTaskRepo(client)
+	crossDB, err := provideScheduledTaskCrossDB(configConfig)
+	if err != nil {
+		return nil, err
+	}
+	systemEmailSender, err := provideSystemEmailSender(configConfig)
+	if err != nil {
+		return nil, err
+	}
 	publisher := event.NewPublisher(rueidisClient, zapLogger)
+	runner := provideScheduledTaskJobs(client, configConfig, articleRepo, linkRepo, scheduledtaskRepo, crossDB, systemEmailSender, publisher)
+	scheduledtaskService := provideScheduledTaskService(scheduledtaskRepo, crossDB, configConfig, store, runner, zapLogger)
+	scheduledTaskHandler := handler.NewScheduledTaskHandler(scheduledtaskService, jwtauthService)
+	wsHandler := handler.NewWSHandler(hub, jwtauthService)
 	devPushHandler := handler.NewDevPushHandler(realtimePusher, publisher, jwtauthService)
-	registerDeps := provideRegisterDeps(healthHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, wsHandler, devPushHandler, jwtauthService, userService, configConfig, store, zapLogger)
+	registerDeps := provideRegisterDeps(healthHandler, articleHandler, categoryHandler, tagHandler, commentHandler, replyHandler, likeHandler, collectHandler, msgboardHandler, linkHandler, fileHandler, resourcesHandler, notificationHandler, scheduledTaskHandler, wsHandler, devPushHandler, jwtauthService, userService, configConfig, store, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	schedulerScheduler := scheduler.New(zapLogger)
+	scheduledTaskRuntime := provideScheduledTaskRuntime(schedulerScheduler, scheduledtaskService)
 	blogEventConsumer := provideBlogEventConsumer(rueidisClient, zapLogger)
 	realtimeRuntime := provideRealtimeRuntime(hub, realtimePusher, blogEventConsumer, publisher, wsHandler, devPushHandler)
 	grpcserverServer := provideBlogGRPCServer(articleService, client)
-	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, schedulerScheduler, realtimeRuntime, grpcserverServer)
+	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, scheduledTaskRuntime, realtimeRuntime, grpcserverServer)
 	return app, nil
 }

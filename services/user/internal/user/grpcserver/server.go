@@ -6,6 +6,7 @@ import (
 
 	userv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/auth"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/profile"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -17,11 +18,12 @@ type Server struct {
 	userv1.UnimplementedUserServiceServer
 	profile *profile.Service
 	jwt     *auth.JWTService
+	email   *email.Service
 }
 
 // New 构造 gRPC UserService 实现。
-func New(profileSvc *profile.Service, jwtSvc *auth.JWTService) *Server {
-	return &Server{profile: profileSvc, jwt: jwtSvc}
+func New(profileSvc *profile.Service, jwtSvc *auth.JWTService, emailSvc *email.Service) *Server {
+	return &Server{profile: profileSvc, jwt: jwtSvc, email: emailSvc}
 }
 
 // GetUser 按 ID 返回用户摘要。
@@ -69,6 +71,18 @@ func (s *Server) CountUsers(ctx context.Context, _ *emptypb.Empty) (*userv1.Coun
 		return nil, status.Errorf(codes.Internal, "count users: %v", err)
 	}
 	return &userv1.CountUsersResponse{Total: int32(total)}, nil
+}
+
+// SendSystemEmail 发送系统 HTML 邮件（定时任务告警等）。
+func (s *Server) SendSystemEmail(ctx context.Context, req *userv1.SendSystemEmailRequest) (*userv1.SendSystemEmailResponse, error) {
+	if s.email == nil {
+		return nil, status.Errorf(codes.Unavailable, "email service not configured")
+	}
+	sent, err := s.email.SendSystemEmail(ctx, req.GetTo(), req.GetSubject(), req.GetHtmlBody())
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "send email: %v", err)
+	}
+	return &userv1.SendSystemEmailResponse{Sent: sent}, nil
 }
 
 func toProto(d *profile.UserDTO) *userv1.GetUserResponse {

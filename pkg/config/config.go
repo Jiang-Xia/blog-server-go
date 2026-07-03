@@ -38,6 +38,7 @@ type Config struct {
 	Pay     PayConfig     `mapstructure:"pay"`
 	Observability ObservabilityConfig `mapstructure:"observability"`
 	Swagger       SwaggerConfig       `mapstructure:"swagger"`
+	Backup        BackupConfig        `mapstructure:"backup"`
 }
 
 // SwaggerConfig OpenAPI/Swagger UI 开关与路径。
@@ -53,6 +54,13 @@ type AppConfig struct {
 	ServiceMode ServiceMode `mapstructure:"service_mode"`
 	APIPrefix   string      `mapstructure:"api_prefix"`
 	BlogHome    string      `mapstructure:"blog_home"`
+	NotifyEmail string      `mapstructure:"notify_email"`
+}
+
+// BackupConfig 数据库定时备份（mysqldump）配置。
+type BackupConfig struct {
+	Dir          string `mapstructure:"dir"`
+	MysqldumpPath string `mapstructure:"mysqldump_path"`
 }
 
 // ServiceModeOrDefault 未配置时视为 monolith。
