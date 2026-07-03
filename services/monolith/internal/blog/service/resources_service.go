@@ -11,10 +11,12 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
+	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
@@ -30,16 +32,20 @@ const (
 
 // ResourcesService 文件资源与代理接口。
 type ResourcesService struct {
-	files  *blogrepo.FileRepo
-	cfg    *config.Config
-	client *http.Client
+	files          *blogrepo.FileRepo
+	cfg            *config.Config
+	client         *http.Client
+	redis          *redisutil.Store
+	tongjiMu       sync.RWMutex
+	tongjiMemCache string
 }
 
 // NewResourcesService 构造 ResourcesService。
-func NewResourcesService(files *blogrepo.FileRepo, cfg *config.Config) *ResourcesService {
+func NewResourcesService(files *blogrepo.FileRepo, cfg *config.Config, redis *redisutil.Store) *ResourcesService {
 	return &ResourcesService{
 		files:  files,
 		cfg:    cfg,
+		redis:  redis,
 		client: &http.Client{Timeout: 15 * time.Second},
 	}
 }

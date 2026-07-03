@@ -41,3 +41,29 @@ func TestSplitCSV(t *testing.T) {
 		t.Fatalf("unexpected: %#v", got)
 	}
 }
+
+func TestBlogYAMLMapsTongjiFromNestEnv(t *testing.T) {
+	m := map[string]string{
+		"app_tongjiRefreshToken": "refresh-token",
+		"app_tongjiClientId":     "client-id",
+		"app_tongjiClientSecret": "client-secret",
+		"app_notifyEmail":        "admin@example.com",
+	}
+	yaml := BlogYAML(m)
+	app, ok := yaml["app"].(map[string]any)
+	if !ok {
+		t.Fatal("missing app block")
+	}
+	if app["tongji_refresh_token"] != "refresh-token" {
+		t.Fatalf("tongji_refresh_token: %#v", app["tongji_refresh_token"])
+	}
+	if app["tongji_client_id"] != "client-id" {
+		t.Fatalf("tongji_client_id: %#v", app["tongji_client_id"])
+	}
+	if app["tongji_client_secret"] != "client-secret" {
+		t.Fatalf("tongji_client_secret: %#v", app["tongji_client_secret"])
+	}
+	if app["notify_email"] != "admin@example.com" {
+		t.Fatalf("notify_email: %#v", app["notify_email"])
+	}
+}

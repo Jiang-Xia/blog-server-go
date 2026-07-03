@@ -1,0 +1,52 @@
+{
+  "info": {
+    "name": "blog-server-go resources smoke",
+    "description": "Plan 16 百度统计代理冒烟。需超管 token：`go run scripts/dev_login.go --token-only`。无 tongji_* 配置时 refresh/baidutongji 返回 OAuth 配置不完整。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8000" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "baidutongji rejects invalid url",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/resources/baidutongji?url=http://evil.com/rest"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "const j = pm.response.json();",
+            "pm.test('invalid url rejected', () => pm.expect(j.code).to.not.eql(200));",
+            "pm.test('message mentions url', () => pm.expect(JSON.stringify(j)).to.match(/url|不合法/i));"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "refresh tongji token (skip if no config)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/api/v1/scheduled-task/cache/refresh-tongji-token"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "const j = pm.response.json();",
+            "if (j.code === 200) {",
+            "  pm.test('refreshed', () => pm.expect(j.data.refreshed).to.eql(true));",
+            "} else {",
+            "  pm.test('config missing ok', () => pm.expect(JSON.stringify(j)).to.match(/OAuth 配置不完整/i));",
+            "}"
+          ]
+        }
+      }]
+    }
+  ]
+}

@@ -8,6 +8,10 @@ app:
   env: development
   api_prefix: /api/v1
   blog_home: "http://localhost:5050"
+  # 百度统计 OAuth（Nest：app_tongjiRefreshToken 等；env：APP_TONGJI_*）
+  tongji_refresh_token: ""
+  tongji_client_id: ""
+  tongji_client_secret: ""
 
 http:
   addr: ":5000"

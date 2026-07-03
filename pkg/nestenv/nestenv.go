@@ -205,11 +205,15 @@ func BlogYAML(m map[string]string) map[string]any {
 	}
 	return map[string]any{
 		"app": map[string]any{
-			"name":         "blog-service",
-			"env":          "production",
-			"service_mode": "blog",
-			"api_prefix":   "/api/v1",
-			"blog_home":    Get(m, "app_blogHome"),
+			"name":                 "blog-service",
+			"env":                  "production",
+			"service_mode":         "blog",
+			"api_prefix":           "/api/v1",
+			"blog_home":            Get(m, "app_blogHome"),
+			"notify_email":         Get(m, "app_notifyEmail"),
+			"tongji_refresh_token": Get(m, "app_tongjiRefreshToken"),
+			"tongji_client_id":     Get(m, "app_tongjiClientId"),
+			"tongji_client_secret": Get(m, "app_tongjiClientSecret"),
 		},
 		"http": map[string]any{"addr": ":5001"},
 		"grpc": map[string]any{"user_addr": "127.0.0.1:50052"},

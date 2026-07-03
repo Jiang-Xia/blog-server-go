@@ -311,6 +311,7 @@
 | 方法 | 路径 | 鉴权 |
 |------|------|------|
 | GET | `/api/v1/resources/daily-img` | 公开 |
+| GET | `/api/v1/resources/baidutongji` | JWT+RBAC | 百度统计 OpenAPI 代理（Plan 16） |
 | GET | `/api/v1/resources/weather` | 公开 |
 | POST | `/api/v1/resources/uploadFile` | JWT |
 | POST | `/api/v1/resources/upload-media` | JWT |

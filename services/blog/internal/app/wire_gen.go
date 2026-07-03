@@ -88,7 +88,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 	linkService := service.NewLinkService(linkRepo)
 	linkHandler := handler.NewLinkHandler(linkService, jwtauthService)
 	fileRepo := repo.NewFileRepo(client)
-	resourcesService := service.NewResourcesService(fileRepo, configConfig)
+	resourcesService := service.NewResourcesService(fileRepo, configConfig, store)
 	fileHandler := handler.NewFileHandler(resourcesService, jwtauthService)
 	resourcesHandler := handler.NewResourcesHandler(resourcesService, jwtauthService)
 	notificationHandler := handler.NewNotificationHandler(notificationService, jwtauthService)
@@ -103,7 +103,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 	}
 	publisher := event.NewPublisher(rueidisClient, zapLogger)
 	runner := provideScheduledTaskJobs(client, configConfig, articleRepo, linkRepo, scheduledtaskRepo, crossDB, systemEmailSender, publisher)
-	scheduledtaskService := provideScheduledTaskService(scheduledtaskRepo, crossDB, configConfig, store, runner, zapLogger)
+	scheduledtaskService := provideScheduledTaskService(scheduledtaskRepo, crossDB, configConfig, store, runner, zapLogger, resourcesService)
 	scheduledTaskHandler := handler.NewScheduledTaskHandler(scheduledtaskService, jwtauthService)
 	module := provideRagModule(configConfig, client, store, articleRepo, crossDB, zapLogger)
 	ragHandler := handler.NewRagHandler(module, jwtauthService)

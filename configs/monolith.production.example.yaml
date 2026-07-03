@@ -7,6 +7,11 @@ app:
   env: production
   api_prefix: /api/v1
   blog_home: "https://your-domain.example"
+  notify_email: ""
+  # 百度统计 OAuth（Nest：app_tongjiRefreshToken / app_tongjiClientId / app_tongjiClientSecret）
+  tongji_refresh_token: ""
+  tongji_client_id: ""
+  tongji_client_secret: ""
 
 http:
   addr: ":5000"

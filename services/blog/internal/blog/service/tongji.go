@@ -23,7 +23,7 @@ type TongjiRefresher interface {
 	ForceRefreshTongjiAccessToken(ctx context.Context) (map[string]interface{}, error)
 }
 
-// BaiduTongJi 代理百度统计 OpenAPI（token 缺失或过期时自动刷新后重试）。
+// BaiduTongJi 代理百度统计 OpenAPI（token 缺失或过期时自动 refresh 后重试）。
 func (s *ResourcesService) BaiduTongJi(ctx context.Context, query map[string]string) (interface{}, error) {
 	normalized, err := normalizeTongjiQuery(query)
 	if err != nil {

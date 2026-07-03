@@ -7,6 +7,10 @@ app:
   service_mode: blog
   api_prefix: /api/v1
   blog_home: "http://localhost:5050"
+  # 百度统计 OAuth（env：APP_TONGJI_REFRESH_TOKEN / APP_TONGJI_CLIENT_ID / APP_TONGJI_CLIENT_SECRET）
+  tongji_refresh_token: ""
+  tongji_client_id: ""
+  tongji_client_secret: ""
 
 http:
   addr: ":5001"

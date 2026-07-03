@@ -194,8 +194,9 @@ func provideScheduledTaskService(
 	redis *redisutil.Store,
 	runner *jobs.Runner,
 	log *zap.Logger,
+	resources *blogsvc.ResourcesService,
 ) *scheduledtask.Service {
-	return scheduledtask.NewService(repo, cross, cfg, redis, runner, log)
+	return scheduledtask.NewService(repo, cross, cfg, redis, runner, log, resources)
 }
 
 // ScheduledTaskRuntime 连接 cron 与 Service，启动时 Bootstrap。

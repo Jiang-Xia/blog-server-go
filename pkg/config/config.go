@@ -98,12 +98,15 @@ type SwaggerConfig struct {
 
 // AppConfig 应用级元信息。
 type AppConfig struct {
-	Name        string      `mapstructure:"name"`
-	Env         string      `mapstructure:"env"`
-	ServiceMode ServiceMode `mapstructure:"service_mode"`
-	APIPrefix   string      `mapstructure:"api_prefix"`
-	BlogHome    string      `mapstructure:"blog_home"`
-	NotifyEmail string      `mapstructure:"notify_email"`
+	Name               string      `mapstructure:"name"`
+	Env                string      `mapstructure:"env"`
+	ServiceMode        ServiceMode `mapstructure:"service_mode"`
+	APIPrefix          string      `mapstructure:"api_prefix"`
+	BlogHome           string      `mapstructure:"blog_home"`
+	NotifyEmail        string      `mapstructure:"notify_email"`
+	TongjiRefreshToken string      `mapstructure:"tongji_refresh_token"`
+	TongjiClientID     string      `mapstructure:"tongji_client_id"`
+	TongjiClientSecret string      `mapstructure:"tongji_client_secret"`
 }
 
 // BackupConfig 数据库定时备份（mysqldump）配置。

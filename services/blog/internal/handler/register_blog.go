@@ -115,6 +115,7 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	res := v1.Group("/resources")
 	res.GET("/daily-img", deps.Resources.DailyImg)
 	res.GET("/weather", deps.Resources.Weather)
+	res.GET("/baidutongji", jwtRequired, deps.Resources.BaiduTongJi)
 	res.POST("/uploadFile", jwtRequired, deps.Resources.UploadFile)
 	res.POST("/upload-media", jwtRequired, deps.Resources.UploadMedia)
 	res.POST("/upload-media/register-avatar", deps.Resources.RegisterAvatar)

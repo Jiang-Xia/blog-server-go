@@ -14,6 +14,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/pagination"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent"
+	blogsvc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/service"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/crossdb"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/scheduledtask/jobs"
@@ -34,6 +35,7 @@ type Service struct {
 	jobs   *jobs.Runner
 	log    *zap.Logger
 	sched  scheduler.SchedulerControl
+	tongji blogsvc.TongjiRefresher
 	mu     sync.Map // taskName -> *sync.Mutex 本地互斥
 	instID string
 }
@@ -46,9 +48,10 @@ func NewService(
 	redis *redisutil.Store,
 	runner *jobs.Runner,
 	log *zap.Logger,
+	tongji blogsvc.TongjiRefresher,
 ) *Service {
 	return &Service{
-		repo: repo, cross: cross, cfg: cfg, redis: redis, jobs: runner, log: log,
+		repo: repo, cross: cross, cfg: cfg, redis: redis, jobs: runner, log: log, tongji: tongji,
 		instID: fmt.Sprintf("%d", os.Getpid()),
 	}
 }
@@ -294,12 +297,15 @@ func (s *Service) ClearPermissionCache(ctx context.Context, uid int) (map[string
 	return map[string]interface{}{"deleted": deleted}, nil
 }
 
-// RefreshTongjiToken 超管刷新百度 token（Plan 16 实现本体，此处占位）。
+// RefreshTongjiToken 超管刷新百度 token，委托 ResourcesService。
 func (s *Service) RefreshTongjiToken(ctx context.Context) (map[string]interface{}, error) {
 	if !ctxutil.IsSuperAdmin(ctx) {
 		return nil, errcode.WithMessage(errcode.Forbidden, "仅超级管理员可操作")
 	}
-	return nil, errcode.WithMessage(errcode.InternalError, "百度统计 token 刷新待 Plan 16 实现")
+	if s.tongji == nil {
+		return nil, errcode.WithMessage(errcode.InternalError, "百度统计服务未就绪")
+	}
+	return s.tongji.ForceRefreshTongjiAccessToken(ctx)
 }
 
 // ListBackups 超管列出备份文件。

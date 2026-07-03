@@ -845,6 +845,19 @@ func swagger_GET_file_uploadBigFile_checkFile() {}
 // @Router       /api/v1/resources/daily-img [get]
 func swagger_GET_resources_daily_img() {}
 
+// swagger_GET_resources_baidutongji godoc
+// @Summary      百度统计 OpenAPI 代理（Plan 16）
+// @Description  鉴权：JWT+RBAC；百度统计 OpenAPI 代理（Plan 16）
+// @Tags         资源
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/resources/baidutongji [get]
+func swagger_GET_resources_baidutongji() {}
+
 // swagger_GET_resources_weather godoc
 // @Summary      GET resources/weather
 // @Description  鉴权：公开
@@ -1188,4 +1201,107 @@ func swagger_GET_scheduled_task_backups_download() {}
 // @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
 // @Router       /api/v1/scheduled-task/backups/:fileName/download [get]
 func swagger_GET_scheduled_task_backups_fileName_download() {}
+
+// swagger_GET_rag_quota godoc
+// @Summary      今日问答配额
+// @Description  鉴权：JWT；今日问答配额
+// @Tags         rag
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/rag/quota [get]
+func swagger_GET_rag_quota() {}
+
+// swagger_GET_rag_status godoc
+// @Summary      enabled、chunkCount、embedding 模式
+// @Description  鉴权：公开；enabled、chunkCount、embedding 模式
+// @Tags         rag
+// @Accept       json
+// @Produce      json
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/rag/status [get]
+func swagger_GET_rag_status() {}
+
+// swagger_POST_rag_query_stream godoc
+// @Summary      SSE（AI SDK UI Message Stream）
+// @Description  鉴权：JWT；SSE（AI SDK UI Message Stream）
+// @Tags         rag
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/rag/query-stream [post]
+func swagger_POST_rag_query_stream() {}
+
+// swagger_GET_admin_rag_stats godoc
+// @Summary      概览统计
+// @Description  鉴权：JWT+RBAC；概览统计
+// @Tags         后台管理
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/admin/rag/stats [get]
+func swagger_GET_admin_rag_stats() {}
+
+// swagger_GET_admin_rag_query_logs godoc
+// @Summary      查询日志分页
+// @Description  鉴权：JWT+RBAC；查询日志分页
+// @Tags         后台管理
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/admin/rag/query-logs [get]
+func swagger_GET_admin_rag_query_logs() {}
+
+// swagger_GET_admin_rag_index_jobs godoc
+// @Summary      索引任务
+// @Description  鉴权：JWT+RBAC；索引任务
+// @Tags         后台管理
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/admin/rag/index-jobs [get]
+func swagger_GET_admin_rag_index_jobs() {}
+
+// swagger_GET_admin_rag_chunks godoc
+// @Summary      知识块列表
+// @Description  鉴权：JWT+RBAC；知识块列表
+// @Tags         后台管理
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        query query string false "Query 参数"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/admin/rag/chunks [get]
+func swagger_GET_admin_rag_chunks() {}
+
+// swagger_POST_admin_rag_reindex godoc
+// @Summary      全量或单篇重建
+// @Description  鉴权：JWT+RBAC；全量或单篇重建
+// @Tags         后台管理
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body object true "请求体 JSON"
+// @Success      200 {object} apidoc.SuccessBody
+// @Failure      200 {object} apidoc.ErrorBody "业务错误（HTTP 仍为 200）"
+// @Router       /api/v1/admin/rag/reindex [post]
+func swagger_POST_admin_rag_reindex() {}
 

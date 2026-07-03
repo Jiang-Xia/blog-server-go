@@ -84,6 +84,15 @@ func (h *ResourcesHandler) Weather(ctx context.Context, c *app.RequestContext) {
 	handleAdminResult(ctx, c, data, err)
 }
 
+func (h *ResourcesHandler) BaiduTongJi(ctx context.Context, c *app.RequestContext) {
+	query := make(map[string]string)
+	c.QueryArgs().VisitAll(func(k, v []byte) {
+		query[string(k)] = string(v)
+	})
+	data, err := h.svc.BaiduTongJi(ctx, query)
+	handleAdminResult(ctx, c, data, err)
+}
+
 func (h *ResourcesHandler) UploadFile(ctx context.Context, c *app.RequestContext) {
 	pid := string(c.Query("pid"))
 	category := string(c.Query("category"))
