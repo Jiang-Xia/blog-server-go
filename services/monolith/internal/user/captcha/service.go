@@ -6,9 +6,9 @@ import (
 	"encoding/base64"
 	"strings"
 
+	"github.com/Jiang-Xia/blog-server-go/pkg/captchasvg"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
-	svgcaptcha "github.com/reu98/go-svg-captcha"
 	"github.com/google/uuid"
 )
 
@@ -37,15 +37,7 @@ type CaptchaResult struct {
 
 // Create 生成验证码并写入 Redis。
 func (s *Service) Create(ctx context.Context) (*CaptchaResult, error) {
-	result, err := svgcaptcha.CreateByText(svgcaptcha.OptionText{
-		Size:             4,
-		Width:            100,
-		Height:           48,
-		IsColor:          true,
-		Curve:            2,
-		IgnoreCharacters: "0o1iIlL",
-		CharactersPreset: "ABCDEFGHJKLMNPQRSTUVWXYZ23456789",
-	})
+	result, err := captchasvg.Create()
 	if err != nil {
 		return nil, err
 	}

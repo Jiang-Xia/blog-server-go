@@ -3,6 +3,7 @@ package response
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
@@ -40,4 +41,11 @@ func FromError(ctx context.Context, c *app.RequestContext, err error) {
 		return
 	}
 	Error(ctx, c, errcode.InternalError)
+}
+
+// WriteHTTPError 向 net/http 写入 JSON 错误体（gateway 代理上游不可用时使用）。
+func WriteHTTPError(w http.ResponseWriter, httpStatus, bizCode int, message string) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.WriteHeader(httpStatus)
+	_ = json.NewEncoder(w).Encode(Body{Code: bizCode, BizCode: bizCode, Message: message})
 }

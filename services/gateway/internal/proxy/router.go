@@ -11,6 +11,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/grpcmeta"
+	"github.com/Jiang-Xia/blog-server-go/pkg/response"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/adaptor"
@@ -25,22 +26,22 @@ type Router struct {
 
 // NewRouter 构造反向代理路由。
 func NewRouter(cfg *config.Config) (*Router, error) {
-	user, err := newProxy(cfg.Proxy.UserURL)
+	user, err := newProxy(cfg.Proxy.UserURL, "user")
 	if err != nil {
 		return nil, err
 	}
-	blog, err := newProxy(cfg.Proxy.BlogURL)
+	blog, err := newProxy(cfg.Proxy.BlogURL, "blog")
 	if err != nil {
 		return nil, err
 	}
-	rpg, err := newProxy(cfg.Proxy.RPGURL)
+	rpg, err := newProxy(cfg.Proxy.RPGURL, "rpg")
 	if err != nil {
 		return nil, err
 	}
 	return &Router{user: user, blog: blog, rpg: rpg}, nil
 }
 
-func newProxy(raw string) (*httputil.ReverseProxy, error) {
+func newProxy(raw, service string) (*httputil.ReverseProxy, error) {
 	if raw == "" {
 		return nil, nil
 	}
@@ -48,7 +49,11 @@ func newProxy(raw string) (*httputil.ReverseProxy, error) {
 	if err != nil {
 		return nil, err
 	}
-	return httputil.NewSingleHostReverseProxy(u), nil
+	p := httputil.NewSingleHostReverseProxy(u)
+	p.ErrorHandler = func(w http.ResponseWriter, _ *http.Request, _ error) {
+		writeUpstreamError(w, service)
+	}
+	return p, nil
 }
 
 // Register 挂载 catch-all 代理与 /realtime WS 转发。
@@ -68,7 +73,7 @@ func (r *Router) wsHandler() http.Handler {
 		if r.blog != nil {
 			r.blog.ServeHTTP(w, req)
 		} else {
-			http.Error(w, "blog upstream not configured", http.StatusBadGateway)
+			writeUpstreamError(w, "blog")
 		}
 	})
 }
@@ -76,9 +81,17 @@ func (r *Router) wsHandler() http.Handler {
 func (r *Router) proxyHandler(apiPrefix string) app.HandlerFunc {
 	return func(ctx context.Context, c *app.RequestContext) {
 		path := string(c.Path())
-		proxy := r.pick(path, apiPrefix)
+		service, proxy := r.pick(path, apiPrefix)
 		if proxy == nil {
-			c.String(http.StatusBadGateway, "upstream not configured")
+			msg := "该接口未配置上游服务"
+			if service != "" {
+				msg = upstreamMessage(service)
+			}
+			c.JSON(http.StatusBadGateway, response.Body{
+				Code:    upstreamUnavailableCode,
+				BizCode: upstreamUnavailableCode,
+				Message: msg,
+			})
 			return
 		}
 		if uid := c.GetHeader(grpcmeta.UserIDKey); len(uid) > 0 {
@@ -90,26 +103,26 @@ func (r *Router) proxyHandler(apiPrefix string) app.HandlerFunc {
 	}
 }
 
-func (r *Router) pick(path, apiPrefix string) *httputil.ReverseProxy {
+func (r *Router) pick(path, apiPrefix string) (service string, proxy *httputil.ReverseProxy) {
 	rel := strings.TrimPrefix(path, apiPrefix)
 	rel = strings.TrimPrefix(rel, "/")
 
 	if strings.HasPrefix(rel, "pub/") {
-		return nil
+		return "", nil
 	}
 	if rel == "article/info" {
-		return nil
+		return "", nil
 	}
 	if isPublicProfileBFF(rel) {
-		return nil
+		return "", nil
 	}
 	if isUserRoute(rel) {
-		return r.user
+		return "user", r.user
 	}
 	if isRPGRoute(rel) {
-		return r.rpg
+		return "rpg", r.rpg
 	}
-	return r.blog
+	return "blog", r.blog
 }
 
 func isUserRoute(rel string) bool {
