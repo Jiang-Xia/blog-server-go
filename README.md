@@ -2,7 +2,7 @@
 
 [NestJS blog-server](https://github.com/Jiang-Xia/blog-server) 的 Go 重构实现：**Hertz + Ent + gRPC**，对外保持 `/api/v1/*` 与 `{code, message, data}` 响应格式，前端可无感切换。
 
-当前形态为 **4 微服务**（gateway / user / blog / rpg）+ 共享 MySQL/Redis 单库；Plan 01–11 已全部交付。新业务请在 `services/{user,blog,rpg}/` 开发，勿再向 monolith 追加功能。
+当前形态为 **4 微服务**（gateway / user / blog / rpg）+ 共享 MySQL/Redis 单库；Plan 01–11 已全部交付，**Plan 12–16** 为 Nest 差异补齐（见 [`.cursor/plans/README.md`](.cursor/plans/README.md)）。新业务请在 `services/{user,blog,rpg}/` 开发，勿再向 monolith 追加功能。
 
 ## 技术栈
 
@@ -337,7 +337,7 @@ blog-server-go/
 │   ├── docker/            # docker-compose（本地/CI 全栈）
 │   ├── pm2/               # 生产：二进制 + PM2 远程部署
 │   └── postman/           # newman 冒烟集合
-├── docs/                  # Plan 01–11 阶段交付文档
+├── docs/                  # Plan 01–16 阶段交付文档
 ├── scripts/               # bootstrap、dev-all、ws-smoke 等
 └── blog-server-go-重构方案.md   # 架构总方案 v3
 ```
@@ -346,7 +346,7 @@ blog-server-go/
 
 | 文档 | 说明 |
 |------|------|
-| [`docs/README.md`](docs/README.md) | 阶段交付文档索引（Plan 01–11） |
+| [`docs/README.md`](docs/README.md) | 阶段交付文档索引（Plan 01–16） |
 | [`docs/api-routes.md`](docs/api-routes.md) | HTTP / gRPC 路由全表 |
 | [`docs/12-swagger-api-doc.md`](docs/12-swagger-api-doc.md) | Swagger / OpenAPI（swaggo） |
 | [`docs/11-微服务代码物理拆分.md`](docs/11-微服务代码物理拆分.md) | 当前微服务目录、BFF、验收命令 |
