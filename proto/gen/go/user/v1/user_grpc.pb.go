@@ -20,18 +20,25 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_GetUser_FullMethodName         = "/user.v1.UserService/GetUser"
-	UserService_GetUserBatch_FullMethodName    = "/user.v1.UserService/GetUserBatch"
-	UserService_VerifyToken_FullMethodName     = "/user.v1.UserService/VerifyToken"
-	UserService_CountUsers_FullMethodName      = "/user.v1.UserService/CountUsers"
-	UserService_SendSystemEmail_FullMethodName = "/user.v1.UserService/SendSystemEmail"
+	UserService_GetUser_FullMethodName                  = "/user.v1.UserService/GetUser"
+	UserService_GetUserBatch_FullMethodName             = "/user.v1.UserService/GetUserBatch"
+	UserService_VerifyToken_FullMethodName              = "/user.v1.UserService/VerifyToken"
+	UserService_CountUsers_FullMethodName               = "/user.v1.UserService/CountUsers"
+	UserService_SendSystemEmail_FullMethodName          = "/user.v1.UserService/SendSystemEmail"
+	UserService_EvaluateContent_FullMethodName          = "/user.v1.UserService/EvaluateContent"
+	UserService_CreateHitRecord_FullMethodName          = "/user.v1.UserService/CreateHitRecord"
+	UserService_ListActiveUserIDs_FullMethodName        = "/user.v1.UserService/ListActiveUserIDs"
+	UserService_GetDept_FullMethodName                  = "/user.v1.UserService/GetDept"
+	UserService_ResolveAccessibleDeptIDs_FullMethodName = "/user.v1.UserService/ResolveAccessibleDeptIDs"
+	UserService_AssertDeptAccess_FullMethodName         = "/user.v1.UserService/AssertDeptAccess"
+	UserService_ListSensitiveWordHits_FullMethodName    = "/user.v1.UserService/ListSensitiveWordHits"
 )
 
 // UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权）。
+// UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权；Plan 17 跨服务协作扩展）。
 type UserServiceClient interface {
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
 	GetUserBatch(ctx context.Context, in *GetUserBatchRequest, opts ...grpc.CallOption) (*GetUserBatchResponse, error)
@@ -39,6 +46,16 @@ type UserServiceClient interface {
 	CountUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CountUsersResponse, error)
 	// SendSystemEmail 系统邮件（定时任务告警等；SMTP 与验证码同源配置）。
 	SendSystemEmail(ctx context.Context, in *SendSystemEmailRequest, opts ...grpc.CallOption) (*SendSystemEmailResponse, error)
+	// Plan 17：敏感词过滤（blog comment/msgboard/reply）。
+	EvaluateContent(ctx context.Context, in *EvaluateContentRequest, opts ...grpc.CallOption) (*EvaluateContentResponse, error)
+	CreateHitRecord(ctx context.Context, in *CreateHitRecordRequest, opts ...grpc.CallOption) (*CreateHitRecordResponse, error)
+	// Plan 17：C 端作者过滤、部门名、数据权限。
+	ListActiveUserIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListActiveUserIDsResponse, error)
+	GetDept(ctx context.Context, in *GetDeptRequest, opts ...grpc.CallOption) (*GetDeptResponse, error)
+	ResolveAccessibleDeptIDs(ctx context.Context, in *ResolveAccessibleDeptIDsRequest, opts ...grpc.CallOption) (*ResolveAccessibleDeptIDsResponse, error)
+	AssertDeptAccess(ctx context.Context, in *AssertDeptAccessRequest, opts ...grpc.CallOption) (*AssertDeptAccessResponse, error)
+	// Plan 17：RPG C 端敏感词命中记录。
+	ListSensitiveWordHits(ctx context.Context, in *ListSensitiveWordHitsRequest, opts ...grpc.CallOption) (*ListSensitiveWordHitsResponse, error)
 }
 
 type userServiceClient struct {
@@ -99,11 +116,81 @@ func (c *userServiceClient) SendSystemEmail(ctx context.Context, in *SendSystemE
 	return out, nil
 }
 
+func (c *userServiceClient) EvaluateContent(ctx context.Context, in *EvaluateContentRequest, opts ...grpc.CallOption) (*EvaluateContentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EvaluateContentResponse)
+	err := c.cc.Invoke(ctx, UserService_EvaluateContent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) CreateHitRecord(ctx context.Context, in *CreateHitRecordRequest, opts ...grpc.CallOption) (*CreateHitRecordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateHitRecordResponse)
+	err := c.cc.Invoke(ctx, UserService_CreateHitRecord_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) ListActiveUserIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListActiveUserIDsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListActiveUserIDsResponse)
+	err := c.cc.Invoke(ctx, UserService_ListActiveUserIDs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) GetDept(ctx context.Context, in *GetDeptRequest, opts ...grpc.CallOption) (*GetDeptResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDeptResponse)
+	err := c.cc.Invoke(ctx, UserService_GetDept_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) ResolveAccessibleDeptIDs(ctx context.Context, in *ResolveAccessibleDeptIDsRequest, opts ...grpc.CallOption) (*ResolveAccessibleDeptIDsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResolveAccessibleDeptIDsResponse)
+	err := c.cc.Invoke(ctx, UserService_ResolveAccessibleDeptIDs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) AssertDeptAccess(ctx context.Context, in *AssertDeptAccessRequest, opts ...grpc.CallOption) (*AssertDeptAccessResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AssertDeptAccessResponse)
+	err := c.cc.Invoke(ctx, UserService_AssertDeptAccess_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) ListSensitiveWordHits(ctx context.Context, in *ListSensitiveWordHitsRequest, opts ...grpc.CallOption) (*ListSensitiveWordHitsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSensitiveWordHitsResponse)
+	err := c.cc.Invoke(ctx, UserService_ListSensitiveWordHits_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 //
-// UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权）。
+// UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权；Plan 17 跨服务协作扩展）。
 type UserServiceServer interface {
 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
 	GetUserBatch(context.Context, *GetUserBatchRequest) (*GetUserBatchResponse, error)
@@ -111,6 +198,16 @@ type UserServiceServer interface {
 	CountUsers(context.Context, *emptypb.Empty) (*CountUsersResponse, error)
 	// SendSystemEmail 系统邮件（定时任务告警等；SMTP 与验证码同源配置）。
 	SendSystemEmail(context.Context, *SendSystemEmailRequest) (*SendSystemEmailResponse, error)
+	// Plan 17：敏感词过滤（blog comment/msgboard/reply）。
+	EvaluateContent(context.Context, *EvaluateContentRequest) (*EvaluateContentResponse, error)
+	CreateHitRecord(context.Context, *CreateHitRecordRequest) (*CreateHitRecordResponse, error)
+	// Plan 17：C 端作者过滤、部门名、数据权限。
+	ListActiveUserIDs(context.Context, *emptypb.Empty) (*ListActiveUserIDsResponse, error)
+	GetDept(context.Context, *GetDeptRequest) (*GetDeptResponse, error)
+	ResolveAccessibleDeptIDs(context.Context, *ResolveAccessibleDeptIDsRequest) (*ResolveAccessibleDeptIDsResponse, error)
+	AssertDeptAccess(context.Context, *AssertDeptAccessRequest) (*AssertDeptAccessResponse, error)
+	// Plan 17：RPG C 端敏感词命中记录。
+	ListSensitiveWordHits(context.Context, *ListSensitiveWordHitsRequest) (*ListSensitiveWordHitsResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -135,6 +232,27 @@ func (UnimplementedUserServiceServer) CountUsers(context.Context, *emptypb.Empty
 }
 func (UnimplementedUserServiceServer) SendSystemEmail(context.Context, *SendSystemEmailRequest) (*SendSystemEmailResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendSystemEmail not implemented")
+}
+func (UnimplementedUserServiceServer) EvaluateContent(context.Context, *EvaluateContentRequest) (*EvaluateContentResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method EvaluateContent not implemented")
+}
+func (UnimplementedUserServiceServer) CreateHitRecord(context.Context, *CreateHitRecordRequest) (*CreateHitRecordResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateHitRecord not implemented")
+}
+func (UnimplementedUserServiceServer) ListActiveUserIDs(context.Context, *emptypb.Empty) (*ListActiveUserIDsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListActiveUserIDs not implemented")
+}
+func (UnimplementedUserServiceServer) GetDept(context.Context, *GetDeptRequest) (*GetDeptResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDept not implemented")
+}
+func (UnimplementedUserServiceServer) ResolveAccessibleDeptIDs(context.Context, *ResolveAccessibleDeptIDsRequest) (*ResolveAccessibleDeptIDsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResolveAccessibleDeptIDs not implemented")
+}
+func (UnimplementedUserServiceServer) AssertDeptAccess(context.Context, *AssertDeptAccessRequest) (*AssertDeptAccessResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AssertDeptAccess not implemented")
+}
+func (UnimplementedUserServiceServer) ListSensitiveWordHits(context.Context, *ListSensitiveWordHitsRequest) (*ListSensitiveWordHitsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSensitiveWordHits not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -247,6 +365,132 @@ func _UserService_SendSystemEmail_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_EvaluateContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EvaluateContentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).EvaluateContent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_EvaluateContent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).EvaluateContent(ctx, req.(*EvaluateContentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_CreateHitRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateHitRecordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CreateHitRecord(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_CreateHitRecord_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CreateHitRecord(ctx, req.(*CreateHitRecordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_ListActiveUserIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ListActiveUserIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_ListActiveUserIDs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ListActiveUserIDs(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_GetDept_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDeptRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetDept(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetDept_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetDept(ctx, req.(*GetDeptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_ResolveAccessibleDeptIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResolveAccessibleDeptIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ResolveAccessibleDeptIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_ResolveAccessibleDeptIDs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ResolveAccessibleDeptIDs(ctx, req.(*ResolveAccessibleDeptIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_AssertDeptAccess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssertDeptAccessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).AssertDeptAccess(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_AssertDeptAccess_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).AssertDeptAccess(ctx, req.(*AssertDeptAccessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_ListSensitiveWordHits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSensitiveWordHitsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ListSensitiveWordHits(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_ListSensitiveWordHits_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ListSensitiveWordHits(ctx, req.(*ListSensitiveWordHitsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -273,6 +517,34 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendSystemEmail",
 			Handler:    _UserService_SendSystemEmail_Handler,
+		},
+		{
+			MethodName: "EvaluateContent",
+			Handler:    _UserService_EvaluateContent_Handler,
+		},
+		{
+			MethodName: "CreateHitRecord",
+			Handler:    _UserService_CreateHitRecord_Handler,
+		},
+		{
+			MethodName: "ListActiveUserIDs",
+			Handler:    _UserService_ListActiveUserIDs_Handler,
+		},
+		{
+			MethodName: "GetDept",
+			Handler:    _UserService_GetDept_Handler,
+		},
+		{
+			MethodName: "ResolveAccessibleDeptIDs",
+			Handler:    _UserService_ResolveAccessibleDeptIDs_Handler,
+		},
+		{
+			MethodName: "AssertDeptAccess",
+			Handler:    _UserService_AssertDeptAccess_Handler,
+		},
+		{
+			MethodName: "ListSensitiveWordHits",
+			Handler:    _UserService_ListSensitiveWordHits_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

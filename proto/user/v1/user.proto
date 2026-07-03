@@ -6,7 +6,7 @@ option go_package = "github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1;us
 
 import "google/protobuf/empty.proto";
 
-// UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权）。
+// UserService 用户域 gRPC 契约（Plan 10 跨服务只读 + 鉴权；Plan 17 跨服务协作扩展）。
 service UserService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   rpc GetUserBatch(GetUserBatchRequest) returns (GetUserBatchResponse);
@@ -14,6 +14,16 @@ service UserService {
   rpc CountUsers(google.protobuf.Empty) returns (CountUsersResponse);
   // SendSystemEmail 系统邮件（定时任务告警等；SMTP 与验证码同源配置）。
   rpc SendSystemEmail(SendSystemEmailRequest) returns (SendSystemEmailResponse);
+  // Plan 17：敏感词过滤（blog comment/msgboard/reply）。
+  rpc EvaluateContent(EvaluateContentRequest) returns (EvaluateContentResponse);
+  rpc CreateHitRecord(CreateHitRecordRequest) returns (CreateHitRecordResponse);
+  // Plan 17：C 端作者过滤、部门名、数据权限。
+  rpc ListActiveUserIDs(google.protobuf.Empty) returns (ListActiveUserIDsResponse);
+  rpc GetDept(GetDeptRequest) returns (GetDeptResponse);
+  rpc ResolveAccessibleDeptIDs(ResolveAccessibleDeptIDsRequest) returns (ResolveAccessibleDeptIDsResponse);
+  rpc AssertDeptAccess(AssertDeptAccessRequest) returns (AssertDeptAccessResponse);
+  // Plan 17：RPG C 端敏感词命中记录。
+  rpc ListSensitiveWordHits(ListSensitiveWordHitsRequest) returns (ListSensitiveWordHitsResponse);
 }
 
 message GetUserRequest {
@@ -27,6 +37,7 @@ message GetUserResponse {
   string avatar = 4;
   string email = 5;
   string status = 6;
+  optional int32 dept_id = 7;
 }
 
 message GetUserBatchRequest {
@@ -58,4 +69,100 @@ message SendSystemEmailRequest {
 
 message SendSystemEmailResponse {
   bool sent = 1;
+}
+
+message EvaluateContentRequest {
+  string content = 1;
+}
+
+message HitDetailMessage {
+  string word = 1;
+  int32 level = 2;
+  int32 hp_penalty = 3;
+  int32 need_review = 4;
+  int32 action = 5;
+}
+
+message EvaluateContentResponse {
+  string content = 1;
+  repeated HitDetailMessage hits = 2;
+  repeated string hit_words = 3;
+  int32 hp_penalty = 4;
+  bool need_review = 5;
+  bool rejected = 6;
+}
+
+message CreateHitRecordRequest {
+  string source_type = 1;
+  string source_id = 2;
+  string content = 3;
+  repeated string hit_words = 4;
+  optional int32 uid = 5;
+  optional string ip = 6;
+}
+
+message CreateHitRecordResponse {
+  bool ok = 1;
+}
+
+message ListActiveUserIDsResponse {
+  repeated int32 user_ids = 1;
+}
+
+message GetDeptRequest {
+  int32 id = 1;
+}
+
+message GetDeptResponse {
+  int32 id = 1;
+  string dept_name = 2;
+}
+
+message ResolveAccessibleDeptIDsRequest {
+  int32 uid = 1;
+  string resource_type = 2;
+}
+
+message ResolveAccessibleDeptIDsResponse {
+  // unrestricted=true 表示超管/ALL 权限，dept_ids 忽略。
+  bool unrestricted = 1;
+  repeated int32 dept_ids = 2;
+}
+
+message AssertDeptAccessRequest {
+  int32 uid = 1;
+  optional int32 dept_id = 2;
+  string resource_type = 3;
+}
+
+message AssertDeptAccessResponse {
+  bool allowed = 1;
+}
+
+message ListSensitiveWordHitsRequest {
+  int32 uid = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message SensitiveWordHitItem {
+  int32 id = 1;
+  string source_type = 2;
+  string source_id = 3;
+  string content = 4;
+  string hit_words = 5;
+  optional int32 uid = 6;
+  optional string ip = 7;
+  string status = 8;
+  optional int32 reviewer_id = 9;
+  string review_time = 10;
+  string create_time = 11;
+}
+
+message ListSensitiveWordHitsResponse {
+  repeated SensitiveWordHitItem list = 1;
+  int32 total = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+  int32 total_pages = 5;
 }

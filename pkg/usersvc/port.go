@@ -11,12 +11,65 @@ type UserDTO struct {
 	Avatar   string `json:"avatar"`
 	Email    string `json:"email,omitempty"`
 	Status   string `json:"status,omitempty"`
+	DeptID   *int   `json:"deptId,omitempty"`
+}
+
+// DeptDTO 部门摘要。
+type DeptDTO struct {
+	ID       int    `json:"id"`
+	DeptName string `json:"deptName"`
+}
+
+// FilterEvaluateResult 敏感词检测结果。
+type FilterEvaluateResult struct {
+	Content    string
+	HitWords   []string
+	HpPenalty  int
+	NeedReview bool
+	Rejected   bool
+}
+
+// FilterHitParams 敏感词命中记录参数。
+type FilterHitParams struct {
+	SourceType string
+	SourceID   string
+	Content    string
+	HitWords   []string
+	UID        *int
+	IP         *string
 }
 
 // UserService 用户域只读端口。
 type UserService interface {
 	GetUser(ctx context.Context, id uint64) (*UserDTO, error)
 	GetUserBatch(ctx context.Context, ids []uint64) ([]*UserDTO, error)
+}
+
+// ContentFilter 敏感词过滤（user-service gRPC）。
+type ContentFilter interface {
+	EvaluateContent(ctx context.Context, content string) (*FilterEvaluateResult, error)
+	CreateHitRecord(ctx context.Context, params FilterHitParams) error
+}
+
+// ArticleScope 文章数据权限与部门查询。
+type ArticleScope interface {
+	ListActiveUserIDs(ctx context.Context) ([]int, error)
+	GetDept(ctx context.Context, id int) (*DeptDTO, error)
+	ResolveArticleAccessibleDeptIDs(ctx context.Context, uid int) ([]int, error)
+	AssertArticleDeptAccess(ctx context.Context, uid int, deptID *int) error
+}
+
+// SensitiveHitLister RPG C 端敏感词命中分页。
+type SensitiveHitLister interface {
+	ListSensitiveWordHits(ctx context.Context, uid, page, pageSize int) (map[string]interface{}, error)
+}
+
+// CrossClient Plan 17 跨服务 user gRPC 聚合端口。
+type CrossClient interface {
+	UserService
+	ContentFilter
+	ArticleScope
+	SensitiveHitLister
 }
 
 // SystemEmailSender 系统邮件发送（user-service gRPC）。

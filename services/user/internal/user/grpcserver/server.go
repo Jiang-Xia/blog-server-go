@@ -5,9 +5,12 @@ import (
 	"context"
 
 	userv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/admin"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/profile"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/repo"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/sensitive"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -16,14 +19,31 @@ import (
 // Server 实现 UserService gRPC。
 type Server struct {
 	userv1.UnimplementedUserServiceServer
-	profile *profile.Service
-	jwt     *auth.JWTService
-	email   *email.Service
+	profile   *profile.Service
+	jwt       *auth.JWTService
+	email     *email.Service
+	sensitive *sensitive.Service
+	admin     *admin.Service
+	users     *repo.UserRepo
 }
 
 // New 构造 gRPC UserService 实现。
-func New(profileSvc *profile.Service, jwtSvc *auth.JWTService, emailSvc *email.Service) *Server {
-	return &Server{profile: profileSvc, jwt: jwtSvc, email: emailSvc}
+func New(
+	profileSvc *profile.Service,
+	jwtSvc *auth.JWTService,
+	emailSvc *email.Service,
+	sensitiveSvc *sensitive.Service,
+	adminSvc *admin.Service,
+	userRepo *repo.UserRepo,
+) *Server {
+	return &Server{
+		profile:   profileSvc,
+		jwt:       jwtSvc,
+		email:     emailSvc,
+		sensitive: sensitiveSvc,
+		admin:     adminSvc,
+		users:     userRepo,
+	}
 }
 
 // GetUser 按 ID 返回用户摘要。
@@ -89,7 +109,7 @@ func toProto(d *profile.UserDTO) *userv1.GetUserResponse {
 	if d == nil {
 		return nil
 	}
-	return &userv1.GetUserResponse{
+	resp := &userv1.GetUserResponse{
 		Id:       d.ID,
 		Nickname: d.Nickname,
 		Username: d.Username,
@@ -97,4 +117,9 @@ func toProto(d *profile.UserDTO) *userv1.GetUserResponse {
 		Email:    d.Email,
 		Status:   d.Status,
 	}
+	if d.DeptID != nil {
+		deptID := int32(*d.DeptID)
+		resp.DeptId = &deptID
+	}
+	return resp
 }

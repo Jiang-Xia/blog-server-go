@@ -377,6 +377,33 @@ func (s *Service) ListHits(ctx context.Context, q HitListQuery) (map[string]inte
 	}, nil
 }
 
+// ListHitsByUID 按用户 ID 分页查询命中记录（RPG C 端；表归属 user 域）。
+func (s *Service) ListHitsByUID(ctx context.Context, uid, page, pageSize int) (map[string]interface{}, error) {
+	if page <= 0 {
+		page = 1
+	}
+	if pageSize <= 0 {
+		pageSize = 10
+	}
+	query := s.client.SensitiveWordHit.Query().Where(sensitivewordhit.UIDEQ(uid))
+	total, err := query.Clone().Count(ctx)
+	if err != nil {
+		return nil, err
+	}
+	list, err := query.
+		Order(ent.Desc(sensitivewordhit.FieldCreateTime)).
+		Offset((page - 1) * pageSize).
+		Limit(pageSize).
+		All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return map[string]interface{}{
+		"list":       list,
+		"pagination": repo.CalcNestPagination(total, pageSize, page),
+	}, nil
+}
+
 // Approve 审核通过命中记录（来源实体状态同步留待 Plan 06/07）。
 func (s *Service) Approve(ctx context.Context, hitID, reviewerID int) (*ent.SensitiveWordHit, error) {
 	return s.reviewHit(ctx, hitID, reviewerID, "approved")

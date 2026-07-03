@@ -515,11 +515,18 @@
 
 | RPC | 调用方 | 说明 |
 |-----|--------|------|
-| GetUser | blog/rpg gateway | 按 ID 查用户摘要 |
+| GetUser | blog/rpg gateway | 按 ID 查用户摘要（含 dept_id） |
 | GetUserBatch | blog | 批量用户 |
 | VerifyToken | 内部 | JWT 校验 |
 | CountUsers | gateway BFF | 用户总数（pub/stats） |
 | SendSystemEmail | blog 定时任务 | 系统 HTML 邮件（SMTP 同源） |
+| EvaluateContent | blog-service | 敏感词分级检测（Plan 17） |
+| CreateHitRecord | blog-service | 写入敏感词命中记录（Plan 17） |
+| ListActiveUserIDs | blog-service | C 端过滤锁定/禁用作者（Plan 17） |
+| GetDept | blog-service | 文章列表/详情 deptName（Plan 17） |
+| ResolveAccessibleDeptIDs | blog-service | admin 文章数据权限（Plan 17） |
+| AssertDeptAccess | blog-service | 文章编辑/删除机构校验（Plan 17） |
+| ListSensitiveWordHits | rpg-service | C 端命中记录分页（Plan 17） |
 
 ### 5.2 blog.v1.ArticleService（`:50051`）
 

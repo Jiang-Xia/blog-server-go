@@ -13,6 +13,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/server"
+	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/google/wire"
 )
 
@@ -27,6 +28,8 @@ func InitializeApp(cfgPath string) (*App, error) {
 		provideRedisClient,
 		provideRedisStore,
 		provideUserService,
+		wire.Bind(new(usersvc.UserService), new(usersvc.CrossClient)),
+		wire.Bind(new(usersvc.SensitiveHitLister), new(usersvc.CrossClient)),
 		provideUserReader,
 		provideArticleReader,
 		provideBlogPublicProfileLister,

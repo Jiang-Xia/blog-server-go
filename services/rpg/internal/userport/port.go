@@ -60,8 +60,8 @@ func (r *GRPCUserReader) FindByID(ctx context.Context, uid int) (*UserInfo, erro
 	}, nil
 }
 
-// ProvideUserService 装配 rpg-service UserService gRPC 客户端。
-func ProvideUserService(cfg *config.Config) (usersvc.UserService, error) {
+// ProvideUserService 装配 rpg-service user gRPC 客户端。
+func ProvideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
 	addr := cfg.GRPC.UserAddr
 	if addr == "" {
 		return nil, fmt.Errorf("GRPC.UserAddr required for rpg-service")

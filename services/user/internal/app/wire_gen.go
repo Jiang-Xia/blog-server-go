@@ -49,10 +49,10 @@ func InitializeApp(cfgPath string) (*App, error) {
 		return nil, err
 	}
 	passwordChecker := providePasswordChecker(configConfig, userRepo)
-	v := auth.NewJWTService(configConfig)
+	service := auth.NewJWTService(configConfig)
 	store := provideRedisStore(rueidisClient)
-	service := email.NewService(configConfig, store)
-	authService := auth.NewAuthService(userRepo, roleRepo, passwordChecker, v, store, configConfig, service)
+	emailService := email.NewService(configConfig, store)
+	authService := auth.NewAuthService(userRepo, roleRepo, passwordChecker, service, store, configConfig, emailService)
 	profileService := profile.NewService(userRepo, roleRepo)
 	gitHubOAuth := auth.NewGitHubOAuth(configConfig, authService, userRepo)
 	userAppAdapter := handler.NewUserAppAdapter(configConfig, authService, profileService, gitHubOAuth)
@@ -63,19 +63,19 @@ func InitializeApp(cfgPath string) (*App, error) {
 		return nil, err
 	}
 	adminService := admin.NewService(adminRepo, roleRepo, userRepo)
-	adminHandler := handler.NewAdminHandler(adminService, v)
+	adminHandler := handler.NewAdminHandler(adminService, service)
 	captchaHandler := provideCaptchaHandler(configConfig, captchaService)
 	contentModerationSyncer, err := provideBlogModerationSyncer(configConfig)
 	if err != nil {
 		return nil, err
 	}
 	sensitiveService := sensitive.NewService(client, zapLogger, contentModerationSyncer)
-	sensitiveWordHandler := handler.NewSensitiveWordHandler(sensitiveService, v)
+	sensitiveWordHandler := handler.NewSensitiveWordHandler(sensitiveService, service)
 	operationlogService := operationlog.NewService(client)
 	operationLogHandler := handler.NewOperationLogHandler(operationlogService)
-	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, sensitiveWordHandler, operationLogHandler, v, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
+	registerDeps := provideRegisterDeps(healthHandler, userHandler, adminHandler, captchaHandler, sensitiveWordHandler, operationLogHandler, service, userRepo, configConfig, store, roleRepo, operationlogService, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
-	grpcserverServer := provideUserGRPCServer(profileService, v, service)
+	grpcserverServer := provideUserGRPCServer(profileService, service, emailService, sensitiveService, adminService, userRepo)
 	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, grpcserverServer)
 	return app, nil
 }

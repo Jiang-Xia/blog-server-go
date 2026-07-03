@@ -38,7 +38,7 @@ func provideRedisStore(client rueidis.Client) *redisutil.Store {
 	return redisutil.New(client)
 }
 
-func provideUserService(cfg *config.Config) (usersvc.UserService, error) {
+func provideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
 	return userport.ProvideUserService(cfg)
 }
 
@@ -46,16 +46,16 @@ func provideBanChecker(cfg *config.Config) (rpgsvc.BanChecker, error) {
 	return rpgsvc.NewGRPCBanChecker(cfg.GRPC.RPGAddr)
 }
 
-func provideArticleUserPort(users usersvc.UserService) userport.ArticleUserPort {
-	return userport.NewGRPCArticleUserPort(users)
+func provideArticleUserPort(client usersvc.CrossClient) userport.ArticleUserPort {
+	return userport.NewGRPCArticleUserPort(client)
 }
 
-func provideArticleAdminPort() userport.ArticleAdminPort {
-	return userport.NewPermissiveArticleAdminPort()
+func provideArticleAdminPort(client usersvc.CrossClient) userport.ArticleAdminPort {
+	return userport.NewGRPCArticleAdminPort(client)
 }
 
-func provideContentFilter() contentfilter.FilterService {
-	return contentfilter.NewNoopFilter()
+func provideContentFilter(client usersvc.CrossClient) contentfilter.FilterService {
+	return contentfilter.NewGRPCFilter(client)
 }
 
 func provideJWT(cfg *config.Config) *auth.JWTService {

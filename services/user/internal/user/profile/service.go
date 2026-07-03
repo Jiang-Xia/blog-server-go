@@ -312,6 +312,7 @@ type UserDTO struct {
 	Avatar   string `json:"avatar"`
 	Email    string `json:"email,omitempty"`
 	Status   string `json:"status,omitempty"`
+	DeptID   *int   `json:"deptId,omitempty"`
 }
 
 func entUserToDTO(u *ent.User) *UserDTO {
@@ -329,6 +330,9 @@ func entUserToDTO(u *ent.User) *UserDTO {
 	}
 	if u.Email != nil {
 		dto.Email = *u.Email
+	}
+	if u.DeptId != nil {
+		dto.DeptID = u.DeptId
 	}
 	return dto
 }

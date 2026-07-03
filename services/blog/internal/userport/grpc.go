@@ -9,55 +9,62 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 )
 
-// GRPCArticleUserPort 经 user gRPC 获取用户摘要（deptId 待 proto 扩展）。
+// GRPCArticleUserPort 经 user gRPC 获取用户摘要与部门信息。
 type GRPCArticleUserPort struct {
+	scope usersvc.ArticleScope
 	users usersvc.UserService
 }
 
 // NewGRPCArticleUserPort 构造 ArticleUserPort。
-func NewGRPCArticleUserPort(users usersvc.UserService) *GRPCArticleUserPort {
-	return &GRPCArticleUserPort{users: users}
+func NewGRPCArticleUserPort(client usersvc.CrossClient) *GRPCArticleUserPort {
+	return &GRPCArticleUserPort{scope: client, users: client}
 }
 
-// ListActiveUserIDs C 端列表过滤；gRPC 未扩展前返回 nil 表示不过滤。
-func (p *GRPCArticleUserPort) ListActiveUserIDs(_ context.Context) ([]int, error) {
-	return nil, nil
+// ListActiveUserIDs 返回 active 用户 ID 列表，C 端文章列表过滤锁定作者。
+func (p *GRPCArticleUserPort) ListActiveUserIDs(ctx context.Context) ([]int, error) {
+	return p.scope.ListActiveUserIDs(ctx)
 }
 
-// FindUserForArticle 获取作者信息（deptId 暂不可用，创建文章会提示未关联机构）。
+// FindUserForArticle 获取作者信息（含 deptId）。
 func (p *GRPCArticleUserPort) FindUserForArticle(ctx context.Context, uid int) (*ArticleAuthorUser, error) {
 	u, err := p.users.GetUser(ctx, uint64(uid))
 	if err != nil {
 		return nil, err
 	}
-	return &ArticleAuthorUser{ID: uid, Status: u.Status}, nil
+	return &ArticleAuthorUser{ID: uid, DeptID: u.DeptID, Status: u.Status}, nil
 }
 
-// FindDeptByID 机构名查询；待 user gRPC 扩展 dept RPC。
-func (p *GRPCArticleUserPort) FindDeptByID(_ context.Context, _ int) (*DeptInfo, error) {
-	return nil, fmt.Errorf("dept lookup not available via user gRPC yet")
+// FindDeptByID 机构名查询。
+func (p *GRPCArticleUserPort) FindDeptByID(ctx context.Context, id int) (*DeptInfo, error) {
+	d, err := p.scope.GetDept(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	return &DeptInfo{ID: d.ID, DeptName: d.DeptName}, nil
 }
 
-// PermissiveArticleAdminPort 数据权限宽松实现（超管视角；待 admin gRPC）。
-type PermissiveArticleAdminPort struct{}
-
-// NewPermissiveArticleAdminPort 构造 ArticleAdminPort。
-func NewPermissiveArticleAdminPort() *PermissiveArticleAdminPort {
-	return &PermissiveArticleAdminPort{}
+// GRPCArticleAdminPort 经 user gRPC 解析文章数据权限。
+type GRPCArticleAdminPort struct {
+	scope usersvc.ArticleScope
 }
 
-// ResolveArticleAccessibleDeptIDs nil 表示不限制机构。
-func (p *PermissiveArticleAdminPort) ResolveArticleAccessibleDeptIDs(_ context.Context, _ int) ([]int, error) {
-	return nil, nil
+// NewGRPCArticleAdminPort 构造 ArticleAdminPort。
+func NewGRPCArticleAdminPort(client usersvc.ArticleScope) *GRPCArticleAdminPort {
+	return &GRPCArticleAdminPort{scope: client}
 }
 
-// AssertArticleDeptAccess 暂不校验机构权限。
-func (p *PermissiveArticleAdminPort) AssertArticleDeptAccess(_ context.Context, _ int, _ *int) error {
-	return nil
+// ResolveArticleAccessibleDeptIDs nil 表示不限制机构（超管）。
+func (p *GRPCArticleAdminPort) ResolveArticleAccessibleDeptIDs(ctx context.Context, uid int) ([]int, error) {
+	return p.scope.ResolveArticleAccessibleDeptIDs(ctx, uid)
 }
 
-// ProvideUserService 装配 blog-service 专用 UserService gRPC 客户端。
-func ProvideUserService(cfg *config.Config) (usersvc.UserService, error) {
+// AssertArticleDeptAccess 校验机构数据权限。
+func (p *GRPCArticleAdminPort) AssertArticleDeptAccess(ctx context.Context, uid int, deptID *int) error {
+	return p.scope.AssertArticleDeptAccess(ctx, uid, deptID)
+}
+
+// ProvideUserService 装配 blog-service 专用 user gRPC 客户端。
+func ProvideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
 	addr := cfg.GRPC.UserAddr
 	if addr == "" {
 		return nil, fmt.Errorf("GRPC.UserAddr required for blog-service")

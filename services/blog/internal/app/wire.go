@@ -17,6 +17,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/server"
+	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/google/wire"
 )
 
@@ -29,6 +30,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		data.NewRedisClient,
 		provideRedisStore,
 		provideUserService,
+		wire.Bind(new(usersvc.UserService), new(usersvc.CrossClient)),
 		provideBanChecker,
 		provideArticleUserPort,
 		provideArticleAdminPort,

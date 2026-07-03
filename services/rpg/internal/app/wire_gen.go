@@ -37,19 +37,19 @@ func InitializeApp(cfgPath string) (*App, error) {
 	healthHandler := handler.NewHealthHandler(client, rueidisClient)
 	pusher := provideWSPusher(rueidisClient)
 	store := provideRedisStore(rueidisClient)
-	userService, err := provideUserService(configConfig)
+	crossClient, err := provideUserService(configConfig)
 	if err != nil {
 		return nil, err
 	}
-	userReader := provideUserReader(userService)
+	userReader := provideUserReader(crossClient)
 	db := provideSQLDB(data)
 	articleReader := provideArticleReader(db)
 	publisher := event.NewPublisher(rueidisClient, zapLogger)
 	module := rpg.NewModule(client, pusher, store, rueidisClient, userReader, articleReader, publisher, configConfig, zapLogger)
-	rpgGameplay := provideRPGGameplay(module)
-	v := provideJWT(configConfig)
-	rpgHandler := provideRPGHandler(module, rpgGameplay, v)
-	rpgAdminHandler := provideRPGAdminHandler(module, v)
+	rpgGameplay := provideRPGGameplay(module, crossClient)
+	service := provideJWT(configConfig)
+	rpgHandler := provideRPGHandler(module, rpgGameplay, service)
+	rpgAdminHandler := provideRPGAdminHandler(module, service)
 	publicProfileLister, err := provideBlogPublicProfileLister(configConfig)
 	if err != nil {
 		return nil, err
@@ -62,8 +62,8 @@ func InitializeApp(cfgPath string) (*App, error) {
 	}
 	payHandler := handler.NewPayHandler(payService)
 	payOrderService := providePayOrderService(payOrderRepo, payService, module, zapLogger)
-	payOrderHandler := handler.NewPayOrderHandler(payOrderService, v)
-	registerDeps := provideRegisterDeps(healthHandler, rpgHandler, rpgAdminHandler, rpgProfileHandler, payHandler, payOrderHandler, v, userService, configConfig, store, zapLogger)
+	payOrderHandler := handler.NewPayOrderHandler(payOrderService, service)
+	registerDeps := provideRegisterDeps(healthHandler, rpgHandler, rpgAdminHandler, rpgProfileHandler, payHandler, payOrderHandler, service, crossClient, configConfig, store, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	schedulerScheduler := scheduler.New(zapLogger)
 	activityNotifyRunner := provideActivityNotifyScheduler(module, zapLogger)

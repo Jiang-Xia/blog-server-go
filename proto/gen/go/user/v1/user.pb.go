@@ -74,6 +74,7 @@ type GetUserResponse struct {
 	Avatar        string                 `protobuf:"bytes,4,opt,name=avatar,proto3" json:"avatar,omitempty"`
 	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
 	Status        string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	DeptId        *int32                 `protobuf:"varint,7,opt,name=dept_id,json=deptId,proto3,oneof" json:"dept_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -148,6 +149,13 @@ func (x *GetUserResponse) GetStatus() string {
 		return x.Status
 	}
 	return ""
+}
+
+func (x *GetUserResponse) GetDeptId() int32 {
+	if x != nil && x.DeptId != nil {
+		return *x.DeptId
+	}
+	return 0
 }
 
 type GetUserBatchRequest struct {
@@ -482,20 +490,964 @@ func (x *SendSystemEmailResponse) GetSent() bool {
 	return false
 }
 
+type EvaluateContentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Content       string                 `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EvaluateContentRequest) Reset() {
+	*x = EvaluateContentRequest{}
+	mi := &file_user_v1_user_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EvaluateContentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EvaluateContentRequest) ProtoMessage() {}
+
+func (x *EvaluateContentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EvaluateContentRequest.ProtoReflect.Descriptor instead.
+func (*EvaluateContentRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *EvaluateContentRequest) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+type HitDetailMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Word          string                 `protobuf:"bytes,1,opt,name=word,proto3" json:"word,omitempty"`
+	Level         int32                  `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
+	HpPenalty     int32                  `protobuf:"varint,3,opt,name=hp_penalty,json=hpPenalty,proto3" json:"hp_penalty,omitempty"`
+	NeedReview    int32                  `protobuf:"varint,4,opt,name=need_review,json=needReview,proto3" json:"need_review,omitempty"`
+	Action        int32                  `protobuf:"varint,5,opt,name=action,proto3" json:"action,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HitDetailMessage) Reset() {
+	*x = HitDetailMessage{}
+	mi := &file_user_v1_user_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HitDetailMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HitDetailMessage) ProtoMessage() {}
+
+func (x *HitDetailMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HitDetailMessage.ProtoReflect.Descriptor instead.
+func (*HitDetailMessage) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *HitDetailMessage) GetWord() string {
+	if x != nil {
+		return x.Word
+	}
+	return ""
+}
+
+func (x *HitDetailMessage) GetLevel() int32 {
+	if x != nil {
+		return x.Level
+	}
+	return 0
+}
+
+func (x *HitDetailMessage) GetHpPenalty() int32 {
+	if x != nil {
+		return x.HpPenalty
+	}
+	return 0
+}
+
+func (x *HitDetailMessage) GetNeedReview() int32 {
+	if x != nil {
+		return x.NeedReview
+	}
+	return 0
+}
+
+func (x *HitDetailMessage) GetAction() int32 {
+	if x != nil {
+		return x.Action
+	}
+	return 0
+}
+
+type EvaluateContentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Content       string                 `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	Hits          []*HitDetailMessage    `protobuf:"bytes,2,rep,name=hits,proto3" json:"hits,omitempty"`
+	HitWords      []string               `protobuf:"bytes,3,rep,name=hit_words,json=hitWords,proto3" json:"hit_words,omitempty"`
+	HpPenalty     int32                  `protobuf:"varint,4,opt,name=hp_penalty,json=hpPenalty,proto3" json:"hp_penalty,omitempty"`
+	NeedReview    bool                   `protobuf:"varint,5,opt,name=need_review,json=needReview,proto3" json:"need_review,omitempty"`
+	Rejected      bool                   `protobuf:"varint,6,opt,name=rejected,proto3" json:"rejected,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EvaluateContentResponse) Reset() {
+	*x = EvaluateContentResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EvaluateContentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EvaluateContentResponse) ProtoMessage() {}
+
+func (x *EvaluateContentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EvaluateContentResponse.ProtoReflect.Descriptor instead.
+func (*EvaluateContentResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *EvaluateContentResponse) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *EvaluateContentResponse) GetHits() []*HitDetailMessage {
+	if x != nil {
+		return x.Hits
+	}
+	return nil
+}
+
+func (x *EvaluateContentResponse) GetHitWords() []string {
+	if x != nil {
+		return x.HitWords
+	}
+	return nil
+}
+
+func (x *EvaluateContentResponse) GetHpPenalty() int32 {
+	if x != nil {
+		return x.HpPenalty
+	}
+	return 0
+}
+
+func (x *EvaluateContentResponse) GetNeedReview() bool {
+	if x != nil {
+		return x.NeedReview
+	}
+	return false
+}
+
+func (x *EvaluateContentResponse) GetRejected() bool {
+	if x != nil {
+		return x.Rejected
+	}
+	return false
+}
+
+type CreateHitRecordRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SourceType    string                 `protobuf:"bytes,1,opt,name=source_type,json=sourceType,proto3" json:"source_type,omitempty"`
+	SourceId      string                 `protobuf:"bytes,2,opt,name=source_id,json=sourceId,proto3" json:"source_id,omitempty"`
+	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
+	HitWords      []string               `protobuf:"bytes,4,rep,name=hit_words,json=hitWords,proto3" json:"hit_words,omitempty"`
+	Uid           *int32                 `protobuf:"varint,5,opt,name=uid,proto3,oneof" json:"uid,omitempty"`
+	Ip            *string                `protobuf:"bytes,6,opt,name=ip,proto3,oneof" json:"ip,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateHitRecordRequest) Reset() {
+	*x = CreateHitRecordRequest{}
+	mi := &file_user_v1_user_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateHitRecordRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHitRecordRequest) ProtoMessage() {}
+
+func (x *CreateHitRecordRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHitRecordRequest.ProtoReflect.Descriptor instead.
+func (*CreateHitRecordRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *CreateHitRecordRequest) GetSourceType() string {
+	if x != nil {
+		return x.SourceType
+	}
+	return ""
+}
+
+func (x *CreateHitRecordRequest) GetSourceId() string {
+	if x != nil {
+		return x.SourceId
+	}
+	return ""
+}
+
+func (x *CreateHitRecordRequest) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *CreateHitRecordRequest) GetHitWords() []string {
+	if x != nil {
+		return x.HitWords
+	}
+	return nil
+}
+
+func (x *CreateHitRecordRequest) GetUid() int32 {
+	if x != nil && x.Uid != nil {
+		return *x.Uid
+	}
+	return 0
+}
+
+func (x *CreateHitRecordRequest) GetIp() string {
+	if x != nil && x.Ip != nil {
+		return *x.Ip
+	}
+	return ""
+}
+
+type CreateHitRecordResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateHitRecordResponse) Reset() {
+	*x = CreateHitRecordResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateHitRecordResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHitRecordResponse) ProtoMessage() {}
+
+func (x *CreateHitRecordResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHitRecordResponse.ProtoReflect.Descriptor instead.
+func (*CreateHitRecordResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *CreateHitRecordResponse) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
+type ListActiveUserIDsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserIds       []int32                `protobuf:"varint,1,rep,packed,name=user_ids,json=userIds,proto3" json:"user_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListActiveUserIDsResponse) Reset() {
+	*x = ListActiveUserIDsResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListActiveUserIDsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListActiveUserIDsResponse) ProtoMessage() {}
+
+func (x *ListActiveUserIDsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListActiveUserIDsResponse.ProtoReflect.Descriptor instead.
+func (*ListActiveUserIDsResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ListActiveUserIDsResponse) GetUserIds() []int32 {
+	if x != nil {
+		return x.UserIds
+	}
+	return nil
+}
+
+type GetDeptRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDeptRequest) Reset() {
+	*x = GetDeptRequest{}
+	mi := &file_user_v1_user_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDeptRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDeptRequest) ProtoMessage() {}
+
+func (x *GetDeptRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDeptRequest.ProtoReflect.Descriptor instead.
+func (*GetDeptRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetDeptRequest) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetDeptResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	DeptName      string                 `protobuf:"bytes,2,opt,name=dept_name,json=deptName,proto3" json:"dept_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDeptResponse) Reset() {
+	*x = GetDeptResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDeptResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDeptResponse) ProtoMessage() {}
+
+func (x *GetDeptResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDeptResponse.ProtoReflect.Descriptor instead.
+func (*GetDeptResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetDeptResponse) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *GetDeptResponse) GetDeptName() string {
+	if x != nil {
+		return x.DeptName
+	}
+	return ""
+}
+
+type ResolveAccessibleDeptIDsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           int32                  `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	ResourceType  string                 `protobuf:"bytes,2,opt,name=resource_type,json=resourceType,proto3" json:"resource_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveAccessibleDeptIDsRequest) Reset() {
+	*x = ResolveAccessibleDeptIDsRequest{}
+	mi := &file_user_v1_user_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveAccessibleDeptIDsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveAccessibleDeptIDsRequest) ProtoMessage() {}
+
+func (x *ResolveAccessibleDeptIDsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveAccessibleDeptIDsRequest.ProtoReflect.Descriptor instead.
+func (*ResolveAccessibleDeptIDsRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ResolveAccessibleDeptIDsRequest) GetUid() int32 {
+	if x != nil {
+		return x.Uid
+	}
+	return 0
+}
+
+func (x *ResolveAccessibleDeptIDsRequest) GetResourceType() string {
+	if x != nil {
+		return x.ResourceType
+	}
+	return ""
+}
+
+type ResolveAccessibleDeptIDsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// unrestricted=true 表示超管/ALL 权限，dept_ids 忽略。
+	Unrestricted  bool    `protobuf:"varint,1,opt,name=unrestricted,proto3" json:"unrestricted,omitempty"`
+	DeptIds       []int32 `protobuf:"varint,2,rep,packed,name=dept_ids,json=deptIds,proto3" json:"dept_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveAccessibleDeptIDsResponse) Reset() {
+	*x = ResolveAccessibleDeptIDsResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveAccessibleDeptIDsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveAccessibleDeptIDsResponse) ProtoMessage() {}
+
+func (x *ResolveAccessibleDeptIDsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveAccessibleDeptIDsResponse.ProtoReflect.Descriptor instead.
+func (*ResolveAccessibleDeptIDsResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *ResolveAccessibleDeptIDsResponse) GetUnrestricted() bool {
+	if x != nil {
+		return x.Unrestricted
+	}
+	return false
+}
+
+func (x *ResolveAccessibleDeptIDsResponse) GetDeptIds() []int32 {
+	if x != nil {
+		return x.DeptIds
+	}
+	return nil
+}
+
+type AssertDeptAccessRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           int32                  `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	DeptId        *int32                 `protobuf:"varint,2,opt,name=dept_id,json=deptId,proto3,oneof" json:"dept_id,omitempty"`
+	ResourceType  string                 `protobuf:"bytes,3,opt,name=resource_type,json=resourceType,proto3" json:"resource_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssertDeptAccessRequest) Reset() {
+	*x = AssertDeptAccessRequest{}
+	mi := &file_user_v1_user_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssertDeptAccessRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssertDeptAccessRequest) ProtoMessage() {}
+
+func (x *AssertDeptAccessRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssertDeptAccessRequest.ProtoReflect.Descriptor instead.
+func (*AssertDeptAccessRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *AssertDeptAccessRequest) GetUid() int32 {
+	if x != nil {
+		return x.Uid
+	}
+	return 0
+}
+
+func (x *AssertDeptAccessRequest) GetDeptId() int32 {
+	if x != nil && x.DeptId != nil {
+		return *x.DeptId
+	}
+	return 0
+}
+
+func (x *AssertDeptAccessRequest) GetResourceType() string {
+	if x != nil {
+		return x.ResourceType
+	}
+	return ""
+}
+
+type AssertDeptAccessResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Allowed       bool                   `protobuf:"varint,1,opt,name=allowed,proto3" json:"allowed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssertDeptAccessResponse) Reset() {
+	*x = AssertDeptAccessResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssertDeptAccessResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssertDeptAccessResponse) ProtoMessage() {}
+
+func (x *AssertDeptAccessResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssertDeptAccessResponse.ProtoReflect.Descriptor instead.
+func (*AssertDeptAccessResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *AssertDeptAccessResponse) GetAllowed() bool {
+	if x != nil {
+		return x.Allowed
+	}
+	return false
+}
+
+type ListSensitiveWordHitsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           int32                  `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSensitiveWordHitsRequest) Reset() {
+	*x = ListSensitiveWordHitsRequest{}
+	mi := &file_user_v1_user_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSensitiveWordHitsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSensitiveWordHitsRequest) ProtoMessage() {}
+
+func (x *ListSensitiveWordHitsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSensitiveWordHitsRequest.ProtoReflect.Descriptor instead.
+func (*ListSensitiveWordHitsRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *ListSensitiveWordHitsRequest) GetUid() int32 {
+	if x != nil {
+		return x.Uid
+	}
+	return 0
+}
+
+func (x *ListSensitiveWordHitsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListSensitiveWordHitsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type SensitiveWordHitItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	SourceType    string                 `protobuf:"bytes,2,opt,name=source_type,json=sourceType,proto3" json:"source_type,omitempty"`
+	SourceId      string                 `protobuf:"bytes,3,opt,name=source_id,json=sourceId,proto3" json:"source_id,omitempty"`
+	Content       string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
+	HitWords      string                 `protobuf:"bytes,5,opt,name=hit_words,json=hitWords,proto3" json:"hit_words,omitempty"`
+	Uid           *int32                 `protobuf:"varint,6,opt,name=uid,proto3,oneof" json:"uid,omitempty"`
+	Ip            *string                `protobuf:"bytes,7,opt,name=ip,proto3,oneof" json:"ip,omitempty"`
+	Status        string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
+	ReviewerId    *int32                 `protobuf:"varint,9,opt,name=reviewer_id,json=reviewerId,proto3,oneof" json:"reviewer_id,omitempty"`
+	ReviewTime    string                 `protobuf:"bytes,10,opt,name=review_time,json=reviewTime,proto3" json:"review_time,omitempty"`
+	CreateTime    string                 `protobuf:"bytes,11,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SensitiveWordHitItem) Reset() {
+	*x = SensitiveWordHitItem{}
+	mi := &file_user_v1_user_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SensitiveWordHitItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SensitiveWordHitItem) ProtoMessage() {}
+
+func (x *SensitiveWordHitItem) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SensitiveWordHitItem.ProtoReflect.Descriptor instead.
+func (*SensitiveWordHitItem) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *SensitiveWordHitItem) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SensitiveWordHitItem) GetSourceType() string {
+	if x != nil {
+		return x.SourceType
+	}
+	return ""
+}
+
+func (x *SensitiveWordHitItem) GetSourceId() string {
+	if x != nil {
+		return x.SourceId
+	}
+	return ""
+}
+
+func (x *SensitiveWordHitItem) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *SensitiveWordHitItem) GetHitWords() string {
+	if x != nil {
+		return x.HitWords
+	}
+	return ""
+}
+
+func (x *SensitiveWordHitItem) GetUid() int32 {
+	if x != nil && x.Uid != nil {
+		return *x.Uid
+	}
+	return 0
+}
+
+func (x *SensitiveWordHitItem) GetIp() string {
+	if x != nil && x.Ip != nil {
+		return *x.Ip
+	}
+	return ""
+}
+
+func (x *SensitiveWordHitItem) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *SensitiveWordHitItem) GetReviewerId() int32 {
+	if x != nil && x.ReviewerId != nil {
+		return *x.ReviewerId
+	}
+	return 0
+}
+
+func (x *SensitiveWordHitItem) GetReviewTime() string {
+	if x != nil {
+		return x.ReviewTime
+	}
+	return ""
+}
+
+func (x *SensitiveWordHitItem) GetCreateTime() string {
+	if x != nil {
+		return x.CreateTime
+	}
+	return ""
+}
+
+type ListSensitiveWordHitsResponse struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	List          []*SensitiveWordHitItem `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	Total         int32                   `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Page          int32                   `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                   `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	TotalPages    int32                   `protobuf:"varint,5,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSensitiveWordHitsResponse) Reset() {
+	*x = ListSensitiveWordHitsResponse{}
+	mi := &file_user_v1_user_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSensitiveWordHitsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSensitiveWordHitsResponse) ProtoMessage() {}
+
+func (x *ListSensitiveWordHitsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSensitiveWordHitsResponse.ProtoReflect.Descriptor instead.
+func (*ListSensitiveWordHitsResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_user_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ListSensitiveWordHitsResponse) GetList() []*SensitiveWordHitItem {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+func (x *ListSensitiveWordHitsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListSensitiveWordHitsResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListSensitiveWordHitsResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListSensitiveWordHitsResponse) GetTotalPages() int32 {
+	if x != nil {
+		return x.TotalPages
+	}
+	return 0
+}
+
 var File_user_v1_user_proto protoreflect.FileDescriptor
 
 const file_user_v1_user_proto_rawDesc = "" +
 	"\n" +
 	"\x12user/v1/user.proto\x12\auser.v1\x1a\x1bgoogle/protobuf/empty.proto\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\"\x9f\x01\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"\xc9\x01\n" +
 	"\x0fGetUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x1a\n" +
 	"\busername\x18\x03 \x01(\tR\busername\x12\x16\n" +
 	"\x06avatar\x18\x04 \x01(\tR\x06avatar\x12\x14\n" +
 	"\x05email\x18\x05 \x01(\tR\x05email\x12\x16\n" +
-	"\x06status\x18\x06 \x01(\tR\x06status\"'\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1c\n" +
+	"\adept_id\x18\a \x01(\x05H\x00R\x06deptId\x88\x01\x01B\n" +
+	"\n" +
+	"\b_dept_id\"'\n" +
 	"\x13GetUserBatchRequest\x12\x10\n" +
 	"\x03ids\x18\x01 \x03(\x04R\x03ids\"F\n" +
 	"\x14GetUserBatchResponse\x12.\n" +
@@ -512,14 +1464,104 @@ const file_user_v1_user_proto_rawDesc = "" +
 	"\asubject\x18\x02 \x01(\tR\asubject\x12\x1b\n" +
 	"\thtml_body\x18\x03 \x01(\tR\bhtmlBody\"-\n" +
 	"\x17SendSystemEmailResponse\x12\x12\n" +
-	"\x04sent\x18\x01 \x01(\bR\x04sent2\xfb\x02\n" +
+	"\x04sent\x18\x01 \x01(\bR\x04sent\"2\n" +
+	"\x16EvaluateContentRequest\x12\x18\n" +
+	"\acontent\x18\x01 \x01(\tR\acontent\"\x94\x01\n" +
+	"\x10HitDetailMessage\x12\x12\n" +
+	"\x04word\x18\x01 \x01(\tR\x04word\x12\x14\n" +
+	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x1d\n" +
+	"\n" +
+	"hp_penalty\x18\x03 \x01(\x05R\thpPenalty\x12\x1f\n" +
+	"\vneed_review\x18\x04 \x01(\x05R\n" +
+	"needReview\x12\x16\n" +
+	"\x06action\x18\x05 \x01(\x05R\x06action\"\xdb\x01\n" +
+	"\x17EvaluateContentResponse\x12\x18\n" +
+	"\acontent\x18\x01 \x01(\tR\acontent\x12-\n" +
+	"\x04hits\x18\x02 \x03(\v2\x19.user.v1.HitDetailMessageR\x04hits\x12\x1b\n" +
+	"\thit_words\x18\x03 \x03(\tR\bhitWords\x12\x1d\n" +
+	"\n" +
+	"hp_penalty\x18\x04 \x01(\x05R\thpPenalty\x12\x1f\n" +
+	"\vneed_review\x18\x05 \x01(\bR\n" +
+	"needReview\x12\x1a\n" +
+	"\brejected\x18\x06 \x01(\bR\brejected\"\xc8\x01\n" +
+	"\x16CreateHitRecordRequest\x12\x1f\n" +
+	"\vsource_type\x18\x01 \x01(\tR\n" +
+	"sourceType\x12\x1b\n" +
+	"\tsource_id\x18\x02 \x01(\tR\bsourceId\x12\x18\n" +
+	"\acontent\x18\x03 \x01(\tR\acontent\x12\x1b\n" +
+	"\thit_words\x18\x04 \x03(\tR\bhitWords\x12\x15\n" +
+	"\x03uid\x18\x05 \x01(\x05H\x00R\x03uid\x88\x01\x01\x12\x13\n" +
+	"\x02ip\x18\x06 \x01(\tH\x01R\x02ip\x88\x01\x01B\x06\n" +
+	"\x04_uidB\x05\n" +
+	"\x03_ip\")\n" +
+	"\x17CreateHitRecordResponse\x12\x0e\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok\"6\n" +
+	"\x19ListActiveUserIDsResponse\x12\x19\n" +
+	"\buser_ids\x18\x01 \x03(\x05R\auserIds\" \n" +
+	"\x0eGetDeptRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\">\n" +
+	"\x0fGetDeptResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1b\n" +
+	"\tdept_name\x18\x02 \x01(\tR\bdeptName\"X\n" +
+	"\x1fResolveAccessibleDeptIDsRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x05R\x03uid\x12#\n" +
+	"\rresource_type\x18\x02 \x01(\tR\fresourceType\"a\n" +
+	" ResolveAccessibleDeptIDsResponse\x12\"\n" +
+	"\funrestricted\x18\x01 \x01(\bR\funrestricted\x12\x19\n" +
+	"\bdept_ids\x18\x02 \x03(\x05R\adeptIds\"z\n" +
+	"\x17AssertDeptAccessRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x05R\x03uid\x12\x1c\n" +
+	"\adept_id\x18\x02 \x01(\x05H\x00R\x06deptId\x88\x01\x01\x12#\n" +
+	"\rresource_type\x18\x03 \x01(\tR\fresourceTypeB\n" +
+	"\n" +
+	"\b_dept_id\"4\n" +
+	"\x18AssertDeptAccessResponse\x12\x18\n" +
+	"\aallowed\x18\x01 \x01(\bR\aallowed\"a\n" +
+	"\x1cListSensitiveWordHitsRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x05R\x03uid\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\"\xe6\x02\n" +
+	"\x14SensitiveWordHitItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1f\n" +
+	"\vsource_type\x18\x02 \x01(\tR\n" +
+	"sourceType\x12\x1b\n" +
+	"\tsource_id\x18\x03 \x01(\tR\bsourceId\x12\x18\n" +
+	"\acontent\x18\x04 \x01(\tR\acontent\x12\x1b\n" +
+	"\thit_words\x18\x05 \x01(\tR\bhitWords\x12\x15\n" +
+	"\x03uid\x18\x06 \x01(\x05H\x00R\x03uid\x88\x01\x01\x12\x13\n" +
+	"\x02ip\x18\a \x01(\tH\x01R\x02ip\x88\x01\x01\x12\x16\n" +
+	"\x06status\x18\b \x01(\tR\x06status\x12$\n" +
+	"\vreviewer_id\x18\t \x01(\x05H\x02R\n" +
+	"reviewerId\x88\x01\x01\x12\x1f\n" +
+	"\vreview_time\x18\n" +
+	" \x01(\tR\n" +
+	"reviewTime\x12\x1f\n" +
+	"\vcreate_time\x18\v \x01(\tR\n" +
+	"createTimeB\x06\n" +
+	"\x04_uidB\x05\n" +
+	"\x03_ipB\x0e\n" +
+	"\f_reviewer_id\"\xba\x01\n" +
+	"\x1dListSensitiveWordHitsResponse\x121\n" +
+	"\x04list\x18\x01 \x03(\v2\x1d.user.v1.SensitiveWordHitItemR\x04list\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x1f\n" +
+	"\vtotal_pages\x18\x05 \x01(\x05R\n" +
+	"totalPages2\xe8\a\n" +
 	"\vUserService\x12<\n" +
 	"\aGetUser\x12\x17.user.v1.GetUserRequest\x1a\x18.user.v1.GetUserResponse\x12K\n" +
 	"\fGetUserBatch\x12\x1c.user.v1.GetUserBatchRequest\x1a\x1d.user.v1.GetUserBatchResponse\x12H\n" +
 	"\vVerifyToken\x12\x1b.user.v1.VerifyTokenRequest\x1a\x1c.user.v1.VerifyTokenResponse\x12A\n" +
 	"\n" +
 	"CountUsers\x12\x16.google.protobuf.Empty\x1a\x1b.user.v1.CountUsersResponse\x12T\n" +
-	"\x0fSendSystemEmail\x12\x1f.user.v1.SendSystemEmailRequest\x1a .user.v1.SendSystemEmailResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1;userv1b\x06proto3"
+	"\x0fSendSystemEmail\x12\x1f.user.v1.SendSystemEmailRequest\x1a .user.v1.SendSystemEmailResponse\x12T\n" +
+	"\x0fEvaluateContent\x12\x1f.user.v1.EvaluateContentRequest\x1a .user.v1.EvaluateContentResponse\x12T\n" +
+	"\x0fCreateHitRecord\x12\x1f.user.v1.CreateHitRecordRequest\x1a .user.v1.CreateHitRecordResponse\x12O\n" +
+	"\x11ListActiveUserIDs\x12\x16.google.protobuf.Empty\x1a\".user.v1.ListActiveUserIDsResponse\x12<\n" +
+	"\aGetDept\x12\x17.user.v1.GetDeptRequest\x1a\x18.user.v1.GetDeptResponse\x12o\n" +
+	"\x18ResolveAccessibleDeptIDs\x12(.user.v1.ResolveAccessibleDeptIDsRequest\x1a).user.v1.ResolveAccessibleDeptIDsResponse\x12W\n" +
+	"\x10AssertDeptAccess\x12 .user.v1.AssertDeptAccessRequest\x1a!.user.v1.AssertDeptAccessResponse\x12f\n" +
+	"\x15ListSensitiveWordHits\x12%.user.v1.ListSensitiveWordHitsRequest\x1a&.user.v1.ListSensitiveWordHitsResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_v1_user_proto_rawDescOnce sync.Once
@@ -533,36 +1575,67 @@ func file_user_v1_user_proto_rawDescGZIP() []byte {
 	return file_user_v1_user_proto_rawDescData
 }
 
-var file_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_user_v1_user_proto_goTypes = []any{
-	(*GetUserRequest)(nil),          // 0: user.v1.GetUserRequest
-	(*GetUserResponse)(nil),         // 1: user.v1.GetUserResponse
-	(*GetUserBatchRequest)(nil),     // 2: user.v1.GetUserBatchRequest
-	(*GetUserBatchResponse)(nil),    // 3: user.v1.GetUserBatchResponse
-	(*VerifyTokenRequest)(nil),      // 4: user.v1.VerifyTokenRequest
-	(*VerifyTokenResponse)(nil),     // 5: user.v1.VerifyTokenResponse
-	(*CountUsersResponse)(nil),      // 6: user.v1.CountUsersResponse
-	(*SendSystemEmailRequest)(nil),  // 7: user.v1.SendSystemEmailRequest
-	(*SendSystemEmailResponse)(nil), // 8: user.v1.SendSystemEmailResponse
-	(*emptypb.Empty)(nil),           // 9: google.protobuf.Empty
+	(*GetUserRequest)(nil),                   // 0: user.v1.GetUserRequest
+	(*GetUserResponse)(nil),                  // 1: user.v1.GetUserResponse
+	(*GetUserBatchRequest)(nil),              // 2: user.v1.GetUserBatchRequest
+	(*GetUserBatchResponse)(nil),             // 3: user.v1.GetUserBatchResponse
+	(*VerifyTokenRequest)(nil),               // 4: user.v1.VerifyTokenRequest
+	(*VerifyTokenResponse)(nil),              // 5: user.v1.VerifyTokenResponse
+	(*CountUsersResponse)(nil),               // 6: user.v1.CountUsersResponse
+	(*SendSystemEmailRequest)(nil),           // 7: user.v1.SendSystemEmailRequest
+	(*SendSystemEmailResponse)(nil),          // 8: user.v1.SendSystemEmailResponse
+	(*EvaluateContentRequest)(nil),           // 9: user.v1.EvaluateContentRequest
+	(*HitDetailMessage)(nil),                 // 10: user.v1.HitDetailMessage
+	(*EvaluateContentResponse)(nil),          // 11: user.v1.EvaluateContentResponse
+	(*CreateHitRecordRequest)(nil),           // 12: user.v1.CreateHitRecordRequest
+	(*CreateHitRecordResponse)(nil),          // 13: user.v1.CreateHitRecordResponse
+	(*ListActiveUserIDsResponse)(nil),        // 14: user.v1.ListActiveUserIDsResponse
+	(*GetDeptRequest)(nil),                   // 15: user.v1.GetDeptRequest
+	(*GetDeptResponse)(nil),                  // 16: user.v1.GetDeptResponse
+	(*ResolveAccessibleDeptIDsRequest)(nil),  // 17: user.v1.ResolveAccessibleDeptIDsRequest
+	(*ResolveAccessibleDeptIDsResponse)(nil), // 18: user.v1.ResolveAccessibleDeptIDsResponse
+	(*AssertDeptAccessRequest)(nil),          // 19: user.v1.AssertDeptAccessRequest
+	(*AssertDeptAccessResponse)(nil),         // 20: user.v1.AssertDeptAccessResponse
+	(*ListSensitiveWordHitsRequest)(nil),     // 21: user.v1.ListSensitiveWordHitsRequest
+	(*SensitiveWordHitItem)(nil),             // 22: user.v1.SensitiveWordHitItem
+	(*ListSensitiveWordHitsResponse)(nil),    // 23: user.v1.ListSensitiveWordHitsResponse
+	(*emptypb.Empty)(nil),                    // 24: google.protobuf.Empty
 }
 var file_user_v1_user_proto_depIdxs = []int32{
-	1, // 0: user.v1.GetUserBatchResponse.users:type_name -> user.v1.GetUserResponse
-	0, // 1: user.v1.UserService.GetUser:input_type -> user.v1.GetUserRequest
-	2, // 2: user.v1.UserService.GetUserBatch:input_type -> user.v1.GetUserBatchRequest
-	4, // 3: user.v1.UserService.VerifyToken:input_type -> user.v1.VerifyTokenRequest
-	9, // 4: user.v1.UserService.CountUsers:input_type -> google.protobuf.Empty
-	7, // 5: user.v1.UserService.SendSystemEmail:input_type -> user.v1.SendSystemEmailRequest
-	1, // 6: user.v1.UserService.GetUser:output_type -> user.v1.GetUserResponse
-	3, // 7: user.v1.UserService.GetUserBatch:output_type -> user.v1.GetUserBatchResponse
-	5, // 8: user.v1.UserService.VerifyToken:output_type -> user.v1.VerifyTokenResponse
-	6, // 9: user.v1.UserService.CountUsers:output_type -> user.v1.CountUsersResponse
-	8, // 10: user.v1.UserService.SendSystemEmail:output_type -> user.v1.SendSystemEmailResponse
-	6, // [6:11] is the sub-list for method output_type
-	1, // [1:6] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1,  // 0: user.v1.GetUserBatchResponse.users:type_name -> user.v1.GetUserResponse
+	10, // 1: user.v1.EvaluateContentResponse.hits:type_name -> user.v1.HitDetailMessage
+	22, // 2: user.v1.ListSensitiveWordHitsResponse.list:type_name -> user.v1.SensitiveWordHitItem
+	0,  // 3: user.v1.UserService.GetUser:input_type -> user.v1.GetUserRequest
+	2,  // 4: user.v1.UserService.GetUserBatch:input_type -> user.v1.GetUserBatchRequest
+	4,  // 5: user.v1.UserService.VerifyToken:input_type -> user.v1.VerifyTokenRequest
+	24, // 6: user.v1.UserService.CountUsers:input_type -> google.protobuf.Empty
+	7,  // 7: user.v1.UserService.SendSystemEmail:input_type -> user.v1.SendSystemEmailRequest
+	9,  // 8: user.v1.UserService.EvaluateContent:input_type -> user.v1.EvaluateContentRequest
+	12, // 9: user.v1.UserService.CreateHitRecord:input_type -> user.v1.CreateHitRecordRequest
+	24, // 10: user.v1.UserService.ListActiveUserIDs:input_type -> google.protobuf.Empty
+	15, // 11: user.v1.UserService.GetDept:input_type -> user.v1.GetDeptRequest
+	17, // 12: user.v1.UserService.ResolveAccessibleDeptIDs:input_type -> user.v1.ResolveAccessibleDeptIDsRequest
+	19, // 13: user.v1.UserService.AssertDeptAccess:input_type -> user.v1.AssertDeptAccessRequest
+	21, // 14: user.v1.UserService.ListSensitiveWordHits:input_type -> user.v1.ListSensitiveWordHitsRequest
+	1,  // 15: user.v1.UserService.GetUser:output_type -> user.v1.GetUserResponse
+	3,  // 16: user.v1.UserService.GetUserBatch:output_type -> user.v1.GetUserBatchResponse
+	5,  // 17: user.v1.UserService.VerifyToken:output_type -> user.v1.VerifyTokenResponse
+	6,  // 18: user.v1.UserService.CountUsers:output_type -> user.v1.CountUsersResponse
+	8,  // 19: user.v1.UserService.SendSystemEmail:output_type -> user.v1.SendSystemEmailResponse
+	11, // 20: user.v1.UserService.EvaluateContent:output_type -> user.v1.EvaluateContentResponse
+	13, // 21: user.v1.UserService.CreateHitRecord:output_type -> user.v1.CreateHitRecordResponse
+	14, // 22: user.v1.UserService.ListActiveUserIDs:output_type -> user.v1.ListActiveUserIDsResponse
+	16, // 23: user.v1.UserService.GetDept:output_type -> user.v1.GetDeptResponse
+	18, // 24: user.v1.UserService.ResolveAccessibleDeptIDs:output_type -> user.v1.ResolveAccessibleDeptIDsResponse
+	20, // 25: user.v1.UserService.AssertDeptAccess:output_type -> user.v1.AssertDeptAccessResponse
+	23, // 26: user.v1.UserService.ListSensitiveWordHits:output_type -> user.v1.ListSensitiveWordHitsResponse
+	15, // [15:27] is the sub-list for method output_type
+	3,  // [3:15] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_user_v1_user_proto_init() }
@@ -570,13 +1643,17 @@ func file_user_v1_user_proto_init() {
 	if File_user_v1_user_proto != nil {
 		return
 	}
+	file_user_v1_user_proto_msgTypes[1].OneofWrappers = []any{}
+	file_user_v1_user_proto_msgTypes[12].OneofWrappers = []any{}
+	file_user_v1_user_proto_msgTypes[19].OneofWrappers = []any{}
+	file_user_v1_user_proto_msgTypes[22].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_v1_user_proto_rawDesc), len(file_user_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

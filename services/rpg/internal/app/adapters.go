@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
+	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/articleport"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
@@ -32,7 +33,7 @@ import (
 	"go.uber.org/zap"
 )
 
-func provideRPGGameplay(mod *rpg.Module) *handler.RPGGameplay {
+func provideRPGGameplay(mod *rpg.Module, hits usersvc.SensitiveHitLister) *handler.RPGGameplay {
 	if mod == nil {
 		return &handler.RPGGameplay{}
 	}
@@ -49,7 +50,7 @@ func provideRPGGameplay(mod *rpg.Module) *handler.RPGGameplay {
 		Guild:       guildAdapter{mod.Guild},
 		Tip:         tipAdapter{mod.Tip},
 		Social:      socialAdapter{mod.Social},
-		HitRecords:  hitRecordsStub{},
+		HitRecords:  hitRecordsAdapter{hits: hits},
 		Recharge:    rechargeAdapter{mod.Recharge},
 	}
 }
@@ -292,16 +293,21 @@ func (a socialAdapter) Interact(ctx context.Context, uid, targetUID int, action 
 	}
 }
 
-type hitRecordsStub struct{}
+type hitRecordsAdapter struct {
+	hits usersvc.SensitiveHitLister
+}
 
-func (hitRecordsStub) GetHitRecords(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
+func (a hitRecordsAdapter) GetHitRecords(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
 	if pageSize <= 0 {
 		pageSize = 10
 	}
-	return map[string]interface{}{
-		"list":       []interface{}{},
-		"pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize, "totalPages": 0},
-	}, nil
+	if a.hits == nil {
+		return map[string]interface{}{
+			"list":       []interface{}{},
+			"pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize, "totalPages": 0},
+		}, nil
+	}
+	return a.hits.ListSensitiveWordHits(ctx, uid, page, pageSize)
 }
 
 type rechargeAdapter struct{ *rpgrecharge.Service }

@@ -48,7 +48,7 @@ func provideRedisStore(client rueidis.Client) *redisutil.Store {
 	return redisutil.New(client)
 }
 
-func provideUserService(cfg *config.Config) (usersvc.UserService, error) {
+func provideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
 	return userport.ProvideUserService(cfg)
 }
 

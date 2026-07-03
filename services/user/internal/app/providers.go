@@ -8,18 +8,27 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/middleware"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/operationlog"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/admin"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/captcha"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/repo"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/sensitive"
 	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/user/internal/user/grpcserver"
 	"github.com/redis/rueidis"
 	"go.uber.org/zap"
 )
 
-func provideUserGRPCServer(profileSvc *profile.Service, jwt *auth.JWTService, emailSvc *email.Service) *usersgrpc.Server {
-	return usersgrpc.New(profileSvc, jwt, emailSvc)
+func provideUserGRPCServer(
+	profileSvc *profile.Service,
+	jwt *auth.JWTService,
+	emailSvc *email.Service,
+	sensitiveSvc *sensitive.Service,
+	adminSvc *admin.Service,
+	userRepo *repo.UserRepo,
+) *usersgrpc.Server {
+	return usersgrpc.New(profileSvc, jwt, emailSvc, sensitiveSvc, adminSvc, userRepo)
 }
 
 func provideAdminRepo(cfg *config.Config) (*repo.AdminRepo, error) {
