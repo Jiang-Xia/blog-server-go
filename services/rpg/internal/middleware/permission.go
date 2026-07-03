@@ -76,18 +76,32 @@ func (m *pathMatcher) match(actualPath, pattern string) bool {
 
 // compilePathPattern 将 Nest pathPattern（:id、*、**）转为正则。
 func compilePathPattern(pattern string) *regexp.Regexp {
-	regexPattern := pattern
-	regexPattern = regexp.MustCompile(`:(\w+)`).ReplaceAllString(regexPattern, `([^/]+)`)
-	regexPattern = strings.ReplaceAll(regexPattern, "**", ".*")
-	regexPattern = strings.ReplaceAll(regexPattern, "*", `[^/]*`)
+	const (
+		phGlobStarStar = "\x01"
+		phGlobStar     = "\x02"
+		phParam        = "\x03"
+	)
+	regexPattern := strings.ReplaceAll(pattern, "**", phGlobStarStar)
+	regexPattern = strings.ReplaceAll(regexPattern, "*", phGlobStar)
+	regexPattern = regexp.MustCompile(`:(\w+)`).ReplaceAllString(regexPattern, phParam)
+
 	var sb strings.Builder
 	for _, ch := range regexPattern {
-		if strings.ContainsRune(`.+?^${}|[]\\`, ch) {
-			sb.WriteRune('\\')
+		switch ch {
+		case '\x01', '\x02', '\x03':
+			sb.WriteRune(ch)
+		default:
+			if strings.ContainsRune(`.+?^${}|[]\\`, ch) {
+				sb.WriteRune('\\')
+			}
+			sb.WriteRune(ch)
 		}
-		sb.WriteRune(ch)
 	}
-	re, err := regexp.Compile("^" + sb.String() + "$")
+	out := sb.String()
+	out = strings.ReplaceAll(out, phGlobStarStar, ".*")
+	out = strings.ReplaceAll(out, phGlobStar, `[^/]*`)
+	out = strings.ReplaceAll(out, phParam, `([^/]+)`)
+	re, err := regexp.Compile("^" + out + "$")
 	if err != nil {
 		return regexp.MustCompile("^" + regexp.QuoteMeta(pattern) + "$")
 	}
@@ -222,20 +236,56 @@ func checkPublicPath(ctx context.Context, deps PermissionDeps, matcher *pathMatc
 }
 
 func loadPublicPaths(ctx context.Context, deps PermissionDeps) ([]publicPathEntry, error) {
+	var paths []publicPathEntry
 	raw, err := deps.Redis.Get(ctx, redisKeyPublicPaths)
 	if err != nil {
 		return nil, err
 	}
 	if raw != "" {
-		var paths []publicPathEntry
-		if err := json.Unmarshal([]byte(raw), &paths); err == nil {
-			return paths, nil
+		if err := json.Unmarshal([]byte(raw), &paths); err != nil {
+			paths = nil
 		}
 	}
 	if deps.Cfg.IsDev() {
-		return defaultBlogPublicPaths(), nil
+		paths = mergePublicPaths(paths, append(defaultBlogPublicPaths(), defaultRPGPublicPaths()...))
 	}
-	return nil, nil
+	return paths, nil
+}
+
+func mergePublicPaths(base, extra []publicPathEntry) []publicPathEntry {
+	seen := make(map[string]struct{}, len(base)+len(extra))
+	out := make([]publicPathEntry, 0, len(base)+len(extra))
+	for _, p := range append(base, extra...) {
+		key := p.Pattern + "|" + strings.Join(p.Methods, ",")
+		if _, ok := seen[key]; ok {
+			continue
+		}
+		seen[key] = struct{}{}
+		out = append(out, p)
+	}
+	return out
+}
+
+// defaultRPGPublicPaths 开发环境 RPG 公开路由兜底（与 register.go 无 jwt 路由对齐子集）。
+func defaultRPGPublicPaths() []publicPathEntry {
+	return []publicPathEntry{
+		{Pattern: "/user/public/:uid", Methods: []string{"GET"}},
+		{Pattern: "/user/public/:uid/articles", Methods: []string{"GET"}},
+		{Pattern: "/user/public/:uid/collects", Methods: []string{"GET"}},
+		{Pattern: "/user/public/:uid/likes", Methods: []string{"GET"}},
+		{Pattern: "/rpg/public/:uid/status", Methods: []string{"GET"}},
+		{Pattern: "/rpg/public/status/batch", Methods: []string{"GET"}},
+		{Pattern: "/rpg/leaderboard", Methods: []string{"GET"}},
+		{Pattern: "/rpg/level-rewards", Methods: []string{"GET"}},
+		{Pattern: "/rpg/quests", Methods: []string{"GET"}},
+		{Pattern: "/rpg/lottery/pool", Methods: []string{"GET"}},
+		{Pattern: "/rpg/pets/catalog", Methods: []string{"GET"}},
+		{Pattern: "/rpg/activities/current", Methods: []string{"GET"}},
+		{Pattern: "/rpg/weather-buff", Methods: []string{"GET"}},
+		{Pattern: "/rpg/guilds", Methods: []string{"GET"}},
+		{Pattern: "/rpg/guild/:id", Methods: []string{"GET"}},
+		{Pattern: "/pay/notice", Methods: []string{"POST"}},
+	}
 }
 
 func matchAPIPermission(ctx context.Context, deps PermissionDeps, matcher *pathMatcher, method, url string) (*apiPermission, error) {

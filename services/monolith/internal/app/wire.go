@@ -87,6 +87,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		providePayService,
 		providePayOrderService,
 		provideRPGGameplay,
+		providePublicProfileRepo,
 		captcha.NewService,
 		pub.NewService,
 		handler.NewUserAppAdapter,

@@ -114,7 +114,11 @@ func InitializeApp(cfgPath string) (*App, error) {
 	blogEventConsumer := provideBlogEventConsumer(rueidisClient, zapLogger)
 	realtimeRuntime := provideRealtimeRuntime(hub, realtimePusher, blogEventConsumer, publisher, wsHandler, devPushHandler)
 	moderationService := service.NewModerationService(commentRepo, msgboardRepo, replyRepo)
-	grpcserverServer := provideBlogGRPCServer(articleService, moderationService, client)
+	publicprofileRepo, err := providePublicProfileRepo(configConfig)
+	if err != nil {
+		return nil, err
+	}
+	grpcserverServer := provideBlogGRPCServer(articleService, moderationService, client, publicprofileRepo)
 	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, scheduledTaskRuntime, realtimeRuntime, grpcserverServer)
 	return app, nil
 }

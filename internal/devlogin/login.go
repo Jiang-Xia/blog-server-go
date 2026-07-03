@@ -178,7 +178,7 @@ func clearCaptchaRate(ctx context.Context, cfg *config.Config) error {
 	defer client.Close()
 
 	keys := []string{
-		"captcha:rate:ip:127_0_0_1",
+		"captcha:rate:ip_127.0.0.1",
 		"captcha:rate:ip___1",
 		"captcha:rate:unknown",
 	}

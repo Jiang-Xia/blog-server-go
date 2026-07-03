@@ -29,6 +29,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		provideUserService,
 		provideUserReader,
 		provideArticleReader,
+		provideBlogPublicProfileLister,
 		provideWSPusher,
 		provideJWT,
 		rpg.NewModule,

@@ -158,5 +158,13 @@ jobs:
       - run: bash scripts/test-run.sh
         env:
           USE_DOCKER: "0"
+          CI_USE_LOCAL_CONFIG: "0"
+          CI_MYSQL_HOST: 127.0.0.1
           CI_MYSQL_PORT: 3306
+          CI_MYSQL_USER: root
+          CI_MYSQL_PASSWORD: testpass
+          CI_MYSQL_DATABASE: x_my_blog
           CI_REDIS_ADDR: 127.0.0.1:6379
+          CI_REDIS_DB: "2"
+          CI_JWT_SECRET: ci-integration-test-secret
+          RUN_UNIT: "0"

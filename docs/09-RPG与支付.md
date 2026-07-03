@@ -106,7 +106,7 @@ go build ./services/monolith/cmd/...
 | 项 | 说明 |
 |----|------|
 | Admin 写操作 | 部分 CRUD（成就/奖池/素材上传/解封等）返回「待完善」，列表/查询/删任务/调钻已可用 |
-| 公开主页 | 收藏/点赞文章列表暂返回空列表，文章列表用 `ListPublishedByAuthor` |
+| 公开主页 | 收藏/点赞列表经 blog gRPC 分页返回（Plan 14）；文章列表仍为简化实现 |
 | 文章等级 | `ArticleLevelService` 未完整接入 Stream 消费 |
 | 敏感词惩罚 | `BanGuard` 仅禁言时间判定，HP 扣减完整逻辑待补 |
 | 支付宝 | Go 使用 `smartwalle/alipay/v3`，Nest 使用 `alipay-sdk` npm |

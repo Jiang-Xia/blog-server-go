@@ -10,7 +10,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/crypto"
 	userent "github.com/Jiang-Xia/blog-server-go/services/user/ent"
-	"github.com/Jiang-Xia/blog-server-go/services/user/ent/role"
+	"github.com/Jiang-Xia/blog-server-go/services/user/ent/roleusersuser"
 	"github.com/Jiang-Xia/blog-server-go/services/user/ent/user"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/Jiang-Xia/blog-server-go/services/user/ent/runtime"
@@ -61,14 +61,23 @@ func main() {
 		SetPassword(hash).
 		SetSalt("").
 		SetStatus("active").
-		AddRoleIDs(1).
 		Save(ctx); err != nil {
 		fail(fmt.Errorf("create user: %w", err))
 	}
+	if _, err := client.RoleUsersUser.Create().
+		SetUserId(1).
+		SetRoleId(1).
+		Save(ctx); err != nil {
+		fail(fmt.Errorf("link user role: %w", err))
+	}
 	fmt.Println("seed user", seedUsername)
 
-	// 确认角色关联
-	n, err := client.User.Query().Where(user.UsernameEQ(seedUsername)).QueryRoles().Where(role.IDEQ(1)).Count(ctx)
+	n, err := client.RoleUsersUser.Query().
+		Where(
+			roleusersuser.UserIdEQ(1),
+			roleusersuser.RoleIdEQ(1),
+		).
+		Count(ctx)
 	if err != nil || n == 0 {
 		fail(fmt.Errorf("user role link missing"))
 	}

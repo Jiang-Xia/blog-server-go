@@ -5,8 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"strconv"
+	"time"
 
 	blogv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1"
+	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent/article"
 	blogsvc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/service"
@@ -18,14 +20,15 @@ import (
 // Server 实现 ArticleService gRPC。
 type Server struct {
 	blogv1.UnimplementedArticleServiceServer
-	articles   *blogsvc.ArticleService
-	moderation *blogsvc.ModerationService
-	ent        *ent.Client
+	articles      *blogsvc.ArticleService
+	moderation    *blogsvc.ModerationService
+	ent           *ent.Client
+	publicProfile *publicprofile.Repo
 }
 
 // New 构造 gRPC ArticleService 实现。
-func New(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client) *Server {
-	return &Server{articles: articles, moderation: moderation, ent: client}
+func New(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client, publicProfile *publicprofile.Repo) *Server {
+	return &Server{articles: articles, moderation: moderation, ent: client, publicProfile: publicProfile}
 }
 
 // GetArticle 按 ID 返回文章摘要。
@@ -105,4 +108,64 @@ func (s *Server) UpdateContentModerationStatus(ctx context.Context, req *blogv1.
 		return nil, status.Errorf(codes.Internal, "update moderation status: %v", err)
 	}
 	return &blogv1.UpdateContentModerationStatusResponse{Updated: updated}, nil
+}
+
+// ListPublicCollectArticles 用户公开收藏文章分页。
+func (s *Server) ListPublicCollectArticles(ctx context.Context, req *blogv1.ListPublicProfileArticlesRequest) (*blogv1.ListPublicProfileArticlesResponse, error) {
+	if s.publicProfile == nil {
+		return &blogv1.ListPublicProfileArticlesResponse{}, nil
+	}
+	uid := int(req.GetUid())
+	page := int(req.GetPage())
+	pageSize := int(req.GetPageSize())
+	rows, total, err := s.publicProfile.ListCollectArticles(ctx, uid, page, pageSize)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "list public collects: %v", err)
+	}
+	return rowsToProto(rows, total, page, pageSize), nil
+}
+
+// ListPublicLikeArticles 用户公开点赞文章分页。
+func (s *Server) ListPublicLikeArticles(ctx context.Context, req *blogv1.ListPublicProfileArticlesRequest) (*blogv1.ListPublicProfileArticlesResponse, error) {
+	if s.publicProfile == nil {
+		return &blogv1.ListPublicProfileArticlesResponse{}, nil
+	}
+	uid := int(req.GetUid())
+	page := int(req.GetPage())
+	pageSize := int(req.GetPageSize())
+	rows, total, err := s.publicProfile.ListLikeArticles(ctx, uid, page, pageSize)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "list public likes: %v", err)
+	}
+	return rowsToProto(rows, total, page, pageSize), nil
+}
+
+func rowsToProto(rows []publicprofile.ArticleRow, total, page, pageSize int) *blogv1.ListPublicProfileArticlesResponse {
+	if page <= 0 {
+		page = 1
+	}
+	if pageSize <= 0 {
+		pageSize = 10
+	}
+	items := make([]*blogv1.PublicProfileArticleItem, 0, len(rows))
+	for _, row := range rows {
+		items = append(items, &blogv1.PublicProfileArticleItem{
+			Id:            int32(row.ID),
+			Title:         row.Title,
+			Description:   row.Description,
+			Cover:         row.Cover,
+			Views:         int32(row.Views),
+			Likes:         int32(row.Likes),
+			ArticleLevel:  int32(row.ArticleLevel),
+			IsMasterpiece: int32(row.IsMasterpiece),
+			TipTotal:      int32(row.TipTotal),
+			CreateTime:    row.CreateTime.UTC().Format(time.RFC3339Nano),
+		})
+	}
+	return &blogv1.ListPublicProfileArticlesResponse{
+		Items:    items,
+		Total:    int32(total),
+		Page:     int32(page),
+		PageSize: int32(pageSize),
+	}
 }

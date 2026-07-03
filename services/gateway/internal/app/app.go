@@ -71,7 +71,7 @@ func Run(cfgPath string) error {
 	h.GET(cfg.App.APIPrefix+"/article/info", article.Info)
 
 	profile := aggregator.NewProfileHandler(clients)
-	h.GET(cfg.App.APIPrefix+"/user/public/:uid", profile.PublicProfile)
+	router.SetProfileBFF(profile.PublicProfile)
 
 	if cfg.Observability.EnableMetrics {
 		h.GET("/metrics", adaptor.HertzHandler(metrics.Handler()))

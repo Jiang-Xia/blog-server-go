@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -38,6 +39,11 @@ func envInt(key string, fallback int) int {
 }
 
 func mysqlDSN() string {
+	if env("CI_USE_LOCAL_CONFIG", "") == "1" {
+		if dsn, ok := mysqlDSNFromYAML(); ok {
+			return dsn
+		}
+	}
 	host := env("CI_MYSQL_HOST", "127.0.0.1")
 	port := envInt("CI_MYSQL_PORT", 3306)
 	user := env("CI_MYSQL_USER", defaultMySQLUser)
@@ -45,6 +51,22 @@ func mysqlDSN() string {
 	db := env("CI_MYSQL_DATABASE", defaultMySQLDB)
 	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&loc=Local&charset=utf8mb4",
 		user, pass, host, port, db)
+}
+
+// mysqlDSNFromYAML 读取 configs/user.yaml 的 MySQL 段（SkipDocker 本地测试不覆盖 yaml 时用）。
+func mysqlDSNFromYAML() (string, bool) {
+	root := env("CI_PROJECT_ROOT", ".")
+	cfgPath := env("CONFIG_PATH", "configs/user.yaml")
+	if !filepath.IsAbs(cfgPath) {
+		cfgPath = filepath.Join(root, cfgPath)
+	}
+	cfg, err := config.MustLoad(cfgPath)
+	if err != nil {
+		return "", false
+	}
+	m := cfg.MySQL
+	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&loc=Local&charset=utf8mb4",
+		m.User, m.Password, m.Host, m.Port, m.Database), true
 }
 
 func mysqlDSNNoDB() string {

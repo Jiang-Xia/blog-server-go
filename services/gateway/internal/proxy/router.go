@@ -19,9 +19,10 @@ import (
 
 // Router 按附录 A 路径映射转发请求。
 type Router struct {
-	user *httputil.ReverseProxy
-	blog *httputil.ReverseProxy
-	rpg  *httputil.ReverseProxy
+	user        *httputil.ReverseProxy
+	blog        *httputil.ReverseProxy
+	rpg         *httputil.ReverseProxy
+	profileBFF  app.HandlerFunc
 }
 
 // NewRouter 构造反向代理路由。
@@ -56,6 +57,16 @@ func newProxy(raw, service string) (*httputil.ReverseProxy, error) {
 	return p, nil
 }
 
+// SetProfileBFF 注入 GET /user/public/:uid BFF 处理器（由 catch-all 在 pick 前分发）。
+func (r *Router) SetProfileBFF(h app.HandlerFunc) {
+	r.profileBFF = h
+}
+
+// ProxyHandler 返回将请求按 pick 规则转发的 Hertz 处理器（供 gateway 显式注册子路径）。
+func (r *Router) ProxyHandler(apiPrefix string) app.HandlerFunc {
+	return r.proxyHandler(apiPrefix)
+}
+
 // Register 挂载 catch-all 代理与 /realtime WS 转发。
 func (r *Router) Register(h *server.Hertz, apiPrefix string) {
 	h.Any("/realtime", adaptor.HertzHandler(r.wsHandler()))
@@ -81,6 +92,12 @@ func (r *Router) wsHandler() http.Handler {
 func (r *Router) proxyHandler(apiPrefix string) app.HandlerFunc {
 	return func(ctx context.Context, c *app.RequestContext) {
 		path := string(c.Path())
+		rel := strings.TrimPrefix(path, apiPrefix)
+		rel = strings.TrimPrefix(rel, "/")
+		if isPublicProfileBFF(rel) && r.profileBFF != nil {
+			r.profileBFF(ctx, c)
+			return
+		}
 		service, proxy := r.pick(path, apiPrefix)
 		if proxy == nil {
 			msg := "该接口未配置上游服务"
@@ -116,11 +133,11 @@ func (r *Router) pick(path, apiPrefix string) (service string, proxy *httputil.R
 	if isPublicProfileBFF(rel) {
 		return "", nil
 	}
-	if isUserRoute(rel) {
-		return "user", r.user
-	}
 	if isRPGRoute(rel) {
 		return "rpg", r.rpg
+	}
+	if isUserRoute(rel) {
+		return "user", r.user
 	}
 	if isBlogRoute(rel) {
 		return "blog", r.blog

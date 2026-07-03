@@ -5,6 +5,7 @@ import (
 	"context"
 	"strconv"
 
+	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/articleport"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
@@ -60,11 +61,11 @@ func provideRPGAdminHandler(mod *rpg.Module, jwt *auth.JWTService) *handler.RPGA
 	return handler.NewRPGAdminHandler(adminAdapter{mod.Admin}, jwt)
 }
 
-func provideRPGProfileHandler(mod *rpg.Module, articles articleport.ArticleReader) *handler.RPGProfileHandler {
+func provideRPGProfileHandler(mod *rpg.Module, articles articleport.ArticleReader, blogLister blogsvc.PublicProfileLister) *handler.RPGProfileHandler {
 	if mod == nil || mod.Profile == nil {
 		return handler.NewRPGProfileHandler(nil)
 	}
-	return handler.NewRPGProfileHandler(profileAdapter{svc: mod.Profile, articles: articles})
+	return handler.NewRPGProfileHandler(profileAdapter{svc: mod.Profile, articles: articles, blog: blogLister})
 }
 
 func providePayOrderServiceWithRecharge(
@@ -315,6 +316,7 @@ func (a rechargeAdapter) GetRechargeStatus(ctx context.Context, uid int, outTrad
 type profileAdapter struct {
 	svc      *rpgprofile.Service
 	articles articleport.ArticleReader
+	blog     blogsvc.PublicProfileLister
 }
 
 func (a profileAdapter) GetPublicProfile(ctx context.Context, uid int) (interface{}, error) {
@@ -341,10 +343,24 @@ func (a profileAdapter) GetPublicArticles(ctx context.Context, uid, page, pageSi
 	return map[string]interface{}{"list": list}, nil
 }
 func (a profileAdapter) GetPublicCollectArticles(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
-	return map[string]interface{}{"list": []interface{}{}, "pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize}}, nil
+	if a.blog == nil {
+		return map[string]interface{}{"list": []interface{}{}, "pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize}}, nil
+	}
+	res, err := a.blog.ListPublicCollectArticles(ctx, uid, page, pageSize)
+	if err != nil {
+		return nil, err
+	}
+	return map[string]interface{}{"list": res.List, "pagination": res.Pagination}, nil
 }
 func (a profileAdapter) GetPublicLikeArticles(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
-	return map[string]interface{}{"list": []interface{}{}, "pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize}}, nil
+	if a.blog == nil {
+		return map[string]interface{}{"list": []interface{}{}, "pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize}}, nil
+	}
+	res, err := a.blog.ListPublicLikeArticles(ctx, uid, page, pageSize)
+	if err != nil {
+		return nil, err
+	}
+	return map[string]interface{}{"list": res.List, "pagination": res.Pagination}, nil
 }
 
 type adminAdapter struct{ *rpgadmin.Service }

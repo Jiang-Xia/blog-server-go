@@ -1,5 +1,5 @@
 # user-service 配置模板（无密钥；复制为 user.yaml 后填写）
-# 与 monolith 开发库/JWT/oauth/mail 须保持一致
+# 须与 blog/rpg/monolith 使用相同 mysql.database、redis.addr、redis.db、jwt.secret
 
 app:
   name: user-service

@@ -25,6 +25,8 @@ const (
 	ArticleService_GetArticleDetail_FullMethodName              = "/blog.v1.ArticleService/GetArticleDetail"
 	ArticleService_GetPubStats_FullMethodName                   = "/blog.v1.ArticleService/GetPubStats"
 	ArticleService_UpdateContentModerationStatus_FullMethodName = "/blog.v1.ArticleService/UpdateContentModerationStatus"
+	ArticleService_ListPublicCollectArticles_FullMethodName     = "/blog.v1.ArticleService/ListPublicCollectArticles"
+	ArticleService_ListPublicLikeArticles_FullMethodName        = "/blog.v1.ArticleService/ListPublicLikeArticles"
 )
 
 // ArticleServiceClient is the client API for ArticleService service.
@@ -39,6 +41,10 @@ type ArticleServiceClient interface {
 	GetPubStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPubStatsResponse, error)
 	// UpdateContentModerationStatus 敏感词审核后同步 comment/msgboard/reply 状态。
 	UpdateContentModerationStatus(ctx context.Context, in *UpdateContentModerationStatusRequest, opts ...grpc.CallOption) (*UpdateContentModerationStatusResponse, error)
+	// ListPublicCollectArticles 公开主页用户收藏文章（已发布且作者未锁定）。
+	ListPublicCollectArticles(ctx context.Context, in *ListPublicProfileArticlesRequest, opts ...grpc.CallOption) (*ListPublicProfileArticlesResponse, error)
+	// ListPublicLikeArticles 公开主页用户点赞文章（status=1，同上过滤）。
+	ListPublicLikeArticles(ctx context.Context, in *ListPublicProfileArticlesRequest, opts ...grpc.CallOption) (*ListPublicProfileArticlesResponse, error)
 }
 
 type articleServiceClient struct {
@@ -99,6 +105,26 @@ func (c *articleServiceClient) UpdateContentModerationStatus(ctx context.Context
 	return out, nil
 }
 
+func (c *articleServiceClient) ListPublicCollectArticles(ctx context.Context, in *ListPublicProfileArticlesRequest, opts ...grpc.CallOption) (*ListPublicProfileArticlesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListPublicProfileArticlesResponse)
+	err := c.cc.Invoke(ctx, ArticleService_ListPublicCollectArticles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *articleServiceClient) ListPublicLikeArticles(ctx context.Context, in *ListPublicProfileArticlesRequest, opts ...grpc.CallOption) (*ListPublicProfileArticlesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListPublicProfileArticlesResponse)
+	err := c.cc.Invoke(ctx, ArticleService_ListPublicLikeArticles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArticleServiceServer is the server API for ArticleService service.
 // All implementations must embed UnimplementedArticleServiceServer
 // for forward compatibility.
@@ -111,6 +137,10 @@ type ArticleServiceServer interface {
 	GetPubStats(context.Context, *emptypb.Empty) (*GetPubStatsResponse, error)
 	// UpdateContentModerationStatus 敏感词审核后同步 comment/msgboard/reply 状态。
 	UpdateContentModerationStatus(context.Context, *UpdateContentModerationStatusRequest) (*UpdateContentModerationStatusResponse, error)
+	// ListPublicCollectArticles 公开主页用户收藏文章（已发布且作者未锁定）。
+	ListPublicCollectArticles(context.Context, *ListPublicProfileArticlesRequest) (*ListPublicProfileArticlesResponse, error)
+	// ListPublicLikeArticles 公开主页用户点赞文章（status=1，同上过滤）。
+	ListPublicLikeArticles(context.Context, *ListPublicProfileArticlesRequest) (*ListPublicProfileArticlesResponse, error)
 	mustEmbedUnimplementedArticleServiceServer()
 }
 
@@ -135,6 +165,12 @@ func (UnimplementedArticleServiceServer) GetPubStats(context.Context, *emptypb.E
 }
 func (UnimplementedArticleServiceServer) UpdateContentModerationStatus(context.Context, *UpdateContentModerationStatusRequest) (*UpdateContentModerationStatusResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateContentModerationStatus not implemented")
+}
+func (UnimplementedArticleServiceServer) ListPublicCollectArticles(context.Context, *ListPublicProfileArticlesRequest) (*ListPublicProfileArticlesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListPublicCollectArticles not implemented")
+}
+func (UnimplementedArticleServiceServer) ListPublicLikeArticles(context.Context, *ListPublicProfileArticlesRequest) (*ListPublicProfileArticlesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListPublicLikeArticles not implemented")
 }
 func (UnimplementedArticleServiceServer) mustEmbedUnimplementedArticleServiceServer() {}
 func (UnimplementedArticleServiceServer) testEmbeddedByValue()                        {}
@@ -247,6 +283,42 @@ func _ArticleService_UpdateContentModerationStatus_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArticleService_ListPublicCollectArticles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPublicProfileArticlesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).ListPublicCollectArticles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_ListPublicCollectArticles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).ListPublicCollectArticles(ctx, req.(*ListPublicProfileArticlesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArticleService_ListPublicLikeArticles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPublicProfileArticlesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).ListPublicLikeArticles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_ListPublicLikeArticles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).ListPublicLikeArticles(ctx, req.(*ListPublicProfileArticlesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArticleService_ServiceDesc is the grpc.ServiceDesc for ArticleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -273,6 +345,14 @@ var ArticleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateContentModerationStatus",
 			Handler:    _ArticleService_UpdateContentModerationStatus_Handler,
+		},
+		{
+			MethodName: "ListPublicCollectArticles",
+			Handler:    _ArticleService_ListPublicCollectArticles_Handler,
+		},
+		{
+			MethodName: "ListPublicLikeArticles",
+			Handler:    _ArticleService_ListPublicLikeArticles_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -13,20 +13,23 @@ Go 原生测试体系（`testing` + build tags），由 [blog-server](../blog-se
 ### 本地一键（推荐）
 
 ```powershell
-# Windows：Docker 测试库(3307/6380) + 四层测试 + 自动清理
+# Windows：本机 MySQL/Redis（3306/6379）+ 四层测试 + 自动清理
 .\scripts\test-run.ps1
 
 # 仅 PR 级单元门禁
 .\scripts\test-run.ps1 -UnitOnly
 
-# 使用本机已有 MySQL/Redis（3306/6379）
-.\scripts\test-run.ps1 -SkipDocker
+# 可选：Docker 隔离测试库（3307/6380，与开发库并行时）
+.\scripts\test-run.ps1 -UseDocker
 ```
 
 ```bash
-# Linux / macOS / WSL
+# Linux / macOS / WSL（默认本机 3306/6379）
 bash scripts/test-run.sh
 make test-run
+
+# 可选 Docker 隔离库
+USE_DOCKER=1 bash scripts/test-run.sh
 ```
 
 ### 分层命令
@@ -41,7 +44,7 @@ make test-e2e
 
 CI 脚本目录：`scripts/ci/`（`prepare_config`、`migrate_schemas`、`seed_test_data`、启停服务）。
 
-测试基础设施：`deploy/docker/docker-compose.test.yml`（MySQL 3307、Redis 6380）。
+可选 Docker 隔离库：`deploy/docker/docker-compose.test.yml`（MySQL 3307、Redis 6380），通过 `-UseDocker` / `USE_DOCKER=1` 启用。
 
 ## 分层
 

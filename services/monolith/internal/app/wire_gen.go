@@ -118,7 +118,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 	linkService := service.NewLinkService(linkRepo)
 	linkHandler := handler.NewLinkHandler(linkService, v)
 	fileRepo := repo2.NewFileRepo(client)
-	resourcesService := service.NewResourcesService(fileRepo, configConfig)
+	resourcesService := service.NewResourcesService(fileRepo, configConfig, store)
 	fileHandler := handler.NewFileHandler(resourcesService, v)
 	resourcesHandler := handler.NewResourcesHandler(resourcesService, v)
 	notificationHandler := handler.NewNotificationHandler(notificationService, v)
@@ -129,7 +129,11 @@ func InitializeApp(cfgPath string) (*App, error) {
 	rpgGameplay := provideRPGGameplay(module, client, articleRepo)
 	rpgHandler := provideRPGHandler(module, rpgGameplay, v)
 	rpgAdminHandler := provideRPGAdminHandler(module, v)
-	rpgProfileHandler := provideRPGProfileHandler(module, articleRepo)
+	publicprofileRepo, err := providePublicProfileRepo(configConfig)
+	if err != nil {
+		return nil, err
+	}
+	rpgProfileHandler := provideRPGProfileHandler(module, articleRepo, publicprofileRepo)
 	payOrderRepo := providePayOrderRepo(client)
 	payService, err := providePayService(configConfig, payOrderRepo, zapLogger)
 	if err != nil {

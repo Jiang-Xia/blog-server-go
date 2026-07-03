@@ -508,6 +508,9 @@
 | ListArticles | — | 列表（占位） |
 | GetArticleDetail | gateway BFF | 文章详情 JSON |
 | GetPubStats | gateway BFF | 文章/分类/标签计数 |
+| UpdateContentModerationStatus | user 敏感词 | 审核后同步 comment/msgboard/reply |
+| ListPublicCollectArticles | rpg-service | 公开主页收藏文章分页 |
+| ListPublicLikeArticles | rpg-service | 公开主页点赞文章分页 |
 
 ### 5.3 rpg.v1.RpgService（`:50053`）
 

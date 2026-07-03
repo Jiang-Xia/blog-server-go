@@ -3,6 +3,7 @@ package app
 
 import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/pkg/rpgsvc"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
@@ -29,6 +30,10 @@ import (
 	"github.com/redis/rueidis"
 	"go.uber.org/zap"
 )
+
+func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
+	return publicprofile.NewRepo(cfg)
+}
 
 func provideBanChecker(mod *rpg.Module) rpgsvc.BanChecker {
 	if mod == nil {

@@ -4,6 +4,7 @@ package app
 import (
 	"database/sql"
 
+	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
@@ -57,6 +58,10 @@ func provideUserReader(users usersvc.UserService) userport.UserReader {
 
 func provideArticleReader(db *sql.DB) articleport.ArticleReader {
 	return articleport.NewSQLArticleReader(db)
+}
+
+func provideBlogPublicProfileLister(cfg *config.Config) (blogsvc.PublicProfileLister, error) {
+	return blogsvc.NewGRPCPublicProfileLister(cfg.GRPC.BlogAddr)
 }
 
 func provideWSPusher(rds rueidis.Client) wspush.Pusher {

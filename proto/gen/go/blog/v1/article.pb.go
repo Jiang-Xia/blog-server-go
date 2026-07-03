@@ -482,6 +482,250 @@ func (x *UpdateContentModerationStatusResponse) GetUpdated() bool {
 	return false
 }
 
+type ListPublicProfileArticlesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           uint64                 `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPublicProfileArticlesRequest) Reset() {
+	*x = ListPublicProfileArticlesRequest{}
+	mi := &file_blog_v1_article_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPublicProfileArticlesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPublicProfileArticlesRequest) ProtoMessage() {}
+
+func (x *ListPublicProfileArticlesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPublicProfileArticlesRequest.ProtoReflect.Descriptor instead.
+func (*ListPublicProfileArticlesRequest) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListPublicProfileArticlesRequest) GetUid() uint64 {
+	if x != nil {
+		return x.Uid
+	}
+	return 0
+}
+
+func (x *ListPublicProfileArticlesRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListPublicProfileArticlesRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type PublicProfileArticleItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Cover         string                 `protobuf:"bytes,4,opt,name=cover,proto3" json:"cover,omitempty"`
+	Views         int32                  `protobuf:"varint,5,opt,name=views,proto3" json:"views,omitempty"`
+	Likes         int32                  `protobuf:"varint,6,opt,name=likes,proto3" json:"likes,omitempty"`
+	ArticleLevel  int32                  `protobuf:"varint,7,opt,name=article_level,json=articleLevel,proto3" json:"article_level,omitempty"`
+	IsMasterpiece int32                  `protobuf:"varint,8,opt,name=is_masterpiece,json=isMasterpiece,proto3" json:"is_masterpiece,omitempty"`
+	TipTotal      int32                  `protobuf:"varint,9,opt,name=tip_total,json=tipTotal,proto3" json:"tip_total,omitempty"`
+	CreateTime    string                 `protobuf:"bytes,10,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PublicProfileArticleItem) Reset() {
+	*x = PublicProfileArticleItem{}
+	mi := &file_blog_v1_article_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PublicProfileArticleItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublicProfileArticleItem) ProtoMessage() {}
+
+func (x *PublicProfileArticleItem) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublicProfileArticleItem.ProtoReflect.Descriptor instead.
+func (*PublicProfileArticleItem) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PublicProfileArticleItem) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *PublicProfileArticleItem) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *PublicProfileArticleItem) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *PublicProfileArticleItem) GetCover() string {
+	if x != nil {
+		return x.Cover
+	}
+	return ""
+}
+
+func (x *PublicProfileArticleItem) GetViews() int32 {
+	if x != nil {
+		return x.Views
+	}
+	return 0
+}
+
+func (x *PublicProfileArticleItem) GetLikes() int32 {
+	if x != nil {
+		return x.Likes
+	}
+	return 0
+}
+
+func (x *PublicProfileArticleItem) GetArticleLevel() int32 {
+	if x != nil {
+		return x.ArticleLevel
+	}
+	return 0
+}
+
+func (x *PublicProfileArticleItem) GetIsMasterpiece() int32 {
+	if x != nil {
+		return x.IsMasterpiece
+	}
+	return 0
+}
+
+func (x *PublicProfileArticleItem) GetTipTotal() int32 {
+	if x != nil {
+		return x.TipTotal
+	}
+	return 0
+}
+
+func (x *PublicProfileArticleItem) GetCreateTime() string {
+	if x != nil {
+		return x.CreateTime
+	}
+	return ""
+}
+
+type ListPublicProfileArticlesResponse struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Items         []*PublicProfileArticleItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Total         int32                       `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Page          int32                       `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                       `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPublicProfileArticlesResponse) Reset() {
+	*x = ListPublicProfileArticlesResponse{}
+	mi := &file_blog_v1_article_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPublicProfileArticlesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPublicProfileArticlesResponse) ProtoMessage() {}
+
+func (x *ListPublicProfileArticlesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPublicProfileArticlesResponse.ProtoReflect.Descriptor instead.
+func (*ListPublicProfileArticlesResponse) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListPublicProfileArticlesResponse) GetItems() []*PublicProfileArticleItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *ListPublicProfileArticlesResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListPublicProfileArticlesResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListPublicProfileArticlesResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
 var File_blog_v1_article_proto protoreflect.FileDescriptor
 
 const file_blog_v1_article_proto_rawDesc = "" +
@@ -514,14 +758,38 @@ const file_blog_v1_article_proto_rawDesc = "" +
 	"\tsource_id\x18\x02 \x01(\tR\bsourceId\x12\x16\n" +
 	"\x06status\x18\x03 \x01(\tR\x06status\"A\n" +
 	"%UpdateContentModerationStatusResponse\x12\x18\n" +
-	"\aupdated\x18\x01 \x01(\bR\aupdated2\xc2\x03\n" +
+	"\aupdated\x18\x01 \x01(\bR\aupdated\"e\n" +
+	" ListPublicProfileArticlesRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x04R\x03uid\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\"\xae\x02\n" +
+	"\x18PublicProfileArticleItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x14\n" +
+	"\x05cover\x18\x04 \x01(\tR\x05cover\x12\x14\n" +
+	"\x05views\x18\x05 \x01(\x05R\x05views\x12\x14\n" +
+	"\x05likes\x18\x06 \x01(\x05R\x05likes\x12#\n" +
+	"\rarticle_level\x18\a \x01(\x05R\farticleLevel\x12%\n" +
+	"\x0eis_masterpiece\x18\b \x01(\x05R\risMasterpiece\x12\x1b\n" +
+	"\ttip_total\x18\t \x01(\x05R\btipTotal\x12\x1f\n" +
+	"\vcreate_time\x18\n" +
+	" \x01(\tR\n" +
+	"createTime\"\xa3\x01\n" +
+	"!ListPublicProfileArticlesResponse\x127\n" +
+	"\x05items\x18\x01 \x03(\v2!.blog.v1.PublicProfileArticleItemR\x05items\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize2\xa7\x05\n" +
 	"\x0eArticleService\x12E\n" +
 	"\n" +
 	"GetArticle\x12\x1a.blog.v1.GetArticleRequest\x1a\x1b.blog.v1.GetArticleResponse\x12K\n" +
 	"\fListArticles\x12\x1c.blog.v1.ListArticlesRequest\x1a\x1d.blog.v1.ListArticlesResponse\x12W\n" +
 	"\x10GetArticleDetail\x12 .blog.v1.GetArticleDetailRequest\x1a!.blog.v1.GetArticleDetailResponse\x12C\n" +
 	"\vGetPubStats\x12\x16.google.protobuf.Empty\x1a\x1c.blog.v1.GetPubStatsResponse\x12~\n" +
-	"\x1dUpdateContentModerationStatus\x12-.blog.v1.UpdateContentModerationStatusRequest\x1a..blog.v1.UpdateContentModerationStatusResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1b\x06proto3"
+	"\x1dUpdateContentModerationStatus\x12-.blog.v1.UpdateContentModerationStatusRequest\x1a..blog.v1.UpdateContentModerationStatusResponse\x12r\n" +
+	"\x19ListPublicCollectArticles\x12).blog.v1.ListPublicProfileArticlesRequest\x1a*.blog.v1.ListPublicProfileArticlesResponse\x12o\n" +
+	"\x16ListPublicLikeArticles\x12).blog.v1.ListPublicProfileArticlesRequest\x1a*.blog.v1.ListPublicProfileArticlesResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1b\x06proto3"
 
 var (
 	file_blog_v1_article_proto_rawDescOnce sync.Once
@@ -535,7 +803,7 @@ func file_blog_v1_article_proto_rawDescGZIP() []byte {
 	return file_blog_v1_article_proto_rawDescData
 }
 
-var file_blog_v1_article_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_blog_v1_article_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_blog_v1_article_proto_goTypes = []any{
 	(*GetArticleRequest)(nil),                     // 0: blog.v1.GetArticleRequest
 	(*GetArticleResponse)(nil),                    // 1: blog.v1.GetArticleResponse
@@ -546,25 +814,33 @@ var file_blog_v1_article_proto_goTypes = []any{
 	(*GetPubStatsResponse)(nil),                   // 6: blog.v1.GetPubStatsResponse
 	(*UpdateContentModerationStatusRequest)(nil),  // 7: blog.v1.UpdateContentModerationStatusRequest
 	(*UpdateContentModerationStatusResponse)(nil), // 8: blog.v1.UpdateContentModerationStatusResponse
-	(*emptypb.Empty)(nil),                         // 9: google.protobuf.Empty
+	(*ListPublicProfileArticlesRequest)(nil),      // 9: blog.v1.ListPublicProfileArticlesRequest
+	(*PublicProfileArticleItem)(nil),              // 10: blog.v1.PublicProfileArticleItem
+	(*ListPublicProfileArticlesResponse)(nil),     // 11: blog.v1.ListPublicProfileArticlesResponse
+	(*emptypb.Empty)(nil),                         // 12: google.protobuf.Empty
 }
 var file_blog_v1_article_proto_depIdxs = []int32{
-	1, // 0: blog.v1.ListArticlesResponse.items:type_name -> blog.v1.GetArticleResponse
-	0, // 1: blog.v1.ArticleService.GetArticle:input_type -> blog.v1.GetArticleRequest
-	2, // 2: blog.v1.ArticleService.ListArticles:input_type -> blog.v1.ListArticlesRequest
-	4, // 3: blog.v1.ArticleService.GetArticleDetail:input_type -> blog.v1.GetArticleDetailRequest
-	9, // 4: blog.v1.ArticleService.GetPubStats:input_type -> google.protobuf.Empty
-	7, // 5: blog.v1.ArticleService.UpdateContentModerationStatus:input_type -> blog.v1.UpdateContentModerationStatusRequest
-	1, // 6: blog.v1.ArticleService.GetArticle:output_type -> blog.v1.GetArticleResponse
-	3, // 7: blog.v1.ArticleService.ListArticles:output_type -> blog.v1.ListArticlesResponse
-	5, // 8: blog.v1.ArticleService.GetArticleDetail:output_type -> blog.v1.GetArticleDetailResponse
-	6, // 9: blog.v1.ArticleService.GetPubStats:output_type -> blog.v1.GetPubStatsResponse
-	8, // 10: blog.v1.ArticleService.UpdateContentModerationStatus:output_type -> blog.v1.UpdateContentModerationStatusResponse
-	6, // [6:11] is the sub-list for method output_type
-	1, // [1:6] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1,  // 0: blog.v1.ListArticlesResponse.items:type_name -> blog.v1.GetArticleResponse
+	10, // 1: blog.v1.ListPublicProfileArticlesResponse.items:type_name -> blog.v1.PublicProfileArticleItem
+	0,  // 2: blog.v1.ArticleService.GetArticle:input_type -> blog.v1.GetArticleRequest
+	2,  // 3: blog.v1.ArticleService.ListArticles:input_type -> blog.v1.ListArticlesRequest
+	4,  // 4: blog.v1.ArticleService.GetArticleDetail:input_type -> blog.v1.GetArticleDetailRequest
+	12, // 5: blog.v1.ArticleService.GetPubStats:input_type -> google.protobuf.Empty
+	7,  // 6: blog.v1.ArticleService.UpdateContentModerationStatus:input_type -> blog.v1.UpdateContentModerationStatusRequest
+	9,  // 7: blog.v1.ArticleService.ListPublicCollectArticles:input_type -> blog.v1.ListPublicProfileArticlesRequest
+	9,  // 8: blog.v1.ArticleService.ListPublicLikeArticles:input_type -> blog.v1.ListPublicProfileArticlesRequest
+	1,  // 9: blog.v1.ArticleService.GetArticle:output_type -> blog.v1.GetArticleResponse
+	3,  // 10: blog.v1.ArticleService.ListArticles:output_type -> blog.v1.ListArticlesResponse
+	5,  // 11: blog.v1.ArticleService.GetArticleDetail:output_type -> blog.v1.GetArticleDetailResponse
+	6,  // 12: blog.v1.ArticleService.GetPubStats:output_type -> blog.v1.GetPubStatsResponse
+	8,  // 13: blog.v1.ArticleService.UpdateContentModerationStatus:output_type -> blog.v1.UpdateContentModerationStatusResponse
+	11, // 14: blog.v1.ArticleService.ListPublicCollectArticles:output_type -> blog.v1.ListPublicProfileArticlesResponse
+	11, // 15: blog.v1.ArticleService.ListPublicLikeArticles:output_type -> blog.v1.ListPublicProfileArticlesResponse
+	9,  // [9:16] is the sub-list for method output_type
+	2,  // [2:9] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_blog_v1_article_proto_init() }
@@ -578,7 +854,7 @@ func file_blog_v1_article_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blog_v1_article_proto_rawDesc), len(file_blog_v1_article_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

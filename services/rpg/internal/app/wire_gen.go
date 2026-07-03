@@ -50,7 +50,11 @@ func InitializeApp(cfgPath string) (*App, error) {
 	v := provideJWT(configConfig)
 	rpgHandler := provideRPGHandler(module, rpgGameplay, v)
 	rpgAdminHandler := provideRPGAdminHandler(module, v)
-	rpgProfileHandler := provideRPGProfileHandler(module, articleReader)
+	publicProfileLister, err := provideBlogPublicProfileLister(configConfig)
+	if err != nil {
+		return nil, err
+	}
+	rpgProfileHandler := provideRPGProfileHandler(module, articleReader, publicProfileLister)
 	payOrderRepo := providePayOrderRepo(client)
 	payService, err := providePayService(configConfig, payOrderRepo, zapLogger)
 	if err != nil {

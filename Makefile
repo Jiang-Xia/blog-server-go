@@ -163,6 +163,7 @@ test-e2e:
 test-all: test-coverage test-smoke test-integration test-e2e
 
 test-infra-up:
+	@echo "optional: docker isolated test db (3307/6380); default test-run uses local 3306/6379"
 	docker compose -f deploy/docker/docker-compose.test.yml up -d --wait
 
 test-infra-down:

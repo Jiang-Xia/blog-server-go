@@ -14,6 +14,10 @@ service ArticleService {
   rpc GetPubStats(google.protobuf.Empty) returns (GetPubStatsResponse);
   // UpdateContentModerationStatus 敏感词审核后同步 comment/msgboard/reply 状态。
   rpc UpdateContentModerationStatus(UpdateContentModerationStatusRequest) returns (UpdateContentModerationStatusResponse);
+  // ListPublicCollectArticles 公开主页用户收藏文章（已发布且作者未锁定）。
+  rpc ListPublicCollectArticles(ListPublicProfileArticlesRequest) returns (ListPublicProfileArticlesResponse);
+  // ListPublicLikeArticles 公开主页用户点赞文章（status=1，同上过滤）。
+  rpc ListPublicLikeArticles(ListPublicProfileArticlesRequest) returns (ListPublicProfileArticlesResponse);
 }
 
 message GetArticleRequest {
@@ -58,4 +62,30 @@ message UpdateContentModerationStatusRequest {
 
 message UpdateContentModerationStatusResponse {
   bool updated = 1;
+}
+
+message ListPublicProfileArticlesRequest {
+  uint64 uid = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message PublicProfileArticleItem {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  string cover = 4;
+  int32 views = 5;
+  int32 likes = 6;
+  int32 article_level = 7;
+  int32 is_masterpiece = 8;
+  int32 tip_total = 9;
+  string create_time = 10;
+}
+
+message ListPublicProfileArticlesResponse {
+  repeated PublicProfileArticleItem items = 1;
+  int32 total = 2;
+  int32 page = 3;
+  int32 page_size = 4;
 }

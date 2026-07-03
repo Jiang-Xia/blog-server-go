@@ -1,0 +1,41 @@
+{
+  "info": {
+    "name": "blog-server-go public profile smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8000" }
+  ],
+  "item": [
+    {
+      "name": "health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/health" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('code 200', () => pm.expect(pm.response.json().code).to.eql(200));"] } }]
+    },
+    {
+      "name": "public collects",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/user/public/1/collects?page=1&pageSize=5" },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "const j = pm.response.json();",
+        "pm.test('collects ok', () => pm.expect(j.code).to.eql(200));",
+        "pm.test('has list', () => pm.expect(j.data.list).to.be.an('array'));",
+        "pm.test('has pagination', () => {",
+        "  pm.expect(j.data.pagination).to.be.an('object');",
+        "  pm.expect(j.data.pagination).to.have.property('total');",
+        "  pm.expect(j.data.pagination).to.have.property('page');",
+        "  pm.expect(j.data.pagination).to.have.property('pageSize');",
+        "});"
+      ] } }]
+    },
+    {
+      "name": "public likes",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/v1/user/public/1/likes?page=1&pageSize=5" },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "const j = pm.response.json();",
+        "pm.test('likes ok', () => pm.expect(j.code).to.eql(200));",
+        "pm.test('has list', () => pm.expect(j.data.list).to.be.an('array'));",
+        "pm.test('has pagination', () => pm.expect(j.data.pagination.pageSize).to.eql(5));"
+      ] } }]
+    }
+  ]
+}

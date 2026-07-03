@@ -21,11 +21,11 @@ func main() {
 	redisDB := envInt("CI_REDIS_DB", defaultRedisDB)
 
 	files := map[string]string{
-		"configs/user.yaml": userYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
-		"configs/blog.yaml": serviceYAML("blog-service", "blog", ":5001", ":50051", mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret, ":6061"),
-		"configs/rpg.yaml":  serviceYAML("rpg-service", "rpg", ":5003", ":50053", mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret, ":6063"),
-		"configs/gateway.yaml": gatewayYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
-		"configs/monolith.yaml": userYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
+		"configs/user.yaml":     userYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
+		"configs/blog.yaml":     blogYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
+		"configs/rpg.yaml":      rpgYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
+		"configs/gateway.yaml":  gatewayYAML(secret),
+		"configs/monolith.yaml": monolithYAML(mysqlHost, mysqlPort, mysqlUser, mysqlPass, mysqlDB, redisAddr, redisDB, secret),
 	}
 
 	for rel, content := range files {
@@ -81,30 +81,21 @@ observability:
 `, host, port, user, pass, db, redis, redisDB, secret)
 }
 
-func serviceYAML(name, mode, httpAddr, grpcAddr, host string, port int, user, pass, db, redis string, redisDB int, secret, pprof string) string {
-	grpcBlock := ""
-	if grpcAddr != "" {
-		grpcBlock = fmt.Sprintf(`
-grpc:
-  addr: "%s"
-  user_addr: "127.0.0.1:50052"
-`, grpcAddr)
-	} else if mode == "rpg" {
-		grpcBlock = `
-grpc:
-  addr: ":50053"
-  user_addr: "127.0.0.1:50052"
-`
-	}
+func blogYAML(host string, port int, user, pass, db, redis string, redisDB int, secret string) string {
 	return fmt.Sprintf(`app:
-  name: %s
+  name: blog-service
   env: development
-  service_mode: %s
+  service_mode: blog
   api_prefix: /api/v1
 
 http:
-  addr: "%s"
-%s
+  addr: ":5001"
+
+grpc:
+  addr: ":50051"
+  user_addr: "127.0.0.1:50052"
+  rpg_addr: "127.0.0.1:50053"
+
 mysql:
   host: %s
   port: %d
@@ -129,12 +120,93 @@ crypto:
 observability:
   enable_metrics: false
   enable_pprof: false
-  pprof_addr: "%s"
-  service_name: %s
-`, name, mode, httpAddr, grpcBlock, host, port, user, pass, db, redis, redisDB, secret, pprof, name)
+  pprof_addr: ":6061"
+  service_name: blog-service
+`, host, port, user, pass, db, redis, redisDB, secret)
 }
 
-func gatewayYAML(host string, port int, user, pass, db, redis string, redisDB int, secret string) string {
+func rpgYAML(host string, port int, user, pass, db, redis string, redisDB int, secret string) string {
+	return fmt.Sprintf(`app:
+  name: rpg-service
+  env: development
+  service_mode: rpg
+  api_prefix: /api/v1
+
+http:
+  addr: ":5003"
+
+grpc:
+  addr: ":50053"
+  user_addr: "127.0.0.1:50052"
+  blog_addr: "127.0.0.1:50051"
+
+mysql:
+  host: %s
+  port: %d
+  user: %s
+  password: %s
+  database: %s
+  table_prefix: x_
+
+redis:
+  addr: "%s"
+  db: %d
+
+jwt:
+  secret: "%s"
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+crypto:
+  rsa_private_key: ""
+
+observability:
+  enable_metrics: false
+  enable_pprof: false
+  pprof_addr: ":6063"
+  service_name: rpg-service
+`, host, port, user, pass, db, redis, redisDB, secret)
+}
+
+func monolithYAML(host string, port int, user, pass, db, redis string, redisDB int, secret string) string {
+	return fmt.Sprintf(`app:
+  name: blog-server-go
+  env: development
+  api_prefix: /api/v1
+
+http:
+  addr: ":5000"
+
+mysql:
+  host: %s
+  port: %d
+  user: %s
+  password: %s
+  database: %s
+  table_prefix: x_
+
+redis:
+  addr: "%s"
+  db: %d
+
+jwt:
+  secret: "%s"
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+crypto:
+  rsa_private_key: ""
+
+observability:
+  enable_metrics: false
+  enable_pprof: false
+  service_name: blog-server-go
+`, host, port, user, pass, db, redis, redisDB, secret)
+}
+
+func gatewayYAML(secret string) string {
 	return fmt.Sprintf(`app:
   name: api-gateway
   env: development

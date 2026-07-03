@@ -42,6 +42,27 @@ pwsh scripts/setup-config.ps1
 | `pay_alipayNotifyUrl` | `pay.alipay_notify_url` |
 | `file_filePath` | `storage.upload_path` |
 
+## 微服务共享存储（强制）
+
+`user` / `blog` / `rpg` / `monolith` 本地开发须指向**同一 MySQL 库**与**同一 Redis 实例及 db**，否则会出现：
+
+- 登录 token / 验证码在 user 写入、gateway 校验失败
+- RPG 禁言、收藏点赞跨服务数据不一致
+
+| 字段 | 本地开发约定 | CI Docker 测试 |
+|------|-------------|----------------|
+| `mysql.database` | `x_my_blog` | `x_my_blog` |
+| `mysql.host:port` | `127.0.0.1:3306` | `127.0.0.1:3307` |
+| `redis.addr` | `127.0.0.1:6379` | `127.0.0.1:6380` |
+| `redis.db` | **1**（与 Nest 对齐） | **2**（隔离本地 db 1） |
+| `jwt.secret` | 四服务 + gateway **完全一致** | `ci-integration-test-secret` |
+
+`gateway` 不连 MySQL/Redis，但 `jwt.secret` 须与其它服务一致。
+
+修改任一服务的 `mysql` / `redis` / `jwt` 后，请同步其余 `configs/{user,blog,rpg,monolith}.yaml`。
+
+`test-run.ps1` 默认不启 Docker，保留本地 `configs/*.yaml`；migrate/seed 从 `configs/user.yaml` 读取 MySQL 凭据。
+
 ## 差异说明
 
 - **MySQL 库名**：Go 本地默认 `x_my_blog`（带 `x_` 表前缀）；Nest 开发库为 `myblog`。数据同步见 `scripts/sync_data_x_my_blog.go`。

@@ -6,6 +6,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
+	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
 	"github.com/Jiang-Xia/blog-server-go/pkg/rpgsvc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/auth"
@@ -59,8 +60,12 @@ func provideJWT(cfg *config.Config) *auth.JWTService {
 	return auth.NewJWTService(cfg)
 }
 
-func provideBlogGRPCServer(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client) *bloggrpc.Server {
-	return bloggrpc.New(articles, moderation, client)
+func provideBlogGRPCServer(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client, publicProfile *publicprofile.Repo) *bloggrpc.Server {
+	return bloggrpc.New(articles, moderation, client, publicProfile)
+}
+
+func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
+	return publicprofile.NewRepo(cfg)
 }
 
 func provideBlogEventConsumer(rds rueidis.Client, log *zap.Logger) BlogEventConsumer {

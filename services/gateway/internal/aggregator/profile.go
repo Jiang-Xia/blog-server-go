@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"strconv"
+	"strings"
 
 	rpgv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
@@ -27,8 +28,8 @@ func NewProfileHandler(clients *grpcclient.Clients) *ProfileHandler {
 
 // PublicProfile 返回公开用户主页（user + RPG 聚合）。
 func (h *ProfileHandler) PublicProfile(ctx context.Context, c *app.RequestContext) {
-	uid, err := strconv.Atoi(c.Param("uid"))
-	if err != nil || uid <= 0 {
+	uid, ok := publicProfileUID(string(c.Path()))
+	if !ok {
 		response.Error(ctx, c, errcode.WithMessage(errcode.InvalidParam, "无效的用户 ID"))
 		return
 	}
@@ -51,4 +52,17 @@ func (h *ProfileHandler) PublicProfile(ctx context.Context, c *app.RequestContex
 		return
 	}
 	response.Success(ctx, c, data)
+}
+
+func publicProfileUID(path string) (int, bool) {
+	parts := strings.Split(strings.Trim(path, "/"), "/")
+	if len(parts) < 3 {
+		return 0, false
+	}
+	n := len(parts)
+	if parts[n-3] != "user" || parts[n-2] != "public" {
+		return 0, false
+	}
+	uid, err := strconv.Atoi(parts[n-1])
+	return uid, err == nil && uid > 0
 }

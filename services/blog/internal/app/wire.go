@@ -69,6 +69,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		provideScheduledTaskJobs,
 		provideScheduledTaskService,
 		provideScheduledTaskRuntime,
+		providePublicProfileRepo,
 		handler.NewScheduledTaskHandler,
 		handler.NewArticleHandler,
 		handler.NewCategoryHandler,

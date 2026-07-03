@@ -1,4 +1,5 @@
 # blog-service 配置模板（无密钥；复制为 blog.yaml 后填写）
+# 须与 user/rpg/monolith 使用相同 mysql.database、redis.addr、redis.db、jwt.secret
 
 app:
   name: blog-service
