@@ -110,6 +110,80 @@ func (s *Server) UpdateContentModerationStatus(ctx context.Context, req *blogv1.
 	return &blogv1.UpdateContentModerationStatusResponse{Updated: updated}, nil
 }
 
+// GetArticleRPGFields 读取文章 RPG 字段。
+func (s *Server) GetArticleRPGFields(ctx context.Context, req *blogv1.GetArticleRPGFieldsRequest) (*blogv1.GetArticleRPGFieldsResponse, error) {
+	if s.ent == nil {
+		return nil, status.Error(codes.Unavailable, "ent client not configured")
+	}
+	id := int(req.GetArticleId())
+	if id <= 0 {
+		return nil, status.Error(codes.InvalidArgument, "article_id required")
+	}
+	row, err := s.ent.Article.Get(ctx, id)
+	if err != nil {
+		if ent.IsNotFound(err) {
+			return nil, status.Error(codes.NotFound, "article not found")
+		}
+		return nil, status.Errorf(codes.Internal, "get article: %v", err)
+	}
+	return &blogv1.GetArticleRPGFieldsResponse{
+		ArticleId:        int32(row.ID),
+		AuthorUid:        int32(row.UID),
+		Title:            row.Title,
+		ArticleExp:       int32(row.ArticleExp),
+		ArticleLevel:     int32(row.ArticleLevel),
+		ReputationGained: int32(row.ReputationGained),
+		IsMasterpiece:    int32(row.IsMasterpiece),
+		TipTotal:         int32(row.TipTotal),
+	}, nil
+}
+
+// UpdateArticleRPGFields 更新文章 RPG 字段。
+func (s *Server) UpdateArticleRPGFields(ctx context.Context, req *blogv1.UpdateArticleRPGFieldsRequest) (*blogv1.UpdateArticleRPGFieldsResponse, error) {
+	if s.ent == nil {
+		return nil, status.Error(codes.Unavailable, "ent client not configured")
+	}
+	id := int(req.GetArticleId())
+	if id <= 0 {
+		return nil, status.Error(codes.InvalidArgument, "article_id required")
+	}
+	n, err := s.ent.Article.UpdateOneID(id).
+		SetArticleExp(int(req.GetArticleExp())).
+		SetArticleLevel(int(req.GetArticleLevel())).
+		SetReputationGained(int(req.GetReputationGained())).
+		SetIsMasterpiece(int(req.GetIsMasterpiece())).
+		Save(ctx)
+	if err != nil {
+		if ent.IsNotFound(err) {
+			return &blogv1.UpdateArticleRPGFieldsResponse{Updated: false}, nil
+		}
+		return nil, status.Errorf(codes.Internal, "update article rpg: %v", err)
+	}
+	_ = n
+	return &blogv1.UpdateArticleRPGFieldsResponse{Updated: true}, nil
+}
+
+// AddArticleTipTotal 原子累加打赏总额。
+func (s *Server) AddArticleTipTotal(ctx context.Context, req *blogv1.AddArticleTipTotalRequest) (*blogv1.AddArticleTipTotalResponse, error) {
+	if s.ent == nil {
+		return nil, status.Error(codes.Unavailable, "ent client not configured")
+	}
+	id := int(req.GetArticleId())
+	amount := int(req.GetAmount())
+	if id <= 0 || amount <= 0 {
+		return nil, status.Error(codes.InvalidArgument, "article_id and amount required")
+	}
+	n, err := s.ent.Article.UpdateOneID(id).AddTipTotal(amount).Save(ctx)
+	if err != nil {
+		if ent.IsNotFound(err) {
+			return &blogv1.AddArticleTipTotalResponse{Updated: false}, nil
+		}
+		return nil, status.Errorf(codes.Internal, "add tip total: %v", err)
+	}
+	_ = n
+	return &blogv1.AddArticleTipTotalResponse{Updated: true}, nil
+}
+
 // ListPublicCollectArticles 用户公开收藏文章分页。
 func (s *Server) ListPublicCollectArticles(ctx context.Context, req *blogv1.ListPublicProfileArticlesRequest) (*blogv1.ListPublicProfileArticlesResponse, error) {
 	if s.publicProfile == nil {

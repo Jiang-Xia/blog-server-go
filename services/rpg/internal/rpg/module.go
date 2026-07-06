@@ -2,6 +2,7 @@
 package rpg
 
 import (
+	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/ent"
@@ -36,6 +37,7 @@ type Module struct {
 	Repo       *rpgrepo.RpgRepo
 	Rpg        *rpgcore.RpgService
 	Level      *rpglevel.LevelService
+	ArticleLevel *rpglevel.ArticleLevelService
 	Sign       *rpglevel.SignService
 	Punishment *rpgpunish.PunishmentService
 	Notify     *rpgnotify.RpgNotifyService
@@ -66,6 +68,7 @@ func NewModule(
 	rds rueidis.Client,
 	users userport.UserReader,
 	articles articleport.ArticleReader,
+	articleRPG blogsvc.ArticleRPGStore,
 	publisher *event.Publisher,
 	cfg *config.Config,
 	log *zap.Logger,
@@ -93,7 +96,8 @@ func NewModule(
 	guildSvc := rpgguild.NewService(repo, achievementSvc, questSvc)
 	activitySvc := rpgactivity.NewService(repo, publisher, log)
 	reputationSvc := rpgsocial.NewReputationService(rpgSvc, achievementSvc)
-	tipSvc := rpgsocial.NewTipService(articles, repo, inventorySvc, reputationSvc, publisher, notify)
+	articleLevelSvc := rpglevel.NewArticleLevelService(articleRPG, reputationSvc, achievementSvc)
+	tipSvc := rpgsocial.NewTipService(articles, repo, inventorySvc, reputationSvc, articleLevelSvc, publisher, notify)
 	socialSvc := rpgsocial.NewInteractService(repo, rpgSvc, inventorySvc, reputationSvc, redis, achievementSvc, questSvc)
 	rechargeSvc := rpgrecharge.NewService(repo, rpgSvc, inventorySvc, notify)
 	adminSvc := rpgadmin.NewService(repo, rpgSvc, inventorySvc, lotterySvc, guildSvc, punishSvc, storageUploadRoot(cfg), cfg.Storage.PublicPrefixOrDefault())
@@ -103,6 +107,7 @@ func NewModule(
 		Repo:        repo,
 		Rpg:         rpgSvc,
 		Level:       levelSvc,
+		ArticleLevel: articleLevelSvc,
 		Sign:        signSvc,
 		Punishment:  punishSvc,
 		Notify:      notify,

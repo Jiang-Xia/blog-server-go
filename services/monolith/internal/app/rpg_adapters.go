@@ -91,12 +91,13 @@ func provideRPGEventHandlersFull(mod *rpg.Module, redis *redisutil.Store) rpgeve
 		return rpgevent.Handlers{Redis: redis}
 	}
 	return rpgevent.Handlers{
-		Core:        mod.Rpg,
-		Level:       mod.Level,
-		Achievement: mod.Achievement,
-		Quest:       mod.Quest,
-		Reputation:  mod.Reputation,
-		Redis:       redis,
+		Core:         mod.Rpg,
+		Level:        mod.Level,
+		ArticleLevel: mod.ArticleLevel,
+		Achievement:  mod.Achievement,
+		Quest:        mod.Quest,
+		Reputation:   mod.Reputation,
+		Redis:        redis,
 	}
 }
 

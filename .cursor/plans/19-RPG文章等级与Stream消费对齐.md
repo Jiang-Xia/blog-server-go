@@ -70,21 +70,21 @@ payload 解析须用 Plan 18 `authorUid` / `articleId` 字段（comment/like/col
 
 ## 任务清单
 
-- [ ] 设计并落地 article RPG 字段更新 gRPC（或选定写库方案）
-- [ ] 实现 `ArticleLevelService`：`AddArticleExp` / `AddTipTotal` / 神作判定
-- [ ] 改造 `onArticlePublished` / comment / like / collect / viewed 五个 handler
-- [ ] `onArticleTipped` 确认 `tipTotal` 与 Nest 一致（如需迁到 ArticleLevelService）
-- [ ] 单元测试：升级阈值、神作边界、声望可选参数
-- [ ] 集成测试：发文 → 查 article `articleExp`；评论 → 作者文章 exp 增加
-- [ ] 更新 `nest-parity-matrix.md` P-02 状态
+- [x] 设计并落地 article RPG 字段更新 gRPC（或选定写库方案）
+- [x] 实现 `ArticleLevelService`：`AddArticleExp` / `AddTipTotal` / 神作判定
+- [x] 改造 `onArticlePublished` / comment / like / collect / viewed 五个 handler
+- [x] `onArticleTipped` 确认 `tipTotal` 与 Nest 一致（如需迁到 ArticleLevelService）
+- [x] 单元测试：升级阈值、神作边界、声望可选参数
+- [x] 集成测试：发文 → 查 article `articleExp`；评论 → 作者文章 exp 增加
+- [x] 更新 `nest-parity-matrix.md` P-02 状态
 
 ## 验收标准
 
-- [ ] 发布文章后 `article.articleExp` / `articleLevel` 按声望加成写入（非 0/默认）
-- [ ] 他人评论/点赞/收藏后 **作者** 文章 exp 增加（非评论者）
-- [ ] 阅读文章（同日同访客 dedup 后）作者文章 exp +1 路径与 Nest 一致
-- [ ] 达标后 `isMasterpiece=1`；作者成就 `article_level_up` / `masterpiece` 可推进
-- [ ] 用户侧经验/任务（Plan 18）行为不退化
+- [x] 发布文章后 `article.articleExp` / `articleLevel` 按声望加成写入（非 0/默认）
+- [x] 他人评论/点赞/收藏后 **作者** 文章 exp 增加（非评论者）
+- [x] 阅读文章（同日同访客 dedup 后）作者文章 exp +1 路径与 Nest 一致
+- [x] 达标后 `isMasterpiece=1`；作者成就 `article_level_up` / `masterpiece` 可推进
+- [x] 用户侧经验/任务（Plan 18）行为不退化
 
 ### 可脚本化验收
 
@@ -123,7 +123,7 @@ go test -tags=integration ./test/integration/... -run ArticleLevel -count=1
 
 [`docs/19-RPG文章等级与Stream消费对齐.md`](../../docs/19-RPG文章等级与Stream消费对齐.md)
 
-- [ ] 文档已写入 `docs/`
+- [x] 文档已写入 `docs/`
 
 ## 下一步
 

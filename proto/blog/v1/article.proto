@@ -18,6 +18,12 @@ service ArticleService {
   rpc ListPublicCollectArticles(ListPublicProfileArticlesRequest) returns (ListPublicProfileArticlesResponse);
   // ListPublicLikeArticles 公开主页用户点赞文章（status=1，同上过滤）。
   rpc ListPublicLikeArticles(ListPublicProfileArticlesRequest) returns (ListPublicProfileArticlesResponse);
+  // GetArticleRPGFields 读取文章 RPG 字段（rpg-service Stream 消费用）。
+  rpc GetArticleRPGFields(GetArticleRPGFieldsRequest) returns (GetArticleRPGFieldsResponse);
+  // UpdateArticleRPGFields 更新文章 RPG 字段（rpg-service 经 gRPC 写库，不直连 blog 表）。
+  rpc UpdateArticleRPGFields(UpdateArticleRPGFieldsRequest) returns (UpdateArticleRPGFieldsResponse);
+  // AddArticleTipTotal 原子累加文章打赏总额。
+  rpc AddArticleTipTotal(AddArticleTipTotalRequest) returns (AddArticleTipTotalResponse);
 }
 
 message GetArticleRequest {
@@ -88,4 +94,40 @@ message ListPublicProfileArticlesResponse {
   int32 total = 2;
   int32 page = 3;
   int32 page_size = 4;
+}
+
+message GetArticleRPGFieldsRequest {
+  int32 article_id = 1;
+}
+
+message GetArticleRPGFieldsResponse {
+  int32 article_id = 1;
+  int32 author_uid = 2;
+  string title = 3;
+  int32 article_exp = 4;
+  int32 article_level = 5;
+  int32 reputation_gained = 6;
+  int32 is_masterpiece = 7;
+  int32 tip_total = 8;
+}
+
+message UpdateArticleRPGFieldsRequest {
+  int32 article_id = 1;
+  int32 article_exp = 2;
+  int32 article_level = 3;
+  int32 reputation_gained = 4;
+  int32 is_masterpiece = 5;
+}
+
+message UpdateArticleRPGFieldsResponse {
+  bool updated = 1;
+}
+
+message AddArticleTipTotalRequest {
+  int32 article_id = 1;
+  int32 amount = 2;
+}
+
+message AddArticleTipTotalResponse {
+  bool updated = 1;
 }

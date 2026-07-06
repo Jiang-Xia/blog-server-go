@@ -27,6 +27,9 @@ const (
 	ArticleService_UpdateContentModerationStatus_FullMethodName = "/blog.v1.ArticleService/UpdateContentModerationStatus"
 	ArticleService_ListPublicCollectArticles_FullMethodName     = "/blog.v1.ArticleService/ListPublicCollectArticles"
 	ArticleService_ListPublicLikeArticles_FullMethodName        = "/blog.v1.ArticleService/ListPublicLikeArticles"
+	ArticleService_GetArticleRPGFields_FullMethodName           = "/blog.v1.ArticleService/GetArticleRPGFields"
+	ArticleService_UpdateArticleRPGFields_FullMethodName        = "/blog.v1.ArticleService/UpdateArticleRPGFields"
+	ArticleService_AddArticleTipTotal_FullMethodName            = "/blog.v1.ArticleService/AddArticleTipTotal"
 )
 
 // ArticleServiceClient is the client API for ArticleService service.
@@ -45,6 +48,12 @@ type ArticleServiceClient interface {
 	ListPublicCollectArticles(ctx context.Context, in *ListPublicProfileArticlesRequest, opts ...grpc.CallOption) (*ListPublicProfileArticlesResponse, error)
 	// ListPublicLikeArticles 公开主页用户点赞文章（status=1，同上过滤）。
 	ListPublicLikeArticles(ctx context.Context, in *ListPublicProfileArticlesRequest, opts ...grpc.CallOption) (*ListPublicProfileArticlesResponse, error)
+	// GetArticleRPGFields 读取文章 RPG 字段（rpg-service Stream 消费用）。
+	GetArticleRPGFields(ctx context.Context, in *GetArticleRPGFieldsRequest, opts ...grpc.CallOption) (*GetArticleRPGFieldsResponse, error)
+	// UpdateArticleRPGFields 更新文章 RPG 字段（rpg-service 经 gRPC 写库，不直连 blog 表）。
+	UpdateArticleRPGFields(ctx context.Context, in *UpdateArticleRPGFieldsRequest, opts ...grpc.CallOption) (*UpdateArticleRPGFieldsResponse, error)
+	// AddArticleTipTotal 原子累加文章打赏总额。
+	AddArticleTipTotal(ctx context.Context, in *AddArticleTipTotalRequest, opts ...grpc.CallOption) (*AddArticleTipTotalResponse, error)
 }
 
 type articleServiceClient struct {
@@ -125,6 +134,36 @@ func (c *articleServiceClient) ListPublicLikeArticles(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *articleServiceClient) GetArticleRPGFields(ctx context.Context, in *GetArticleRPGFieldsRequest, opts ...grpc.CallOption) (*GetArticleRPGFieldsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetArticleRPGFieldsResponse)
+	err := c.cc.Invoke(ctx, ArticleService_GetArticleRPGFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *articleServiceClient) UpdateArticleRPGFields(ctx context.Context, in *UpdateArticleRPGFieldsRequest, opts ...grpc.CallOption) (*UpdateArticleRPGFieldsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateArticleRPGFieldsResponse)
+	err := c.cc.Invoke(ctx, ArticleService_UpdateArticleRPGFields_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *articleServiceClient) AddArticleTipTotal(ctx context.Context, in *AddArticleTipTotalRequest, opts ...grpc.CallOption) (*AddArticleTipTotalResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddArticleTipTotalResponse)
+	err := c.cc.Invoke(ctx, ArticleService_AddArticleTipTotal_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArticleServiceServer is the server API for ArticleService service.
 // All implementations must embed UnimplementedArticleServiceServer
 // for forward compatibility.
@@ -141,6 +180,12 @@ type ArticleServiceServer interface {
 	ListPublicCollectArticles(context.Context, *ListPublicProfileArticlesRequest) (*ListPublicProfileArticlesResponse, error)
 	// ListPublicLikeArticles 公开主页用户点赞文章（status=1，同上过滤）。
 	ListPublicLikeArticles(context.Context, *ListPublicProfileArticlesRequest) (*ListPublicProfileArticlesResponse, error)
+	// GetArticleRPGFields 读取文章 RPG 字段（rpg-service Stream 消费用）。
+	GetArticleRPGFields(context.Context, *GetArticleRPGFieldsRequest) (*GetArticleRPGFieldsResponse, error)
+	// UpdateArticleRPGFields 更新文章 RPG 字段（rpg-service 经 gRPC 写库，不直连 blog 表）。
+	UpdateArticleRPGFields(context.Context, *UpdateArticleRPGFieldsRequest) (*UpdateArticleRPGFieldsResponse, error)
+	// AddArticleTipTotal 原子累加文章打赏总额。
+	AddArticleTipTotal(context.Context, *AddArticleTipTotalRequest) (*AddArticleTipTotalResponse, error)
 	mustEmbedUnimplementedArticleServiceServer()
 }
 
@@ -171,6 +216,15 @@ func (UnimplementedArticleServiceServer) ListPublicCollectArticles(context.Conte
 }
 func (UnimplementedArticleServiceServer) ListPublicLikeArticles(context.Context, *ListPublicProfileArticlesRequest) (*ListPublicProfileArticlesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListPublicLikeArticles not implemented")
+}
+func (UnimplementedArticleServiceServer) GetArticleRPGFields(context.Context, *GetArticleRPGFieldsRequest) (*GetArticleRPGFieldsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetArticleRPGFields not implemented")
+}
+func (UnimplementedArticleServiceServer) UpdateArticleRPGFields(context.Context, *UpdateArticleRPGFieldsRequest) (*UpdateArticleRPGFieldsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateArticleRPGFields not implemented")
+}
+func (UnimplementedArticleServiceServer) AddArticleTipTotal(context.Context, *AddArticleTipTotalRequest) (*AddArticleTipTotalResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddArticleTipTotal not implemented")
 }
 func (UnimplementedArticleServiceServer) mustEmbedUnimplementedArticleServiceServer() {}
 func (UnimplementedArticleServiceServer) testEmbeddedByValue()                        {}
@@ -319,6 +373,60 @@ func _ArticleService_ListPublicLikeArticles_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArticleService_GetArticleRPGFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetArticleRPGFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).GetArticleRPGFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_GetArticleRPGFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).GetArticleRPGFields(ctx, req.(*GetArticleRPGFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArticleService_UpdateArticleRPGFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateArticleRPGFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).UpdateArticleRPGFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_UpdateArticleRPGFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).UpdateArticleRPGFields(ctx, req.(*UpdateArticleRPGFieldsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArticleService_AddArticleTipTotal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddArticleTipTotalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServiceServer).AddArticleTipTotal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArticleService_AddArticleTipTotal_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServiceServer).AddArticleTipTotal(ctx, req.(*AddArticleTipTotalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArticleService_ServiceDesc is the grpc.ServiceDesc for ArticleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -353,6 +461,18 @@ var ArticleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPublicLikeArticles",
 			Handler:    _ArticleService_ListPublicLikeArticles_Handler,
+		},
+		{
+			MethodName: "GetArticleRPGFields",
+			Handler:    _ArticleService_GetArticleRPGFields_Handler,
+		},
+		{
+			MethodName: "UpdateArticleRPGFields",
+			Handler:    _ArticleService_UpdateArticleRPGFields_Handler,
+		},
+		{
+			MethodName: "AddArticleTipTotal",
+			Handler:    _ArticleService_AddArticleTipTotal_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

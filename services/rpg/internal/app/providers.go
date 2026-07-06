@@ -64,6 +64,10 @@ func provideBlogPublicProfileLister(cfg *config.Config) (blogsvc.PublicProfileLi
 	return blogsvc.NewGRPCPublicProfileLister(cfg.GRPC.BlogAddr)
 }
 
+func provideBlogArticleRPGStore(cfg *config.Config) (blogsvc.ArticleRPGStore, error) {
+	return blogsvc.NewGRPCArticleRPGStore(cfg.GRPC.BlogAddr)
+}
+
 func provideWSPusher(rds rueidis.Client) wspush.Pusher {
 	return wspush.NewRedisPusher(rds)
 }

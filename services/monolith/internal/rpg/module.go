@@ -34,8 +34,9 @@ import (
 type Module struct {
 	Repo       *rpgrepo.RpgRepo
 	Rpg        *rpgcore.RpgService
-	Level      *rpglevel.LevelService
-	Sign       *rpglevel.SignService
+	Level        *rpglevel.LevelService
+	ArticleLevel *rpglevel.ArticleLevelService
+	Sign         *rpglevel.SignService
 	Punishment *rpgpunish.PunishmentService
 	Notify     *rpgnotify.RpgNotifyService
 
@@ -96,7 +97,9 @@ func NewModule(
 	guildSvc := rpgguild.NewService(repo, achievementSvc, questSvc)
 	activitySvc := rpgactivity.NewService(repo, publisher, log)
 	reputationSvc := rpgsocial.NewReputationService(rpgSvc, achievementSvc)
-	tipSvc := rpgsocial.NewTipService(articles, repo, inventorySvc, reputationSvc, publisher, notify)
+	articleRPG := rpglevel.NewEntArticleRPGStore(client)
+	articleLevelSvc := rpglevel.NewArticleLevelService(articleRPG, reputationSvc, achievementSvc)
+	tipSvc := rpgsocial.NewTipService(articles, repo, inventorySvc, reputationSvc, articleLevelSvc, publisher, notify)
 	socialSvc := rpgsocial.NewInteractService(repo, rpgSvc, inventorySvc, reputationSvc, redis, achievementSvc, questSvc)
 	rechargeSvc := rpgrecharge.NewService(repo, rpgSvc, inventorySvc, notify)
 	adminSvc := rpgadmin.NewService(repo, rpgSvc, inventorySvc, lotterySvc, guildSvc, punishSvc, "./public/uploads/", "/static/")
@@ -105,8 +108,9 @@ func NewModule(
 	return &Module{
 		Repo:        repo,
 		Rpg:         rpgSvc,
-		Level:       levelSvc,
-		Sign:        signSvc,
+		Level:        levelSvc,
+		ArticleLevel: articleLevelSvc,
+		Sign:         signSvc,
 		Punishment:  punishSvc,
 		Notify:      notify,
 		Inventory:   inventorySvc,

@@ -9,6 +9,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/constants"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/inventory"
+	rpglevel "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/level"
 	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
@@ -19,8 +20,9 @@ type TipService struct {
 	articles   *blogrepo.ArticleRepo
 	repo       *rpgrepo.RpgRepo
 	inventory  *inventory.Service
-	reputation *ReputationService
-	publisher  *event.Publisher
+	reputation   *ReputationService
+	articleLevel *rpglevel.ArticleLevelService
+	publisher    *event.Publisher
 	notify     *rpgnotify.RpgNotifyService
 }
 
@@ -30,6 +32,7 @@ func NewTipService(
 	repo *rpgrepo.RpgRepo,
 	inventory *inventory.Service,
 	reputation *ReputationService,
+	articleLevel *rpglevel.ArticleLevelService,
 	publisher *event.Publisher,
 	notify *rpgnotify.RpgNotifyService,
 ) *TipService {
@@ -37,8 +40,9 @@ func NewTipService(
 		articles:   articles,
 		repo:       repo,
 		inventory:  inventory,
-		reputation: reputation,
-		publisher:  publisher,
+		reputation:   reputation,
+		articleLevel: articleLevel,
+		publisher:    publisher,
 		notify:     notify,
 	}
 }
@@ -76,6 +80,10 @@ func (s *TipService) TipArticle(ctx context.Context, fromUID, articleID, amount 
 	})
 	if err != nil {
 		return nil, err
+	}
+
+	if s.articleLevel != nil {
+		_ = s.articleLevel.AddTipTotal(ctx, articleID, amount)
 	}
 
 	repAmount := (amount + 1) / 2

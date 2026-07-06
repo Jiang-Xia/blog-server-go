@@ -19,12 +19,13 @@ import (
 
 // Handlers RPG 事件处理依赖。
 type Handlers struct {
-	Core        *rpgcore.RpgService
-	Level       *rpglevel.LevelService
-	Achievement *achievement.Service
-	Quest       *quest.Service
-	Reputation  *social.ReputationService
-	Redis       *redisutil.Store
+	Core         *rpgcore.RpgService
+	Level        *rpglevel.LevelService
+	ArticleLevel *rpglevel.ArticleLevelService
+	Achievement  *achievement.Service
+	Quest        *quest.Service
+	Reputation   *social.ReputationService
+	Redis        *redisutil.Store
 }
 
 // RegisterRPGHandlers 向 event.Consumer 注册 RPG 侧 blog 事件 handler。
@@ -57,25 +58,38 @@ func (h Handlers) onArticlePublished(ctx context.Context, payload json.RawMessag
 	if h.Quest != nil {
 		_ = h.Quest.TrackProgress(ctx, p.UID, "article")
 	}
-	if p.ArticleID > 0 && h.Reputation != nil {
+	if p.ArticleID > 0 && h.ArticleLevel != nil && h.Reputation != nil {
 		rep, _ := h.Reputation.GetReputation(ctx, p.UID)
 		boost := h.Reputation.GetPublishExpBoostRate(rep)
 		initialExp := int(float64(rpgconst.Economy.ArticlePublishBaseExp) * boost)
-		_ = initialExp // 文章等级服务 Plan 09 后续接入
+		if initialExp > 0 {
+			_, _ = h.ArticleLevel.AddArticleExp(ctx, p.ArticleID, initialExp, p.UID, nil, true)
+		}
 	}
 	return nil
 }
 
 func (h Handlers) onCommentCreated(ctx context.Context, payload json.RawMessage) error {
 	var p struct {
-		UID int `json:"uid"`
+		UID       int `json:"uid"`
+		ArticleID int `json:"articleId"`
+		AuthorUID int `json:"authorUid"`
 	}
 	if err := json.Unmarshal(payload, &p); err != nil {
 		return err
 	}
 	_, _ = h.Level.AddExp(ctx, p.UID, 5, rpgcore.ExpReasonComment, 0)
 	h.trackAchievement(ctx, p.UID, "comment")
-	return h.trackQuest(ctx, p.UID, "comment")
+	if err := h.trackQuest(ctx, p.UID, "comment"); err != nil {
+		return err
+	}
+	if h.ArticleLevel != nil && p.ArticleID > 0 && p.AuthorUID > 0 && p.AuthorUID != p.UID {
+		_, _ = h.ArticleLevel.AddArticleExp(ctx, p.ArticleID, rpgconst.Economy.ArticleCommentExp, p.AuthorUID, &rpglevel.ReputationGrant{
+			Amount: rpgconst.Economy.ReputationComment,
+			Reason: "comment",
+		}, false)
+	}
+	return nil
 }
 
 func (h Handlers) onReplyCreated(ctx context.Context, payload json.RawMessage) error {
@@ -105,6 +119,8 @@ func (h Handlers) onMsgboardCreated(ctx context.Context, payload json.RawMessage
 func (h Handlers) onLikeCreated(ctx context.Context, payload json.RawMessage) error {
 	var p struct {
 		UID        int `json:"uid"`
+		ArticleID  int `json:"articleId"`
+		AuthorUID  int `json:"authorUid"`
 		DailyLimit int `json:"dailyLimit"`
 	}
 	if err := json.Unmarshal(payload, &p); err != nil {
@@ -116,12 +132,23 @@ func (h Handlers) onLikeCreated(ctx context.Context, payload json.RawMessage) er
 	}
 	_, _ = h.Level.AddExp(ctx, p.UID, 2, rpgcore.ExpReasonLike, limit)
 	h.trackAchievement(ctx, p.UID, "like")
-	return h.trackQuest(ctx, p.UID, "like")
+	if err := h.trackQuest(ctx, p.UID, "like"); err != nil {
+		return err
+	}
+	if h.ArticleLevel != nil && p.ArticleID > 0 && p.AuthorUID > 0 && p.AuthorUID != p.UID {
+		_, _ = h.ArticleLevel.AddArticleExp(ctx, p.ArticleID, rpgconst.Economy.ArticleLikeExp, p.AuthorUID, &rpglevel.ReputationGrant{
+			Amount: rpgconst.Economy.ReputationLike,
+			Reason: "like",
+		}, false)
+	}
+	return nil
 }
 
 func (h Handlers) onCollectCreated(ctx context.Context, payload json.RawMessage) error {
 	var p struct {
 		UID        int `json:"uid"`
+		ArticleID  int `json:"articleId"`
+		AuthorUID  int `json:"authorUid"`
 		DailyLimit int `json:"dailyLimit"`
 	}
 	if err := json.Unmarshal(payload, &p); err != nil {
@@ -133,12 +160,22 @@ func (h Handlers) onCollectCreated(ctx context.Context, payload json.RawMessage)
 	}
 	_, _ = h.Level.AddExp(ctx, p.UID, 3, rpgcore.ExpReasonCollect, limit)
 	h.trackAchievement(ctx, p.UID, "collect")
-	return h.trackQuest(ctx, p.UID, "collect")
+	if err := h.trackQuest(ctx, p.UID, "collect"); err != nil {
+		return err
+	}
+	if h.ArticleLevel != nil && p.ArticleID > 0 && p.AuthorUID > 0 && p.AuthorUID != p.UID {
+		_, _ = h.ArticleLevel.AddArticleExp(ctx, p.ArticleID, rpgconst.Economy.ArticleCollectExp, p.AuthorUID, &rpglevel.ReputationGrant{
+			Amount: rpgconst.Economy.ReputationCollect,
+			Reason: "collect",
+		}, false)
+	}
+	return nil
 }
 
 func (h Handlers) onArticleViewed(ctx context.Context, payload json.RawMessage) error {
 	var p struct {
 		ArticleID int `json:"articleId"`
+		AuthorUID int `json:"authorUid"`
 		ViewerUID int `json:"viewerUid"`
 	}
 	if err := json.Unmarshal(payload, &p); err != nil {
@@ -147,12 +184,19 @@ func (h Handlers) onArticleViewed(ctx context.Context, payload json.RawMessage) 
 	if h.Redis == nil {
 		return nil
 	}
-	key := fmt.Sprintf("rpg:view:%d:%d:%s", p.ArticleID, p.ViewerUID, time.Now().Format("2006-01-02"))
+	viewer := p.ViewerUID
+	if viewer <= 0 {
+		viewer = 0
+	}
+	key := fmt.Sprintf("rpg:view:%d:%d:%s", p.ArticleID, viewer, time.Now().Format("2006-01-02"))
 	seen, _ := h.Redis.Get(ctx, key)
 	if seen != "" {
 		return nil
 	}
 	_ = h.Redis.Set(ctx, key, "1", 86400)
+	if h.ArticleLevel != nil && p.ArticleID > 0 {
+		_, _ = h.ArticleLevel.AddArticleExp(ctx, p.ArticleID, rpgconst.Economy.ArticleViewExp, p.AuthorUID, nil, false)
+	}
 	return nil
 }
 

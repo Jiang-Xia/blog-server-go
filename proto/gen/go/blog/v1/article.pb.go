@@ -726,6 +726,366 @@ func (x *ListPublicProfileArticlesResponse) GetPageSize() int32 {
 	return 0
 }
 
+type GetArticleRPGFieldsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArticleId     int32                  `protobuf:"varint,1,opt,name=article_id,json=articleId,proto3" json:"article_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetArticleRPGFieldsRequest) Reset() {
+	*x = GetArticleRPGFieldsRequest{}
+	mi := &file_blog_v1_article_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetArticleRPGFieldsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetArticleRPGFieldsRequest) ProtoMessage() {}
+
+func (x *GetArticleRPGFieldsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetArticleRPGFieldsRequest.ProtoReflect.Descriptor instead.
+func (*GetArticleRPGFieldsRequest) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetArticleRPGFieldsRequest) GetArticleId() int32 {
+	if x != nil {
+		return x.ArticleId
+	}
+	return 0
+}
+
+type GetArticleRPGFieldsResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ArticleId        int32                  `protobuf:"varint,1,opt,name=article_id,json=articleId,proto3" json:"article_id,omitempty"`
+	AuthorUid        int32                  `protobuf:"varint,2,opt,name=author_uid,json=authorUid,proto3" json:"author_uid,omitempty"`
+	Title            string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	ArticleExp       int32                  `protobuf:"varint,4,opt,name=article_exp,json=articleExp,proto3" json:"article_exp,omitempty"`
+	ArticleLevel     int32                  `protobuf:"varint,5,opt,name=article_level,json=articleLevel,proto3" json:"article_level,omitempty"`
+	ReputationGained int32                  `protobuf:"varint,6,opt,name=reputation_gained,json=reputationGained,proto3" json:"reputation_gained,omitempty"`
+	IsMasterpiece    int32                  `protobuf:"varint,7,opt,name=is_masterpiece,json=isMasterpiece,proto3" json:"is_masterpiece,omitempty"`
+	TipTotal         int32                  `protobuf:"varint,8,opt,name=tip_total,json=tipTotal,proto3" json:"tip_total,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetArticleRPGFieldsResponse) Reset() {
+	*x = GetArticleRPGFieldsResponse{}
+	mi := &file_blog_v1_article_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetArticleRPGFieldsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetArticleRPGFieldsResponse) ProtoMessage() {}
+
+func (x *GetArticleRPGFieldsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetArticleRPGFieldsResponse.ProtoReflect.Descriptor instead.
+func (*GetArticleRPGFieldsResponse) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetArticleRPGFieldsResponse) GetArticleId() int32 {
+	if x != nil {
+		return x.ArticleId
+	}
+	return 0
+}
+
+func (x *GetArticleRPGFieldsResponse) GetAuthorUid() int32 {
+	if x != nil {
+		return x.AuthorUid
+	}
+	return 0
+}
+
+func (x *GetArticleRPGFieldsResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GetArticleRPGFieldsResponse) GetArticleExp() int32 {
+	if x != nil {
+		return x.ArticleExp
+	}
+	return 0
+}
+
+func (x *GetArticleRPGFieldsResponse) GetArticleLevel() int32 {
+	if x != nil {
+		return x.ArticleLevel
+	}
+	return 0
+}
+
+func (x *GetArticleRPGFieldsResponse) GetReputationGained() int32 {
+	if x != nil {
+		return x.ReputationGained
+	}
+	return 0
+}
+
+func (x *GetArticleRPGFieldsResponse) GetIsMasterpiece() int32 {
+	if x != nil {
+		return x.IsMasterpiece
+	}
+	return 0
+}
+
+func (x *GetArticleRPGFieldsResponse) GetTipTotal() int32 {
+	if x != nil {
+		return x.TipTotal
+	}
+	return 0
+}
+
+type UpdateArticleRPGFieldsRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ArticleId        int32                  `protobuf:"varint,1,opt,name=article_id,json=articleId,proto3" json:"article_id,omitempty"`
+	ArticleExp       int32                  `protobuf:"varint,2,opt,name=article_exp,json=articleExp,proto3" json:"article_exp,omitempty"`
+	ArticleLevel     int32                  `protobuf:"varint,3,opt,name=article_level,json=articleLevel,proto3" json:"article_level,omitempty"`
+	ReputationGained int32                  `protobuf:"varint,4,opt,name=reputation_gained,json=reputationGained,proto3" json:"reputation_gained,omitempty"`
+	IsMasterpiece    int32                  `protobuf:"varint,5,opt,name=is_masterpiece,json=isMasterpiece,proto3" json:"is_masterpiece,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *UpdateArticleRPGFieldsRequest) Reset() {
+	*x = UpdateArticleRPGFieldsRequest{}
+	mi := &file_blog_v1_article_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateArticleRPGFieldsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateArticleRPGFieldsRequest) ProtoMessage() {}
+
+func (x *UpdateArticleRPGFieldsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateArticleRPGFieldsRequest.ProtoReflect.Descriptor instead.
+func (*UpdateArticleRPGFieldsRequest) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UpdateArticleRPGFieldsRequest) GetArticleId() int32 {
+	if x != nil {
+		return x.ArticleId
+	}
+	return 0
+}
+
+func (x *UpdateArticleRPGFieldsRequest) GetArticleExp() int32 {
+	if x != nil {
+		return x.ArticleExp
+	}
+	return 0
+}
+
+func (x *UpdateArticleRPGFieldsRequest) GetArticleLevel() int32 {
+	if x != nil {
+		return x.ArticleLevel
+	}
+	return 0
+}
+
+func (x *UpdateArticleRPGFieldsRequest) GetReputationGained() int32 {
+	if x != nil {
+		return x.ReputationGained
+	}
+	return 0
+}
+
+func (x *UpdateArticleRPGFieldsRequest) GetIsMasterpiece() int32 {
+	if x != nil {
+		return x.IsMasterpiece
+	}
+	return 0
+}
+
+type UpdateArticleRPGFieldsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Updated       bool                   `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateArticleRPGFieldsResponse) Reset() {
+	*x = UpdateArticleRPGFieldsResponse{}
+	mi := &file_blog_v1_article_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateArticleRPGFieldsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateArticleRPGFieldsResponse) ProtoMessage() {}
+
+func (x *UpdateArticleRPGFieldsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateArticleRPGFieldsResponse.ProtoReflect.Descriptor instead.
+func (*UpdateArticleRPGFieldsResponse) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UpdateArticleRPGFieldsResponse) GetUpdated() bool {
+	if x != nil {
+		return x.Updated
+	}
+	return false
+}
+
+type AddArticleTipTotalRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArticleId     int32                  `protobuf:"varint,1,opt,name=article_id,json=articleId,proto3" json:"article_id,omitempty"`
+	Amount        int32                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddArticleTipTotalRequest) Reset() {
+	*x = AddArticleTipTotalRequest{}
+	mi := &file_blog_v1_article_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddArticleTipTotalRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddArticleTipTotalRequest) ProtoMessage() {}
+
+func (x *AddArticleTipTotalRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddArticleTipTotalRequest.ProtoReflect.Descriptor instead.
+func (*AddArticleTipTotalRequest) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *AddArticleTipTotalRequest) GetArticleId() int32 {
+	if x != nil {
+		return x.ArticleId
+	}
+	return 0
+}
+
+func (x *AddArticleTipTotalRequest) GetAmount() int32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+type AddArticleTipTotalResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Updated       bool                   `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddArticleTipTotalResponse) Reset() {
+	*x = AddArticleTipTotalResponse{}
+	mi := &file_blog_v1_article_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddArticleTipTotalResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddArticleTipTotalResponse) ProtoMessage() {}
+
+func (x *AddArticleTipTotalResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_v1_article_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddArticleTipTotalResponse.ProtoReflect.Descriptor instead.
+func (*AddArticleTipTotalResponse) Descriptor() ([]byte, []int) {
+	return file_blog_v1_article_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *AddArticleTipTotalResponse) GetUpdated() bool {
+	if x != nil {
+		return x.Updated
+	}
+	return false
+}
+
 var File_blog_v1_article_proto protoreflect.FileDescriptor
 
 const file_blog_v1_article_proto_rawDesc = "" +
@@ -780,7 +1140,38 @@ const file_blog_v1_article_proto_rawDesc = "" +
 	"\x05items\x18\x01 \x03(\v2!.blog.v1.PublicProfileArticleItemR\x05items\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\x05R\bpageSize2\xa7\x05\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\";\n" +
+	"\x1aGetArticleRPGFieldsRequest\x12\x1d\n" +
+	"\n" +
+	"article_id\x18\x01 \x01(\x05R\tarticleId\"\xa8\x02\n" +
+	"\x1bGetArticleRPGFieldsResponse\x12\x1d\n" +
+	"\n" +
+	"article_id\x18\x01 \x01(\x05R\tarticleId\x12\x1d\n" +
+	"\n" +
+	"author_uid\x18\x02 \x01(\x05R\tauthorUid\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1f\n" +
+	"\varticle_exp\x18\x04 \x01(\x05R\n" +
+	"articleExp\x12#\n" +
+	"\rarticle_level\x18\x05 \x01(\x05R\farticleLevel\x12+\n" +
+	"\x11reputation_gained\x18\x06 \x01(\x05R\x10reputationGained\x12%\n" +
+	"\x0eis_masterpiece\x18\a \x01(\x05R\risMasterpiece\x12\x1b\n" +
+	"\ttip_total\x18\b \x01(\x05R\btipTotal\"\xd8\x01\n" +
+	"\x1dUpdateArticleRPGFieldsRequest\x12\x1d\n" +
+	"\n" +
+	"article_id\x18\x01 \x01(\x05R\tarticleId\x12\x1f\n" +
+	"\varticle_exp\x18\x02 \x01(\x05R\n" +
+	"articleExp\x12#\n" +
+	"\rarticle_level\x18\x03 \x01(\x05R\farticleLevel\x12+\n" +
+	"\x11reputation_gained\x18\x04 \x01(\x05R\x10reputationGained\x12%\n" +
+	"\x0eis_masterpiece\x18\x05 \x01(\x05R\risMasterpiece\":\n" +
+	"\x1eUpdateArticleRPGFieldsResponse\x12\x18\n" +
+	"\aupdated\x18\x01 \x01(\bR\aupdated\"R\n" +
+	"\x19AddArticleTipTotalRequest\x12\x1d\n" +
+	"\n" +
+	"article_id\x18\x01 \x01(\x05R\tarticleId\x12\x16\n" +
+	"\x06amount\x18\x02 \x01(\x05R\x06amount\"6\n" +
+	"\x1aAddArticleTipTotalResponse\x12\x18\n" +
+	"\aupdated\x18\x01 \x01(\bR\aupdated2\xd3\a\n" +
 	"\x0eArticleService\x12E\n" +
 	"\n" +
 	"GetArticle\x12\x1a.blog.v1.GetArticleRequest\x1a\x1b.blog.v1.GetArticleResponse\x12K\n" +
@@ -789,7 +1180,10 @@ const file_blog_v1_article_proto_rawDesc = "" +
 	"\vGetPubStats\x12\x16.google.protobuf.Empty\x1a\x1c.blog.v1.GetPubStatsResponse\x12~\n" +
 	"\x1dUpdateContentModerationStatus\x12-.blog.v1.UpdateContentModerationStatusRequest\x1a..blog.v1.UpdateContentModerationStatusResponse\x12r\n" +
 	"\x19ListPublicCollectArticles\x12).blog.v1.ListPublicProfileArticlesRequest\x1a*.blog.v1.ListPublicProfileArticlesResponse\x12o\n" +
-	"\x16ListPublicLikeArticles\x12).blog.v1.ListPublicProfileArticlesRequest\x1a*.blog.v1.ListPublicProfileArticlesResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1b\x06proto3"
+	"\x16ListPublicLikeArticles\x12).blog.v1.ListPublicProfileArticlesRequest\x1a*.blog.v1.ListPublicProfileArticlesResponse\x12`\n" +
+	"\x13GetArticleRPGFields\x12#.blog.v1.GetArticleRPGFieldsRequest\x1a$.blog.v1.GetArticleRPGFieldsResponse\x12i\n" +
+	"\x16UpdateArticleRPGFields\x12&.blog.v1.UpdateArticleRPGFieldsRequest\x1a'.blog.v1.UpdateArticleRPGFieldsResponse\x12]\n" +
+	"\x12AddArticleTipTotal\x12\".blog.v1.AddArticleTipTotalRequest\x1a#.blog.v1.AddArticleTipTotalResponseBAZ?github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1;blogv1b\x06proto3"
 
 var (
 	file_blog_v1_article_proto_rawDescOnce sync.Once
@@ -803,7 +1197,7 @@ func file_blog_v1_article_proto_rawDescGZIP() []byte {
 	return file_blog_v1_article_proto_rawDescData
 }
 
-var file_blog_v1_article_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_blog_v1_article_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_blog_v1_article_proto_goTypes = []any{
 	(*GetArticleRequest)(nil),                     // 0: blog.v1.GetArticleRequest
 	(*GetArticleResponse)(nil),                    // 1: blog.v1.GetArticleResponse
@@ -817,7 +1211,13 @@ var file_blog_v1_article_proto_goTypes = []any{
 	(*ListPublicProfileArticlesRequest)(nil),      // 9: blog.v1.ListPublicProfileArticlesRequest
 	(*PublicProfileArticleItem)(nil),              // 10: blog.v1.PublicProfileArticleItem
 	(*ListPublicProfileArticlesResponse)(nil),     // 11: blog.v1.ListPublicProfileArticlesResponse
-	(*emptypb.Empty)(nil),                         // 12: google.protobuf.Empty
+	(*GetArticleRPGFieldsRequest)(nil),            // 12: blog.v1.GetArticleRPGFieldsRequest
+	(*GetArticleRPGFieldsResponse)(nil),           // 13: blog.v1.GetArticleRPGFieldsResponse
+	(*UpdateArticleRPGFieldsRequest)(nil),         // 14: blog.v1.UpdateArticleRPGFieldsRequest
+	(*UpdateArticleRPGFieldsResponse)(nil),        // 15: blog.v1.UpdateArticleRPGFieldsResponse
+	(*AddArticleTipTotalRequest)(nil),             // 16: blog.v1.AddArticleTipTotalRequest
+	(*AddArticleTipTotalResponse)(nil),            // 17: blog.v1.AddArticleTipTotalResponse
+	(*emptypb.Empty)(nil),                         // 18: google.protobuf.Empty
 }
 var file_blog_v1_article_proto_depIdxs = []int32{
 	1,  // 0: blog.v1.ListArticlesResponse.items:type_name -> blog.v1.GetArticleResponse
@@ -825,19 +1225,25 @@ var file_blog_v1_article_proto_depIdxs = []int32{
 	0,  // 2: blog.v1.ArticleService.GetArticle:input_type -> blog.v1.GetArticleRequest
 	2,  // 3: blog.v1.ArticleService.ListArticles:input_type -> blog.v1.ListArticlesRequest
 	4,  // 4: blog.v1.ArticleService.GetArticleDetail:input_type -> blog.v1.GetArticleDetailRequest
-	12, // 5: blog.v1.ArticleService.GetPubStats:input_type -> google.protobuf.Empty
+	18, // 5: blog.v1.ArticleService.GetPubStats:input_type -> google.protobuf.Empty
 	7,  // 6: blog.v1.ArticleService.UpdateContentModerationStatus:input_type -> blog.v1.UpdateContentModerationStatusRequest
 	9,  // 7: blog.v1.ArticleService.ListPublicCollectArticles:input_type -> blog.v1.ListPublicProfileArticlesRequest
 	9,  // 8: blog.v1.ArticleService.ListPublicLikeArticles:input_type -> blog.v1.ListPublicProfileArticlesRequest
-	1,  // 9: blog.v1.ArticleService.GetArticle:output_type -> blog.v1.GetArticleResponse
-	3,  // 10: blog.v1.ArticleService.ListArticles:output_type -> blog.v1.ListArticlesResponse
-	5,  // 11: blog.v1.ArticleService.GetArticleDetail:output_type -> blog.v1.GetArticleDetailResponse
-	6,  // 12: blog.v1.ArticleService.GetPubStats:output_type -> blog.v1.GetPubStatsResponse
-	8,  // 13: blog.v1.ArticleService.UpdateContentModerationStatus:output_type -> blog.v1.UpdateContentModerationStatusResponse
-	11, // 14: blog.v1.ArticleService.ListPublicCollectArticles:output_type -> blog.v1.ListPublicProfileArticlesResponse
-	11, // 15: blog.v1.ArticleService.ListPublicLikeArticles:output_type -> blog.v1.ListPublicProfileArticlesResponse
-	9,  // [9:16] is the sub-list for method output_type
-	2,  // [2:9] is the sub-list for method input_type
+	12, // 9: blog.v1.ArticleService.GetArticleRPGFields:input_type -> blog.v1.GetArticleRPGFieldsRequest
+	14, // 10: blog.v1.ArticleService.UpdateArticleRPGFields:input_type -> blog.v1.UpdateArticleRPGFieldsRequest
+	16, // 11: blog.v1.ArticleService.AddArticleTipTotal:input_type -> blog.v1.AddArticleTipTotalRequest
+	1,  // 12: blog.v1.ArticleService.GetArticle:output_type -> blog.v1.GetArticleResponse
+	3,  // 13: blog.v1.ArticleService.ListArticles:output_type -> blog.v1.ListArticlesResponse
+	5,  // 14: blog.v1.ArticleService.GetArticleDetail:output_type -> blog.v1.GetArticleDetailResponse
+	6,  // 15: blog.v1.ArticleService.GetPubStats:output_type -> blog.v1.GetPubStatsResponse
+	8,  // 16: blog.v1.ArticleService.UpdateContentModerationStatus:output_type -> blog.v1.UpdateContentModerationStatusResponse
+	11, // 17: blog.v1.ArticleService.ListPublicCollectArticles:output_type -> blog.v1.ListPublicProfileArticlesResponse
+	11, // 18: blog.v1.ArticleService.ListPublicLikeArticles:output_type -> blog.v1.ListPublicProfileArticlesResponse
+	13, // 19: blog.v1.ArticleService.GetArticleRPGFields:output_type -> blog.v1.GetArticleRPGFieldsResponse
+	15, // 20: blog.v1.ArticleService.UpdateArticleRPGFields:output_type -> blog.v1.UpdateArticleRPGFieldsResponse
+	17, // 21: blog.v1.ArticleService.AddArticleTipTotal:output_type -> blog.v1.AddArticleTipTotalResponse
+	12, // [12:22] is the sub-list for method output_type
+	2,  // [2:12] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name
 	2,  // [2:2] is the sub-list for extension extendee
 	0,  // [0:2] is the sub-list for field type_name
@@ -854,7 +1260,7 @@ func file_blog_v1_article_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blog_v1_article_proto_rawDesc), len(file_blog_v1_article_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

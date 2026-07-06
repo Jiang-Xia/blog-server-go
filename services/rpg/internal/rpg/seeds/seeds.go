@@ -157,6 +157,9 @@ var PredefinedAchievements = []ItemConfigSeed{
 	{Code: "sign_7days", ItemType: "achievement", Name: "七日之约", Description: "累计签到7天", Category: "sign", Icon: "calendar", Rarity: "rare", Sort: 20, Active: 1, Effect: map[string]interface{}{"maxProgress": 7, "expReward": 30, "trackEvent": "sign_in", "ticketReward": 1, "achievementConfigured": true}},
 	{Code: "first_lottery", ItemType: "achievement", Name: "初试手气", Description: "首次抽奖", Category: "lottery", Icon: "dice", Rarity: "common", Sort: 70, Active: 1, Effect: map[string]interface{}{"maxProgress": 1, "expReward": 10, "trackEvent": "lottery_draw", "ticketReward": 1, "achievementConfigured": true}},
 	{Code: "level_2", ItemType: "achievement", Name: "新手冒险者", Description: "等级达到LV2", Category: "special", Icon: "star", Rarity: "common", Sort: 39, Active: 1, Effect: map[string]interface{}{"maxProgress": 2, "expReward": 20, "trackEvent": "level_up", "currencyReward": 20, "items": []string{"frame_a"}, "achievementConfigured": true}},
+	{Code: "first_masterpiece", ItemType: "achievement", Name: "神作初现", Description: "首篇文章晋升神作", Category: "author", Icon: "masterpiece", Rarity: "epic", Sort: 100, Active: 1, Effect: map[string]interface{}{"maxProgress": 1, "expReward": 100, "trackEvent": "masterpiece", "achievementConfigured": true}},
+	{Code: "masterpieces_3", ItemType: "achievement", Name: "著作等身", Description: "拥有3篇神作", Category: "author", Icon: "library-star", Rarity: "legendary", Sort: 101, Active: 1, Effect: map[string]interface{}{"maxProgress": 3, "expReward": 200, "trackEvent": "masterpiece", "achievementConfigured": true}},
+	{Code: "article_ups_10", ItemType: "achievement", Name: "笔耕不辍", Description: "文章累计升级10次", Category: "author", Icon: "level-up", Rarity: "rare", Sort: 102, Active: 1, Effect: map[string]interface{}{"maxProgress": 10, "expReward": 40, "trackEvent": "article_level_up", "achievementConfigured": true}},
 }
 
 // PredefinedActivities 活动种子。

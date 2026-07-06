@@ -104,6 +104,11 @@ type ArticleDetailItem struct {
 	Tags               []TagItem     `json:"tags,omitempty"`
 	UserInfo           *UserInfoItem `json:"userInfo,omitempty"`
 	ScheduledPublishAt *time.Time    `json:"scheduledPublishAt,omitempty"`
+	ArticleExp         int           `json:"articleExp,omitempty"`
+	ArticleLevel       int           `json:"articleLevel,omitempty"`
+	ReputationGained   int           `json:"reputationGained,omitempty"`
+	IsMasterpiece      int           `json:"isMasterpiece,omitempty"`
+	TipTotal           int           `json:"tipTotal,omitempty"`
 }
 
 // NavItem 同作者相邻文章导航项。

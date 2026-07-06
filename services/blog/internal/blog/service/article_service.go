@@ -642,6 +642,11 @@ func (s *ArticleService) toDetailItem(a *ent.Article, cat *ent.Category, tagRows
 		Content: a.Content, ContentHTML: contentHTML,
 		Category: catItem, Tags: tags, UserInfo: userInfo,
 		ScheduledPublishAt: a.ScheduledPublishAt,
+		ArticleExp:         a.ArticleExp,
+		ArticleLevel:       a.ArticleLevel,
+		ReputationGained:   a.ReputationGained,
+		IsMasterpiece:      a.IsMasterpiece,
+		TipTotal:           a.TipTotal,
 	}
 }
 

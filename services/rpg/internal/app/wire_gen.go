@@ -44,8 +44,12 @@ func InitializeApp(cfgPath string) (*App, error) {
 	userReader := provideUserReader(crossClient)
 	db := provideSQLDB(data)
 	articleReader := provideArticleReader(db)
+	articleRPGStore, err := provideBlogArticleRPGStore(configConfig)
+	if err != nil {
+		return nil, err
+	}
 	publisher := event.NewPublisher(rueidisClient, zapLogger)
-	module := rpg.NewModule(client, pusher, store, rueidisClient, userReader, articleReader, publisher, configConfig, zapLogger)
+	module := rpg.NewModule(client, pusher, store, rueidisClient, userReader, articleReader, articleRPGStore, publisher, configConfig, zapLogger)
 	rpgGameplay := provideRPGGameplay(module, crossClient)
 	service := provideJWT(configConfig)
 	rpgHandler := provideRPGHandler(module, rpgGameplay, service)
