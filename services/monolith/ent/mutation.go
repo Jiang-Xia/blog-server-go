@@ -6497,32 +6497,34 @@ func (m *FileMutation) ResetEdge(name string) error {
 // KnowledgeChunkMutation represents an operation that mutates the KnowledgeChunk nodes in the graph.
 type KnowledgeChunkMutation struct {
 	config
-	op             Op
-	typ            string
-	id             *int
-	article_id     *int
-	addarticle_id  *int
-	chunk_index    *int
-	addchunk_index *int
-	title          *string
-	content        *string
-	url            *string
-	category       *string
-	tags           *map[string]interface{}
-	embedding_json *map[string]interface{}
-	status         *string
-	indexed_at     *time.Time
-	create_at      *time.Time
-	update_at      *time.Time
-	source_type    *string
-	source_key     *string
-	heading_path   *string
-	content_type   *string
-	search_text    *string
-	clearedFields  map[string]struct{}
-	done           bool
-	oldValue       func(context.Context) (*KnowledgeChunk, error)
-	predicates     []predicate.KnowledgeChunk
+	op                   Op
+	typ                  string
+	id                   *int
+	article_id           *int
+	addarticle_id        *int
+	chunk_index          *int
+	addchunk_index       *int
+	title                *string
+	content              *string
+	url                  *string
+	category             *string
+	tags                 *[]string
+	appendtags           []string
+	embedding_json       *[]float64
+	appendembedding_json []float64
+	status               *string
+	indexed_at           *time.Time
+	create_at            *time.Time
+	update_at            *time.Time
+	source_type          *string
+	source_key           *string
+	heading_path         *string
+	content_type         *string
+	search_text          *string
+	clearedFields        map[string]struct{}
+	done                 bool
+	oldValue             func(context.Context) (*KnowledgeChunk, error)
+	predicates           []predicate.KnowledgeChunk
 }
 
 var _ ent.Mutation = (*KnowledgeChunkMutation)(nil)
@@ -6899,12 +6901,13 @@ func (m *KnowledgeChunkMutation) ResetCategory() {
 }
 
 // SetTags sets the "tags" field.
-func (m *KnowledgeChunkMutation) SetTags(value map[string]interface{}) {
-	m.tags = &value
+func (m *KnowledgeChunkMutation) SetTags(s []string) {
+	m.tags = &s
+	m.appendtags = nil
 }
 
 // Tags returns the value of the "tags" field in the mutation.
-func (m *KnowledgeChunkMutation) Tags() (r map[string]interface{}, exists bool) {
+func (m *KnowledgeChunkMutation) Tags() (r []string, exists bool) {
 	v := m.tags
 	if v == nil {
 		return
@@ -6915,7 +6918,7 @@ func (m *KnowledgeChunkMutation) Tags() (r map[string]interface{}, exists bool) 
 // OldTags returns the old "tags" field's value of the KnowledgeChunk entity.
 // If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *KnowledgeChunkMutation) OldTags(ctx context.Context) (v map[string]interface{}, err error) {
+func (m *KnowledgeChunkMutation) OldTags(ctx context.Context) (v []string, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldTags is only allowed on UpdateOne operations")
 	}
@@ -6929,9 +6932,23 @@ func (m *KnowledgeChunkMutation) OldTags(ctx context.Context) (v map[string]inte
 	return oldValue.Tags, nil
 }
 
+// AppendTags adds s to the "tags" field.
+func (m *KnowledgeChunkMutation) AppendTags(s []string) {
+	m.appendtags = append(m.appendtags, s...)
+}
+
+// AppendedTags returns the list of values that were appended to the "tags" field in this mutation.
+func (m *KnowledgeChunkMutation) AppendedTags() ([]string, bool) {
+	if len(m.appendtags) == 0 {
+		return nil, false
+	}
+	return m.appendtags, true
+}
+
 // ClearTags clears the value of the "tags" field.
 func (m *KnowledgeChunkMutation) ClearTags() {
 	m.tags = nil
+	m.appendtags = nil
 	m.clearedFields[knowledgechunk.FieldTags] = struct{}{}
 }
 
@@ -6944,16 +6961,18 @@ func (m *KnowledgeChunkMutation) TagsCleared() bool {
 // ResetTags resets all changes to the "tags" field.
 func (m *KnowledgeChunkMutation) ResetTags() {
 	m.tags = nil
+	m.appendtags = nil
 	delete(m.clearedFields, knowledgechunk.FieldTags)
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (m *KnowledgeChunkMutation) SetEmbeddingJSON(value map[string]interface{}) {
-	m.embedding_json = &value
+func (m *KnowledgeChunkMutation) SetEmbeddingJSON(f []float64) {
+	m.embedding_json = &f
+	m.appendembedding_json = nil
 }
 
 // EmbeddingJSON returns the value of the "embedding_json" field in the mutation.
-func (m *KnowledgeChunkMutation) EmbeddingJSON() (r map[string]interface{}, exists bool) {
+func (m *KnowledgeChunkMutation) EmbeddingJSON() (r []float64, exists bool) {
 	v := m.embedding_json
 	if v == nil {
 		return
@@ -6964,7 +6983,7 @@ func (m *KnowledgeChunkMutation) EmbeddingJSON() (r map[string]interface{}, exis
 // OldEmbeddingJSON returns the old "embedding_json" field's value of the KnowledgeChunk entity.
 // If the KnowledgeChunk object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *KnowledgeChunkMutation) OldEmbeddingJSON(ctx context.Context) (v map[string]interface{}, err error) {
+func (m *KnowledgeChunkMutation) OldEmbeddingJSON(ctx context.Context) (v []float64, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldEmbeddingJSON is only allowed on UpdateOne operations")
 	}
@@ -6978,9 +6997,23 @@ func (m *KnowledgeChunkMutation) OldEmbeddingJSON(ctx context.Context) (v map[st
 	return oldValue.EmbeddingJSON, nil
 }
 
+// AppendEmbeddingJSON adds f to the "embedding_json" field.
+func (m *KnowledgeChunkMutation) AppendEmbeddingJSON(f []float64) {
+	m.appendembedding_json = append(m.appendembedding_json, f...)
+}
+
+// AppendedEmbeddingJSON returns the list of values that were appended to the "embedding_json" field in this mutation.
+func (m *KnowledgeChunkMutation) AppendedEmbeddingJSON() ([]float64, bool) {
+	if len(m.appendembedding_json) == 0 {
+		return nil, false
+	}
+	return m.appendembedding_json, true
+}
+
 // ResetEmbeddingJSON resets all changes to the "embedding_json" field.
 func (m *KnowledgeChunkMutation) ResetEmbeddingJSON() {
 	m.embedding_json = nil
+	m.appendembedding_json = nil
 }
 
 // SetStatus sets the "status" field.
@@ -7556,14 +7589,14 @@ func (m *KnowledgeChunkMutation) SetField(name string, value ent.Value) error {
 		m.SetCategory(v)
 		return nil
 	case knowledgechunk.FieldTags:
-		v, ok := value.(map[string]interface{})
+		v, ok := value.([]string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetTags(v)
 		return nil
 	case knowledgechunk.FieldEmbeddingJSON:
-		v, ok := value.(map[string]interface{})
+		v, ok := value.([]float64)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
@@ -15539,22 +15572,23 @@ func (m *RagIndexJobMutation) ResetEdge(name string) error {
 // RagQueryLogMutation represents an operation that mutates the RagQueryLog nodes in the graph.
 type RagQueryLogMutation struct {
 	config
-	op             Op
-	typ            string
-	id             *int
-	uid            *int
-	adduid         *int
-	question       *string
-	answer_preview *string
-	citations_json *map[string]interface{}
-	latency_ms     *int
-	addlatency_ms  *int
-	status         *string
-	create_at      *time.Time
-	clearedFields  map[string]struct{}
-	done           bool
-	oldValue       func(context.Context) (*RagQueryLog, error)
-	predicates     []predicate.RagQueryLog
+	op                   Op
+	typ                  string
+	id                   *int
+	uid                  *int
+	adduid               *int
+	question             *string
+	answer_preview       *string
+	citations_json       *[]map[string]interface{}
+	appendcitations_json []map[string]interface{}
+	latency_ms           *int
+	addlatency_ms        *int
+	status               *string
+	create_at            *time.Time
+	clearedFields        map[string]struct{}
+	done                 bool
+	oldValue             func(context.Context) (*RagQueryLog, error)
+	predicates           []predicate.RagQueryLog
 }
 
 var _ ent.Mutation = (*RagQueryLogMutation)(nil)
@@ -15803,12 +15837,13 @@ func (m *RagQueryLogMutation) ResetAnswerPreview() {
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (m *RagQueryLogMutation) SetCitationsJSON(value map[string]interface{}) {
+func (m *RagQueryLogMutation) SetCitationsJSON(value []map[string]interface{}) {
 	m.citations_json = &value
+	m.appendcitations_json = nil
 }
 
 // CitationsJSON returns the value of the "citations_json" field in the mutation.
-func (m *RagQueryLogMutation) CitationsJSON() (r map[string]interface{}, exists bool) {
+func (m *RagQueryLogMutation) CitationsJSON() (r []map[string]interface{}, exists bool) {
 	v := m.citations_json
 	if v == nil {
 		return
@@ -15819,7 +15854,7 @@ func (m *RagQueryLogMutation) CitationsJSON() (r map[string]interface{}, exists 
 // OldCitationsJSON returns the old "citations_json" field's value of the RagQueryLog entity.
 // If the RagQueryLog object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RagQueryLogMutation) OldCitationsJSON(ctx context.Context) (v map[string]interface{}, err error) {
+func (m *RagQueryLogMutation) OldCitationsJSON(ctx context.Context) (v []map[string]interface{}, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldCitationsJSON is only allowed on UpdateOne operations")
 	}
@@ -15833,9 +15868,23 @@ func (m *RagQueryLogMutation) OldCitationsJSON(ctx context.Context) (v map[strin
 	return oldValue.CitationsJSON, nil
 }
 
+// AppendCitationsJSON adds value to the "citations_json" field.
+func (m *RagQueryLogMutation) AppendCitationsJSON(value []map[string]interface{}) {
+	m.appendcitations_json = append(m.appendcitations_json, value...)
+}
+
+// AppendedCitationsJSON returns the list of values that were appended to the "citations_json" field in this mutation.
+func (m *RagQueryLogMutation) AppendedCitationsJSON() ([]map[string]interface{}, bool) {
+	if len(m.appendcitations_json) == 0 {
+		return nil, false
+	}
+	return m.appendcitations_json, true
+}
+
 // ClearCitationsJSON clears the value of the "citations_json" field.
 func (m *RagQueryLogMutation) ClearCitationsJSON() {
 	m.citations_json = nil
+	m.appendcitations_json = nil
 	m.clearedFields[ragquerylog.FieldCitationsJSON] = struct{}{}
 }
 
@@ -15848,6 +15897,7 @@ func (m *RagQueryLogMutation) CitationsJSONCleared() bool {
 // ResetCitationsJSON resets all changes to the "citations_json" field.
 func (m *RagQueryLogMutation) ResetCitationsJSON() {
 	m.citations_json = nil
+	m.appendcitations_json = nil
 	delete(m.clearedFields, ragquerylog.FieldCitationsJSON)
 }
 
@@ -16111,7 +16161,7 @@ func (m *RagQueryLogMutation) SetField(name string, value ent.Value) error {
 		m.SetAnswerPreview(v)
 		return nil
 	case ragquerylog.FieldCitationsJSON:
-		v, ok := value.(map[string]interface{})
+		v, ok := value.([]map[string]interface{})
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}

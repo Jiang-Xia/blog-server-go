@@ -24,10 +24,10 @@ func (RagQueryLog) Fields() []ent.Field {
 		field.Int("id").StorageKey("id").Comment("主键 ID"),
 		field.Int("uid").StorageKey("uid"),
 		field.String("question").StorageKey("question"),
-		field.String("answer_preview").StorageKey("answer_preview").Optional().Nillable(),
-		field.JSON("citations_json", map[string]interface{}{}).StorageKey("citations_json").Optional(),
-		field.Int("latency_ms").StorageKey("latency_ms").Default(0),
+		field.String("answer_preview").StorageKey("answer_preview").Optional().Nillable().StructTag(`json:"answerPreview"`),
+		field.JSON("citations_json", []map[string]interface{}{}).StorageKey("citations_json").Optional().StructTag(`json:"citationsJson"`),
+		field.Int("latency_ms").StorageKey("latency_ms").Default(0).StructTag(`json:"latencyMs"`),
 		field.String("status").StorageKey("status").Default("success"),
-		field.Time("create_at").StorageKey("create_at"),
+		field.Time("create_at").StorageKey("create_at").StructTag(`json:"createAt"`),
 	}
 }

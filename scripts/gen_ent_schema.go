@@ -11,6 +11,7 @@ import (
 	"unicode"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/pkg/jsonkey"
 	"github.com/Jiang-Xia/blog-server-go/scripts/nestcomment"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -212,6 +213,7 @@ func renderSchema(tableName, logicalTable, goName string, useMixin bool, cols []
 		fieldComment := resolveFieldComment(comments, logicalTable, c)
 		if c.EntType == "JSON" {
 			line := fmt.Sprintf("\t\tfield.JSON(%q, map[string]interface{}{}).StorageKey(%q)", c.Name, c.Name)
+			line += structTagJSON(c.Name)
 			line += commentSuffix(fieldComment)
 			if c.Optional {
 				line += ".Optional()"
@@ -221,6 +223,7 @@ func renderSchema(tableName, logicalTable, goName string, useMixin bool, cols []
 			continue
 		}
 		line := fmt.Sprintf("\t\tfield.%s(%q).StorageKey(%q)", c.EntType, c.Name, c.Name)
+		line += structTagJSON(c.Name)
 		line += commentSuffix(fieldComment)
 		if c.Unique {
 			line += ".Unique()"
@@ -310,6 +313,14 @@ func commentSuffix(comment string) string {
 		return ""
 	}
 	return fmt.Sprintf(`.Comment(%q)`, comment)
+}
+
+// structTagJSON 为 snake_case 字段生成 Nest 对齐的小驼峰 json tag（保留 0 值，不用 omitempty）。
+func structTagJSON(fieldName string) string {
+	if !strings.Contains(fieldName, "_") {
+		return ""
+	}
+	return fmt.Sprintf(`.StructTag(`+"`json:\"%s\"`"+`)`, jsonkey.SnakeToCamel(fieldName))
 }
 
 func toGoTypeName(table string) string {

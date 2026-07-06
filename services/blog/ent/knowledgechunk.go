@@ -20,9 +20,9 @@ type KnowledgeChunk struct {
 	// 主键 ID
 	ID int `json:"id,omitempty"`
 	// ArticleID holds the value of the "article_id" field.
-	ArticleID int `json:"article_id,omitempty"`
+	ArticleID int `json:"articleId"`
 	// ChunkIndex holds the value of the "chunk_index" field.
-	ChunkIndex int `json:"chunk_index,omitempty"`
+	ChunkIndex int `json:"chunkIndex"`
 	// Title holds the value of the "title" field.
 	Title string `json:"title,omitempty"`
 	// Content holds the value of the "content" field.
@@ -34,25 +34,25 @@ type KnowledgeChunk struct {
 	// Tags holds the value of the "tags" field.
 	Tags []string `json:"tags,omitempty"`
 	// EmbeddingJSON holds the value of the "embedding_json" field.
-	EmbeddingJSON []float64 `json:"embedding_json,omitempty"`
+	EmbeddingJSON []float64 `json:"embeddingJson"`
 	// active | deleted，下架/作者禁用为 deleted 不参与检索
 	Status string `json:"status,omitempty"`
 	// IndexedAt holds the value of the "indexed_at" field.
-	IndexedAt time.Time `json:"indexed_at,omitempty"`
+	IndexedAt time.Time `json:"indexedAt"`
 	// CreateAt holds the value of the "create_at" field.
-	CreateAt time.Time `json:"create_at,omitempty"`
+	CreateAt time.Time `json:"createAt"`
 	// UpdateAt holds the value of the "update_at" field.
-	UpdateAt time.Time `json:"update_at,omitempty"`
+	UpdateAt time.Time `json:"updateAt"`
 	// SourceType holds the value of the "source_type" field.
-	SourceType string `json:"source_type,omitempty"`
+	SourceType string `json:"sourceType"`
 	// SourceKey holds the value of the "source_key" field.
-	SourceKey string `json:"source_key,omitempty"`
+	SourceKey string `json:"sourceKey"`
 	// HeadingPath holds the value of the "heading_path" field.
-	HeadingPath *string `json:"heading_path,omitempty"`
+	HeadingPath *string `json:"headingPath"`
 	// ContentType holds the value of the "content_type" field.
-	ContentType string `json:"content_type,omitempty"`
+	ContentType string `json:"contentType"`
 	// SearchText holds the value of the "search_text" field.
-	SearchText   *string `json:"search_text,omitempty"`
+	SearchText   *string `json:"searchText"`
 	selectValues sql.SelectValues
 }
 

@@ -24,15 +24,15 @@ type RagQueryLog struct {
 	// Question holds the value of the "question" field.
 	Question string `json:"question,omitempty"`
 	// AnswerPreview holds the value of the "answer_preview" field.
-	AnswerPreview *string `json:"answer_preview,omitempty"`
+	AnswerPreview *string `json:"answerPreview"`
 	// CitationsJSON holds the value of the "citations_json" field.
-	CitationsJSON map[string]interface{} `json:"citations_json,omitempty"`
+	CitationsJSON []map[string]interface{} `json:"citationsJson"`
 	// LatencyMs holds the value of the "latency_ms" field.
-	LatencyMs int `json:"latency_ms,omitempty"`
+	LatencyMs int `json:"latencyMs"`
 	// Status holds the value of the "status" field.
 	Status string `json:"status,omitempty"`
 	// CreateAt holds the value of the "create_at" field.
-	CreateAt     time.Time `json:"create_at,omitempty"`
+	CreateAt     time.Time `json:"createAt"`
 	selectValues sql.SelectValues
 }
 

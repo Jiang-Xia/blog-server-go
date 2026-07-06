@@ -67,14 +67,14 @@ func (kcc *KnowledgeChunkCreate) SetNillableCategory(s *string) *KnowledgeChunkC
 }
 
 // SetTags sets the "tags" field.
-func (kcc *KnowledgeChunkCreate) SetTags(m map[string]interface{}) *KnowledgeChunkCreate {
-	kcc.mutation.SetTags(m)
+func (kcc *KnowledgeChunkCreate) SetTags(s []string) *KnowledgeChunkCreate {
+	kcc.mutation.SetTags(s)
 	return kcc
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (kcc *KnowledgeChunkCreate) SetEmbeddingJSON(m map[string]interface{}) *KnowledgeChunkCreate {
-	kcc.mutation.SetEmbeddingJSON(m)
+func (kcc *KnowledgeChunkCreate) SetEmbeddingJSON(f []float64) *KnowledgeChunkCreate {
+	kcc.mutation.SetEmbeddingJSON(f)
 	return kcc
 }
 
@@ -524,7 +524,7 @@ func (u *KnowledgeChunkUpsert) ClearCategory() *KnowledgeChunkUpsert {
 }
 
 // SetTags sets the "tags" field.
-func (u *KnowledgeChunkUpsert) SetTags(v map[string]interface{}) *KnowledgeChunkUpsert {
+func (u *KnowledgeChunkUpsert) SetTags(v []string) *KnowledgeChunkUpsert {
 	u.Set(knowledgechunk.FieldTags, v)
 	return u
 }
@@ -542,7 +542,7 @@ func (u *KnowledgeChunkUpsert) ClearTags() *KnowledgeChunkUpsert {
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (u *KnowledgeChunkUpsert) SetEmbeddingJSON(v map[string]interface{}) *KnowledgeChunkUpsert {
+func (u *KnowledgeChunkUpsert) SetEmbeddingJSON(v []float64) *KnowledgeChunkUpsert {
 	u.Set(knowledgechunk.FieldEmbeddingJSON, v)
 	return u
 }
@@ -827,7 +827,7 @@ func (u *KnowledgeChunkUpsertOne) ClearCategory() *KnowledgeChunkUpsertOne {
 }
 
 // SetTags sets the "tags" field.
-func (u *KnowledgeChunkUpsertOne) SetTags(v map[string]interface{}) *KnowledgeChunkUpsertOne {
+func (u *KnowledgeChunkUpsertOne) SetTags(v []string) *KnowledgeChunkUpsertOne {
 	return u.Update(func(s *KnowledgeChunkUpsert) {
 		s.SetTags(v)
 	})
@@ -848,7 +848,7 @@ func (u *KnowledgeChunkUpsertOne) ClearTags() *KnowledgeChunkUpsertOne {
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (u *KnowledgeChunkUpsertOne) SetEmbeddingJSON(v map[string]interface{}) *KnowledgeChunkUpsertOne {
+func (u *KnowledgeChunkUpsertOne) SetEmbeddingJSON(v []float64) *KnowledgeChunkUpsertOne {
 	return u.Update(func(s *KnowledgeChunkUpsert) {
 		s.SetEmbeddingJSON(v)
 	})
@@ -1321,7 +1321,7 @@ func (u *KnowledgeChunkUpsertBulk) ClearCategory() *KnowledgeChunkUpsertBulk {
 }
 
 // SetTags sets the "tags" field.
-func (u *KnowledgeChunkUpsertBulk) SetTags(v map[string]interface{}) *KnowledgeChunkUpsertBulk {
+func (u *KnowledgeChunkUpsertBulk) SetTags(v []string) *KnowledgeChunkUpsertBulk {
 	return u.Update(func(s *KnowledgeChunkUpsert) {
 		s.SetTags(v)
 	})
@@ -1342,7 +1342,7 @@ func (u *KnowledgeChunkUpsertBulk) ClearTags() *KnowledgeChunkUpsertBulk {
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (u *KnowledgeChunkUpsertBulk) SetEmbeddingJSON(v map[string]interface{}) *KnowledgeChunkUpsertBulk {
+func (u *KnowledgeChunkUpsertBulk) SetEmbeddingJSON(v []float64) *KnowledgeChunkUpsertBulk {
 	return u.Update(func(s *KnowledgeChunkUpsert) {
 		s.SetEmbeddingJSON(v)
 	})

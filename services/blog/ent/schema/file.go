@@ -29,6 +29,6 @@ func (File) Fields() []ent.Field {
 		field.String("type").StorageKey("type"),
 		field.Int("size").StorageKey("size"),
 		field.String("url").StorageKey("url"),
-		field.Time("create_at").StorageKey("create_at").Comment("创建时间"),
+		field.Time("create_at").StorageKey("create_at").Comment("创建时间").StructTag(`json:"createAt"`),
 	}
 }

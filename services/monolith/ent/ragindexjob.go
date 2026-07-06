@@ -19,17 +19,17 @@ type RagIndexJob struct {
 	// 主键 ID
 	ID int `json:"id,omitempty"`
 	// ArticleID holds the value of the "article_id" field.
-	ArticleID int `json:"article_id,omitempty"`
+	ArticleID int `json:"articleId"`
 	// Status holds the value of the "status" field.
 	Status string `json:"status,omitempty"`
 	// ChunkCount holds the value of the "chunk_count" field.
-	ChunkCount int `json:"chunk_count,omitempty"`
+	ChunkCount int `json:"chunkCount"`
 	// ErrorMsg holds the value of the "error_msg" field.
-	ErrorMsg *string `json:"error_msg,omitempty"`
+	ErrorMsg *string `json:"errorMsg"`
 	// CreateAt holds the value of the "create_at" field.
-	CreateAt time.Time `json:"create_at,omitempty"`
+	CreateAt time.Time `json:"createAt"`
 	// UpdateAt holds the value of the "update_at" field.
-	UpdateAt     time.Time `json:"update_at,omitempty"`
+	UpdateAt     time.Time `json:"updateAt"`
 	selectValues sql.SelectValues
 }
 

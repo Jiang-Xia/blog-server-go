@@ -49,7 +49,7 @@ func (rqlc *RagQueryLogCreate) SetNillableAnswerPreview(s *string) *RagQueryLogC
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (rqlc *RagQueryLogCreate) SetCitationsJSON(m map[string]interface{}) *RagQueryLogCreate {
+func (rqlc *RagQueryLogCreate) SetCitationsJSON(m []map[string]interface{}) *RagQueryLogCreate {
 	rqlc.mutation.SetCitationsJSON(m)
 	return rqlc
 }
@@ -318,7 +318,7 @@ func (u *RagQueryLogUpsert) ClearAnswerPreview() *RagQueryLogUpsert {
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (u *RagQueryLogUpsert) SetCitationsJSON(v map[string]interface{}) *RagQueryLogUpsert {
+func (u *RagQueryLogUpsert) SetCitationsJSON(v []map[string]interface{}) *RagQueryLogUpsert {
 	u.Set(ragquerylog.FieldCitationsJSON, v)
 	return u
 }
@@ -482,7 +482,7 @@ func (u *RagQueryLogUpsertOne) ClearAnswerPreview() *RagQueryLogUpsertOne {
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (u *RagQueryLogUpsertOne) SetCitationsJSON(v map[string]interface{}) *RagQueryLogUpsertOne {
+func (u *RagQueryLogUpsertOne) SetCitationsJSON(v []map[string]interface{}) *RagQueryLogUpsertOne {
 	return u.Update(func(s *RagQueryLogUpsert) {
 		s.SetCitationsJSON(v)
 	})
@@ -822,7 +822,7 @@ func (u *RagQueryLogUpsertBulk) ClearAnswerPreview() *RagQueryLogUpsertBulk {
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (u *RagQueryLogUpsertBulk) SetCitationsJSON(v map[string]interface{}) *RagQueryLogUpsertBulk {
+func (u *RagQueryLogUpsertBulk) SetCitationsJSON(v []map[string]interface{}) *RagQueryLogUpsertBulk {
 	return u.Update(func(s *RagQueryLogUpsert) {
 		s.SetCitationsJSON(v)
 	})

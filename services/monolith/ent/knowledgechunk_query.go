@@ -262,7 +262,7 @@ func (kcq *KnowledgeChunkQuery) Clone() *KnowledgeChunkQuery {
 // Example:
 //
 //	var v []struct {
-//		ArticleID int `json:"article_id,omitempty"`
+//		ArticleID int `json:"articleId"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
@@ -285,7 +285,7 @@ func (kcq *KnowledgeChunkQuery) GroupBy(field string, fields ...string) *Knowled
 // Example:
 //
 //	var v []struct {
-//		ArticleID int `json:"article_id,omitempty"`
+//		ArticleID int `json:"articleId"`
 //	}
 //
 //	client.KnowledgeChunk.Query().

@@ -1,4 +1,4 @@
-// 由 scripts/gen_ent_schema.go 生成，请勿手改。
+﻿// 由 scripts/gen_ent_schema.go 生成，请勿手改。
 package schema
 
 import (
@@ -26,7 +26,7 @@ func (Tag) Fields() []ent.Field {
 		field.String("label").StorageKey("label"),
 		field.String("value").StorageKey("value"),
 		field.String("color").StorageKey("color"),
-		field.Time("create_at").StorageKey("create_at").Comment("创建时间"),
-		field.Time("update_at").StorageKey("update_at").Comment("更新时间"),
+		field.Time("create_at").StorageKey("create_at").Comment("创建时间").StructTag(`json:"createAt"`),
+		field.Time("update_at").StorageKey("update_at").Comment("更新时间").StructTag(`json:"updateAt"`),
 	}
 }

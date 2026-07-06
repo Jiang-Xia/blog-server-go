@@ -2,6 +2,7 @@ package rag
 
 import (
 	"strings"
+	"unicode/utf8"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 )
@@ -269,26 +270,33 @@ func (s *ChunkService) splitParagraph(text, headingPath string) []parsedSegment 
 		end := start + s.maxChars
 		if end > len(text) {
 			end = len(text)
+		} else {
+			end = utf8ByteEnd(text, start, end)
 		}
-		if end < len(text) {
+		if end < len(text) && end > start {
 			slice := text[start:end]
 			lastBreak := maxInt(strings.LastIndex(slice, "\n"), strings.LastIndex(slice, "。"),
 				strings.LastIndex(slice, "."), strings.LastIndex(slice, "；"))
 			if lastBreak > s.minChars/2 {
-				end = start + lastBreak + 1
+				end = utf8ByteEnd(text, start, start+lastBreak+1)
 			}
 		}
 		piece := strings.TrimSpace(text[start:end])
 		if piece != "" {
 			result = append(result, parsedSegment{content: piece, contentType: "prose", headingPath: headingPath})
 		}
+		span := end - start
 		overlap := s.overlapChars
-		if overlap > len(piece) {
-			overlap = len(piece)
+		if overlap > span {
+			overlap = span
 		}
-		next := end - overlap
+		next := utf8ByteStart(text, end-overlap)
 		if next <= start {
-			next = start + 1
+			_, size := utf8.DecodeRuneInString(text[start:])
+			if size == 0 {
+				break
+			}
+			next = start + size
 		}
 		start = next
 		if end >= len(text) {
@@ -296,6 +304,31 @@ func (s *ChunkService) splitParagraph(text, headingPath string) []parsedSegment 
 		}
 	}
 	return result
+}
+
+// utf8ByteEnd 将 end 回退到 rune 边界，保证 text[start:end] 为合法 UTF-8。
+func utf8ByteEnd(s string, start, end int) int {
+	if end > len(s) {
+		end = len(s)
+	}
+	for end > start && !utf8.RuneStart(s[end]) {
+		end--
+	}
+	return end
+}
+
+// utf8ByteStart 将 at 前进到下一个 rune 起始字节。
+func utf8ByteStart(s string, at int) int {
+	if at <= 0 {
+		return 0
+	}
+	if at >= len(s) {
+		return len(s)
+	}
+	for at < len(s) && !utf8.RuneStart(s[at]) {
+		at++
+	}
+	return at
 }
 
 func (s *ChunkService) mergeSmallPieces(pieces []parsedSegment) []parsedSegment {

@@ -22,11 +22,11 @@ func (RagIndexJob) Annotations() []schema.Annotation {
 func (RagIndexJob) Fields() []ent.Field {
 	return []ent.Field{
 		field.Int("id").StorageKey("id").Comment("主键 ID"),
-		field.Int("article_id").StorageKey("article_id").Default(0),
+		field.Int("article_id").StorageKey("article_id").Default(0).StructTag(`json:"articleId"`),
 		field.String("status").StorageKey("status").Default("pending"),
-		field.Int("chunk_count").StorageKey("chunk_count").Default(0),
-		field.Text("error_msg").StorageKey("error_msg").Optional().Nillable(),
-		field.Time("create_at").StorageKey("create_at"),
-		field.Time("update_at").StorageKey("update_at"),
+		field.Int("chunk_count").StorageKey("chunk_count").Default(0).StructTag(`json:"chunkCount"`),
+		field.Text("error_msg").StorageKey("error_msg").Optional().Nillable().StructTag(`json:"errorMsg"`),
+		field.Time("create_at").StorageKey("create_at").StructTag(`json:"createAt"`),
+		field.Time("update_at").StorageKey("update_at").StructTag(`json:"updateAt"`),
 	}
 }

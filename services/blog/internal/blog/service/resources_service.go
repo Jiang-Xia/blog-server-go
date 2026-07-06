@@ -341,6 +341,6 @@ func fileToMap(f *ent.File) map[string]interface{} {
 	return map[string]interface{}{
 		"id": f.ID, "pid": f.Pid, "isFolder": f.IsFolder,
 		"originalname": f.Originalname, "filename": f.Filename,
-		"type": f.Type, "size": f.Size, "url": f.URL, "create_at": f.CreateAt,
+		"type": f.Type, "size": f.Size, "url": f.URL, "createAt": f.CreateAt,
 	}
 }

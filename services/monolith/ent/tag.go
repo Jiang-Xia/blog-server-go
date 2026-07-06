@@ -27,9 +27,9 @@ type Tag struct {
 	// Color holds the value of the "color" field.
 	Color string `json:"color,omitempty"`
 	// 创建时间
-	CreateAt time.Time `json:"create_at,omitempty"`
+	CreateAt time.Time `json:"createAt"`
 	// 更新时间
-	UpdateAt     time.Time `json:"update_at,omitempty"`
+	UpdateAt     time.Time `json:"updateAt"`
 	selectValues sql.SelectValues
 }
 

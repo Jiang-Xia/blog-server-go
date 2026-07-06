@@ -10,6 +10,7 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"entgo.io/ent/dialect/sql/sqljson"
 	"entgo.io/ent/schema/field"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/knowledgechunk"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/predicate"
@@ -133,8 +134,14 @@ func (kcu *KnowledgeChunkUpdate) ClearCategory() *KnowledgeChunkUpdate {
 }
 
 // SetTags sets the "tags" field.
-func (kcu *KnowledgeChunkUpdate) SetTags(m map[string]interface{}) *KnowledgeChunkUpdate {
-	kcu.mutation.SetTags(m)
+func (kcu *KnowledgeChunkUpdate) SetTags(s []string) *KnowledgeChunkUpdate {
+	kcu.mutation.SetTags(s)
+	return kcu
+}
+
+// AppendTags appends s to the "tags" field.
+func (kcu *KnowledgeChunkUpdate) AppendTags(s []string) *KnowledgeChunkUpdate {
+	kcu.mutation.AppendTags(s)
 	return kcu
 }
 
@@ -145,8 +152,14 @@ func (kcu *KnowledgeChunkUpdate) ClearTags() *KnowledgeChunkUpdate {
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (kcu *KnowledgeChunkUpdate) SetEmbeddingJSON(m map[string]interface{}) *KnowledgeChunkUpdate {
-	kcu.mutation.SetEmbeddingJSON(m)
+func (kcu *KnowledgeChunkUpdate) SetEmbeddingJSON(f []float64) *KnowledgeChunkUpdate {
+	kcu.mutation.SetEmbeddingJSON(f)
+	return kcu
+}
+
+// AppendEmbeddingJSON appends f to the "embedding_json" field.
+func (kcu *KnowledgeChunkUpdate) AppendEmbeddingJSON(f []float64) *KnowledgeChunkUpdate {
+	kcu.mutation.AppendEmbeddingJSON(f)
 	return kcu
 }
 
@@ -359,11 +372,21 @@ func (kcu *KnowledgeChunkUpdate) sqlSave(ctx context.Context) (n int, err error)
 	if value, ok := kcu.mutation.Tags(); ok {
 		_spec.SetField(knowledgechunk.FieldTags, field.TypeJSON, value)
 	}
+	if value, ok := kcu.mutation.AppendedTags(); ok {
+		_spec.AddModifier(func(u *sql.UpdateBuilder) {
+			sqljson.Append(u, knowledgechunk.FieldTags, value)
+		})
+	}
 	if kcu.mutation.TagsCleared() {
 		_spec.ClearField(knowledgechunk.FieldTags, field.TypeJSON)
 	}
 	if value, ok := kcu.mutation.EmbeddingJSON(); ok {
 		_spec.SetField(knowledgechunk.FieldEmbeddingJSON, field.TypeJSON, value)
+	}
+	if value, ok := kcu.mutation.AppendedEmbeddingJSON(); ok {
+		_spec.AddModifier(func(u *sql.UpdateBuilder) {
+			sqljson.Append(u, knowledgechunk.FieldEmbeddingJSON, value)
+		})
 	}
 	if value, ok := kcu.mutation.Status(); ok {
 		_spec.SetField(knowledgechunk.FieldStatus, field.TypeString, value)
@@ -523,8 +546,14 @@ func (kcuo *KnowledgeChunkUpdateOne) ClearCategory() *KnowledgeChunkUpdateOne {
 }
 
 // SetTags sets the "tags" field.
-func (kcuo *KnowledgeChunkUpdateOne) SetTags(m map[string]interface{}) *KnowledgeChunkUpdateOne {
-	kcuo.mutation.SetTags(m)
+func (kcuo *KnowledgeChunkUpdateOne) SetTags(s []string) *KnowledgeChunkUpdateOne {
+	kcuo.mutation.SetTags(s)
+	return kcuo
+}
+
+// AppendTags appends s to the "tags" field.
+func (kcuo *KnowledgeChunkUpdateOne) AppendTags(s []string) *KnowledgeChunkUpdateOne {
+	kcuo.mutation.AppendTags(s)
 	return kcuo
 }
 
@@ -535,8 +564,14 @@ func (kcuo *KnowledgeChunkUpdateOne) ClearTags() *KnowledgeChunkUpdateOne {
 }
 
 // SetEmbeddingJSON sets the "embedding_json" field.
-func (kcuo *KnowledgeChunkUpdateOne) SetEmbeddingJSON(m map[string]interface{}) *KnowledgeChunkUpdateOne {
-	kcuo.mutation.SetEmbeddingJSON(m)
+func (kcuo *KnowledgeChunkUpdateOne) SetEmbeddingJSON(f []float64) *KnowledgeChunkUpdateOne {
+	kcuo.mutation.SetEmbeddingJSON(f)
+	return kcuo
+}
+
+// AppendEmbeddingJSON appends f to the "embedding_json" field.
+func (kcuo *KnowledgeChunkUpdateOne) AppendEmbeddingJSON(f []float64) *KnowledgeChunkUpdateOne {
+	kcuo.mutation.AppendEmbeddingJSON(f)
 	return kcuo
 }
 
@@ -779,11 +814,21 @@ func (kcuo *KnowledgeChunkUpdateOne) sqlSave(ctx context.Context) (_node *Knowle
 	if value, ok := kcuo.mutation.Tags(); ok {
 		_spec.SetField(knowledgechunk.FieldTags, field.TypeJSON, value)
 	}
+	if value, ok := kcuo.mutation.AppendedTags(); ok {
+		_spec.AddModifier(func(u *sql.UpdateBuilder) {
+			sqljson.Append(u, knowledgechunk.FieldTags, value)
+		})
+	}
 	if kcuo.mutation.TagsCleared() {
 		_spec.ClearField(knowledgechunk.FieldTags, field.TypeJSON)
 	}
 	if value, ok := kcuo.mutation.EmbeddingJSON(); ok {
 		_spec.SetField(knowledgechunk.FieldEmbeddingJSON, field.TypeJSON, value)
+	}
+	if value, ok := kcuo.mutation.AppendedEmbeddingJSON(); ok {
+		_spec.AddModifier(func(u *sql.UpdateBuilder) {
+			sqljson.Append(u, knowledgechunk.FieldEmbeddingJSON, value)
+		})
 	}
 	if value, ok := kcuo.mutation.Status(); ok {
 		_spec.SetField(knowledgechunk.FieldStatus, field.TypeString, value)

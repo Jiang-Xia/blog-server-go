@@ -10,6 +10,7 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"entgo.io/ent/dialect/sql/sqljson"
 	"entgo.io/ent/schema/field"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/predicate"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/ragquerylog"
@@ -84,8 +85,14 @@ func (rqlu *RagQueryLogUpdate) ClearAnswerPreview() *RagQueryLogUpdate {
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (rqlu *RagQueryLogUpdate) SetCitationsJSON(m map[string]interface{}) *RagQueryLogUpdate {
+func (rqlu *RagQueryLogUpdate) SetCitationsJSON(m []map[string]interface{}) *RagQueryLogUpdate {
 	rqlu.mutation.SetCitationsJSON(m)
+	return rqlu
+}
+
+// AppendCitationsJSON appends m to the "citations_json" field.
+func (rqlu *RagQueryLogUpdate) AppendCitationsJSON(m []map[string]interface{}) *RagQueryLogUpdate {
+	rqlu.mutation.AppendCitationsJSON(m)
 	return rqlu
 }
 
@@ -203,6 +210,11 @@ func (rqlu *RagQueryLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := rqlu.mutation.CitationsJSON(); ok {
 		_spec.SetField(ragquerylog.FieldCitationsJSON, field.TypeJSON, value)
 	}
+	if value, ok := rqlu.mutation.AppendedCitationsJSON(); ok {
+		_spec.AddModifier(func(u *sql.UpdateBuilder) {
+			sqljson.Append(u, ragquerylog.FieldCitationsJSON, value)
+		})
+	}
 	if rqlu.mutation.CitationsJSONCleared() {
 		_spec.ClearField(ragquerylog.FieldCitationsJSON, field.TypeJSON)
 	}
@@ -294,8 +306,14 @@ func (rqluo *RagQueryLogUpdateOne) ClearAnswerPreview() *RagQueryLogUpdateOne {
 }
 
 // SetCitationsJSON sets the "citations_json" field.
-func (rqluo *RagQueryLogUpdateOne) SetCitationsJSON(m map[string]interface{}) *RagQueryLogUpdateOne {
+func (rqluo *RagQueryLogUpdateOne) SetCitationsJSON(m []map[string]interface{}) *RagQueryLogUpdateOne {
 	rqluo.mutation.SetCitationsJSON(m)
+	return rqluo
+}
+
+// AppendCitationsJSON appends m to the "citations_json" field.
+func (rqluo *RagQueryLogUpdateOne) AppendCitationsJSON(m []map[string]interface{}) *RagQueryLogUpdateOne {
+	rqluo.mutation.AppendCitationsJSON(m)
 	return rqluo
 }
 
@@ -442,6 +460,11 @@ func (rqluo *RagQueryLogUpdateOne) sqlSave(ctx context.Context) (_node *RagQuery
 	}
 	if value, ok := rqluo.mutation.CitationsJSON(); ok {
 		_spec.SetField(ragquerylog.FieldCitationsJSON, field.TypeJSON, value)
+	}
+	if value, ok := rqluo.mutation.AppendedCitationsJSON(); ok {
+		_spec.AddModifier(func(u *sql.UpdateBuilder) {
+			sqljson.Append(u, ragquerylog.FieldCitationsJSON, value)
+		})
 	}
 	if rqluo.mutation.CitationsJSONCleared() {
 		_spec.ClearField(ragquerylog.FieldCitationsJSON, field.TypeJSON)

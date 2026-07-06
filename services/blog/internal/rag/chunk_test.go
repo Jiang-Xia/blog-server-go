@@ -1,7 +1,9 @@
 package rag_test
 
 import (
+	"strings"
 	"testing"
+	"unicode/utf8"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/rag"
@@ -33,5 +35,19 @@ func TestSplitMarkdownCodeBlock(t *testing.T) {
 	}
 	if !foundCode {
 		t.Fatal("expected code chunk")
+	}
+}
+
+func TestSplitMarkdownLongChineseValidUTF8(t *testing.T) {
+	cfg := &config.Config{}
+	cfg.Rag.Chunk.Size = 600
+	cfg.Rag.Chunk.Overlap = 120
+	svc := rag.NewChunkService(cfg)
+	md := "# 标题\n\n" + strings.Repeat("中文段落内容用于测试分块边界。", 80)
+	chunks := svc.SplitMarkdown(md, "标题", "摘要说明")
+	for i, c := range chunks {
+		if !utf8.ValidString(c.Content) {
+			t.Fatalf("chunk %d has invalid UTF-8", i)
+		}
 	}
 }

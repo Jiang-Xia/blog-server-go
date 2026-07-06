@@ -33,7 +33,7 @@ type File struct {
 	// URL holds the value of the "url" field.
 	URL string `json:"url,omitempty"`
 	// 创建时间
-	CreateAt     time.Time `json:"create_at,omitempty"`
+	CreateAt     time.Time `json:"createAt"`
 	selectValues sql.SelectValues
 }
 
