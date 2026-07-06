@@ -20,6 +20,9 @@ const (
 	msgTipReceived      = "tipReceived"
 	msgRechargeComplete = "rechargeComplete"
 	msgActivityUpdate   = "activityUpdate"
+	msgShieldUsed       = "shieldUsed"
+	msgBanStatus        = "banStatus"
+	msgLifeChange       = "lifeChange"
 
 	expGainDebounceSec = 8
 )
@@ -72,6 +75,24 @@ type ActivityItem struct {
 type ActivityUpdatePayload struct {
 	Type       string         `json:"type"`
 	Activities []ActivityItem `json:"activities"`
+}
+
+// BanStatusPayload 禁言状态 WS payload。
+type BanStatusPayload struct {
+	Banned     bool        `json:"banned"`
+	BanEndTime *time.Time  `json:"banEndTime"`
+	BanReason  *string     `json:"banReason"`
+}
+
+// LifeChangePayload 生命值变化 WS payload。
+type LifeChangePayload struct {
+	LifeDeducted int `json:"lifeDeducted"`
+	CurrentLife  int `json:"currentLife"`
+}
+
+// ShieldUsedPayload 护盾抵消 WS payload。
+type ShieldUsedPayload struct {
+	BuffName string `json:"buffName"`
 }
 
 // OnlineUIDsProvider 返回当前在线用户 uid 列表（广播用）。
@@ -134,6 +155,37 @@ func (s *RpgNotifyService) NotifyRechargeComplete(ctx context.Context, uid int, 
 		return nil
 	}
 	return s.pusher.PushToUser(ctx, uint64(uid), msgRechargeComplete, 0, payload)
+}
+
+// NotifyShieldUsed 推送护盾抵消敏感词扣血。
+func (s *RpgNotifyService) NotifyShieldUsed(ctx context.Context, uid int) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgShieldUsed, 0, ShieldUsedPayload{BuffName: "护盾"})
+}
+
+// NotifyLifeChange 推送生命值变化。
+func (s *RpgNotifyService) NotifyLifeChange(ctx context.Context, uid, lifeDeducted, currentLife int) {
+	if s.pusher == nil || lifeDeducted <= 0 {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgLifeChange, 0, LifeChangePayload{
+		LifeDeducted: lifeDeducted,
+		CurrentLife:  currentLife,
+	})
+}
+
+// NotifyBanStatus 推送禁言/解封状态。
+func (s *RpgNotifyService) NotifyBanStatus(ctx context.Context, uid int, banned bool, banEndTime *time.Time, banReason *string) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgBanStatus, 0, BanStatusPayload{
+		Banned:     banned,
+		BanEndTime: banEndTime,
+		BanReason:  banReason,
+	})
 }
 
 // BroadcastActivityUpdate 向在线用户广播活动变更（connect 类型跳过）。

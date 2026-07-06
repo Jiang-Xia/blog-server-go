@@ -205,3 +205,49 @@ func findBuffConfig(code string) *Config {
 	}
 	return nil
 }
+
+// HasShield 检查并消耗一次护盾 Buff（免疫敏感词扣血，对齐 Nest buffService.hasShield）。
+func (s *Service) HasShield(ctx context.Context, uid int) (bool, error) {
+	now := time.Now()
+	_ = s.repo.DeleteExpiredBuffs(ctx, uid, now)
+	rows, err := s.repo.ListBuffsByUID(ctx, uid)
+	if err != nil {
+		return false, err
+	}
+	for _, b := range rows {
+		if !shieldEligible(b, now) {
+			continue
+		}
+		if err := s.consumeUse(ctx, b); err != nil {
+			return false, err
+		}
+		return true, nil
+	}
+	return false, nil
+}
+
+// shieldEligible 判断 Buff 是否为可用护盾（便于单测）。
+func shieldEligible(b *ent.RpgUserBuff, now time.Time) bool {
+	if b == nil || b.BuffType != "shield" {
+		return false
+	}
+	if b.ExpireAt.Before(now) || b.RemainingUses == 0 {
+		return false
+	}
+	if b.TriggerMode == "manual" && b.IsActive != 1 {
+		return false
+	}
+	return true
+}
+
+func (s *Service) consumeUse(ctx context.Context, b *ent.RpgUserBuff) error {
+	if b.RemainingUses <= 0 {
+		return nil
+	}
+	b.RemainingUses--
+	if b.RemainingUses <= 0 {
+		return s.repo.DeleteBuffByID(ctx, b.ID)
+	}
+	_, err := s.repo.UpdateBuff(ctx, b)
+	return err
+}

@@ -25,7 +25,12 @@ type Handlers struct {
 	Achievement  *achievement.Service
 	Quest        *quest.Service
 	Reputation   *social.ReputationService
+	Punishment   punishmentHandler
 	Redis        *redisutil.Store
+}
+
+type punishmentHandler interface {
+	OnSensitiveWordHit(ctx context.Context, uid, hpPenalty int) error
 }
 
 // RegisterRPGHandlers 向 event.Consumer 注册 RPG 侧 blog 事件 handler。
@@ -256,22 +261,10 @@ func (h Handlers) onSensitiveWordHit(ctx context.Context, payload json.RawMessag
 	if err := json.Unmarshal(payload, &p); err != nil {
 		return err
 	}
-	penalty := p.HpPenalty
-	if penalty <= 0 {
-		penalty = 10
+	if h.Punishment == nil || p.UID <= 0 {
+		return nil
 	}
-	rpg, err := h.Core.GetOrCreateRpg(ctx, p.UID)
-	if err != nil {
-		return err
-	}
-	rpg.LifeValue -= penalty
-	if rpg.LifeValue < 0 {
-		rpg.LifeValue = 0
-		rpg.ZeroLifeCount++
-	}
-	rpg.SensitiveHitsCount++
-	_, err = h.Core.SaveRpg(ctx, rpg)
-	return err
+	return h.Punishment.OnSensitiveWordHit(ctx, p.UID, p.HpPenalty)
 }
 
 func (h Handlers) trackAchievement(ctx context.Context, uid int, event string) {

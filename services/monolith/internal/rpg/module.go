@@ -81,10 +81,10 @@ func NewModule(
 
 	levelSvc := rpglevel.NewLevelService(rpgSvc, repo, notify, redis)
 	signSvc := rpglevel.NewSignService(rpgSvc, levelSvc)
-	punishSvc := rpgpunish.NewPunishmentService(rpgSvc)
 
 	inventorySvc := inventory.NewService(repo, rpgSvc, log)
 	buffSvc := rpgbuff.NewService(repo)
+	punishSvc := rpgpunish.NewPunishmentService(rpgSvc, buffSvc, notify)
 	weatherSvc := rpgbuff.NewWeatherService()
 	achievementSvc := rpgachievement.NewService(repo, levelSvc, inventorySvc, rpgSvc, log)
 

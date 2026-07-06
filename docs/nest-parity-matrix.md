@@ -1,7 +1,7 @@
 # NestJS ↔ Go 功能对等矩阵
 
 > **用途**：回答「Go 有没有完整迁移 Nest？」——本表汇总 **Plan 01–18 交付结果 + 各 `docs/0N-*.md` 已知限制 + 计划「仍不在范围」**，作为单一查阅入口。  
-> **更新日期**：2026-07-03  
+> **更新日期**：2026-07-06  
 > **Nest 对照仓库**：[`blog-server`](../../blog-server)（NestJS 11 单体）  
 > **Go 仓库**：[`blog-server-go`](../)（gateway + user + blog + rpg 四微服务）
 
@@ -62,11 +62,11 @@ pie title 模块对等粗算（按 Nest 功能域）
 | `features/email` | user/blog | ✅ | SMTP 验证码；定时汇总邮件 Plan 12 |
 | `features/scheduled-task` | blog-service | ✅ | Plan 12；8 个内置 job + admin CRUD |
 | `core/realtime` WS | blog-service `/realtime` | ⚠️ | Plan 08；原生 WS 替代 Socket.IO；部分 RPG WS 事件不全 |
-| `core/events` Stream | blog 发布 + rpg/rag 消费 | ⚠️ | Plan 08、09、18、**19**；文章等级已补齐；惩罚链仍简 |
-| `modules/rpg` C 端 | rpg-service | ⚠️ | Plan 09；核心玩法可用；见 §5 待补齐 |
+| `core/events` Stream | blog 发布 + rpg/rag 消费 | ⚠️ | Plan 08、09、18、19、**20**；惩罚链已对齐 |
+| `modules/rpg` C 端 | rpg-service | ⚠️ | Plan 09；核心玩法可用；WS 全量见 Plan 21 |
 | `rpg/admin` | rpg-service | ✅ | Plan 13；admin 写操作 stub 已替换 |
 | `rpg/guards/ban.guard` | blog gRPC + rpg 本地 | ✅ | Plan 13；comment/reply/sign；msgboard 匿名同 Nest |
-| `rpg/punishment` | rpg-service | ⚠️ | BanGuard + 简化扣 HP；**无护盾/自动禁言/WS** |
+| `rpg/punishment` | rpg-service | ✅ | Plan 13 BanGuard + Plan **20** 全惩罚链 + 解封 WS |
 | `rpg/level/article-level` | rpg-service | ✅ | Plan 19 `ArticleLevelService` + Stream 消费 |
 | `modules/pay` | rpg-service | ⚠️ | 支付宝 ✅；微信支付 🚫 **明确不做** §3.6 |
 | `modules/rag` | blog-service | ⚠️ | Plan 15；规则 Tool；LLM function calling 🚫 §3.6 |
@@ -109,7 +109,7 @@ pie title 模块对等粗算（按 Nest 功能域）
 | 敏感词 hit 审核 → 实体 status | ✅ | ✅ | ✅ Plan 13 |
 | 评论创建 → RPG 经验 | ✅ | ✅ | ✅ Plan 18 发布 + Plan 09 消费 |
 | BanGuard 禁言拦截 | ✅ | ✅ | ✅ Plan 13 |
-| 敏感词 HP 扣减 + 自动禁言 | ✅ | ⚠️ | ⚠️ 仅简化扣血，见 §5.1 |
+| 敏感词 HP 扣减 + 自动禁言 | ✅ | ✅ | ✅ Plan **20** |
 | 站内通知 + WS | ✅ | ✅ | ✅ |
 
 ### 3.4 RPG
@@ -123,8 +123,8 @@ pie title 模块对等粗算（按 Nest 功能域）
 | Admin RPG CRUD | ✅ | ✅ | ✅ Plan 13 |
 | Stream → 用户经验/任务 | ✅ | ✅ | ✅ |
 | Stream → 文章等级 articleExp | ✅ | ✅ | ✅ Plan 19 |
-| Punishment 护盾/累计禁言/归零禁言 | ✅ | ❌ | ❌ §5.1 |
-| WS `lifeChange` / `banStatus` | ✅ | ⚠️ | ⚠️ 部分有；解封无 push |
+| Punishment 护盾/累计禁言/归零禁言 | ✅ | ✅ | ✅ Plan **20** |
+| WS `lifeChange` / `banStatus` | ✅ | ⚠️ | ⚠️ 惩罚/解封已 push；其余事件 Plan 21 |
 | 公开主页 collects/likes 分页 | ✅ | ✅ | ✅ Plan 14 |
 | 公开主页 articles 分页 | ✅ | ⚠️ | 🚫 简化列表，**明确不做** §3.6 |
 
@@ -168,7 +168,7 @@ pie title 模块对等粗算（按 Nest 功能域）
 | `article.updated/unpublished/deleted` | ✅ | ✅ | RAG 索引 | RAG ✅ |
 | `comment/reply/msgboard/like/collect.created` | ✅ | ✅ | 用户经验 + **作者文章 exp** | 用户经验 ✅；文章 exp 部分 ❌ |
 | `article.viewed` | ✅ | ✅ | 文章 exp + 浏览 dedup | dedup ✅；文章 exp ❌ |
-| `sensitive-word.hit` | ✅ | ✅ | **PunishmentService 全链** | 简化扣 HP ⚠️ |
+| `sensitive-word.hit` | ✅ | ✅ | **PunishmentService 全链** | ✅ Plan **20** |
 | `article.tipped` | ✅ | rpg 侧 | 声望/任务 | ✅ |
 | `user.registered` | ✅ | — | RPG 初始化 | ✅（注册路径差异见 Plan 02） |
 
@@ -180,12 +180,12 @@ pie title 模块对等粗算（按 Nest 功能域）
 
 | ID | 项 | Nest 参考 | Go 现状 | 优先级 | 状态 | 计划 |
 |----|-----|-----------|---------|--------|------|------|
-| P-01 | 敏感词惩罚全链 | `punishment.service.ts` `onSensitiveWordHit` | `consumer.go` 仅扣 `lifeValue`；无护盾/禁言/WS | **高** | ❌ | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
+| P-01 | 敏感词惩罚全链 | `punishment.service.ts` `onSensitiveWordHit` | `PunishmentService` + consumer 委托 | **高** | ✅ 2026-07-06 | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
 | P-02 | ArticleLevelService | `article-level.service.ts` + `rpg-event.consumer.ts` | Stream 消费写 exp/level/神作 | **高** | ✅ 2026-07-06 | [19](../.cursor/plans/19-RPG文章等级与Stream消费对齐.md) |
-| P-03 | admin 解封 WS `banStatus` | `adminUnban` push | 只清 DB | 中 | ❌ | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
+| P-03 | admin 解封 WS `banStatus` | `adminUnban` push | `AdminUnban` → `NotifyBanStatus` | 中 | ✅ 2026-07-06 | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
 | P-04 | RPG WS 通知 + 成就/任务接线 | `rpg-notify.service.ts` | 仅 levelUp/expGain 等少数事件 | **高** | ❌ | [21](../.cursor/plans/21-RPG实时通知与成就接线补齐.md) |
 
-**执行顺序**：P-02（Plan **19**）→ P-01/P-03（Plan **20**）→ P-04（Plan **21**）。
+**执行顺序**：P-02（Plan **19**）→ P-01/P-03（Plan **20**）✅ → P-04（Plan **21**）。
 
 M7 验收通过后，Go 与 Nest 在 **RPG 核心玩法**（文章等级、惩罚、实时通知）上视为对齐；其余差异以 §3.6 为准。
 

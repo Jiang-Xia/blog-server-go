@@ -647,6 +647,11 @@ func (r *RpgRepo) DeleteExpiredBuffs(ctx context.Context, uid int, before time.T
 	return err
 }
 
+// DeleteBuffByID 删除指定 Buff（次数耗尽时）。
+func (r *RpgRepo) DeleteBuffByID(ctx context.Context, id int) error {
+	return r.client.RpgUserBuff.DeleteOneID(id).Exec(ctx)
+}
+
 // --- Achievement ---
 
 // ListAchievementsByUID 用户成就进度。

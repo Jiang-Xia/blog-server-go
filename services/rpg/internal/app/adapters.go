@@ -97,6 +97,7 @@ func provideRPGEventHandlersFull(mod *rpg.Module, redis *redisutil.Store) rpgeve
 		Achievement:  mod.Achievement,
 		Quest:        mod.Quest,
 		Reputation:   mod.Reputation,
+		Punishment:   mod.Punishment,
 		Redis:        redis,
 	}
 }
