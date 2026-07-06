@@ -134,6 +134,61 @@ func fallback(v, def string) string {
 	return v
 }
 
+func envBool(m map[string]string, key string, def bool) bool {
+	v := strings.ToLower(strings.TrimSpace(Get(m, key)))
+	switch v {
+	case "1", "true", "yes", "on":
+		return true
+	case "0", "false", "no", "off":
+		return false
+	default:
+		return def
+	}
+}
+
+func envInt(m map[string]string, key string, def int) int {
+	v := strings.TrimSpace(Get(m, key))
+	if v == "" {
+		return def
+	}
+	n, err := strconv.Atoi(v)
+	if err != nil {
+		return def
+	}
+	return n
+}
+
+// RagBlock 从 Nest rag_* 环境变量生成 Go rag yaml 段（对齐 blog-server loadRagConfig）。
+func RagBlock(m map[string]string) map[string]any {
+	embedKey := Get(m, "rag_embedding_api_key")
+	embedURL := fallback(Get(m, "rag_embedding_api_base_url"), "https://api.siliconflow.cn/v1")
+	mode := "local"
+	if embedKey != "" || Get(m, "rag_embedding_api_base_url") != "" {
+		mode = "remote"
+	}
+	return map[string]any{
+		"enabled":              envBool(m, "rag_enabled", false),
+		"daily_quota":            envInt(m, "rag_daily_query_limit", 20),
+		"top_k":                  envInt(m, "rag_top_k", 6),
+		"allow_local_fallback":   envBool(m, "rag_allow_local_fallback", true),
+		"embedding": map[string]any{
+			"mode":        mode,
+			"remote_url":  embedURL,
+			"api_key":     embedKey,
+			"model":       fallback(Get(m, "rag_embedding_model"), "BAAI/bge-large-zh-v1.5"),
+		},
+		"llm": map[string]any{
+			"base_url": fallback(Get(m, "rag_api_base_url"), "https://api.deepseek.com/v1"),
+			"api_key":  Get(m, "rag_api_key"),
+			"model":    fallback(Get(m, "rag_chat_model"), "deepseek-chat"),
+		},
+		"chunk": map[string]any{
+			"size":    600,
+			"overlap": 120,
+		},
+	}
+}
+
 // GatewayYAML 从 Nest env 生成 gateway 配置文档。
 func GatewayYAML(m map[string]string) map[string]any {
 	return map[string]any{
@@ -227,6 +282,7 @@ func BlogYAML(m map[string]string) map[string]any {
 			"upload_path":   upload,
 			"public_prefix": "/static/",
 		},
+		"rag":           RagBlock(m),
 		"observability": observabilityBlock("blog-service"),
 	}
 }

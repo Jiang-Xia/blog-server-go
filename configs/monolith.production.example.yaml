@@ -72,3 +72,22 @@ pay:
   use_legacy_sandbox_gateway: false
   wechat_app_id: ""
   wechat_secret: ""
+
+# RAG 知识库（Nest：rag_* → deploy/pm2/env.production）
+rag:
+  enabled: false
+  daily_quota: 20
+  top_k: 6
+  allow_local_fallback: true
+  embedding:
+    mode: remote
+    remote_url: "https://api.siliconflow.cn/v1"
+    api_key: ""
+    model: "BAAI/bge-large-zh-v1.5"
+  llm:
+    base_url: "https://api.deepseek.com/v1"
+    api_key: ""
+    model: "deepseek-chat"
+  chunk:
+    size: 600
+    overlap: 120

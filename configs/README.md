@@ -41,6 +41,16 @@ pwsh scripts/setup-config.ps1
 | `pay_alipayPublicKey` | `pay.alipay_public_key` |
 | `pay_alipayNotifyUrl` | `pay.alipay_notify_url` |
 | `file_filePath` | `storage.upload_path` |
+| `rag_enabled` | `rag.enabled` |
+| `rag_api_key` | `rag.llm.api_key` |
+| `rag_api_base_url` | `rag.llm.base_url` |
+| `rag_chat_model` | `rag.llm.model` |
+| `rag_embedding_api_key` | `rag.embedding.api_key` |
+| `rag_embedding_api_base_url` | `rag.embedding.remote_url` |
+| `rag_embedding_model` | `rag.embedding.model` |
+| `rag_daily_query_limit` | `rag.daily_quota` |
+| `rag_top_k` | `rag.top_k` |
+| `rag_allow_local_fallback` | `rag.allow_local_fallback` |
 
 ## 微服务共享存储（强制）
 

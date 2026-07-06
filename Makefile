@@ -1,4 +1,4 @@
-.PHONY: dev dev-all dev-all-stop dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs deploy rollback rollback-list sync-pm2-config tidy \
+.PHONY: dev dev-all dev-all-windows dev-all-stop dev-all-status dev-all-logs dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs deploy rollback rollback-list sync-pm2-config tidy \
 	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run \
 	swag-apidoc swag-user swag-blog swag-rpg swag-gateway swag-all
 
@@ -37,6 +37,12 @@ dev-all-windows:
 
 dev-all-stop:
 	powershell -ExecutionPolicy Bypass -File scripts/dev-all-stop.ps1
+
+dev-all-status:
+	powershell -ExecutionPolicy Bypass -File scripts/dev-all-status.ps1
+
+dev-all-logs:
+	powershell -ExecutionPolicy Bypass -File scripts/dev-all-logs.ps1
 
 dev-login:
 	$(GO) run scripts/dev_login.go

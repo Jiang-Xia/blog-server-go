@@ -67,3 +67,63 @@ func TestBlogYAMLMapsTongjiFromNestEnv(t *testing.T) {
 		t.Fatalf("notify_email: %#v", app["notify_email"])
 	}
 }
+
+func TestRagBlockMapsNestEnv(t *testing.T) {
+	m := map[string]string{
+		"rag_enabled":                  "true",
+		"rag_api_key":                  "llm-key",
+		"rag_api_base_url":             "https://api.deepseek.com/v1",
+		"rag_embedding_api_key":        "embed-key",
+		"rag_embedding_api_base_url":   "https://api.siliconflow.cn/v1",
+		"rag_embedding_model":          "BAAI/bge-large-zh-v1.5",
+		"rag_chat_model":               "deepseek-chat",
+		"rag_daily_query_limit":        "30",
+		"rag_top_k":                    "8",
+		"rag_allow_local_fallback":     "false",
+	}
+	block := RagBlock(m)
+	if block["enabled"] != true {
+		t.Fatalf("enabled: %#v", block["enabled"])
+	}
+	if block["daily_quota"] != 30 {
+		t.Fatalf("daily_quota: %#v", block["daily_quota"])
+	}
+	if block["top_k"] != 8 {
+		t.Fatalf("top_k: %#v", block["top_k"])
+	}
+	if block["allow_local_fallback"] != false {
+		t.Fatalf("allow_local_fallback: %#v", block["allow_local_fallback"])
+	}
+	embedding, ok := block["embedding"].(map[string]any)
+	if !ok {
+		t.Fatal("missing embedding block")
+	}
+	if embedding["mode"] != "remote" {
+		t.Fatalf("embedding.mode: %#v", embedding["mode"])
+	}
+	if embedding["api_key"] != "embed-key" {
+		t.Fatalf("embedding.api_key: %#v", embedding["api_key"])
+	}
+	llm, ok := block["llm"].(map[string]any)
+	if !ok {
+		t.Fatal("missing llm block")
+	}
+	if llm["api_key"] != "llm-key" {
+		t.Fatalf("llm.api_key: %#v", llm["api_key"])
+	}
+	if llm["model"] != "deepseek-chat" {
+		t.Fatalf("llm.model: %#v", llm["model"])
+	}
+}
+
+func TestBlogYAMLIncludesRagBlock(t *testing.T) {
+	m := map[string]string{
+		"rag_enabled":           "true",
+		"rag_api_key":           "llm-key",
+		"rag_embedding_api_key": "embed-key",
+	}
+	yaml := BlogYAML(m)
+	if _, ok := yaml["rag"]; !ok {
+		t.Fatal("blog yaml missing rag block")
+	}
+}
