@@ -8,6 +8,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	rpgconst "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/constants"
 	rpgcore "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/core"
+	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/seeds"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/ent"
@@ -31,14 +32,20 @@ const (
 
 // Service 背包与货币业务。
 type Service struct {
-	repo *rpgrepo.RpgRepo
-	core *rpgcore.RpgService
-	log  *zap.Logger
+	repo   *rpgrepo.RpgRepo
+	core   *rpgcore.RpgService
+	notify *rpgnotify.RpgNotifyService
+	log    *zap.Logger
 }
 
 // NewService 构造背包 Service。
 func NewService(repo *rpgrepo.RpgRepo, core *rpgcore.RpgService, log *zap.Logger) *Service {
 	return &Service{repo: repo, core: core, log: log}
+}
+
+// SetNotify 延迟注入 WS 推送。
+func (s *Service) SetNotify(n *rpgnotify.RpgNotifyService) {
+	s.notify = n
 }
 
 // SyncPredefinedSeeds 启动时同步预定义物品种子。
@@ -99,6 +106,9 @@ func (s *Service) AdjustCurrency(ctx context.Context, uid, delta int, source str
 		balance = updated.Quantity
 		return nil
 	})
+	if err == nil && s.notify != nil {
+		s.notify.NotifyCurrencyChange(ctx, uid, delta, balance, source)
+	}
 	return balance, err
 }
 
@@ -265,12 +275,21 @@ func (s *Service) GrantItem(ctx context.Context, uid int, itemCode, source strin
 			Quantity: quantity,
 			Source:   source,
 		})
+		if err == nil && s.notify != nil {
+			s.notify.NotifyItemGranted(ctx, uid, itemCode, source, quantity)
+		}
 		return err
 	}
 	if err != nil {
 		return err
 	}
-	return s.repo.UpdateInventoryQuantity(ctx, existing.ID, existing.Quantity+quantity)
+	if err := s.repo.UpdateInventoryQuantity(ctx, existing.ID, existing.Quantity+quantity); err != nil {
+		return err
+	}
+	if s.notify != nil {
+		s.notify.NotifyItemGranted(ctx, uid, itemCode, source, quantity)
+	}
+	return nil
 }
 
 // HasItem 是否持有物品（货币查余额）。

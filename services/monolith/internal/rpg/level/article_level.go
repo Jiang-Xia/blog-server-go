@@ -7,6 +7,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
 	rpgconst "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/constants"
+	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/notify"
 )
 
 // ReputationGrant 给作者增加的声望。
@@ -36,6 +37,7 @@ type ArticleLevelService struct {
 	articles    blogsvc.ArticleRPGStore
 	reputation  ReputationAdder
 	achievement AchievementTracker
+	notify      *rpgnotify.RpgNotifyService
 }
 
 // NewArticleLevelService 构造 ArticleLevelService。
@@ -49,6 +51,11 @@ func NewArticleLevelService(
 		reputation:  reputation,
 		achievement: achievement,
 	}
+}
+
+// SetNotify 延迟注入 WS 推送。
+func (s *ArticleLevelService) SetNotify(n *rpgnotify.RpgNotifyService) {
+	s.notify = n
 }
 
 func articleLevelThreshold(level int) int {
@@ -79,6 +86,7 @@ func (s *ArticleLevelService) AddArticleExp(
 	}
 
 	wasMasterpiece := snap.IsMasterpiece == 1
+	oldLevel := snap.ArticleLevel
 	snap.ArticleExp += amount
 	for snap.ArticleExp >= articleLevelThreshold(snap.ArticleLevel+1) {
 		snap.ArticleLevel++
@@ -120,6 +128,23 @@ func (s *ArticleLevelService) AddArticleExp(
 		}
 		if out.IsMasterpiece && !wasMasterpiece {
 			_ = s.achievement.TrackProgress(ctx, authorID, "masterpiece")
+		}
+	}
+	title := s.ArticleTitle(ctx, articleID)
+	if s.notify != nil && authorID > 0 {
+		if out.LeveledUp {
+			s.notify.NotifyArticleLevelUp(ctx, authorID, rpgnotify.ArticleLevelUpPayload{
+				ArticleID:    articleID,
+				ArticleTitle: title,
+				OldLevel:     oldLevel,
+				NewLevel:     snap.ArticleLevel,
+			})
+		}
+		if out.IsMasterpiece && !wasMasterpiece {
+			s.notify.NotifyMasterpiece(ctx, authorID, rpgnotify.MasterpiecePayload{
+				ArticleID:    articleID,
+				ArticleTitle: title,
+			})
 		}
 	}
 	return out, nil

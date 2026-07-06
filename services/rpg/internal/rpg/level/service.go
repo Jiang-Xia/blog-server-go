@@ -13,12 +13,18 @@ import (
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/repo"
 )
 
+// LevelAchievementTracker 等级成就追踪（避免 level ↔ achievement 循环依赖）。
+type LevelAchievementTracker interface {
+	TrackLevelUp(ctx context.Context, uid, newLevel int) error
+}
+
 // LevelService 等级阈值计算、经验发放与升级判定。
 type LevelService struct {
-	rpg    *rpgcore.RpgService
-	repo   *rpgrepo.RpgRepo
-	notify *rpgnotify.RpgNotifyService
-	redis  *redisutil.Store
+	rpg         *rpgcore.RpgService
+	repo        *rpgrepo.RpgRepo
+	notify      *rpgnotify.RpgNotifyService
+	redis       *redisutil.Store
+	achievement LevelAchievementTracker
 }
 
 // NewLevelService 构造 LevelService。
@@ -29,6 +35,11 @@ func NewLevelService(
 	redis *redisutil.Store,
 ) *LevelService {
 	return &LevelService{rpg: rpg, repo: repo, notify: notify, redis: redis}
+}
+
+// SetAchievementTracker 延迟注入等级成就追踪。
+func (s *LevelService) SetAchievementTracker(t LevelAchievementTracker) {
+	s.achievement = t
 }
 
 // GetLevelThreshold 计算指定等级所需最低经验；公式 level * (level-1) * 50，LV1=0。
@@ -99,6 +110,9 @@ func (s *LevelService) AddExp(ctx context.Context, uid, amount int, reason rpgco
 	}
 	if s.notify != nil {
 		s.notify.NotifyLevelUp(ctx, uid, result)
+	}
+	if s.achievement != nil {
+		_ = s.achievement.TrackLevelUp(ctx, uid, levelUpPartial.NewLevel)
 	}
 	return result, nil
 }

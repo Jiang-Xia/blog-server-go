@@ -11,6 +11,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/constants"
 	rpgcore "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/core"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/inventory"
+	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/util"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
@@ -25,6 +26,7 @@ type InteractService struct {
 	redis       *redisutil.Store
 	achievement AchievementTracker
 	quest       QuestTracker
+	notify      *rpgnotify.RpgNotifyService
 }
 
 // AchievementTracker 成就追踪。
@@ -57,6 +59,11 @@ func NewInteractService(
 		achievement: achievement,
 		quest:       quest,
 	}
+}
+
+// SetNotify 延迟注入 WS 推送。
+func (s *InteractService) SetNotify(n *rpgnotify.RpgNotifyService) {
+	s.notify = n
 }
 
 // Cheer 为他人加油。
@@ -107,6 +114,15 @@ func (s *InteractService) interact(ctx context.Context, fromUID, toUID int, acti
 		CostCurrency: cost,
 		HpDelta:      hpDelta,
 	})
+	if s.notify != nil {
+		s.notify.NotifySocialReceived(ctx, toUID, rpgnotify.SocialReceivedPayload{
+			FromUID:         fromUID,
+			Action:          string(action),
+			HpDelta:         hpDelta,
+			CurrentLife:     target.LifeValue,
+			ReputationDelta: repDelta,
+		})
+	}
 	trackAction := "social_" + string(action)
 	if s.achievement != nil {
 		_ = s.achievement.TrackProgress(ctx, fromUID, trackAction)

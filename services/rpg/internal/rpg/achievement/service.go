@@ -8,6 +8,7 @@ import (
 	rpgcore "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/core"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/inventory"
 	rpglevel "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/level"
+	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/seeds"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/util"
@@ -21,6 +22,7 @@ type Service struct {
 	level     *rpglevel.LevelService
 	inventory *inventory.Service
 	core      *rpgcore.RpgService
+	notify    *rpgnotify.RpgNotifyService
 	log       *zap.Logger
 }
 
@@ -33,6 +35,11 @@ func NewService(
 	log *zap.Logger,
 ) *Service {
 	return &Service{repo: repo, level: level, inventory: inventory, core: core, log: log}
+}
+
+// SetNotify 延迟注入 WS 推送。
+func (s *Service) SetNotify(n *rpgnotify.RpgNotifyService) {
+	s.notify = n
 }
 
 // SyncPredefinedAchievements 启动时同步成就种子。
@@ -186,6 +193,9 @@ func (s *Service) completeAchievement(ctx context.Context, uid int, cfg *ent.Rpg
 				_ = s.inventory.GrantItem(ctx, uid, code, "achievement", 1)
 			}
 		}
+	}
+	if s.notify != nil {
+		s.notify.NotifyAchievementComplete(ctx, uid, rpgnotify.BuildAchievementCompletePayload(cfg, effect))
 	}
 	return nil
 }

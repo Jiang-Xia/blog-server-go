@@ -61,9 +61,9 @@ pie title 模块对等粗算（按 Nest 功能域）
 | `msgboard` `link` `file` | blog-service | ✅ | Plan 07 |
 | `features/email` | user/blog | ✅ | SMTP 验证码；定时汇总邮件 Plan 12 |
 | `features/scheduled-task` | blog-service | ✅ | Plan 12；8 个内置 job + admin CRUD |
-| `core/realtime` WS | blog-service `/realtime` | ⚠️ | Plan 08；原生 WS 替代 Socket.IO；部分 RPG WS 事件不全 |
+| `core/realtime` WS | blog-service `/realtime` | ✅ | Plan 08、**21**；P0 RPG WS 已对齐；连接上下文见 Plan 21 限制 |
 | `core/events` Stream | blog 发布 + rpg/rag 消费 | ⚠️ | Plan 08、09、18、19、**20**；惩罚链已对齐 |
-| `modules/rpg` C 端 | rpg-service | ⚠️ | Plan 09；核心玩法可用；WS 全量见 Plan 21 |
+| `modules/rpg` C 端 | rpg-service | ✅ | Plan 09、**21**；核心玩法 + P0 WS 已对齐 |
 | `rpg/admin` | rpg-service | ✅ | Plan 13；admin 写操作 stub 已替换 |
 | `rpg/guards/ban.guard` | blog gRPC + rpg 本地 | ✅ | Plan 13；comment/reply/sign；msgboard 匿名同 Nest |
 | `rpg/punishment` | rpg-service | ✅ | Plan 13 BanGuard + Plan **20** 全惩罚链 + 解封 WS |
@@ -124,7 +124,8 @@ pie title 模块对等粗算（按 Nest 功能域）
 | Stream → 用户经验/任务 | ✅ | ✅ | ✅ |
 | Stream → 文章等级 articleExp | ✅ | ✅ | ✅ Plan 19 |
 | Punishment 护盾/累计禁言/归零禁言 | ✅ | ✅ | ✅ Plan **20** |
-| WS `lifeChange` / `banStatus` | ✅ | ⚠️ | ⚠️ 惩罚/解封已 push；其余事件 Plan 21 |
+| WS `lifeChange` / `banStatus` | ✅ | ✅ | ✅ Plan 20 惩罚 + Plan **21** 社交 lifeChange |
+| WS 成就/任务/文章/社交/背包 | ✅ | ✅ | ✅ Plan **21** P0 事件 |
 | 公开主页 collects/likes 分页 | ✅ | ✅ | ✅ Plan 14 |
 | 公开主页 articles 分页 | ✅ | ⚠️ | 🚫 简化列表，**明确不做** §3.6 |
 
@@ -183,7 +184,7 @@ pie title 模块对等粗算（按 Nest 功能域）
 | P-01 | 敏感词惩罚全链 | `punishment.service.ts` `onSensitiveWordHit` | `PunishmentService` + consumer 委托 | **高** | ✅ 2026-07-06 | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
 | P-02 | ArticleLevelService | `article-level.service.ts` + `rpg-event.consumer.ts` | Stream 消费写 exp/level/神作 | **高** | ✅ 2026-07-06 | [19](../.cursor/plans/19-RPG文章等级与Stream消费对齐.md) |
 | P-03 | admin 解封 WS `banStatus` | `adminUnban` push | `AdminUnban` → `NotifyBanStatus` | 中 | ✅ 2026-07-06 | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
-| P-04 | RPG WS 通知 + 成就/任务接线 | `rpg-notify.service.ts` | 仅 levelUp/expGain 等少数事件 | **高** | ❌ | [21](../.cursor/plans/21-RPG实时通知与成就接线补齐.md) |
+| P-04 | RPG WS 通知 + 成就/任务接线 | `rpg-notify.service.ts` | P0 事件 + 埋点已对齐 | **高** | ✅ 2026-07-06 | [21](../.cursor/plans/21-RPG实时通知与成就接线补齐.md) |
 
 **执行顺序**：P-02（Plan **19**）→ P-01/P-03（Plan **20**）✅ → P-04（Plan **21**）。
 

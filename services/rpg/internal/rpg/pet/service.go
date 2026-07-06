@@ -6,6 +6,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/inventory"
+	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/seeds"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/util"
@@ -18,6 +19,7 @@ type Service struct {
 	repo      *rpgrepo.RpgRepo
 	inventory *inventory.Service
 	quest     QuestTracker
+	notify    *rpgnotify.RpgNotifyService
 	log       *zap.Logger
 }
 
@@ -29,6 +31,11 @@ type QuestTracker interface {
 // NewService 构造宠物 Service。
 func NewService(repo *rpgrepo.RpgRepo, inventory *inventory.Service, quest QuestTracker, log *zap.Logger) *Service {
 	return &Service{repo: repo, inventory: inventory, quest: quest, log: log}
+}
+
+// SetNotify 延迟注入 WS 推送。
+func (s *Service) SetNotify(n *rpgnotify.RpgNotifyService) {
+	s.notify = n
 }
 
 // SyncPredefinedPets 启动时同步宠物种子（委托 seeds 包）。
@@ -119,6 +126,9 @@ func (s *Service) Summon(ctx context.Context, uid int, itemCode string) (map[str
 	}
 	if s.quest != nil {
 		_ = s.quest.TrackProgress(ctx, uid, "pet_hatch")
+	}
+	if s.notify != nil {
+		s.notify.NotifyPetHatched(ctx, uid, pet.ID, pet.PetCode, pet.Nickname)
 	}
 	return map[string]interface{}{"id": pet.ID, "petCode": pet.PetCode}, nil
 }

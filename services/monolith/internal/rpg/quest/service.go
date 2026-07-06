@@ -10,6 +10,7 @@ import (
 	rpgcore "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/core"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/inventory"
 	rpglevel "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/level"
+	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/util"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
@@ -22,11 +23,12 @@ type Service struct {
 	level     *rpglevel.LevelService
 	inventory *inventory.Service
 	lottery   LotteryTickets
+	notify    *rpgnotify.RpgNotifyService
 }
 
 // LotteryTickets 抽奖券增减（避免 import cycle）。
 type LotteryTickets interface {
-	AddTickets(ctx context.Context, uid, amount int) error
+	AddTickets(ctx context.Context, uid, amount int, reason string) error
 }
 
 // NewService 构造任务 Service。
@@ -43,6 +45,11 @@ func NewService(
 // SetLottery 延迟注入抽奖券服务（打破 quest/lottery 循环依赖）。
 func (s *Service) SetLottery(l LotteryTickets) {
 	s.lottery = l
+}
+
+// SetNotify 延迟注入 WS 推送。
+func (s *Service) SetNotify(n *rpgnotify.RpgNotifyService) {
+	s.notify = n
 }
 
 // ListActiveQuests 获取活跃任务列表。
@@ -143,6 +150,7 @@ func (s *Service) TrackProgress(ctx context.Context, uid int, action string) err
 		if prog.Completed == 1 {
 			continue
 		}
+		wasCompleted := prog.Completed == 1
 		prog.Progress++
 		if prog.Progress >= q.TargetCount {
 			prog.Progress = q.TargetCount
@@ -150,6 +158,17 @@ func (s *Service) TrackProgress(ctx context.Context, uid int, action string) err
 		}
 		if _, err := s.repo.SaveQuestProgress(ctx, prog); err != nil {
 			return err
+		}
+		if !wasCompleted && prog.Completed == 1 && s.notify != nil {
+			payload := rpgnotify.QuestCompletePayload{
+				QuestCode: q.Code,
+				QuestName: q.Name,
+				ExpReward: q.ExpReward,
+			}
+			if q.HpReward > 0 {
+				payload.HpReward = &q.HpReward
+			}
+			s.notify.NotifyQuestComplete(ctx, uid, payload)
 		}
 	}
 	return nil
@@ -189,13 +208,20 @@ func (s *Service) ClaimReward(ctx context.Context, uid int, questCode string) (m
 	if q.EffectJson != nil && s.lottery != nil {
 		effect := util.ParseEffectJSON(q.EffectJson)
 		if ticket, ok := effect["ticketReward"].(float64); ok && int(ticket) > 0 {
-			_ = s.lottery.AddTickets(ctx, uid, int(ticket))
+			_ = s.lottery.AddTickets(ctx, uid, int(ticket), "quest")
 		}
 	}
 
 	prog.Claimed = 1
 	if _, err := s.repo.SaveQuestProgress(ctx, prog); err != nil {
 		return nil, err
+	}
+	if s.notify != nil {
+		s.notify.NotifyQuestReward(ctx, uid, rpgnotify.QuestRewardPayload{
+			QuestCode: q.Code,
+			QuestName: q.Name,
+			ExpReward: q.ExpReward,
+		})
 	}
 	return map[string]interface{}{"success": true, "questCode": questCode}, nil
 }

@@ -29,7 +29,7 @@
 | 18 领域事件发布补齐 | [18-领域事件发布补齐.md](./18-领域事件发布补齐.md) | ✅ 已交付 |
 | 19 RPG 文章等级与 Stream 消费对齐 | [19-RPG文章等级与Stream消费对齐.md](./19-RPG文章等级与Stream消费对齐.md) | ✅ 已交付 |
 | 20 RPG 惩罚链与禁言 WS 对齐 | [20-RPG惩罚链与禁言WS对齐.md](./20-RPG惩罚链与禁言WS对齐.md) | ✅ 已交付 |
-| 21 RPG 实时通知与成就接线补齐 | [21-RPG实时通知与成就接线补齐.md](./21-RPG实时通知与成就接线补齐.md) | ⏳ 待执行 |
+| 21 RPG 实时通知与成就接线补齐 | [21-RPG实时通知与成就接线补齐.md](./21-RPG实时通知与成就接线补齐.md) | ✅ 已交付 |
 | — **Nest ↔ Go 对等矩阵** | [nest-parity-matrix.md](./nest-parity-matrix.md) | ✅ 已维护 |
 | — HTTP/gRPC 路由全表 | [api-routes.md](./api-routes.md) | ✅ 已维护 |
 | — Swagger / OpenAPI | [12-swagger-api-doc.md](./12-swagger-api-doc.md) | ✅ 已交付 |

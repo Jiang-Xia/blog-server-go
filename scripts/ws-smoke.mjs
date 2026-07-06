@@ -99,7 +99,60 @@ async function main() {
   await httpPost('/dev/event-publish', token);
   console.log('   Stream 发布 OK');
 
-  console.log('\n✅ Plan 08 WS 冒烟通过');
+  console.log('7. Plan 21 RPG WS 事件契约（dev/ws-push）');
+  await rpgEventSmoke(token, 'achievementComplete', { code: 'smoke', name: '冒烟成就', expReward: 1 });
+  await rpgEventSmoke(token, 'questComplete', { questCode: 'smoke', questName: '冒烟任务', expReward: 1 });
+  console.log('   achievementComplete / questComplete 收到');
+
+  console.log('\n✅ Plan 08 + Plan 21 WS 冒烟通过');
+}
+
+/** 连接 WS 后经 dev 端点推送指定 RPG 事件并等待客户端收到。 */
+function rpgEventSmoke(token, eventType, data) {
+  return new Promise((resolve, reject) => {
+    const wsUrl = BASE.replace(/^http/i, 'ws') + `/realtime?token=${encodeURIComponent(token)}`;
+    const ws = new WebSocket(wsUrl);
+    const timer = setTimeout(() => {
+      ws.close();
+      reject(new Error(`等待 ${eventType} 超时`));
+    }, 10000);
+
+    ws.onopen = async () => {
+      try {
+        const res = await fetch(`${API}/dev/ws-push?type=${encodeURIComponent(eventType)}`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        const body = await res.json();
+        if (!res.ok || body.success === false) {
+          throw new Error(`dev/ws-push ${eventType}: ${JSON.stringify(body)}`);
+        }
+      }
+      catch (e) {
+        clearTimeout(timer);
+        ws.close();
+        reject(e);
+      }
+    };
+
+    ws.onmessage = (ev) => {
+      const msg = JSON.parse(ev.data);
+      if (msg.type === eventType) {
+        clearTimeout(timer);
+        ws.close();
+        resolve(true);
+      }
+    };
+
+    ws.onerror = (e) => {
+      clearTimeout(timer);
+      reject(e);
+    };
+  });
 }
 
 main().catch((err) => {

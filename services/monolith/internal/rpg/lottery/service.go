@@ -12,6 +12,7 @@ import (
 	rpgcore "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/core"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/inventory"
 	rpglevel "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/level"
+	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/util"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
@@ -21,12 +22,19 @@ const drawTicketCost = 1
 
 // Service 抽奖业务。
 type Service struct {
-	repo      *rpgrepo.RpgRepo
-	core      *rpgcore.RpgService
-	inventory *inventory.Service
-	level     *rpglevel.LevelService
-	buff      BuffGranter
-	quest     QuestTracker
+	repo        *rpgrepo.RpgRepo
+	core        *rpgcore.RpgService
+	inventory   *inventory.Service
+	level       *rpglevel.LevelService
+	buff        BuffGranter
+	quest       QuestTracker
+	achievement AchievementTracker
+	notify      *rpgnotify.RpgNotifyService
+}
+
+// AchievementTracker 保底成就追踪。
+type AchievementTracker interface {
+	TrackProgress(ctx context.Context, uid int, event string) error
 }
 
 // BuffGranter 授予 Buff（避免 cycle）。
@@ -49,6 +57,16 @@ func NewService(
 	quest QuestTracker,
 ) *Service {
 	return &Service{repo: repo, core: core, inventory: inventory, level: level, buff: buff, quest: quest}
+}
+
+// SetAchievement 延迟注入成就追踪。
+func (s *Service) SetAchievement(a AchievementTracker) {
+	s.achievement = a
+}
+
+// SetNotify 延迟注入 WS 推送。
+func (s *Service) SetNotify(n *rpgnotify.RpgNotifyService) {
+	s.notify = n
 }
 
 // GetPool 获取奖池（含物品配置）。
@@ -86,15 +104,20 @@ func (s *Service) GetTickets(ctx context.Context, uid int) (int, error) {
 	return rpg.LotteryTickets, nil
 }
 
-// AddTickets 增加抽奖券。
-func (s *Service) AddTickets(ctx context.Context, uid, amount int) error {
+// AddTickets 增加抽奖券并推送 lotteryTicketChange。
+func (s *Service) AddTickets(ctx context.Context, uid, amount int, reason string) error {
 	rpg, err := s.core.GetOrCreateRpg(ctx, uid)
 	if err != nil {
 		return err
 	}
 	rpg.LotteryTickets += amount
-	_, err = s.core.SaveRpg(ctx, rpg)
-	return err
+	if _, err = s.core.SaveRpg(ctx, rpg); err != nil {
+		return err
+	}
+	if amount != 0 && s.notify != nil {
+		s.notify.NotifyLotteryTicketChange(ctx, uid, amount, rpg.LotteryTickets, reason)
+	}
+	return nil
 }
 
 // Draw 执行单次抽奖；useTicket=true 消耗券，否则扣钻石。
@@ -119,7 +142,7 @@ func (s *Service) Draw(ctx context.Context, uid int, useTicket bool) (map[string
 		return nil, errcode.WithMessage(errcode.InternalError, "奖池为空")
 	}
 
-	picked := s.pickWithPity(pool, rpg)
+	picked, pityTriggered := s.pickWithPity(pool, rpg)
 	if picked == nil {
 		return nil, errcode.WithMessage(errcode.InternalError, "抽奖失败")
 	}
@@ -160,6 +183,9 @@ func (s *Service) Draw(ctx context.Context, uid int, useTicket bool) (map[string
 	if s.quest != nil {
 		_ = s.quest.TrackProgress(ctx, uid, "lottery_draw")
 	}
+	if pityTriggered && s.achievement != nil {
+		_ = s.achievement.TrackProgress(ctx, uid, "lottery_pity")
+	}
 
 	return map[string]interface{}{
 		"itemCode": picked.ItemCode,
@@ -189,19 +215,19 @@ func (s *Service) GetHistory(ctx context.Context, uid, limit int) ([]map[string]
 	return out, nil
 }
 
-func (s *Service) pickWithPity(pool []*ent.RpgLotteryPool, rpg *ent.Rpg) *ent.RpgLotteryPool {
+func (s *Service) pickWithPity(pool []*ent.RpgLotteryPool, rpg *ent.Rpg) (*ent.RpgLotteryPool, bool) {
 	// 传说保底优先于史诗保底；阈值见 Economy.LotteryLegendaryPityThreshold / LotteryEpicPityThreshold。
 	if rpg.LotteryLegendaryPityCounter+1 >= rpgconst.Economy.LotteryLegendaryPityThreshold {
 		if p := firstByRarity(pool, "legendary"); p != nil {
-			return p
+			return p, true
 		}
 	}
 	if rpg.LotteryPityCounter+1 >= rpgconst.Economy.LotteryEpicPityThreshold {
 		if p := firstByRarity(pool, "epic"); p != nil {
-			return p
+			return p, true
 		}
 	}
-	return weightedPick(pool)
+	return weightedPick(pool), false
 }
 
 func firstByRarity(pool []*ent.RpgLotteryPool, rarity string) *ent.RpgLotteryPool {
@@ -242,7 +268,7 @@ func (s *Service) applyPrize(ctx context.Context, uid int, cfg *ent.RpgItemConfi
 		amount := intFromEffect(effect["amount"])
 		_, _ = s.level.AddExp(ctx, uid, amount, rpgcore.ExpReasonLottery, 0)
 	case "ticket":
-		_ = s.AddTickets(ctx, uid, intFromEffect(effect["amount"]))
+		_ = s.AddTickets(ctx, uid, intFromEffect(effect["amount"]), "lottery_reward")
 	case "buff":
 		if code, ok := effect["buffCode"].(string); ok && s.buff != nil {
 			_ = s.buff.GrantBuffByCode(ctx, uid, code)

@@ -9,22 +9,13 @@ import (
 	"time"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/ws"
+	rpgconst "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/constants"
 	rpgcore "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/core"
+	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/util"
 	userrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
-)
-
-const (
-	msgLevelUp          = "levelUp"
-	msgExpGain          = "expGain"
-	msgTipReceived      = "tipReceived"
-	msgRechargeComplete = "rechargeComplete"
-	msgActivityUpdate   = "activityUpdate"
-	msgShieldUsed       = "shieldUsed"
-	msgBanStatus        = "banStatus"
-	msgLifeChange       = "lifeChange"
-
-	expGainDebounceSec = 8
 )
 
 var expReasonLabel = map[string]string{
@@ -40,59 +31,9 @@ var expReasonLabel = map[string]string{
 	"lottery":     "抽奖",
 }
 
-// ExpGainPayload expGain 合并推送 payload。
-type ExpGainPayload struct {
-	Amount       int      `json:"amount"`
-	Reasons      []string `json:"reasons"`
-	ReasonLabels []string `json:"reasonLabels"`
-}
-
-// TipReceivedPayload 收到打赏 payload。
-type TipReceivedPayload struct {
-	FromUID      int    `json:"fromUid"`
-	FromNickname string `json:"fromNickname"`
-	ArticleID    int    `json:"articleId"`
-	Amount       int    `json:"amount"`
-}
-
-// RechargeCompletePayload 充值到账 payload。
-type RechargeCompletePayload struct {
-	OutTradeNo string  `json:"outTradeNo"`
-	Diamonds   int     `json:"diamonds"`
-	Balance    int     `json:"balance"`
-	AmountYuan float64 `json:"amountYuan"`
-}
-
-// ActivityItem 活动摘要。
-type ActivityItem struct {
-	Code        string  `json:"code"`
-	Name        string  `json:"name"`
-	Description string  `json:"description,omitempty"`
-	ExpBuffRate float64 `json:"expBuffRate,omitempty"`
-}
-
-// ActivityUpdatePayload 活动变更广播 payload。
-type ActivityUpdatePayload struct {
-	Type       string         `json:"type"`
-	Activities []ActivityItem `json:"activities"`
-}
-
-// BanStatusPayload 禁言状态 WS payload。
-type BanStatusPayload struct {
-	Banned     bool        `json:"banned"`
-	BanEndTime *time.Time  `json:"banEndTime"`
-	BanReason  *string     `json:"banReason"`
-}
-
-// LifeChangePayload 生命值变化 WS payload。
-type LifeChangePayload struct {
-	LifeDeducted int `json:"lifeDeducted"`
-	CurrentLife  int `json:"currentLife"`
-}
-
-// ShieldUsedPayload 护盾抵消 WS payload。
-type ShieldUsedPayload struct {
-	BuffName string `json:"buffName"`
+// ItemConfigReader 物品配置查询（itemGranted / petHatched enrich）。
+type ItemConfigReader interface {
+	FindItemConfigByCode(ctx context.Context, code string) (*ent.RpgItemConfig, error)
 }
 
 // OnlineUIDsProvider 返回当前在线用户 uid 列表（广播用）。
@@ -100,10 +41,11 @@ type OnlineUIDsProvider func() []uint64
 
 // RpgNotifyService 封装 RPG WS 推送与 expGain 防抖。
 type RpgNotifyService struct {
-	pusher   ws.Pusher
-	redis    *redisutil.Store
-	users    *userrepo.UserRepo
-	online   OnlineUIDsProvider
+	pusher    ws.Pusher
+	redis     *redisutil.Store
+	users     *userrepo.UserRepo
+	items     ItemConfigReader
+	online    OnlineUIDsProvider
 	expTimers sync.Map // uid -> *time.Timer
 }
 
@@ -115,6 +57,11 @@ func NewRpgNotifyService(
 	online OnlineUIDsProvider,
 ) *RpgNotifyService {
 	return &RpgNotifyService{pusher: pusher, redis: redis, users: users, online: online}
+}
+
+// SetItemConfigReader 延迟注入物品配置查询（避免 notify ↔ repo 构造顺序问题）。
+func (s *RpgNotifyService) SetItemConfigReader(r ItemConfigReader) {
+	s.items = r
 }
 
 // NotifyLevelUp 推送用户升级事件。
@@ -138,6 +85,51 @@ func (s *RpgNotifyService) NotifyExpGain(ctx context.Context, uid, amount int, r
 	_ = ctx
 }
 
+// NotifyQuestComplete 推送任务完成（待领取）。
+func (s *RpgNotifyService) NotifyQuestComplete(ctx context.Context, uid int, data QuestCompletePayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgQuestComplete, 0, data)
+}
+
+// NotifyQuestReward 推送任务奖励已领取。
+func (s *RpgNotifyService) NotifyQuestReward(ctx context.Context, uid int, data QuestRewardPayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgQuestReward, 0, data)
+}
+
+// NotifyAchievementComplete 推送成就达成。
+func (s *RpgNotifyService) NotifyAchievementComplete(ctx context.Context, uid int, data AchievementCompletePayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgAchievementComplete, 0, data)
+}
+
+// NotifySocialReceived 推送社交互动；hpDelta≠0 时额外推 lifeChange。
+func (s *RpgNotifyService) NotifySocialReceived(ctx context.Context, toUID int, data SocialReceivedPayload) {
+	if s.pusher == nil {
+		return
+	}
+	if data.FromNickname == "" && data.FromUID > 0 {
+		data.FromNickname = s.resolveNickname(ctx, data.FromUID)
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(toUID), msgSocialReceived, 0, data)
+	if data.HpDelta != 0 {
+		payload := LifeChangePayload{CurrentLife: data.CurrentLife}
+		if data.HpDelta < 0 {
+			d := -data.HpDelta
+			payload.LifeDeducted = d
+		} else {
+			payload.LifeRecovered = &data.HpDelta
+		}
+		_ = s.pusher.PushToUser(ctx, uint64(toUID), msgLifeChange, 0, payload)
+	}
+}
+
 // NotifyTipReceived 推送收到文章打赏（作者侧）。
 func (s *RpgNotifyService) NotifyTipReceived(ctx context.Context, authorUID int, data TipReceivedPayload) error {
 	if s.pusher == nil {
@@ -149,12 +141,99 @@ func (s *RpgNotifyService) NotifyTipReceived(ctx context.Context, authorUID int,
 	return s.pusher.PushToUser(ctx, uint64(authorUID), msgTipReceived, 0, data)
 }
 
+// NotifyArticleLevelUp 推送文章升级（作者）。
+func (s *RpgNotifyService) NotifyArticleLevelUp(ctx context.Context, authorUID int, data ArticleLevelUpPayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(authorUID), msgArticleLevelUp, 0, data)
+}
+
+// NotifyMasterpiece 推送文章晋升神作（作者）。
+func (s *RpgNotifyService) NotifyMasterpiece(ctx context.Context, authorUID int, data MasterpiecePayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(authorUID), msgMasterpiece, 0, data)
+}
+
+// NotifyCurrencyChange 推送钻石余额变动。
+func (s *RpgNotifyService) NotifyCurrencyChange(ctx context.Context, uid, delta, balance int, reason string) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgCurrencyChange, 0, CurrencyChangePayload{
+		Delta:       delta,
+		Balance:     balance,
+		Reason:      reason,
+		ReasonLabel: rpgconst.GetItemSourceLabel(reason),
+	})
+}
+
 // NotifyRechargeComplete 推送充值到账（带订单号）。
 func (s *RpgNotifyService) NotifyRechargeComplete(ctx context.Context, uid int, payload RechargeCompletePayload) error {
 	if s.pusher == nil {
 		return nil
 	}
 	return s.pusher.PushToUser(ctx, uint64(uid), msgRechargeComplete, 0, payload)
+}
+
+// NotifyItemGranted 推送获得背包物品；跳过 level_up 与 buff 卷轴类。
+func (s *RpgNotifyService) NotifyItemGranted(ctx context.Context, uid int, itemCode, source string, quantity int) {
+	if s.pusher == nil || source == "level_up" || quantity <= 0 {
+		return
+	}
+	var cfg *ent.RpgItemConfig
+	if s.items != nil {
+		cfg, _ = s.items.FindItemConfigByCode(ctx, itemCode)
+	}
+	if cfg != nil {
+		effect := util.ParseEffectJSON(cfg.EffectJson)
+		if grantType, _ := effect["grantType"].(string); grantType == "buff" {
+			return
+		}
+	}
+	payload := buildItemGrantedPayload(cfg, itemCode, source, quantity)
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgItemGranted, 0, payload)
+}
+
+// NotifyLotteryTicketChange 推送抽奖券数量变动。
+func (s *RpgNotifyService) NotifyLotteryTicketChange(ctx context.Context, uid, delta, total int, reason string) {
+	if s.pusher == nil || delta == 0 {
+		return
+	}
+	if reason == "" {
+		reason = "system"
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgLotteryTicketChange, 0, LotteryTicketChangePayload{
+		Delta:       delta,
+		Total:       total,
+		Reason:      reason,
+		ReasonLabel: rpgconst.GetItemSourceLabel(reason),
+	})
+}
+
+// NotifyPetHatched 推送宠物孵化/兑换成功。
+func (s *RpgNotifyService) NotifyPetHatched(ctx context.Context, uid, petID int, petCode, name string) {
+	if s.pusher == nil {
+		return
+	}
+	rarity := rpgconst.GetRarityDisplay("common")
+	if s.items != nil {
+		if cfg, err := s.items.FindItemConfigByCode(ctx, petCode); err == nil && cfg != nil {
+			rarity = rpgconst.GetRarityDisplay(cfg.Rarity)
+			if name == "" {
+				name = cfg.Name
+			}
+		}
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgPetHatched, 0, PetHatchedPayload{
+		PetID:       petID,
+		PetCode:     petCode,
+		Name:        name,
+		RarityLabel: rarity.Label,
+		RarityColor: rarity.Color,
+	})
 }
 
 // NotifyShieldUsed 推送护盾抵消敏感词扣血。
@@ -165,7 +244,23 @@ func (s *RpgNotifyService) NotifyShieldUsed(ctx context.Context, uid int) {
 	_ = s.pusher.PushToUser(ctx, uint64(uid), msgShieldUsed, 0, ShieldUsedPayload{BuffName: "护盾"})
 }
 
-// NotifyLifeChange 推送生命值变化。
+// NotifyBuffGranted 推送获得 Buff。
+func (s *RpgNotifyService) NotifyBuffGranted(ctx context.Context, uid int, data BuffGrantedPayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgBuffGranted, 0, data)
+}
+
+// NotifyBuffExpired 推送 Buff 自然过期。
+func (s *RpgNotifyService) NotifyBuffExpired(ctx context.Context, uid int, data BuffExpiredPayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgBuffExpired, 0, data)
+}
+
+// NotifyLifeChange 推送生命值变化（扣血场景）。
 func (s *RpgNotifyService) NotifyLifeChange(ctx context.Context, uid, lifeDeducted, currentLife int) {
 	if s.pusher == nil || lifeDeducted <= 0 {
 		return
@@ -188,16 +283,106 @@ func (s *RpgNotifyService) NotifyBanStatus(ctx context.Context, uid int, banned 
 	})
 }
 
+// NotifyRankChange 推送排行榜名次变动（仅 Top10 且 1h 同维度去重）。
+func (s *RpgNotifyService) NotifyRankChange(ctx context.Context, uid int, scoreType, period string, rank int, score float64) {
+	if s.pusher == nil || rank <= 0 || rank > rankNotifyTopN {
+		return
+	}
+	if s.redis != nil {
+		dedupeKey := fmt.Sprintf("rpg:ws:rank:%d:%s:%s", uid, scoreType, period)
+		ok, err := s.redis.SetNX(ctx, dedupeKey, "1", rankDedupeTTLSec)
+		if err != nil || !ok {
+			return
+		}
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgRankChange, 0, RankChangePayload{
+		Type:   scoreType,
+		Period: period,
+		Rank:   rank,
+		Score:  score,
+	})
+}
+
+// NotifyGuildEvent 向多个用户广播公会事件。
+func (s *RpgNotifyService) NotifyGuildEvent(ctx context.Context, uids []int, data GuildEventPayload) {
+	if s.pusher == nil || len(uids) == 0 {
+		return
+	}
+	for _, uid := range uids {
+		_ = s.pusher.PushToUser(ctx, uint64(uid), msgGuildEvent, 0, data)
+	}
+}
+
+// NotifyWeatherBuff 推送连接上下文天气加成。
+func (s *RpgNotifyService) NotifyWeatherBuff(ctx context.Context, uid int, data WeatherBuffPayload) {
+	if s.pusher == nil {
+		return
+	}
+	_ = s.pusher.PushToUser(ctx, uint64(uid), msgWeatherBuff, 0, data)
+}
+
 // BroadcastActivityUpdate 向在线用户广播活动变更（connect 类型跳过）。
 func (s *RpgNotifyService) BroadcastActivityUpdate(ctx context.Context, payload ActivityUpdatePayload) error {
 	if s.pusher == nil || payload.Type == "connect" || len(payload.Activities) == 0 {
 		return nil
 	}
-	uids := s.onlineUIDs()
-	for _, uid := range uids {
+	for _, uid := range s.onlineUIDs() {
 		_ = s.pusher.PushToUser(ctx, uid, msgActivityUpdate, 0, payload)
 	}
 	return nil
+}
+
+func buildItemGrantedPayload(cfg *ent.RpgItemConfig, itemCode, source string, quantity int) ItemGrantedPayload {
+	name := itemCode
+	var rarityLabel, rarityColor, itemTypeLabel string
+	if cfg != nil {
+		name = cfg.Name
+		rd := rpgconst.GetRarityDisplay(cfg.Rarity)
+		rarityLabel = rd.Label
+		rarityColor = rd.Color
+		itemTypeLabel = rpgconst.GetItemTypeLabel(cfg.ItemType)
+	}
+	return ItemGrantedPayload{
+		ItemCode:    itemCode,
+		Quantity:    quantity,
+		Source:      source,
+		SourceLabel: rpgconst.GetItemSourceLabel(source),
+		Config: ItemGrantedConfig{
+			Name:          name,
+			RarityLabel:   rarityLabel,
+			RarityColor:   rarityColor,
+			ItemTypeLabel: itemTypeLabel,
+		},
+	}
+}
+
+// BuildAchievementCompletePayload 从成就配置组装 WS payload。
+func BuildAchievementCompletePayload(cfg *ent.RpgItemConfig, effect map[string]interface{}) AchievementCompletePayload {
+	expReward := intFromEffect(effect["expReward"])
+	rd := rpgconst.GetRarityDisplay(cfg.Rarity)
+	return AchievementCompletePayload{
+		Code:           cfg.Code,
+		Name:           cfg.Name,
+		ExpReward:      expReward,
+		Rarity:         cfg.Rarity,
+		RarityLabel:    rd.Label,
+		RarityColor:    rd.Color,
+		RarityIcon:     rd.Icon,
+		CurrencyReward: intFromEffect(effect["currencyReward"]),
+		TicketReward:   intFromEffect(effect["ticketReward"]),
+		HpReward:       intFromEffect(effect["hpReward"]),
+	}
+}
+
+func intFromEffect(v interface{}) int {
+	switch n := v.(type) {
+	case float64:
+		return int(n)
+	case int:
+		return n
+	default:
+		return 0
+	}
 }
 
 func (s *RpgNotifyService) onlineUIDs() []uint64 {
@@ -309,3 +494,6 @@ func containsStr(ss []string, v string) bool {
 	}
 	return false
 }
+
+// 编译期断言 repo 实现 ItemConfigReader。
+var _ ItemConfigReader = (*rpgrepo.RpgRepo)(nil)
