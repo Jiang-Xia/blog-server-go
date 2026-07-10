@@ -124,5 +124,40 @@ func RegisterBlog(r *server.Hertz, cfg *config.Config, deps RegisterDeps) {
 	res.GET("/file/:id", deps.Resources.GetFile)
 	res.DELETE("/file", jwtRequired, deps.Resources.DeleteFile)
 	res.POST("/folder", deps.Resources.CreateFolder)
-	res.PATCH("/file", deps.Resources.UpdateFile)
+	res.PATCH("/file", jwtRequired, deps.Resources.UpdateFile)
+
+	if deps.ScheduledTask != nil {
+		st := v1.Group("/scheduled-task")
+		st.GET("/tasks", jwtRequired, deps.ScheduledTask.ListTasks)
+		st.GET("/tasks/all", jwtRequired, deps.ScheduledTask.ListTasksPaged)
+		st.GET("/tasks/:id", jwtRequired, deps.ScheduledTask.GetTask)
+		st.POST("/tasks", jwtRequired, deps.ScheduledTask.CreateTask)
+		st.PATCH("/tasks/:id", jwtRequired, deps.ScheduledTask.UpdateTask)
+		st.DELETE("/tasks/:id", jwtRequired, deps.ScheduledTask.DeleteTask)
+		st.GET("/status/:taskName", jwtRequired, deps.ScheduledTask.GetStatus)
+		st.POST("/trigger/:taskName", jwtRequired, deps.ScheduledTask.Trigger)
+		st.POST("/stop/:taskName", jwtRequired, deps.ScheduledTask.Stop)
+		st.POST("/start/:taskName", jwtRequired, deps.ScheduledTask.Start)
+		st.PATCH("/log-recording/:taskName", jwtRequired, deps.ScheduledTask.ToggleLogRecording)
+		st.POST("/cache/clear-permissions", jwtRequired, deps.ScheduledTask.ClearPermissionCache)
+		st.POST("/cache/refresh-tongji-token", jwtRequired, deps.ScheduledTask.RefreshTongjiToken)
+		st.GET("/backups", jwtRequired, deps.ScheduledTask.ListBackups)
+		st.GET("/backups/download", jwtRequired, deps.ScheduledTask.DownloadLatestBackup)
+		st.GET("/backups/:fileName/download", jwtRequired, deps.ScheduledTask.DownloadBackup)
+		st.GET("", jwtRequired, deps.ScheduledTask.ListLogs)
+	}
+
+	if deps.Rag != nil {
+		ragGroup := v1.Group("/rag")
+		ragGroup.GET("/quota", jwtRequired, deps.Rag.Quota)
+		ragGroup.GET("/status", deps.Rag.Status)
+		ragGroup.POST("/query-stream", jwtRequired, deps.Rag.QueryStream)
+
+		adminRag := v1.Group("/admin/rag")
+		adminRag.GET("/stats", jwtRequired, deps.Rag.AdminStats)
+		adminRag.GET("/query-logs", jwtRequired, deps.Rag.AdminQueryLogs)
+		adminRag.GET("/index-jobs", jwtRequired, deps.Rag.AdminIndexJobs)
+		adminRag.GET("/chunks", jwtRequired, deps.Rag.AdminChunks)
+		adminRag.POST("/reindex", jwtRequired, deps.Rag.AdminReindex)
+	}
 }

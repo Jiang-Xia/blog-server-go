@@ -6,25 +6,33 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/pkg/rpgsvc"
+	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
+	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
+	blogsvc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/service"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/operationlog"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/ws"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/crossdb"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/handler"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/middleware"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rag"
+	raglistener "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rag/listener"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/scheduledtask"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/scheduledtask/jobs"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	payrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pay/repo"
 	paysvc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pay/service"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/pub"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpgport"
 	rpgactivity "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/activity"
 	rpgevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/event"
-	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	userpkg "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
 	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/grpcserver"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/repo"
 	"github.com/redis/rueidis"
@@ -86,6 +94,67 @@ func providePubHandler(pubSvc *pub.Service) *handler.PubHandler {
 	return handler.NewPubHandler(handler.PubHandlerDeps{Pub: pubSvc})
 }
 
+func provideCrossDB(cfg *config.Config) (*crossdb.CrossDB, error) {
+	return crossdb.New(cfg)
+}
+
+func provideRagModule(cfg *config.Config, client *ent.Client, redis *redisutil.Store, articles *blogrepo.ArticleRepo, cross *crossdb.CrossDB, log *zap.Logger) *rag.Module {
+	return rag.NewModule(cfg, client, redis, articles, cross, log)
+}
+
+func provideRagEventConsumer(rds rueidis.Client, mod *rag.Module, log *zap.Logger) RagEventConsumer {
+	if mod == nil || !mod.Cfg.Rag.Enabled {
+		return RagEventConsumer{}
+	}
+	c := event.NewConsumer(rds, log, event.ConsumerGroupRAG)
+	raglistener.RegisterRAGHandlers(c, mod, log)
+	return RagEventConsumer{c}
+}
+
+func provideScheduledTaskRepo(client *ent.Client) *scheduledtask.Repo {
+	return scheduledtask.NewRepo(client)
+}
+
+func provideScheduledTaskJobs(
+	client *ent.Client,
+	cfg *config.Config,
+	articles *blogrepo.ArticleRepo,
+	links *blogrepo.LinkRepo,
+	repo *scheduledtask.Repo,
+	cross *crossdb.CrossDB,
+	emailSvc *email.Service,
+	publisher *event.Publisher,
+) *jobs.Runner {
+	return jobs.NewRunner(client, cfg, articles, links, cross, emailSvc, publisher)
+}
+
+func provideScheduledTaskService(
+	repo *scheduledtask.Repo,
+	cross *crossdb.CrossDB,
+	cfg *config.Config,
+	redis *redisutil.Store,
+	runner *jobs.Runner,
+	log *zap.Logger,
+	resources *blogsvc.ResourcesService,
+) *scheduledtask.Service {
+	return scheduledtask.NewService(repo, cross, cfg, redis, runner, log, resources)
+}
+
+// ScheduledTaskRuntime 连接 cron 与 Service，启动时 Bootstrap。
+type ScheduledTaskRuntime struct {
+	Sched *scheduler.Scheduler
+	Svc   *scheduledtask.Service
+}
+
+func provideScheduledTaskRuntime(
+	sched *scheduler.Scheduler,
+	svc *scheduledtask.Service,
+) *ScheduledTaskRuntime {
+	sched.SetTrigger(svc.TriggerTask)
+	svc.SetScheduler(sched)
+	return &ScheduledTaskRuntime{Sched: sched, Svc: svc}
+}
+
 func providePayOrderRepo(client *ent.Client) *payrepo.PayOrderRepo {
 	return payrepo.NewPayOrderRepo(client)
 }
@@ -116,12 +185,18 @@ type RPGEventConsumer struct {
 	*event.Consumer
 }
 
+// RagEventConsumer RAG 增量索引 Stream 消费器。
+type RagEventConsumer struct {
+	*event.Consumer
+}
+
 // RealtimeRuntime Hub 与 Stream 消费者生命周期。
 type RealtimeRuntime struct {
 	Hub          *ws.Hub
 	Pusher       *ws.RealtimePusher
 	BlogConsumer BlogEventConsumer
 	RPGConsumer  RPGEventConsumer
+	RagConsumer  RagEventConsumer
 	Publisher    *event.Publisher
 	WS           *handler.WSHandler
 	DevPush      *handler.DevPushHandler
@@ -148,13 +223,14 @@ func provideRealtimeRuntime(
 	pusher *ws.RealtimePusher,
 	blogConsumer BlogEventConsumer,
 	rpgConsumer RPGEventConsumer,
+	ragConsumer RagEventConsumer,
 	publisher *event.Publisher,
 	wsH *handler.WSHandler,
 	dev *handler.DevPushHandler,
 ) *RealtimeRuntime {
 	return &RealtimeRuntime{
 		Hub: hub, Pusher: pusher,
-		BlogConsumer: blogConsumer, RPGConsumer: rpgConsumer,
+		BlogConsumer: blogConsumer, RPGConsumer: rpgConsumer, RagConsumer: ragConsumer,
 		Publisher: publisher, WS: wsH, DevPush: dev,
 	}
 }
@@ -178,6 +254,8 @@ func provideRegisterDeps(
 	fileH *handler.FileHandler,
 	resourcesH *handler.ResourcesHandler,
 	notificationH *handler.NotificationHandler,
+	scheduledTaskH *handler.ScheduledTaskHandler,
+	ragH *handler.RagHandler,
 	operationLogH *handler.OperationLogHandler,
 	wsH *handler.WSHandler,
 	devPushH *handler.DevPushHandler,
@@ -213,6 +291,8 @@ func provideRegisterDeps(
 		File:         fileH,
 		Resources:    resourcesH,
 		Notification: notificationH,
+		ScheduledTask: scheduledTaskH,
+		Rag:           ragH,
 		OperationLog: operationLogH,
 		WS:           wsH,
 		DevPush:      devPushH,

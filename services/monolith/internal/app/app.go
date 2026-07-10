@@ -24,18 +24,18 @@ import (
 
 // App 聚合 HTTP 服务与基础设施客户端。
 type App struct {
-	cfg             *config.Config
-	h               *server.Hertz
-	log             *zap.Logger
-	ent             *ent.Client
-	redis           rueidis.Client
-	scheduler       *scheduler.Scheduler
-	realtime        *RealtimeRuntime
-	rpgMod          *rpg.Module
-	activityNotify  scheduler.ActivityNotifyRunner
-	userGRPC        *usersgrpc.Server
-	cancel          context.CancelFunc
-	grpcStop        func()
+	cfg            *config.Config
+	h              *server.Hertz
+	log            *zap.Logger
+	ent            *ent.Client
+	redis          rueidis.Client
+	schedTask      *ScheduledTaskRuntime
+	realtime       *RealtimeRuntime
+	rpgMod         *rpg.Module
+	activityNotify scheduler.ActivityNotifyRunner
+	userGRPC       *usersgrpc.Server
+	cancel         context.CancelFunc
+	grpcStop       func()
 }
 
 // NewApp 构造可运行的应用实例。
@@ -45,7 +45,7 @@ func NewApp(
 	log *zap.Logger,
 	entClient *ent.Client,
 	redisClient rueidis.Client,
-	sched *scheduler.Scheduler,
+	schedTask *ScheduledTaskRuntime,
 	rt *RealtimeRuntime,
 	rpgMod *rpg.Module,
 	activityNotify scheduler.ActivityNotifyRunner,
@@ -53,7 +53,7 @@ func NewApp(
 ) *App {
 	return &App{
 		cfg: cfg, h: h, log: log, ent: entClient, redis: redisClient,
-		scheduler: sched, realtime: rt, rpgMod: rpgMod, activityNotify: activityNotify,
+		schedTask: schedTask, realtime: rt, rpgMod: rpgMod, activityNotify: activityNotify,
 		userGRPC: userGRPC,
 	}
 }
@@ -97,17 +97,22 @@ func (a *App) Run() error {
 		a.realtime.RPGConsumer.Consumer.Start(ctx)
 		a.log.Info("rpg event consumer started")
 	}
+	if a.realtime != nil && a.realtime.RagConsumer.Consumer != nil && (mode == config.ModeMonolith || mode == config.ModeBlog) {
+		a.realtime.RagConsumer.Consumer.Start(ctx)
+		a.log.Info("rag event consumer started")
+	}
 
-	if a.scheduler != nil && mode != config.ModeUser {
-		if err := a.scheduler.RegisterPlaceholder(); err != nil {
-			a.log.Warn("register placeholder cron failed", zap.Error(err))
+	if a.schedTask != nil && a.schedTask.Sched != nil && mode != config.ModeUser {
+		if err := a.schedTask.Svc.Bootstrap(ctx); err != nil {
+			a.log.Warn("scheduled task bootstrap failed", zap.Error(err))
 		}
-		if err := a.scheduler.RegisterActivityNotify(a.activityNotify); err != nil {
+		if err := a.schedTask.Sched.RegisterActivityNotify(a.activityNotify); err != nil {
 			a.log.Warn("register activity notify cron failed", zap.Error(err))
 		}
-		a.scheduler.Start()
+		a.schedTask.Sched.Start()
 		a.log.Info("cron scheduler started")
 	}
+
 	go func() {
 		a.log.Info("hertz server starting")
 		a.h.Spin()
@@ -130,8 +135,8 @@ func (a *App) Shutdown() error {
 	if err := a.h.Shutdown(ctx); err != nil {
 		a.log.Warn("hertz shutdown", zap.Error(err))
 	}
-	if a.scheduler != nil {
-		a.scheduler.Stop()
+	if a.schedTask != nil && a.schedTask.Sched != nil {
+		a.schedTask.Sched.Stop()
 	}
 	if a.grpcStop != nil {
 		a.grpcStop()

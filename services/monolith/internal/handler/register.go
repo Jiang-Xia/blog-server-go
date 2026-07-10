@@ -31,6 +31,8 @@ type RegisterDeps struct {
 	File         *FileHandler
 	Resources    *ResourcesHandler
 	Notification *NotificationHandler
+	ScheduledTask *ScheduledTaskHandler
+	Rag          *RagHandler
 	OperationLog *OperationLogHandler
 	WS           *WSHandler
 	DevPush      *DevPushHandler

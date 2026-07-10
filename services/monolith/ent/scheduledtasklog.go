@@ -20,12 +20,6 @@ type ScheduledTaskLog struct {
 	ID int `json:"id,omitempty"`
 	// 创建时间
 	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 任务名称
 	TaskName string `json:"taskName,omitempty"`
 	// 执行状态：success/failed
@@ -46,13 +40,11 @@ func (*ScheduledTaskLog) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case scheduledtasklog.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case scheduledtasklog.FieldID, scheduledtasklog.FieldVersion:
+		case scheduledtasklog.FieldID:
 			values[i] = new(sql.NullInt64)
 		case scheduledtasklog.FieldTaskName, scheduledtasklog.FieldStatus, scheduledtasklog.FieldResult, scheduledtasklog.FieldErrorMessage:
 			values[i] = new(sql.NullString)
-		case scheduledtasklog.FieldCreateTime, scheduledtasklog.FieldUpdateTime, scheduledtasklog.FieldStartTime, scheduledtasklog.FieldEndTime:
+		case scheduledtasklog.FieldCreateTime, scheduledtasklog.FieldStartTime, scheduledtasklog.FieldEndTime:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -80,24 +72,6 @@ func (stl *ScheduledTaskLog) assignValues(columns []string, values []any) error 
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
 				stl.CreateTime = value.Time
-			}
-		case scheduledtasklog.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				stl.UpdateTime = value.Time
-			}
-		case scheduledtasklog.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				stl.IsDelete = value.Bool
-			}
-		case scheduledtasklog.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				stl.Version = int(value.Int64)
 			}
 		case scheduledtasklog.FieldTaskName:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -176,15 +150,6 @@ func (stl *ScheduledTaskLog) String() string {
 	builder.WriteString(fmt.Sprintf("id=%v, ", stl.ID))
 	builder.WriteString("createTime=")
 	builder.WriteString(stl.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(stl.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", stl.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", stl.Version))
 	builder.WriteString(", ")
 	builder.WriteString("taskName=")
 	builder.WriteString(stl.TaskName)

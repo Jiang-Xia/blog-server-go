@@ -41,7 +41,6 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/rpguserquestprogress"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/rpgusersociallog"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/scheduledtask"
-	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/scheduledtasklog"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/schema"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/sensitiveword"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/sensitivewordhit"
@@ -1021,14 +1020,6 @@ func init() {
 	scheduledtask.DefaultUpdateTime = scheduledtaskDescUpdateTime.Default.(func() time.Time)
 	// scheduledtask.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	scheduledtask.UpdateDefaultUpdateTime = scheduledtaskDescUpdateTime.UpdateDefault.(func() time.Time)
-	// scheduledtaskDescIsDelete is the schema descriptor for isDelete field.
-	scheduledtaskDescIsDelete := scheduledtaskMixinFields0[2].Descriptor()
-	// scheduledtask.DefaultIsDelete holds the default value on creation for the isDelete field.
-	scheduledtask.DefaultIsDelete = scheduledtaskDescIsDelete.Default.(bool)
-	// scheduledtaskDescVersion is the schema descriptor for version field.
-	scheduledtaskDescVersion := scheduledtaskMixinFields0[3].Descriptor()
-	// scheduledtask.DefaultVersion holds the default value on creation for the version field.
-	scheduledtask.DefaultVersion = scheduledtaskDescVersion.Default.(int)
 	// scheduledtaskDescDescription is the schema descriptor for description field.
 	scheduledtaskDescDescription := scheduledtaskFields[2].Descriptor()
 	// scheduledtask.DefaultDescription holds the default value on creation for the description field.
@@ -1049,29 +1040,6 @@ func init() {
 	scheduledtaskDescSortOrder := scheduledtaskFields[7].Descriptor()
 	// scheduledtask.DefaultSortOrder holds the default value on creation for the sortOrder field.
 	scheduledtask.DefaultSortOrder = scheduledtaskDescSortOrder.Default.(int)
-	scheduledtasklogMixin := schema.ScheduledTaskLog{}.Mixin()
-	scheduledtasklogMixinFields0 := scheduledtasklogMixin[0].Fields()
-	_ = scheduledtasklogMixinFields0
-	scheduledtasklogFields := schema.ScheduledTaskLog{}.Fields()
-	_ = scheduledtasklogFields
-	// scheduledtasklogDescCreateTime is the schema descriptor for createTime field.
-	scheduledtasklogDescCreateTime := scheduledtasklogMixinFields0[0].Descriptor()
-	// scheduledtasklog.DefaultCreateTime holds the default value on creation for the createTime field.
-	scheduledtasklog.DefaultCreateTime = scheduledtasklogDescCreateTime.Default.(func() time.Time)
-	// scheduledtasklogDescUpdateTime is the schema descriptor for updateTime field.
-	scheduledtasklogDescUpdateTime := scheduledtasklogMixinFields0[1].Descriptor()
-	// scheduledtasklog.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	scheduledtasklog.DefaultUpdateTime = scheduledtasklogDescUpdateTime.Default.(func() time.Time)
-	// scheduledtasklog.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	scheduledtasklog.UpdateDefaultUpdateTime = scheduledtasklogDescUpdateTime.UpdateDefault.(func() time.Time)
-	// scheduledtasklogDescIsDelete is the schema descriptor for isDelete field.
-	scheduledtasklogDescIsDelete := scheduledtasklogMixinFields0[2].Descriptor()
-	// scheduledtasklog.DefaultIsDelete holds the default value on creation for the isDelete field.
-	scheduledtasklog.DefaultIsDelete = scheduledtasklogDescIsDelete.Default.(bool)
-	// scheduledtasklogDescVersion is the schema descriptor for version field.
-	scheduledtasklogDescVersion := scheduledtasklogMixinFields0[3].Descriptor()
-	// scheduledtasklog.DefaultVersion holds the default value on creation for the version field.
-	scheduledtasklog.DefaultVersion = scheduledtasklogDescVersion.Default.(int)
 	sensitivewordFields := schema.SensitiveWord{}.Fields()
 	_ = sensitivewordFields
 	// sensitivewordDescCategory is the schema descriptor for category field.

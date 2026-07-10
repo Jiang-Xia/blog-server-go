@@ -2,7 +2,7 @@
 
 [NestJS blog-server](https://github.com/Jiang-Xia/blog-server) 的 Go 重构实现：**Hertz + Ent + gRPC**，对外保持 `/api/v1/*` 与 `{code, message, data}` 响应格式，前端可无感切换。
 
-当前形态为 **4 微服务**（gateway / user / blog / rpg）+ 共享 MySQL/Redis 单库；Plan 01–11 已全部交付，**Plan 12–16** 为 Nest 差异补齐（见 [`.cursor/plans/README.md`](.cursor/plans/README.md)）。新业务请在 `services/{user,blog,rpg}/` 开发，勿再向 monolith 追加功能。
+当前形态为 **4 微服务**（gateway / user / blog / rpg）+ **monolith 单体**（Nest 替换主入口，`:5000`）+ 共享 MySQL/Redis 单库。Plan 01–21 与 **Plan 22（单体↔微服务对齐）** 已交付或进行中，见 [`.cursor/plans/README.md`](.cursor/plans/README.md)。新能力优先在 **monolith** 落地。
 
 ## 技术栈
 
@@ -39,7 +39,7 @@
 | user | 5002 / gRPC 50052 | 认证、RBAC、敏感词、操作日志 |
 | blog | 5001 | 文章、互动、资源、通知、WebSocket `/realtime` |
 | rpg | 5003 | RPG、支付、公开主页 |
-| monolith（deprecated） | 5000 | 单体回滚入口，与 Nest 端口二选一 |
+| monolith（Nest 替换） | 5000 | 单体主入口，与 Nest 端口二选一 |
 
 路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。Swagger UI（swaggo）见 [`docs/12-swagger-api-doc.md`](docs/12-swagger-api-doc.md)，开发默认 `http://127.0.0.1:8000/api/v1/doc/index.html`。
 
@@ -331,7 +331,7 @@ blog-server-go/
 │   ├── user/              # 用户域 + gRPC server
 │   ├── blog/              # 博客域 + WebSocket
 │   ├── rpg/               # RPG + 支付
-│   └── monolith/          # deprecated 单体回滚
+│   └── monolith/          # 单体 Nest 替换入口（Plan 22）
 ├── configs/               # 本地 yaml（gitignore，见 *.example.yaml）
 ├── deploy/
 │   ├── docker/            # docker-compose（本地/CI 全栈）

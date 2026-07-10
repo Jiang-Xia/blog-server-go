@@ -809,8 +809,6 @@ var (
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "createTime", Type: field.TypeTime},
 		{Name: "updateTime", Type: field.TypeTime},
-		{Name: "isDelete", Type: field.TypeBool, Default: false},
-		{Name: "version", Type: field.TypeInt, Default: 0},
 		{Name: "name", Type: field.TypeString, Unique: true},
 		{Name: "description", Type: field.TypeString, Default: ""},
 		{Name: "cron", Type: field.TypeString},
@@ -829,9 +827,6 @@ var (
 	XScheduledTaskLogColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "createTime", Type: field.TypeTime},
-		{Name: "updateTime", Type: field.TypeTime},
-		{Name: "isDelete", Type: field.TypeBool, Default: false},
-		{Name: "version", Type: field.TypeInt, Default: 0},
 		{Name: "taskName", Type: field.TypeString},
 		{Name: "status", Type: field.TypeString},
 		{Name: "startTime", Type: field.TypeTime},

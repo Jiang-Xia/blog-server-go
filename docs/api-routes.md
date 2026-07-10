@@ -549,15 +549,17 @@
 
 ---
 
-## 6. monolith 补充（`:5000`，deprecated）
+## 6. monolith 补充（`:5000`，Nest 替换入口）
 
-`make dev` 单体模式在 `services/monolith` 注册**上述全部 HTTP 路由的并集**，并额外包含：
+`make dev` 单体模式在 `services/monolith` 注册**全部 HTTP 路由**（含 RAG、定时任务），与 gateway 微服务架构功能对齐：
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
-| GET | `/api/v1/pub/stats` | 单体内置 pub 统计（微服务架构下改由 gateway BFF） |
+| GET | `/api/v1/pub/stats` | 单体内置真实统计（非 gateway BFF） |
+| GET | `/api/v1/rag/*` | RAG 知识库（Plan 22 移植） |
+| GET/POST | `/api/v1/scheduled-task/*` | 定时任务 admin + 8 内置 cron |
 
-> 新功能请在 `services/{user,blog,rpg}/` 开发，勿再扩展 monolith。见 [`services/monolith/README.md`](../services/monolith/README.md)。
+> Plan 22 起 monolith 为 Nest 替换主入口；微服务见 [`services/monolith/README.md`](../services/monolith/README.md)。
 
 ---
 

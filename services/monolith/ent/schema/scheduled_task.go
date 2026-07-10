@@ -18,9 +18,9 @@ func (ScheduledTask) Annotations() []schema.Annotation {
 	}
 }
 
-// Mixin 注入 TypeORM 公共时间戳与软删除字段。
+// Mixin 对齐 Nest：仅有 createTime/updateTime，无 isDelete/version。
 func (ScheduledTask) Mixin() []ent.Mixin {
-	return []ent.Mixin{TimeMixin{}}
+	return []ent.Mixin{TimestampMixin{}}
 }
 
 // Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。

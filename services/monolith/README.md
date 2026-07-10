@@ -1,28 +1,34 @@
-# monolith（已 deprecated）
+# monolith（Nest 替换主入口）
 
-> **Plan 11 起**：新业务须在 `services/{user,blog,rpg}/` 开发，勿再向本目录追加功能。
+> **Plan 22 起**：单体为 **Nest 替换与本地开发主入口**（`:5000`）；与四微服务保持功能对齐，新能力优先在单体落地后再按需同步至 `services/{user,blog,rpg}/`。
 
 ## 用途
 
-- `make dev` 单体本地调试（`services/monolith/cmd/main.go`）
-- 迁移窗口内的**回滚入口**（四微服务不可用时）
-- 集成测试 / 对照 Nest 行为
+- `make dev` 本地开发与联调（`services/monolith/cmd/main.go`）
+- **替换 `blog-server`（NestJS）** 的生产部署目标
+- 集成测试 / E2E 全栈验收
 
 ## 与微服务关系
 
-| 域 | 新开发位置 | monolith 状态 |
+| 域 | 微服务目录 | monolith 状态 |
 |----|-----------|---------------|
-| user | `services/user/` | 副本保留，勿双维护新功能 |
-| blog | `services/blog/` | 副本保留 |
-| rpg + pay | `services/rpg/` | 副本保留 |
-| gateway | `services/gateway/` | 无 monolith 副本 |
+| user | `services/user/` | 进程内 `internal/user/`，功能对齐 |
+| blog | `services/blog/` | 进程内 `internal/blog/` + RAG + 定时任务 |
+| rpg + pay | `services/rpg/` | 进程内 `internal/rpg/` + `internal/pay/` |
+| gateway | `services/gateway/` | 单体无 gateway；BFF 能力进程内等价 |
 
-**Go `internal` 规则**：monolith **不能** import `services/*/internal/*`，故迁移期存在代码双份；以微服务目录为准。
+**Go `internal` 规则**：monolith **不能** import `services/*/internal/*`，故与微服务存在代码双份；Plan 22 起以 **monolith 为准** 补齐，再反向同步微服务（可选）。
 
-## 推荐本地联调
+## 本地启动
 
 ```bash
-make dev-all          # user → blog → rpg → gateway
-# API baseUrl: http://127.0.0.1:8000
+make dev              # 单体 :5000
+# API baseUrl: http://127.0.0.1:5000/api/v1
+```
+
+四微服务联调（可选对照）：
+
+```bash
+make dev-all          # gateway :8000
 make dev-all-stop
 ```

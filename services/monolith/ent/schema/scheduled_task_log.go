@@ -18,15 +18,16 @@ func (ScheduledTaskLog) Annotations() []schema.Annotation {
 	}
 }
 
-// Mixin 注入 TypeORM 公共时间戳与软删除字段。
+// Mixin 对齐 Nest：scheduled_task_log 仅有 createTime。
 func (ScheduledTaskLog) Mixin() []ent.Mixin {
-	return []ent.Mixin{TimeMixin{}}
+	return nil
 }
 
 // Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。
 func (ScheduledTaskLog) Fields() []ent.Field {
 	return []ent.Field{
 		field.Int("id").StorageKey("id").Comment("任务日志ID"),
+		field.Time("createTime").StorageKey("createTime").Comment("创建时间"),
 		field.String("taskName").StorageKey("taskName").Comment("任务名称"),
 		field.String("status").StorageKey("status").Comment("执行状态：success/failed"),
 		field.Time("startTime").StorageKey("startTime").Comment("任务开始时间"),

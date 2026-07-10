@@ -24,7 +24,7 @@ func NewPubHandler(deps PubHandlerDeps) *PubHandler {
 	return &PubHandler{pub: deps.Pub}
 }
 
-// Stats GET /pub/stats — 站点统计（blog 计数 mock，用户数读库）。
+// Stats GET /pub/stats — 站点统计（文章/分类/标签/用户数）。
 func (h *PubHandler) Stats(ctx context.Context, c *app.RequestContext) {
 	stats, err := h.pub.GetStats(ctx)
 	if err != nil {

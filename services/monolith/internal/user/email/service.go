@@ -65,6 +65,24 @@ func (s *Service) VerifyCode(ctx context.Context, emailAddr, code, codeType stri
 	return s.redis.Del(ctx, key)
 }
 
+// SendSystemEmail 发送系统 HTML 邮件；to 为空时使用 app.notify_email。
+func (s *Service) SendSystemEmail(_ context.Context, to, subject, htmlBody string) (bool, error) {
+	if !s.cfg.Mail.MailConfigured() {
+		return false, errcode.WithMessage(errcode.InternalError, "邮件发送未配置")
+	}
+	recipient := strings.TrimSpace(to)
+	if recipient == "" {
+		recipient = strings.TrimSpace(s.cfg.App.NotifyEmail)
+	}
+	if recipient == "" {
+		return false, errcode.WithMessage(errcode.InternalError, "未配置博主通知邮箱")
+	}
+	if err := s.sendSMTP(recipient, subject, htmlBody); err != nil {
+		return false, err
+	}
+	return true, nil
+}
+
 // CheckSendFrequency 60 秒内同邮箱同类型不可重复发送。
 func (s *Service) CheckSendFrequency(ctx context.Context, emailAddr, codeType string) error {
 	key := frequencyKey(codeType, emailAddr)

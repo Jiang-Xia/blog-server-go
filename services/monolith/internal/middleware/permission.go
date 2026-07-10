@@ -378,5 +378,6 @@ func defaultPublicAuthPaths() []publicPathEntry {
 		{Pattern: "/captcha", Methods: []string{"GET"}},
 		{Pattern: "/captcha/verify", Methods: []string{"POST"}},
 		{Pattern: "/pub/stats", Methods: []string{"GET"}},
+		{Pattern: "/rag/status", Methods: []string{"GET"}},
 	}
 }
