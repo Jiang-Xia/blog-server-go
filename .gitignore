@@ -43,11 +43,13 @@ configs/docker/blog.yaml
 configs/docker/rpg.yaml
 configs/docker/gateway.yaml
 deploy/pm2/deploy.local.env
+deploy/pm2/deploy.monolith.local.env
 deploy/pm2/env.production
 deploy/pm2/configs/gateway.yaml
 deploy/pm2/configs/user.yaml
 deploy/pm2/configs/blog.yaml
 deploy/pm2/configs/rpg.yaml
+deploy/pm2/configs/monolith.yaml
 deploy/pm2/.pack/
 
 # 生产数据导入 SQL（本地由 transform_myblog_dump 生成，含线上数据勿提交）

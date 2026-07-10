@@ -142,6 +142,27 @@ release_pm2_cwd_uses_current_link() {
   " >/dev/null 2>&1
 }
 
+release_pm2_start_monolith() {
+  local eco="$1"
+  echo "==> pm2 first start (BlogGo_Monolith): ${eco}"
+  release_pm2 start "$eco" --env production --only BlogGo_Monolith
+  release_pm2_wait_online BlogGo_Monolith 120
+  release_pm2 save
+}
+
+release_pm2_reload_monolith() {
+  local eco="$1"
+  echo "==> pm2 reload monolith: ${eco}"
+  release_pm2 reload "$eco" --env production --only BlogGo_Monolith --update-env
+  release_pm2_wait_online BlogGo_Monolith 90
+  release_pm2 save
+}
+
+release_pm2_is_monolith_deploy() {
+  local apps_csv="$1"
+  [[ "$apps_csv" == *"BlogGo_Monolith"* ]] && [[ "$apps_csv" != *"BlogGo_Gateway"* ]]
+}
+
 release_pm2_start_ordered() {
   local eco="$1"
   echo "==> pm2 first start (BlogGo_User -> BlogGo_Blog,BlogGo_Rpg -> BlogGo_Gateway): ${eco}"
@@ -192,7 +213,21 @@ release_pm2_reload_ecosystem() {
     release_pm2 delete "$legacy" 2>/dev/null || true
   done
 
-  if release_pm2 describe "BlogGo_Gateway" >/dev/null 2>&1; then
+  if release_pm2_is_monolith_deploy "$apps_csv"; then
+    echo "==> monolith 部署：停止四微服务 PM2，释放 :8000"
+    release_pm2_delete_bloggo_apps "BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway"
+    if release_pm2 describe "BlogGo_Monolith" >/dev/null 2>&1; then
+      if release_pm2_cwd_uses_current_link "BlogGo_Monolith"; then
+        release_pm2_reload_monolith "$eco"
+      else
+        echo "==> pm2 cwd 非 current 软链，一次性 recreate monolith"
+        release_pm2 delete BlogGo_Monolith 2>/dev/null || true
+        release_pm2_start_monolith "$eco"
+      fi
+    else
+      release_pm2_start_monolith "$eco"
+    fi
+  elif release_pm2 describe "BlogGo_Gateway" >/dev/null 2>&1; then
     if release_pm2_cwd_uses_current_link "BlogGo_User"; then
       release_pm2_reload_ordered "$eco"
     else

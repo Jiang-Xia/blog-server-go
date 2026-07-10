@@ -2,7 +2,26 @@
 
 对齐 `blog-server/deploy/pm2/` 的**配置格式与发布流程**；生产 env **在本仓库独立维护**，不依赖 sibling `blog-server`。
 
+## 部署模式
+
+| 模式 | 端口 | PM2 | 用途 |
+|------|------|-----|------|
+| **monolith**（生产主路径） | `:8000` | `BlogGo_Monolith` | 单进程全路由；不部署四微服务 |
+| microservices（学习） | `:8000` gateway | `BlogGo_*` 四进程 | 与单体二选一，勿同端口并存 |
+
+两种模式共用 **`deploy/pm2/env.production`**、远程目录 `releases/` + `current` 软链、以及 `deploy.ps1` / `rollback.ps1` 流程；仅 `DEPLOY_MODE` 与 ecosystem 不同。
+
 ## 一条命令
+
+### 单体（生产主路径 · 推荐）
+
+```powershell
+# deploy/pm2/deploy.monolith.local.env 中 DEPLOY_MODE=monolith
+powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1 -EnvFileName deploy.monolith.local.env
+# 或 make deploy-monolith
+```
+
+### 四微服务（架构学习）
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1
@@ -12,6 +31,14 @@ powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1
 ## 首次配置
 
 ### 1. SSH
+
+**单体**：
+
+```bash
+cp deploy/pm2/deploy.monolith.local.env.example deploy/pm2/deploy.monolith.local.env
+```
+
+**四微服务**：
 
 ```bash
 cp deploy/pm2/deploy.local.env.example deploy/pm2/deploy.local.env
@@ -31,7 +58,7 @@ powershell -ExecutionPolicy Bypass -File scripts/setup-config.ps1
   cp ../blog-server/deploy/pm2/env.production deploy/pm2/env.production
   ```
 
-`deploy.ps1` 部署前自动把 `env.production` 同步为 `deploy/pm2/configs/*.yaml`，无需手改 yaml。
+`deploy.ps1` 部署前自动把 `env.production` 同步为 `deploy/pm2/configs/*.yaml`（含 **monolith.yaml**），无需手改 yaml。
 
 ### 3. 服务器初始化（一次）
 
@@ -39,9 +66,6 @@ powershell -ExecutionPolicy Bypass -File scripts/setup-config.ps1
 
 ```bash
 bash deploy/pm2/server-init.sh
-# 或手动：
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
-# source ~/.nvm/nvm.sh && npm install -g pm2
 ```
 
 验证（SSH 登录后）：
@@ -56,20 +80,33 @@ source ~/.nvm/nvm.sh && nvm use default && pm2 -v
 |------|-----|------|
 | `deploy/pm2/env.production.example` | ✅ | 模板 |
 | `deploy/pm2/env.production` | ❌ | 真实生产配置（与 Nest PM2 同 key 命名） |
-| `deploy/pm2/configs/*.yaml` | ❌ | 部署时自动生成 |
+| `deploy/pm2/configs/*.yaml` | ❌ | 部署时自动生成（含 monolith.yaml） |
+| `deploy/pm2/deploy.monolith.local.env` | ❌ | 单体 SSH + `DEPLOY_MODE=monolith` |
 
-## 切流
+## 切流（单体 · 生产主路径）
+
+1. `pm2 stop blog-server`（Nest）
+2. 部署单体：`deploy.ps1 -EnvFileName deploy.monolith.local.env`
+3. Nginx：`/x-blog/api/v1/` 的 `proxy_pass` → **`127.0.0.1:8000`**（`BlogGo_Monolith`）
+4. 验证：`curl -sf http://127.0.0.1:8000/api/v1/health`
+
+**切流前本地验 Go 线上**：Nginx `/x-blog-go/api/v1/` → `:8000`（见 `blog-server/deploy/nginx/README.md`「本地前端联调」）
+
+## 切流（四微服务 · 学习对照）
 
 1. `pm2 stop blog-server`
-2. `deploy.ps1`
-3. Nginx：将 `jiang-xia.top.conf` 中 `/x-blog/api/v1/` 的 `proxy_pass` 从 `:5000` 改为 `:8000`（或去掉 `/x-blog-go/` 联调路径后统一走 `:8000`）
+2. `deploy.ps1`（默认 microservices）
+3. Nginx：`proxy_pass` → `:8000`
 4. `curl -sf http://127.0.0.1:8000/api/v1/health`
-
-**切流前本地验 Go 线上**：Nginx 已提供 `/x-blog-go/api/v1/` → `:8000`（见 `blog-server/deploy/nginx/README.md`「本地前端联调」），无需停 Nest。
 
 ## 回滚
 
 ```powershell
+# 单体
+powershell -ExecutionPolicy Bypass -File deploy/pm2/rollback.ps1 -EnvFileName deploy.monolith.local.env -List
+powershell -ExecutionPolicy Bypass -File deploy/pm2/rollback.ps1 -EnvFileName deploy.monolith.local.env
+
+# 四微服务
 powershell -ExecutionPolicy Bypass -File deploy/pm2/rollback.ps1 -List
 powershell -ExecutionPolicy Bypass -File deploy/pm2/rollback.ps1
 ```
@@ -90,30 +127,36 @@ go run scripts/bootstrap_prod_db.go --env deploy/pm2/env.production
 | env key | Go |
 |---------|-----|
 | `db_*` / `redis_*` | mysql / redis |
-| `auth_jwtSecret` | 四服务 `jwt.secret` |
-| `serve_corsOrigins` | gateway CORS |
-| `app_blogHome`、`app_github*`、`app_email*` | user |
-| `pay_*`、`file_filePath` | rpg / blog |
+| `auth_jwtSecret` | 各服务 / monolith `jwt.secret` |
+| `serve_corsOrigins` | monolith / gateway CORS |
+| `app_blogHome`、`app_github*`、`app_email*` | user / monolith |
+| `pay_*`、`file_filePath` | rpg / monolith / blog |
+| `rag_*` | monolith / blog |
 
-Gateway 固定 `:8000`，代理本机 `5001/5002/5003`。
+单体与 gateway 均对外 `:8000`（**二选一**，单体部署会自动停四微服务 PM2）；微服务模式下 gateway 代理本机 `5001/5002/5003`。
 
 ## PM2 实例命名
 
-| 服务 | PM2 name |
-|------|----------|
-| gateway | `BlogGo_Gateway` |
-| user | `BlogGo_User` |
-| blog | `BlogGo_Blog` |
-| rpg | `BlogGo_Rpg` |
+| 服务 | PM2 name | 端口 |
+|------|----------|------|
+| **monolith** | **`BlogGo_Monolith`** | **8000** |
+| gateway | `BlogGo_Gateway` | 8000 |
+| user | `BlogGo_User` | 5002 |
+| blog | `BlogGo_Blog` | 5001 |
+| rpg | `BlogGo_Rpg` | 5003 |
 
-`deploy.local.env` 中 `DEPLOY_PM2_APPS=BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway`（启动/校验顺序：先依赖后 gateway）。
+单体：`DEPLOY_PM2_APPS=BlogGo_Monolith`，`DEPLOY_ECOSYSTEM_FILE=ecosystem.monolith.config.js`。
+
+四微服务：`DEPLOY_PM2_APPS=BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway`（启动顺序：先依赖后 gateway）。
 
 ## 零停机发布（releases + current + pm2 reload）
 
 1. 新版本解压到 `releases/YYYYMMDD-HHMMSS/`
 2. `ln -sfn` 切换 `current` 软链（原子切版本）
-3. `pm2 reload`（**非 delete**）按顺序：User → Blog/Rpg → Gateway  
-   - `ecosystem.config.js` 的 `cwd` 固定为 `$DEPLOY_REMOTE_DIR/current`，reload 后自动读新 release 下 `./bin/*`
+3. `pm2 reload`（**非 delete**）  
+   - 单体：reload `BlogGo_Monolith`  
+   - 四微服务：User → Blog/Rpg → Gateway  
+   - `ecosystem*.config.js` 的 `cwd` 固定为 `$DEPLOY_REMOTE_DIR/current`
 4. 回滚：`rollback.ps1` 指回旧 release + reload
 
 **首次启用本机制**：若 PM2 仍绑定旧 release 绝对路径，部署脚本会 **一次性 recreate**，之后均为 reload。
@@ -122,17 +165,15 @@ Gateway 固定 `:8000`，代理本机 `5001/5002/5003`。
 
 ## 故障排查
 
-### 部署后 PM2 四服务 `not online` / `waiting restart`
+### 部署后 PM2 `not online` / `waiting restart`
 
-1. 看日志：`tail -50 /opt/jxapp/server/blog-server-go/releases/logs/user-err.log`
-2. **常见：PM2 cwd 仍指向旧 release**（`pm2 show BlogGo_User` 的 `exec cwd` 不是 `.../current`）。应走 reload；若 cwd 过期脚本会一次性 recreate。手动恢复：
+1. 看日志：`tail -50 /opt/jxapp/server/blog-server-go/logs/monolith-err.log`（或 `user-err.log` 等）
+2. **常见：PM2 cwd 仍指向旧 release**。应走 reload；若 cwd 过期脚本会一次性 recreate。手动恢复：
    ```bash
    cd /opt/jxapp/server/blog-server-go/current
    export DEPLOY_REMOTE_DIR=/opt/jxapp/server/blog-server-go
-   pm2 delete BlogGo_User BlogGo_Blog BlogGo_Rpg BlogGo_Gateway
-   pm2 start ecosystem.config.js --env production
+   pm2 delete BlogGo_Monolith   # 或四微服务 BlogGo_*
+   pm2 start ecosystem.monolith.config.js --env production   # 单体
    pm2 save
    ```
-   若仍有旧名 `user`/`blog`/`rpg`/`gateway` 进程，一并 `pm2 delete` 清理。
-3. **常见：verify 误报 not online**。Go 冷启动 + 独立 SSH 验证有竞态；`release-lib.sh` 已带重试。若 `pm2 list` 已 online 可忽略单次 verify 报错。
-4. **常见：库名错误**。旧包可能连 `myblog`，Go 生产须 **`x_my_blog`**（`env.production` → `db_database = x_my_blog`）。见上文「生产库」。
+3. **常见：库名错误**。Go 生产须 **`x_my_blog`**（`env.production` → `db_database = x_my_blog`）。见上文「生产库」。

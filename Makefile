@@ -1,4 +1,4 @@
-.PHONY: dev dev-all dev-all-windows dev-all-stop dev-all-status dev-all-logs dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs deploy rollback rollback-list sync-pm2-config tidy \
+.PHONY: dev dev-all dev-all-windows dev-all-stop dev-all-status dev-all-logs dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs deploy deploy-monolith rollback rollback-list sync-pm2-config tidy \
 	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run \
 	swag-apidoc swag-user swag-blog swag-rpg swag-gateway swag-all
 
@@ -105,6 +105,9 @@ logs:
 
 deploy:
 	powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1
+
+deploy-monolith:
+	powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1 -EnvFileName deploy.monolith.local.env
 
 rollback:
 	powershell -ExecutionPolicy Bypass -File deploy/pm2/rollback.ps1

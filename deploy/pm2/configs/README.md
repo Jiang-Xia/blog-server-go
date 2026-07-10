@@ -1,6 +1,6 @@
 # 生产 PM2 配置（自动生成，gitignore）
 
-`deploy.ps1` 从本仓库 **`deploy/pm2/env.production`** 同步生成四份 yaml（格式与 blog-server 相同，**独立维护，部署不依赖 blog-server 仓库**）。
+`deploy.ps1` 从本仓库 **`deploy/pm2/env.production`** 同步生成 **五份** yaml（含 `monolith.yaml`；格式与 blog-server 相同，**独立维护**）。
 
 首次：
 

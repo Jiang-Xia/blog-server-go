@@ -95,7 +95,8 @@ mkdir -p "$release_path"
 echo "==> extract: ${DEPLOY_TAR_PATH} -> ${release_path}"
 tar -xzf "${DEPLOY_TAR_PATH}" -C "$release_path"
 
-chmod +x "${release_path}/bin/gateway" "${release_path}/bin/user" "${release_path}/bin/blog" "${release_path}/bin/rpg"
+chmod +x "${release_path}/bin/gateway" "${release_path}/bin/user" "${release_path}/bin/blog" "${release_path}/bin/rpg" 2>/dev/null || true
+[[ -f "${release_path}/bin/monolith" ]] && chmod +x "${release_path}/bin/monolith"
 
 link_shared_public "$release_path"
 

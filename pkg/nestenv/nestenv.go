@@ -287,6 +287,73 @@ func BlogYAML(m map[string]string) map[string]any {
 	}
 }
 
+// MonolithYAML 从 Nest env 生成单体 monolith 配置（:8000，生产对外端口）。
+func MonolithYAML(m map[string]string) map[string]any {
+	port, _ := strconv.Atoi(Get(m, "app_emailPort"))
+	upload := Get(m, "file_filePath")
+	if upload == "" {
+		upload = "./public/uploads/"
+	}
+	return map[string]any{
+		"app": map[string]any{
+			"name":                 "blog-server-go",
+			"env":                  "production",
+			"service_mode":         "monolith",
+			"api_prefix":           "/api/v1",
+			"blog_home":            Get(m, "app_blogHome"),
+			"notify_email":         Get(m, "app_notifyEmail"),
+			"tongji_refresh_token": Get(m, "app_tongjiRefreshToken"),
+			"tongji_client_id":     Get(m, "app_tongjiClientId"),
+			"tongji_client_secret": Get(m, "app_tongjiClientSecret"),
+		},
+		"http": map[string]any{
+			"addr":         ":8000",
+			"cors_origins": SplitCSV(Get(m, "serve_corsOrigins")),
+		},
+		"mysql": MySQLBlock(m),
+		"redis": map[string]any{
+			"addr": RedisAddr(m),
+			"db":   RedisDB(m),
+		},
+		"jwt":    JWTBlock(m),
+		"crypto": map[string]any{"rsa_private_key": ""},
+		"oauth": map[string]any{
+			"github_client_id":     Get(m, "app_githubClientId"),
+			"github_client_secret": Get(m, "app_githubClientSecret"),
+			"github_callback_url":  Get(m, "app_githubCallbackUrl"),
+		},
+		"mail": map[string]any{
+			"host": Get(m, "app_emailHost"),
+			"port": port,
+			"user": Get(m, "app_emailUser"),
+			"pass": Get(m, "app_emailPass"),
+		},
+		"wechat": map[string]any{
+			"app_id": Get(m, "pay_wechatAppId"),
+			"secret": Get(m, "pay_wechatSecret"),
+		},
+		"storage": map[string]any{
+			"upload_path":   upload,
+			"public_prefix": "/static/",
+		},
+		"pay": map[string]any{
+			"alipay_app_id":              Get(m, "pay_alipayAppId"),
+			"alipay_private_key":         Get(m, "pay_alipayPrivateKey"),
+			"alipay_public_key":          Get(m, "pay_alipayPublicKey"),
+			"alipay_gateway":             fallback(Get(m, "pay_alipayGateway"), "https://openapi.alipay.com/gateway.do"),
+			"alipay_notify_url":          Get(m, "pay_alipayNotifyUrl"),
+			"alipay_return_url":          Get(m, "pay_alipayReturnUrl"),
+			"alipay_mini_cashier_page":   fallback(Get(m, "pay_alipayMiniCashierPage"), "packageB/pages/business/pay/all-pay/all-pay"),
+			"sandbox":                    false,
+			"use_legacy_sandbox_gateway": false,
+			"wechat_app_id":              Get(m, "pay_wechatAppId"),
+			"wechat_secret":              Get(m, "pay_wechatSecret"),
+		},
+		"rag":           RagBlock(m),
+		"observability": observabilityBlock("blog-server-go-monolith"),
+	}
+}
+
 // RpgYAML 从 Nest env 生成 rpg 配置文档。
 func RpgYAML(m map[string]string) map[string]any {
 	upload := Get(m, "file_filePath")

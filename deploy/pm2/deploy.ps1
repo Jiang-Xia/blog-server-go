@@ -38,8 +38,21 @@ $DeployPassword = $cfg['DEPLOY_PASSWORD']
 $RemoteDir = $cfg['DEPLOY_REMOTE_DIR']
 $HostKey = $cfg['DEPLOY_HOSTKEY']
 $PublicDir = $cfg['DEPLOY_PUBLIC_DIR']
-$Pm2Apps = if ($cfg['DEPLOY_PM2_APPS']) { $cfg['DEPLOY_PM2_APPS'] } else { 'BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway' }
-$EcosystemFile = if ($cfg['DEPLOY_ECOSYSTEM_FILE']) { $cfg['DEPLOY_ECOSYSTEM_FILE'] } else { 'ecosystem.config.js' }
+$DeployMode = if ($cfg['DEPLOY_MODE']) { $cfg['DEPLOY_MODE'].ToLower() } else { 'microservices' }
+$Pm2Apps = if ($cfg['DEPLOY_PM2_APPS']) {
+  $cfg['DEPLOY_PM2_APPS']
+} elseif ($DeployMode -eq 'monolith') {
+  'BlogGo_Monolith'
+} else {
+  'BlogGo_User,BlogGo_Blog,BlogGo_Rpg,BlogGo_Gateway'
+}
+$EcosystemFile = if ($cfg['DEPLOY_ECOSYSTEM_FILE']) {
+  $cfg['DEPLOY_ECOSYSTEM_FILE']
+} elseif ($DeployMode -eq 'monolith') {
+  'ecosystem.monolith.config.js'
+} else {
+  'ecosystem.config.js'
+}
 $TarName = if ($cfg['DEPLOY_TAR_NAME']) { $cfg['DEPLOY_TAR_NAME'] } else { 'blog-server-go.tar.gz' }
 $DeployEnvFile = $cfg['DEPLOY_ENV_FILE']
 $DeployConfigDir = if ($cfg['DEPLOY_CONFIG_DIR']) { $cfg['DEPLOY_CONFIG_DIR'] } else { 'deploy/pm2/configs' }
@@ -131,14 +144,18 @@ if (-not (Test-Path $prodEnvPath)) {
   throw "Missing $prodEnvPath — copy deploy/pm2/env.production.example to deploy/pm2/env.production and fill secrets (or once: cp ../blog-server/deploy/pm2/env.production deploy/pm2/env.production)"
 }
 
-Write-Host "==> Remote: $RemoteDir | PM2 apps: $Pm2Apps"
+Write-Host "==> Remote: $RemoteDir | mode: $DeployMode | PM2 apps: $Pm2Apps"
 Write-Host "==> [0/5] Sync configs from env.production: $prodEnvPath"
 Push-Location $Root
 go run ./scripts/sync_pm2_config_from_nest.go --env $prodEnvPath --out $configDir
 if ($LASTEXITCODE -ne 0) { throw 'sync_pm2_config_from_nest failed' }
 Pop-Location
 
-$requiredConfigs = @('gateway.yaml', 'user.yaml', 'blog.yaml', 'rpg.yaml')
+$requiredConfigs = if ($DeployMode -eq 'monolith') {
+  @('monolith.yaml')
+} else {
+  @('gateway.yaml', 'user.yaml', 'blog.yaml', 'rpg.yaml')
+}
 foreach ($name in $requiredConfigs) {
   $path = Join-Path $configDir $name
   if (-not (Test-Path $path)) {
@@ -152,12 +169,16 @@ $env:GOOS = 'linux'
 $env:GOARCH = 'amd64'
 $env:CGO_ENABLED = '0'
 Push-Location $Root
-$services = @(
-  @{ Name = 'gateway'; Path = './services/gateway/cmd' },
-  @{ Name = 'user'; Path = './services/user/cmd' },
-  @{ Name = 'blog'; Path = './services/blog/cmd' },
-  @{ Name = 'rpg'; Path = './services/rpg/cmd' }
-)
+$services = if ($DeployMode -eq 'monolith') {
+  @(@{ Name = 'monolith'; Path = './services/monolith/cmd' })
+} else {
+  @(
+    @{ Name = 'gateway'; Path = './services/gateway/cmd' },
+    @{ Name = 'user'; Path = './services/user/cmd' },
+    @{ Name = 'blog'; Path = './services/blog/cmd' },
+    @{ Name = 'rpg'; Path = './services/rpg/cmd' }
+  )
+}
 $buildOut = Join-Path $PackDir 'build-bin'
 if (Test-Path $buildOut) { Remove-Item -Recurse -Force $buildOut }
 New-Item -ItemType Directory -Path $buildOut | Out-Null

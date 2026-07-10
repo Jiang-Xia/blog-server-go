@@ -39,7 +39,14 @@
 - 脚本：`scripts/monolith-smoke.ps1`（含公开主页 articles、article/statistics 等）
 - Go smoke：`TEST_BASE=http://127.0.0.1:5000 go test -tags=smoke ./test/smoke/...`
 
-### P22-05 单体后续增强（Plan 22 后）
+### P22-05 远程部署（PM2）
+
+- 与四微服务同一套 `deploy/pm2/` 流程（`releases/` + `current` + `pm2 reload`）
+- 单体专用：`ecosystem.monolith.config.js`、`BlogGo_Monolith`、`:5000`
+- 命令：`make deploy-monolith`（见 [`deploy/pm2/README.md`](../deploy/pm2/README.md)）
+- 生产 env 仍用 `deploy/pm2/env.production`，同步生成 `configs/monolith.yaml`
+
+### P22-06 单体后续增强（Plan 22 后）
 
 - 公开主页 `GET /user/public/:uid/articles` 分页/字段对齐 Nest
 - `GET /article/statistics` 后台统计大屏全量指标

@@ -286,7 +286,8 @@ go run scripts/dev_login.go --token-only
 | 本地配置 | `.\scripts\setup-config.ps1` |
 | JWT | `go run scripts/dev_login.go --token-only` |
 | Docker 全栈（本地/CI，含 MySQL/Redis） | `docker compose -f deploy/docker/docker-compose.yml up -d --build` |
-| **生产远程部署（PM2 四服务）** | `powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1` 或 `make deploy` |
+| **生产远程部署（PM2 单体 · 主）** | `make deploy-monolith` 或 `deploy.ps1 -EnvFileName deploy.monolith.local.env` |
+| 生产远程部署（PM2 四微服务 · 学习） | `make deploy` 或 `deploy/pm2/deploy.ps1` |
 | proto | `buf generate` |
 | 整理依赖 | `go mod tidy` |
 
@@ -390,10 +391,20 @@ blog-server-go/
 
 ## 生产部署
 
-**2G 机器推荐**：Go 二进制 + PM2。生产配置见本仓库 `deploy/pm2/env.production`（格式与 blog-server 相同，独立维护）→ [`deploy/pm2/README.md`](deploy/pm2/README.md)。
+**2G 机器推荐**：Go 二进制 + PM2，流程与 Nest `blog-server/deploy/pm2/` 对齐。生产 env 见 `deploy/pm2/env.production` → [`deploy/pm2/README.md`](deploy/pm2/README.md)。
+
+**单体（生产主路径 · 已远程部署）** — 与 Nest 同端口 `:5000`，单进程 `BlogGo_Monolith`：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1
+cp deploy/pm2/deploy.monolith.local.env.example deploy/pm2/deploy.monolith.local.env
+# 填写 SSH 与 env.production 后：
+make deploy-monolith
 ```
 
-**生产推荐单体 PM2**（单进程 `:5000`）；Nginx 切流、Nest 下线 checklist 见 [`docs/10-微服务拆分与生产上线.md`](docs/10-微服务拆分与生产上线.md) 与 [`docs/22-单体服务Nest对齐补齐.md`](docs/22-单体服务Nest对齐补齐.md)。四微服务 PM2 仅作架构学习对照。本地全栈 Docker 见 [`deploy/docker/README.md`](deploy/docker/README.md)。
+**四微服务（架构学习）** — gateway `:8000`：
+
+```powershell
+make deploy
+```
+
+Nginx 切流、Nest 下线 checklist 见 [`docs/22-单体服务Nest对齐补齐.md`](docs/22-单体服务Nest对齐补齐.md)。本地全栈 Docker 见 [`deploy/docker/README.md`](deploy/docker/README.md)。

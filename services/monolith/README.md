@@ -19,6 +19,25 @@
 
 **Go `internal` 规则**：monolith **不能** import `services/*/internal/*`，故与微服务存在代码双份。微服务目录（Plan 10–11 产物）保留用于 **学习微服务架构**（gRPC、gateway 代理、多进程部署），**不强制功能 parity**，亦不作为 Nest 对等验收依据。
 
+## 远程部署（PM2）
+
+与四微服务共用 [`deploy/pm2/`](../../deploy/pm2/) 流程（`env.production` → `configs/monolith.yaml` → 交叉编译 → tar → SSH → `pm2 reload`）。
+
+```powershell
+cp deploy/pm2/deploy.monolith.local.env.example deploy/pm2/deploy.monolith.local.env
+# 填写 SSH；env.production 与 Nest 同格式
+make deploy-monolith
+```
+
+| 项 | 值 |
+|----|-----|
+| PM2 名 | `BlogGo_Monolith` |
+| 端口 | `:5000`（与 Nest 同端口切流） |
+| ecosystem | `ecosystem.monolith.config.js` |
+| 健康检查 | `curl http://127.0.0.1:5000/api/v1/health` |
+
+详见 [`deploy/pm2/README.md`](../../deploy/pm2/README.md)。
+
 ## 本地启动
 
 ```bash

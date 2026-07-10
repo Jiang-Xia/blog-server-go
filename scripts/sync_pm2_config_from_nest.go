@@ -1,4 +1,4 @@
-// sync_pm2_config_from_nest 从 deploy/pm2/env.production 生成 PM2 四服务 configs/*.yaml。
+// sync_pm2_config_from_nest 从 deploy/pm2/env.production 生成 PM2 configs/*.yaml（四微服务 + monolith）。
 // 用法：go run scripts/sync_pm2_config_from_nest.go --env deploy/pm2/env.production
 package main
 
@@ -29,10 +29,11 @@ func main() {
 	}
 
 	files := map[string]map[string]any{
-		"gateway.yaml": nestenv.GatewayYAML(env),
-		"user.yaml":    nestenv.UserYAML(env),
-		"blog.yaml":    nestenv.BlogYAML(env),
-		"rpg.yaml":     nestenv.RpgYAML(env),
+		"gateway.yaml":  nestenv.GatewayYAML(env),
+		"user.yaml":     nestenv.UserYAML(env),
+		"blog.yaml":     nestenv.BlogYAML(env),
+		"rpg.yaml":      nestenv.RpgYAML(env),
+		"monolith.yaml": nestenv.MonolithYAML(env),
 	}
 
 	for name, doc := range files {

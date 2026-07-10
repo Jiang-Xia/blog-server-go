@@ -150,8 +150,8 @@ newman run deploy/postman/scheduled-task-smoke.json --env-var baseUrl=http://127
 
 - [ ] 扩展 Postman smoke：`baseUrl=http://127.0.0.1:5000` 跑现有 `deploy/postman/*-smoke.json`
 - [ ] 四层测试：`.\scripts\test-run.ps1` 增加/确认 monolith 模式（或 `-MonolithOnly` flag）
+- [ ] PM2：`ecosystem.monolith.config.js` + `make deploy-monolith`（`:5000`，与 Nest 同端口切流）
 - [ ] 与 Nest 并行 1–2 周：`blog-home-nuxt` / `blog-admin` 指向 Go 单体 staging
-- [ ] PM2 / docker-compose：新增 `blog-server-go-monolith` profile，端口 5000
 - [ ] 切流 checklist：Redis `DEL public_api_paths api_permission_mappings`、JWT 密钥一致、静态文件路径、WS `/realtime`
 - [ ] 下线 Nest：停 `blog-server`，文档更新
 
