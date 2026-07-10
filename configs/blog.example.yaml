@@ -28,7 +28,7 @@ mysql:
   password: ""
   database: x_my_blog
   table_prefix: x_
-  schema_source_database: myblog
+  schema_source_database: x_my_blog
 
 redis:
   addr: "127.0.0.1:6379"

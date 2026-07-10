@@ -14,7 +14,7 @@ app:
   tongji_client_secret: ""
 
 http:
-  addr: ":5000"
+  addr: ":8000"
   cors_origins:
     - "https://your-domain.example"
     - "https://admin.your-domain.example"
@@ -24,9 +24,9 @@ mysql:
   port: 3306
   user: ""
   password: ""
-  database: myblog
+  database: x_my_blog
   table_prefix: x_
-  schema_source_database: myblog
+  schema_source_database: x_my_blog
 
 redis:
   addr: "127.0.0.1:6379"

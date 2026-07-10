@@ -76,7 +76,7 @@ func main() {
 	if tableCount == 0 {
 		readSchema = cfg.MySQL.SchemaSourceDatabase
 		if readSchema == "" {
-			readSchema = "myblog"
+			readSchema = "x_my_blog"
 		}
 		applyPrefix = true
 		fmt.Printf("read schema from %s (Nest TypeORM), emit tables with prefix %q for %s\n", readSchema, prefix, cfg.MySQL.Database)

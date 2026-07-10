@@ -20,21 +20,21 @@ alwaysApply: true
 ```powershell
 cd d:\study\myGithub\blog-server-go
 
-# 输出 accessToken（服务须在 :5000 运行，MySQL x_my_blog + Redis db=1）
+# 输出 accessToken（服务须在 :8000 运行，MySQL x_my_blog + Redis db=1）
 go run scripts/dev_login.go --token-only
 
 # 带说明与 curl 示例
 go run scripts/dev_login.go
 ```
 
-环境变量：`TEST_USERNAME`、`TEST_PASSWORD`、`DEV_LOGIN_BASE`（默认 `http://127.0.0.1:5000`）。
+环境变量：`TEST_USERNAME`、`TEST_PASSWORD`、`DEV_LOGIN_BASE`（默认 `http://127.0.0.1:8000`）。
 
 ## newman 冒烟（需 token 的 collection）
 
 ```powershell
 $token = go run scripts/dev_login.go --token-only
 newman run deploy/postman/admin-rbac-smoke.json `
-  --env-var baseUrl=http://localhost:5000 `
+  --env-var baseUrl=http://localhost:8000 `
   --env-var token=$token
 ```
 

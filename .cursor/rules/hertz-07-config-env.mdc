@@ -21,7 +21,7 @@ app:
   env: development
   api_prefix: /api/v1
 http:
-  addr: ":5000"
+  addr: ":8000"
 mysql:
   dsn: "..."
 redis:

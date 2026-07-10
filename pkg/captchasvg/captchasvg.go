@@ -14,8 +14,8 @@ const (
 	captchaWidth  uint16 = 100
 	captchaHeight uint16 = 48
 	fontSize      uint8  = 18
-	curveCount    uint8  = 3
-	noiseDots     int    = 66
+	curveCount    uint8  = 2 // 与 Nest svg-captcha noise: 2 对齐
+	noiseDots     int    = 8  // 少量噪点，避免 66 点过密难辨认
 )
 
 var circleNoiseRe = regexp.MustCompile(`<circle[^>]*/>`)

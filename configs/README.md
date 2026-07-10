@@ -75,7 +75,7 @@ pwsh scripts/setup-config.ps1
 
 ## 差异说明
 
-- **MySQL 库名**：Go 本地默认 `x_my_blog`（带 `x_` 表前缀）；Nest 开发库为 `myblog`。数据同步见 `scripts/sync_data_x_my_blog.go`。
+- **MySQL 库名**：Go 本地与生产均默认 **`x_my_blog`**（带 `x_` 表前缀）；Nest 仍用 `myblog`，首次迁数据见 `scripts/sync_data_x_my_blog.go` / `deploy/sql/prod/`。
 - **微服务 JWT**：`user` / `blog` / `rpg` / `gateway` 的 `jwt.secret` 须一致。
 - **RSA 登录密钥**：`crypto.rsa_private_key` 为空时使用 `pkg/config` 内置开发密钥对（与 Nest `ssh.ts` 一致）；**生产须配置独立私钥**。
 

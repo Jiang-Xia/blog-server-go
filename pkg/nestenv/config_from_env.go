@@ -14,7 +14,11 @@ func MySQLConfig(m map[string]string) config.MySQLConfig {
 	}
 	db := Get(m, "db_database")
 	if db == "" {
-		db = "myblog"
+		db = "x_my_blog"
+	}
+	schemaSource := Get(m, "db_database")
+	if schemaSource == "" {
+		schemaSource = "x_my_blog"
 	}
 	return config.MySQLConfig{
 		Host:     Get(m, "db_host"),
@@ -23,7 +27,7 @@ func MySQLConfig(m map[string]string) config.MySQLConfig {
 		Password: Get(m, "db_password"),
 		Database: db,
 		TablePrefix: "x_",
-		SchemaSourceDatabase: "myblog",
+		SchemaSourceDatabase: schemaSource,
 	}
 }
 

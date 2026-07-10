@@ -176,7 +176,7 @@ func monolithYAML(host string, port int, user, pass, db, redis string, redisDB i
   api_prefix: /api/v1
 
 http:
-  addr: ":5000"
+  addr: ":8000"
 
 mysql:
   host: %s

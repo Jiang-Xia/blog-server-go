@@ -11,8 +11,8 @@ Agent 为验证启动的任何 dev 进程，**结束后必须关闭**。
 
 | 阶段 | 命令 | 端口 |
 |------|------|------|
-| 单体 monolith | `make dev` / `go run services/monolith/cmd/main.go` | **5000** |
-| gateway（Plan 10） | `make dev-gateway` | **8000** |
+| 单体 monolith | `make dev` / `go run services/monolith/cmd/main.go` | **8000** |
+| gateway（Plan 10 · dev-all） | `make dev-gateway` / `dev-all` | **8000**（与单体二选一，勿同端口并存） |
 | blog / user / rpg | 各服务配置 `http.addr` | 5001–5003 |
 
 ## 必须关闭的场景
@@ -23,7 +23,7 @@ Agent 为验证启动的任何 dev 进程，**结束后必须关闭**。
 ## Windows 清理
 
 ```powershell
-netstat -ano | findstr :5000
+netstat -ano | findstr :8000
 Stop-Process -Id <PID> -Force
 ```
 

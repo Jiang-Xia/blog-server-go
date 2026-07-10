@@ -1,6 +1,6 @@
 # monolith（Nest 替换主入口）
 
-> **Plan 22 起**：`services/monolith`（`:5000`）为 **Nest 替换、本地开发、冒烟与生产部署的唯一基准**。新功能只在此落地；**不要求**同步至四微服务。
+> **Plan 22 起**：`services/monolith`（本地 dev **`:8000`**）为 **Nest 替换、本地开发、冒烟与生产部署的唯一基准**。新功能只在此落地；**不要求**同步至四微服务。
 
 ## 用途
 
@@ -32,17 +32,17 @@ make deploy-monolith
 | 项 | 值 |
 |----|-----|
 | PM2 名 | `BlogGo_Monolith` |
-| 端口 | `:5000`（与 Nest 同端口切流） |
+| 端口 | `:8000`（本地 dev / 生产 PM2，与 Nest `:5000` 分离） |
 | ecosystem | `ecosystem.monolith.config.js` |
-| 健康检查 | `curl http://127.0.0.1:5000/api/v1/health` |
+| 健康检查 | `curl http://127.0.0.1:8000/api/v1/health` |
 
 详见 [`deploy/pm2/README.md`](../../deploy/pm2/README.md)。
 
 ## 本地启动
 
 ```bash
-make dev              # 单体 :5000
-# API baseUrl: http://127.0.0.1:5000/api/v1
+make dev              # 单体 :8000
+# API baseUrl: http://127.0.0.1:8000/api/v1
 ```
 
 四微服务联调（**可选 · 架构学习**）：

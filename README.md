@@ -210,22 +210,22 @@ mysql -u jiangxia -p x_my_blog < your-backup.sql
 
 ### 5. 启动单体（主路径）
 
-确认 MySQL、Redis 已运行；**不要**与 Nest（`:5000`）或已占用的 dev 端口冲突。
+确认 MySQL、Redis 已运行；**8000** 未被占用（Nest 仍用 **5000**，与单体可并行）。
 
 ```powershell
-.\scripts\dev.ps1   # :5000，与 Nest 二选一
+.\scripts\dev.ps1   # :8000
 ```
 
 | 项 | 值 |
 |----|-----|
-| API 基址 | `http://127.0.0.1:5000` |
-| 登录脚本 | 默认即 `:5000`；或 `$env:DEV_LOGIN_BASE='http://127.0.0.1:5000'` |
+| API 基址 | `http://127.0.0.1:8000` |
+| 登录脚本 | 默认即 `:8000`；或 `$env:DEV_LOGIN_BASE='http://127.0.0.1:8000'` |
 | 冒烟 | `.\scripts\monolith-smoke.ps1` |
 
 ### 6. 验证是否启动成功
 
 ```powershell
-curl.exe -sf http://localhost:5000/api/v1/health
+curl.exe -sf http://localhost:8000/api/v1/health
 # 期望：{"code":200,...,"data":"ok"}
 
 go run scripts/dev_login.go --token-only
@@ -236,9 +236,10 @@ go run scripts/dev_login.go --token-only
 
 | 项目 | 配置 |
 |------|------|
-| `blog-home-nuxt` | API 指 `http://127.0.0.1:5000` |
+| `blog-home-nuxt` | API 指 `http://127.0.0.1:8000` |
+| `blog-home-uniapp` | `pnpm dev:go-local`（见 `env/.env.go-local`） |
 | `blog-admin` | 同上 |
-| WebSocket | `ws://127.0.0.1:5000/api/v1/realtime` |
+| WebSocket | `ws://127.0.0.1:8000/api/v1/realtime` |
 
 ### 7. 可选：四微服务（架构学习）
 

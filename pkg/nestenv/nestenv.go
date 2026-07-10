@@ -97,7 +97,7 @@ func MySQLBlock(m map[string]string) map[string]any {
 	}
 	db := Get(m, "db_database")
 	if db == "" {
-		db = "myblog"
+		db = "x_my_blog"
 	}
 	return map[string]any{
 		"host":         Get(m, "db_host"),

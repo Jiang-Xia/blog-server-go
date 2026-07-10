@@ -3,7 +3,7 @@
  * Plan 08 WebSocket 冒烟：HTTP since + 原生 WS 心跳 + dev 推送 + Stream 发布
  * 用法：先启动 make dev，再 node scripts/ws-smoke.mjs
  */
-const BASE = process.env.BASE_URL || 'http://localhost:5000';
+const BASE = process.env.BASE_URL || 'http://localhost:8000';
 const API = `${BASE}/api/v1`;
 
 async function loginToken() {

@@ -1,10 +1,10 @@
-# 单体 :5000 冒烟脚本（Plan 22）
+# 单体 :8000 冒烟脚本（Plan 22）
 # 用法：先 make dev / .\scripts\dev.ps1，再 .\scripts\monolith-smoke.ps1
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
 
-$base = if ($env:TEST_BASE) { $env:TEST_BASE.TrimEnd('/') } else { "http://127.0.0.1:5000" }
+$base = if ($env:TEST_BASE) { $env:TEST_BASE.TrimEnd('/') } else { "http://127.0.0.1:8000" }
 $api = "$base/api/v1"
 
 $env:DEV_LOGIN_BASE = $base

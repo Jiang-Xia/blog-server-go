@@ -14,7 +14,7 @@ app:
   tongji_client_secret: ""
 
 http:
-  addr: ":5000"
+  addr: ":8000"
   cors_origins: []
 
 mysql:
@@ -24,7 +24,7 @@ mysql:
   password: ""
   database: x_my_blog
   table_prefix: x_
-  schema_source_database: myblog
+  schema_source_database: x_my_blog
 
 redis:
   addr: "127.0.0.1:6379"
@@ -42,7 +42,7 @@ crypto:
 oauth:
   github_client_id: ""
   github_client_secret: ""
-  github_callback_url: "http://127.0.0.1:5000/api/v1/user/auth/github/callback"
+  github_callback_url: "http://127.0.0.1:8000/api/v1/user/auth/github/callback"
 
 mail:
   host: ""
