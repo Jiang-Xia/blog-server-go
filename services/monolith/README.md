@@ -1,23 +1,23 @@
 # monolith（Nest 替换主入口）
 
-> **Plan 22 起**：单体为 **Nest 替换与本地开发主入口**（`:5000`）；与四微服务保持功能对齐，新能力优先在单体落地后再按需同步至 `services/{user,blog,rpg}/`。
+> **Plan 22 起**：`services/monolith`（`:5000`）为 **Nest 替换、本地开发、冒烟与生产部署的唯一基准**。新功能只在此落地；**不要求**同步至四微服务。
 
 ## 用途
 
-- `make dev` 本地开发与联调（`services/monolith/cmd/main.go`）
+- `make dev` / `.\scripts\dev.ps1` 本地开发与联调（`services/monolith/cmd/main.go`）
 - **替换 `blog-server`（NestJS）** 的生产部署目标
-- 集成测试 / E2E 全栈验收
+- 集成测试 / E2E 全栈验收（`scripts/monolith-smoke.ps1`）
 
 ## 与微服务关系
 
 | 域 | 微服务目录 | monolith 状态 |
 |----|-----------|---------------|
-| user | `services/user/` | 进程内 `internal/user/`，功能对齐 |
+| user | `services/user/` | 进程内 `internal/user/`，**以单体为准** |
 | blog | `services/blog/` | 进程内 `internal/blog/` + RAG + 定时任务 |
 | rpg + pay | `services/rpg/` | 进程内 `internal/rpg/` + `internal/pay/` |
 | gateway | `services/gateway/` | 单体无 gateway；BFF 能力进程内等价 |
 
-**Go `internal` 规则**：monolith **不能** import `services/*/internal/*`，故与微服务存在代码双份；Plan 22 起以 **monolith 为准** 补齐，再反向同步微服务（可选）。
+**Go `internal` 规则**：monolith **不能** import `services/*/internal/*`，故与微服务存在代码双份。微服务目录（Plan 10–11 产物）保留用于 **学习微服务架构**（gRPC、gateway 代理、多进程部署），**不强制功能 parity**，亦不作为 Nest 对等验收依据。
 
 ## 本地启动
 
@@ -26,7 +26,7 @@ make dev              # 单体 :5000
 # API baseUrl: http://127.0.0.1:5000/api/v1
 ```
 
-四微服务联调（可选对照）：
+四微服务联调（**可选 · 架构学习**）：
 
 ```bash
 make dev-all          # gateway :8000

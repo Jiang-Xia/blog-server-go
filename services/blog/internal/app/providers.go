@@ -2,6 +2,7 @@
 package app
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
@@ -86,6 +87,7 @@ func provideRagEventConsumer(rds rueidis.Client, mod *rag.Module, log *zap.Logge
 	}
 	c := event.NewConsumer(rds, log, event.ConsumerGroupRAG)
 	raglistener.RegisterRAGHandlers(c, mod, log)
+	go mod.Indexer.EnsureStaticPagesIndexed(context.Background())
 	return RagEventConsumer{c}
 }
 

@@ -6,8 +6,8 @@ import (
 	"strconv"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
+	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
-	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/articleport"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/ent"
@@ -62,11 +62,11 @@ func provideRPGAdminHandler(mod *rpg.Module, jwt *auth.JWTService) *handler.RPGA
 	return handler.NewRPGAdminHandler(adminAdapter{mod.Admin}, jwt)
 }
 
-func provideRPGProfileHandler(mod *rpg.Module, articles articleport.ArticleReader, blogLister blogsvc.PublicProfileLister) *handler.RPGProfileHandler {
+func provideRPGProfileHandler(mod *rpg.Module, publicProfile *publicprofile.Repo, blogLister blogsvc.PublicProfileLister) *handler.RPGProfileHandler {
 	if mod == nil || mod.Profile == nil {
 		return handler.NewRPGProfileHandler(nil)
 	}
-	return handler.NewRPGProfileHandler(profileAdapter{svc: mod.Profile, articles: articles, blog: blogLister})
+	return handler.NewRPGProfileHandler(profileAdapter{svc: mod.Profile, publicProfile: publicProfile, blog: blogLister})
 }
 
 func providePayOrderServiceWithRecharge(
@@ -322,9 +322,9 @@ func (a rechargeAdapter) GetRechargeStatus(ctx context.Context, uid int, outTrad
 }
 
 type profileAdapter struct {
-	svc      *rpgprofile.Service
-	articles articleport.ArticleReader
-	blog     blogsvc.PublicProfileLister
+	svc           *rpgprofile.Service
+	publicProfile *publicprofile.Repo
+	blog          blogsvc.PublicProfileLister
 }
 
 func (a profileAdapter) GetPublicProfile(ctx context.Context, uid int) (interface{}, error) {
@@ -341,14 +341,15 @@ func (a profileAdapter) GetPublicRpgLevelsBatch(ctx context.Context, uids []int)
 	return a.svc.GetPublicRpgLevelsBatch(ctx, uids)
 }
 func (a profileAdapter) GetPublicArticles(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
-	if a.articles == nil {
-		return map[string]interface{}{"list": []interface{}{}}, nil
+	if a.publicProfile == nil {
+		return map[string]interface{}{"list": []interface{}{}, "pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize}}, nil
 	}
-	list, err := a.articles.ListPublishedByAuthor(ctx, uid)
+	rows, total, err := a.publicProfile.ListAuthorArticles(ctx, uid, page, pageSize)
 	if err != nil {
 		return nil, err
 	}
-	return map[string]interface{}{"list": list}, nil
+	res := publicprofile.BuildListResult(rows, total, page, pageSize)
+	return map[string]interface{}{"list": res.List, "pagination": res.Pagination}, nil
 }
 func (a profileAdapter) GetPublicCollectArticles(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
 	if a.blog == nil {

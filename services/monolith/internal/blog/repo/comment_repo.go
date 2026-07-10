@@ -6,6 +6,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/comment"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/reply"
 )
 
 // CommentRepo 评论表读写。
@@ -127,5 +128,34 @@ func (r *CommentRepo) CountByArticleIDs(ctx context.Context, articleIDs []int) (
 		out[item.ArticleID] = item.Count
 	}
 	return out, nil
+}
+
+// CountDiscussionTotal 统计文章集合下已通过审核的评论与回复总数（对齐 Nest findComment 汇总）。
+func (r *CommentRepo) CountDiscussionTotal(ctx context.Context, articleIDs []int) (int, error) {
+	if len(articleIDs) == 0 {
+		return 0, nil
+	}
+	commentCount, err := r.client.Comment.Query().
+		Where(comment.ArticleIdIn(articleIDs...), comment.StatusEQ("approved")).
+		Count(ctx)
+	if err != nil {
+		return 0, err
+	}
+	parentIDs, err := r.client.Comment.Query().
+		Where(comment.ArticleIdIn(articleIDs...), comment.StatusEQ("approved")).
+		IDs(ctx)
+	if err != nil {
+		return 0, err
+	}
+	if len(parentIDs) == 0 {
+		return commentCount, nil
+	}
+	replyCount, err := r.client.Reply.Query().
+		Where(reply.StatusEQ("approved"), reply.ParentIdIn(parentIDs...)).
+		Count(ctx)
+	if err != nil {
+		return 0, err
+	}
+	return commentCount + replyCount, nil
 }
 

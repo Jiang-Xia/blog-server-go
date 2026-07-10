@@ -2,6 +2,7 @@
 package app
 
 import (
+	"context"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
@@ -98,8 +99,8 @@ func provideCrossDB(cfg *config.Config) (*crossdb.CrossDB, error) {
 	return crossdb.New(cfg)
 }
 
-func provideRagModule(cfg *config.Config, client *ent.Client, redis *redisutil.Store, articles *blogrepo.ArticleRepo, cross *crossdb.CrossDB, log *zap.Logger) *rag.Module {
-	return rag.NewModule(cfg, client, redis, articles, cross, log)
+func provideRagModule(cfg *config.Config, client *ent.Client, redis *redisutil.Store, articles *blogrepo.ArticleRepo, cross *crossdb.CrossDB, rpgMod *rpg.Module, log *zap.Logger) *rag.Module {
+	return rag.NewModule(cfg, client, redis, articles, cross, rpgMod, log)
 }
 
 func provideRagEventConsumer(rds rueidis.Client, mod *rag.Module, log *zap.Logger) RagEventConsumer {
@@ -108,6 +109,7 @@ func provideRagEventConsumer(rds rueidis.Client, mod *rag.Module, log *zap.Logge
 	}
 	c := event.NewConsumer(rds, log, event.ConsumerGroupRAG)
 	raglistener.RegisterRAGHandlers(c, mod, log)
+	go mod.Indexer.EnsureStaticPagesIndexed(context.Background())
 	return RagEventConsumer{c}
 }
 

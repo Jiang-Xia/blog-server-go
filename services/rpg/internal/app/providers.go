@@ -6,6 +6,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/blogsvc"
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
 	"github.com/Jiang-Xia/blog-server-go/pkg/redisutil"
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/ent"
@@ -62,6 +63,10 @@ func provideArticleReader(db *sql.DB) articleport.ArticleReader {
 
 func provideBlogPublicProfileLister(cfg *config.Config) (blogsvc.PublicProfileLister, error) {
 	return blogsvc.NewGRPCPublicProfileLister(cfg.GRPC.BlogAddr)
+}
+
+func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
+	return publicprofile.NewRepo(cfg)
 }
 
 func provideBlogArticleRPGStore(cfg *config.Config) (blogsvc.ArticleRPGStore, error) {

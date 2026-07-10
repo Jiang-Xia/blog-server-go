@@ -360,14 +360,15 @@ func (a profileAdapter) GetPublicRpgLevelsBatch(ctx context.Context, uids []int)
 	return a.svc.GetPublicRpgLevelsBatch(ctx, uids)
 }
 func (a profileAdapter) GetPublicArticles(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
-	if a.articles == nil {
-		return map[string]interface{}{"list": []interface{}{}}, nil
+	if a.publicProfile == nil {
+		return map[string]interface{}{"list": []interface{}{}, "pagination": map[string]int{"total": 0, "page": page, "pageSize": pageSize}}, nil
 	}
-	list, err := a.articles.ListPublishedByAuthor(ctx, uid)
+	rows, total, err := a.publicProfile.ListAuthorArticles(ctx, uid, page, pageSize)
 	if err != nil {
 		return nil, err
 	}
-	return map[string]interface{}{"list": list}, nil
+	res := publicprofile.BuildListResult(rows, total, page, pageSize)
+	return map[string]interface{}{"list": res.List, "pagination": res.Pagination}, nil
 }
 func (a profileAdapter) GetPublicCollectArticles(ctx context.Context, uid, page, pageSize int) (interface{}, error) {
 	if a.publicProfile == nil {

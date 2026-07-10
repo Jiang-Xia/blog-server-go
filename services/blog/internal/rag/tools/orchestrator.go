@@ -1,28 +1,50 @@
-package tools
+﻿package tools
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
+	"io"
+	"net/http"
 	"regexp"
 	"strings"
+	"time"
+
+	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 )
 
-// Orchestrator 规则匹配 Tool 路由（对齐 Nest tryRuleBasedTools；RPG 榜留 Plan 17）。
+// Orchestrator 规则匹配 + LLM function calling Tool 路由（对齐 Nest RagOrchestratorService）。
 type Orchestrator struct {
-	svc *Service
+	svc    *Service
+	cfg    *config.Config
+	client *http.Client
 }
 
 // NewOrchestrator 构造 Orchestrator。
-func NewOrchestrator(svc *Service) *Orchestrator {
-	return &Orchestrator{svc: svc}
+func NewOrchestrator(svc *Service, cfg *config.Config) *Orchestrator {
+	return &Orchestrator{
+		svc: svc, cfg: cfg,
+		client: &http.Client{Timeout: 30 * time.Second},
+	}
 }
 
 // ResolveTools 根据问题决定是否调用 Tool。
 func (o *Orchestrator) ResolveTools(ctx context.Context, question string, toolCtx Context) ([]CallRecord, error) {
-	q := question
+	q := strings.TrimSpace(question)
 	if q == "" {
 		return nil, nil
 	}
 
+	if recs, err := o.tryRuleBasedTools(ctx, q, toolCtx); err != nil {
+		return nil, err
+	} else if len(recs) > 0 {
+		return recs, nil
+	}
+
+	return o.tryLLMTools(ctx, q, toolCtx)
+}
+
+func (o *Orchestrator) tryRuleBasedTools(ctx context.Context, q string, toolCtx Context) ([]CallRecord, error) {
 	rankingPatterns := []struct {
 		re     *regexp.Regexp
 		metric string
@@ -58,6 +80,7 @@ func (o *Orchestrator) ResolveTools(ctx context.Context, question string, toolCt
 		{regexp.MustCompile(`友链|友情链接`), "list_friend_links", map[string]interface{}{"limit": 30}},
 		{regexp.MustCompile(`留言板|最近留言`), "get_msgboard_recent", map[string]interface{}{"limit": 10}},
 		{regexp.MustCompile(`工具箱|有哪些工具|站点导航|去哪个页面`), "get_site_nav", map[string]interface{}{}},
+		{regexp.MustCompile(`搜索.*文章|找.*文章|有没有.*文章`), "search_articles", map[string]interface{}{"keyword": extractSearchKeyword(q), "limit": 10}},
 	}
 
 	for _, rule := range rules {
@@ -70,15 +93,20 @@ func (o *Orchestrator) ResolveTools(ctx context.Context, question string, toolCt
 		}
 	}
 
-	// RPG 榜：返回友好提示（Plan 17 接 gRPC 后再接真实数据）
 	if regexp.MustCompile(`RPG.*(排行|榜)|经验榜|等级榜|声望榜|签到榜`).MatchString(q) {
-		args := map[string]interface{}{"type": "exp", "period": "total", "limit": 10}
-		res, _ := o.svc.Execute(ctx, "get_rpg_leaderboard", args, toolCtx)
+		args := map[string]interface{}{"type": inferRpgScoreType(q), "period": "total", "limit": 10}
+		res, err := o.svc.Execute(ctx, "get_rpg_leaderboard", args, toolCtx)
+		if err != nil {
+			return nil, err
+		}
 		return []CallRecord{{Name: "get_rpg_leaderboard", Args: args, Result: res}}, nil
 	}
 
 	if regexp.MustCompile(`(我的|我).*(等级|RPG|经验|钻石|几级)`).MatchString(q) {
-		res, _ := o.svc.Execute(ctx, "get_my_rpg_status", map[string]interface{}{}, toolCtx)
+		res, err := o.svc.Execute(ctx, "get_my_rpg_status", map[string]interface{}{}, toolCtx)
+		if err != nil {
+			return nil, err
+		}
 		return []CallRecord{{Name: "get_my_rpg_status", Args: map[string]interface{}{}, Result: res}}, nil
 	}
 
@@ -116,6 +144,97 @@ func (o *Orchestrator) ResolveTools(ctx context.Context, question string, toolCt
 	}
 
 	return nil, nil
+}
+
+func (o *Orchestrator) tryLLMTools(ctx context.Context, question string, toolCtx Context) ([]CallRecord, error) {
+	if o.cfg == nil || o.svc == nil {
+		return nil, nil
+	}
+	apiKey := strings.TrimSpace(o.cfg.Rag.LLM.APIKey)
+	if apiKey == "" {
+		return nil, nil
+	}
+	base := strings.TrimSuffix(o.cfg.Rag.LLM.BaseURL, "/")
+	if base == "" {
+		base = "https://api.deepseek.com/v1"
+	}
+	model := o.cfg.Rag.LLM.Model
+	if model == "" {
+		model = "deepseek-chat"
+	}
+	body, _ := json.Marshal(map[string]interface{}{
+		"model": model,
+		"messages": []map[string]string{
+			{
+				"role":    "system",
+				"content": "你是博客助手的路由模块。遇到排行、作者、分类标签、最新/神作文章、RPG 榜、站点导航、友链留言、归档统计、个人 RPG/发文等结构化问题时，必须调用对应工具。纯教程/玩法/文章内容类问题不要调用工具。",
+			},
+			{"role": "user", "content": question},
+		},
+		"tools":       ragToolDefinitions,
+		"tool_choice": "auto",
+		"temperature": 0,
+	})
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, base+"/chat/completions", bytes.NewReader(body))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+apiKey)
+	resp, err := o.client.Do(req)
+	if err != nil {
+		return nil, nil
+	}
+	defer resp.Body.Close()
+	data, err := io.ReadAll(resp.Body)
+	if err != nil || resp.StatusCode >= 400 {
+		return nil, nil
+	}
+	var parsed struct {
+		Choices []struct {
+			Message struct {
+				ToolCalls []struct {
+					Function struct {
+						Name      string `json:"name"`
+						Arguments string `json:"arguments"`
+					} `json:"function"`
+				} `json:"tool_calls"`
+			} `json:"message"`
+		} `json:"choices"`
+	}
+	if err := json.Unmarshal(data, &parsed); err != nil {
+		return nil, nil
+	}
+	if len(parsed.Choices) == 0 || len(parsed.Choices[0].Message.ToolCalls) == 0 {
+		return nil, nil
+	}
+	calls := make([]LLMToolCall, 0, len(parsed.Choices[0].Message.ToolCalls))
+	for _, tc := range parsed.Choices[0].Message.ToolCalls {
+		calls = append(calls, LLMToolCall{Name: tc.Function.Name, Arguments: tc.Function.Arguments})
+	}
+	return o.svc.RunToolCalls(ctx, calls, toolCtx), nil
+}
+
+func extractSearchKeyword(q string) string {
+	if m := regexp.MustCompile(`(?:搜索|找|查)(?:一下|下)?[「"']?(.+?)[」"']?(?:相关|的)?文章`).FindStringSubmatch(q); len(m) > 1 {
+		return strings.TrimSpace(m[1])
+	}
+	return strings.TrimSpace(q)
+}
+
+func inferRpgScoreType(q string) string {
+	switch {
+	case strings.Contains(q, "等级"):
+		return "level"
+	case strings.Contains(q, "声望"):
+		return "reputation"
+	case strings.Contains(q, "钻石"):
+		return "currency"
+	case strings.Contains(q, "签到"):
+		return "signDays"
+	default:
+		return "exp"
+	}
 }
 
 func mustAtoi(s string) int {

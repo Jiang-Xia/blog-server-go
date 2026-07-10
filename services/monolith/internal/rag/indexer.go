@@ -95,6 +95,40 @@ func (x *Indexer) IndexArticleByID(ctx context.Context, articleID int) {
 	}
 }
 
+// EnsureStaticPagesIndexed 启动时检查静态页 chunk，缺失则自动索引（无需 admin 手动全量 reindex）。
+func (x *Indexer) EnsureStaticPagesIndexed(ctx context.Context) {
+	if !x.cfg.Rag.Enabled || !x.embedding.IsAvailable() {
+		return
+	}
+	for _, def := range RAGStaticPages {
+		sourceKey := RagPageSourceKey(def.Slug)
+		n, err := x.client.KnowledgeChunk.Query().
+			Where(
+				knowledgechunk.SourceTypeEQ(SourcePage),
+				knowledgechunk.SourceKeyEQ(sourceKey),
+				knowledgechunk.StatusEQ("active"),
+			).
+			Count(ctx)
+		if err != nil {
+			if x.log != nil {
+				x.log.Warn("static page index check failed", zap.String("slug", def.Slug), zap.Error(err))
+			}
+			continue
+		}
+		if n > 0 {
+			continue
+		}
+		defCopy := def
+		go func() {
+			if _, err := x.indexStaticPage(context.Background(), defCopy); err != nil && x.log != nil {
+				x.log.Warn("static page auto index failed", zap.String("slug", defCopy.Slug), zap.Error(err))
+			} else if x.log != nil {
+				x.log.Info("static page auto indexed", zap.String("slug", defCopy.Slug))
+			}
+		}()
+	}
+}
+
 // RemoveArticleChunks 下架/删除时软删 chunk。
 func (x *Indexer) RemoveArticleChunks(ctx context.Context, articleID int) error {
 	sourceKey := RagArticleSourceKey(articleID)

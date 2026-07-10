@@ -51,14 +51,18 @@ func InitializeApp(cfgPath string) (*App, error) {
 	publisher := event.NewPublisher(rueidisClient, zapLogger)
 	module := rpg.NewModule(client, pusher, store, rueidisClient, userReader, articleReader, articleRPGStore, publisher, configConfig, zapLogger)
 	rpgGameplay := provideRPGGameplay(module, crossClient)
-	service := provideJWT(configConfig)
-	rpgHandler := provideRPGHandler(module, rpgGameplay, service)
-	rpgAdminHandler := provideRPGAdminHandler(module, service)
+	v := provideJWT(configConfig)
+	rpgHandler := provideRPGHandler(module, rpgGameplay, v)
+	rpgAdminHandler := provideRPGAdminHandler(module, v)
+	repo, err := providePublicProfileRepo(configConfig)
+	if err != nil {
+		return nil, err
+	}
 	publicProfileLister, err := provideBlogPublicProfileLister(configConfig)
 	if err != nil {
 		return nil, err
 	}
-	rpgProfileHandler := provideRPGProfileHandler(module, articleReader, publicProfileLister)
+	rpgProfileHandler := provideRPGProfileHandler(module, repo, publicProfileLister)
 	payOrderRepo := providePayOrderRepo(client)
 	payService, err := providePayService(configConfig, payOrderRepo, zapLogger)
 	if err != nil {
@@ -66,8 +70,8 @@ func InitializeApp(cfgPath string) (*App, error) {
 	}
 	payHandler := handler.NewPayHandler(payService)
 	payOrderService := providePayOrderService(payOrderRepo, payService, module, zapLogger)
-	payOrderHandler := handler.NewPayOrderHandler(payOrderService, service)
-	registerDeps := provideRegisterDeps(healthHandler, rpgHandler, rpgAdminHandler, rpgProfileHandler, payHandler, payOrderHandler, service, crossClient, configConfig, store, zapLogger)
+	payOrderHandler := handler.NewPayOrderHandler(payOrderService, v)
+	registerDeps := provideRegisterDeps(healthHandler, rpgHandler, rpgAdminHandler, rpgProfileHandler, payHandler, payOrderHandler, v, crossClient, configConfig, store, zapLogger)
 	hertz := server.NewHTTPServer(configConfig, zapLogger, registerDeps)
 	schedulerScheduler := scheduler.New(zapLogger)
 	activityNotifyRunner := provideActivityNotifyScheduler(module, zapLogger)

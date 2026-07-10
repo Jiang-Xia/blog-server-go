@@ -76,6 +76,52 @@ LIMIT ? OFFSET ?`,
 	return rows, total, err
 }
 
+// IsAuthorPublicVisible 作者是否可公开展示（未锁定且未删除）。
+func (r *Repo) IsAuthorPublicVisible(ctx context.Context, uid int) (bool, error) {
+	var status string
+	var isDelete int
+	err := r.db.QueryRowContext(ctx,
+		fmt.Sprintf(`SELECT status, isDelete FROM %suser WHERE id = ?`, r.prefix), uid).
+		Scan(&status, &isDelete)
+	if err == sql.ErrNoRows {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+	return status == authorStatusActive && isDelete == 0, nil
+}
+
+// ListAuthorArticles 作者公开已发布文章分页（createTime DESC，likes 取 like 表实时计数）。
+func (r *Repo) ListAuthorArticles(ctx context.Context, uid, page, pageSize int) ([]ArticleRow, int, error) {
+	page, pageSize = normalizePage(page, pageSize)
+	ok, err := r.IsAuthorPublicVisible(ctx, uid)
+	if err != nil {
+		return nil, 0, err
+	}
+	if !ok {
+		return []ArticleRow{}, 0, nil
+	}
+	base := fmt.Sprintf(`
+FROM %sarticle article
+WHERE article.uid = ?
+  AND article.isDelete = 0
+  AND article.status = 'publish'`, r.prefix)
+	total, err := r.count(ctx, "SELECT COUNT(*) "+base, uid)
+	if err != nil {
+		return nil, 0, err
+	}
+	likeSub := fmt.Sprintf(`(SELECT COUNT(*) FROM %slike lk WHERE lk.articleId = article.id AND lk.status = '1')`, r.prefix)
+	rows, err := r.queryArticles(ctx,
+		fmt.Sprintf(`SELECT article.id, article.title, article.description, article.cover,
+		        article.views, %s AS likes, article.articleLevel, article.isMasterpiece,
+		        article.tipTotal, article.createTime `+base+`
+ORDER BY article.createTime DESC
+LIMIT ? OFFSET ?`, likeSub),
+		uid, pageSize, (page-1)*pageSize)
+	return rows, total, err
+}
+
 // ListLikeArticles 用户公开点赞文章分页（仅 status=1）。
 func (r *Repo) ListLikeArticles(ctx context.Context, uid, page, pageSize int) ([]ArticleRow, int, error) {
 	page, pageSize = normalizePage(page, pageSize)

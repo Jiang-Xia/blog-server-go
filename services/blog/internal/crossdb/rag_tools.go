@@ -1,4 +1,4 @@
-package crossdb
+﻿package crossdb
 
 import (
 	"context"
@@ -20,6 +20,8 @@ type RagArticleItem struct {
 	CreateTime    time.Time
 	Comments      *int
 	Collects      *int
+	CategoryLabel *string
+	TagLabels     *string
 }
 
 const publishedArticleJoin = `
@@ -333,6 +335,167 @@ func scanRagArticleRows(rows *sql.Rows) ([]RagArticleItem, error) {
 }
 
 func intPtr(n int) *int { return &n }
+
+const ragArticleDetailSelect = `SELECT a.id, a.title, a.views, a.likes, a.articleLevel, a.isMasterpiece, a.createTime,
+  (SELECT c.label FROM x_category c WHERE c.id = a.articles LIMIT 1) AS category,
+  (SELECT GROUP_CONCAT(t.label ORDER BY t.label SEPARATOR ',')
+   FROM x_article_tags_tag att INNER JOIN x_tag t ON t.id = att.tagId
+   WHERE att.articleId = a.id) AS tags`
+
+// RagSearchArticles 标题/描述 LIKE 搜索，按浏览量降序。
+func (c *CrossDB) RagSearchArticles(ctx context.Context, keyword string, limit int) ([]RagArticleItem, error) {
+	q := strings.TrimSpace(keyword)
+	if q == "" {
+		return nil, nil
+	}
+	if limit <= 0 {
+		limit = 10
+	}
+	if limit > 20 {
+		limit = 20
+	}
+	query := fmt.Sprintf(`%s
+		%s
+		AND (a.title LIKE ? OR a.description LIKE ?)
+		ORDER BY a.views DESC LIMIT ?`, ragArticleDetailSelect, publishedArticleJoin)
+	rows, err := c.db.QueryContext(ctx, query, "%"+q+"%", "%"+q+"%", limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	return scanRagArticleDetailRows(rows)
+}
+
+// RagListByCategory 按分类 label/value 模糊匹配列出文章。
+func (c *CrossDB) RagListByCategory(ctx context.Context, categoryName string, limit int) ([]RagArticleItem, error) {
+	name := strings.TrimSpace(categoryName)
+	if name == "" {
+		return nil, fmt.Errorf("请提供分类名")
+	}
+	if limit <= 0 {
+		limit = 10
+	}
+	if limit > 30 {
+		limit = 30
+	}
+	query := fmt.Sprintf(`%s
+		%s
+		AND EXISTS (SELECT 1 FROM x_category c WHERE c.id = a.articles AND (c.label LIKE ? OR c.value LIKE ?))
+		ORDER BY a.createTime DESC LIMIT ?`, ragArticleDetailSelect, publishedArticleJoin)
+	rows, err := c.db.QueryContext(ctx, query, "%"+name+"%", "%"+name+"%", limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	return scanRagArticleDetailRows(rows)
+}
+
+// RagListByTag 按标签 label/value 模糊匹配列出文章。
+func (c *CrossDB) RagListByTag(ctx context.Context, tagName string, limit int) ([]RagArticleItem, error) {
+	name := strings.TrimSpace(tagName)
+	if name == "" {
+		return nil, fmt.Errorf("请提供标签名")
+	}
+	if limit <= 0 {
+		limit = 10
+	}
+	if limit > 30 {
+		limit = 30
+	}
+	query := fmt.Sprintf(`%s
+		%s
+		AND EXISTS (SELECT 1 FROM x_article_tags_tag att INNER JOIN x_tag t ON t.id = att.tagId
+			WHERE att.articleId = a.id AND (t.label LIKE ? OR t.value LIKE ?))
+		ORDER BY a.createTime DESC LIMIT ?`, ragArticleDetailSelect, publishedArticleJoin)
+	rows, err := c.db.QueryContext(ctx, query, "%"+name+"%", "%"+name+"%", limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	return scanRagArticleDetailRows(rows)
+}
+
+// RagArticleStats 单篇统计；articleId 优先，否则按标题模糊匹配浏览最高的一篇。
+func (c *CrossDB) RagArticleStats(ctx context.Context, articleID int, title string) (map[string]interface{}, error) {
+	var query string
+	var args []interface{}
+	if articleID > 0 {
+		query = fmt.Sprintf(`%s
+			%s
+			AND a.id = ? LIMIT 1`, ragArticleDetailSelect, publishedArticleJoin)
+		args = []interface{}{articleID}
+	} else if strings.TrimSpace(title) != "" {
+		query = fmt.Sprintf(`%s
+			%s
+			AND a.title LIKE ?
+			ORDER BY a.views DESC LIMIT 1`, ragArticleDetailSelect, publishedArticleJoin)
+		args = []interface{}{"%" + strings.TrimSpace(title) + "%"}
+	} else {
+		return map[string]interface{}{"error": "未找到文章"}, nil
+	}
+	rows, err := c.db.QueryContext(ctx, query, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items, err := scanRagArticleDetailRows(rows)
+	if err != nil {
+		return nil, err
+	}
+	if len(items) == 0 {
+		return map[string]interface{}{"error": "未找到文章"}, nil
+	}
+	item := items[0]
+	var commentCount, collectCount int
+	_ = c.db.QueryRowContext(ctx, `SELECT COUNT(*) FROM x_comment WHERE articleId = ?`, item.ArticleID).Scan(&commentCount)
+	_ = c.db.QueryRowContext(ctx, `SELECT COUNT(*) FROM x_collect WHERE articleId = ?`, item.ArticleID).Scan(&collectCount)
+	row := mapArticleItem(item)
+	row["comments"] = commentCount
+	row["collects"] = collectCount
+	return row, nil
+}
+
+func mapArticleItem(a RagArticleItem) map[string]interface{} {
+	row := map[string]interface{}{
+		"articleId": a.ArticleID, "title": a.Title, "url": a.URL,
+		"views": a.Views, "likes": a.Likes,
+		"articleLevel": a.ArticleLevel, "isMasterpiece": a.IsMasterpiece,
+		"createTime": a.CreateTime,
+	}
+	if a.CategoryLabel != nil {
+		row["category"] = *a.CategoryLabel
+	} else {
+		row["category"] = nil
+	}
+	if a.TagLabels != nil && *a.TagLabels != "" {
+		row["tags"] = strings.Split(*a.TagLabels, ",")
+	} else {
+		row["tags"] = []string{}
+	}
+	return row
+}
+
+func scanRagArticleDetailRows(rows *sql.Rows) ([]RagArticleItem, error) {
+	var out []RagArticleItem
+	for rows.Next() {
+		var item RagArticleItem
+		var category sql.NullString
+		var tags sql.NullString
+		if err := rows.Scan(&item.ArticleID, &item.Title, &item.Views, &item.Likes,
+			&item.ArticleLevel, &item.IsMasterpiece, &item.CreateTime, &category, &tags); err != nil {
+			return nil, err
+		}
+		item.URL = fmt.Sprintf("/detail/%d", item.ArticleID)
+		if category.Valid {
+			item.CategoryLabel = &category.String
+		}
+		if tags.Valid {
+			item.TagLabels = &tags.String
+		}
+		out = append(out, item)
+	}
+	return out, rows.Err()
+}
 
 func ragInPlaceholdersInts(ids []int) (string, []interface{}) {
 	ph := make([]string, len(ids))

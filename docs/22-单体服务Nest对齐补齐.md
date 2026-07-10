@@ -5,7 +5,14 @@
 
 ## 目标
 
-将 `services/monolith`（`:5000`）与四微服务 + gateway 功能对齐，作为 **Nest 替换主入口**。
+将 `services/monolith`（`:5000`）补齐为 **Nest 替换主入口**（RAG、定时任务、pub/stats 等 Plan 22 范围）。Plan 22 初期自微服务 blog 侧移植模块；**验收后以单体为唯一功能基准**，四微服务保留作架构学习，**不要求反向同步 parity**。
+
+## 部署策略（2026-07-10 定稿）
+
+| 形态 | 端口 | 定位 |
+|------|------|------|
+| **monolith** | `:5000` | Nest 替换、生产、新功能开发 |
+| gateway + 4 服务 | `:8000` 等 | 微服务架构学习（gRPC BFF、多进程） |
 
 ## 交付内容
 
@@ -29,8 +36,14 @@
 
 ### P22-04 冒烟
 
-- 脚本：`scripts/monolith-smoke.ps1`
+- 脚本：`scripts/monolith-smoke.ps1`（含公开主页 articles、article/statistics 等）
 - Go smoke：`TEST_BASE=http://127.0.0.1:5000 go test -tags=smoke ./test/smoke/...`
+
+### P22-05 单体后续增强（Plan 22 后）
+
+- 公开主页 `GET /user/public/:uid/articles` 分页/字段对齐 Nest
+- `GET /article/statistics` 后台统计大屏全量指标
+- RAG：LLM function calling 兜底 + Tool 接 RPG/文章检索；静态页启动自动 reindex
 
 ## 验证记录（本机 2026-07-10）
 

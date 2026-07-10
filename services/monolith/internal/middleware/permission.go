@@ -78,18 +78,25 @@ func (m *pathMatcher) match(actualPath, pattern string) bool {
 
 // compilePathPattern 将 Nest pathPattern（:id、*、**）转为正则。
 func compilePathPattern(pattern string) *regexp.Regexp {
-	regexPattern := pattern
-	regexPattern = regexp.MustCompile(`:(\w+)`).ReplaceAllString(regexPattern, `([^/]+)`)
-	regexPattern = strings.ReplaceAll(regexPattern, "**", ".*")
-	regexPattern = strings.ReplaceAll(regexPattern, "*", `[^/]*`)
-	var sb strings.Builder
-	for _, ch := range regexPattern {
-		if strings.ContainsRune(`.+?^${}|[]\\`, ch) {
-			sb.WriteRune('\\')
+	pattern = strings.TrimPrefix(pattern, "/")
+	segments := strings.Split(pattern, "/")
+	parts := make([]string, 0, len(segments))
+	for _, seg := range segments {
+		if seg == "" {
+			continue
 		}
-		sb.WriteRune(ch)
+		switch {
+		case strings.HasPrefix(seg, ":"):
+			parts = append(parts, `[^/]+`)
+		case seg == "**":
+			parts = append(parts, `.*`)
+		case seg == "*":
+			parts = append(parts, `[^/]*`)
+		default:
+			parts = append(parts, regexp.QuoteMeta(seg))
+		}
 	}
-	re, err := regexp.Compile("^" + sb.String() + "$")
+	re, err := regexp.Compile("^/" + strings.Join(parts, "/") + "$")
 	if err != nil {
 		return regexp.MustCompile("^" + regexp.QuoteMeta(pattern) + "$")
 	}
@@ -206,7 +213,7 @@ func uidFromBearer(c *app.RequestContext, jwtSvc *auth.JWTService) int {
 
 func checkPublicPath(ctx context.Context, deps PermissionDeps, matcher *pathMatcher, method, url string) (bool, error) {
 	// 开发兜底：核心认证接口与 Nest isPublic=1 对齐，避免空权限库阻塞登录链路。
-	for _, p := range defaultPublicAuthPaths() {
+	for _, p := range append(defaultPublicAuthPaths(), defaultPublicProfilePaths()...) {
 		if !matcher.match(url, p.Pattern) {
 			continue
 		}
@@ -234,34 +241,52 @@ func checkPublicPath(ctx context.Context, deps PermissionDeps, matcher *pathMatc
 }
 
 func loadPublicPaths(ctx context.Context, deps PermissionDeps) ([]publicPathEntry, error) {
+	var paths []publicPathEntry
 	raw, err := deps.Redis.Get(ctx, redisKeyPublicPaths)
 	if err != nil {
 		return nil, err
 	}
 	if raw != "" {
-		var paths []publicPathEntry
-		if err := json.Unmarshal([]byte(raw), &paths); err == nil {
-			return paths, nil
+		if err := json.Unmarshal([]byte(raw), &paths); err != nil {
+			paths = nil
 		}
 	}
-	privs, err := deps.RoleRepo.LoadAllPrivileges(ctx)
-	if err != nil {
-		return nil, err
-	}
-	paths := make([]publicPathEntry, 0)
-	for _, p := range privs {
-		if p.IsPublic != 1 {
-			continue
+	if len(paths) == 0 {
+		privs, err := deps.RoleRepo.LoadAllPrivileges(ctx)
+		if err != nil {
+			return nil, err
 		}
-		paths = append(paths, publicPathEntry{
-			Pattern: p.PathPattern,
-			Methods: []string{p.HTTPMethod},
-		})
+		for _, p := range privs {
+			if p.IsPublic != 1 {
+				continue
+			}
+			paths = append(paths, publicPathEntry{
+				Pattern: p.PathPattern,
+				Methods: []string{p.HTTPMethod},
+			})
+		}
+		if b, err := json.Marshal(paths); err == nil {
+			_ = deps.Redis.Set(ctx, redisKeyPublicPaths, string(b), cacheAPITTLSeconds)
+		}
 	}
-	if b, err := json.Marshal(paths); err == nil {
-		_ = deps.Redis.Set(ctx, redisKeyPublicPaths, string(b), cacheAPITTLSeconds)
+	if deps.Cfg.IsDev() {
+		paths = mergePublicPaths(paths, defaultMonolithDevPublicPaths())
 	}
 	return paths, nil
+}
+
+func mergePublicPaths(base, extra []publicPathEntry) []publicPathEntry {
+	seen := make(map[string]struct{}, len(base)+len(extra))
+	out := make([]publicPathEntry, 0, len(base)+len(extra))
+	for _, p := range append(base, extra...) {
+		key := p.Pattern + "|" + strings.Join(p.Methods, ",")
+		if _, ok := seen[key]; ok {
+			continue
+		}
+		seen[key] = struct{}{}
+		out = append(out, p)
+	}
+	return out
 }
 
 func matchAPIPermission(ctx context.Context, deps PermissionDeps, matcher *pathMatcher, method, url string) (*apiPermission, error) {
@@ -380,4 +405,60 @@ func defaultPublicAuthPaths() []publicPathEntry {
 		{Pattern: "/pub/stats", Methods: []string{"GET"}},
 		{Pattern: "/rag/status", Methods: []string{"GET"}},
 	}
+}
+
+// defaultPublicProfilePaths C 端公开主页（与 Nest isPublic=1、RPG-GAMEPLAY 一致，硬编码兜底）。
+func defaultPublicProfilePaths() []publicPathEntry {
+	return []publicPathEntry{
+		{Pattern: "/user/public/:uid", Methods: []string{"GET"}},
+		{Pattern: "/user/public/:uid/articles", Methods: []string{"GET"}},
+		{Pattern: "/user/public/:uid/collects", Methods: []string{"GET"}},
+		{Pattern: "/user/public/:uid/likes", Methods: []string{"GET"}},
+		{Pattern: "/rpg/public/:uid/status", Methods: []string{"GET"}},
+		{Pattern: "/rpg/public/status/batch", Methods: []string{"GET"}},
+	}
+}
+
+// defaultMonolithDevPublicPaths 开发环境 C 端/RPG 公开路由兜底（与 rpg-service permission 对齐子集）。
+func defaultMonolithDevPublicPaths() []publicPathEntry {
+	blog := []publicPathEntry{
+		{Pattern: "/article/list", Methods: []string{"POST"}},
+		{Pattern: "/article/info", Methods: []string{"GET"}},
+		{Pattern: "/article/views", Methods: []string{"POST"}},
+		{Pattern: "/article/likes", Methods: []string{"POST"}},
+		{Pattern: "/article/archives", Methods: []string{"GET"}},
+		{Pattern: "/article/related", Methods: []string{"GET"}},
+		{Pattern: "/category", Methods: []string{"GET"}},
+		{Pattern: "/category/:id", Methods: []string{"GET"}},
+		{Pattern: "/tag", Methods: []string{"GET"}},
+		{Pattern: "/tag/:id", Methods: []string{"GET"}},
+		{Pattern: "/tag/:id/article", Methods: []string{"GET"}},
+		{Pattern: "/comment/findAll", Methods: []string{"GET"}},
+		{Pattern: "/reply/findAll", Methods: []string{"GET"}},
+		{Pattern: "/like", Methods: []string{"POST"}},
+		{Pattern: "/collect/count", Methods: []string{"GET"}},
+		{Pattern: "/msgboard", Methods: []string{"GET", "POST"}},
+		{Pattern: "/link", Methods: []string{"GET", "POST"}},
+		{Pattern: "/link/:id", Methods: []string{"GET", "PATCH"}},
+		{Pattern: "/resources/daily-img", Methods: []string{"GET"}},
+		{Pattern: "/resources/weather", Methods: []string{"GET"}},
+		{Pattern: "/resources/files", Methods: []string{"GET"}},
+		{Pattern: "/resources/register-avatars", Methods: []string{"GET"}},
+		{Pattern: "/resources/file/:id", Methods: []string{"GET"}},
+		{Pattern: "/resources/upload-media/register-avatar", Methods: []string{"POST"}},
+		{Pattern: "/resources/folder", Methods: []string{"POST"}},
+	}
+	rpg := []publicPathEntry{
+		{Pattern: "/rpg/leaderboard", Methods: []string{"GET"}},
+		{Pattern: "/rpg/level-rewards", Methods: []string{"GET"}},
+		{Pattern: "/rpg/quests", Methods: []string{"GET"}},
+		{Pattern: "/rpg/lottery/pool", Methods: []string{"GET"}},
+		{Pattern: "/rpg/pets/catalog", Methods: []string{"GET"}},
+		{Pattern: "/rpg/activities/current", Methods: []string{"GET"}},
+		{Pattern: "/rpg/weather-buff", Methods: []string{"GET"}},
+		{Pattern: "/rpg/guilds", Methods: []string{"GET"}},
+		{Pattern: "/rpg/guild/:id", Methods: []string{"GET"}},
+		{Pattern: "/pay/notice", Methods: []string{"POST"}},
+	}
+	return append(blog, rpg...)
 }

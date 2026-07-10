@@ -11,18 +11,18 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/crossdb"
 )
 
-// Service RAG 只读 Tool 实现（blog 域 + 跨库 user）。
+// Service RAG ?? Tool ???blog ????RPG ????/rpg-service ????
 type Service struct {
 	client *ent.Client
 	cross  *crossdb.CrossDB
 }
 
-// NewService 构造 Tool Service。
+// NewService ?? Tool Service?
 func NewService(client *ent.Client, cross *crossdb.CrossDB) *Service {
 	return &Service{client: client, cross: cross}
 }
 
-// Execute 按名称分发 Tool。
+// Execute ????? Tool?
 func (s *Service) Execute(ctx context.Context, name string, args map[string]interface{}, toolCtx Context) (interface{}, error) {
 	switch name {
 	case "get_article_ranking":
@@ -31,10 +31,30 @@ func (s *Service) Execute(ctx context.Context, name string, args map[string]inte
 		return s.listAuthors(ctx, intArg(args, "page", 1), intArg(args, "pageSize", 20))
 	case "get_author_stats":
 		return s.cross.RagAuthorStats(ctx, intArg(args, "uid", 0), strArg(args, "nickname", ""))
+	case "search_articles":
+		items, err := s.cross.RagSearchArticles(ctx, strArg(args, "keyword", ""), intArg(args, "limit", 10))
+		if err != nil {
+			return nil, err
+		}
+		return map[string]interface{}{"keyword": strArg(args, "keyword", ""), "items": mapArticleItems(items)}, nil
+	case "list_articles_by_category":
+		items, err := s.cross.RagListByCategory(ctx, strArg(args, "categoryName", ""), intArg(args, "limit", 10))
+		if err != nil {
+			return map[string]interface{}{"error": err.Error()}, nil
+		}
+		return map[string]interface{}{"category": strArg(args, "categoryName", ""), "items": mapArticleItems(items)}, nil
+	case "list_articles_by_tag":
+		items, err := s.cross.RagListByTag(ctx, strArg(args, "tagName", ""), intArg(args, "limit", 10))
+		if err != nil {
+			return map[string]interface{}{"error": err.Error()}, nil
+		}
+		return map[string]interface{}{"tag": strArg(args, "tagName", ""), "items": mapArticleItems(items)}, nil
 	case "get_recent_articles":
 		return s.getRecentArticles(ctx, intArg(args, "limit", 10))
 	case "get_masterpiece_articles":
 		return s.getMasterpieceArticles(ctx, intArg(args, "limit", 10))
+	case "get_article_stats":
+		return s.cross.RagArticleStats(ctx, intArg(args, "articleId", 0), strArg(args, "title", ""))
 	case "get_category_stats":
 		return s.getCategoryStats(ctx, intArg(args, "limit", 20))
 	case "get_tag_cloud":
@@ -45,7 +65,7 @@ func (s *Service) Execute(ctx context.Context, name string, args map[string]inte
 		return s.searchSitePages(strArg(args, "keyword", ""), intArg(args, "limit", 10)), nil
 	case "get_my_article_stats":
 		if toolCtx.RequestUID <= 0 {
-			return map[string]interface{}{"error": "请先登录后查询个人发文统计"}, nil
+			return map[string]interface{}{"error": "?????????????"}, nil
 		}
 		return s.cross.RagAuthorStats(ctx, toolCtx.RequestUID, "")
 	case "get_msgboard_recent":
@@ -58,13 +78,41 @@ func (s *Service) Execute(ctx context.Context, name string, args map[string]inte
 			return s.getArchiveStats(ctx, &y)
 		}
 		return s.getArchiveStats(ctx, nil)
-	case "get_rpg_leaderboard", "get_my_rpg_status":
-		return map[string]interface{}{
-			"error": "RPG 实时数据需 rpg-service gRPC（Plan 17），当前请查阅 RPG 攻略页或站内 RPG 模块",
-		}, nil
+	case "get_rpg_leaderboard":
+		return s.getRpgLeaderboard(ctx, strArg(args, "type", "exp"), strArg(args, "period", "total"), intArg(args, "limit", 10))
+	case "get_my_rpg_status":
+		return s.getMyRpgStatus(ctx, toolCtx)
 	default:
-		return map[string]interface{}{"error": "未知工具: " + name}, nil
+		return map[string]interface{}{"error": "????: " + name}, nil
 	}
+}
+
+// RunToolCalls ???? LLM ??? tool_calls?
+func (s *Service) RunToolCalls(ctx context.Context, calls []LLMToolCall, toolCtx Context) []CallRecord {
+	records := make([]CallRecord, 0, len(calls))
+	for _, call := range calls {
+		var args map[string]interface{}
+		if err := json.Unmarshal([]byte(call.Arguments), &args); err != nil {
+			args = map[string]interface{}{}
+		}
+		res, err := s.Execute(ctx, call.Name, args, toolCtx)
+		if err != nil {
+			res = map[string]interface{}{"error": err.Error()}
+		}
+		records = append(records, CallRecord{Name: call.Name, Args: args, Result: res})
+	}
+	return records
+}
+
+func (s *Service) getRpgLeaderboard(ctx context.Context, scoreType, period string, limit int) (map[string]interface{}, error) {
+	return map[string]interface{}{"error": "RPG ??????? rpg-service"}, nil
+}
+
+func (s *Service) getMyRpgStatus(ctx context.Context, toolCtx Context) (map[string]interface{}, error) {
+	if toolCtx.RequestUID <= 0 {
+		return map[string]interface{}{"error": "????????? RPG ??"}, nil
+	}
+	return map[string]interface{}{"error": "?? RPG ?????? rpg-service"}, nil
 }
 
 func (s *Service) getArticleRanking(ctx context.Context, metric string, limit int) (map[string]interface{}, error) {
@@ -128,6 +176,16 @@ func mapArticleItems(items []crossdb.RagArticleItem) []map[string]interface{} {
 			"views": a.Views, "likes": a.Likes,
 			"articleLevel": a.ArticleLevel, "isMasterpiece": a.IsMasterpiece,
 			"createTime": a.CreateTime,
+		}
+		if a.CategoryLabel != nil {
+			out[i]["category"] = *a.CategoryLabel
+		} else {
+			out[i]["category"] = nil
+		}
+		if a.TagLabels != nil && *a.TagLabels != "" {
+			out[i]["tags"] = strings.Split(*a.TagLabels, ",")
+		} else {
+			out[i]["tags"] = []string{}
 		}
 	}
 	return out

@@ -3,6 +3,9 @@ package service
 
 import (
 	"context"
+	"fmt"
+	"math"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -508,27 +511,102 @@ func (s *ArticleService) AuthorStats(ctx context.Context, uid int) (interface{},
 	}, nil
 }
 
-// Statistics 数据大屏统计（简化版，评论相关留 Plan 06）。
+// Statistics 数据大屏统计（对齐 Nest getStatistics）。
 func (s *ArticleService) Statistics(ctx context.Context) (interface{}, error) {
 	rows, err := s.articles.ListPublishedAll(ctx)
 	if err != nil {
 		return nil, err
 	}
+	now := time.Now()
+	todayStart := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
+
+	articleIDs := make([]int, len(rows))
 	var totalViews, totalLikes int
-	top := make([]*ent.Article, 0, 6)
 	for i, a := range rows {
+		articleIDs[i] = a.ID
 		totalViews += a.Views
 		totalLikes += a.Likes
-		if i < 6 {
-			top = append(top, a)
-		}
 	}
-	topArticles := make([]map[string]interface{}, 0, len(top))
-	for _, a := range top {
+
+	totalComments, _ := s.comments.CountDiscussionTotal(ctx, articleIDs)
+
+	viewTrend := make([]map[string]interface{}, 0, 30)
+	for i := 29; i >= 0; i-- {
+		dayStart := todayStart.AddDate(0, 0, -i)
+		dayEnd := dayStart.AddDate(0, 0, 1)
+		var dayViews int
+		for _, a := range rows {
+			createTime := a.CreateTime
+			updateTime := createTime
+			if a.UpdateTime.After(createTime) {
+				updateTime = a.UpdateTime
+			}
+			if (createTime.Before(dayEnd) && !createTime.Before(dayStart)) ||
+				(updateTime.Before(dayEnd) && !updateTime.Before(dayStart)) {
+				dayViews += a.Views
+			}
+		}
+		viewTrend = append(viewTrend, map[string]interface{}{
+			"date":  fmt.Sprintf("%d/%d", int(dayStart.Month()), dayStart.Day()),
+			"views": dayViews,
+		})
+	}
+
+	publishTrend := make([]map[string]interface{}, 0, 12)
+	for i := 11; i >= 0; i-- {
+		target := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, now.Location()).AddDate(0, -i, 0)
+		count := 0
+		for _, a := range rows {
+			if a.CreateTime.Year() == target.Year() && a.CreateTime.Month() == target.Month() {
+				count++
+			}
+		}
+		publishTrend = append(publishTrend, map[string]interface{}{
+			"month": fmt.Sprintf("%d年%d月", target.Year(), int(target.Month())),
+			"count": count,
+		})
+	}
+
+	sorted := append([]*ent.Article(nil), rows...)
+	sort.Slice(sorted, func(i, j int) bool {
+		return sorted[i].Views > sorted[j].Views
+	})
+	topN := 6
+	if len(sorted) < topN {
+		topN = len(sorted)
+	}
+	topArticles := make([]map[string]interface{}, 0, topN)
+	for _, a := range sorted[:topN] {
 		topArticles = append(topArticles, map[string]interface{}{
 			"id": a.ID, "title": a.Title, "views": a.Views, "likes": a.Likes,
 		})
 	}
+
+	var beforeToday []*ent.Article
+	for _, a := range rows {
+		if a.CreateTime.Before(todayStart) {
+			beforeToday = append(beforeToday, a)
+		}
+	}
+	beforeIDs := make([]int, len(beforeToday))
+	var yesterdayViews, yesterdayLikes int
+	for i, a := range beforeToday {
+		beforeIDs[i] = a.ID
+		yesterdayViews += a.Views
+		yesterdayLikes += a.Likes
+	}
+	yesterdayComments, _ := s.comments.CountDiscussionTotal(ctx, beforeIDs)
+
+	calcTrend := func(current, last int) int {
+		if last == 0 {
+			if current > 0 {
+				return 100
+			}
+			return 0
+		}
+		return int(math.Round(float64(current-last) / float64(last) * 100))
+	}
+
 	catMap := map[string]map[string]interface{}{}
 	tagMap := map[string]map[string]interface{}{}
 	for _, a := range rows {
@@ -536,7 +614,9 @@ func (s *ArticleService) Statistics(ctx context.Context) (interface{}, error) {
 			cid := *a.Articles
 			if catMap[cid] == nil {
 				if cat, err := s.categories.FindByID(ctx, cid); err == nil {
-					catMap[cid] = map[string]interface{}{"id": cid, "label": cat.Label, "count": 0}
+					catMap[cid] = map[string]interface{}{
+						"id": cid, "label": cat.Label, "value": cat.Value, "count": 0,
+					}
 				}
 			}
 			if catMap[cid] != nil {
@@ -547,7 +627,9 @@ func (s *ArticleService) Statistics(ctx context.Context) (interface{}, error) {
 		for _, tid := range tagIDs {
 			if tagMap[tid] == nil {
 				if t, err := s.tags.FindByIDs(ctx, []string{tid}); err == nil && len(t) > 0 {
-					tagMap[tid] = map[string]interface{}{"id": tid, "label": t[0].Label, "count": 0}
+					tagMap[tid] = map[string]interface{}{
+						"id": tid, "label": t[0].Label, "value": t[0].Value, "count": 0,
+					}
 				}
 			}
 			if tagMap[tid] != nil {
@@ -555,12 +637,27 @@ func (s *ArticleService) Statistics(ctx context.Context) (interface{}, error) {
 			}
 		}
 	}
+	categories := mapValues(catMap)
+	tags := mapValues(tagMap)
 	archives, _ := s.Archives(ctx)
+
 	return map[string]interface{}{
-		"articles": topArticles, "total": len(rows), "totalViews": totalViews, "totalLikes": totalLikes,
-		"totalComments": 0,
-		"trends": map[string]int{"article": 0, "views": 0, "likes": 0, "comments": 0},
-		"categories": mapValues(catMap), "tags": mapValues(tagMap), "archives": archives,
+		"articles":      topArticles,
+		"total":         len(rows),
+		"totalViews":    totalViews,
+		"totalLikes":    totalLikes,
+		"totalComments": totalComments,
+		"trends": map[string]int{
+			"article":  calcTrend(len(rows), len(beforeToday)),
+			"views":    calcTrend(totalViews, yesterdayViews),
+			"likes":    calcTrend(totalLikes, yesterdayLikes),
+			"comments": calcTrend(totalComments, yesterdayComments),
+		},
+		"viewTrend":    viewTrend,
+		"publishTrend": publishTrend,
+		"categories":   categories,
+		"tags":         tags,
+		"archives":     archives,
 	}, nil
 }
 

@@ -3,7 +3,9 @@
 > 与 [`.cursor/plans/`](../.cursor/plans/) 一一对应：**每完成一个执行计划，须在 `docs/` 写入对应交付文档**，再进入下一计划。
 >
 > 计划文件描述「要做什么」；交付文档记录「实际做了什么」——目录、命令、接口、与 Nest 差异、已知限制。  
-> **整体是否对齐 Nest**：见 [nest-parity-matrix.md](./nest-parity-matrix.md)。
+> **整体是否对齐 Nest**：见 [nest-parity-matrix.md](./nest-parity-matrix.md)（**以单体 `:5000` 为准**）。
+>
+> **部署策略**：**单体 monolith** = Nest 替换与功能基准；**四微服务 + gateway** = 微服务架构学习，不强制与单体 parity。
 
 ## 文档索引
 

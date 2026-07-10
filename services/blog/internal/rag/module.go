@@ -36,7 +36,7 @@ func NewModule(
 	quota := NewQuotaService(cfg, redis)
 	indexer := NewIndexer(cfg, client, articles, cross, emb, log)
 	toolsSvc := tools.NewService(client, cross)
-	orch := tools.NewOrchestrator(toolsSvc)
+	orch := tools.NewOrchestrator(toolsSvc, cfg)
 	query := NewQueryService(cfg, client, emb, hybrid, orch, log)
 	admin := NewAdminService(client, indexer, hybrid, emb, cfg)
 	return &Module{

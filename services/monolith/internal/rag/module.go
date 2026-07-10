@@ -8,6 +8,9 @@ import (
 	blogrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/blog/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/crossdb"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rag/tools"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
+	rpgcore "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/core"
+	rpgleaderboard "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/leaderboard"
 	"go.uber.org/zap"
 )
 
@@ -29,14 +32,21 @@ func NewModule(
 	redis *redisutil.Store,
 	articles *blogrepo.ArticleRepo,
 	cross *crossdb.CrossDB,
+	rpgMod *rpg.Module,
 	log *zap.Logger,
 ) *Module {
 	emb := NewEmbeddingService(cfg, log)
 	hybrid := NewHybridSearch(client)
 	quota := NewQuotaService(cfg, redis)
 	indexer := NewIndexer(cfg, client, articles, cross, emb, log)
-	toolsSvc := tools.NewService(client, cross)
-	orch := tools.NewOrchestrator(toolsSvc)
+	var lb *rpgleaderboard.Service
+	var rpgSvc *rpgcore.RpgService
+	if rpgMod != nil {
+		lb = rpgMod.Leaderboard
+		rpgSvc = rpgMod.Rpg
+	}
+	toolsSvc := tools.NewService(client, cross, lb, rpgSvc)
+	orch := tools.NewOrchestrator(toolsSvc, cfg)
 	query := NewQueryService(cfg, client, emb, hybrid, orch, log)
 	admin := NewAdminService(client, indexer, hybrid, emb, cfg)
 	return &Module{

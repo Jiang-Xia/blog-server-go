@@ -45,6 +45,8 @@ Test-Api "rag/quota" "$api/rag/quota" -Auth $true
 Test-Api "scheduled-task/tasks" "$api/scheduled-task/tasks" -Auth $true
 Test-Api "user/info" "$api/user/info" -Auth $true
 Test-Api "article/list" "$api/article/list" -Method POST -Body "{}"
+Test-Api "public/articles" "$api/user/public/1/articles?page=1&pageSize=5"
+Test-Api "article/statistics" "$api/article/statistics" -Auth $true
 
 Write-Host "`n结果: passed=$passed failed=$failed"
 if ($failed -gt 0) { exit 1 }

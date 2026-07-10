@@ -130,7 +130,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 	runner := provideScheduledTaskJobs(client, configConfig, articleRepo, linkRepo, scheduledtaskRepo, crossDB, emailService, publisher)
 	scheduledtaskService := provideScheduledTaskService(scheduledtaskRepo, crossDB, configConfig, store, runner, zapLogger, resourcesService)
 	scheduledTaskHandler := handler.NewScheduledTaskHandler(scheduledtaskService, v)
-	ragModule := provideRagModule(configConfig, client, store, articleRepo, crossDB, zapLogger)
+	ragModule := provideRagModule(configConfig, client, store, articleRepo, crossDB, module, zapLogger)
 	ragHandler := handler.NewRagHandler(ragModule, v)
 	operationlogService := operationlog.NewService(client)
 	operationLogHandler := handler.NewOperationLogHandler(operationlogService)

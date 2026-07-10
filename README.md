@@ -2,7 +2,9 @@
 
 [NestJS blog-server](https://github.com/Jiang-Xia/blog-server) 的 Go 重构实现：**Hertz + Ent + gRPC**，对外保持 `/api/v1/*` 与 `{code, message, data}` 响应格式，前端可无感切换。
 
-当前形态为 **4 微服务**（gateway / user / blog / rpg）+ **monolith 单体**（Nest 替换主入口，`:5000`）+ 共享 MySQL/Redis 单库。Plan 01–21 与 **Plan 22（单体↔微服务对齐）** 已交付或进行中，见 [`.cursor/plans/README.md`](.cursor/plans/README.md)。新能力优先在 **monolith** 落地。
+**生产与 Nest 替换以单体为准**：`services/monolith`（`:5000`）为 **主入口**——本地开发、冒烟、切流、新功能均在此落地。
+
+**四微服务 + gateway**（`:8000`）保留用于 **学习微服务架构**（gRPC BFF、进程拆分、gateway 代理等），**不强制与单体功能 parity**，亦不作为 Nest 替换验收基准。共享 MySQL/Redis 单库。Plan 01–22 见 [`.cursor/plans/README.md`](.cursor/plans/README.md)。
 
 ## 技术栈
 
@@ -18,6 +20,25 @@
 
 ## 架构概览
 
+### 主路径：单体（Nest 替换）
+
+```
+  blog-home-nuxt / blog-admin / blog-home-uniapp
+                        │
+                        ▼
+              ┌─────────────────┐
+              │    monolith     │  :5000  全路由 + WS + RAG + 定时任务
+              └────────┬────────┘
+                       │
+                MySQL + Redis（单库 x_my_blog）
+```
+
+| 服务 | 端口 | 职责 |
+|------|------|------|
+| **monolith** | **5000** | **Nest 替换主入口**；user / blog / rpg 进程内模块，与 Nest 端口二选一 |
+
+### 可选：四微服务（架构学习）
+
 ```
                     ┌─────────────┐
                     │   gateway   │  :8000  REST 入口 + gRPC BFF
@@ -30,18 +51,17 @@
     └──────┬─────┘  └──────┬─────┘  └──────┬─────┘
            └───────────────┴───────────────┘
                            │
-                    MySQL + Redis（单库 x_my_blog）
+                    MySQL + Redis（同上）
 ```
 
 | 服务 | 端口 | 职责 |
 |------|------|------|
-| gateway | 8000 | JWT 验签、HTTP 代理、gRPC BFF（stats / article/info / user/public） |
+| gateway | 8000 | JWT 验签、HTTP 代理、gRPC BFF（学习用，非生产主路径） |
 | user | 5002 / gRPC 50052 | 认证、RBAC、敏感词、操作日志 |
 | blog | 5001 | 文章、互动、资源、通知、WebSocket `/realtime` |
 | rpg | 5003 | RPG、支付、公开主页 |
-| monolith（Nest 替换） | 5000 | 单体主入口，与 Nest 端口二选一 |
 
-路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。Swagger UI（swaggo）见 [`docs/12-swagger-api-doc.md`](docs/12-swagger-api-doc.md)，开发默认 `http://127.0.0.1:8000/api/v1/doc/index.html`。
+路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。Swagger UI 见 [`docs/12-swagger-api-doc.md`](docs/12-swagger-api-doc.md)；**日常开发**以单体 `http://127.0.0.1:5000/api/v1/doc/index.html` 为准（微服务 `:8000` 为对照可选）。
 
 ## 环境要求
 
@@ -60,18 +80,18 @@
 
 > 在 **`blog-server-go` 根目录**执行。Windows 示例为主；Mac/Linux 将 `.\scripts\xxx.ps1` 换为 `make xxx`。
 
-**一条龙（首次本地）**：
+**一条龙（首次本地 · 推荐单体）**：
 
-`setup-config` → 填 yaml → **一次性建表** → `dev-all` → `curl health`
+`setup-config` → 填 yaml → **一次性建表** → `dev.ps1` → `curl health`
 
 | 步骤 | 命令 / 动作 |
 |------|-------------|
 | 0 | Go / MySQL / Redis 就绪 |
 | 1 | `git clone` + `go mod download` |
 | 2 | `.\scripts\setup-config.ps1` |
-| 3 | 编辑 `configs/*.yaml`（MySQL、JWT） |
+| 3 | 编辑 `configs/monolith.yaml`（MySQL、JWT；微服务 yaml 学 gateway 时再填） |
 | 4 | **一次性**建库 + 建表（见 §4，与 blog-server 无关亦可） |
-| 5 | `.\scripts\dev-all.ps1` |
+| 5 | `.\scripts\dev.ps1`（`:5000`） |
 | 6 | `curl.exe` health + `dev_login.go` |
 
 ### 0. 前置检查
@@ -82,7 +102,7 @@ mysql --version     # 8.x
 redis-cli ping      # PONG
 ```
 
-确认 **3306 / 6379** 可用；**5001、5002、5003、8000** 未被占用（`netstat -ano | findstr :8000`）。
+确认 **3306 / 6379** 可用；**5000** 未被占用（学微服务时再检查 5001–5003、8000）。
 
 若 PowerShell 提示「禁止运行脚本」，执行一次（当前用户）：
 
@@ -112,7 +132,7 @@ go mod download
 
 ### 3. 填写连接信息
 
-编辑 **`configs/monolith.yaml`** 以及 **`configs/user.yaml` / `blog.yaml` / `rpg.yaml` / `gateway.yaml`** 中至少以下字段（微服务 **`jwt.secret` 须四处一致**）：
+编辑 **`configs/monolith.yaml`** 中至少以下字段（跑四微服务时再编辑 `user/blog/rpg/gateway.yaml`，且 **`jwt.secret` 须四处一致**）：
 
 | 字段 | 说明 |
 |------|------|
@@ -188,9 +208,41 @@ mysql -u jiangxia -p x_my_blog < your-backup.sql
 
 **尚无**「零依赖、一条命令 Ent 建全表 + 种子数据」的脚本；若需要可另开任务接入 `ent migrate` + dev seed。
 
-### 5. 启动四微服务
+### 5. 启动单体（主路径）
 
 确认 MySQL、Redis 已运行；**不要**与 Nest（`:5000`）或已占用的 dev 端口冲突。
+
+```powershell
+.\scripts\dev.ps1   # :5000，与 Nest 二选一
+```
+
+| 项 | 值 |
+|----|-----|
+| API 基址 | `http://127.0.0.1:5000` |
+| 登录脚本 | 默认即 `:5000`；或 `$env:DEV_LOGIN_BASE='http://127.0.0.1:5000'` |
+| 冒烟 | `.\scripts\monolith-smoke.ps1` |
+
+### 6. 验证是否启动成功
+
+```powershell
+curl.exe -sf http://localhost:5000/api/v1/health
+# 期望：{"code":200,...,"data":"ok"}
+
+go run scripts/dev_login.go --token-only
+# 期望输出 JWT（默认账号见下表）
+```
+
+前端联调示例（**推荐单体**）：
+
+| 项目 | 配置 |
+|------|------|
+| `blog-home-nuxt` | API 指 `http://127.0.0.1:5000` |
+| `blog-admin` | 同上 |
+| WebSocket | `ws://127.0.0.1:5000/api/v1/realtime` |
+
+### 7. 可选：四微服务（架构学习）
+
+学习 gateway / gRPC BFF / 多进程部署时：
 
 ```powershell
 .\scripts\dev-all.ps1        # user → blog → rpg → gateway
@@ -204,32 +256,7 @@ mysql -u jiangxia -p x_my_blog < your-backup.sql
 | 日志 | `.dev-logs/*.log` |
 | 四窗口看日志 | `.\scripts\dev-all.ps1 -Windows` |
 
-### 6. 验证是否启动成功
-
-```powershell
-curl.exe -sf http://localhost:8000/api/v1/health
-# 期望：{"code":200,...,"data":"ok"}
-
-$env:DEV_LOGIN_BASE='http://127.0.0.1:8000'
-go run scripts/dev_login.go --token-only
-# 期望输出 JWT（默认账号见下表）
-```
-
-前端联调示例：
-
-| 项目 | 配置 |
-|------|------|
-| `blog-home-nuxt` | API 指 `http://127.0.0.1:8000` |
-| `blog-admin` | 同上 |
-| WebSocket | `ws://127.0.0.1:8000/api/v1/realtime`（经 gateway 代理） |
-
-### 7. 可选：单体模式
-
-仅需单进程对照 Nest 行为时：
-
-```powershell
-.\scripts\dev.ps1   # :5000，与 Nest 二选一
-```
+> 微服务代码可能落后于单体（如统计大屏、RAG Tool 深度等），**不以微服务 parity 作为交付标准**。Nest 对等矩阵见 [`docs/nest-parity-matrix.md`](docs/nest-parity-matrix.md)（以单体为准）。
 
 ### 常见问题
 
@@ -248,11 +275,12 @@ go run scripts/dev_login.go --token-only
 
 | 说明 | 命令 |
 |------|------|
-| 四微服务启 / 停 | `.\scripts\dev-all.ps1` / `.\scripts\dev-all-stop.ps1` |
+| **单体 monolith（主）** | `.\scripts\dev.ps1` |
+| 单体冒烟 | `.\scripts\monolith-smoke.ps1` |
+| 四微服务启 / 停（学习） | `.\scripts\dev-all.ps1` / `.\scripts\dev-all-stop.ps1` |
 | 单元 + 覆盖率（PR 门禁） | `.\scripts\test-run.ps1 -UnitOnly` |
 | 全量四层测试 | `.\scripts\test-run.ps1` |
 | 四窗口看日志 | `.\scripts\dev-all.ps1 -Windows` |
-| 单体 monolith | `.\scripts\dev.ps1` |
 | 初始化库 + Ent | `.\scripts\bootstrap-db.ps1` |
 | 同步 Nest 数据 | `.\scripts\sync-data-x-my-blog.ps1` |
 | 本地配置 | `.\scripts\setup-config.ps1` |
@@ -298,7 +326,7 @@ $env:CGO_ENABLED=0; md bin -Force | Out-Null
 | 用户名 | `18888888888` |
 | 密码 | `super`（须 RSA 加密，用 `dev_login.go`） |
 
-微服务联调时指定 gateway：
+单体默认 `:5000` 无需设 `DEV_LOGIN_BASE`。学微服务时指定 gateway：
 
 ```powershell
 $env:DEV_LOGIN_BASE='http://127.0.0.1:8000'
@@ -331,7 +359,7 @@ blog-server-go/
 │   ├── user/              # 用户域 + gRPC server
 │   ├── blog/              # 博客域 + WebSocket
 │   ├── rpg/               # RPG + 支付
-│   └── monolith/          # 单体 Nest 替换入口（Plan 22）
+│   └── monolith/          # 单体 Nest 替换主入口（Plan 22，生产基准）
 ├── configs/               # 本地 yaml（gitignore，见 *.example.yaml）
 ├── deploy/
 │   ├── docker/            # docker-compose（本地/CI 全栈）
@@ -368,4 +396,4 @@ blog-server-go/
 powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1
 ```
 
-Nginx 切流、Nest 下线 checklist 见 [`docs/10-微服务拆分与生产上线.md`](docs/10-微服务拆分与生产上线.md)。本地全栈 Docker 见 [`deploy/docker/README.md`](deploy/docker/README.md)。
+**生产推荐单体 PM2**（单进程 `:5000`）；Nginx 切流、Nest 下线 checklist 见 [`docs/10-微服务拆分与生产上线.md`](docs/10-微服务拆分与生产上线.md) 与 [`docs/22-单体服务Nest对齐补齐.md`](docs/22-单体服务Nest对齐补齐.md)。四微服务 PM2 仅作架构学习对照。本地全栈 Docker 见 [`deploy/docker/README.md`](deploy/docker/README.md)。

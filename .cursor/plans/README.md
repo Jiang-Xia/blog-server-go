@@ -2,7 +2,9 @@
 
 > 总方案：[blog-server-go-重构方案.md](../../blog-server-go-重构方案.md)（v3 · 4 服务学习版）
 >
-> 原则：**单体先行 → 验证模块边界 → 拆 4 服务 → 代码物理拆分 → 生产上线**
+> 原则：**单体先行 → 验证模块边界 → 拆 4 服务（学习）→ 代码物理拆分 → Plan 22 单体复主（Nest 替换）**
+>
+> **部署定稿（2026-07-10）**：**monolith `:5000`** = 生产与 Nest 对等基准；**gateway + 四微服务** = 微服务架构学习，不强制功能 parity。
 
 ## 双层索引
 
@@ -85,8 +87,9 @@ flowchart TB
 | M7 RPG玩法债 | 19 | [19-RPG文章等级与Stream消费对齐.md](./19-RPG文章等级与Stream消费对齐.md) | ~1-1.5 周 | ArticleLevel + Stream | 依赖 18 |
 | M7 RPG玩法债 | 20 | [20-RPG惩罚链与禁言WS对齐.md](./20-RPG惩罚链与禁言WS对齐.md) | ~1 周 | Punishment + 护盾 | 依赖 18 |
 | M7 RPG玩法债 | 21 | [21-RPG实时通知与成就接线补齐.md](./21-RPG实时通知与成就接线补齐.md) | ~1-1.5 周 | WS + 成就埋点 | 依赖 19+20 |
+| M8 单体复主 | 22 | [22-单体服务Nest对齐补齐.md](./22-单体服务Nest对齐补齐.md) | ~4–6 周 | monolith Nest 替换 | 11 后；微服务仅学习 |
 
-**总周期**：约 17–20 周（Plan 01–11）+ 约 8–10 周（Plan 12–18，部分可并行）+ 约 3–4 周（Plan 19–21，19→20 可部分并行）
+**总周期**：约 17–20 周（Plan 01–11）+ 约 8–10 周（Plan 12–18，部分可并行）+ 约 3–4 周（Plan 19–21）+ Plan 22 单体复主
 
 ### M6 推荐执行顺序
 
@@ -115,8 +118,8 @@ flowchart TB
 ## 实施约定
 
 - **Plan 01–09**：在模块化单体中开发，入口 `services/monolith/cmd/main.go`，模块按未来微服务域分包（`internal/user/`、`internal/blog/`、`internal/rpg/`）。
-- **Plan 10**：四进程独立部署 + gateway 代理 + user gRPC + docker-compose（**运行时拆分**，代码仍在 monolith）。
-- **Plan 11**：代码迁至 `services/{user,blog,rpg}/internal/`、Ent 分 schema、gateway gRPC BFF（**物理拆分**）。
+- **Plan 10–11**：四进程独立部署 + gateway 代理 + 代码物理拆分（**微服务架构学习**；Plan 22 后非生产主路径）。
+- **Plan 22**：单体复主 — RAG / 定时任务 / pub/stats 等补齐，**:5000 为 Nest 替换唯一基准**；不要求反向同步微服务 parity。
 - **数据库**：全程共享 MySQL 单库；各服务 Ent schema 只定义自己负责的表（见总方案 3.3）。
 - **API 兼容**：对外保持 `/api/v1/*` 路径与 `{code, message, data}` 响应格式，前端无感切换。
 
@@ -142,7 +145,7 @@ flowchart TB
 | **RAG LLM function calling / Tool 接 rpg gRPC** | Plan 15 规则 Tool 已交付；深度 LLM 路由不做 |
 | **WS `CheckOrigin` 生产白名单** | 运维配置项，随部署文档处理 |
 | **Stream XADD MAXLEN** | 低优运维，不做专项 |
-| **monolith 代码副本清理** | 保留作对照，不删 |
+| **monolith 代码副本** | 微服务保留作学习；**功能以单体为准** |
 | **Pub SSE**（`/pub/ai-stream`）、**gateway 全局限流** | 产品决策暂不做 |
 | **Kubernetes 部署** | 2G 机器用 docker-compose / PM2 |
 | 留言板 vvhan IP 归属、敏感词种子导入 | 可随运维顺手补，非迁移阻塞项 |
@@ -159,7 +162,7 @@ flowchart TB
 
 | 计划 | 交付文档 |
 |------|----------|
-| 01–21 | [`docs/{同序号与标题}.md`](../../docs/README.md) |
+| 01–22 | [`docs/{同序号与标题}.md`](../../docs/README.md) |
 
 索引与模板：[`docs/README.md`](../../docs/README.md)、[`docs/_template.md`](../../docs/_template.md)。  
 **Nest 对等总表**：[`docs/nest-parity-matrix.md`](../../docs/nest-parity-matrix.md)。

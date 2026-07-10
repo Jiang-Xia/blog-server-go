@@ -8,10 +8,9 @@ import (
 )
 
 func TestOrchestratorRankingRule(t *testing.T) {
-	svc := tools.NewService(nil, nil)
-	orch := tools.NewOrchestrator(svc)
-	// nil crossdb：Execute 会 panic/fail — 只测不命中规则时返回空
-	recs, err := orch.ResolveTools(context.Background(), "博客架构是什么", tools.Context{})
+	svc := tools.NewService(nil, nil, nil, nil)
+	orch := tools.NewOrchestrator(svc, nil)
+	// nil crossdb：Execute �?panic/fail �?只测不命中规则时返回�?	recs, err := orch.ResolveTools(context.Background(), "博客架构是什�?, tools.Context{})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -21,7 +20,7 @@ func TestOrchestratorRankingRule(t *testing.T) {
 }
 
 func TestGetSiteNav(t *testing.T) {
-	svc := tools.NewService(nil, nil)
+	svc := tools.NewService(nil, nil, nil, nil)
 	nav, err := svc.Execute(context.Background(), "get_site_nav", nil, tools.Context{})
 	if err != nil {
 		t.Fatal(err)
