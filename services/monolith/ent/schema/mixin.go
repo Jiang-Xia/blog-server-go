@@ -21,12 +21,21 @@ func (TimeMixin) Fields() []ent.Field {
 	}
 }
 
-// TimestampMixin 仅 createTime/updateTime（comment/reply/msgboard/link/collect 等 Nest 表无 isDelete）。
+// TimestampMixin 仅 createTime/updateTime（RPG 等 Nest 表无 isDelete/version）。
 type TimestampMixin struct{ mixin.Schema }
 
 func (TimestampMixin) Fields() []ent.Field {
 	return []ent.Field{
 		field.Time("createTime").StorageKey("createTime").Comment("创建时间").Default(time.Now).Immutable(),
 		field.Time("updateTime").StorageKey("updateTime").Comment("更新时间").Default(time.Now).UpdateDefault(time.Now),
+	}
+}
+
+// CreateTimeMixin 仅 createTime（部分 Nest 表无 updateTime/isDelete）。
+type CreateTimeMixin struct{ mixin.Schema }
+
+func (CreateTimeMixin) Fields() []ent.Field {
+	return []ent.Field{
+		field.Time("createTime").StorageKey("createTime").Comment("创建时间").Default(time.Now).Immutable(),
 	}
 }

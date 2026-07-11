@@ -23,10 +23,6 @@ type PayOrder struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 商户订单号
 	OutTradeNo string `json:"outTradeNo,omitempty"`
 	// 第三方交易号
@@ -55,11 +51,9 @@ func (*PayOrder) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case payorder.FieldExtendParams:
 			values[i] = new([]byte)
-		case payorder.FieldIsDelete:
-			values[i] = new(sql.NullBool)
 		case payorder.FieldTotalAmount, payorder.FieldRefundAmount:
 			values[i] = new(sql.NullFloat64)
-		case payorder.FieldID, payorder.FieldVersion:
+		case payorder.FieldID:
 			values[i] = new(sql.NullInt64)
 		case payorder.FieldOutTradeNo, payorder.FieldTradeNo, payorder.FieldSubject, payorder.FieldBuyerOpenId, payorder.FieldStatus, payorder.FieldChannel:
 			values[i] = new(sql.NullString)
@@ -97,18 +91,6 @@ func (po *PayOrder) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				po.UpdateTime = value.Time
-			}
-		case payorder.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				po.IsDelete = value.Bool
-			}
-		case payorder.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				po.Version = int(value.Int64)
 			}
 		case payorder.FieldOutTradeNo:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -207,12 +189,6 @@ func (po *PayOrder) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(po.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", po.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", po.Version))
 	builder.WriteString(", ")
 	builder.WriteString("outTradeNo=")
 	builder.WriteString(po.OutTradeNo)

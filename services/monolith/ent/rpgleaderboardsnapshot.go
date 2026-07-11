@@ -20,12 +20,6 @@ type RpgLeaderboardSnapshot struct {
 	ID int `json:"id,omitempty"`
 	// 创建时间
 	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 用户UID
 	UID int `json:"uid,omitempty"`
 	// 分数
@@ -46,13 +40,11 @@ func (*RpgLeaderboardSnapshot) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpgleaderboardsnapshot.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpgleaderboardsnapshot.FieldID, rpgleaderboardsnapshot.FieldVersion, rpgleaderboardsnapshot.FieldUID, rpgleaderboardsnapshot.FieldScore, rpgleaderboardsnapshot.FieldRank:
+		case rpgleaderboardsnapshot.FieldID, rpgleaderboardsnapshot.FieldUID, rpgleaderboardsnapshot.FieldScore, rpgleaderboardsnapshot.FieldRank:
 			values[i] = new(sql.NullInt64)
 		case rpgleaderboardsnapshot.FieldPeriodType, rpgleaderboardsnapshot.FieldPeriodKey, rpgleaderboardsnapshot.FieldScoreType:
 			values[i] = new(sql.NullString)
-		case rpgleaderboardsnapshot.FieldCreateTime, rpgleaderboardsnapshot.FieldUpdateTime:
+		case rpgleaderboardsnapshot.FieldCreateTime:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -80,24 +72,6 @@ func (rls *RpgLeaderboardSnapshot) assignValues(columns []string, values []any) 
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
 				rls.CreateTime = value.Time
-			}
-		case rpgleaderboardsnapshot.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				rls.UpdateTime = value.Time
-			}
-		case rpgleaderboardsnapshot.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				rls.IsDelete = value.Bool
-			}
-		case rpgleaderboardsnapshot.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				rls.Version = int(value.Int64)
 			}
 		case rpgleaderboardsnapshot.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -173,15 +147,6 @@ func (rls *RpgLeaderboardSnapshot) String() string {
 	builder.WriteString(fmt.Sprintf("id=%v, ", rls.ID))
 	builder.WriteString("createTime=")
 	builder.WriteString(rls.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(rls.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", rls.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", rls.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", rls.UID))

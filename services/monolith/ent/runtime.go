@@ -331,14 +331,6 @@ func init() {
 	payorder.DefaultUpdateTime = payorderDescUpdateTime.Default.(func() time.Time)
 	// payorder.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	payorder.UpdateDefaultUpdateTime = payorderDescUpdateTime.UpdateDefault.(func() time.Time)
-	// payorderDescIsDelete is the schema descriptor for isDelete field.
-	payorderDescIsDelete := payorderMixinFields0[2].Descriptor()
-	// payorder.DefaultIsDelete holds the default value on creation for the isDelete field.
-	payorder.DefaultIsDelete = payorderDescIsDelete.Default.(bool)
-	// payorderDescVersion is the schema descriptor for version field.
-	payorderDescVersion := payorderMixinFields0[3].Descriptor()
-	// payorder.DefaultVersion holds the default value on creation for the version field.
-	payorder.DefaultVersion = payorderDescVersion.Default.(int)
 	// payorderDescTradeNo is the schema descriptor for tradeNo field.
 	payorderDescTradeNo := payorderFields[2].Descriptor()
 	// payorder.DefaultTradeNo holds the default value on creation for the tradeNo field.
@@ -510,14 +502,6 @@ func init() {
 	rpg.DefaultUpdateTime = rpgDescUpdateTime.Default.(func() time.Time)
 	// rpg.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	rpg.UpdateDefaultUpdateTime = rpgDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpgDescIsDelete is the schema descriptor for isDelete field.
-	rpgDescIsDelete := rpgMixinFields0[2].Descriptor()
-	// rpg.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpg.DefaultIsDelete = rpgDescIsDelete.Default.(bool)
-	// rpgDescVersion is the schema descriptor for version field.
-	rpgDescVersion := rpgMixinFields0[3].Descriptor()
-	// rpg.DefaultVersion holds the default value on creation for the version field.
-	rpg.DefaultVersion = rpgDescVersion.Default.(int)
 	// rpgDescExp is the schema descriptor for exp field.
 	rpgDescExp := rpgFields[2].Descriptor()
 	// rpg.DefaultExp holds the default value on creation for the exp field.
@@ -577,14 +561,6 @@ func init() {
 	rpgactivity.DefaultUpdateTime = rpgactivityDescUpdateTime.Default.(func() time.Time)
 	// rpgactivity.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	rpgactivity.UpdateDefaultUpdateTime = rpgactivityDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpgactivityDescIsDelete is the schema descriptor for isDelete field.
-	rpgactivityDescIsDelete := rpgactivityMixinFields0[2].Descriptor()
-	// rpgactivity.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpgactivity.DefaultIsDelete = rpgactivityDescIsDelete.Default.(bool)
-	// rpgactivityDescVersion is the schema descriptor for version field.
-	rpgactivityDescVersion := rpgactivityMixinFields0[3].Descriptor()
-	// rpgactivity.DefaultVersion holds the default value on creation for the version field.
-	rpgactivity.DefaultVersion = rpgactivityDescVersion.Default.(int)
 	// rpgactivityDescExpBuffRate is the schema descriptor for expBuffRate field.
 	rpgactivityDescExpBuffRate := rpgactivityFields[5].Descriptor()
 	// rpgactivity.DefaultExpBuffRate holds the default value on creation for the expBuffRate field.
@@ -614,20 +590,6 @@ func init() {
 	rpgarticletipDescCreateTime := rpgarticletipMixinFields0[0].Descriptor()
 	// rpgarticletip.DefaultCreateTime holds the default value on creation for the createTime field.
 	rpgarticletip.DefaultCreateTime = rpgarticletipDescCreateTime.Default.(func() time.Time)
-	// rpgarticletipDescUpdateTime is the schema descriptor for updateTime field.
-	rpgarticletipDescUpdateTime := rpgarticletipMixinFields0[1].Descriptor()
-	// rpgarticletip.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	rpgarticletip.DefaultUpdateTime = rpgarticletipDescUpdateTime.Default.(func() time.Time)
-	// rpgarticletip.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	rpgarticletip.UpdateDefaultUpdateTime = rpgarticletipDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpgarticletipDescIsDelete is the schema descriptor for isDelete field.
-	rpgarticletipDescIsDelete := rpgarticletipMixinFields0[2].Descriptor()
-	// rpgarticletip.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpgarticletip.DefaultIsDelete = rpgarticletipDescIsDelete.Default.(bool)
-	// rpgarticletipDescVersion is the schema descriptor for version field.
-	rpgarticletipDescVersion := rpgarticletipMixinFields0[3].Descriptor()
-	// rpgarticletip.DefaultVersion holds the default value on creation for the version field.
-	rpgarticletip.DefaultVersion = rpgarticletipDescVersion.Default.(int)
 	rpgguildMixin := schema.RpgGuild{}.Mixin()
 	rpgguildMixinFields0 := rpgguildMixin[0].Fields()
 	_ = rpgguildMixinFields0
@@ -643,14 +605,6 @@ func init() {
 	rpgguild.DefaultUpdateTime = rpgguildDescUpdateTime.Default.(func() time.Time)
 	// rpgguild.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	rpgguild.UpdateDefaultUpdateTime = rpgguildDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpgguildDescIsDelete is the schema descriptor for isDelete field.
-	rpgguildDescIsDelete := rpgguildMixinFields0[2].Descriptor()
-	// rpgguild.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpgguild.DefaultIsDelete = rpgguildDescIsDelete.Default.(bool)
-	// rpgguildDescVersion is the schema descriptor for version field.
-	rpgguildDescVersion := rpgguildMixinFields0[3].Descriptor()
-	// rpgguild.DefaultVersion holds the default value on creation for the version field.
-	rpgguild.DefaultVersion = rpgguildDescVersion.Default.(int)
 	// rpgguildDescMemberCount is the schema descriptor for memberCount field.
 	rpgguildDescMemberCount := rpgguildFields[3].Descriptor()
 	// rpgguild.DefaultMemberCount holds the default value on creation for the memberCount field.
@@ -670,14 +624,6 @@ func init() {
 	rpgitemconfig.DefaultUpdateTime = rpgitemconfigDescUpdateTime.Default.(func() time.Time)
 	// rpgitemconfig.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	rpgitemconfig.UpdateDefaultUpdateTime = rpgitemconfigDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpgitemconfigDescIsDelete is the schema descriptor for isDelete field.
-	rpgitemconfigDescIsDelete := rpgitemconfigMixinFields0[2].Descriptor()
-	// rpgitemconfig.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpgitemconfig.DefaultIsDelete = rpgitemconfigDescIsDelete.Default.(bool)
-	// rpgitemconfigDescVersion is the schema descriptor for version field.
-	rpgitemconfigDescVersion := rpgitemconfigMixinFields0[3].Descriptor()
-	// rpgitemconfig.DefaultVersion holds the default value on creation for the version field.
-	rpgitemconfig.DefaultVersion = rpgitemconfigDescVersion.Default.(int)
 	// rpgitemconfigDescSort is the schema descriptor for sort field.
 	rpgitemconfigDescSort := rpgitemconfigFields[3].Descriptor()
 	// rpgitemconfig.DefaultSort holds the default value on creation for the sort field.
@@ -711,20 +657,6 @@ func init() {
 	rpgleaderboardsnapshotDescCreateTime := rpgleaderboardsnapshotMixinFields0[0].Descriptor()
 	// rpgleaderboardsnapshot.DefaultCreateTime holds the default value on creation for the createTime field.
 	rpgleaderboardsnapshot.DefaultCreateTime = rpgleaderboardsnapshotDescCreateTime.Default.(func() time.Time)
-	// rpgleaderboardsnapshotDescUpdateTime is the schema descriptor for updateTime field.
-	rpgleaderboardsnapshotDescUpdateTime := rpgleaderboardsnapshotMixinFields0[1].Descriptor()
-	// rpgleaderboardsnapshot.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	rpgleaderboardsnapshot.DefaultUpdateTime = rpgleaderboardsnapshotDescUpdateTime.Default.(func() time.Time)
-	// rpgleaderboardsnapshot.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	rpgleaderboardsnapshot.UpdateDefaultUpdateTime = rpgleaderboardsnapshotDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpgleaderboardsnapshotDescIsDelete is the schema descriptor for isDelete field.
-	rpgleaderboardsnapshotDescIsDelete := rpgleaderboardsnapshotMixinFields0[2].Descriptor()
-	// rpgleaderboardsnapshot.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpgleaderboardsnapshot.DefaultIsDelete = rpgleaderboardsnapshotDescIsDelete.Default.(bool)
-	// rpgleaderboardsnapshotDescVersion is the schema descriptor for version field.
-	rpgleaderboardsnapshotDescVersion := rpgleaderboardsnapshotMixinFields0[3].Descriptor()
-	// rpgleaderboardsnapshot.DefaultVersion holds the default value on creation for the version field.
-	rpgleaderboardsnapshot.DefaultVersion = rpgleaderboardsnapshotDescVersion.Default.(int)
 	// rpgleaderboardsnapshotDescScore is the schema descriptor for score field.
 	rpgleaderboardsnapshotDescScore := rpgleaderboardsnapshotFields[2].Descriptor()
 	// rpgleaderboardsnapshot.DefaultScore holds the default value on creation for the score field.
@@ -808,20 +740,6 @@ func init() {
 	rpguserachievementDescCreateTime := rpguserachievementMixinFields0[0].Descriptor()
 	// rpguserachievement.DefaultCreateTime holds the default value on creation for the createTime field.
 	rpguserachievement.DefaultCreateTime = rpguserachievementDescCreateTime.Default.(func() time.Time)
-	// rpguserachievementDescUpdateTime is the schema descriptor for updateTime field.
-	rpguserachievementDescUpdateTime := rpguserachievementMixinFields0[1].Descriptor()
-	// rpguserachievement.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	rpguserachievement.DefaultUpdateTime = rpguserachievementDescUpdateTime.Default.(func() time.Time)
-	// rpguserachievement.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	rpguserachievement.UpdateDefaultUpdateTime = rpguserachievementDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpguserachievementDescIsDelete is the schema descriptor for isDelete field.
-	rpguserachievementDescIsDelete := rpguserachievementMixinFields0[2].Descriptor()
-	// rpguserachievement.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpguserachievement.DefaultIsDelete = rpguserachievementDescIsDelete.Default.(bool)
-	// rpguserachievementDescVersion is the schema descriptor for version field.
-	rpguserachievementDescVersion := rpguserachievementMixinFields0[3].Descriptor()
-	// rpguserachievement.DefaultVersion holds the default value on creation for the version field.
-	rpguserachievement.DefaultVersion = rpguserachievementDescVersion.Default.(int)
 	// rpguserachievementDescProgress is the schema descriptor for progress field.
 	rpguserachievementDescProgress := rpguserachievementFields[3].Descriptor()
 	// rpguserachievement.DefaultProgress holds the default value on creation for the progress field.
@@ -839,20 +757,6 @@ func init() {
 	rpguserbuffDescCreateTime := rpguserbuffMixinFields0[0].Descriptor()
 	// rpguserbuff.DefaultCreateTime holds the default value on creation for the createTime field.
 	rpguserbuff.DefaultCreateTime = rpguserbuffDescCreateTime.Default.(func() time.Time)
-	// rpguserbuffDescUpdateTime is the schema descriptor for updateTime field.
-	rpguserbuffDescUpdateTime := rpguserbuffMixinFields0[1].Descriptor()
-	// rpguserbuff.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	rpguserbuff.DefaultUpdateTime = rpguserbuffDescUpdateTime.Default.(func() time.Time)
-	// rpguserbuff.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	rpguserbuff.UpdateDefaultUpdateTime = rpguserbuffDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpguserbuffDescIsDelete is the schema descriptor for isDelete field.
-	rpguserbuffDescIsDelete := rpguserbuffMixinFields0[2].Descriptor()
-	// rpguserbuff.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpguserbuff.DefaultIsDelete = rpguserbuffDescIsDelete.Default.(bool)
-	// rpguserbuffDescVersion is the schema descriptor for version field.
-	rpguserbuffDescVersion := rpguserbuffMixinFields0[3].Descriptor()
-	// rpguserbuff.DefaultVersion holds the default value on creation for the version field.
-	rpguserbuff.DefaultVersion = rpguserbuffDescVersion.Default.(int)
 	// rpguserbuffDescRemainingUses is the schema descriptor for remainingUses field.
 	rpguserbuffDescRemainingUses := rpguserbuffFields[8].Descriptor()
 	// rpguserbuff.DefaultRemainingUses holds the default value on creation for the remainingUses field.
@@ -890,20 +794,6 @@ func init() {
 	rpguserlotteryrecordDescCreateTime := rpguserlotteryrecordMixinFields0[0].Descriptor()
 	// rpguserlotteryrecord.DefaultCreateTime holds the default value on creation for the createTime field.
 	rpguserlotteryrecord.DefaultCreateTime = rpguserlotteryrecordDescCreateTime.Default.(func() time.Time)
-	// rpguserlotteryrecordDescUpdateTime is the schema descriptor for updateTime field.
-	rpguserlotteryrecordDescUpdateTime := rpguserlotteryrecordMixinFields0[1].Descriptor()
-	// rpguserlotteryrecord.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	rpguserlotteryrecord.DefaultUpdateTime = rpguserlotteryrecordDescUpdateTime.Default.(func() time.Time)
-	// rpguserlotteryrecord.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	rpguserlotteryrecord.UpdateDefaultUpdateTime = rpguserlotteryrecordDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpguserlotteryrecordDescIsDelete is the schema descriptor for isDelete field.
-	rpguserlotteryrecordDescIsDelete := rpguserlotteryrecordMixinFields0[2].Descriptor()
-	// rpguserlotteryrecord.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpguserlotteryrecord.DefaultIsDelete = rpguserlotteryrecordDescIsDelete.Default.(bool)
-	// rpguserlotteryrecordDescVersion is the schema descriptor for version field.
-	rpguserlotteryrecordDescVersion := rpguserlotteryrecordMixinFields0[3].Descriptor()
-	// rpguserlotteryrecord.DefaultVersion holds the default value on creation for the version field.
-	rpguserlotteryrecord.DefaultVersion = rpguserlotteryrecordDescVersion.Default.(int)
 	rpguserpetMixin := schema.RpgUserPet{}.Mixin()
 	rpguserpetMixinFields0 := rpguserpetMixin[0].Fields()
 	_ = rpguserpetMixinFields0
@@ -919,14 +809,6 @@ func init() {
 	rpguserpet.DefaultUpdateTime = rpguserpetDescUpdateTime.Default.(func() time.Time)
 	// rpguserpet.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	rpguserpet.UpdateDefaultUpdateTime = rpguserpetDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpguserpetDescIsDelete is the schema descriptor for isDelete field.
-	rpguserpetDescIsDelete := rpguserpetMixinFields0[2].Descriptor()
-	// rpguserpet.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpguserpet.DefaultIsDelete = rpguserpetDescIsDelete.Default.(bool)
-	// rpguserpetDescVersion is the schema descriptor for version field.
-	rpguserpetDescVersion := rpguserpetMixinFields0[3].Descriptor()
-	// rpguserpet.DefaultVersion holds the default value on creation for the version field.
-	rpguserpet.DefaultVersion = rpguserpetDescVersion.Default.(int)
 	// rpguserpetDescLevel is the schema descriptor for level field.
 	rpguserpetDescLevel := rpguserpetFields[3].Descriptor()
 	// rpguserpet.DefaultLevel holds the default value on creation for the level field.
@@ -954,14 +836,6 @@ func init() {
 	rpguserquestprogress.DefaultUpdateTime = rpguserquestprogressDescUpdateTime.Default.(func() time.Time)
 	// rpguserquestprogress.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
 	rpguserquestprogress.UpdateDefaultUpdateTime = rpguserquestprogressDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpguserquestprogressDescIsDelete is the schema descriptor for isDelete field.
-	rpguserquestprogressDescIsDelete := rpguserquestprogressMixinFields0[2].Descriptor()
-	// rpguserquestprogress.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpguserquestprogress.DefaultIsDelete = rpguserquestprogressDescIsDelete.Default.(bool)
-	// rpguserquestprogressDescVersion is the schema descriptor for version field.
-	rpguserquestprogressDescVersion := rpguserquestprogressMixinFields0[3].Descriptor()
-	// rpguserquestprogress.DefaultVersion holds the default value on creation for the version field.
-	rpguserquestprogress.DefaultVersion = rpguserquestprogressDescVersion.Default.(int)
 	// rpguserquestprogressDescProgress is the schema descriptor for progress field.
 	rpguserquestprogressDescProgress := rpguserquestprogressFields[3].Descriptor()
 	// rpguserquestprogress.DefaultProgress holds the default value on creation for the progress field.
@@ -983,20 +857,6 @@ func init() {
 	rpgusersociallogDescCreateTime := rpgusersociallogMixinFields0[0].Descriptor()
 	// rpgusersociallog.DefaultCreateTime holds the default value on creation for the createTime field.
 	rpgusersociallog.DefaultCreateTime = rpgusersociallogDescCreateTime.Default.(func() time.Time)
-	// rpgusersociallogDescUpdateTime is the schema descriptor for updateTime field.
-	rpgusersociallogDescUpdateTime := rpgusersociallogMixinFields0[1].Descriptor()
-	// rpgusersociallog.DefaultUpdateTime holds the default value on creation for the updateTime field.
-	rpgusersociallog.DefaultUpdateTime = rpgusersociallogDescUpdateTime.Default.(func() time.Time)
-	// rpgusersociallog.UpdateDefaultUpdateTime holds the default value on update for the updateTime field.
-	rpgusersociallog.UpdateDefaultUpdateTime = rpgusersociallogDescUpdateTime.UpdateDefault.(func() time.Time)
-	// rpgusersociallogDescIsDelete is the schema descriptor for isDelete field.
-	rpgusersociallogDescIsDelete := rpgusersociallogMixinFields0[2].Descriptor()
-	// rpgusersociallog.DefaultIsDelete holds the default value on creation for the isDelete field.
-	rpgusersociallog.DefaultIsDelete = rpgusersociallogDescIsDelete.Default.(bool)
-	// rpgusersociallogDescVersion is the schema descriptor for version field.
-	rpgusersociallogDescVersion := rpgusersociallogMixinFields0[3].Descriptor()
-	// rpgusersociallog.DefaultVersion holds the default value on creation for the version field.
-	rpgusersociallog.DefaultVersion = rpgusersociallogDescVersion.Default.(int)
 	// rpgusersociallogDescCostCurrency is the schema descriptor for costCurrency field.
 	rpgusersociallogDescCostCurrency := rpgusersociallogFields[3].Descriptor()
 	// rpgusersociallog.DefaultCostCurrency holds the default value on creation for the costCurrency field.

@@ -50,34 +50,6 @@ func (poc *PayOrderCreate) SetNillableUpdateTime(t *time.Time) *PayOrderCreate {
 	return poc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (poc *PayOrderCreate) SetIsDelete(b bool) *PayOrderCreate {
-	poc.mutation.SetIsDelete(b)
-	return poc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (poc *PayOrderCreate) SetNillableIsDelete(b *bool) *PayOrderCreate {
-	if b != nil {
-		poc.SetIsDelete(*b)
-	}
-	return poc
-}
-
-// SetVersion sets the "version" field.
-func (poc *PayOrderCreate) SetVersion(i int) *PayOrderCreate {
-	poc.mutation.SetVersion(i)
-	return poc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (poc *PayOrderCreate) SetNillableVersion(i *int) *PayOrderCreate {
-	if i != nil {
-		poc.SetVersion(*i)
-	}
-	return poc
-}
-
 // SetOutTradeNo sets the "outTradeNo" field.
 func (poc *PayOrderCreate) SetOutTradeNo(s string) *PayOrderCreate {
 	poc.mutation.SetOutTradeNo(s)
@@ -237,14 +209,6 @@ func (poc *PayOrderCreate) defaults() {
 		v := payorder.DefaultUpdateTime()
 		poc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := poc.mutation.IsDelete(); !ok {
-		v := payorder.DefaultIsDelete
-		poc.mutation.SetIsDelete(v)
-	}
-	if _, ok := poc.mutation.Version(); !ok {
-		v := payorder.DefaultVersion
-		poc.mutation.SetVersion(v)
-	}
 	if _, ok := poc.mutation.TradeNo(); !ok {
 		v := payorder.DefaultTradeNo
 		poc.mutation.SetTradeNo(v)
@@ -282,12 +246,6 @@ func (poc *PayOrderCreate) check() error {
 	}
 	if _, ok := poc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "PayOrder.updateTime"`)}
-	}
-	if _, ok := poc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "PayOrder.isDelete"`)}
-	}
-	if _, ok := poc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "PayOrder.version"`)}
 	}
 	if _, ok := poc.mutation.OutTradeNo(); !ok {
 		return &ValidationError{Name: "outTradeNo", err: errors.New(`ent: missing required field "PayOrder.outTradeNo"`)}
@@ -353,14 +311,6 @@ func (poc *PayOrderCreate) createSpec() (*PayOrder, *sqlgraph.CreateSpec) {
 	if value, ok := poc.mutation.UpdateTime(); ok {
 		_spec.SetField(payorder.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := poc.mutation.IsDelete(); ok {
-		_spec.SetField(payorder.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := poc.mutation.Version(); ok {
-		_spec.SetField(payorder.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := poc.mutation.OutTradeNo(); ok {
 		_spec.SetField(payorder.FieldOutTradeNo, field.TypeString, value)
@@ -459,36 +409,6 @@ func (u *PayOrderUpsert) SetUpdateTime(v time.Time) *PayOrderUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *PayOrderUpsert) UpdateUpdateTime() *PayOrderUpsert {
 	u.SetExcluded(payorder.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *PayOrderUpsert) SetIsDelete(v bool) *PayOrderUpsert {
-	u.Set(payorder.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *PayOrderUpsert) UpdateIsDelete() *PayOrderUpsert {
-	u.SetExcluded(payorder.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *PayOrderUpsert) SetVersion(v int) *PayOrderUpsert {
-	u.Set(payorder.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *PayOrderUpsert) UpdateVersion() *PayOrderUpsert {
-	u.SetExcluded(payorder.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *PayOrderUpsert) AddVersion(v int) *PayOrderUpsert {
-	u.Add(payorder.FieldVersion, v)
 	return u
 }
 
@@ -680,41 +600,6 @@ func (u *PayOrderUpsertOne) SetUpdateTime(v time.Time) *PayOrderUpsertOne {
 func (u *PayOrderUpsertOne) UpdateUpdateTime() *PayOrderUpsertOne {
 	return u.Update(func(s *PayOrderUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *PayOrderUpsertOne) SetIsDelete(v bool) *PayOrderUpsertOne {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *PayOrderUpsertOne) UpdateIsDelete() *PayOrderUpsertOne {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *PayOrderUpsertOne) SetVersion(v int) *PayOrderUpsertOne {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *PayOrderUpsertOne) AddVersion(v int) *PayOrderUpsertOne {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *PayOrderUpsertOne) UpdateVersion() *PayOrderUpsertOne {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -1093,41 +978,6 @@ func (u *PayOrderUpsertBulk) SetUpdateTime(v time.Time) *PayOrderUpsertBulk {
 func (u *PayOrderUpsertBulk) UpdateUpdateTime() *PayOrderUpsertBulk {
 	return u.Update(func(s *PayOrderUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *PayOrderUpsertBulk) SetIsDelete(v bool) *PayOrderUpsertBulk {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *PayOrderUpsertBulk) UpdateIsDelete() *PayOrderUpsertBulk {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *PayOrderUpsertBulk) SetVersion(v int) *PayOrderUpsertBulk {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *PayOrderUpsertBulk) AddVersion(v int) *PayOrderUpsertBulk {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *PayOrderUpsertBulk) UpdateVersion() *PayOrderUpsertBulk {
-	return u.Update(func(s *PayOrderUpsert) {
-		s.UpdateVersion()
 	})
 }
 

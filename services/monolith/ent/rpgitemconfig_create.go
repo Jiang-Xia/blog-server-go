@@ -50,34 +50,6 @@ func (ricc *RpgItemConfigCreate) SetNillableUpdateTime(t *time.Time) *RpgItemCon
 	return ricc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (ricc *RpgItemConfigCreate) SetIsDelete(b bool) *RpgItemConfigCreate {
-	ricc.mutation.SetIsDelete(b)
-	return ricc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ricc *RpgItemConfigCreate) SetNillableIsDelete(b *bool) *RpgItemConfigCreate {
-	if b != nil {
-		ricc.SetIsDelete(*b)
-	}
-	return ricc
-}
-
-// SetVersion sets the "version" field.
-func (ricc *RpgItemConfigCreate) SetVersion(i int) *RpgItemConfigCreate {
-	ricc.mutation.SetVersion(i)
-	return ricc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ricc *RpgItemConfigCreate) SetNillableVersion(i *int) *RpgItemConfigCreate {
-	if i != nil {
-		ricc.SetVersion(*i)
-	}
-	return ricc
-}
-
 // SetCode sets the "code" field.
 func (ricc *RpgItemConfigCreate) SetCode(s string) *RpgItemConfigCreate {
 	ricc.mutation.SetCode(s)
@@ -249,14 +221,6 @@ func (ricc *RpgItemConfigCreate) defaults() {
 		v := rpgitemconfig.DefaultUpdateTime()
 		ricc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := ricc.mutation.IsDelete(); !ok {
-		v := rpgitemconfig.DefaultIsDelete
-		ricc.mutation.SetIsDelete(v)
-	}
-	if _, ok := ricc.mutation.Version(); !ok {
-		v := rpgitemconfig.DefaultVersion
-		ricc.mutation.SetVersion(v)
-	}
 	if _, ok := ricc.mutation.Sort(); !ok {
 		v := rpgitemconfig.DefaultSort
 		ricc.mutation.SetSort(v)
@@ -290,12 +254,6 @@ func (ricc *RpgItemConfigCreate) check() error {
 	}
 	if _, ok := ricc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgItemConfig.updateTime"`)}
-	}
-	if _, ok := ricc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgItemConfig.isDelete"`)}
-	}
-	if _, ok := ricc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgItemConfig.version"`)}
 	}
 	if _, ok := ricc.mutation.Code(); !ok {
 		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "RpgItemConfig.code"`)}
@@ -367,14 +325,6 @@ func (ricc *RpgItemConfigCreate) createSpec() (*RpgItemConfig, *sqlgraph.CreateS
 	if value, ok := ricc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgitemconfig.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := ricc.mutation.IsDelete(); ok {
-		_spec.SetField(rpgitemconfig.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := ricc.mutation.Version(); ok {
-		_spec.SetField(rpgitemconfig.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := ricc.mutation.Code(); ok {
 		_spec.SetField(rpgitemconfig.FieldCode, field.TypeString, value)
@@ -481,36 +431,6 @@ func (u *RpgItemConfigUpsert) SetUpdateTime(v time.Time) *RpgItemConfigUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *RpgItemConfigUpsert) UpdateUpdateTime() *RpgItemConfigUpsert {
 	u.SetExcluded(rpgitemconfig.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgItemConfigUpsert) SetIsDelete(v bool) *RpgItemConfigUpsert {
-	u.Set(rpgitemconfig.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgItemConfigUpsert) UpdateIsDelete() *RpgItemConfigUpsert {
-	u.SetExcluded(rpgitemconfig.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgItemConfigUpsert) SetVersion(v int) *RpgItemConfigUpsert {
-	u.Set(rpgitemconfig.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgItemConfigUpsert) UpdateVersion() *RpgItemConfigUpsert {
-	u.SetExcluded(rpgitemconfig.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgItemConfigUpsert) AddVersion(v int) *RpgItemConfigUpsert {
-	u.Add(rpgitemconfig.FieldVersion, v)
 	return u
 }
 
@@ -732,41 +652,6 @@ func (u *RpgItemConfigUpsertOne) SetUpdateTime(v time.Time) *RpgItemConfigUpsert
 func (u *RpgItemConfigUpsertOne) UpdateUpdateTime() *RpgItemConfigUpsertOne {
 	return u.Update(func(s *RpgItemConfigUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgItemConfigUpsertOne) SetIsDelete(v bool) *RpgItemConfigUpsertOne {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgItemConfigUpsertOne) UpdateIsDelete() *RpgItemConfigUpsertOne {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgItemConfigUpsertOne) SetVersion(v int) *RpgItemConfigUpsertOne {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgItemConfigUpsertOne) AddVersion(v int) *RpgItemConfigUpsertOne {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgItemConfigUpsertOne) UpdateVersion() *RpgItemConfigUpsertOne {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -1180,41 +1065,6 @@ func (u *RpgItemConfigUpsertBulk) SetUpdateTime(v time.Time) *RpgItemConfigUpser
 func (u *RpgItemConfigUpsertBulk) UpdateUpdateTime() *RpgItemConfigUpsertBulk {
 	return u.Update(func(s *RpgItemConfigUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgItemConfigUpsertBulk) SetIsDelete(v bool) *RpgItemConfigUpsertBulk {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgItemConfigUpsertBulk) UpdateIsDelete() *RpgItemConfigUpsertBulk {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgItemConfigUpsertBulk) SetVersion(v int) *RpgItemConfigUpsertBulk {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgItemConfigUpsertBulk) AddVersion(v int) *RpgItemConfigUpsertBulk {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgItemConfigUpsertBulk) UpdateVersion() *RpgItemConfigUpsertBulk {
-	return u.Update(func(s *RpgItemConfigUpsert) {
-		s.UpdateVersion()
 	})
 }
 

@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
@@ -25,47 +24,6 @@ type RpgUserLotteryRecordUpdate struct {
 // Where appends a list predicates to the RpgUserLotteryRecordUpdate builder.
 func (rulru *RpgUserLotteryRecordUpdate) Where(ps ...predicate.RpgUserLotteryRecord) *RpgUserLotteryRecordUpdate {
 	rulru.mutation.Where(ps...)
-	return rulru
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (rulru *RpgUserLotteryRecordUpdate) SetUpdateTime(t time.Time) *RpgUserLotteryRecordUpdate {
-	rulru.mutation.SetUpdateTime(t)
-	return rulru
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rulru *RpgUserLotteryRecordUpdate) SetIsDelete(b bool) *RpgUserLotteryRecordUpdate {
-	rulru.mutation.SetIsDelete(b)
-	return rulru
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rulru *RpgUserLotteryRecordUpdate) SetNillableIsDelete(b *bool) *RpgUserLotteryRecordUpdate {
-	if b != nil {
-		rulru.SetIsDelete(*b)
-	}
-	return rulru
-}
-
-// SetVersion sets the "version" field.
-func (rulru *RpgUserLotteryRecordUpdate) SetVersion(i int) *RpgUserLotteryRecordUpdate {
-	rulru.mutation.ResetVersion()
-	rulru.mutation.SetVersion(i)
-	return rulru
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rulru *RpgUserLotteryRecordUpdate) SetNillableVersion(i *int) *RpgUserLotteryRecordUpdate {
-	if i != nil {
-		rulru.SetVersion(*i)
-	}
-	return rulru
-}
-
-// AddVersion adds i to the "version" field.
-func (rulru *RpgUserLotteryRecordUpdate) AddVersion(i int) *RpgUserLotteryRecordUpdate {
-	rulru.mutation.AddVersion(i)
 	return rulru
 }
 
@@ -159,7 +117,6 @@ func (rulru *RpgUserLotteryRecordUpdate) Mutation() *RpgUserLotteryRecordMutatio
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (rulru *RpgUserLotteryRecordUpdate) Save(ctx context.Context) (int, error) {
-	rulru.defaults()
 	return withHooks(ctx, rulru.sqlSave, rulru.mutation, rulru.hooks)
 }
 
@@ -185,14 +142,6 @@ func (rulru *RpgUserLotteryRecordUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (rulru *RpgUserLotteryRecordUpdate) defaults() {
-	if _, ok := rulru.mutation.UpdateTime(); !ok {
-		v := rpguserlotteryrecord.UpdateDefaultUpdateTime()
-		rulru.mutation.SetUpdateTime(v)
-	}
-}
-
 func (rulru *RpgUserLotteryRecordUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserlotteryrecord.Table, rpguserlotteryrecord.Columns, sqlgraph.NewFieldSpec(rpguserlotteryrecord.FieldID, field.TypeInt))
 	if ps := rulru.mutation.predicates; len(ps) > 0 {
@@ -201,18 +150,6 @@ func (rulru *RpgUserLotteryRecordUpdate) sqlSave(ctx context.Context) (n int, er
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := rulru.mutation.UpdateTime(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rulru.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rulru.mutation.Version(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rulru.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rulru.mutation.UID(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldUID, field.TypeInt, value)
@@ -253,47 +190,6 @@ type RpgUserLotteryRecordUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *RpgUserLotteryRecordMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (rulruo *RpgUserLotteryRecordUpdateOne) SetUpdateTime(t time.Time) *RpgUserLotteryRecordUpdateOne {
-	rulruo.mutation.SetUpdateTime(t)
-	return rulruo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rulruo *RpgUserLotteryRecordUpdateOne) SetIsDelete(b bool) *RpgUserLotteryRecordUpdateOne {
-	rulruo.mutation.SetIsDelete(b)
-	return rulruo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableIsDelete(b *bool) *RpgUserLotteryRecordUpdateOne {
-	if b != nil {
-		rulruo.SetIsDelete(*b)
-	}
-	return rulruo
-}
-
-// SetVersion sets the "version" field.
-func (rulruo *RpgUserLotteryRecordUpdateOne) SetVersion(i int) *RpgUserLotteryRecordUpdateOne {
-	rulruo.mutation.ResetVersion()
-	rulruo.mutation.SetVersion(i)
-	return rulruo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rulruo *RpgUserLotteryRecordUpdateOne) SetNillableVersion(i *int) *RpgUserLotteryRecordUpdateOne {
-	if i != nil {
-		rulruo.SetVersion(*i)
-	}
-	return rulruo
-}
-
-// AddVersion adds i to the "version" field.
-func (rulruo *RpgUserLotteryRecordUpdateOne) AddVersion(i int) *RpgUserLotteryRecordUpdateOne {
-	rulruo.mutation.AddVersion(i)
-	return rulruo
 }
 
 // SetUID sets the "uid" field.
@@ -399,7 +295,6 @@ func (rulruo *RpgUserLotteryRecordUpdateOne) Select(field string, fields ...stri
 
 // Save executes the query and returns the updated RpgUserLotteryRecord entity.
 func (rulruo *RpgUserLotteryRecordUpdateOne) Save(ctx context.Context) (*RpgUserLotteryRecord, error) {
-	rulruo.defaults()
 	return withHooks(ctx, rulruo.sqlSave, rulruo.mutation, rulruo.hooks)
 }
 
@@ -422,14 +317,6 @@ func (rulruo *RpgUserLotteryRecordUpdateOne) Exec(ctx context.Context) error {
 func (rulruo *RpgUserLotteryRecordUpdateOne) ExecX(ctx context.Context) {
 	if err := rulruo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (rulruo *RpgUserLotteryRecordUpdateOne) defaults() {
-	if _, ok := rulruo.mutation.UpdateTime(); !ok {
-		v := rpguserlotteryrecord.UpdateDefaultUpdateTime()
-		rulruo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -458,18 +345,6 @@ func (rulruo *RpgUserLotteryRecordUpdateOne) sqlSave(ctx context.Context) (_node
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := rulruo.mutation.UpdateTime(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rulruo.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rulruo.mutation.Version(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rulruo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rulruo.mutation.UID(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldUID, field.TypeInt, value)

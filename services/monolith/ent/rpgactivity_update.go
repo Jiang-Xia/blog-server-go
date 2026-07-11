@@ -34,41 +34,6 @@ func (rau *RpgActivityUpdate) SetUpdateTime(t time.Time) *RpgActivityUpdate {
 	return rau
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (rau *RpgActivityUpdate) SetIsDelete(b bool) *RpgActivityUpdate {
-	rau.mutation.SetIsDelete(b)
-	return rau
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rau *RpgActivityUpdate) SetNillableIsDelete(b *bool) *RpgActivityUpdate {
-	if b != nil {
-		rau.SetIsDelete(*b)
-	}
-	return rau
-}
-
-// SetVersion sets the "version" field.
-func (rau *RpgActivityUpdate) SetVersion(i int) *RpgActivityUpdate {
-	rau.mutation.ResetVersion()
-	rau.mutation.SetVersion(i)
-	return rau
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rau *RpgActivityUpdate) SetNillableVersion(i *int) *RpgActivityUpdate {
-	if i != nil {
-		rau.SetVersion(*i)
-	}
-	return rau
-}
-
-// AddVersion adds i to the "version" field.
-func (rau *RpgActivityUpdate) AddVersion(i int) *RpgActivityUpdate {
-	rau.mutation.AddVersion(i)
-	return rau
-}
-
 // SetCode sets the "code" field.
 func (rau *RpgActivityUpdate) SetCode(s string) *RpgActivityUpdate {
 	rau.mutation.SetCode(s)
@@ -282,15 +247,6 @@ func (rau *RpgActivityUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := rau.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgactivity.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := rau.mutation.IsDelete(); ok {
-		_spec.SetField(rpgactivity.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rau.mutation.Version(); ok {
-		_spec.SetField(rpgactivity.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rau.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgactivity.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := rau.mutation.Code(); ok {
 		_spec.SetField(rpgactivity.FieldCode, field.TypeString, value)
 	}
@@ -353,41 +309,6 @@ type RpgActivityUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (rauo *RpgActivityUpdateOne) SetUpdateTime(t time.Time) *RpgActivityUpdateOne {
 	rauo.mutation.SetUpdateTime(t)
-	return rauo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rauo *RpgActivityUpdateOne) SetIsDelete(b bool) *RpgActivityUpdateOne {
-	rauo.mutation.SetIsDelete(b)
-	return rauo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rauo *RpgActivityUpdateOne) SetNillableIsDelete(b *bool) *RpgActivityUpdateOne {
-	if b != nil {
-		rauo.SetIsDelete(*b)
-	}
-	return rauo
-}
-
-// SetVersion sets the "version" field.
-func (rauo *RpgActivityUpdateOne) SetVersion(i int) *RpgActivityUpdateOne {
-	rauo.mutation.ResetVersion()
-	rauo.mutation.SetVersion(i)
-	return rauo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rauo *RpgActivityUpdateOne) SetNillableVersion(i *int) *RpgActivityUpdateOne {
-	if i != nil {
-		rauo.SetVersion(*i)
-	}
-	return rauo
-}
-
-// AddVersion adds i to the "version" field.
-func (rauo *RpgActivityUpdateOne) AddVersion(i int) *RpgActivityUpdateOne {
-	rauo.mutation.AddVersion(i)
 	return rauo
 }
 
@@ -633,15 +554,6 @@ func (rauo *RpgActivityUpdateOne) sqlSave(ctx context.Context) (_node *RpgActivi
 	}
 	if value, ok := rauo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgactivity.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rauo.mutation.IsDelete(); ok {
-		_spec.SetField(rpgactivity.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rauo.mutation.Version(); ok {
-		_spec.SetField(rpgactivity.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rauo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgactivity.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rauo.mutation.Code(); ok {
 		_spec.SetField(rpgactivity.FieldCode, field.TypeString, value)

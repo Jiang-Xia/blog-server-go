@@ -36,48 +36,6 @@ func (ruac *RpgUserAchievementCreate) SetNillableCreateTime(t *time.Time) *RpgUs
 	return ruac
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (ruac *RpgUserAchievementCreate) SetUpdateTime(t time.Time) *RpgUserAchievementCreate {
-	ruac.mutation.SetUpdateTime(t)
-	return ruac
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (ruac *RpgUserAchievementCreate) SetNillableUpdateTime(t *time.Time) *RpgUserAchievementCreate {
-	if t != nil {
-		ruac.SetUpdateTime(*t)
-	}
-	return ruac
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ruac *RpgUserAchievementCreate) SetIsDelete(b bool) *RpgUserAchievementCreate {
-	ruac.mutation.SetIsDelete(b)
-	return ruac
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruac *RpgUserAchievementCreate) SetNillableIsDelete(b *bool) *RpgUserAchievementCreate {
-	if b != nil {
-		ruac.SetIsDelete(*b)
-	}
-	return ruac
-}
-
-// SetVersion sets the "version" field.
-func (ruac *RpgUserAchievementCreate) SetVersion(i int) *RpgUserAchievementCreate {
-	ruac.mutation.SetVersion(i)
-	return ruac
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruac *RpgUserAchievementCreate) SetNillableVersion(i *int) *RpgUserAchievementCreate {
-	if i != nil {
-		ruac.SetVersion(*i)
-	}
-	return ruac
-}
-
 // SetUID sets the "uid" field.
 func (ruac *RpgUserAchievementCreate) SetUID(i int) *RpgUserAchievementCreate {
 	ruac.mutation.SetUID(i)
@@ -177,18 +135,6 @@ func (ruac *RpgUserAchievementCreate) defaults() {
 		v := rpguserachievement.DefaultCreateTime()
 		ruac.mutation.SetCreateTime(v)
 	}
-	if _, ok := ruac.mutation.UpdateTime(); !ok {
-		v := rpguserachievement.DefaultUpdateTime()
-		ruac.mutation.SetUpdateTime(v)
-	}
-	if _, ok := ruac.mutation.IsDelete(); !ok {
-		v := rpguserachievement.DefaultIsDelete
-		ruac.mutation.SetIsDelete(v)
-	}
-	if _, ok := ruac.mutation.Version(); !ok {
-		v := rpguserachievement.DefaultVersion
-		ruac.mutation.SetVersion(v)
-	}
 	if _, ok := ruac.mutation.Progress(); !ok {
 		v := rpguserachievement.DefaultProgress
 		ruac.mutation.SetProgress(v)
@@ -203,15 +149,6 @@ func (ruac *RpgUserAchievementCreate) defaults() {
 func (ruac *RpgUserAchievementCreate) check() error {
 	if _, ok := ruac.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserAchievement.createTime"`)}
-	}
-	if _, ok := ruac.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserAchievement.updateTime"`)}
-	}
-	if _, ok := ruac.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserAchievement.isDelete"`)}
-	}
-	if _, ok := ruac.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserAchievement.version"`)}
 	}
 	if _, ok := ruac.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserAchievement.uid"`)}
@@ -261,18 +198,6 @@ func (ruac *RpgUserAchievementCreate) createSpec() (*RpgUserAchievement, *sqlgra
 	if value, ok := ruac.mutation.CreateTime(); ok {
 		_spec.SetField(rpguserachievement.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
-	}
-	if value, ok := ruac.mutation.UpdateTime(); ok {
-		_spec.SetField(rpguserachievement.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := ruac.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserachievement.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := ruac.mutation.Version(); ok {
-		_spec.SetField(rpguserachievement.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := ruac.mutation.UID(); ok {
 		_spec.SetField(rpguserachievement.FieldUID, field.TypeInt, value)
@@ -345,48 +270,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserAchievementUpsert) SetUpdateTime(v time.Time) *RpgUserAchievementUpsert {
-	u.Set(rpguserachievement.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsert) UpdateUpdateTime() *RpgUserAchievementUpsert {
-	u.SetExcluded(rpguserachievement.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserAchievementUpsert) SetIsDelete(v bool) *RpgUserAchievementUpsert {
-	u.Set(rpguserachievement.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsert) UpdateIsDelete() *RpgUserAchievementUpsert {
-	u.SetExcluded(rpguserachievement.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserAchievementUpsert) SetVersion(v int) *RpgUserAchievementUpsert {
-	u.Set(rpguserachievement.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsert) UpdateVersion() *RpgUserAchievementUpsert {
-	u.SetExcluded(rpguserachievement.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserAchievementUpsert) AddVersion(v int) *RpgUserAchievementUpsert {
-	u.Add(rpguserachievement.FieldVersion, v)
-	return u
-}
 
 // SetUID sets the "uid" field.
 func (u *RpgUserAchievementUpsert) SetUID(v int) *RpgUserAchievementUpsert {
@@ -521,55 +404,6 @@ func (u *RpgUserAchievementUpsertOne) Update(set func(*RpgUserAchievementUpsert)
 		set(&RpgUserAchievementUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserAchievementUpsertOne) SetUpdateTime(v time.Time) *RpgUserAchievementUpsertOne {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsertOne) UpdateUpdateTime() *RpgUserAchievementUpsertOne {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserAchievementUpsertOne) SetIsDelete(v bool) *RpgUserAchievementUpsertOne {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsertOne) UpdateIsDelete() *RpgUserAchievementUpsertOne {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserAchievementUpsertOne) SetVersion(v int) *RpgUserAchievementUpsertOne {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserAchievementUpsertOne) AddVersion(v int) *RpgUserAchievementUpsertOne {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsertOne) UpdateVersion() *RpgUserAchievementUpsertOne {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.
@@ -885,55 +719,6 @@ func (u *RpgUserAchievementUpsertBulk) Update(set func(*RpgUserAchievementUpsert
 		set(&RpgUserAchievementUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserAchievementUpsertBulk) SetUpdateTime(v time.Time) *RpgUserAchievementUpsertBulk {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsertBulk) UpdateUpdateTime() *RpgUserAchievementUpsertBulk {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserAchievementUpsertBulk) SetIsDelete(v bool) *RpgUserAchievementUpsertBulk {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsertBulk) UpdateIsDelete() *RpgUserAchievementUpsertBulk {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserAchievementUpsertBulk) SetVersion(v int) *RpgUserAchievementUpsertBulk {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserAchievementUpsertBulk) AddVersion(v int) *RpgUserAchievementUpsertBulk {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserAchievementUpsertBulk) UpdateVersion() *RpgUserAchievementUpsertBulk {
-	return u.Update(func(s *RpgUserAchievementUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.

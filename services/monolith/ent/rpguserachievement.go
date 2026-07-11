@@ -20,12 +20,6 @@ type RpgUserAchievement struct {
 	ID int `json:"id,omitempty"`
 	// 创建时间
 	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 用户ID
 	UID int `json:"uid,omitempty"`
 	// 关联 rpg_item_config.code (item_type=achievement)
@@ -44,13 +38,11 @@ func (*RpgUserAchievement) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpguserachievement.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpguserachievement.FieldID, rpguserachievement.FieldVersion, rpguserachievement.FieldUID, rpguserachievement.FieldProgress, rpguserachievement.FieldCompleted:
+		case rpguserachievement.FieldID, rpguserachievement.FieldUID, rpguserachievement.FieldProgress, rpguserachievement.FieldCompleted:
 			values[i] = new(sql.NullInt64)
 		case rpguserachievement.FieldAchievementCode:
 			values[i] = new(sql.NullString)
-		case rpguserachievement.FieldCreateTime, rpguserachievement.FieldUpdateTime, rpguserachievement.FieldCompletedAt:
+		case rpguserachievement.FieldCreateTime, rpguserachievement.FieldCompletedAt:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -78,24 +70,6 @@ func (rua *RpgUserAchievement) assignValues(columns []string, values []any) erro
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
 				rua.CreateTime = value.Time
-			}
-		case rpguserachievement.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				rua.UpdateTime = value.Time
-			}
-		case rpguserachievement.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				rua.IsDelete = value.Bool
-			}
-		case rpguserachievement.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				rua.Version = int(value.Int64)
 			}
 		case rpguserachievement.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -166,15 +140,6 @@ func (rua *RpgUserAchievement) String() string {
 	builder.WriteString(fmt.Sprintf("id=%v, ", rua.ID))
 	builder.WriteString("createTime=")
 	builder.WriteString(rua.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(rua.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", rua.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", rua.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", rua.UID))

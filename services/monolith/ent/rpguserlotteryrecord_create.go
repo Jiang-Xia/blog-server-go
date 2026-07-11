@@ -36,48 +36,6 @@ func (rulrc *RpgUserLotteryRecordCreate) SetNillableCreateTime(t *time.Time) *Rp
 	return rulrc
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (rulrc *RpgUserLotteryRecordCreate) SetUpdateTime(t time.Time) *RpgUserLotteryRecordCreate {
-	rulrc.mutation.SetUpdateTime(t)
-	return rulrc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (rulrc *RpgUserLotteryRecordCreate) SetNillableUpdateTime(t *time.Time) *RpgUserLotteryRecordCreate {
-	if t != nil {
-		rulrc.SetUpdateTime(*t)
-	}
-	return rulrc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rulrc *RpgUserLotteryRecordCreate) SetIsDelete(b bool) *RpgUserLotteryRecordCreate {
-	rulrc.mutation.SetIsDelete(b)
-	return rulrc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rulrc *RpgUserLotteryRecordCreate) SetNillableIsDelete(b *bool) *RpgUserLotteryRecordCreate {
-	if b != nil {
-		rulrc.SetIsDelete(*b)
-	}
-	return rulrc
-}
-
-// SetVersion sets the "version" field.
-func (rulrc *RpgUserLotteryRecordCreate) SetVersion(i int) *RpgUserLotteryRecordCreate {
-	rulrc.mutation.SetVersion(i)
-	return rulrc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rulrc *RpgUserLotteryRecordCreate) SetNillableVersion(i *int) *RpgUserLotteryRecordCreate {
-	if i != nil {
-		rulrc.SetVersion(*i)
-	}
-	return rulrc
-}
-
 // SetUID sets the "uid" field.
 func (rulrc *RpgUserLotteryRecordCreate) SetUID(i int) *RpgUserLotteryRecordCreate {
 	rulrc.mutation.SetUID(i)
@@ -161,33 +119,12 @@ func (rulrc *RpgUserLotteryRecordCreate) defaults() {
 		v := rpguserlotteryrecord.DefaultCreateTime()
 		rulrc.mutation.SetCreateTime(v)
 	}
-	if _, ok := rulrc.mutation.UpdateTime(); !ok {
-		v := rpguserlotteryrecord.DefaultUpdateTime()
-		rulrc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := rulrc.mutation.IsDelete(); !ok {
-		v := rpguserlotteryrecord.DefaultIsDelete
-		rulrc.mutation.SetIsDelete(v)
-	}
-	if _, ok := rulrc.mutation.Version(); !ok {
-		v := rpguserlotteryrecord.DefaultVersion
-		rulrc.mutation.SetVersion(v)
-	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (rulrc *RpgUserLotteryRecordCreate) check() error {
 	if _, ok := rulrc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserLotteryRecord.createTime"`)}
-	}
-	if _, ok := rulrc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserLotteryRecord.updateTime"`)}
-	}
-	if _, ok := rulrc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserLotteryRecord.isDelete"`)}
-	}
-	if _, ok := rulrc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserLotteryRecord.version"`)}
 	}
 	if _, ok := rulrc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserLotteryRecord.uid"`)}
@@ -237,18 +174,6 @@ func (rulrc *RpgUserLotteryRecordCreate) createSpec() (*RpgUserLotteryRecord, *s
 	if value, ok := rulrc.mutation.CreateTime(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
-	}
-	if value, ok := rulrc.mutation.UpdateTime(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := rulrc.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := rulrc.mutation.Version(); ok {
-		_spec.SetField(rpguserlotteryrecord.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := rulrc.mutation.UID(); ok {
 		_spec.SetField(rpguserlotteryrecord.FieldUID, field.TypeInt, value)
@@ -321,48 +246,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserLotteryRecordUpsert) SetUpdateTime(v time.Time) *RpgUserLotteryRecordUpsert {
-	u.Set(rpguserlotteryrecord.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsert) UpdateUpdateTime() *RpgUserLotteryRecordUpsert {
-	u.SetExcluded(rpguserlotteryrecord.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserLotteryRecordUpsert) SetIsDelete(v bool) *RpgUserLotteryRecordUpsert {
-	u.Set(rpguserlotteryrecord.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsert) UpdateIsDelete() *RpgUserLotteryRecordUpsert {
-	u.SetExcluded(rpguserlotteryrecord.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserLotteryRecordUpsert) SetVersion(v int) *RpgUserLotteryRecordUpsert {
-	u.Set(rpguserlotteryrecord.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsert) UpdateVersion() *RpgUserLotteryRecordUpsert {
-	u.SetExcluded(rpguserlotteryrecord.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserLotteryRecordUpsert) AddVersion(v int) *RpgUserLotteryRecordUpsert {
-	u.Add(rpguserlotteryrecord.FieldVersion, v)
-	return u
-}
 
 // SetUID sets the "uid" field.
 func (u *RpgUserLotteryRecordUpsert) SetUID(v int) *RpgUserLotteryRecordUpsert {
@@ -485,55 +368,6 @@ func (u *RpgUserLotteryRecordUpsertOne) Update(set func(*RpgUserLotteryRecordUps
 		set(&RpgUserLotteryRecordUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserLotteryRecordUpsertOne) SetUpdateTime(v time.Time) *RpgUserLotteryRecordUpsertOne {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsertOne) UpdateUpdateTime() *RpgUserLotteryRecordUpsertOne {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserLotteryRecordUpsertOne) SetIsDelete(v bool) *RpgUserLotteryRecordUpsertOne {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsertOne) UpdateIsDelete() *RpgUserLotteryRecordUpsertOne {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserLotteryRecordUpsertOne) SetVersion(v int) *RpgUserLotteryRecordUpsertOne {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserLotteryRecordUpsertOne) AddVersion(v int) *RpgUserLotteryRecordUpsertOne {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsertOne) UpdateVersion() *RpgUserLotteryRecordUpsertOne {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.
@@ -835,55 +669,6 @@ func (u *RpgUserLotteryRecordUpsertBulk) Update(set func(*RpgUserLotteryRecordUp
 		set(&RpgUserLotteryRecordUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserLotteryRecordUpsertBulk) SetUpdateTime(v time.Time) *RpgUserLotteryRecordUpsertBulk {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsertBulk) UpdateUpdateTime() *RpgUserLotteryRecordUpsertBulk {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserLotteryRecordUpsertBulk) SetIsDelete(v bool) *RpgUserLotteryRecordUpsertBulk {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsertBulk) UpdateIsDelete() *RpgUserLotteryRecordUpsertBulk {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserLotteryRecordUpsertBulk) SetVersion(v int) *RpgUserLotteryRecordUpsertBulk {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserLotteryRecordUpsertBulk) AddVersion(v int) *RpgUserLotteryRecordUpsertBulk {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserLotteryRecordUpsertBulk) UpdateVersion() *RpgUserLotteryRecordUpsertBulk {
-	return u.Update(func(s *RpgUserLotteryRecordUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.

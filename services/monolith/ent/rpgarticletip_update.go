@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
@@ -25,47 +24,6 @@ type RpgArticleTipUpdate struct {
 // Where appends a list predicates to the RpgArticleTipUpdate builder.
 func (ratu *RpgArticleTipUpdate) Where(ps ...predicate.RpgArticleTip) *RpgArticleTipUpdate {
 	ratu.mutation.Where(ps...)
-	return ratu
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (ratu *RpgArticleTipUpdate) SetUpdateTime(t time.Time) *RpgArticleTipUpdate {
-	ratu.mutation.SetUpdateTime(t)
-	return ratu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ratu *RpgArticleTipUpdate) SetIsDelete(b bool) *RpgArticleTipUpdate {
-	ratu.mutation.SetIsDelete(b)
-	return ratu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ratu *RpgArticleTipUpdate) SetNillableIsDelete(b *bool) *RpgArticleTipUpdate {
-	if b != nil {
-		ratu.SetIsDelete(*b)
-	}
-	return ratu
-}
-
-// SetVersion sets the "version" field.
-func (ratu *RpgArticleTipUpdate) SetVersion(i int) *RpgArticleTipUpdate {
-	ratu.mutation.ResetVersion()
-	ratu.mutation.SetVersion(i)
-	return ratu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ratu *RpgArticleTipUpdate) SetNillableVersion(i *int) *RpgArticleTipUpdate {
-	if i != nil {
-		ratu.SetVersion(*i)
-	}
-	return ratu
-}
-
-// AddVersion adds i to the "version" field.
-func (ratu *RpgArticleTipUpdate) AddVersion(i int) *RpgArticleTipUpdate {
-	ratu.mutation.AddVersion(i)
 	return ratu
 }
 
@@ -160,7 +118,6 @@ func (ratu *RpgArticleTipUpdate) Mutation() *RpgArticleTipMutation {
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (ratu *RpgArticleTipUpdate) Save(ctx context.Context) (int, error) {
-	ratu.defaults()
 	return withHooks(ctx, ratu.sqlSave, ratu.mutation, ratu.hooks)
 }
 
@@ -186,14 +143,6 @@ func (ratu *RpgArticleTipUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (ratu *RpgArticleTipUpdate) defaults() {
-	if _, ok := ratu.mutation.UpdateTime(); !ok {
-		v := rpgarticletip.UpdateDefaultUpdateTime()
-		ratu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (ratu *RpgArticleTipUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgarticletip.Table, rpgarticletip.Columns, sqlgraph.NewFieldSpec(rpgarticletip.FieldID, field.TypeInt))
 	if ps := ratu.mutation.predicates; len(ps) > 0 {
@@ -202,18 +151,6 @@ func (ratu *RpgArticleTipUpdate) sqlSave(ctx context.Context) (n int, err error)
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := ratu.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgarticletip.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := ratu.mutation.IsDelete(); ok {
-		_spec.SetField(rpgarticletip.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ratu.mutation.Version(); ok {
-		_spec.SetField(rpgarticletip.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ratu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgarticletip.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := ratu.mutation.UID(); ok {
 		_spec.SetField(rpgarticletip.FieldUID, field.TypeInt, value)
@@ -257,47 +194,6 @@ type RpgArticleTipUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *RpgArticleTipMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (ratuo *RpgArticleTipUpdateOne) SetUpdateTime(t time.Time) *RpgArticleTipUpdateOne {
-	ratuo.mutation.SetUpdateTime(t)
-	return ratuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ratuo *RpgArticleTipUpdateOne) SetIsDelete(b bool) *RpgArticleTipUpdateOne {
-	ratuo.mutation.SetIsDelete(b)
-	return ratuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ratuo *RpgArticleTipUpdateOne) SetNillableIsDelete(b *bool) *RpgArticleTipUpdateOne {
-	if b != nil {
-		ratuo.SetIsDelete(*b)
-	}
-	return ratuo
-}
-
-// SetVersion sets the "version" field.
-func (ratuo *RpgArticleTipUpdateOne) SetVersion(i int) *RpgArticleTipUpdateOne {
-	ratuo.mutation.ResetVersion()
-	ratuo.mutation.SetVersion(i)
-	return ratuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ratuo *RpgArticleTipUpdateOne) SetNillableVersion(i *int) *RpgArticleTipUpdateOne {
-	if i != nil {
-		ratuo.SetVersion(*i)
-	}
-	return ratuo
-}
-
-// AddVersion adds i to the "version" field.
-func (ratuo *RpgArticleTipUpdateOne) AddVersion(i int) *RpgArticleTipUpdateOne {
-	ratuo.mutation.AddVersion(i)
-	return ratuo
 }
 
 // SetUID sets the "uid" field.
@@ -404,7 +300,6 @@ func (ratuo *RpgArticleTipUpdateOne) Select(field string, fields ...string) *Rpg
 
 // Save executes the query and returns the updated RpgArticleTip entity.
 func (ratuo *RpgArticleTipUpdateOne) Save(ctx context.Context) (*RpgArticleTip, error) {
-	ratuo.defaults()
 	return withHooks(ctx, ratuo.sqlSave, ratuo.mutation, ratuo.hooks)
 }
 
@@ -427,14 +322,6 @@ func (ratuo *RpgArticleTipUpdateOne) Exec(ctx context.Context) error {
 func (ratuo *RpgArticleTipUpdateOne) ExecX(ctx context.Context) {
 	if err := ratuo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (ratuo *RpgArticleTipUpdateOne) defaults() {
-	if _, ok := ratuo.mutation.UpdateTime(); !ok {
-		v := rpgarticletip.UpdateDefaultUpdateTime()
-		ratuo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -463,18 +350,6 @@ func (ratuo *RpgArticleTipUpdateOne) sqlSave(ctx context.Context) (_node *RpgArt
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := ratuo.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgarticletip.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := ratuo.mutation.IsDelete(); ok {
-		_spec.SetField(rpgarticletip.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ratuo.mutation.Version(); ok {
-		_spec.SetField(rpgarticletip.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ratuo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgarticletip.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := ratuo.mutation.UID(); ok {
 		_spec.SetField(rpgarticletip.FieldUID, field.TypeInt, value)

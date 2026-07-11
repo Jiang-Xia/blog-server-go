@@ -13,9 +13,10 @@ import (
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 )
 
-// LevelAchievementTracker 等级成就追踪（避免 level ↔ achievement 循环依赖）。
+// LevelAchievementTracker 等级成就追踪与等级奖励目录（避免 level ↔ achievement 循环依赖）。
 type LevelAchievementTracker interface {
 	TrackLevelUp(ctx context.Context, uid, newLevel int) error
+	GetAllLevelRewardCatalog(ctx context.Context) ([]rpgcore.LevelReward, error)
 }
 
 // LevelService 等级阈值计算、经验发放与升级判定。
@@ -179,20 +180,10 @@ func (s *LevelService) GetLevelRewards(ctx context.Context, level int) ([]rpgcor
 }
 
 func (s *LevelService) getAllLevelRewards(ctx context.Context) ([]rpgcore.LevelReward, error) {
-	rows, err := s.repo.ListActiveLevelRewards(ctx)
-	if err != nil {
-		return nil, err
+	if s.achievement != nil {
+		return s.achievement.GetAllLevelRewardCatalog(ctx)
 	}
-	out := make([]rpgcore.LevelReward, 0, len(rows))
-	for _, row := range rows {
-		out = append(out, rpgcore.LevelReward{
-			Level:          row.Level,
-			CurrencyReward: row.CurrencyReward,
-			AvatarFrame:    row.AvatarFrame,
-			Title:          row.Title,
-		})
-	}
-	return out, nil
+	return []rpgcore.LevelReward{}, nil
 }
 
 func (s *LevelService) getLevelRewardsUnlockedInRange(ctx context.Context, oldLevel, newLevel int) ([]rpgcore.LevelReward, error) {

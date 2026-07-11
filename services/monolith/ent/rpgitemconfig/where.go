@@ -64,16 +64,6 @@ func UpdateTime(v time.Time) predicate.RpgItemConfig {
 	return predicate.RpgItemConfig(sql.FieldEQ(FieldUpdateTime, v))
 }
 
-// IsDelete applies equality check predicate on the "isDelete" field. It's identical to IsDeleteEQ.
-func IsDelete(v bool) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// Version applies equality check predicate on the "version" field. It's identical to VersionEQ.
-func Version(v int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldEQ(FieldVersion, v))
-}
-
 // Code applies equality check predicate on the "code" field. It's identical to CodeEQ.
 func Code(v string) predicate.RpgItemConfig {
 	return predicate.RpgItemConfig(sql.FieldEQ(FieldCode, v))
@@ -207,56 +197,6 @@ func UpdateTimeLT(v time.Time) predicate.RpgItemConfig {
 // UpdateTimeLTE applies the LTE predicate on the "updateTime" field.
 func UpdateTimeLTE(v time.Time) predicate.RpgItemConfig {
 	return predicate.RpgItemConfig(sql.FieldLTE(FieldUpdateTime, v))
-}
-
-// IsDeleteEQ applies the EQ predicate on the "isDelete" field.
-func IsDeleteEQ(v bool) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// IsDeleteNEQ applies the NEQ predicate on the "isDelete" field.
-func IsDeleteNEQ(v bool) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldNEQ(FieldIsDelete, v))
-}
-
-// VersionEQ applies the EQ predicate on the "version" field.
-func VersionEQ(v int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldEQ(FieldVersion, v))
-}
-
-// VersionNEQ applies the NEQ predicate on the "version" field.
-func VersionNEQ(v int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldNEQ(FieldVersion, v))
-}
-
-// VersionIn applies the In predicate on the "version" field.
-func VersionIn(vs ...int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldIn(FieldVersion, vs...))
-}
-
-// VersionNotIn applies the NotIn predicate on the "version" field.
-func VersionNotIn(vs ...int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldNotIn(FieldVersion, vs...))
-}
-
-// VersionGT applies the GT predicate on the "version" field.
-func VersionGT(v int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldGT(FieldVersion, v))
-}
-
-// VersionGTE applies the GTE predicate on the "version" field.
-func VersionGTE(v int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldGTE(FieldVersion, v))
-}
-
-// VersionLT applies the LT predicate on the "version" field.
-func VersionLT(v int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldLT(FieldVersion, v))
-}
-
-// VersionLTE applies the LTE predicate on the "version" field.
-func VersionLTE(v int) predicate.RpgItemConfig {
-	return predicate.RpgItemConfig(sql.FieldLTE(FieldVersion, v))
 }
 
 // CodeEQ applies the EQ predicate on the "code" field.

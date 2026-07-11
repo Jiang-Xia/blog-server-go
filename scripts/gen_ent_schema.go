@@ -26,6 +26,17 @@ type column struct {
 	DBComment string
 }
 
+type tableInfo struct {
+	physical      string
+	logical       string
+	domain        string
+	columns       []column
+	hasCreateTime bool
+	hasUpdateTime bool
+	hasIsDelete   bool
+	hasVersion    bool
+}
+
 var domainTables = map[string]string{
 	"user": "user", "role": "user", "privilege": "user", "dept": "user", "menu": "user",
 	"role_users_user": "user", "role_data_scope": "user", "role_menus_menu": "user", "role_privileges_privilege": "user",
@@ -98,13 +109,6 @@ func main() {
 	}
 	defer rows.Close()
 
-	type tableInfo struct {
-		physical string
-		logical  string
-		domain   string
-		columns  []column
-		mixin    bool
-	}
 	tables := map[string]*tableInfo{}
 	order := []string{}
 
@@ -132,7 +136,16 @@ func main() {
 			order = append(order, physical)
 		}
 		if colName == "createTime" {
-			t.mixin = true
+			t.hasCreateTime = true
+		}
+		if colName == "updateTime" {
+			t.hasUpdateTime = true
+		}
+		if colName == "isDelete" {
+			t.hasIsDelete = true
+		}
+		if colName == "version" {
+			t.hasVersion = true
 		}
 		if isMixinField(colName) {
 			continue
@@ -147,12 +160,41 @@ func main() {
 	for _, physical := range order {
 		t := tables[physical]
 		out := filepath.Join(base, t.logical+".go")
-		content := renderSchema(t.physical, t.logical, toGoTypeName(t.logical), t.mixin, t.columns, comments)
+		content := renderSchema(t.physical, t.logical, toGoTypeName(t.logical), chooseMixin(t), t.columns, comments)
 		if err := os.WriteFile(out, []byte(content), 0o644); err != nil {
 			panic(err)
 		}
 		fmt.Println("generated", out)
 	}
+}
+
+// mixinOverrides 本地库与生产 Nest 表结构不一致时强制指定 mixin（避免误用 TimestampMixin）。
+var mixinOverrides = map[string]string{
+	"rpg_user_buff":              "CreateTimeMixin", // Nest/生产仅 createTime
+	"rpg_user_achievement":       "CreateTimeMixin",
+	"rpg_user_lottery_record":    "CreateTimeMixin",
+	"rpg_article_tip":            "CreateTimeMixin",
+	"rpg_user_social_log":        "CreateTimeMixin",
+	"rpg_leaderboard_snapshot":   "CreateTimeMixin",
+}
+
+func chooseMixin(t *tableInfo) string {
+	if m, ok := mixinOverrides[t.logical]; ok {
+		return m
+	}
+	if !t.hasCreateTime && !t.hasUpdateTime {
+		return ""
+	}
+	if t.hasIsDelete || t.hasVersion {
+		return "TimeMixin"
+	}
+	if t.hasCreateTime && t.hasUpdateTime {
+		return "TimestampMixin"
+	}
+	if t.hasCreateTime {
+		return "CreateTimeMixin"
+	}
+	return ""
 }
 
 func writeMixin(path string) {
@@ -178,11 +220,30 @@ func (TimeMixin) Fields() []ent.Field {
 		field.Int("version").StorageKey("version").Comment("乐观锁版本号").Default(0),
 	}
 }
+
+// TimestampMixin 仅 createTime/updateTime（RPG 等 Nest 表无 isDelete/version）。
+type TimestampMixin struct{ mixin.Schema }
+
+func (TimestampMixin) Fields() []ent.Field {
+	return []ent.Field{
+		field.Time("createTime").StorageKey("createTime").Comment("创建时间").Default(time.Now).Immutable(),
+		field.Time("updateTime").StorageKey("updateTime").Comment("更新时间").Default(time.Now).UpdateDefault(time.Now),
+	}
+}
+
+// CreateTimeMixin 仅 createTime（部分 Nest 表无 updateTime/isDelete）。
+type CreateTimeMixin struct{ mixin.Schema }
+
+func (CreateTimeMixin) Fields() []ent.Field {
+	return []ent.Field{
+		field.Time("createTime").StorageKey("createTime").Comment("创建时间").Default(time.Now).Immutable(),
+	}
+}
 `
 	_ = os.WriteFile(path, []byte(content), 0o644)
 }
 
-func renderSchema(tableName, logicalTable, goName string, useMixin bool, cols []column, comments nestcomment.Index) string {
+func renderSchema(tableName, logicalTable, goName, mixinName string, cols []column, comments nestcomment.Index) string {
 	var b strings.Builder
 	b.WriteString("// 由 scripts/gen_ent_schema.go 生成，请勿手改。\n")
 	b.WriteString("package schema\n\n")
@@ -200,10 +261,10 @@ func renderSchema(tableName, logicalTable, goName string, useMixin bool, cols []
 	b.WriteString(fmt.Sprintf("\t\tentsql.Annotation{Table: %q},\n", tableName))
 	b.WriteString("\t}\n")
 	b.WriteString("}\n\n")
-	if useMixin {
-		b.WriteString(fmt.Sprintf("// Mixin 注入 TypeORM 公共时间戳与软删除字段。\n"))
+	if mixinName != "" {
+		b.WriteString(fmt.Sprintf("// Mixin 注入 Nest 公共时间戳字段（%s）。\n", mixinName))
 		b.WriteString(fmt.Sprintf("func (%s) Mixin() []ent.Mixin {\n", goName))
-		b.WriteString("\treturn []ent.Mixin{TimeMixin{}}\n")
+		b.WriteString(fmt.Sprintf("\treturn []ent.Mixin{%s{}}\n", mixinName))
 		b.WriteString("}\n\n")
 	}
 	b.WriteString(fmt.Sprintf("// Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。\n"))

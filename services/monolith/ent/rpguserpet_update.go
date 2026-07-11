@@ -34,41 +34,6 @@ func (rupu *RpgUserPetUpdate) SetUpdateTime(t time.Time) *RpgUserPetUpdate {
 	return rupu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (rupu *RpgUserPetUpdate) SetIsDelete(b bool) *RpgUserPetUpdate {
-	rupu.mutation.SetIsDelete(b)
-	return rupu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rupu *RpgUserPetUpdate) SetNillableIsDelete(b *bool) *RpgUserPetUpdate {
-	if b != nil {
-		rupu.SetIsDelete(*b)
-	}
-	return rupu
-}
-
-// SetVersion sets the "version" field.
-func (rupu *RpgUserPetUpdate) SetVersion(i int) *RpgUserPetUpdate {
-	rupu.mutation.ResetVersion()
-	rupu.mutation.SetVersion(i)
-	return rupu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rupu *RpgUserPetUpdate) SetNillableVersion(i *int) *RpgUserPetUpdate {
-	if i != nil {
-		rupu.SetVersion(*i)
-	}
-	return rupu
-}
-
-// AddVersion adds i to the "version" field.
-func (rupu *RpgUserPetUpdate) AddVersion(i int) *RpgUserPetUpdate {
-	rupu.mutation.AddVersion(i)
-	return rupu
-}
-
 // SetUID sets the "uid" field.
 func (rupu *RpgUserPetUpdate) SetUID(i int) *RpgUserPetUpdate {
 	rupu.mutation.ResetUID()
@@ -233,15 +198,6 @@ func (rupu *RpgUserPetUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := rupu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserpet.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := rupu.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserpet.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rupu.mutation.Version(); ok {
-		_spec.SetField(rpguserpet.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rupu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserpet.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := rupu.mutation.UID(); ok {
 		_spec.SetField(rpguserpet.FieldUID, field.TypeInt, value)
 	}
@@ -295,41 +251,6 @@ type RpgUserPetUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (rupuo *RpgUserPetUpdateOne) SetUpdateTime(t time.Time) *RpgUserPetUpdateOne {
 	rupuo.mutation.SetUpdateTime(t)
-	return rupuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rupuo *RpgUserPetUpdateOne) SetIsDelete(b bool) *RpgUserPetUpdateOne {
-	rupuo.mutation.SetIsDelete(b)
-	return rupuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rupuo *RpgUserPetUpdateOne) SetNillableIsDelete(b *bool) *RpgUserPetUpdateOne {
-	if b != nil {
-		rupuo.SetIsDelete(*b)
-	}
-	return rupuo
-}
-
-// SetVersion sets the "version" field.
-func (rupuo *RpgUserPetUpdateOne) SetVersion(i int) *RpgUserPetUpdateOne {
-	rupuo.mutation.ResetVersion()
-	rupuo.mutation.SetVersion(i)
-	return rupuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rupuo *RpgUserPetUpdateOne) SetNillableVersion(i *int) *RpgUserPetUpdateOne {
-	if i != nil {
-		rupuo.SetVersion(*i)
-	}
-	return rupuo
-}
-
-// AddVersion adds i to the "version" field.
-func (rupuo *RpgUserPetUpdateOne) AddVersion(i int) *RpgUserPetUpdateOne {
-	rupuo.mutation.AddVersion(i)
 	return rupuo
 }
 
@@ -526,15 +447,6 @@ func (rupuo *RpgUserPetUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserPe
 	}
 	if value, ok := rupuo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserpet.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rupuo.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserpet.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rupuo.mutation.Version(); ok {
-		_spec.SetField(rpguserpet.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rupuo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserpet.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rupuo.mutation.UID(); ok {
 		_spec.SetField(rpguserpet.FieldUID, field.TypeInt, value)

@@ -34,41 +34,6 @@ func (pou *PayOrderUpdate) SetUpdateTime(t time.Time) *PayOrderUpdate {
 	return pou
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (pou *PayOrderUpdate) SetIsDelete(b bool) *PayOrderUpdate {
-	pou.mutation.SetIsDelete(b)
-	return pou
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (pou *PayOrderUpdate) SetNillableIsDelete(b *bool) *PayOrderUpdate {
-	if b != nil {
-		pou.SetIsDelete(*b)
-	}
-	return pou
-}
-
-// SetVersion sets the "version" field.
-func (pou *PayOrderUpdate) SetVersion(i int) *PayOrderUpdate {
-	pou.mutation.ResetVersion()
-	pou.mutation.SetVersion(i)
-	return pou
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (pou *PayOrderUpdate) SetNillableVersion(i *int) *PayOrderUpdate {
-	if i != nil {
-		pou.SetVersion(*i)
-	}
-	return pou
-}
-
-// AddVersion adds i to the "version" field.
-func (pou *PayOrderUpdate) AddVersion(i int) *PayOrderUpdate {
-	pou.mutation.AddVersion(i)
-	return pou
-}
-
 // SetOutTradeNo sets the "outTradeNo" field.
 func (pou *PayOrderUpdate) SetOutTradeNo(s string) *PayOrderUpdate {
 	pou.mutation.SetOutTradeNo(s)
@@ -260,15 +225,6 @@ func (pou *PayOrderUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := pou.mutation.UpdateTime(); ok {
 		_spec.SetField(payorder.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := pou.mutation.IsDelete(); ok {
-		_spec.SetField(payorder.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := pou.mutation.Version(); ok {
-		_spec.SetField(payorder.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := pou.mutation.AddedVersion(); ok {
-		_spec.AddField(payorder.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := pou.mutation.OutTradeNo(); ok {
 		_spec.SetField(payorder.FieldOutTradeNo, field.TypeString, value)
 	}
@@ -328,41 +284,6 @@ type PayOrderUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (pouo *PayOrderUpdateOne) SetUpdateTime(t time.Time) *PayOrderUpdateOne {
 	pouo.mutation.SetUpdateTime(t)
-	return pouo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (pouo *PayOrderUpdateOne) SetIsDelete(b bool) *PayOrderUpdateOne {
-	pouo.mutation.SetIsDelete(b)
-	return pouo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (pouo *PayOrderUpdateOne) SetNillableIsDelete(b *bool) *PayOrderUpdateOne {
-	if b != nil {
-		pouo.SetIsDelete(*b)
-	}
-	return pouo
-}
-
-// SetVersion sets the "version" field.
-func (pouo *PayOrderUpdateOne) SetVersion(i int) *PayOrderUpdateOne {
-	pouo.mutation.ResetVersion()
-	pouo.mutation.SetVersion(i)
-	return pouo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (pouo *PayOrderUpdateOne) SetNillableVersion(i *int) *PayOrderUpdateOne {
-	if i != nil {
-		pouo.SetVersion(*i)
-	}
-	return pouo
-}
-
-// AddVersion adds i to the "version" field.
-func (pouo *PayOrderUpdateOne) AddVersion(i int) *PayOrderUpdateOne {
-	pouo.mutation.AddVersion(i)
 	return pouo
 }
 
@@ -586,15 +507,6 @@ func (pouo *PayOrderUpdateOne) sqlSave(ctx context.Context) (_node *PayOrder, er
 	}
 	if value, ok := pouo.mutation.UpdateTime(); ok {
 		_spec.SetField(payorder.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := pouo.mutation.IsDelete(); ok {
-		_spec.SetField(payorder.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := pouo.mutation.Version(); ok {
-		_spec.SetField(payorder.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := pouo.mutation.AddedVersion(); ok {
-		_spec.AddField(payorder.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := pouo.mutation.OutTradeNo(); ok {
 		_spec.SetField(payorder.FieldOutTradeNo, field.TypeString, value)

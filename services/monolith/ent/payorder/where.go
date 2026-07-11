@@ -64,16 +64,6 @@ func UpdateTime(v time.Time) predicate.PayOrder {
 	return predicate.PayOrder(sql.FieldEQ(FieldUpdateTime, v))
 }
 
-// IsDelete applies equality check predicate on the "isDelete" field. It's identical to IsDeleteEQ.
-func IsDelete(v bool) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// Version applies equality check predicate on the "version" field. It's identical to VersionEQ.
-func Version(v int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldEQ(FieldVersion, v))
-}
-
 // OutTradeNo applies equality check predicate on the "outTradeNo" field. It's identical to OutTradeNoEQ.
 func OutTradeNo(v string) predicate.PayOrder {
 	return predicate.PayOrder(sql.FieldEQ(FieldOutTradeNo, v))
@@ -192,56 +182,6 @@ func UpdateTimeLT(v time.Time) predicate.PayOrder {
 // UpdateTimeLTE applies the LTE predicate on the "updateTime" field.
 func UpdateTimeLTE(v time.Time) predicate.PayOrder {
 	return predicate.PayOrder(sql.FieldLTE(FieldUpdateTime, v))
-}
-
-// IsDeleteEQ applies the EQ predicate on the "isDelete" field.
-func IsDeleteEQ(v bool) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldEQ(FieldIsDelete, v))
-}
-
-// IsDeleteNEQ applies the NEQ predicate on the "isDelete" field.
-func IsDeleteNEQ(v bool) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldNEQ(FieldIsDelete, v))
-}
-
-// VersionEQ applies the EQ predicate on the "version" field.
-func VersionEQ(v int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldEQ(FieldVersion, v))
-}
-
-// VersionNEQ applies the NEQ predicate on the "version" field.
-func VersionNEQ(v int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldNEQ(FieldVersion, v))
-}
-
-// VersionIn applies the In predicate on the "version" field.
-func VersionIn(vs ...int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldIn(FieldVersion, vs...))
-}
-
-// VersionNotIn applies the NotIn predicate on the "version" field.
-func VersionNotIn(vs ...int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldNotIn(FieldVersion, vs...))
-}
-
-// VersionGT applies the GT predicate on the "version" field.
-func VersionGT(v int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldGT(FieldVersion, v))
-}
-
-// VersionGTE applies the GTE predicate on the "version" field.
-func VersionGTE(v int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldGTE(FieldVersion, v))
-}
-
-// VersionLT applies the LT predicate on the "version" field.
-func VersionLT(v int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldLT(FieldVersion, v))
-}
-
-// VersionLTE applies the LTE predicate on the "version" field.
-func VersionLTE(v int) predicate.PayOrder {
-	return predicate.PayOrder(sql.FieldLTE(FieldVersion, v))
 }
 
 // OutTradeNoEQ applies the EQ predicate on the "outTradeNo" field.

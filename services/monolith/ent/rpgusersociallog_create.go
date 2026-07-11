@@ -36,48 +36,6 @@ func (ruslc *RpgUserSocialLogCreate) SetNillableCreateTime(t *time.Time) *RpgUse
 	return ruslc
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (ruslc *RpgUserSocialLogCreate) SetUpdateTime(t time.Time) *RpgUserSocialLogCreate {
-	ruslc.mutation.SetUpdateTime(t)
-	return ruslc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (ruslc *RpgUserSocialLogCreate) SetNillableUpdateTime(t *time.Time) *RpgUserSocialLogCreate {
-	if t != nil {
-		ruslc.SetUpdateTime(*t)
-	}
-	return ruslc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ruslc *RpgUserSocialLogCreate) SetIsDelete(b bool) *RpgUserSocialLogCreate {
-	ruslc.mutation.SetIsDelete(b)
-	return ruslc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruslc *RpgUserSocialLogCreate) SetNillableIsDelete(b *bool) *RpgUserSocialLogCreate {
-	if b != nil {
-		ruslc.SetIsDelete(*b)
-	}
-	return ruslc
-}
-
-// SetVersion sets the "version" field.
-func (ruslc *RpgUserSocialLogCreate) SetVersion(i int) *RpgUserSocialLogCreate {
-	ruslc.mutation.SetVersion(i)
-	return ruslc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruslc *RpgUserSocialLogCreate) SetNillableVersion(i *int) *RpgUserSocialLogCreate {
-	if i != nil {
-		ruslc.SetVersion(*i)
-	}
-	return ruslc
-}
-
 // SetFromUid sets the "fromUid" field.
 func (ruslc *RpgUserSocialLogCreate) SetFromUid(i int) *RpgUserSocialLogCreate {
 	ruslc.mutation.SetFromUid(i)
@@ -169,18 +127,6 @@ func (ruslc *RpgUserSocialLogCreate) defaults() {
 		v := rpgusersociallog.DefaultCreateTime()
 		ruslc.mutation.SetCreateTime(v)
 	}
-	if _, ok := ruslc.mutation.UpdateTime(); !ok {
-		v := rpgusersociallog.DefaultUpdateTime()
-		ruslc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := ruslc.mutation.IsDelete(); !ok {
-		v := rpgusersociallog.DefaultIsDelete
-		ruslc.mutation.SetIsDelete(v)
-	}
-	if _, ok := ruslc.mutation.Version(); !ok {
-		v := rpgusersociallog.DefaultVersion
-		ruslc.mutation.SetVersion(v)
-	}
 	if _, ok := ruslc.mutation.CostCurrency(); !ok {
 		v := rpgusersociallog.DefaultCostCurrency
 		ruslc.mutation.SetCostCurrency(v)
@@ -195,15 +141,6 @@ func (ruslc *RpgUserSocialLogCreate) defaults() {
 func (ruslc *RpgUserSocialLogCreate) check() error {
 	if _, ok := ruslc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserSocialLog.createTime"`)}
-	}
-	if _, ok := ruslc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserSocialLog.updateTime"`)}
-	}
-	if _, ok := ruslc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserSocialLog.isDelete"`)}
-	}
-	if _, ok := ruslc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserSocialLog.version"`)}
 	}
 	if _, ok := ruslc.mutation.FromUid(); !ok {
 		return &ValidationError{Name: "fromUid", err: errors.New(`ent: missing required field "RpgUserSocialLog.fromUid"`)}
@@ -256,18 +193,6 @@ func (ruslc *RpgUserSocialLogCreate) createSpec() (*RpgUserSocialLog, *sqlgraph.
 	if value, ok := ruslc.mutation.CreateTime(); ok {
 		_spec.SetField(rpgusersociallog.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
-	}
-	if value, ok := ruslc.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgusersociallog.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := ruslc.mutation.IsDelete(); ok {
-		_spec.SetField(rpgusersociallog.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := ruslc.mutation.Version(); ok {
-		_spec.SetField(rpgusersociallog.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := ruslc.mutation.FromUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldFromUid, field.TypeInt, value)
@@ -340,48 +265,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserSocialLogUpsert) SetUpdateTime(v time.Time) *RpgUserSocialLogUpsert {
-	u.Set(rpgusersociallog.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsert) UpdateUpdateTime() *RpgUserSocialLogUpsert {
-	u.SetExcluded(rpgusersociallog.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserSocialLogUpsert) SetIsDelete(v bool) *RpgUserSocialLogUpsert {
-	u.Set(rpgusersociallog.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsert) UpdateIsDelete() *RpgUserSocialLogUpsert {
-	u.SetExcluded(rpgusersociallog.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserSocialLogUpsert) SetVersion(v int) *RpgUserSocialLogUpsert {
-	u.Set(rpgusersociallog.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsert) UpdateVersion() *RpgUserSocialLogUpsert {
-	u.SetExcluded(rpgusersociallog.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserSocialLogUpsert) AddVersion(v int) *RpgUserSocialLogUpsert {
-	u.Add(rpgusersociallog.FieldVersion, v)
-	return u
-}
 
 // SetFromUid sets the "fromUid" field.
 func (u *RpgUserSocialLogUpsert) SetFromUid(v int) *RpgUserSocialLogUpsert {
@@ -516,55 +399,6 @@ func (u *RpgUserSocialLogUpsertOne) Update(set func(*RpgUserSocialLogUpsert)) *R
 		set(&RpgUserSocialLogUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserSocialLogUpsertOne) SetUpdateTime(v time.Time) *RpgUserSocialLogUpsertOne {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsertOne) UpdateUpdateTime() *RpgUserSocialLogUpsertOne {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserSocialLogUpsertOne) SetIsDelete(v bool) *RpgUserSocialLogUpsertOne {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsertOne) UpdateIsDelete() *RpgUserSocialLogUpsertOne {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserSocialLogUpsertOne) SetVersion(v int) *RpgUserSocialLogUpsertOne {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserSocialLogUpsertOne) AddVersion(v int) *RpgUserSocialLogUpsertOne {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsertOne) UpdateVersion() *RpgUserSocialLogUpsertOne {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetFromUid sets the "fromUid" field.
@@ -880,55 +714,6 @@ func (u *RpgUserSocialLogUpsertBulk) Update(set func(*RpgUserSocialLogUpsert)) *
 		set(&RpgUserSocialLogUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserSocialLogUpsertBulk) SetUpdateTime(v time.Time) *RpgUserSocialLogUpsertBulk {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsertBulk) UpdateUpdateTime() *RpgUserSocialLogUpsertBulk {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserSocialLogUpsertBulk) SetIsDelete(v bool) *RpgUserSocialLogUpsertBulk {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsertBulk) UpdateIsDelete() *RpgUserSocialLogUpsertBulk {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserSocialLogUpsertBulk) SetVersion(v int) *RpgUserSocialLogUpsertBulk {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserSocialLogUpsertBulk) AddVersion(v int) *RpgUserSocialLogUpsertBulk {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserSocialLogUpsertBulk) UpdateVersion() *RpgUserSocialLogUpsertBulk {
-	return u.Update(func(s *RpgUserSocialLogUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetFromUid sets the "fromUid" field.

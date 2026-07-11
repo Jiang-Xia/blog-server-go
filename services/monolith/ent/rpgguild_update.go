@@ -34,41 +34,6 @@ func (rgu *RpgGuildUpdate) SetUpdateTime(t time.Time) *RpgGuildUpdate {
 	return rgu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (rgu *RpgGuildUpdate) SetIsDelete(b bool) *RpgGuildUpdate {
-	rgu.mutation.SetIsDelete(b)
-	return rgu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rgu *RpgGuildUpdate) SetNillableIsDelete(b *bool) *RpgGuildUpdate {
-	if b != nil {
-		rgu.SetIsDelete(*b)
-	}
-	return rgu
-}
-
-// SetVersion sets the "version" field.
-func (rgu *RpgGuildUpdate) SetVersion(i int) *RpgGuildUpdate {
-	rgu.mutation.ResetVersion()
-	rgu.mutation.SetVersion(i)
-	return rgu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rgu *RpgGuildUpdate) SetNillableVersion(i *int) *RpgGuildUpdate {
-	if i != nil {
-		rgu.SetVersion(*i)
-	}
-	return rgu
-}
-
-// AddVersion adds i to the "version" field.
-func (rgu *RpgGuildUpdate) AddVersion(i int) *RpgGuildUpdate {
-	rgu.mutation.AddVersion(i)
-	return rgu
-}
-
 // SetLeaderUid sets the "leaderUid" field.
 func (rgu *RpgGuildUpdate) SetLeaderUid(i int) *RpgGuildUpdate {
 	rgu.mutation.ResetLeaderUid()
@@ -218,15 +183,6 @@ func (rgu *RpgGuildUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := rgu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgguild.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := rgu.mutation.IsDelete(); ok {
-		_spec.SetField(rpgguild.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rgu.mutation.Version(); ok {
-		_spec.SetField(rpgguild.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rgu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgguild.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := rgu.mutation.LeaderUid(); ok {
 		_spec.SetField(rpgguild.FieldLeaderUid, field.TypeInt, value)
 	}
@@ -277,41 +233,6 @@ type RpgGuildUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (rguo *RpgGuildUpdateOne) SetUpdateTime(t time.Time) *RpgGuildUpdateOne {
 	rguo.mutation.SetUpdateTime(t)
-	return rguo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rguo *RpgGuildUpdateOne) SetIsDelete(b bool) *RpgGuildUpdateOne {
-	rguo.mutation.SetIsDelete(b)
-	return rguo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rguo *RpgGuildUpdateOne) SetNillableIsDelete(b *bool) *RpgGuildUpdateOne {
-	if b != nil {
-		rguo.SetIsDelete(*b)
-	}
-	return rguo
-}
-
-// SetVersion sets the "version" field.
-func (rguo *RpgGuildUpdateOne) SetVersion(i int) *RpgGuildUpdateOne {
-	rguo.mutation.ResetVersion()
-	rguo.mutation.SetVersion(i)
-	return rguo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rguo *RpgGuildUpdateOne) SetNillableVersion(i *int) *RpgGuildUpdateOne {
-	if i != nil {
-		rguo.SetVersion(*i)
-	}
-	return rguo
-}
-
-// AddVersion adds i to the "version" field.
-func (rguo *RpgGuildUpdateOne) AddVersion(i int) *RpgGuildUpdateOne {
-	rguo.mutation.AddVersion(i)
 	return rguo
 }
 
@@ -493,15 +414,6 @@ func (rguo *RpgGuildUpdateOne) sqlSave(ctx context.Context) (_node *RpgGuild, er
 	}
 	if value, ok := rguo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgguild.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rguo.mutation.IsDelete(); ok {
-		_spec.SetField(rpgguild.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rguo.mutation.Version(); ok {
-		_spec.SetField(rpgguild.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rguo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgguild.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rguo.mutation.LeaderUid(); ok {
 		_spec.SetField(rpgguild.FieldLeaderUid, field.TypeInt, value)

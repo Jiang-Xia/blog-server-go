@@ -20,12 +20,6 @@ type RpgUserSocialLog struct {
 	ID int `json:"id,omitempty"`
 	// 创建时间
 	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 发起者UID
 	FromUid int `json:"fromUid,omitempty"`
 	// 目标UID
@@ -44,13 +38,11 @@ func (*RpgUserSocialLog) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpgusersociallog.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpgusersociallog.FieldID, rpgusersociallog.FieldVersion, rpgusersociallog.FieldFromUid, rpgusersociallog.FieldToUid, rpgusersociallog.FieldCostCurrency, rpgusersociallog.FieldHpDelta:
+		case rpgusersociallog.FieldID, rpgusersociallog.FieldFromUid, rpgusersociallog.FieldToUid, rpgusersociallog.FieldCostCurrency, rpgusersociallog.FieldHpDelta:
 			values[i] = new(sql.NullInt64)
 		case rpgusersociallog.FieldAction:
 			values[i] = new(sql.NullString)
-		case rpgusersociallog.FieldCreateTime, rpgusersociallog.FieldUpdateTime:
+		case rpgusersociallog.FieldCreateTime:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -78,24 +70,6 @@ func (rusl *RpgUserSocialLog) assignValues(columns []string, values []any) error
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
 				rusl.CreateTime = value.Time
-			}
-		case rpgusersociallog.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				rusl.UpdateTime = value.Time
-			}
-		case rpgusersociallog.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				rusl.IsDelete = value.Bool
-			}
-		case rpgusersociallog.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				rusl.Version = int(value.Int64)
 			}
 		case rpgusersociallog.FieldFromUid:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -165,15 +139,6 @@ func (rusl *RpgUserSocialLog) String() string {
 	builder.WriteString(fmt.Sprintf("id=%v, ", rusl.ID))
 	builder.WriteString("createTime=")
 	builder.WriteString(rusl.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(rusl.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", rusl.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", rusl.Version))
 	builder.WriteString(", ")
 	builder.WriteString("fromUid=")
 	builder.WriteString(fmt.Sprintf("%v", rusl.FromUid))

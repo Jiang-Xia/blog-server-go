@@ -22,10 +22,6 @@ type RpgUserQuestProgress struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 用户ID
 	UID int `json:"uid,omitempty"`
 	// 关联 Quest.code
@@ -46,9 +42,7 @@ func (*RpgUserQuestProgress) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpguserquestprogress.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpguserquestprogress.FieldID, rpguserquestprogress.FieldVersion, rpguserquestprogress.FieldUID, rpguserquestprogress.FieldProgress, rpguserquestprogress.FieldCompleted, rpguserquestprogress.FieldClaimed:
+		case rpguserquestprogress.FieldID, rpguserquestprogress.FieldUID, rpguserquestprogress.FieldProgress, rpguserquestprogress.FieldCompleted, rpguserquestprogress.FieldClaimed:
 			values[i] = new(sql.NullInt64)
 		case rpguserquestprogress.FieldQuestCode:
 			values[i] = new(sql.NullString)
@@ -86,18 +80,6 @@ func (ruqp *RpgUserQuestProgress) assignValues(columns []string, values []any) e
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				ruqp.UpdateTime = value.Time
-			}
-		case rpguserquestprogress.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				ruqp.IsDelete = value.Bool
-			}
-		case rpguserquestprogress.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				ruqp.Version = int(value.Int64)
 			}
 		case rpguserquestprogress.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -176,12 +158,6 @@ func (ruqp *RpgUserQuestProgress) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(ruqp.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", ruqp.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", ruqp.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", ruqp.UID))

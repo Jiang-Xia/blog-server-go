@@ -34,41 +34,6 @@ func (ricu *RpgItemConfigUpdate) SetUpdateTime(t time.Time) *RpgItemConfigUpdate
 	return ricu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (ricu *RpgItemConfigUpdate) SetIsDelete(b bool) *RpgItemConfigUpdate {
-	ricu.mutation.SetIsDelete(b)
-	return ricu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ricu *RpgItemConfigUpdate) SetNillableIsDelete(b *bool) *RpgItemConfigUpdate {
-	if b != nil {
-		ricu.SetIsDelete(*b)
-	}
-	return ricu
-}
-
-// SetVersion sets the "version" field.
-func (ricu *RpgItemConfigUpdate) SetVersion(i int) *RpgItemConfigUpdate {
-	ricu.mutation.ResetVersion()
-	ricu.mutation.SetVersion(i)
-	return ricu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ricu *RpgItemConfigUpdate) SetNillableVersion(i *int) *RpgItemConfigUpdate {
-	if i != nil {
-		ricu.SetVersion(*i)
-	}
-	return ricu
-}
-
-// AddVersion adds i to the "version" field.
-func (ricu *RpgItemConfigUpdate) AddVersion(i int) *RpgItemConfigUpdate {
-	ricu.mutation.AddVersion(i)
-	return ricu
-}
-
 // SetCode sets the "code" field.
 func (ricu *RpgItemConfigUpdate) SetCode(s string) *RpgItemConfigUpdate {
 	ricu.mutation.SetCode(s)
@@ -303,15 +268,6 @@ func (ricu *RpgItemConfigUpdate) sqlSave(ctx context.Context) (n int, err error)
 	if value, ok := ricu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgitemconfig.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := ricu.mutation.IsDelete(); ok {
-		_spec.SetField(rpgitemconfig.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ricu.mutation.Version(); ok {
-		_spec.SetField(rpgitemconfig.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ricu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgitemconfig.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := ricu.mutation.Code(); ok {
 		_spec.SetField(rpgitemconfig.FieldCode, field.TypeString, value)
 	}
@@ -380,41 +336,6 @@ type RpgItemConfigUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (ricuo *RpgItemConfigUpdateOne) SetUpdateTime(t time.Time) *RpgItemConfigUpdateOne {
 	ricuo.mutation.SetUpdateTime(t)
-	return ricuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ricuo *RpgItemConfigUpdateOne) SetIsDelete(b bool) *RpgItemConfigUpdateOne {
-	ricuo.mutation.SetIsDelete(b)
-	return ricuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ricuo *RpgItemConfigUpdateOne) SetNillableIsDelete(b *bool) *RpgItemConfigUpdateOne {
-	if b != nil {
-		ricuo.SetIsDelete(*b)
-	}
-	return ricuo
-}
-
-// SetVersion sets the "version" field.
-func (ricuo *RpgItemConfigUpdateOne) SetVersion(i int) *RpgItemConfigUpdateOne {
-	ricuo.mutation.ResetVersion()
-	ricuo.mutation.SetVersion(i)
-	return ricuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ricuo *RpgItemConfigUpdateOne) SetNillableVersion(i *int) *RpgItemConfigUpdateOne {
-	if i != nil {
-		ricuo.SetVersion(*i)
-	}
-	return ricuo
-}
-
-// AddVersion adds i to the "version" field.
-func (ricuo *RpgItemConfigUpdateOne) AddVersion(i int) *RpgItemConfigUpdateOne {
-	ricuo.mutation.AddVersion(i)
 	return ricuo
 }
 
@@ -681,15 +602,6 @@ func (ricuo *RpgItemConfigUpdateOne) sqlSave(ctx context.Context) (_node *RpgIte
 	}
 	if value, ok := ricuo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgitemconfig.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := ricuo.mutation.IsDelete(); ok {
-		_spec.SetField(rpgitemconfig.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ricuo.mutation.Version(); ok {
-		_spec.SetField(rpgitemconfig.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ricuo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgitemconfig.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := ricuo.mutation.Code(); ok {
 		_spec.SetField(rpgitemconfig.FieldCode, field.TypeString, value)

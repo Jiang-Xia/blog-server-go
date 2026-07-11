@@ -36,48 +36,6 @@ func (rubc *RpgUserBuffCreate) SetNillableCreateTime(t *time.Time) *RpgUserBuffC
 	return rubc
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (rubc *RpgUserBuffCreate) SetUpdateTime(t time.Time) *RpgUserBuffCreate {
-	rubc.mutation.SetUpdateTime(t)
-	return rubc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (rubc *RpgUserBuffCreate) SetNillableUpdateTime(t *time.Time) *RpgUserBuffCreate {
-	if t != nil {
-		rubc.SetUpdateTime(*t)
-	}
-	return rubc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rubc *RpgUserBuffCreate) SetIsDelete(b bool) *RpgUserBuffCreate {
-	rubc.mutation.SetIsDelete(b)
-	return rubc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rubc *RpgUserBuffCreate) SetNillableIsDelete(b *bool) *RpgUserBuffCreate {
-	if b != nil {
-		rubc.SetIsDelete(*b)
-	}
-	return rubc
-}
-
-// SetVersion sets the "version" field.
-func (rubc *RpgUserBuffCreate) SetVersion(i int) *RpgUserBuffCreate {
-	rubc.mutation.SetVersion(i)
-	return rubc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rubc *RpgUserBuffCreate) SetNillableVersion(i *int) *RpgUserBuffCreate {
-	if i != nil {
-		rubc.SetVersion(*i)
-	}
-	return rubc
-}
-
 // SetUID sets the "uid" field.
 func (rubc *RpgUserBuffCreate) SetUID(i int) *RpgUserBuffCreate {
 	rubc.mutation.SetUID(i)
@@ -249,18 +207,6 @@ func (rubc *RpgUserBuffCreate) defaults() {
 		v := rpguserbuff.DefaultCreateTime()
 		rubc.mutation.SetCreateTime(v)
 	}
-	if _, ok := rubc.mutation.UpdateTime(); !ok {
-		v := rpguserbuff.DefaultUpdateTime()
-		rubc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := rubc.mutation.IsDelete(); !ok {
-		v := rpguserbuff.DefaultIsDelete
-		rubc.mutation.SetIsDelete(v)
-	}
-	if _, ok := rubc.mutation.Version(); !ok {
-		v := rpguserbuff.DefaultVersion
-		rubc.mutation.SetVersion(v)
-	}
 	if _, ok := rubc.mutation.RemainingUses(); !ok {
 		v := rpguserbuff.DefaultRemainingUses
 		rubc.mutation.SetRemainingUses(v)
@@ -279,15 +225,6 @@ func (rubc *RpgUserBuffCreate) defaults() {
 func (rubc *RpgUserBuffCreate) check() error {
 	if _, ok := rubc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgUserBuff.createTime"`)}
-	}
-	if _, ok := rubc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserBuff.updateTime"`)}
-	}
-	if _, ok := rubc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserBuff.isDelete"`)}
-	}
-	if _, ok := rubc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserBuff.version"`)}
 	}
 	if _, ok := rubc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserBuff.uid"`)}
@@ -355,18 +292,6 @@ func (rubc *RpgUserBuffCreate) createSpec() (*RpgUserBuff, *sqlgraph.CreateSpec)
 	if value, ok := rubc.mutation.CreateTime(); ok {
 		_spec.SetField(rpguserbuff.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
-	}
-	if value, ok := rubc.mutation.UpdateTime(); ok {
-		_spec.SetField(rpguserbuff.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := rubc.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserbuff.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := rubc.mutation.Version(); ok {
-		_spec.SetField(rpguserbuff.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := rubc.mutation.UID(); ok {
 		_spec.SetField(rpguserbuff.FieldUID, field.TypeInt, value)
@@ -471,48 +396,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserBuffUpsert) SetUpdateTime(v time.Time) *RpgUserBuffUpsert {
-	u.Set(rpguserbuff.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserBuffUpsert) UpdateUpdateTime() *RpgUserBuffUpsert {
-	u.SetExcluded(rpguserbuff.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserBuffUpsert) SetIsDelete(v bool) *RpgUserBuffUpsert {
-	u.Set(rpguserbuff.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserBuffUpsert) UpdateIsDelete() *RpgUserBuffUpsert {
-	u.SetExcluded(rpguserbuff.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserBuffUpsert) SetVersion(v int) *RpgUserBuffUpsert {
-	u.Set(rpguserbuff.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserBuffUpsert) UpdateVersion() *RpgUserBuffUpsert {
-	u.SetExcluded(rpguserbuff.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserBuffUpsert) AddVersion(v int) *RpgUserBuffUpsert {
-	u.Add(rpguserbuff.FieldVersion, v)
-	return u
-}
 
 // SetUID sets the "uid" field.
 func (u *RpgUserBuffUpsert) SetUID(v int) *RpgUserBuffUpsert {
@@ -767,55 +650,6 @@ func (u *RpgUserBuffUpsertOne) Update(set func(*RpgUserBuffUpsert)) *RpgUserBuff
 		set(&RpgUserBuffUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserBuffUpsertOne) SetUpdateTime(v time.Time) *RpgUserBuffUpsertOne {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserBuffUpsertOne) UpdateUpdateTime() *RpgUserBuffUpsertOne {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserBuffUpsertOne) SetIsDelete(v bool) *RpgUserBuffUpsertOne {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserBuffUpsertOne) UpdateIsDelete() *RpgUserBuffUpsertOne {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserBuffUpsertOne) SetVersion(v int) *RpgUserBuffUpsertOne {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserBuffUpsertOne) AddVersion(v int) *RpgUserBuffUpsertOne {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserBuffUpsertOne) UpdateVersion() *RpgUserBuffUpsertOne {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.
@@ -1271,55 +1105,6 @@ func (u *RpgUserBuffUpsertBulk) Update(set func(*RpgUserBuffUpsert)) *RpgUserBuf
 		set(&RpgUserBuffUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgUserBuffUpsertBulk) SetUpdateTime(v time.Time) *RpgUserBuffUpsertBulk {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgUserBuffUpsertBulk) UpdateUpdateTime() *RpgUserBuffUpsertBulk {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserBuffUpsertBulk) SetIsDelete(v bool) *RpgUserBuffUpsertBulk {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserBuffUpsertBulk) UpdateIsDelete() *RpgUserBuffUpsertBulk {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserBuffUpsertBulk) SetVersion(v int) *RpgUserBuffUpsertBulk {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserBuffUpsertBulk) AddVersion(v int) *RpgUserBuffUpsertBulk {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserBuffUpsertBulk) UpdateVersion() *RpgUserBuffUpsertBulk {
-	return u.Update(func(s *RpgUserBuffUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.

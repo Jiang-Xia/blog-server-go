@@ -18,19 +18,19 @@ func (RpgGuild) Annotations() []schema.Annotation {
 	}
 }
 
-// Mixin 注入 TypeORM 公共时间戳与软删除字段。
+// Mixin 注入 Nest 公共时间戳字段（TimestampMixin）。
 func (RpgGuild) Mixin() []ent.Mixin {
-	return []ent.Mixin{TimeMixin{}}
+	return []ent.Mixin{TimestampMixin{}}
 }
 
 // Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。
 func (RpgGuild) Fields() []ent.Field {
 	return []ent.Field{
 		field.Int("id").StorageKey("id").Comment("自身id"),
-		field.Int("leaderUid").StorageKey("leaderUid").Comment("会长用户ID"),
-		field.Text("announcement").StorageKey("announcement").Comment("公会公告").Optional().Nillable(),
-		field.Int("memberCount").StorageKey("memberCount").Comment("成员数（冗余字段）").Default(1),
+		field.Int("leaderUid").StorageKey("leaderUid"),
+		field.Text("announcement").StorageKey("announcement").Optional().Nillable(),
+		field.Int("memberCount").StorageKey("memberCount").Default(1),
 		field.Text("effectJson").StorageKey("effectJson").Comment("公会名称").Optional().Nillable(),
-		field.String("name").StorageKey("name").Comment("公会名称").Unique(),
+		field.String("name").StorageKey("name").Unique(),
 	}
 }

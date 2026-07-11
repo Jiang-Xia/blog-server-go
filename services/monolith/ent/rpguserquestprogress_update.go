@@ -34,41 +34,6 @@ func (ruqpu *RpgUserQuestProgressUpdate) SetUpdateTime(t time.Time) *RpgUserQues
 	return ruqpu
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (ruqpu *RpgUserQuestProgressUpdate) SetIsDelete(b bool) *RpgUserQuestProgressUpdate {
-	ruqpu.mutation.SetIsDelete(b)
-	return ruqpu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruqpu *RpgUserQuestProgressUpdate) SetNillableIsDelete(b *bool) *RpgUserQuestProgressUpdate {
-	if b != nil {
-		ruqpu.SetIsDelete(*b)
-	}
-	return ruqpu
-}
-
-// SetVersion sets the "version" field.
-func (ruqpu *RpgUserQuestProgressUpdate) SetVersion(i int) *RpgUserQuestProgressUpdate {
-	ruqpu.mutation.ResetVersion()
-	ruqpu.mutation.SetVersion(i)
-	return ruqpu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruqpu *RpgUserQuestProgressUpdate) SetNillableVersion(i *int) *RpgUserQuestProgressUpdate {
-	if i != nil {
-		ruqpu.SetVersion(*i)
-	}
-	return ruqpu
-}
-
-// AddVersion adds i to the "version" field.
-func (ruqpu *RpgUserQuestProgressUpdate) AddVersion(i int) *RpgUserQuestProgressUpdate {
-	ruqpu.mutation.AddVersion(i)
-	return ruqpu
-}
-
 // SetUID sets the "uid" field.
 func (ruqpu *RpgUserQuestProgressUpdate) SetUID(i int) *RpgUserQuestProgressUpdate {
 	ruqpu.mutation.ResetUID()
@@ -234,15 +199,6 @@ func (ruqpu *RpgUserQuestProgressUpdate) sqlSave(ctx context.Context) (n int, er
 	if value, ok := ruqpu.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := ruqpu.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserquestprogress.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ruqpu.mutation.Version(); ok {
-		_spec.SetField(rpguserquestprogress.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ruqpu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserquestprogress.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := ruqpu.mutation.UID(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUID, field.TypeInt, value)
 	}
@@ -296,41 +252,6 @@ type RpgUserQuestProgressUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (ruqpuo *RpgUserQuestProgressUpdateOne) SetUpdateTime(t time.Time) *RpgUserQuestProgressUpdateOne {
 	ruqpuo.mutation.SetUpdateTime(t)
-	return ruqpuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ruqpuo *RpgUserQuestProgressUpdateOne) SetIsDelete(b bool) *RpgUserQuestProgressUpdateOne {
-	ruqpuo.mutation.SetIsDelete(b)
-	return ruqpuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruqpuo *RpgUserQuestProgressUpdateOne) SetNillableIsDelete(b *bool) *RpgUserQuestProgressUpdateOne {
-	if b != nil {
-		ruqpuo.SetIsDelete(*b)
-	}
-	return ruqpuo
-}
-
-// SetVersion sets the "version" field.
-func (ruqpuo *RpgUserQuestProgressUpdateOne) SetVersion(i int) *RpgUserQuestProgressUpdateOne {
-	ruqpuo.mutation.ResetVersion()
-	ruqpuo.mutation.SetVersion(i)
-	return ruqpuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruqpuo *RpgUserQuestProgressUpdateOne) SetNillableVersion(i *int) *RpgUserQuestProgressUpdateOne {
-	if i != nil {
-		ruqpuo.SetVersion(*i)
-	}
-	return ruqpuo
-}
-
-// AddVersion adds i to the "version" field.
-func (ruqpuo *RpgUserQuestProgressUpdateOne) AddVersion(i int) *RpgUserQuestProgressUpdateOne {
-	ruqpuo.mutation.AddVersion(i)
 	return ruqpuo
 }
 
@@ -528,15 +449,6 @@ func (ruqpuo *RpgUserQuestProgressUpdateOne) sqlSave(ctx context.Context) (_node
 	}
 	if value, ok := ruqpuo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := ruqpuo.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserquestprogress.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ruqpuo.mutation.Version(); ok {
-		_spec.SetField(rpguserquestprogress.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ruqpuo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserquestprogress.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := ruqpuo.mutation.UID(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUID, field.TypeInt, value)

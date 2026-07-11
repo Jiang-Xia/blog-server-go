@@ -36,48 +36,6 @@ func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableCreateTime(t *time.Time) *R
 	return rlsc
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (rlsc *RpgLeaderboardSnapshotCreate) SetUpdateTime(t time.Time) *RpgLeaderboardSnapshotCreate {
-	rlsc.mutation.SetUpdateTime(t)
-	return rlsc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableUpdateTime(t *time.Time) *RpgLeaderboardSnapshotCreate {
-	if t != nil {
-		rlsc.SetUpdateTime(*t)
-	}
-	return rlsc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rlsc *RpgLeaderboardSnapshotCreate) SetIsDelete(b bool) *RpgLeaderboardSnapshotCreate {
-	rlsc.mutation.SetIsDelete(b)
-	return rlsc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableIsDelete(b *bool) *RpgLeaderboardSnapshotCreate {
-	if b != nil {
-		rlsc.SetIsDelete(*b)
-	}
-	return rlsc
-}
-
-// SetVersion sets the "version" field.
-func (rlsc *RpgLeaderboardSnapshotCreate) SetVersion(i int) *RpgLeaderboardSnapshotCreate {
-	rlsc.mutation.SetVersion(i)
-	return rlsc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rlsc *RpgLeaderboardSnapshotCreate) SetNillableVersion(i *int) *RpgLeaderboardSnapshotCreate {
-	if i != nil {
-		rlsc.SetVersion(*i)
-	}
-	return rlsc
-}
-
 // SetUID sets the "uid" field.
 func (rlsc *RpgLeaderboardSnapshotCreate) SetUID(i int) *RpgLeaderboardSnapshotCreate {
 	rlsc.mutation.SetUID(i)
@@ -175,18 +133,6 @@ func (rlsc *RpgLeaderboardSnapshotCreate) defaults() {
 		v := rpgleaderboardsnapshot.DefaultCreateTime()
 		rlsc.mutation.SetCreateTime(v)
 	}
-	if _, ok := rlsc.mutation.UpdateTime(); !ok {
-		v := rpgleaderboardsnapshot.DefaultUpdateTime()
-		rlsc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := rlsc.mutation.IsDelete(); !ok {
-		v := rpgleaderboardsnapshot.DefaultIsDelete
-		rlsc.mutation.SetIsDelete(v)
-	}
-	if _, ok := rlsc.mutation.Version(); !ok {
-		v := rpgleaderboardsnapshot.DefaultVersion
-		rlsc.mutation.SetVersion(v)
-	}
 	if _, ok := rlsc.mutation.Score(); !ok {
 		v := rpgleaderboardsnapshot.DefaultScore
 		rlsc.mutation.SetScore(v)
@@ -201,15 +147,6 @@ func (rlsc *RpgLeaderboardSnapshotCreate) defaults() {
 func (rlsc *RpgLeaderboardSnapshotCreate) check() error {
 	if _, ok := rlsc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.createTime"`)}
-	}
-	if _, ok := rlsc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.updateTime"`)}
-	}
-	if _, ok := rlsc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.isDelete"`)}
-	}
-	if _, ok := rlsc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.version"`)}
 	}
 	if _, ok := rlsc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgLeaderboardSnapshot.uid"`)}
@@ -265,18 +202,6 @@ func (rlsc *RpgLeaderboardSnapshotCreate) createSpec() (*RpgLeaderboardSnapshot,
 	if value, ok := rlsc.mutation.CreateTime(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
-	}
-	if value, ok := rlsc.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := rlsc.mutation.IsDelete(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := rlsc.mutation.Version(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := rlsc.mutation.UID(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
@@ -353,48 +278,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgLeaderboardSnapshotUpsert) SetUpdateTime(v time.Time) *RpgLeaderboardSnapshotUpsert {
-	u.Set(rpgleaderboardsnapshot.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsert) UpdateUpdateTime() *RpgLeaderboardSnapshotUpsert {
-	u.SetExcluded(rpgleaderboardsnapshot.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgLeaderboardSnapshotUpsert) SetIsDelete(v bool) *RpgLeaderboardSnapshotUpsert {
-	u.Set(rpgleaderboardsnapshot.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsert) UpdateIsDelete() *RpgLeaderboardSnapshotUpsert {
-	u.SetExcluded(rpgleaderboardsnapshot.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgLeaderboardSnapshotUpsert) SetVersion(v int) *RpgLeaderboardSnapshotUpsert {
-	u.Set(rpgleaderboardsnapshot.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsert) UpdateVersion() *RpgLeaderboardSnapshotUpsert {
-	u.SetExcluded(rpgleaderboardsnapshot.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgLeaderboardSnapshotUpsert) AddVersion(v int) *RpgLeaderboardSnapshotUpsert {
-	u.Add(rpgleaderboardsnapshot.FieldVersion, v)
-	return u
-}
 
 // SetUID sets the "uid" field.
 func (u *RpgLeaderboardSnapshotUpsert) SetUID(v int) *RpgLeaderboardSnapshotUpsert {
@@ -535,55 +418,6 @@ func (u *RpgLeaderboardSnapshotUpsertOne) Update(set func(*RpgLeaderboardSnapsho
 		set(&RpgLeaderboardSnapshotUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgLeaderboardSnapshotUpsertOne) SetUpdateTime(v time.Time) *RpgLeaderboardSnapshotUpsertOne {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsertOne) UpdateUpdateTime() *RpgLeaderboardSnapshotUpsertOne {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgLeaderboardSnapshotUpsertOne) SetIsDelete(v bool) *RpgLeaderboardSnapshotUpsertOne {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsertOne) UpdateIsDelete() *RpgLeaderboardSnapshotUpsertOne {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgLeaderboardSnapshotUpsertOne) SetVersion(v int) *RpgLeaderboardSnapshotUpsertOne {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgLeaderboardSnapshotUpsertOne) AddVersion(v int) *RpgLeaderboardSnapshotUpsertOne {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsertOne) UpdateVersion() *RpgLeaderboardSnapshotUpsertOne {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.
@@ -906,55 +740,6 @@ func (u *RpgLeaderboardSnapshotUpsertBulk) Update(set func(*RpgLeaderboardSnapsh
 		set(&RpgLeaderboardSnapshotUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgLeaderboardSnapshotUpsertBulk) SetUpdateTime(v time.Time) *RpgLeaderboardSnapshotUpsertBulk {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsertBulk) UpdateUpdateTime() *RpgLeaderboardSnapshotUpsertBulk {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgLeaderboardSnapshotUpsertBulk) SetIsDelete(v bool) *RpgLeaderboardSnapshotUpsertBulk {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsertBulk) UpdateIsDelete() *RpgLeaderboardSnapshotUpsertBulk {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgLeaderboardSnapshotUpsertBulk) SetVersion(v int) *RpgLeaderboardSnapshotUpsertBulk {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgLeaderboardSnapshotUpsertBulk) AddVersion(v int) *RpgLeaderboardSnapshotUpsertBulk {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgLeaderboardSnapshotUpsertBulk) UpdateVersion() *RpgLeaderboardSnapshotUpsertBulk {
-	return u.Update(func(s *RpgLeaderboardSnapshotUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.

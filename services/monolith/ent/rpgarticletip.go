@@ -20,12 +20,6 @@ type RpgArticleTip struct {
 	ID int `json:"id,omitempty"`
 	// 创建时间
 	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 打赏者UID
 	UID int `json:"uid,omitempty"`
 	// 文章ID
@@ -42,11 +36,9 @@ func (*RpgArticleTip) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpgarticletip.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpgarticletip.FieldID, rpgarticletip.FieldVersion, rpgarticletip.FieldUID, rpgarticletip.FieldArticleId, rpgarticletip.FieldAuthorUid, rpgarticletip.FieldAmount:
+		case rpgarticletip.FieldID, rpgarticletip.FieldUID, rpgarticletip.FieldArticleId, rpgarticletip.FieldAuthorUid, rpgarticletip.FieldAmount:
 			values[i] = new(sql.NullInt64)
-		case rpgarticletip.FieldCreateTime, rpgarticletip.FieldUpdateTime:
+		case rpgarticletip.FieldCreateTime:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -74,24 +66,6 @@ func (rat *RpgArticleTip) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
 				rat.CreateTime = value.Time
-			}
-		case rpgarticletip.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				rat.UpdateTime = value.Time
-			}
-		case rpgarticletip.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				rat.IsDelete = value.Bool
-			}
-		case rpgarticletip.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				rat.Version = int(value.Int64)
 			}
 		case rpgarticletip.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -155,15 +129,6 @@ func (rat *RpgArticleTip) String() string {
 	builder.WriteString(fmt.Sprintf("id=%v, ", rat.ID))
 	builder.WriteString("createTime=")
 	builder.WriteString(rat.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(rat.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", rat.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", rat.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", rat.UID))

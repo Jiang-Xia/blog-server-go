@@ -22,29 +22,25 @@ type RpgActivity struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
-	// 活动编码
+	// Code holds the value of the "code" field.
 	Code string `json:"code,omitempty"`
-	// 活动名称
+	// Name holds the value of the "name" field.
 	Name string `json:"name,omitempty"`
-	// 开始时间
+	// StartTime holds the value of the "startTime" field.
 	StartTime time.Time `json:"startTime,omitempty"`
-	// 结束时间
+	// EndTime holds the value of the "endTime" field.
 	EndTime time.Time `json:"endTime,omitempty"`
-	// 经验加成倍率（1.0=无加成）
+	// ExpBuffRate holds the value of the "expBuffRate" field.
 	ExpBuffRate float64 `json:"expBuffRate,omitempty"`
-	// 是否启用
+	// Active holds the value of the "active" field.
 	Active int `json:"active,omitempty"`
 	// 活动编码
 	EffectJson *string `json:"effectJson,omitempty"`
-	// 活动描述
+	// Description holds the value of the "description" field.
 	Description string `json:"description,omitempty"`
-	// 活动类型: season/event/festival
+	// ActivityType holds the value of the "activityType" field.
 	ActivityType string `json:"activityType,omitempty"`
-	// 赛季海报URL
+	// PosterUrl holds the value of the "posterUrl" field.
 	PosterUrl    string `json:"posterUrl,omitempty"`
 	selectValues sql.SelectValues
 }
@@ -54,11 +50,9 @@ func (*RpgActivity) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpgactivity.FieldIsDelete:
-			values[i] = new(sql.NullBool)
 		case rpgactivity.FieldExpBuffRate:
 			values[i] = new(sql.NullFloat64)
-		case rpgactivity.FieldID, rpgactivity.FieldVersion, rpgactivity.FieldActive:
+		case rpgactivity.FieldID, rpgactivity.FieldActive:
 			values[i] = new(sql.NullInt64)
 		case rpgactivity.FieldCode, rpgactivity.FieldName, rpgactivity.FieldEffectJson, rpgactivity.FieldDescription, rpgactivity.FieldActivityType, rpgactivity.FieldPosterUrl:
 			values[i] = new(sql.NullString)
@@ -96,18 +90,6 @@ func (ra *RpgActivity) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				ra.UpdateTime = value.Time
-			}
-		case rpgactivity.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				ra.IsDelete = value.Bool
-			}
-		case rpgactivity.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				ra.Version = int(value.Int64)
 			}
 		case rpgactivity.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -211,12 +193,6 @@ func (ra *RpgActivity) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(ra.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", ra.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", ra.Version))
 	builder.WriteString(", ")
 	builder.WriteString("code=")
 	builder.WriteString(ra.Code)

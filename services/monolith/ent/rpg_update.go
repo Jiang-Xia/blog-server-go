@@ -34,41 +34,6 @@ func (ru *RpgUpdate) SetUpdateTime(t time.Time) *RpgUpdate {
 	return ru
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (ru *RpgUpdate) SetIsDelete(b bool) *RpgUpdate {
-	ru.mutation.SetIsDelete(b)
-	return ru
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ru *RpgUpdate) SetNillableIsDelete(b *bool) *RpgUpdate {
-	if b != nil {
-		ru.SetIsDelete(*b)
-	}
-	return ru
-}
-
-// SetVersion sets the "version" field.
-func (ru *RpgUpdate) SetVersion(i int) *RpgUpdate {
-	ru.mutation.ResetVersion()
-	ru.mutation.SetVersion(i)
-	return ru
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ru *RpgUpdate) SetNillableVersion(i *int) *RpgUpdate {
-	if i != nil {
-		ru.SetVersion(*i)
-	}
-	return ru
-}
-
-// AddVersion adds i to the "version" field.
-func (ru *RpgUpdate) AddVersion(i int) *RpgUpdate {
-	ru.mutation.AddVersion(i)
-	return ru
-}
-
 // SetUID sets the "uid" field.
 func (ru *RpgUpdate) SetUID(i int) *RpgUpdate {
 	ru.mutation.ResetUID()
@@ -454,15 +419,6 @@ func (ru *RpgUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := ru.mutation.UpdateTime(); ok {
 		_spec.SetField(rpg.FieldUpdateTime, field.TypeTime, value)
 	}
-	if value, ok := ru.mutation.IsDelete(); ok {
-		_spec.SetField(rpg.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ru.mutation.Version(); ok {
-		_spec.SetField(rpg.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ru.mutation.AddedVersion(); ok {
-		_spec.AddField(rpg.FieldVersion, field.TypeInt, value)
-	}
 	if value, ok := ru.mutation.UID(); ok {
 		_spec.SetField(rpg.FieldUID, field.TypeInt, value)
 	}
@@ -582,41 +538,6 @@ type RpgUpdateOne struct {
 // SetUpdateTime sets the "updateTime" field.
 func (ruo *RpgUpdateOne) SetUpdateTime(t time.Time) *RpgUpdateOne {
 	ruo.mutation.SetUpdateTime(t)
-	return ruo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ruo *RpgUpdateOne) SetIsDelete(b bool) *RpgUpdateOne {
-	ruo.mutation.SetIsDelete(b)
-	return ruo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruo *RpgUpdateOne) SetNillableIsDelete(b *bool) *RpgUpdateOne {
-	if b != nil {
-		ruo.SetIsDelete(*b)
-	}
-	return ruo
-}
-
-// SetVersion sets the "version" field.
-func (ruo *RpgUpdateOne) SetVersion(i int) *RpgUpdateOne {
-	ruo.mutation.ResetVersion()
-	ruo.mutation.SetVersion(i)
-	return ruo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruo *RpgUpdateOne) SetNillableVersion(i *int) *RpgUpdateOne {
-	if i != nil {
-		ruo.SetVersion(*i)
-	}
-	return ruo
-}
-
-// AddVersion adds i to the "version" field.
-func (ruo *RpgUpdateOne) AddVersion(i int) *RpgUpdateOne {
-	ruo.mutation.AddVersion(i)
 	return ruo
 }
 
@@ -1034,15 +955,6 @@ func (ruo *RpgUpdateOne) sqlSave(ctx context.Context) (_node *Rpg, err error) {
 	}
 	if value, ok := ruo.mutation.UpdateTime(); ok {
 		_spec.SetField(rpg.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := ruo.mutation.IsDelete(); ok {
-		_spec.SetField(rpg.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ruo.mutation.Version(); ok {
-		_spec.SetField(rpg.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ruo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpg.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := ruo.mutation.UID(); ok {
 		_spec.SetField(rpg.FieldUID, field.TypeInt, value)

@@ -49,14 +49,14 @@ type CreateInput struct {
 // FindByOutTradeNo 按商户订单号查询。
 func (r *PayOrderRepo) FindByOutTradeNo(ctx context.Context, outTradeNo string) (*ent.PayOrder, error) {
 	return r.client.PayOrder.Query().
-		Where(payorder.OutTradeNoEQ(outTradeNo), payorder.IsDeleteEQ(false)).
+		Where(payorder.OutTradeNoEQ(outTradeNo)).
 		Only(ctx)
 }
 
 // FindByID 按主键查询。
 func (r *PayOrderRepo) FindByID(ctx context.Context, id int) (*ent.PayOrder, error) {
 	return r.client.PayOrder.Query().
-		Where(payorder.IDEQ(id), payorder.IsDeleteEQ(false)).
+		Where(payorder.IDEQ(id)).
 		Only(ctx)
 }
 
@@ -101,7 +101,7 @@ func (r *PayOrderRepo) List(ctx context.Context, f PayOrderListFilter) ([]*ent.P
 	if pageSize <= 0 {
 		pageSize = 20
 	}
-	q := r.client.PayOrder.Query().Where(payorder.IsDeleteEQ(false))
+	q := r.client.PayOrder.Query()
 	if f.OutTradeNo != "" {
 		q = q.Where(payorder.OutTradeNoEQ(f.OutTradeNo))
 	}
@@ -141,15 +141,14 @@ func (r *PayOrderRepo) List(ctx context.Context, f PayOrderListFilter) ([]*ent.P
 	return rows, total, err
 }
 
-// DeleteByIDs 批量软删除本地订单记录。
+// DeleteByIDs 批量删除本地订单记录（Nest pay_order 表无 isDelete，物理删除）。
 func (r *PayOrderRepo) DeleteByIDs(ctx context.Context, ids []int) (int, error) {
 	if len(ids) == 0 {
 		return 0, nil
 	}
-	n, err := r.client.PayOrder.Update().
-		Where(payorder.IDIn(ids...), payorder.IsDeleteEQ(false)).
-		SetIsDelete(true).
-		Save(ctx)
+	n, err := r.client.PayOrder.Delete().
+		Where(payorder.IDIn(ids...)).
+		Exec(ctx)
 	return n, err
 }
 
@@ -158,7 +157,6 @@ func (r *PayOrderRepo) ListPendingByBizTypeAndUID(ctx context.Context, bizType s
 	uidStr := fmt.Sprintf("%d", uid)
 	return r.client.PayOrder.Query().
 		Where(
-			payorder.IsDeleteEQ(false),
 			payorder.StatusEQ(payconst.OrderStatusPending),
 			func(s *sql.Selector) {
 				s.Where(sql.ExprP(

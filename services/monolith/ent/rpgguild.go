@@ -22,19 +22,15 @@ type RpgGuild struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
-	// 会长用户ID
+	// LeaderUid holds the value of the "leaderUid" field.
 	LeaderUid int `json:"leaderUid,omitempty"`
-	// 公会公告
+	// Announcement holds the value of the "announcement" field.
 	Announcement *string `json:"announcement,omitempty"`
-	// 成员数（冗余字段）
+	// MemberCount holds the value of the "memberCount" field.
 	MemberCount int `json:"memberCount,omitempty"`
 	// 公会名称
 	EffectJson *string `json:"effectJson,omitempty"`
-	// 公会名称
+	// Name holds the value of the "name" field.
 	Name         string `json:"name,omitempty"`
 	selectValues sql.SelectValues
 }
@@ -44,9 +40,7 @@ func (*RpgGuild) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpgguild.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpgguild.FieldID, rpgguild.FieldVersion, rpgguild.FieldLeaderUid, rpgguild.FieldMemberCount:
+		case rpgguild.FieldID, rpgguild.FieldLeaderUid, rpgguild.FieldMemberCount:
 			values[i] = new(sql.NullInt64)
 		case rpgguild.FieldAnnouncement, rpgguild.FieldEffectJson, rpgguild.FieldName:
 			values[i] = new(sql.NullString)
@@ -84,18 +78,6 @@ func (rg *RpgGuild) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				rg.UpdateTime = value.Time
-			}
-		case rpgguild.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				rg.IsDelete = value.Bool
-			}
-		case rpgguild.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				rg.Version = int(value.Int64)
 			}
 		case rpgguild.FieldLeaderUid:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -170,12 +152,6 @@ func (rg *RpgGuild) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(rg.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", rg.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", rg.Version))
 	builder.WriteString(", ")
 	builder.WriteString("leaderUid=")
 	builder.WriteString(fmt.Sprintf("%v", rg.LeaderUid))

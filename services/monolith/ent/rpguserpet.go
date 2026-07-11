@@ -22,10 +22,6 @@ type RpgUserPet struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 所属用户ID
 	UID int `json:"uid,omitempty"`
 	// 宠物模板编码 → rpg_item_config.code (item_type=pet)
@@ -46,9 +42,7 @@ func (*RpgUserPet) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpguserpet.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpguserpet.FieldID, rpguserpet.FieldVersion, rpguserpet.FieldUID, rpguserpet.FieldLevel, rpguserpet.FieldExp:
+		case rpguserpet.FieldID, rpguserpet.FieldUID, rpguserpet.FieldLevel, rpguserpet.FieldExp:
 			values[i] = new(sql.NullInt64)
 		case rpguserpet.FieldPetCode, rpguserpet.FieldEffectJson, rpguserpet.FieldNickname:
 			values[i] = new(sql.NullString)
@@ -86,18 +80,6 @@ func (rup *RpgUserPet) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				rup.UpdateTime = value.Time
-			}
-		case rpguserpet.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				rup.IsDelete = value.Bool
-			}
-		case rpguserpet.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				rup.Version = int(value.Int64)
 			}
 		case rpguserpet.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -177,12 +159,6 @@ func (rup *RpgUserPet) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(rup.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", rup.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", rup.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", rup.UID))

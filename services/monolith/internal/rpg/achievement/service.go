@@ -116,6 +116,107 @@ func (s *Service) TrackLevelUp(ctx context.Context, uid, newLevel int) error {
 	return s.trackAbsolute(ctx, uid, "level_up", newLevel)
 }
 
+// GetAllLevelRewardCatalog 等级奖励一览（对齐 Nest：trackEvent=level_up 的成就配置）。
+func (s *Service) GetAllLevelRewardCatalog(ctx context.Context) ([]rpgcore.LevelReward, error) {
+	configs, err := s.listLevelUpAchievementConfigs(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return s.buildLevelRewardCatalog(ctx, configs)
+}
+
+func (s *Service) listLevelUpAchievementConfigs(ctx context.Context) ([]*ent.RpgItemConfig, error) {
+	configs, err := s.repo.ListAchievementConfigs(ctx)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]*ent.RpgItemConfig, 0)
+	for _, cfg := range configs {
+		effect := util.ParseEffectJSON(cfg.EffectJson)
+		if v, ok := effect["achievementConfigured"].(bool); ok && !v {
+			continue
+		}
+		if trackEvent, _ := effect["trackEvent"].(string); trackEvent != "level_up" {
+			continue
+		}
+		out = append(out, cfg)
+	}
+	return out, nil
+}
+
+func (s *Service) buildLevelRewardCatalog(ctx context.Context, configs []*ent.RpgItemConfig) ([]rpgcore.LevelReward, error) {
+	itemCodes := map[string]struct{}{}
+	for _, cfg := range configs {
+		effect := util.ParseEffectJSON(cfg.EffectJson)
+		for _, code := range effectStringSlice(effect["items"]) {
+			itemCodes[code] = struct{}{}
+		}
+	}
+	typeByCode := map[string]string{}
+	if len(itemCodes) > 0 {
+		codes := make([]string, 0, len(itemCodes))
+		for code := range itemCodes {
+			codes = append(codes, code)
+		}
+		rows, err := s.repo.ListItemConfigsByCodes(ctx, codes)
+		if err != nil {
+			return nil, err
+		}
+		for _, row := range rows {
+			typeByCode[row.Code] = row.ItemType
+		}
+	}
+
+	out := make([]rpgcore.LevelReward, 0, len(configs))
+	for _, cfg := range configs {
+		effect := util.ParseEffectJSON(cfg.EffectJson)
+		var avatarFrame, title string
+		for _, code := range effectStringSlice(effect["items"]) {
+			switch typeByCode[code] {
+			case "avatar_frame":
+				avatarFrame = code
+			case "title":
+				title = code
+			}
+		}
+		out = append(out, rpgcore.LevelReward{
+			Level:          intFromEffect(effect["maxProgress"]),
+			CurrencyReward: intFromEffect(effect["currencyReward"]),
+			AvatarFrame:    avatarFrame,
+			Title:          title,
+		})
+	}
+	// 按等级升序（与 Nest sort 一致）
+	for i := 0; i < len(out); i++ {
+		for j := i + 1; j < len(out); j++ {
+			if out[j].Level < out[i].Level {
+				out[i], out[j] = out[j], out[i]
+			}
+		}
+	}
+	if out == nil {
+		out = []rpgcore.LevelReward{}
+	}
+	return out, nil
+}
+
+func effectStringSlice(v interface{}) []string {
+	switch t := v.(type) {
+	case []interface{}:
+		out := make([]string, 0, len(t))
+		for _, item := range t {
+			if s, ok := item.(string); ok && s != "" {
+				out = append(out, s)
+			}
+		}
+		return out
+	case []string:
+		return t
+	default:
+		return nil
+	}
+}
+
 // TrackReputation 声望阈值成就。
 func (s *Service) TrackReputation(ctx context.Context, uid, reputation int) error {
 	return s.trackAbsolute(ctx, uid, "reputation", reputation)

@@ -22,10 +22,6 @@ type Rpg struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 关联user表id，一对一
 	UID int `json:"uid,omitempty"`
 	// 当前经验值
@@ -66,9 +62,7 @@ func (*Rpg) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpg.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpg.FieldID, rpg.FieldVersion, rpg.FieldUID, rpg.FieldExp, rpg.FieldLevel, rpg.FieldLifeValue, rpg.FieldTotalSignDays, rpg.FieldConsecutiveSignDays, rpg.FieldSensitiveHitsCount, rpg.FieldZeroLifeCount, rpg.FieldLotteryTickets, rpg.FieldReputation, rpg.FieldLotteryPityCounter, rpg.FieldLotteryLegendaryPityCounter:
+		case rpg.FieldID, rpg.FieldUID, rpg.FieldExp, rpg.FieldLevel, rpg.FieldLifeValue, rpg.FieldTotalSignDays, rpg.FieldConsecutiveSignDays, rpg.FieldSensitiveHitsCount, rpg.FieldZeroLifeCount, rpg.FieldLotteryTickets, rpg.FieldReputation, rpg.FieldLotteryPityCounter, rpg.FieldLotteryLegendaryPityCounter:
 			values[i] = new(sql.NullInt64)
 		case rpg.FieldEffectJson:
 			values[i] = new(sql.NullString)
@@ -106,18 +100,6 @@ func (r *Rpg) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				r.UpdateTime = value.Time
-			}
-		case rpg.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				r.IsDelete = value.Bool
-			}
-		case rpg.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				r.Version = int(value.Int64)
 			}
 		case rpg.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -260,12 +242,6 @@ func (r *Rpg) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(r.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", r.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", r.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", r.UID))

@@ -22,10 +22,6 @@ type RpgItemConfig struct {
 	CreateTime time.Time `json:"createTime,omitempty"`
 	// 更新时间
 	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 全局唯一物品编码
 	Code string `json:"code,omitempty"`
 	// 显示名称
@@ -56,9 +52,7 @@ func (*RpgItemConfig) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpgitemconfig.FieldIsDelete:
-			values[i] = new(sql.NullBool)
-		case rpgitemconfig.FieldID, rpgitemconfig.FieldVersion, rpgitemconfig.FieldSort, rpgitemconfig.FieldActive, rpgitemconfig.FieldIsHidden:
+		case rpgitemconfig.FieldID, rpgitemconfig.FieldSort, rpgitemconfig.FieldActive, rpgitemconfig.FieldIsHidden:
 			values[i] = new(sql.NullInt64)
 		case rpgitemconfig.FieldCode, rpgitemconfig.FieldName, rpgitemconfig.FieldEffectJson, rpgitemconfig.FieldItemType, rpgitemconfig.FieldDescription, rpgitemconfig.FieldCategory, rpgitemconfig.FieldIcon, rpgitemconfig.FieldRarity:
 			values[i] = new(sql.NullString)
@@ -96,18 +90,6 @@ func (ric *RpgItemConfig) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
 			} else if value.Valid {
 				ric.UpdateTime = value.Time
-			}
-		case rpgitemconfig.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				ric.IsDelete = value.Bool
-			}
-		case rpgitemconfig.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				ric.Version = int(value.Int64)
 			}
 		case rpgitemconfig.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -217,12 +199,6 @@ func (ric *RpgItemConfig) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("updateTime=")
 	builder.WriteString(ric.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", ric.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", ric.Version))
 	builder.WriteString(", ")
 	builder.WriteString("code=")
 	builder.WriteString(ric.Code)

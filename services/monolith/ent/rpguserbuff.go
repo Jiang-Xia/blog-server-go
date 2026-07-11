@@ -20,12 +20,6 @@ type RpgUserBuff struct {
 	ID int `json:"id,omitempty"`
 	// 创建时间
 	CreateTime time.Time `json:"createTime,omitempty"`
-	// 更新时间
-	UpdateTime time.Time `json:"updateTime,omitempty"`
-	// 软删除标记
-	IsDelete bool `json:"isDelete,omitempty"`
-	// 乐观锁版本号
-	Version int `json:"version,omitempty"`
 	// 用户ID
 	UID int `json:"uid,omitempty"`
 	// Buff编码
@@ -60,15 +54,13 @@ func (*RpgUserBuff) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case rpguserbuff.FieldIsDelete:
-			values[i] = new(sql.NullBool)
 		case rpguserbuff.FieldValue:
 			values[i] = new(sql.NullFloat64)
-		case rpguserbuff.FieldID, rpguserbuff.FieldVersion, rpguserbuff.FieldUID, rpguserbuff.FieldRemainingUses, rpguserbuff.FieldIsActive, rpguserbuff.FieldSourceId:
+		case rpguserbuff.FieldID, rpguserbuff.FieldUID, rpguserbuff.FieldRemainingUses, rpguserbuff.FieldIsActive, rpguserbuff.FieldSourceId:
 			values[i] = new(sql.NullInt64)
 		case rpguserbuff.FieldBuffCode, rpguserbuff.FieldBuffType, rpguserbuff.FieldName, rpguserbuff.FieldDescription, rpguserbuff.FieldSourceType, rpguserbuff.FieldEffectJson, rpguserbuff.FieldTriggerMode:
 			values[i] = new(sql.NullString)
-		case rpguserbuff.FieldCreateTime, rpguserbuff.FieldUpdateTime, rpguserbuff.FieldExpireAt:
+		case rpguserbuff.FieldCreateTime, rpguserbuff.FieldExpireAt:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -96,24 +88,6 @@ func (rub *RpgUserBuff) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field createTime", values[i])
 			} else if value.Valid {
 				rub.CreateTime = value.Time
-			}
-		case rpguserbuff.FieldUpdateTime:
-			if value, ok := values[i].(*sql.NullTime); !ok {
-				return fmt.Errorf("unexpected type %T for field updateTime", values[i])
-			} else if value.Valid {
-				rub.UpdateTime = value.Time
-			}
-		case rpguserbuff.FieldIsDelete:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field isDelete", values[i])
-			} else if value.Valid {
-				rub.IsDelete = value.Bool
-			}
-		case rpguserbuff.FieldVersion:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field version", values[i])
-			} else if value.Valid {
-				rub.Version = int(value.Int64)
 			}
 		case rpguserbuff.FieldUID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -234,15 +208,6 @@ func (rub *RpgUserBuff) String() string {
 	builder.WriteString(fmt.Sprintf("id=%v, ", rub.ID))
 	builder.WriteString("createTime=")
 	builder.WriteString(rub.CreateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updateTime=")
-	builder.WriteString(rub.UpdateTime.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("isDelete=")
-	builder.WriteString(fmt.Sprintf("%v", rub.IsDelete))
-	builder.WriteString(", ")
-	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", rub.Version))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
 	builder.WriteString(fmt.Sprintf("%v", rub.UID))

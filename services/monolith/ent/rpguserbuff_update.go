@@ -28,47 +28,6 @@ func (rubu *RpgUserBuffUpdate) Where(ps ...predicate.RpgUserBuff) *RpgUserBuffUp
 	return rubu
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (rubu *RpgUserBuffUpdate) SetUpdateTime(t time.Time) *RpgUserBuffUpdate {
-	rubu.mutation.SetUpdateTime(t)
-	return rubu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rubu *RpgUserBuffUpdate) SetIsDelete(b bool) *RpgUserBuffUpdate {
-	rubu.mutation.SetIsDelete(b)
-	return rubu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rubu *RpgUserBuffUpdate) SetNillableIsDelete(b *bool) *RpgUserBuffUpdate {
-	if b != nil {
-		rubu.SetIsDelete(*b)
-	}
-	return rubu
-}
-
-// SetVersion sets the "version" field.
-func (rubu *RpgUserBuffUpdate) SetVersion(i int) *RpgUserBuffUpdate {
-	rubu.mutation.ResetVersion()
-	rubu.mutation.SetVersion(i)
-	return rubu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rubu *RpgUserBuffUpdate) SetNillableVersion(i *int) *RpgUserBuffUpdate {
-	if i != nil {
-		rubu.SetVersion(*i)
-	}
-	return rubu
-}
-
-// AddVersion adds i to the "version" field.
-func (rubu *RpgUserBuffUpdate) AddVersion(i int) *RpgUserBuffUpdate {
-	rubu.mutation.AddVersion(i)
-	return rubu
-}
-
 // SetUID sets the "uid" field.
 func (rubu *RpgUserBuffUpdate) SetUID(i int) *RpgUserBuffUpdate {
 	rubu.mutation.ResetUID()
@@ -311,7 +270,6 @@ func (rubu *RpgUserBuffUpdate) Mutation() *RpgUserBuffMutation {
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (rubu *RpgUserBuffUpdate) Save(ctx context.Context) (int, error) {
-	rubu.defaults()
 	return withHooks(ctx, rubu.sqlSave, rubu.mutation, rubu.hooks)
 }
 
@@ -337,14 +295,6 @@ func (rubu *RpgUserBuffUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (rubu *RpgUserBuffUpdate) defaults() {
-	if _, ok := rubu.mutation.UpdateTime(); !ok {
-		v := rpguserbuff.UpdateDefaultUpdateTime()
-		rubu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (rubu *RpgUserBuffUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpguserbuff.Table, rpguserbuff.Columns, sqlgraph.NewFieldSpec(rpguserbuff.FieldID, field.TypeInt))
 	if ps := rubu.mutation.predicates; len(ps) > 0 {
@@ -353,18 +303,6 @@ func (rubu *RpgUserBuffUpdate) sqlSave(ctx context.Context) (n int, err error) {
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := rubu.mutation.UpdateTime(); ok {
-		_spec.SetField(rpguserbuff.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rubu.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserbuff.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rubu.mutation.Version(); ok {
-		_spec.SetField(rpguserbuff.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rubu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserbuff.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rubu.mutation.UID(); ok {
 		_spec.SetField(rpguserbuff.FieldUID, field.TypeInt, value)
@@ -447,47 +385,6 @@ type RpgUserBuffUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *RpgUserBuffMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (rubuo *RpgUserBuffUpdateOne) SetUpdateTime(t time.Time) *RpgUserBuffUpdateOne {
-	rubuo.mutation.SetUpdateTime(t)
-	return rubuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rubuo *RpgUserBuffUpdateOne) SetIsDelete(b bool) *RpgUserBuffUpdateOne {
-	rubuo.mutation.SetIsDelete(b)
-	return rubuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rubuo *RpgUserBuffUpdateOne) SetNillableIsDelete(b *bool) *RpgUserBuffUpdateOne {
-	if b != nil {
-		rubuo.SetIsDelete(*b)
-	}
-	return rubuo
-}
-
-// SetVersion sets the "version" field.
-func (rubuo *RpgUserBuffUpdateOne) SetVersion(i int) *RpgUserBuffUpdateOne {
-	rubuo.mutation.ResetVersion()
-	rubuo.mutation.SetVersion(i)
-	return rubuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rubuo *RpgUserBuffUpdateOne) SetNillableVersion(i *int) *RpgUserBuffUpdateOne {
-	if i != nil {
-		rubuo.SetVersion(*i)
-	}
-	return rubuo
-}
-
-// AddVersion adds i to the "version" field.
-func (rubuo *RpgUserBuffUpdateOne) AddVersion(i int) *RpgUserBuffUpdateOne {
-	rubuo.mutation.AddVersion(i)
-	return rubuo
 }
 
 // SetUID sets the "uid" field.
@@ -745,7 +642,6 @@ func (rubuo *RpgUserBuffUpdateOne) Select(field string, fields ...string) *RpgUs
 
 // Save executes the query and returns the updated RpgUserBuff entity.
 func (rubuo *RpgUserBuffUpdateOne) Save(ctx context.Context) (*RpgUserBuff, error) {
-	rubuo.defaults()
 	return withHooks(ctx, rubuo.sqlSave, rubuo.mutation, rubuo.hooks)
 }
 
@@ -768,14 +664,6 @@ func (rubuo *RpgUserBuffUpdateOne) Exec(ctx context.Context) error {
 func (rubuo *RpgUserBuffUpdateOne) ExecX(ctx context.Context) {
 	if err := rubuo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (rubuo *RpgUserBuffUpdateOne) defaults() {
-	if _, ok := rubuo.mutation.UpdateTime(); !ok {
-		v := rpguserbuff.UpdateDefaultUpdateTime()
-		rubuo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -804,18 +692,6 @@ func (rubuo *RpgUserBuffUpdateOne) sqlSave(ctx context.Context) (_node *RpgUserB
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := rubuo.mutation.UpdateTime(); ok {
-		_spec.SetField(rpguserbuff.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rubuo.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserbuff.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rubuo.mutation.Version(); ok {
-		_spec.SetField(rpguserbuff.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rubuo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpguserbuff.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rubuo.mutation.UID(); ok {
 		_spec.SetField(rpguserbuff.FieldUID, field.TypeInt, value)

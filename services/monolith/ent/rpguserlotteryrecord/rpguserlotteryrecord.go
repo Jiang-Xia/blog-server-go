@@ -15,12 +15,6 @@ const (
 	FieldID = "id"
 	// FieldCreateTime holds the string denoting the createtime field in the database.
 	FieldCreateTime = "createTime"
-	// FieldUpdateTime holds the string denoting the updatetime field in the database.
-	FieldUpdateTime = "updateTime"
-	// FieldIsDelete holds the string denoting the isdelete field in the database.
-	FieldIsDelete = "isDelete"
-	// FieldVersion holds the string denoting the version field in the database.
-	FieldVersion = "version"
 	// FieldUID holds the string denoting the uid field in the database.
 	FieldUID = "uid"
 	// FieldPoolItemCode holds the string denoting the poolitemcode field in the database.
@@ -39,9 +33,6 @@ const (
 var Columns = []string{
 	FieldID,
 	FieldCreateTime,
-	FieldUpdateTime,
-	FieldIsDelete,
-	FieldVersion,
 	FieldUID,
 	FieldPoolItemCode,
 	FieldItemName,
@@ -62,14 +53,6 @@ func ValidColumn(column string) bool {
 var (
 	// DefaultCreateTime holds the default value on creation for the "createTime" field.
 	DefaultCreateTime func() time.Time
-	// DefaultUpdateTime holds the default value on creation for the "updateTime" field.
-	DefaultUpdateTime func() time.Time
-	// UpdateDefaultUpdateTime holds the default value on update for the "updateTime" field.
-	UpdateDefaultUpdateTime func() time.Time
-	// DefaultIsDelete holds the default value on creation for the "isDelete" field.
-	DefaultIsDelete bool
-	// DefaultVersion holds the default value on creation for the "version" field.
-	DefaultVersion int
 )
 
 // OrderOption defines the ordering options for the RpgUserLotteryRecord queries.
@@ -83,21 +66,6 @@ func ByID(opts ...sql.OrderTermOption) OrderOption {
 // ByCreateTime orders the results by the createTime field.
 func ByCreateTime(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldCreateTime, opts...).ToFunc()
-}
-
-// ByUpdateTime orders the results by the updateTime field.
-func ByUpdateTime(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUpdateTime, opts...).ToFunc()
-}
-
-// ByIsDelete orders the results by the isDelete field.
-func ByIsDelete(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldIsDelete, opts...).ToFunc()
-}
-
-// ByVersion orders the results by the version field.
-func ByVersion(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldVersion, opts...).ToFunc()
 }
 
 // ByUID orders the results by the uid field.

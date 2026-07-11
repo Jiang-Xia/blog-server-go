@@ -50,34 +50,6 @@ func (rac *RpgActivityCreate) SetNillableUpdateTime(t *time.Time) *RpgActivityCr
 	return rac
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (rac *RpgActivityCreate) SetIsDelete(b bool) *RpgActivityCreate {
-	rac.mutation.SetIsDelete(b)
-	return rac
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rac *RpgActivityCreate) SetNillableIsDelete(b *bool) *RpgActivityCreate {
-	if b != nil {
-		rac.SetIsDelete(*b)
-	}
-	return rac
-}
-
-// SetVersion sets the "version" field.
-func (rac *RpgActivityCreate) SetVersion(i int) *RpgActivityCreate {
-	rac.mutation.SetVersion(i)
-	return rac
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rac *RpgActivityCreate) SetNillableVersion(i *int) *RpgActivityCreate {
-	if i != nil {
-		rac.SetVersion(*i)
-	}
-	return rac
-}
-
 // SetCode sets the "code" field.
 func (rac *RpgActivityCreate) SetCode(s string) *RpgActivityCreate {
 	rac.mutation.SetCode(s)
@@ -235,14 +207,6 @@ func (rac *RpgActivityCreate) defaults() {
 		v := rpgactivity.DefaultUpdateTime()
 		rac.mutation.SetUpdateTime(v)
 	}
-	if _, ok := rac.mutation.IsDelete(); !ok {
-		v := rpgactivity.DefaultIsDelete
-		rac.mutation.SetIsDelete(v)
-	}
-	if _, ok := rac.mutation.Version(); !ok {
-		v := rpgactivity.DefaultVersion
-		rac.mutation.SetVersion(v)
-	}
 	if _, ok := rac.mutation.ExpBuffRate(); !ok {
 		v := rpgactivity.DefaultExpBuffRate
 		rac.mutation.SetExpBuffRate(v)
@@ -272,12 +236,6 @@ func (rac *RpgActivityCreate) check() error {
 	}
 	if _, ok := rac.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgActivity.updateTime"`)}
-	}
-	if _, ok := rac.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgActivity.isDelete"`)}
-	}
-	if _, ok := rac.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgActivity.version"`)}
 	}
 	if _, ok := rac.mutation.Code(); !ok {
 		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "RpgActivity.code"`)}
@@ -346,14 +304,6 @@ func (rac *RpgActivityCreate) createSpec() (*RpgActivity, *sqlgraph.CreateSpec) 
 	if value, ok := rac.mutation.UpdateTime(); ok {
 		_spec.SetField(rpgactivity.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := rac.mutation.IsDelete(); ok {
-		_spec.SetField(rpgactivity.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := rac.mutation.Version(); ok {
-		_spec.SetField(rpgactivity.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := rac.mutation.Code(); ok {
 		_spec.SetField(rpgactivity.FieldCode, field.TypeString, value)
@@ -456,36 +406,6 @@ func (u *RpgActivityUpsert) SetUpdateTime(v time.Time) *RpgActivityUpsert {
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *RpgActivityUpsert) UpdateUpdateTime() *RpgActivityUpsert {
 	u.SetExcluded(rpgactivity.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgActivityUpsert) SetIsDelete(v bool) *RpgActivityUpsert {
-	u.Set(rpgactivity.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgActivityUpsert) UpdateIsDelete() *RpgActivityUpsert {
-	u.SetExcluded(rpgactivity.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgActivityUpsert) SetVersion(v int) *RpgActivityUpsert {
-	u.Set(rpgactivity.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgActivityUpsert) UpdateVersion() *RpgActivityUpsert {
-	u.SetExcluded(rpgactivity.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgActivityUpsert) AddVersion(v int) *RpgActivityUpsert {
-	u.Add(rpgactivity.FieldVersion, v)
 	return u
 }
 
@@ -689,41 +609,6 @@ func (u *RpgActivityUpsertOne) SetUpdateTime(v time.Time) *RpgActivityUpsertOne 
 func (u *RpgActivityUpsertOne) UpdateUpdateTime() *RpgActivityUpsertOne {
 	return u.Update(func(s *RpgActivityUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgActivityUpsertOne) SetIsDelete(v bool) *RpgActivityUpsertOne {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgActivityUpsertOne) UpdateIsDelete() *RpgActivityUpsertOne {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgActivityUpsertOne) SetVersion(v int) *RpgActivityUpsertOne {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgActivityUpsertOne) AddVersion(v int) *RpgActivityUpsertOne {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgActivityUpsertOne) UpdateVersion() *RpgActivityUpsertOne {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -1116,41 +1001,6 @@ func (u *RpgActivityUpsertBulk) SetUpdateTime(v time.Time) *RpgActivityUpsertBul
 func (u *RpgActivityUpsertBulk) UpdateUpdateTime() *RpgActivityUpsertBulk {
 	return u.Update(func(s *RpgActivityUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgActivityUpsertBulk) SetIsDelete(v bool) *RpgActivityUpsertBulk {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgActivityUpsertBulk) UpdateIsDelete() *RpgActivityUpsertBulk {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgActivityUpsertBulk) SetVersion(v int) *RpgActivityUpsertBulk {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgActivityUpsertBulk) AddVersion(v int) *RpgActivityUpsertBulk {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgActivityUpsertBulk) UpdateVersion() *RpgActivityUpsertBulk {
-	return u.Update(func(s *RpgActivityUpsert) {
-		s.UpdateVersion()
 	})
 }
 

@@ -62,7 +62,7 @@ func (r *RpgRepo) WithTx(ctx context.Context, fn func(tx *ent.Tx) error) error {
 
 // FindRpgByUID 按 uid 查询 RPG 记录。
 func (r *RpgRepo) FindRpgByUID(ctx context.Context, uid int) (*ent.Rpg, error) {
-	return r.client.Rpg.Query().Where(rpg.UIDEQ(uid), rpg.IsDelete(false)).First(ctx)
+	return r.client.Rpg.Query().Where(rpg.UIDEQ(uid)).First(ctx)
 }
 
 // CreateRpg 创建 RPG 记录。
@@ -109,7 +109,7 @@ func (r *RpgRepo) UpdateRpg(ctx context.Context, row *ent.Rpg) (*ent.Rpg, error)
 
 // ListRpgOrderBy 总榜排序查询。
 func (r *RpgRepo) ListRpgOrderBy(ctx context.Context, field string, limit int) ([]*ent.Rpg, error) {
-	q := r.client.Rpg.Query().Where(rpg.IsDelete(false))
+	q := r.client.Rpg.Query()
 	switch field {
 	case "level":
 		q = q.Order(ent.Desc(rpg.FieldLevel), ent.Asc(rpg.FieldCreateTime))
@@ -128,7 +128,7 @@ func (r *RpgRepo) ListRpgByUIDs(ctx context.Context, uids []int) ([]*ent.Rpg, er
 	if len(uids) == 0 {
 		return nil, nil
 	}
-	return r.client.Rpg.Query().Where(rpg.UIDIn(uids...), rpg.IsDelete(false)).All(ctx)
+	return r.client.Rpg.Query().Where(rpg.UIDIn(uids...)).All(ctx)
 }
 
 // --- Inventory ---
@@ -556,14 +556,14 @@ func (r *RpgRepo) ListLotteryRecordsAdmin(ctx context.Context, offset, limit int
 // ListPetsByUID 用户宠物列表。
 func (r *RpgRepo) ListPetsByUID(ctx context.Context, uid int) ([]*ent.RpgUserPet, error) {
 	return r.client.RpgUserPet.Query().
-		Where(rpguserpet.UIDEQ(uid), rpguserpet.IsDelete(false)).
+		Where(rpguserpet.UIDEQ(uid)).
 		Order(ent.Desc(rpguserpet.FieldCreateTime)).
 		All(ctx)
 }
 
 // FindPetByID 查宠物实例。
 func (r *RpgRepo) FindPetByID(ctx context.Context, id int) (*ent.RpgUserPet, error) {
-	return r.client.RpgUserPet.Query().Where(rpguserpet.IDEQ(id), rpguserpet.IsDelete(false)).First(ctx)
+	return r.client.RpgUserPet.Query().Where(rpguserpet.IDEQ(id)).First(ctx)
 }
 
 // CreatePet 创建宠物。
@@ -588,7 +588,7 @@ func (r *RpgRepo) UpdatePet(ctx context.Context, row *ent.RpgUserPet) (*ent.RpgU
 
 // CountPetsByUID 统计宠物数量。
 func (r *RpgRepo) CountPetsByUID(ctx context.Context, uid int) (int, error) {
-	return r.client.RpgUserPet.Query().Where(rpguserpet.UIDEQ(uid), rpguserpet.IsDelete(false)).Count(ctx)
+	return r.client.RpgUserPet.Query().Where(rpguserpet.UIDEQ(uid)).Count(ctx)
 }
 
 // --- Buff ---
@@ -596,7 +596,7 @@ func (r *RpgRepo) CountPetsByUID(ctx context.Context, uid int) (int, error) {
 // ListBuffsByUID 用户 Buff 列表。
 func (r *RpgRepo) ListBuffsByUID(ctx context.Context, uid int) ([]*ent.RpgUserBuff, error) {
 	return r.client.RpgUserBuff.Query().
-		Where(rpguserbuff.UIDEQ(uid), rpguserbuff.IsDelete(false)).
+		Where(rpguserbuff.UIDEQ(uid)).
 		Order(ent.Asc(rpguserbuff.FieldExpireAt)).
 		All(ctx)
 }
@@ -604,7 +604,7 @@ func (r *RpgRepo) ListBuffsByUID(ctx context.Context, uid int) ([]*ent.RpgUserBu
 // FindBuffByID 查 Buff。
 func (r *RpgRepo) FindBuffByID(ctx context.Context, id, uid int) (*ent.RpgUserBuff, error) {
 	return r.client.RpgUserBuff.Query().
-		Where(rpguserbuff.IDEQ(id), rpguserbuff.UIDEQ(uid), rpguserbuff.IsDelete(false)).
+		Where(rpguserbuff.IDEQ(id), rpguserbuff.UIDEQ(uid)).
 		First(ctx)
 }
 
@@ -657,7 +657,7 @@ func (r *RpgRepo) DeleteBuffByID(ctx context.Context, id int) error {
 // ListAchievementsByUID 用户成就进度。
 func (r *RpgRepo) ListAchievementsByUID(ctx context.Context, uid int) ([]*ent.RpgUserAchievement, error) {
 	return r.client.RpgUserAchievement.Query().
-		Where(rpguserachievement.UIDEQ(uid), rpguserachievement.IsDelete(false)).
+		Where(rpguserachievement.UIDEQ(uid)).
 		All(ctx)
 }
 
@@ -702,17 +702,17 @@ func (r *RpgRepo) ListAchievementConfigs(ctx context.Context) ([]*ent.RpgItemCon
 
 // FindGuildByID 查公会。
 func (r *RpgRepo) FindGuildByID(ctx context.Context, id int) (*ent.RpgGuild, error) {
-	return r.client.RpgGuild.Query().Where(rpgguild.IDEQ(id), rpgguild.IsDelete(false)).First(ctx)
+	return r.client.RpgGuild.Query().Where(rpgguild.IDEQ(id)).First(ctx)
 }
 
 // FindGuildByName 按名称查公会。
 func (r *RpgRepo) FindGuildByName(ctx context.Context, name string) (*ent.RpgGuild, error) {
-	return r.client.RpgGuild.Query().Where(rpgguild.NameEQ(name), rpgguild.IsDelete(false)).First(ctx)
+	return r.client.RpgGuild.Query().Where(rpgguild.NameEQ(name)).First(ctx)
 }
 
 // ListGuilds 公会列表。
 func (r *RpgRepo) ListGuilds(ctx context.Context, offset, limit int) ([]*ent.RpgGuild, int, error) {
-	q := r.client.RpgGuild.Query().Where(rpgguild.IsDelete(false))
+	q := r.client.RpgGuild.Query()
 	total, err := q.Clone().Count(ctx)
 	if err != nil {
 		return nil, 0, err
@@ -1004,7 +1004,6 @@ func (r *RpgRepo) ListLeaderboardSnapshots(ctx context.Context, scoreType, perio
 			rpgleaderboardsnapshot.ScoreTypeEQ(scoreType),
 			rpgleaderboardsnapshot.PeriodTypeEQ(periodType),
 			rpgleaderboardsnapshot.PeriodKeyEQ(periodKey),
-			rpgleaderboardsnapshot.IsDelete(false),
 		).
 		Order(ent.Asc(rpgleaderboardsnapshot.FieldRank)).
 		All(ctx)
@@ -1012,7 +1011,7 @@ func (r *RpgRepo) ListLeaderboardSnapshots(ctx context.Context, scoreType, perio
 
 // ListRpgAdmin 管理端 RPG 用户列表。
 func (r *RpgRepo) ListRpgAdmin(ctx context.Context, offset, limit int) ([]*ent.Rpg, int, error) {
-	q := r.client.Rpg.Query().Where(rpg.IsDelete(false))
+	q := r.client.Rpg.Query()
 	total, err := q.Clone().Count(ctx)
 	if err != nil {
 		return nil, 0, err
@@ -1023,7 +1022,7 @@ func (r *RpgRepo) ListRpgAdmin(ctx context.Context, offset, limit int) ([]*ent.R
 
 // FindPayOrderByOutTradeNo 查支付订单。
 func (r *RpgRepo) FindPayOrderByOutTradeNo(ctx context.Context, outTradeNo string) (*ent.PayOrder, error) {
-	return r.client.PayOrder.Query().Where(payorder.OutTradeNoEQ(outTradeNo), payorder.IsDelete(false)).First(ctx)
+	return r.client.PayOrder.Query().Where(payorder.OutTradeNoEQ(outTradeNo)).First(ctx)
 }
 
 // CreatePayOrder 创建支付订单。

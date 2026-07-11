@@ -12643,9 +12643,6 @@ type PayOrderMutation struct {
 	id              *int
 	createTime      *time.Time
 	updateTime      *time.Time
-	isDelete        *bool
-	version         *int
-	addversion      *int
 	outTradeNo      *string
 	tradeNo         *string
 	subject         *string
@@ -12837,98 +12834,6 @@ func (m *PayOrderMutation) OldUpdateTime(ctx context.Context) (v time.Time, err 
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *PayOrderMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *PayOrderMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *PayOrderMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the PayOrder entity.
-// If the PayOrder object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *PayOrderMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *PayOrderMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *PayOrderMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *PayOrderMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the PayOrder entity.
-// If the PayOrder object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *PayOrderMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *PayOrderMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *PayOrderMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *PayOrderMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetOutTradeNo sets the "outTradeNo" field.
@@ -13342,18 +13247,12 @@ func (m *PayOrderMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *PayOrderMutation) Fields() []string {
-	fields := make([]string, 0, 13)
+	fields := make([]string, 0, 11)
 	if m.createTime != nil {
 		fields = append(fields, payorder.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, payorder.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, payorder.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, payorder.FieldVersion)
 	}
 	if m.outTradeNo != nil {
 		fields = append(fields, payorder.FieldOutTradeNo)
@@ -13394,10 +13293,6 @@ func (m *PayOrderMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case payorder.FieldUpdateTime:
 		return m.UpdateTime()
-	case payorder.FieldIsDelete:
-		return m.IsDelete()
-	case payorder.FieldVersion:
-		return m.Version()
 	case payorder.FieldOutTradeNo:
 		return m.OutTradeNo()
 	case payorder.FieldTradeNo:
@@ -13429,10 +13324,6 @@ func (m *PayOrderMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldCreateTime(ctx)
 	case payorder.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case payorder.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case payorder.FieldVersion:
-		return m.OldVersion(ctx)
 	case payorder.FieldOutTradeNo:
 		return m.OldOutTradeNo(ctx)
 	case payorder.FieldTradeNo:
@@ -13473,20 +13364,6 @@ func (m *PayOrderMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case payorder.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case payorder.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case payorder.FieldOutTradeNo:
 		v, ok := value.(string)
@@ -13559,9 +13436,6 @@ func (m *PayOrderMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *PayOrderMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, payorder.FieldVersion)
-	}
 	if m.addtotalAmount != nil {
 		fields = append(fields, payorder.FieldTotalAmount)
 	}
@@ -13576,8 +13450,6 @@ func (m *PayOrderMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *PayOrderMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case payorder.FieldVersion:
-		return m.AddedVersion()
 	case payorder.FieldTotalAmount:
 		return m.AddedTotalAmount()
 	case payorder.FieldRefundAmount:
@@ -13591,13 +13463,6 @@ func (m *PayOrderMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *PayOrderMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case payorder.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case payorder.FieldTotalAmount:
 		v, ok := value.(float64)
 		if !ok {
@@ -13653,12 +13518,6 @@ func (m *PayOrderMutation) ResetField(name string) error {
 		return nil
 	case payorder.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case payorder.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case payorder.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case payorder.FieldOutTradeNo:
 		m.ResetOutTradeNo()
@@ -19805,9 +19664,6 @@ type RpgMutation struct {
 	id                             *int
 	createTime                     *time.Time
 	updateTime                     *time.Time
-	isDelete                       *bool
-	version                        *int
-	addversion                     *int
 	uid                            *int
 	adduid                         *int
 	exp                            *int
@@ -20016,98 +19872,6 @@ func (m *RpgMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *RpgMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the Rpg entity.
-// If the Rpg object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the Rpg entity.
-// If the Rpg object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -21012,18 +20776,12 @@ func (m *RpgMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgMutation) Fields() []string {
-	fields := make([]string, 0, 20)
+	fields := make([]string, 0, 18)
 	if m.createTime != nil {
 		fields = append(fields, rpg.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, rpg.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpg.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpg.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpg.FieldUID)
@@ -21085,10 +20843,6 @@ func (m *RpgMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case rpg.FieldUpdateTime:
 		return m.UpdateTime()
-	case rpg.FieldIsDelete:
-		return m.IsDelete()
-	case rpg.FieldVersion:
-		return m.Version()
 	case rpg.FieldUID:
 		return m.UID()
 	case rpg.FieldExp:
@@ -21134,10 +20888,6 @@ func (m *RpgMutation) OldField(ctx context.Context, name string) (ent.Value, err
 		return m.OldCreateTime(ctx)
 	case rpg.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case rpg.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpg.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpg.FieldUID:
 		return m.OldUID(ctx)
 	case rpg.FieldExp:
@@ -21192,20 +20942,6 @@ func (m *RpgMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case rpg.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpg.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpg.FieldUID:
 		v, ok := value.(int)
@@ -21327,9 +21063,6 @@ func (m *RpgMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *RpgMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpg.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpg.FieldUID)
 	}
@@ -21374,8 +21107,6 @@ func (m *RpgMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpg.FieldVersion:
-		return m.AddedVersion()
 	case rpg.FieldUID:
 		return m.AddedUID()
 	case rpg.FieldExp:
@@ -21409,13 +21140,6 @@ func (m *RpgMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpg.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpg.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -21560,12 +21284,6 @@ func (m *RpgMutation) ResetField(name string) error {
 	case rpg.FieldUpdateTime:
 		m.ResetUpdateTime()
 		return nil
-	case rpg.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpg.FieldVersion:
-		m.ResetVersion()
-		return nil
 	case rpg.FieldUID:
 		m.ResetUID()
 		return nil
@@ -21674,9 +21392,6 @@ type RpgActivityMutation struct {
 	id             *int
 	createTime     *time.Time
 	updateTime     *time.Time
-	isDelete       *bool
-	version        *int
-	addversion     *int
 	code           *string
 	name           *string
 	startTime      *time.Time
@@ -21869,98 +21584,6 @@ func (m *RpgActivityMutation) OldUpdateTime(ctx context.Context) (v time.Time, e
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *RpgActivityMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgActivityMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgActivityMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgActivity entity.
-// If the RpgActivity object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgActivityMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgActivityMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgActivityMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgActivityMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgActivity entity.
-// If the RpgActivity object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgActivityMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgActivityMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgActivityMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgActivityMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetCode sets the "code" field.
@@ -22410,18 +22033,12 @@ func (m *RpgActivityMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgActivityMutation) Fields() []string {
-	fields := make([]string, 0, 14)
+	fields := make([]string, 0, 12)
 	if m.createTime != nil {
 		fields = append(fields, rpgactivity.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, rpgactivity.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpgactivity.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpgactivity.FieldVersion)
 	}
 	if m.code != nil {
 		fields = append(fields, rpgactivity.FieldCode)
@@ -22465,10 +22082,6 @@ func (m *RpgActivityMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case rpgactivity.FieldUpdateTime:
 		return m.UpdateTime()
-	case rpgactivity.FieldIsDelete:
-		return m.IsDelete()
-	case rpgactivity.FieldVersion:
-		return m.Version()
 	case rpgactivity.FieldCode:
 		return m.Code()
 	case rpgactivity.FieldName:
@@ -22502,10 +22115,6 @@ func (m *RpgActivityMutation) OldField(ctx context.Context, name string) (ent.Va
 		return m.OldCreateTime(ctx)
 	case rpgactivity.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case rpgactivity.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpgactivity.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpgactivity.FieldCode:
 		return m.OldCode(ctx)
 	case rpgactivity.FieldName:
@@ -22548,20 +22157,6 @@ func (m *RpgActivityMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case rpgactivity.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpgactivity.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpgactivity.FieldCode:
 		v, ok := value.(string)
@@ -22641,9 +22236,6 @@ func (m *RpgActivityMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *RpgActivityMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpgactivity.FieldVersion)
-	}
 	if m.addexpBuffRate != nil {
 		fields = append(fields, rpgactivity.FieldExpBuffRate)
 	}
@@ -22658,8 +22250,6 @@ func (m *RpgActivityMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgActivityMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpgactivity.FieldVersion:
-		return m.AddedVersion()
 	case rpgactivity.FieldExpBuffRate:
 		return m.AddedExpBuffRate()
 	case rpgactivity.FieldActive:
@@ -22673,13 +22263,6 @@ func (m *RpgActivityMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgActivityMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpgactivity.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpgactivity.FieldExpBuffRate:
 		v, ok := value.(float64)
 		if !ok {
@@ -22735,12 +22318,6 @@ func (m *RpgActivityMutation) ResetField(name string) error {
 		return nil
 	case rpgactivity.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case rpgactivity.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpgactivity.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpgactivity.FieldCode:
 		m.ResetCode()
@@ -22831,10 +22408,6 @@ type RpgArticleTipMutation struct {
 	typ           string
 	id            *int
 	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	uid           *int
 	adduid        *int
 	articleId     *int
@@ -22987,134 +22560,6 @@ func (m *RpgArticleTipMutation) OldCreateTime(ctx context.Context) (v time.Time,
 // ResetCreateTime resets all changes to the "createTime" field.
 func (m *RpgArticleTipMutation) ResetCreateTime() {
 	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *RpgArticleTipMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *RpgArticleTipMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the RpgArticleTip entity.
-// If the RpgArticleTip object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgArticleTipMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *RpgArticleTipMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgArticleTipMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgArticleTipMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgArticleTip entity.
-// If the RpgArticleTip object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgArticleTipMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgArticleTipMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgArticleTipMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgArticleTipMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgArticleTip entity.
-// If the RpgArticleTip object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgArticleTipMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgArticleTipMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgArticleTipMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgArticleTipMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -23375,18 +22820,9 @@ func (m *RpgArticleTipMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgArticleTipMutation) Fields() []string {
-	fields := make([]string, 0, 8)
+	fields := make([]string, 0, 5)
 	if m.createTime != nil {
 		fields = append(fields, rpgarticletip.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, rpgarticletip.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpgarticletip.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpgarticletip.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpgarticletip.FieldUID)
@@ -23410,12 +22846,6 @@ func (m *RpgArticleTipMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case rpgarticletip.FieldCreateTime:
 		return m.CreateTime()
-	case rpgarticletip.FieldUpdateTime:
-		return m.UpdateTime()
-	case rpgarticletip.FieldIsDelete:
-		return m.IsDelete()
-	case rpgarticletip.FieldVersion:
-		return m.Version()
 	case rpgarticletip.FieldUID:
 		return m.UID()
 	case rpgarticletip.FieldArticleId:
@@ -23435,12 +22865,6 @@ func (m *RpgArticleTipMutation) OldField(ctx context.Context, name string) (ent.
 	switch name {
 	case rpgarticletip.FieldCreateTime:
 		return m.OldCreateTime(ctx)
-	case rpgarticletip.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case rpgarticletip.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpgarticletip.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpgarticletip.FieldUID:
 		return m.OldUID(ctx)
 	case rpgarticletip.FieldArticleId:
@@ -23464,27 +22888,6 @@ func (m *RpgArticleTipMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCreateTime(v)
-		return nil
-	case rpgarticletip.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case rpgarticletip.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpgarticletip.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpgarticletip.FieldUID:
 		v, ok := value.(int)
@@ -23522,9 +22925,6 @@ func (m *RpgArticleTipMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *RpgArticleTipMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpgarticletip.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpgarticletip.FieldUID)
 	}
@@ -23545,8 +22945,6 @@ func (m *RpgArticleTipMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgArticleTipMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpgarticletip.FieldVersion:
-		return m.AddedVersion()
 	case rpgarticletip.FieldUID:
 		return m.AddedUID()
 	case rpgarticletip.FieldArticleId:
@@ -23564,13 +22962,6 @@ func (m *RpgArticleTipMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgArticleTipMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpgarticletip.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpgarticletip.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -23628,15 +23019,6 @@ func (m *RpgArticleTipMutation) ResetField(name string) error {
 	switch name {
 	case rpgarticletip.FieldCreateTime:
 		m.ResetCreateTime()
-		return nil
-	case rpgarticletip.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case rpgarticletip.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpgarticletip.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpgarticletip.FieldUID:
 		m.ResetUID()
@@ -23710,9 +23092,6 @@ type RpgGuildMutation struct {
 	id             *int
 	createTime     *time.Time
 	updateTime     *time.Time
-	isDelete       *bool
-	version        *int
-	addversion     *int
 	leaderUid      *int
 	addleaderUid   *int
 	announcement   *string
@@ -23900,98 +23279,6 @@ func (m *RpgGuildMutation) OldUpdateTime(ctx context.Context) (v time.Time, err 
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *RpgGuildMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgGuildMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgGuildMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgGuild entity.
-// If the RpgGuild object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgGuildMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgGuildMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgGuildMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgGuildMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgGuild entity.
-// If the RpgGuild object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgGuildMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgGuildMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgGuildMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgGuildMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetLeaderUid sets the "leaderUid" field.
@@ -24274,18 +23561,12 @@ func (m *RpgGuildMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgGuildMutation) Fields() []string {
-	fields := make([]string, 0, 9)
+	fields := make([]string, 0, 7)
 	if m.createTime != nil {
 		fields = append(fields, rpgguild.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, rpgguild.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpgguild.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpgguild.FieldVersion)
 	}
 	if m.leaderUid != nil {
 		fields = append(fields, rpgguild.FieldLeaderUid)
@@ -24314,10 +23595,6 @@ func (m *RpgGuildMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case rpgguild.FieldUpdateTime:
 		return m.UpdateTime()
-	case rpgguild.FieldIsDelete:
-		return m.IsDelete()
-	case rpgguild.FieldVersion:
-		return m.Version()
 	case rpgguild.FieldLeaderUid:
 		return m.LeaderUid()
 	case rpgguild.FieldAnnouncement:
@@ -24341,10 +23618,6 @@ func (m *RpgGuildMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldCreateTime(ctx)
 	case rpgguild.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case rpgguild.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpgguild.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpgguild.FieldLeaderUid:
 		return m.OldLeaderUid(ctx)
 	case rpgguild.FieldAnnouncement:
@@ -24377,20 +23650,6 @@ func (m *RpgGuildMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case rpgguild.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpgguild.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpgguild.FieldLeaderUid:
 		v, ok := value.(int)
@@ -24435,9 +23694,6 @@ func (m *RpgGuildMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *RpgGuildMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpgguild.FieldVersion)
-	}
 	if m.addleaderUid != nil {
 		fields = append(fields, rpgguild.FieldLeaderUid)
 	}
@@ -24452,8 +23708,6 @@ func (m *RpgGuildMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgGuildMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpgguild.FieldVersion:
-		return m.AddedVersion()
 	case rpgguild.FieldLeaderUid:
 		return m.AddedLeaderUid()
 	case rpgguild.FieldMemberCount:
@@ -24467,13 +23721,6 @@ func (m *RpgGuildMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgGuildMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpgguild.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpgguild.FieldLeaderUid:
 		v, ok := value.(int)
 		if !ok {
@@ -24535,12 +23782,6 @@ func (m *RpgGuildMutation) ResetField(name string) error {
 		return nil
 	case rpgguild.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case rpgguild.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpgguild.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpgguild.FieldLeaderUid:
 		m.ResetLeaderUid()
@@ -24617,9 +23858,6 @@ type RpgItemConfigMutation struct {
 	id            *int
 	createTime    *time.Time
 	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	code          *string
 	name          *string
 	sort          *int
@@ -24814,98 +24052,6 @@ func (m *RpgItemConfigMutation) OldUpdateTime(ctx context.Context) (v time.Time,
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *RpgItemConfigMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgItemConfigMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgItemConfigMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgItemConfig entity.
-// If the RpgItemConfig object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgItemConfigMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgItemConfigMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgItemConfigMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgItemConfigMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgItemConfig entity.
-// If the RpgItemConfig object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgItemConfigMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgItemConfigMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgItemConfigMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgItemConfigMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetCode sets the "code" field.
@@ -25411,18 +24557,12 @@ func (m *RpgItemConfigMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgItemConfigMutation) Fields() []string {
-	fields := make([]string, 0, 15)
+	fields := make([]string, 0, 13)
 	if m.createTime != nil {
 		fields = append(fields, rpgitemconfig.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, rpgitemconfig.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpgitemconfig.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpgitemconfig.FieldVersion)
 	}
 	if m.code != nil {
 		fields = append(fields, rpgitemconfig.FieldCode)
@@ -25469,10 +24609,6 @@ func (m *RpgItemConfigMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case rpgitemconfig.FieldUpdateTime:
 		return m.UpdateTime()
-	case rpgitemconfig.FieldIsDelete:
-		return m.IsDelete()
-	case rpgitemconfig.FieldVersion:
-		return m.Version()
 	case rpgitemconfig.FieldCode:
 		return m.Code()
 	case rpgitemconfig.FieldName:
@@ -25508,10 +24644,6 @@ func (m *RpgItemConfigMutation) OldField(ctx context.Context, name string) (ent.
 		return m.OldCreateTime(ctx)
 	case rpgitemconfig.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case rpgitemconfig.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpgitemconfig.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpgitemconfig.FieldCode:
 		return m.OldCode(ctx)
 	case rpgitemconfig.FieldName:
@@ -25556,20 +24688,6 @@ func (m *RpgItemConfigMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case rpgitemconfig.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpgitemconfig.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpgitemconfig.FieldCode:
 		v, ok := value.(string)
@@ -25656,9 +24774,6 @@ func (m *RpgItemConfigMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *RpgItemConfigMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpgitemconfig.FieldVersion)
-	}
 	if m.addsort != nil {
 		fields = append(fields, rpgitemconfig.FieldSort)
 	}
@@ -25676,8 +24791,6 @@ func (m *RpgItemConfigMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgItemConfigMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpgitemconfig.FieldVersion:
-		return m.AddedVersion()
 	case rpgitemconfig.FieldSort:
 		return m.AddedSort()
 	case rpgitemconfig.FieldActive:
@@ -25693,13 +24806,6 @@ func (m *RpgItemConfigMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgItemConfigMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpgitemconfig.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpgitemconfig.FieldSort:
 		v, ok := value.(int)
 		if !ok {
@@ -25762,12 +24868,6 @@ func (m *RpgItemConfigMutation) ResetField(name string) error {
 		return nil
 	case rpgitemconfig.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case rpgitemconfig.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpgitemconfig.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpgitemconfig.FieldCode:
 		m.ResetCode()
@@ -25861,10 +24961,6 @@ type RpgLeaderboardSnapshotMutation struct {
 	typ           string
 	id            *int
 	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	uid           *int
 	adduid        *int
 	score         *int
@@ -26018,134 +25114,6 @@ func (m *RpgLeaderboardSnapshotMutation) OldCreateTime(ctx context.Context) (v t
 // ResetCreateTime resets all changes to the "createTime" field.
 func (m *RpgLeaderboardSnapshotMutation) ResetCreateTime() {
 	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *RpgLeaderboardSnapshotMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *RpgLeaderboardSnapshotMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the RpgLeaderboardSnapshot entity.
-// If the RpgLeaderboardSnapshot object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgLeaderboardSnapshotMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *RpgLeaderboardSnapshotMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgLeaderboardSnapshotMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgLeaderboardSnapshotMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgLeaderboardSnapshot entity.
-// If the RpgLeaderboardSnapshot object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgLeaderboardSnapshotMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgLeaderboardSnapshotMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgLeaderboardSnapshotMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgLeaderboardSnapshotMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgLeaderboardSnapshot entity.
-// If the RpgLeaderboardSnapshot object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgLeaderboardSnapshotMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgLeaderboardSnapshotMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgLeaderboardSnapshotMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgLeaderboardSnapshotMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -26458,18 +25426,9 @@ func (m *RpgLeaderboardSnapshotMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgLeaderboardSnapshotMutation) Fields() []string {
-	fields := make([]string, 0, 10)
+	fields := make([]string, 0, 7)
 	if m.createTime != nil {
 		fields = append(fields, rpgleaderboardsnapshot.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, rpgleaderboardsnapshot.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpgleaderboardsnapshot.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpgleaderboardsnapshot.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpgleaderboardsnapshot.FieldUID)
@@ -26499,12 +25458,6 @@ func (m *RpgLeaderboardSnapshotMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case rpgleaderboardsnapshot.FieldCreateTime:
 		return m.CreateTime()
-	case rpgleaderboardsnapshot.FieldUpdateTime:
-		return m.UpdateTime()
-	case rpgleaderboardsnapshot.FieldIsDelete:
-		return m.IsDelete()
-	case rpgleaderboardsnapshot.FieldVersion:
-		return m.Version()
 	case rpgleaderboardsnapshot.FieldUID:
 		return m.UID()
 	case rpgleaderboardsnapshot.FieldScore:
@@ -26528,12 +25481,6 @@ func (m *RpgLeaderboardSnapshotMutation) OldField(ctx context.Context, name stri
 	switch name {
 	case rpgleaderboardsnapshot.FieldCreateTime:
 		return m.OldCreateTime(ctx)
-	case rpgleaderboardsnapshot.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case rpgleaderboardsnapshot.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpgleaderboardsnapshot.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpgleaderboardsnapshot.FieldUID:
 		return m.OldUID(ctx)
 	case rpgleaderboardsnapshot.FieldScore:
@@ -26561,27 +25508,6 @@ func (m *RpgLeaderboardSnapshotMutation) SetField(name string, value ent.Value) 
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCreateTime(v)
-		return nil
-	case rpgleaderboardsnapshot.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case rpgleaderboardsnapshot.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpgleaderboardsnapshot.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpgleaderboardsnapshot.FieldUID:
 		v, ok := value.(int)
@@ -26633,9 +25559,6 @@ func (m *RpgLeaderboardSnapshotMutation) SetField(name string, value ent.Value) 
 // this mutation.
 func (m *RpgLeaderboardSnapshotMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpgleaderboardsnapshot.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpgleaderboardsnapshot.FieldUID)
 	}
@@ -26653,8 +25576,6 @@ func (m *RpgLeaderboardSnapshotMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgLeaderboardSnapshotMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpgleaderboardsnapshot.FieldVersion:
-		return m.AddedVersion()
 	case rpgleaderboardsnapshot.FieldUID:
 		return m.AddedUID()
 	case rpgleaderboardsnapshot.FieldScore:
@@ -26670,13 +25591,6 @@ func (m *RpgLeaderboardSnapshotMutation) AddedField(name string) (ent.Value, boo
 // type.
 func (m *RpgLeaderboardSnapshotMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpgleaderboardsnapshot.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpgleaderboardsnapshot.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -26727,15 +25641,6 @@ func (m *RpgLeaderboardSnapshotMutation) ResetField(name string) error {
 	switch name {
 	case rpgleaderboardsnapshot.FieldCreateTime:
 		m.ResetCreateTime()
-		return nil
-	case rpgleaderboardsnapshot.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case rpgleaderboardsnapshot.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpgleaderboardsnapshot.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpgleaderboardsnapshot.FieldUID:
 		m.ResetUID()
@@ -29480,10 +28385,6 @@ type RpgUserAchievementMutation struct {
 	typ             string
 	id              *int
 	createTime      *time.Time
-	updateTime      *time.Time
-	isDelete        *bool
-	version         *int
-	addversion      *int
 	uid             *int
 	adduid          *int
 	achievementCode *string
@@ -29636,134 +28537,6 @@ func (m *RpgUserAchievementMutation) OldCreateTime(ctx context.Context) (v time.
 // ResetCreateTime resets all changes to the "createTime" field.
 func (m *RpgUserAchievementMutation) ResetCreateTime() {
 	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *RpgUserAchievementMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *RpgUserAchievementMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the RpgUserAchievement entity.
-// If the RpgUserAchievement object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserAchievementMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *RpgUserAchievementMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgUserAchievementMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgUserAchievementMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgUserAchievement entity.
-// If the RpgUserAchievement object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserAchievementMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgUserAchievementMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgUserAchievementMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgUserAchievementMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgUserAchievement entity.
-// If the RpgUserAchievement object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserAchievementMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgUserAchievementMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgUserAchievementMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgUserAchievementMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -30053,18 +28826,9 @@ func (m *RpgUserAchievementMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgUserAchievementMutation) Fields() []string {
-	fields := make([]string, 0, 9)
+	fields := make([]string, 0, 6)
 	if m.createTime != nil {
 		fields = append(fields, rpguserachievement.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, rpguserachievement.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpguserachievement.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpguserachievement.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpguserachievement.FieldUID)
@@ -30091,12 +28855,6 @@ func (m *RpgUserAchievementMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case rpguserachievement.FieldCreateTime:
 		return m.CreateTime()
-	case rpguserachievement.FieldUpdateTime:
-		return m.UpdateTime()
-	case rpguserachievement.FieldIsDelete:
-		return m.IsDelete()
-	case rpguserachievement.FieldVersion:
-		return m.Version()
 	case rpguserachievement.FieldUID:
 		return m.UID()
 	case rpguserachievement.FieldAchievementCode:
@@ -30118,12 +28876,6 @@ func (m *RpgUserAchievementMutation) OldField(ctx context.Context, name string) 
 	switch name {
 	case rpguserachievement.FieldCreateTime:
 		return m.OldCreateTime(ctx)
-	case rpguserachievement.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case rpguserachievement.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpguserachievement.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpguserachievement.FieldUID:
 		return m.OldUID(ctx)
 	case rpguserachievement.FieldAchievementCode:
@@ -30149,27 +28901,6 @@ func (m *RpgUserAchievementMutation) SetField(name string, value ent.Value) erro
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCreateTime(v)
-		return nil
-	case rpguserachievement.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case rpguserachievement.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpguserachievement.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpguserachievement.FieldUID:
 		v, ok := value.(int)
@@ -30214,9 +28945,6 @@ func (m *RpgUserAchievementMutation) SetField(name string, value ent.Value) erro
 // this mutation.
 func (m *RpgUserAchievementMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpguserachievement.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpguserachievement.FieldUID)
 	}
@@ -30234,8 +28962,6 @@ func (m *RpgUserAchievementMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgUserAchievementMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpguserachievement.FieldVersion:
-		return m.AddedVersion()
 	case rpguserachievement.FieldUID:
 		return m.AddedUID()
 	case rpguserachievement.FieldProgress:
@@ -30251,13 +28977,6 @@ func (m *RpgUserAchievementMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgUserAchievementMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpguserachievement.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpguserachievement.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -30317,15 +29036,6 @@ func (m *RpgUserAchievementMutation) ResetField(name string) error {
 	switch name {
 	case rpguserachievement.FieldCreateTime:
 		m.ResetCreateTime()
-		return nil
-	case rpguserachievement.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case rpguserachievement.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpguserachievement.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpguserachievement.FieldUID:
 		m.ResetUID()
@@ -30401,10 +29111,6 @@ type RpgUserBuffMutation struct {
 	typ              string
 	id               *int
 	createTime       *time.Time
-	updateTime       *time.Time
-	isDelete         *bool
-	version          *int
-	addversion       *int
 	uid              *int
 	adduid           *int
 	buffCode         *string
@@ -30567,134 +29273,6 @@ func (m *RpgUserBuffMutation) OldCreateTime(ctx context.Context) (v time.Time, e
 // ResetCreateTime resets all changes to the "createTime" field.
 func (m *RpgUserBuffMutation) ResetCreateTime() {
 	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *RpgUserBuffMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *RpgUserBuffMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the RpgUserBuff entity.
-// If the RpgUserBuff object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserBuffMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *RpgUserBuffMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgUserBuffMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgUserBuffMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgUserBuff entity.
-// If the RpgUserBuff object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserBuffMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgUserBuffMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgUserBuffMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgUserBuffMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgUserBuff entity.
-// If the RpgUserBuff object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserBuffMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgUserBuffMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgUserBuffMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgUserBuffMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -31339,18 +29917,9 @@ func (m *RpgUserBuffMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgUserBuffMutation) Fields() []string {
-	fields := make([]string, 0, 17)
+	fields := make([]string, 0, 14)
 	if m.createTime != nil {
 		fields = append(fields, rpguserbuff.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, rpguserbuff.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpguserbuff.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpguserbuff.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpguserbuff.FieldUID)
@@ -31401,12 +29970,6 @@ func (m *RpgUserBuffMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case rpguserbuff.FieldCreateTime:
 		return m.CreateTime()
-	case rpguserbuff.FieldUpdateTime:
-		return m.UpdateTime()
-	case rpguserbuff.FieldIsDelete:
-		return m.IsDelete()
-	case rpguserbuff.FieldVersion:
-		return m.Version()
 	case rpguserbuff.FieldUID:
 		return m.UID()
 	case rpguserbuff.FieldBuffCode:
@@ -31444,12 +30007,6 @@ func (m *RpgUserBuffMutation) OldField(ctx context.Context, name string) (ent.Va
 	switch name {
 	case rpguserbuff.FieldCreateTime:
 		return m.OldCreateTime(ctx)
-	case rpguserbuff.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case rpguserbuff.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpguserbuff.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpguserbuff.FieldUID:
 		return m.OldUID(ctx)
 	case rpguserbuff.FieldBuffCode:
@@ -31491,27 +30048,6 @@ func (m *RpgUserBuffMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCreateTime(v)
-		return nil
-	case rpguserbuff.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case rpguserbuff.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpguserbuff.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpguserbuff.FieldUID:
 		v, ok := value.(int)
@@ -31612,9 +30148,6 @@ func (m *RpgUserBuffMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *RpgUserBuffMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpguserbuff.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpguserbuff.FieldUID)
 	}
@@ -31638,8 +30171,6 @@ func (m *RpgUserBuffMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgUserBuffMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpguserbuff.FieldVersion:
-		return m.AddedVersion()
 	case rpguserbuff.FieldUID:
 		return m.AddedUID()
 	case rpguserbuff.FieldValue:
@@ -31659,13 +30190,6 @@ func (m *RpgUserBuffMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgUserBuffMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpguserbuff.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpguserbuff.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -31751,15 +30275,6 @@ func (m *RpgUserBuffMutation) ResetField(name string) error {
 	switch name {
 	case rpguserbuff.FieldCreateTime:
 		m.ResetCreateTime()
-		return nil
-	case rpguserbuff.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case rpguserbuff.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpguserbuff.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpguserbuff.FieldUID:
 		m.ResetUID()
@@ -33812,10 +32327,6 @@ type RpgUserLotteryRecordMutation struct {
 	typ           string
 	id            *int
 	createTime    *time.Time
-	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	uid           *int
 	adduid        *int
 	poolItemCode  *string
@@ -33966,134 +32477,6 @@ func (m *RpgUserLotteryRecordMutation) OldCreateTime(ctx context.Context) (v tim
 // ResetCreateTime resets all changes to the "createTime" field.
 func (m *RpgUserLotteryRecordMutation) ResetCreateTime() {
 	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *RpgUserLotteryRecordMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *RpgUserLotteryRecordMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the RpgUserLotteryRecord entity.
-// If the RpgUserLotteryRecord object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserLotteryRecordMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *RpgUserLotteryRecordMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgUserLotteryRecordMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgUserLotteryRecordMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgUserLotteryRecord entity.
-// If the RpgUserLotteryRecord object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserLotteryRecordMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgUserLotteryRecordMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgUserLotteryRecordMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgUserLotteryRecordMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgUserLotteryRecord entity.
-// If the RpgUserLotteryRecord object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserLotteryRecordMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgUserLotteryRecordMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgUserLotteryRecordMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgUserLotteryRecordMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -34343,18 +32726,9 @@ func (m *RpgUserLotteryRecordMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgUserLotteryRecordMutation) Fields() []string {
-	fields := make([]string, 0, 9)
+	fields := make([]string, 0, 6)
 	if m.createTime != nil {
 		fields = append(fields, rpguserlotteryrecord.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, rpguserlotteryrecord.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpguserlotteryrecord.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpguserlotteryrecord.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpguserlotteryrecord.FieldUID)
@@ -34381,12 +32755,6 @@ func (m *RpgUserLotteryRecordMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case rpguserlotteryrecord.FieldCreateTime:
 		return m.CreateTime()
-	case rpguserlotteryrecord.FieldUpdateTime:
-		return m.UpdateTime()
-	case rpguserlotteryrecord.FieldIsDelete:
-		return m.IsDelete()
-	case rpguserlotteryrecord.FieldVersion:
-		return m.Version()
 	case rpguserlotteryrecord.FieldUID:
 		return m.UID()
 	case rpguserlotteryrecord.FieldPoolItemCode:
@@ -34408,12 +32776,6 @@ func (m *RpgUserLotteryRecordMutation) OldField(ctx context.Context, name string
 	switch name {
 	case rpguserlotteryrecord.FieldCreateTime:
 		return m.OldCreateTime(ctx)
-	case rpguserlotteryrecord.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case rpguserlotteryrecord.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpguserlotteryrecord.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpguserlotteryrecord.FieldUID:
 		return m.OldUID(ctx)
 	case rpguserlotteryrecord.FieldPoolItemCode:
@@ -34439,27 +32801,6 @@ func (m *RpgUserLotteryRecordMutation) SetField(name string, value ent.Value) er
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCreateTime(v)
-		return nil
-	case rpguserlotteryrecord.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case rpguserlotteryrecord.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpguserlotteryrecord.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpguserlotteryrecord.FieldUID:
 		v, ok := value.(int)
@@ -34504,9 +32845,6 @@ func (m *RpgUserLotteryRecordMutation) SetField(name string, value ent.Value) er
 // this mutation.
 func (m *RpgUserLotteryRecordMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpguserlotteryrecord.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpguserlotteryrecord.FieldUID)
 	}
@@ -34518,8 +32856,6 @@ func (m *RpgUserLotteryRecordMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgUserLotteryRecordMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpguserlotteryrecord.FieldVersion:
-		return m.AddedVersion()
 	case rpguserlotteryrecord.FieldUID:
 		return m.AddedUID()
 	}
@@ -34531,13 +32867,6 @@ func (m *RpgUserLotteryRecordMutation) AddedField(name string) (ent.Value, bool)
 // type.
 func (m *RpgUserLotteryRecordMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpguserlotteryrecord.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpguserlotteryrecord.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -34583,15 +32912,6 @@ func (m *RpgUserLotteryRecordMutation) ResetField(name string) error {
 	switch name {
 	case rpguserlotteryrecord.FieldCreateTime:
 		m.ResetCreateTime()
-		return nil
-	case rpguserlotteryrecord.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case rpguserlotteryrecord.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpguserlotteryrecord.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpguserlotteryrecord.FieldUID:
 		m.ResetUID()
@@ -34668,9 +32988,6 @@ type RpgUserPetMutation struct {
 	id            *int
 	createTime    *time.Time
 	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	uid           *int
 	adduid        *int
 	petCode       *string
@@ -34860,98 +33177,6 @@ func (m *RpgUserPetMutation) OldUpdateTime(ctx context.Context) (v time.Time, er
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *RpgUserPetMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgUserPetMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgUserPetMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgUserPet entity.
-// If the RpgUserPet object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserPetMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgUserPetMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgUserPetMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgUserPetMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgUserPet entity.
-// If the RpgUserPet object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserPetMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgUserPetMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgUserPetMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgUserPetMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -35277,18 +33502,12 @@ func (m *RpgUserPetMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgUserPetMutation) Fields() []string {
-	fields := make([]string, 0, 10)
+	fields := make([]string, 0, 8)
 	if m.createTime != nil {
 		fields = append(fields, rpguserpet.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, rpguserpet.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpguserpet.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpguserpet.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpguserpet.FieldUID)
@@ -35320,10 +33539,6 @@ func (m *RpgUserPetMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case rpguserpet.FieldUpdateTime:
 		return m.UpdateTime()
-	case rpguserpet.FieldIsDelete:
-		return m.IsDelete()
-	case rpguserpet.FieldVersion:
-		return m.Version()
 	case rpguserpet.FieldUID:
 		return m.UID()
 	case rpguserpet.FieldPetCode:
@@ -35349,10 +33564,6 @@ func (m *RpgUserPetMutation) OldField(ctx context.Context, name string) (ent.Val
 		return m.OldCreateTime(ctx)
 	case rpguserpet.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case rpguserpet.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpguserpet.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpguserpet.FieldUID:
 		return m.OldUID(ctx)
 	case rpguserpet.FieldPetCode:
@@ -35387,20 +33598,6 @@ func (m *RpgUserPetMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case rpguserpet.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpguserpet.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpguserpet.FieldUID:
 		v, ok := value.(int)
@@ -35452,9 +33649,6 @@ func (m *RpgUserPetMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *RpgUserPetMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpguserpet.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpguserpet.FieldUID)
 	}
@@ -35472,8 +33666,6 @@ func (m *RpgUserPetMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgUserPetMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpguserpet.FieldVersion:
-		return m.AddedVersion()
 	case rpguserpet.FieldUID:
 		return m.AddedUID()
 	case rpguserpet.FieldLevel:
@@ -35489,13 +33681,6 @@ func (m *RpgUserPetMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgUserPetMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpguserpet.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpguserpet.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -35558,12 +33743,6 @@ func (m *RpgUserPetMutation) ResetField(name string) error {
 		return nil
 	case rpguserpet.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case rpguserpet.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpguserpet.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpguserpet.FieldUID:
 		m.ResetUID()
@@ -35643,9 +33822,6 @@ type RpgUserQuestProgressMutation struct {
 	id            *int
 	createTime    *time.Time
 	updateTime    *time.Time
-	isDelete      *bool
-	version       *int
-	addversion    *int
 	uid           *int
 	adduid        *int
 	questCode     *string
@@ -35836,98 +34012,6 @@ func (m *RpgUserQuestProgressMutation) OldUpdateTime(ctx context.Context) (v tim
 // ResetUpdateTime resets all changes to the "updateTime" field.
 func (m *RpgUserQuestProgressMutation) ResetUpdateTime() {
 	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgUserQuestProgressMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgUserQuestProgressMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgUserQuestProgress entity.
-// If the RpgUserQuestProgress object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserQuestProgressMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgUserQuestProgressMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgUserQuestProgressMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgUserQuestProgressMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgUserQuestProgress entity.
-// If the RpgUserQuestProgress object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserQuestProgressMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgUserQuestProgressMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgUserQuestProgressMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgUserQuestProgressMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetUID sets the "uid" field.
@@ -36260,18 +34344,12 @@ func (m *RpgUserQuestProgressMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgUserQuestProgressMutation) Fields() []string {
-	fields := make([]string, 0, 10)
+	fields := make([]string, 0, 8)
 	if m.createTime != nil {
 		fields = append(fields, rpguserquestprogress.FieldCreateTime)
 	}
 	if m.updateTime != nil {
 		fields = append(fields, rpguserquestprogress.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpguserquestprogress.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpguserquestprogress.FieldVersion)
 	}
 	if m.uid != nil {
 		fields = append(fields, rpguserquestprogress.FieldUID)
@@ -36303,10 +34381,6 @@ func (m *RpgUserQuestProgressMutation) Field(name string) (ent.Value, bool) {
 		return m.CreateTime()
 	case rpguserquestprogress.FieldUpdateTime:
 		return m.UpdateTime()
-	case rpguserquestprogress.FieldIsDelete:
-		return m.IsDelete()
-	case rpguserquestprogress.FieldVersion:
-		return m.Version()
 	case rpguserquestprogress.FieldUID:
 		return m.UID()
 	case rpguserquestprogress.FieldQuestCode:
@@ -36332,10 +34406,6 @@ func (m *RpgUserQuestProgressMutation) OldField(ctx context.Context, name string
 		return m.OldCreateTime(ctx)
 	case rpguserquestprogress.FieldUpdateTime:
 		return m.OldUpdateTime(ctx)
-	case rpguserquestprogress.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpguserquestprogress.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpguserquestprogress.FieldUID:
 		return m.OldUID(ctx)
 	case rpguserquestprogress.FieldQuestCode:
@@ -36370,20 +34440,6 @@ func (m *RpgUserQuestProgressMutation) SetField(name string, value ent.Value) er
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetUpdateTime(v)
-		return nil
-	case rpguserquestprogress.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpguserquestprogress.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpguserquestprogress.FieldUID:
 		v, ok := value.(int)
@@ -36435,9 +34491,6 @@ func (m *RpgUserQuestProgressMutation) SetField(name string, value ent.Value) er
 // this mutation.
 func (m *RpgUserQuestProgressMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpguserquestprogress.FieldVersion)
-	}
 	if m.adduid != nil {
 		fields = append(fields, rpguserquestprogress.FieldUID)
 	}
@@ -36458,8 +34511,6 @@ func (m *RpgUserQuestProgressMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgUserQuestProgressMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpguserquestprogress.FieldVersion:
-		return m.AddedVersion()
 	case rpguserquestprogress.FieldUID:
 		return m.AddedUID()
 	case rpguserquestprogress.FieldProgress:
@@ -36477,13 +34528,6 @@ func (m *RpgUserQuestProgressMutation) AddedField(name string) (ent.Value, bool)
 // type.
 func (m *RpgUserQuestProgressMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpguserquestprogress.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpguserquestprogress.FieldUID:
 		v, ok := value.(int)
 		if !ok {
@@ -36544,12 +34588,6 @@ func (m *RpgUserQuestProgressMutation) ResetField(name string) error {
 		return nil
 	case rpguserquestprogress.FieldUpdateTime:
 		m.ResetUpdateTime()
-		return nil
-	case rpguserquestprogress.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpguserquestprogress.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpguserquestprogress.FieldUID:
 		m.ResetUID()
@@ -36628,10 +34666,6 @@ type RpgUserSocialLogMutation struct {
 	typ             string
 	id              *int
 	createTime      *time.Time
-	updateTime      *time.Time
-	isDelete        *bool
-	version         *int
-	addversion      *int
 	fromUid         *int
 	addfromUid      *int
 	toUid           *int
@@ -36785,134 +34819,6 @@ func (m *RpgUserSocialLogMutation) OldCreateTime(ctx context.Context) (v time.Ti
 // ResetCreateTime resets all changes to the "createTime" field.
 func (m *RpgUserSocialLogMutation) ResetCreateTime() {
 	m.createTime = nil
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (m *RpgUserSocialLogMutation) SetUpdateTime(t time.Time) {
-	m.updateTime = &t
-}
-
-// UpdateTime returns the value of the "updateTime" field in the mutation.
-func (m *RpgUserSocialLogMutation) UpdateTime() (r time.Time, exists bool) {
-	v := m.updateTime
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUpdateTime returns the old "updateTime" field's value of the RpgUserSocialLog entity.
-// If the RpgUserSocialLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserSocialLogMutation) OldUpdateTime(ctx context.Context) (v time.Time, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUpdateTime is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUpdateTime requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUpdateTime: %w", err)
-	}
-	return oldValue.UpdateTime, nil
-}
-
-// ResetUpdateTime resets all changes to the "updateTime" field.
-func (m *RpgUserSocialLogMutation) ResetUpdateTime() {
-	m.updateTime = nil
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (m *RpgUserSocialLogMutation) SetIsDelete(b bool) {
-	m.isDelete = &b
-}
-
-// IsDelete returns the value of the "isDelete" field in the mutation.
-func (m *RpgUserSocialLogMutation) IsDelete() (r bool, exists bool) {
-	v := m.isDelete
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIsDelete returns the old "isDelete" field's value of the RpgUserSocialLog entity.
-// If the RpgUserSocialLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserSocialLogMutation) OldIsDelete(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIsDelete is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIsDelete requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIsDelete: %w", err)
-	}
-	return oldValue.IsDelete, nil
-}
-
-// ResetIsDelete resets all changes to the "isDelete" field.
-func (m *RpgUserSocialLogMutation) ResetIsDelete() {
-	m.isDelete = nil
-}
-
-// SetVersion sets the "version" field.
-func (m *RpgUserSocialLogMutation) SetVersion(i int) {
-	m.version = &i
-	m.addversion = nil
-}
-
-// Version returns the value of the "version" field in the mutation.
-func (m *RpgUserSocialLogMutation) Version() (r int, exists bool) {
-	v := m.version
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldVersion returns the old "version" field's value of the RpgUserSocialLog entity.
-// If the RpgUserSocialLog object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RpgUserSocialLogMutation) OldVersion(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldVersion is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldVersion requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldVersion: %w", err)
-	}
-	return oldValue.Version, nil
-}
-
-// AddVersion adds i to the "version" field.
-func (m *RpgUserSocialLogMutation) AddVersion(i int) {
-	if m.addversion != nil {
-		*m.addversion += i
-	} else {
-		m.addversion = &i
-	}
-}
-
-// AddedVersion returns the value that was added to the "version" field in this mutation.
-func (m *RpgUserSocialLogMutation) AddedVersion() (r int, exists bool) {
-	v := m.addversion
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ResetVersion resets all changes to the "version" field.
-func (m *RpgUserSocialLogMutation) ResetVersion() {
-	m.version = nil
-	m.addversion = nil
 }
 
 // SetFromUid sets the "fromUid" field.
@@ -37209,18 +35115,9 @@ func (m *RpgUserSocialLogMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RpgUserSocialLogMutation) Fields() []string {
-	fields := make([]string, 0, 9)
+	fields := make([]string, 0, 6)
 	if m.createTime != nil {
 		fields = append(fields, rpgusersociallog.FieldCreateTime)
-	}
-	if m.updateTime != nil {
-		fields = append(fields, rpgusersociallog.FieldUpdateTime)
-	}
-	if m.isDelete != nil {
-		fields = append(fields, rpgusersociallog.FieldIsDelete)
-	}
-	if m.version != nil {
-		fields = append(fields, rpgusersociallog.FieldVersion)
 	}
 	if m.fromUid != nil {
 		fields = append(fields, rpgusersociallog.FieldFromUid)
@@ -37247,12 +35144,6 @@ func (m *RpgUserSocialLogMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case rpgusersociallog.FieldCreateTime:
 		return m.CreateTime()
-	case rpgusersociallog.FieldUpdateTime:
-		return m.UpdateTime()
-	case rpgusersociallog.FieldIsDelete:
-		return m.IsDelete()
-	case rpgusersociallog.FieldVersion:
-		return m.Version()
 	case rpgusersociallog.FieldFromUid:
 		return m.FromUid()
 	case rpgusersociallog.FieldToUid:
@@ -37274,12 +35165,6 @@ func (m *RpgUserSocialLogMutation) OldField(ctx context.Context, name string) (e
 	switch name {
 	case rpgusersociallog.FieldCreateTime:
 		return m.OldCreateTime(ctx)
-	case rpgusersociallog.FieldUpdateTime:
-		return m.OldUpdateTime(ctx)
-	case rpgusersociallog.FieldIsDelete:
-		return m.OldIsDelete(ctx)
-	case rpgusersociallog.FieldVersion:
-		return m.OldVersion(ctx)
 	case rpgusersociallog.FieldFromUid:
 		return m.OldFromUid(ctx)
 	case rpgusersociallog.FieldToUid:
@@ -37305,27 +35190,6 @@ func (m *RpgUserSocialLogMutation) SetField(name string, value ent.Value) error 
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCreateTime(v)
-		return nil
-	case rpgusersociallog.FieldUpdateTime:
-		v, ok := value.(time.Time)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUpdateTime(v)
-		return nil
-	case rpgusersociallog.FieldIsDelete:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIsDelete(v)
-		return nil
-	case rpgusersociallog.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetVersion(v)
 		return nil
 	case rpgusersociallog.FieldFromUid:
 		v, ok := value.(int)
@@ -37370,9 +35234,6 @@ func (m *RpgUserSocialLogMutation) SetField(name string, value ent.Value) error 
 // this mutation.
 func (m *RpgUserSocialLogMutation) AddedFields() []string {
 	var fields []string
-	if m.addversion != nil {
-		fields = append(fields, rpgusersociallog.FieldVersion)
-	}
 	if m.addfromUid != nil {
 		fields = append(fields, rpgusersociallog.FieldFromUid)
 	}
@@ -37393,8 +35254,6 @@ func (m *RpgUserSocialLogMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *RpgUserSocialLogMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case rpgusersociallog.FieldVersion:
-		return m.AddedVersion()
 	case rpgusersociallog.FieldFromUid:
 		return m.AddedFromUid()
 	case rpgusersociallog.FieldToUid:
@@ -37412,13 +35271,6 @@ func (m *RpgUserSocialLogMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *RpgUserSocialLogMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case rpgusersociallog.FieldVersion:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddVersion(v)
-		return nil
 	case rpgusersociallog.FieldFromUid:
 		v, ok := value.(int)
 		if !ok {
@@ -37476,15 +35328,6 @@ func (m *RpgUserSocialLogMutation) ResetField(name string) error {
 	switch name {
 	case rpgusersociallog.FieldCreateTime:
 		m.ResetCreateTime()
-		return nil
-	case rpgusersociallog.FieldUpdateTime:
-		m.ResetUpdateTime()
-		return nil
-	case rpgusersociallog.FieldIsDelete:
-		m.ResetIsDelete()
-		return nil
-	case rpgusersociallog.FieldVersion:
-		m.ResetVersion()
 		return nil
 	case rpgusersociallog.FieldFromUid:
 		m.ResetFromUid()

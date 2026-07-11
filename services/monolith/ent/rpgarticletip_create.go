@@ -36,48 +36,6 @@ func (ratc *RpgArticleTipCreate) SetNillableCreateTime(t *time.Time) *RpgArticle
 	return ratc
 }
 
-// SetUpdateTime sets the "updateTime" field.
-func (ratc *RpgArticleTipCreate) SetUpdateTime(t time.Time) *RpgArticleTipCreate {
-	ratc.mutation.SetUpdateTime(t)
-	return ratc
-}
-
-// SetNillableUpdateTime sets the "updateTime" field if the given value is not nil.
-func (ratc *RpgArticleTipCreate) SetNillableUpdateTime(t *time.Time) *RpgArticleTipCreate {
-	if t != nil {
-		ratc.SetUpdateTime(*t)
-	}
-	return ratc
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ratc *RpgArticleTipCreate) SetIsDelete(b bool) *RpgArticleTipCreate {
-	ratc.mutation.SetIsDelete(b)
-	return ratc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ratc *RpgArticleTipCreate) SetNillableIsDelete(b *bool) *RpgArticleTipCreate {
-	if b != nil {
-		ratc.SetIsDelete(*b)
-	}
-	return ratc
-}
-
-// SetVersion sets the "version" field.
-func (ratc *RpgArticleTipCreate) SetVersion(i int) *RpgArticleTipCreate {
-	ratc.mutation.SetVersion(i)
-	return ratc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ratc *RpgArticleTipCreate) SetNillableVersion(i *int) *RpgArticleTipCreate {
-	if i != nil {
-		ratc.SetVersion(*i)
-	}
-	return ratc
-}
-
 // SetUID sets the "uid" field.
 func (ratc *RpgArticleTipCreate) SetUID(i int) *RpgArticleTipCreate {
 	ratc.mutation.SetUID(i)
@@ -147,33 +105,12 @@ func (ratc *RpgArticleTipCreate) defaults() {
 		v := rpgarticletip.DefaultCreateTime()
 		ratc.mutation.SetCreateTime(v)
 	}
-	if _, ok := ratc.mutation.UpdateTime(); !ok {
-		v := rpgarticletip.DefaultUpdateTime()
-		ratc.mutation.SetUpdateTime(v)
-	}
-	if _, ok := ratc.mutation.IsDelete(); !ok {
-		v := rpgarticletip.DefaultIsDelete
-		ratc.mutation.SetIsDelete(v)
-	}
-	if _, ok := ratc.mutation.Version(); !ok {
-		v := rpgarticletip.DefaultVersion
-		ratc.mutation.SetVersion(v)
-	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (ratc *RpgArticleTipCreate) check() error {
 	if _, ok := ratc.mutation.CreateTime(); !ok {
 		return &ValidationError{Name: "createTime", err: errors.New(`ent: missing required field "RpgArticleTip.createTime"`)}
-	}
-	if _, ok := ratc.mutation.UpdateTime(); !ok {
-		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgArticleTip.updateTime"`)}
-	}
-	if _, ok := ratc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgArticleTip.isDelete"`)}
-	}
-	if _, ok := ratc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgArticleTip.version"`)}
 	}
 	if _, ok := ratc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgArticleTip.uid"`)}
@@ -223,18 +160,6 @@ func (ratc *RpgArticleTipCreate) createSpec() (*RpgArticleTip, *sqlgraph.CreateS
 	if value, ok := ratc.mutation.CreateTime(); ok {
 		_spec.SetField(rpgarticletip.FieldCreateTime, field.TypeTime, value)
 		_node.CreateTime = value
-	}
-	if value, ok := ratc.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgarticletip.FieldUpdateTime, field.TypeTime, value)
-		_node.UpdateTime = value
-	}
-	if value, ok := ratc.mutation.IsDelete(); ok {
-		_spec.SetField(rpgarticletip.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := ratc.mutation.Version(); ok {
-		_spec.SetField(rpgarticletip.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := ratc.mutation.UID(); ok {
 		_spec.SetField(rpgarticletip.FieldUID, field.TypeInt, value)
@@ -303,48 +228,6 @@ type (
 		*sql.UpdateSet
 	}
 )
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgArticleTipUpsert) SetUpdateTime(v time.Time) *RpgArticleTipUpsert {
-	u.Set(rpgarticletip.FieldUpdateTime, v)
-	return u
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgArticleTipUpsert) UpdateUpdateTime() *RpgArticleTipUpsert {
-	u.SetExcluded(rpgarticletip.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgArticleTipUpsert) SetIsDelete(v bool) *RpgArticleTipUpsert {
-	u.Set(rpgarticletip.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgArticleTipUpsert) UpdateIsDelete() *RpgArticleTipUpsert {
-	u.SetExcluded(rpgarticletip.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgArticleTipUpsert) SetVersion(v int) *RpgArticleTipUpsert {
-	u.Set(rpgarticletip.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgArticleTipUpsert) UpdateVersion() *RpgArticleTipUpsert {
-	u.SetExcluded(rpgarticletip.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgArticleTipUpsert) AddVersion(v int) *RpgArticleTipUpsert {
-	u.Add(rpgarticletip.FieldVersion, v)
-	return u
-}
 
 // SetUID sets the "uid" field.
 func (u *RpgArticleTipUpsert) SetUID(v int) *RpgArticleTipUpsert {
@@ -467,55 +350,6 @@ func (u *RpgArticleTipUpsertOne) Update(set func(*RpgArticleTipUpsert)) *RpgArti
 		set(&RpgArticleTipUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgArticleTipUpsertOne) SetUpdateTime(v time.Time) *RpgArticleTipUpsertOne {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgArticleTipUpsertOne) UpdateUpdateTime() *RpgArticleTipUpsertOne {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgArticleTipUpsertOne) SetIsDelete(v bool) *RpgArticleTipUpsertOne {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgArticleTipUpsertOne) UpdateIsDelete() *RpgArticleTipUpsertOne {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgArticleTipUpsertOne) SetVersion(v int) *RpgArticleTipUpsertOne {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgArticleTipUpsertOne) AddVersion(v int) *RpgArticleTipUpsertOne {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgArticleTipUpsertOne) UpdateVersion() *RpgArticleTipUpsertOne {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.
@@ -817,55 +651,6 @@ func (u *RpgArticleTipUpsertBulk) Update(set func(*RpgArticleTipUpsert)) *RpgArt
 		set(&RpgArticleTipUpsert{UpdateSet: update})
 	}))
 	return u
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (u *RpgArticleTipUpsertBulk) SetUpdateTime(v time.Time) *RpgArticleTipUpsertBulk {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.SetUpdateTime(v)
-	})
-}
-
-// UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
-func (u *RpgArticleTipUpsertBulk) UpdateUpdateTime() *RpgArticleTipUpsertBulk {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgArticleTipUpsertBulk) SetIsDelete(v bool) *RpgArticleTipUpsertBulk {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgArticleTipUpsertBulk) UpdateIsDelete() *RpgArticleTipUpsertBulk {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgArticleTipUpsertBulk) SetVersion(v int) *RpgArticleTipUpsertBulk {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgArticleTipUpsertBulk) AddVersion(v int) *RpgArticleTipUpsertBulk {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgArticleTipUpsertBulk) UpdateVersion() *RpgArticleTipUpsertBulk {
-	return u.Update(func(s *RpgArticleTipUpsert) {
-		s.UpdateVersion()
-	})
 }
 
 // SetUID sets the "uid" field.

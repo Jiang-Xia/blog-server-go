@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
@@ -25,47 +24,6 @@ type RpgUserSocialLogUpdate struct {
 // Where appends a list predicates to the RpgUserSocialLogUpdate builder.
 func (ruslu *RpgUserSocialLogUpdate) Where(ps ...predicate.RpgUserSocialLog) *RpgUserSocialLogUpdate {
 	ruslu.mutation.Where(ps...)
-	return ruslu
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (ruslu *RpgUserSocialLogUpdate) SetUpdateTime(t time.Time) *RpgUserSocialLogUpdate {
-	ruslu.mutation.SetUpdateTime(t)
-	return ruslu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (ruslu *RpgUserSocialLogUpdate) SetIsDelete(b bool) *RpgUserSocialLogUpdate {
-	ruslu.mutation.SetIsDelete(b)
-	return ruslu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruslu *RpgUserSocialLogUpdate) SetNillableIsDelete(b *bool) *RpgUserSocialLogUpdate {
-	if b != nil {
-		ruslu.SetIsDelete(*b)
-	}
-	return ruslu
-}
-
-// SetVersion sets the "version" field.
-func (ruslu *RpgUserSocialLogUpdate) SetVersion(i int) *RpgUserSocialLogUpdate {
-	ruslu.mutation.ResetVersion()
-	ruslu.mutation.SetVersion(i)
-	return ruslu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruslu *RpgUserSocialLogUpdate) SetNillableVersion(i *int) *RpgUserSocialLogUpdate {
-	if i != nil {
-		ruslu.SetVersion(*i)
-	}
-	return ruslu
-}
-
-// AddVersion adds i to the "version" field.
-func (ruslu *RpgUserSocialLogUpdate) AddVersion(i int) *RpgUserSocialLogUpdate {
-	ruslu.mutation.AddVersion(i)
 	return ruslu
 }
 
@@ -174,7 +132,6 @@ func (ruslu *RpgUserSocialLogUpdate) Mutation() *RpgUserSocialLogMutation {
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (ruslu *RpgUserSocialLogUpdate) Save(ctx context.Context) (int, error) {
-	ruslu.defaults()
 	return withHooks(ctx, ruslu.sqlSave, ruslu.mutation, ruslu.hooks)
 }
 
@@ -200,14 +157,6 @@ func (ruslu *RpgUserSocialLogUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (ruslu *RpgUserSocialLogUpdate) defaults() {
-	if _, ok := ruslu.mutation.UpdateTime(); !ok {
-		v := rpgusersociallog.UpdateDefaultUpdateTime()
-		ruslu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (ruslu *RpgUserSocialLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgusersociallog.Table, rpgusersociallog.Columns, sqlgraph.NewFieldSpec(rpgusersociallog.FieldID, field.TypeInt))
 	if ps := ruslu.mutation.predicates; len(ps) > 0 {
@@ -216,18 +165,6 @@ func (ruslu *RpgUserSocialLogUpdate) sqlSave(ctx context.Context) (n int, err er
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := ruslu.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgusersociallog.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := ruslu.mutation.IsDelete(); ok {
-		_spec.SetField(rpgusersociallog.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := ruslu.mutation.Version(); ok {
-		_spec.SetField(rpgusersociallog.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := ruslu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgusersociallog.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := ruslu.mutation.FromUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldFromUid, field.TypeInt, value)
@@ -274,47 +211,6 @@ type RpgUserSocialLogUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *RpgUserSocialLogMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (rusluo *RpgUserSocialLogUpdateOne) SetUpdateTime(t time.Time) *RpgUserSocialLogUpdateOne {
-	rusluo.mutation.SetUpdateTime(t)
-	return rusluo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rusluo *RpgUserSocialLogUpdateOne) SetIsDelete(b bool) *RpgUserSocialLogUpdateOne {
-	rusluo.mutation.SetIsDelete(b)
-	return rusluo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rusluo *RpgUserSocialLogUpdateOne) SetNillableIsDelete(b *bool) *RpgUserSocialLogUpdateOne {
-	if b != nil {
-		rusluo.SetIsDelete(*b)
-	}
-	return rusluo
-}
-
-// SetVersion sets the "version" field.
-func (rusluo *RpgUserSocialLogUpdateOne) SetVersion(i int) *RpgUserSocialLogUpdateOne {
-	rusluo.mutation.ResetVersion()
-	rusluo.mutation.SetVersion(i)
-	return rusluo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rusluo *RpgUserSocialLogUpdateOne) SetNillableVersion(i *int) *RpgUserSocialLogUpdateOne {
-	if i != nil {
-		rusluo.SetVersion(*i)
-	}
-	return rusluo
-}
-
-// AddVersion adds i to the "version" field.
-func (rusluo *RpgUserSocialLogUpdateOne) AddVersion(i int) *RpgUserSocialLogUpdateOne {
-	rusluo.mutation.AddVersion(i)
-	return rusluo
 }
 
 // SetFromUid sets the "fromUid" field.
@@ -435,7 +331,6 @@ func (rusluo *RpgUserSocialLogUpdateOne) Select(field string, fields ...string) 
 
 // Save executes the query and returns the updated RpgUserSocialLog entity.
 func (rusluo *RpgUserSocialLogUpdateOne) Save(ctx context.Context) (*RpgUserSocialLog, error) {
-	rusluo.defaults()
 	return withHooks(ctx, rusluo.sqlSave, rusluo.mutation, rusluo.hooks)
 }
 
@@ -458,14 +353,6 @@ func (rusluo *RpgUserSocialLogUpdateOne) Exec(ctx context.Context) error {
 func (rusluo *RpgUserSocialLogUpdateOne) ExecX(ctx context.Context) {
 	if err := rusluo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (rusluo *RpgUserSocialLogUpdateOne) defaults() {
-	if _, ok := rusluo.mutation.UpdateTime(); !ok {
-		v := rpgusersociallog.UpdateDefaultUpdateTime()
-		rusluo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -494,18 +381,6 @@ func (rusluo *RpgUserSocialLogUpdateOne) sqlSave(ctx context.Context) (_node *Rp
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := rusluo.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgusersociallog.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rusluo.mutation.IsDelete(); ok {
-		_spec.SetField(rpgusersociallog.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rusluo.mutation.Version(); ok {
-		_spec.SetField(rpgusersociallog.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rusluo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgusersociallog.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rusluo.mutation.FromUid(); ok {
 		_spec.SetField(rpgusersociallog.FieldFromUid, field.TypeInt, value)

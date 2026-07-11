@@ -50,34 +50,6 @@ func (ruqpc *RpgUserQuestProgressCreate) SetNillableUpdateTime(t *time.Time) *Rp
 	return ruqpc
 }
 
-// SetIsDelete sets the "isDelete" field.
-func (ruqpc *RpgUserQuestProgressCreate) SetIsDelete(b bool) *RpgUserQuestProgressCreate {
-	ruqpc.mutation.SetIsDelete(b)
-	return ruqpc
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (ruqpc *RpgUserQuestProgressCreate) SetNillableIsDelete(b *bool) *RpgUserQuestProgressCreate {
-	if b != nil {
-		ruqpc.SetIsDelete(*b)
-	}
-	return ruqpc
-}
-
-// SetVersion sets the "version" field.
-func (ruqpc *RpgUserQuestProgressCreate) SetVersion(i int) *RpgUserQuestProgressCreate {
-	ruqpc.mutation.SetVersion(i)
-	return ruqpc
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (ruqpc *RpgUserQuestProgressCreate) SetNillableVersion(i *int) *RpgUserQuestProgressCreate {
-	if i != nil {
-		ruqpc.SetVersion(*i)
-	}
-	return ruqpc
-}
-
 // SetUID sets the "uid" field.
 func (ruqpc *RpgUserQuestProgressCreate) SetUID(i int) *RpgUserQuestProgressCreate {
 	ruqpc.mutation.SetUID(i)
@@ -187,14 +159,6 @@ func (ruqpc *RpgUserQuestProgressCreate) defaults() {
 		v := rpguserquestprogress.DefaultUpdateTime()
 		ruqpc.mutation.SetUpdateTime(v)
 	}
-	if _, ok := ruqpc.mutation.IsDelete(); !ok {
-		v := rpguserquestprogress.DefaultIsDelete
-		ruqpc.mutation.SetIsDelete(v)
-	}
-	if _, ok := ruqpc.mutation.Version(); !ok {
-		v := rpguserquestprogress.DefaultVersion
-		ruqpc.mutation.SetVersion(v)
-	}
 	if _, ok := ruqpc.mutation.Progress(); !ok {
 		v := rpguserquestprogress.DefaultProgress
 		ruqpc.mutation.SetProgress(v)
@@ -216,12 +180,6 @@ func (ruqpc *RpgUserQuestProgressCreate) check() error {
 	}
 	if _, ok := ruqpc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "updateTime", err: errors.New(`ent: missing required field "RpgUserQuestProgress.updateTime"`)}
-	}
-	if _, ok := ruqpc.mutation.IsDelete(); !ok {
-		return &ValidationError{Name: "isDelete", err: errors.New(`ent: missing required field "RpgUserQuestProgress.isDelete"`)}
-	}
-	if _, ok := ruqpc.mutation.Version(); !ok {
-		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "RpgUserQuestProgress.version"`)}
 	}
 	if _, ok := ruqpc.mutation.UID(); !ok {
 		return &ValidationError{Name: "uid", err: errors.New(`ent: missing required field "RpgUserQuestProgress.uid"`)}
@@ -281,14 +239,6 @@ func (ruqpc *RpgUserQuestProgressCreate) createSpec() (*RpgUserQuestProgress, *s
 	if value, ok := ruqpc.mutation.UpdateTime(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
-	}
-	if value, ok := ruqpc.mutation.IsDelete(); ok {
-		_spec.SetField(rpguserquestprogress.FieldIsDelete, field.TypeBool, value)
-		_node.IsDelete = value
-	}
-	if value, ok := ruqpc.mutation.Version(); ok {
-		_spec.SetField(rpguserquestprogress.FieldVersion, field.TypeInt, value)
-		_node.Version = value
 	}
 	if value, ok := ruqpc.mutation.UID(); ok {
 		_spec.SetField(rpguserquestprogress.FieldUID, field.TypeInt, value)
@@ -375,36 +325,6 @@ func (u *RpgUserQuestProgressUpsert) SetUpdateTime(v time.Time) *RpgUserQuestPro
 // UpdateUpdateTime sets the "updateTime" field to the value that was provided on create.
 func (u *RpgUserQuestProgressUpsert) UpdateUpdateTime() *RpgUserQuestProgressUpsert {
 	u.SetExcluded(rpguserquestprogress.FieldUpdateTime)
-	return u
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserQuestProgressUpsert) SetIsDelete(v bool) *RpgUserQuestProgressUpsert {
-	u.Set(rpguserquestprogress.FieldIsDelete, v)
-	return u
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserQuestProgressUpsert) UpdateIsDelete() *RpgUserQuestProgressUpsert {
-	u.SetExcluded(rpguserquestprogress.FieldIsDelete)
-	return u
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserQuestProgressUpsert) SetVersion(v int) *RpgUserQuestProgressUpsert {
-	u.Set(rpguserquestprogress.FieldVersion, v)
-	return u
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserQuestProgressUpsert) UpdateVersion() *RpgUserQuestProgressUpsert {
-	u.SetExcluded(rpguserquestprogress.FieldVersion)
-	return u
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserQuestProgressUpsert) AddVersion(v int) *RpgUserQuestProgressUpsert {
-	u.Add(rpguserquestprogress.FieldVersion, v)
 	return u
 }
 
@@ -566,41 +486,6 @@ func (u *RpgUserQuestProgressUpsertOne) SetUpdateTime(v time.Time) *RpgUserQuest
 func (u *RpgUserQuestProgressUpsertOne) UpdateUpdateTime() *RpgUserQuestProgressUpsertOne {
 	return u.Update(func(s *RpgUserQuestProgressUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserQuestProgressUpsertOne) SetIsDelete(v bool) *RpgUserQuestProgressUpsertOne {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserQuestProgressUpsertOne) UpdateIsDelete() *RpgUserQuestProgressUpsertOne {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserQuestProgressUpsertOne) SetVersion(v int) *RpgUserQuestProgressUpsertOne {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserQuestProgressUpsertOne) AddVersion(v int) *RpgUserQuestProgressUpsertOne {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserQuestProgressUpsertOne) UpdateVersion() *RpgUserQuestProgressUpsertOne {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.UpdateVersion()
 	})
 }
 
@@ -944,41 +829,6 @@ func (u *RpgUserQuestProgressUpsertBulk) SetUpdateTime(v time.Time) *RpgUserQues
 func (u *RpgUserQuestProgressUpsertBulk) UpdateUpdateTime() *RpgUserQuestProgressUpsertBulk {
 	return u.Update(func(s *RpgUserQuestProgressUpsert) {
 		s.UpdateUpdateTime()
-	})
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (u *RpgUserQuestProgressUpsertBulk) SetIsDelete(v bool) *RpgUserQuestProgressUpsertBulk {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.SetIsDelete(v)
-	})
-}
-
-// UpdateIsDelete sets the "isDelete" field to the value that was provided on create.
-func (u *RpgUserQuestProgressUpsertBulk) UpdateIsDelete() *RpgUserQuestProgressUpsertBulk {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.UpdateIsDelete()
-	})
-}
-
-// SetVersion sets the "version" field.
-func (u *RpgUserQuestProgressUpsertBulk) SetVersion(v int) *RpgUserQuestProgressUpsertBulk {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.SetVersion(v)
-	})
-}
-
-// AddVersion adds v to the "version" field.
-func (u *RpgUserQuestProgressUpsertBulk) AddVersion(v int) *RpgUserQuestProgressUpsertBulk {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.AddVersion(v)
-	})
-}
-
-// UpdateVersion sets the "version" field to the value that was provided on create.
-func (u *RpgUserQuestProgressUpsertBulk) UpdateVersion() *RpgUserQuestProgressUpsertBulk {
-	return u.Update(func(s *RpgUserQuestProgressUpsert) {
-		s.UpdateVersion()
 	})
 }
 

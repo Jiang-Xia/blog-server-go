@@ -18,9 +18,9 @@ func (RpgUserBuff) Annotations() []schema.Annotation {
 	}
 }
 
-// Mixin 注入 TypeORM 公共时间戳与软删除字段。
+// Mixin 注入 Nest 公共时间戳字段（CreateTimeMixin：生产 x_rpg_user_buff 仅 createTime）。
 func (RpgUserBuff) Mixin() []ent.Mixin {
-	return []ent.Mixin{TimeMixin{}}
+	return []ent.Mixin{CreateTimeMixin{}}
 }
 
 // Fields 定义表列，StorageKey 保持与 Nest camelCase 列名一致。

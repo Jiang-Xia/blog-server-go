@@ -75,6 +75,24 @@ mysql -u jxblog -p -h 127.0.0.1 -e "SELECT COUNT(*) FROM x_my_blog.x_user;"
 mysql -u jxblog -p -h 127.0.0.1 -e "SELECT COUNT(*) FROM myblog.user;"
 ```
 
+### 3b. 导入后列名修复（若 RPG 接口 500）
+
+早期 `x_my_blog_import_from_myblog_backup.sql` 曾把 `rpg_item_config.category` 误写成 `x_category`，导致 Go Ent 查询 `category` 列失败。已在服务器执行：
+
+```bash
+sudo mysql x_my_blog < deploy/sql/prod/002_fix_rpg_item_config_category.sql
+```
+
+脚本幂等，可重复执行。
+
+### 3c. 公会成员 role 列（若 guild/my 500）
+
+早期导入脚本将 `rpg_user_guild_member.role` 误写成 `x_role`（与权限表 `x_role` 冲突），导致 Go 查询 `role` 列失败：
+
+```bash
+sudo mysql x_my_blog < deploy/sql/prod/003_fix_rpg_user_guild_member_role.sql
+```
+
 ### 4. 部署 Go 四服务
 
 本地 Windows：

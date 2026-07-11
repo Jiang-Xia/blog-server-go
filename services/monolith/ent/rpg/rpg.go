@@ -17,10 +17,6 @@ const (
 	FieldCreateTime = "createTime"
 	// FieldUpdateTime holds the string denoting the updatetime field in the database.
 	FieldUpdateTime = "updateTime"
-	// FieldIsDelete holds the string denoting the isdelete field in the database.
-	FieldIsDelete = "isDelete"
-	// FieldVersion holds the string denoting the version field in the database.
-	FieldVersion = "version"
 	// FieldUID holds the string denoting the uid field in the database.
 	FieldUID = "uid"
 	// FieldExp holds the string denoting the exp field in the database.
@@ -62,8 +58,6 @@ var Columns = []string{
 	FieldID,
 	FieldCreateTime,
 	FieldUpdateTime,
-	FieldIsDelete,
-	FieldVersion,
 	FieldUID,
 	FieldExp,
 	FieldLevel,
@@ -99,10 +93,6 @@ var (
 	DefaultUpdateTime func() time.Time
 	// UpdateDefaultUpdateTime holds the default value on update for the "updateTime" field.
 	UpdateDefaultUpdateTime func() time.Time
-	// DefaultIsDelete holds the default value on creation for the "isDelete" field.
-	DefaultIsDelete bool
-	// DefaultVersion holds the default value on creation for the "version" field.
-	DefaultVersion int
 	// DefaultExp holds the default value on creation for the "exp" field.
 	DefaultExp int
 	// DefaultLevel holds the default value on creation for the "level" field.
@@ -143,16 +133,6 @@ func ByCreateTime(opts ...sql.OrderTermOption) OrderOption {
 // ByUpdateTime orders the results by the updateTime field.
 func ByUpdateTime(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldUpdateTime, opts...).ToFunc()
-}
-
-// ByIsDelete orders the results by the isDelete field.
-func ByIsDelete(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldIsDelete, opts...).ToFunc()
-}
-
-// ByVersion orders the results by the version field.
-func ByVersion(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldVersion, opts...).ToFunc()
 }
 
 // ByUID orders the results by the uid field.

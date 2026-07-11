@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
@@ -25,47 +24,6 @@ type RpgLeaderboardSnapshotUpdate struct {
 // Where appends a list predicates to the RpgLeaderboardSnapshotUpdate builder.
 func (rlsu *RpgLeaderboardSnapshotUpdate) Where(ps ...predicate.RpgLeaderboardSnapshot) *RpgLeaderboardSnapshotUpdate {
 	rlsu.mutation.Where(ps...)
-	return rlsu
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (rlsu *RpgLeaderboardSnapshotUpdate) SetUpdateTime(t time.Time) *RpgLeaderboardSnapshotUpdate {
-	rlsu.mutation.SetUpdateTime(t)
-	return rlsu
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rlsu *RpgLeaderboardSnapshotUpdate) SetIsDelete(b bool) *RpgLeaderboardSnapshotUpdate {
-	rlsu.mutation.SetIsDelete(b)
-	return rlsu
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableIsDelete(b *bool) *RpgLeaderboardSnapshotUpdate {
-	if b != nil {
-		rlsu.SetIsDelete(*b)
-	}
-	return rlsu
-}
-
-// SetVersion sets the "version" field.
-func (rlsu *RpgLeaderboardSnapshotUpdate) SetVersion(i int) *RpgLeaderboardSnapshotUpdate {
-	rlsu.mutation.ResetVersion()
-	rlsu.mutation.SetVersion(i)
-	return rlsu
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rlsu *RpgLeaderboardSnapshotUpdate) SetNillableVersion(i *int) *RpgLeaderboardSnapshotUpdate {
-	if i != nil {
-		rlsu.SetVersion(*i)
-	}
-	return rlsu
-}
-
-// AddVersion adds i to the "version" field.
-func (rlsu *RpgLeaderboardSnapshotUpdate) AddVersion(i int) *RpgLeaderboardSnapshotUpdate {
-	rlsu.mutation.AddVersion(i)
 	return rlsu
 }
 
@@ -181,7 +139,6 @@ func (rlsu *RpgLeaderboardSnapshotUpdate) Mutation() *RpgLeaderboardSnapshotMuta
 
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (rlsu *RpgLeaderboardSnapshotUpdate) Save(ctx context.Context) (int, error) {
-	rlsu.defaults()
 	return withHooks(ctx, rlsu.sqlSave, rlsu.mutation, rlsu.hooks)
 }
 
@@ -207,14 +164,6 @@ func (rlsu *RpgLeaderboardSnapshotUpdate) ExecX(ctx context.Context) {
 	}
 }
 
-// defaults sets the default values of the builder before save.
-func (rlsu *RpgLeaderboardSnapshotUpdate) defaults() {
-	if _, ok := rlsu.mutation.UpdateTime(); !ok {
-		v := rpgleaderboardsnapshot.UpdateDefaultUpdateTime()
-		rlsu.mutation.SetUpdateTime(v)
-	}
-}
-
 func (rlsu *RpgLeaderboardSnapshotUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(rpgleaderboardsnapshot.Table, rpgleaderboardsnapshot.Columns, sqlgraph.NewFieldSpec(rpgleaderboardsnapshot.FieldID, field.TypeInt))
 	if ps := rlsu.mutation.predicates; len(ps) > 0 {
@@ -223,18 +172,6 @@ func (rlsu *RpgLeaderboardSnapshotUpdate) sqlSave(ctx context.Context) (n int, e
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := rlsu.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rlsu.mutation.IsDelete(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rlsu.mutation.Version(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rlsu.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rlsu.mutation.UID(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
@@ -281,47 +218,6 @@ type RpgLeaderboardSnapshotUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *RpgLeaderboardSnapshotMutation
-}
-
-// SetUpdateTime sets the "updateTime" field.
-func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetUpdateTime(t time.Time) *RpgLeaderboardSnapshotUpdateOne {
-	rlsuo.mutation.SetUpdateTime(t)
-	return rlsuo
-}
-
-// SetIsDelete sets the "isDelete" field.
-func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetIsDelete(b bool) *RpgLeaderboardSnapshotUpdateOne {
-	rlsuo.mutation.SetIsDelete(b)
-	return rlsuo
-}
-
-// SetNillableIsDelete sets the "isDelete" field if the given value is not nil.
-func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableIsDelete(b *bool) *RpgLeaderboardSnapshotUpdateOne {
-	if b != nil {
-		rlsuo.SetIsDelete(*b)
-	}
-	return rlsuo
-}
-
-// SetVersion sets the "version" field.
-func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetVersion(i int) *RpgLeaderboardSnapshotUpdateOne {
-	rlsuo.mutation.ResetVersion()
-	rlsuo.mutation.SetVersion(i)
-	return rlsuo
-}
-
-// SetNillableVersion sets the "version" field if the given value is not nil.
-func (rlsuo *RpgLeaderboardSnapshotUpdateOne) SetNillableVersion(i *int) *RpgLeaderboardSnapshotUpdateOne {
-	if i != nil {
-		rlsuo.SetVersion(*i)
-	}
-	return rlsuo
-}
-
-// AddVersion adds i to the "version" field.
-func (rlsuo *RpgLeaderboardSnapshotUpdateOne) AddVersion(i int) *RpgLeaderboardSnapshotUpdateOne {
-	rlsuo.mutation.AddVersion(i)
-	return rlsuo
 }
 
 // SetUID sets the "uid" field.
@@ -449,7 +345,6 @@ func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Select(field string, fields ...str
 
 // Save executes the query and returns the updated RpgLeaderboardSnapshot entity.
 func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Save(ctx context.Context) (*RpgLeaderboardSnapshot, error) {
-	rlsuo.defaults()
 	return withHooks(ctx, rlsuo.sqlSave, rlsuo.mutation, rlsuo.hooks)
 }
 
@@ -472,14 +367,6 @@ func (rlsuo *RpgLeaderboardSnapshotUpdateOne) Exec(ctx context.Context) error {
 func (rlsuo *RpgLeaderboardSnapshotUpdateOne) ExecX(ctx context.Context) {
 	if err := rlsuo.Exec(ctx); err != nil {
 		panic(err)
-	}
-}
-
-// defaults sets the default values of the builder before save.
-func (rlsuo *RpgLeaderboardSnapshotUpdateOne) defaults() {
-	if _, ok := rlsuo.mutation.UpdateTime(); !ok {
-		v := rpgleaderboardsnapshot.UpdateDefaultUpdateTime()
-		rlsuo.mutation.SetUpdateTime(v)
 	}
 }
 
@@ -508,18 +395,6 @@ func (rlsuo *RpgLeaderboardSnapshotUpdateOne) sqlSave(ctx context.Context) (_nod
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := rlsuo.mutation.UpdateTime(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldUpdateTime, field.TypeTime, value)
-	}
-	if value, ok := rlsuo.mutation.IsDelete(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldIsDelete, field.TypeBool, value)
-	}
-	if value, ok := rlsuo.mutation.Version(); ok {
-		_spec.SetField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
-	}
-	if value, ok := rlsuo.mutation.AddedVersion(); ok {
-		_spec.AddField(rpgleaderboardsnapshot.FieldVersion, field.TypeInt, value)
 	}
 	if value, ok := rlsuo.mutation.UID(); ok {
 		_spec.SetField(rpgleaderboardsnapshot.FieldUID, field.TypeInt, value)
