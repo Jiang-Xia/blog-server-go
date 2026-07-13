@@ -237,7 +237,7 @@ go run scripts/dev_login.go --token-only
 | 项目 | 配置 |
 |------|------|
 | `blog-home-nuxt` | API 指 `http://127.0.0.1:8000` |
-| `blog-home-uniapp` | `pnpm dev:go-local`（见 `env/.env.go-local`） |
+| `blog-home-uniapp` | `pnpm dev`（默认 `env/.env.development` → `:8000`） |
 | `blog-admin` | 同上 |
 | WebSocket | `ws://127.0.0.1:8000/api/v1/realtime` |
 

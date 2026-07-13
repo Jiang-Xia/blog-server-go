@@ -61,12 +61,40 @@ func GetRarityDisplay(rarity string) RarityDisplay {
 	return RarityDisplay{Color: "#c8d4e0", Label: rarity, Icon: "⚪"}
 }
 
+// RarityCodeFromItem 从 API map 读取 rarity 或 poolRarity。
+func RarityCodeFromItem(item map[string]interface{}) string {
+	if r, ok := item["rarity"].(string); ok && r != "" {
+		return r
+	}
+	if r, ok := item["poolRarity"].(string); ok && r != "" {
+		return r
+	}
+	return "common"
+}
+
+// MergeRarityDisplay 写入 rarityLabel/rarityColor/rarityIcon（对齐 Nest attachRarityDisplay）。
+func MergeRarityDisplay(item map[string]interface{}) {
+	rarity := RarityCodeFromItem(item)
+	rd := GetRarityDisplay(rarity)
+	item["rarityLabel"] = rd.Label
+	item["rarityColor"] = rd.Color
+	item["rarityIcon"] = rd.Icon
+}
+
 // GetItemTypeLabel 返回物品类型中文标签。
 func GetItemTypeLabel(itemType string) string {
 	if d, ok := itemTypeDisplay[itemType]; ok {
 		return d.Label
 	}
 	return itemType
+}
+
+// GetItemTypeDisplay 返回物品类型中文标签与图标。
+func GetItemTypeDisplay(itemType string) (label, icon string) {
+	if d, ok := itemTypeDisplay[itemType]; ok {
+		return d.Label, d.Icon
+	}
+	return itemType, "📦"
 }
 
 // GetItemSourceLabel 返回背包来源 code 的中文展示。

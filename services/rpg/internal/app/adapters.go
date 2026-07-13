@@ -162,9 +162,9 @@ func (a lotteryAdapter) Draw(ctx context.Context, uid, count int, currency strin
 		results = append(results, r)
 	}
 	if count == 1 {
-		return results[0], nil
+		return []map[string]interface{}{results[0]}, nil
 	}
-	return map[string]interface{}{"results": results}, nil
+	return results, nil
 }
 
 type inventoryAdapter struct{ *inventory.Service }
@@ -183,10 +183,16 @@ func (a inventoryAdapter) GetUserInventory(ctx context.Context, uid int, itemTyp
 	}
 	filtered := make([]map[string]interface{}, 0)
 	for _, it := range items {
-		if t, ok := it["itemType"].(string); ok {
-			if _, ok := allowed[t]; ok {
-				filtered = append(filtered, it)
-			}
+		cfgMap, _ := it["config"].(map[string]interface{})
+		if cfgMap == nil {
+			continue
+		}
+		t, ok := cfgMap["itemType"].(string)
+		if !ok {
+			continue
+		}
+		if _, ok := allowed[t]; ok {
+			filtered = append(filtered, it)
 		}
 	}
 	return filtered, nil
@@ -227,11 +233,7 @@ func (a petAdapter) RenamePet(ctx context.Context, uid, petID int, nickname stri
 type activityAdapter struct{ *rpgactivity.Service }
 
 func (a activityAdapter) GetCurrentActivitiesOverview(ctx context.Context) (interface{}, error) {
-	acts, err := a.GetCurrentActivities(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return map[string]interface{}{"activities": acts}, nil
+	return a.Service.GetCurrentActivitiesOverview(ctx)
 }
 func (a activityAdapter) RecordPosterShare(ctx context.Context, uid int, activityCode string) (interface{}, error) {
 	a.SharePoster(ctx, uid, activityCode)

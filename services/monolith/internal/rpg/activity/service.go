@@ -8,6 +8,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/event"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/seeds"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/util"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"go.uber.org/zap"
 )
@@ -32,6 +33,43 @@ func (s *Service) SyncPredefinedActivities(ctx context.Context) error {
 // GetCurrentActivities 当前有效活动列表。
 func (s *Service) GetCurrentActivities(ctx context.Context) ([]*ent.RpgActivity, error) {
 	return s.repo.ListCurrentActivities(ctx, time.Now())
+}
+
+// GetCurrentActivitiesOverview C 端活动概览（与 Nest activity.service 对齐）。
+func (s *Service) GetCurrentActivitiesOverview(ctx context.Context) (interface{}, error) {
+	activities, err := s.GetCurrentActivities(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if len(activities) == 0 {
+		return nil, nil
+	}
+	var season *ent.RpgActivity
+	limitedTime := make([]*ent.RpgActivity, 0, len(activities))
+	maxRate := 1.0
+	for _, a := range activities {
+		if a.ExpBuffRate > maxRate {
+			maxRate = a.ExpBuffRate
+		}
+		if a.ActivityType == "season" {
+			season = a
+		} else {
+			limitedTime = append(limitedTime, a)
+		}
+	}
+	if season == nil && len(limitedTime) == 0 {
+		return nil, nil
+	}
+	limitedOut := make([]map[string]interface{}, 0, len(limitedTime))
+	for _, a := range limitedTime {
+		limitedOut = append(limitedOut, util.FormatActivitySummary(a))
+	}
+	result := map[string]interface{}{
+		"season":               util.FormatActivitySummary(season),
+		"limitedTime":          limitedOut,
+		"effectiveExpBuffRate": util.RoundExpBuffRate(maxRate),
+	}
+	return result, nil
 }
 
 // GetExpBuffRate 多活动并存时取最高 expBuffRate。

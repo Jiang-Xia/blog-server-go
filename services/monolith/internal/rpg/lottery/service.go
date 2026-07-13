@@ -69,7 +69,7 @@ func (s *Service) SetNotify(n *rpgnotify.RpgNotifyService) {
 	s.notify = n
 }
 
-// GetPool 获取奖池（含物品配置）。
+// GetPool 获取奖池（含物品配置与稀有度展示字段）。
 func (s *Service) GetPool(ctx context.Context) ([]map[string]interface{}, error) {
 	pool, err := s.repo.ListActiveLotteryPool(ctx)
 	if err != nil {
@@ -78,19 +78,7 @@ func (s *Service) GetPool(ctx context.Context) ([]map[string]interface{}, error)
 	out := make([]map[string]interface{}, 0, len(pool))
 	for _, p := range pool {
 		cfg, _ := s.repo.FindItemConfigByCode(ctx, p.ItemCode)
-		item := map[string]interface{}{
-			"itemCode":    p.ItemCode,
-			"probability": p.Probability,
-			"rarity":      p.Rarity,
-			"sort":        p.Sort,
-		}
-		if cfg != nil {
-			item["name"] = cfg.Name
-			item["description"] = cfg.Description
-			item["icon"] = cfg.Icon
-			item["itemType"] = cfg.ItemType
-		}
-		out = append(out, item)
+		out = append(out, enrichLotteryPoolItem(p, cfg))
 	}
 	return out, nil
 }
@@ -187,14 +175,10 @@ func (s *Service) Draw(ctx context.Context, uid int, useTicket bool) (map[string
 		_ = s.achievement.TrackProgress(ctx, uid, "lottery_pity")
 	}
 
-	return map[string]interface{}{
-		"itemCode": picked.ItemCode,
-		"name":     itemName,
-		"rarity":   picked.Rarity,
-	}, nil
+	return buildDrawResult(picked, cfg, itemName), nil
 }
 
-// GetHistory 抽奖历史。
+// GetHistory 抽奖历史（含 Nest 对齐字段 poolCode/poolName/poolRarity）。
 func (s *Service) GetHistory(ctx context.Context, uid, limit int) ([]map[string]interface{}, error) {
 	if limit <= 0 {
 		limit = 20
@@ -205,14 +189,78 @@ func (s *Service) GetHistory(ctx context.Context, uid, limit int) ([]map[string]
 	}
 	out := make([]map[string]interface{}, 0, len(rows))
 	for _, r := range rows {
-		out = append(out, map[string]interface{}{
-			"itemCode":   r.PoolItemCode,
-			"itemName":   r.ItemName,
-			"rarity":     r.Rarity,
+		cfg, _ := s.repo.FindItemConfigByCode(ctx, r.PoolItemCode)
+		item := map[string]interface{}{
+			"id":         r.ID,
+			"uid":        r.UID,
+			"poolCode":   r.PoolItemCode,
+			"poolName":   r.ItemName,
+			"poolRarity": r.Rarity,
 			"createTime": r.CreateTime,
-		})
+		}
+		if cfg != nil {
+			item["icon"] = cfg.Icon
+		}
+		rpgconst.MergeRarityDisplay(item)
+		out = append(out, item)
 	}
 	return out, nil
+}
+
+func enrichLotteryPoolItem(p *ent.RpgLotteryPool, cfg *ent.RpgItemConfig) map[string]interface{} {
+	item := map[string]interface{}{
+		"id":          p.ID,
+		"itemCode":    p.ItemCode,
+		"probability": p.Probability,
+		"rarity":      p.Rarity,
+		"sort":        p.Sort,
+		"active":      p.Active == 1,
+		"itemLinked":  cfg != nil,
+	}
+	if cfg != nil {
+		item["name"] = cfg.Name
+		item["description"] = cfg.Description
+		item["icon"] = cfg.Icon
+		item["itemType"] = cfg.ItemType
+		effect := util.ParseEffectJSON(cfg.EffectJson)
+		if gt, ok := effect["grantType"].(string); ok && gt != "" {
+			item["grantType"] = gt
+		} else {
+			item["grantType"] = cfg.ItemType
+		}
+	} else {
+		item["name"] = p.ItemCode
+		item["description"] = ""
+		item["grantType"] = "unknown"
+	}
+	rpgconst.MergeRarityDisplay(item)
+	return item
+}
+
+func buildDrawResult(picked *ent.RpgLotteryPool, cfg *ent.RpgItemConfig, itemName string) map[string]interface{} {
+	grantType := "unknown"
+	description := ""
+	icon := ""
+	if cfg != nil {
+		description = cfg.Description
+		icon = cfg.Icon
+		effect := util.ParseEffectJSON(cfg.EffectJson)
+		if gt, ok := effect["grantType"].(string); ok && gt != "" {
+			grantType = gt
+		} else {
+			grantType = cfg.ItemType
+		}
+	}
+	item := map[string]interface{}{
+		"code":        picked.ItemCode,
+		"name":        itemName,
+		"description": description,
+		"rarity":      picked.Rarity,
+		"type":        grantType,
+		"icon":        icon,
+	}
+	rpgconst.MergeRarityDisplay(item)
+	return map[string]interface{}{"item": item}
 }
 
 func (s *Service) pickWithPity(pool []*ent.RpgLotteryPool, rpg *ent.Rpg) (*ent.RpgLotteryPool, bool) {

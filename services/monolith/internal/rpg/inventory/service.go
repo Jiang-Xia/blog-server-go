@@ -11,6 +11,7 @@ import (
 	rpgnotify "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/notify"
 	rpgrepo "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/seeds"
+	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/util"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/ent/rpguserinventory"
 	"go.uber.org/zap"
@@ -121,19 +122,7 @@ func (s *Service) GetInventory(ctx context.Context, uid int) ([]map[string]inter
 	out := make([]map[string]interface{}, 0, len(rows))
 	for _, row := range rows {
 		cfg, _ := s.repo.FindItemConfigByCode(ctx, row.ItemCode)
-		item := map[string]interface{}{
-			"itemCode":  row.ItemCode,
-			"quantity":  row.Quantity,
-			"source":    row.Source,
-			"acquiredAt": row.AcquiredAt,
-		}
-		if cfg != nil {
-			item["name"] = cfg.Name
-			item["itemType"] = cfg.ItemType
-			item["rarity"] = cfg.Rarity
-			item["icon"] = cfg.Icon
-		}
-		out = append(out, item)
+		out = append(out, util.FormatInventoryItemForClient(row, cfg))
 	}
 	return out, nil
 }

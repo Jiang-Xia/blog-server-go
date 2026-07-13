@@ -5,6 +5,7 @@ import (
 	"context"
 	"time"
 
+	rpgconst "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/constants"
 	rpgcore "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/core"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/inventory"
 	rpglevel "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/level"
@@ -47,7 +48,7 @@ func (s *Service) SyncPredefinedAchievements(ctx context.Context) error {
 	return seeds.UpsertItemConfigSeeds(ctx, s.repo, seeds.PredefinedAchievements, s.log)
 }
 
-// GetMyAchievements 获取用户成就列表（含进度）。
+// GetMyAchievements 获取用户成就列表（含进度与稀有度展示字段）。
 func (s *Service) GetMyAchievements(ctx context.Context, uid int) ([]map[string]interface{}, error) {
 	configs, err := s.repo.ListAchievementConfigs(ctx)
 	if err != nil {
@@ -68,15 +69,25 @@ func (s *Service) GetMyAchievements(ctx context.Context, uid int) ([]map[string]
 			continue
 		}
 		maxProgress := intFromEffect(effect["maxProgress"])
+		rd := rpgconst.GetRarityDisplay(cfg.Rarity)
 		item := map[string]interface{}{
+			"id":          cfg.ID,
 			"code":        cfg.Code,
 			"name":        cfg.Name,
 			"description": cfg.Description,
 			"category":    cfg.Category,
+			"icon":        cfg.Icon,
 			"rarity":      cfg.Rarity,
+			"rarityLabel": rd.Label,
+			"rarityColor": rd.Color,
+			"rarityIcon":  rd.Icon,
 			"maxProgress": maxProgress,
+			"expReward":   intFromEffect(effect["expReward"]),
+			"sort":        cfg.Sort,
+			"badge":       map[string]interface{}{"color": rd.Color},
 			"progress":    0,
 			"completed":   false,
+			"completedAt": nil,
 		}
 		if p, ok := progMap[cfg.Code]; ok {
 			item["progress"] = p.Progress
