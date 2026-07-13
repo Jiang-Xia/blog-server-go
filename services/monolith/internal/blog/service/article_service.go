@@ -707,11 +707,12 @@ func (s *ArticleService) toListItem(ctx context.Context, a *ent.Article, tagIDs 
 		}
 	}
 	return domain.ArticleListItem{
-		ID: a.ID, Title: a.Title, Description: a.Description, Cover: a.Cover,
+		ID: a.ID, UID: a.UID, Title: a.Title, Description: a.Description, Cover: a.Cover,
 		Status: a.Status, Topping: a.Topping, Views: a.Views, Likes: a.Likes,
 		CreateTime: a.CreateTime, UpdateTime: a.UpdateTime, UTime: a.UTime,
 		Category: cat, Tags: tags, UserInfo: userInfo, AuthorName: authorName, DeptName: deptName,
-		CommentCount: commentCount, Content: "", ContentHTML: "",
+		CommentCount: commentCount, ArticleLevel: a.ArticleLevel, IsMasterpiece: a.IsMasterpiece,
+		Content: "", ContentHTML: "",
 	}
 }
 
@@ -733,7 +734,7 @@ func (s *ArticleService) toDetailItem(a *ent.Article, cat *ent.Category, tagRows
 		userInfo = &domain.UserInfoItem{ID: author.ID, Nickname: author.Nickname, Username: author.Username, Avatar: author.Avatar}
 	}
 	return domain.ArticleDetailItem{
-		ID: a.ID, Title: a.Title, Description: a.Description, Cover: a.Cover,
+		ID: a.ID, UID: a.UID, Title: a.Title, Description: a.Description, Cover: a.Cover,
 		Status: a.Status, Topping: a.Topping, Views: a.Views, Likes: a.Likes,
 		CreateTime: a.CreateTime, UpdateTime: a.UpdateTime, UTime: a.UTime,
 		Content: a.Content, ContentHTML: contentHTML,

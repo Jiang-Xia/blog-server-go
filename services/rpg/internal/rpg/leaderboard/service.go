@@ -169,15 +169,20 @@ func (s *Service) enrichEntries(ctx context.Context, entries []entry, scoreType 
 			signDays = rpg.TotalSignDays
 		}
 		nickname := "匿名用户"
+		avatar := ""
 		if s.users != nil {
-			if u, err := s.users.FindByID(ctx, e.UID); err == nil && u != nil && u.Nickname != "" {
-				nickname = u.Nickname
+			if u, err := s.users.FindByID(ctx, e.UID); err == nil && u != nil {
+				if u.Nickname != "" {
+					nickname = u.Nickname
+				}
+				avatar = u.Avatar
 			}
 		}
 		out = append(out, map[string]interface{}{
 			"rank":          i + 1,
 			"uid":           e.UID,
 			"nickname":      nickname,
+			"avatar":        avatar,
 			"level":         level,
 			"exp":           exp,
 			"reputation":    rep,

@@ -57,25 +57,28 @@ type ArticleListResult struct {
 
 // ArticleListItem 列表项（正文置空减少传输）。
 type ArticleListItem struct {
-	ID           int           `json:"id"`
-	Title        string        `json:"title"`
-	Description  string        `json:"description"`
-	Cover        string        `json:"cover,omitempty"`
-	Status       string        `json:"status"`
-	Topping      int           `json:"topping"`
-	Views        int           `json:"views"`
-	Likes        int           `json:"likes"`
-	CreateTime   time.Time     `json:"createTime"`
-	UpdateTime   time.Time     `json:"updateTime"`
-	UTime        string        `json:"uTime,omitempty"`
-	Category     *CategoryItem `json:"category,omitempty"`
-	Tags         []TagItem     `json:"tags,omitempty"`
-	UserInfo     *UserInfoItem `json:"userInfo,omitempty"`
-	AuthorName   string        `json:"authorName,omitempty"`
-	DeptName     string        `json:"deptName,omitempty"`
-	CommentCount int           `json:"commentCount"`
-	Content      string        `json:"content"`
-	ContentHTML  string        `json:"contentHtml"`
+	ID            int           `json:"id"`
+	UID           int           `json:"uid"`
+	Title         string        `json:"title"`
+	Description   string        `json:"description"`
+	Cover         string        `json:"cover,omitempty"`
+	Status        string        `json:"status"`
+	Topping       int           `json:"topping"`
+	Views         int           `json:"views"`
+	Likes         int           `json:"likes"`
+	CreateTime    time.Time     `json:"createTime"`
+	UpdateTime    time.Time     `json:"updateTime"`
+	UTime         string        `json:"uTime,omitempty"`
+	Category      *CategoryItem `json:"category,omitempty"`
+	Tags          []TagItem     `json:"tags,omitempty"`
+	UserInfo      *UserInfoItem `json:"userInfo,omitempty"`
+	AuthorName    string        `json:"authorName,omitempty"`
+	DeptName      string        `json:"deptName,omitempty"`
+	CommentCount  int           `json:"commentCount"`
+	ArticleLevel  int           `json:"articleLevel,omitempty"`
+	IsMasterpiece int           `json:"isMasterpiece,omitempty"`
+	Content       string        `json:"content"`
+	ContentHTML   string        `json:"contentHtml"`
 }
 
 // ArticleDetailResult 详情响应（含 prev/next）。
@@ -88,6 +91,7 @@ type ArticleDetailResult struct {
 // ArticleDetailItem 详情 info 字段。
 type ArticleDetailItem struct {
 	ID                 int           `json:"id"`
+	UID                int           `json:"uid"`
 	Title              string        `json:"title"`
 	Description        string        `json:"description"`
 	Cover              string        `json:"cover,omitempty"`
