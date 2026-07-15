@@ -12,7 +12,7 @@ http:
   addr: ":8000"
   cors_origins:
     - "http://localhost:5050"
-    - "http://localhost:9000"
+    - "http://localhost:8080"
 
 proxy:
   user_url: "http://127.0.0.1:5002"

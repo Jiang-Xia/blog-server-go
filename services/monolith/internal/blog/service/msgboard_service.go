@@ -149,10 +149,13 @@ func (s *MsgboardService) Delete(ctx context.Context, ids []int) error {
 }
 
 func (s *MsgboardService) assertRateLimit(ctx context.Context, ip string) error {
+	if s.redis == nil {
+		return nil
+	}
 	key := "msgboard:rate:" + sanitizeRateKey(normalizeIP(ip))
 	count, err := s.redis.Incr(ctx, key)
 	if err != nil {
-		return err
+		return errcode.WithMessage(errcode.InternalError, "留言限流服务暂不可用，请稍后重试")
 	}
 	if count == 1 {
 		// 按 IP 限流：msgboardRateWindowSec=24h，msgboardRateMax=10 条/天。
@@ -165,11 +168,14 @@ func (s *MsgboardService) assertRateLimit(ctx context.Context, ip string) error 
 }
 
 func msgboardToMap(m *ent.Msgboard) map[string]interface{} {
+	// createAt 与 Nest MsgboardListVo 对齐（前端 formatRelativeTime 优先读 createAt）
+	createAt := m.CreateTime.Format("2006-01-02 15:04:05")
 	item := map[string]interface{}{
 		"id": m.ID, "name": m.Name, "eamil": m.Eamil, "address": m.Address,
 		"comment": m.Comment, "avatar": m.Avatar, "location": m.Location,
 		"system": m.System, "browser": m.Browser, "pId": m.PId,
 		"status": m.Status, "createTime": m.CreateTime, "updateTime": m.UpdateTime,
+		"createAt": createAt,
 	}
 	if m.Respondent != nil {
 		item["respondent"] = *m.Respondent

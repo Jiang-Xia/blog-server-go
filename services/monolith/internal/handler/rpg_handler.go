@@ -648,6 +648,10 @@ func (h *RPGHandler) socialInteract(ctx context.Context, c *app.RequestContext, 
 		return
 	}
 	targetUID := intField(body, "targetUid")
+	if targetUID <= 0 {
+		response.Error(ctx, c, errcode.WithMessage(errcode.InvalidParam, "目标用户无效"))
+		return
+	}
 	data, err := h.game.Social.Interact(ctx, uid, targetUID, action)
 	handleAdminResult(ctx, c, data, err)
 }

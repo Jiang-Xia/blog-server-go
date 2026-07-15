@@ -416,6 +416,20 @@ func defaultPublicProfilePaths() []publicPathEntry {
 		{Pattern: "/user/public/:uid/likes", Methods: []string{"GET"}},
 		{Pattern: "/rpg/public/:uid/status", Methods: []string{"GET"}},
 		{Pattern: "/rpg/public/status/batch", Methods: []string{"GET"}},
+		// 以下与 Nest privilege.isPublic=1 对齐：权限库/Redis 未同步时仍可访问（鉴权仍由路由 jwtRequired + handler 负责）
+		{Pattern: "/comment/create", Methods: []string{"POST"}},
+		{Pattern: "/comment/findAll", Methods: []string{"GET"}},
+		{Pattern: "/reply/create", Methods: []string{"POST"}},
+		{Pattern: "/like", Methods: []string{"POST"}},
+		{Pattern: "/collect", Methods: []string{"POST"}},
+		{Pattern: "/collect/check", Methods: []string{"GET"}},
+		{Pattern: "/collect/list", Methods: []string{"GET"}},
+		{Pattern: "/collect/count", Methods: []string{"GET"}},
+		{Pattern: "/msgboard", Methods: []string{"GET", "POST"}},
+		{Pattern: "/link", Methods: []string{"GET", "POST"}},
+		{Pattern: "/rpg/social/cheer", Methods: []string{"POST"}},
+		{Pattern: "/rpg/social/egg", Methods: []string{"POST"}},
+		{Pattern: "/rpg/social/flower", Methods: []string{"POST"}},
 	}
 }
 

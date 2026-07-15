@@ -165,11 +165,13 @@ func (s *MsgboardService) assertRateLimit(ctx context.Context, ip string) error 
 }
 
 func msgboardToMap(m *ent.Msgboard) map[string]interface{} {
+	createAt := m.CreateTime.Format("2006-01-02 15:04:05")
 	item := map[string]interface{}{
 		"id": m.ID, "name": m.Name, "eamil": m.Eamil, "address": m.Address,
 		"comment": m.Comment, "avatar": m.Avatar, "location": m.Location,
 		"system": m.System, "browser": m.Browser, "pId": m.PId,
 		"status": m.Status, "createTime": m.CreateTime, "updateTime": m.UpdateTime,
+		"createAt": createAt,
 	}
 	if m.Respondent != nil {
 		item["respondent"] = *m.Respondent
