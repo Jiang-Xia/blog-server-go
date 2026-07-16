@@ -16,6 +16,7 @@ $pairs = @(
     @{ Example = "configs/docker/blog.example.yaml";        Target = "configs/docker/blog.yaml" }
     @{ Example = "configs/docker/rpg.example.yaml";         Target = "configs/docker/rpg.yaml" }
     @{ Example = "configs/docker/gateway.example.yaml";     Target = "configs/docker/gateway.yaml" }
+    @{ Example = "configs/docker/monolith.example.yaml";    Target = "configs/docker/monolith.yaml" }
     @{ Example = "deploy/pm2/env.production.example";       Target = "deploy/pm2/env.production" }
 )
 

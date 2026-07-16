@@ -1,0 +1,89 @@
+# Go 单体 + MySQL + Redis + uniapp H5 + blog-admin（本地 WSL Docker 试验）
+# 用法（在 blog-server-go 根目录）：
+#   docker compose -f deploy/docker/docker-compose.monolith.yml up -d --build
+# 访问：API http://localhost:8000/health
+#       uniapp http://localhost:8008/  admin http://localhost:9856/
+#
+# MySQL/Redis 默认仅 compose 内网；MySQL 另映射 3308 供 DBeaver。
+# 首次初始化：deploy/docker/initdb/01-schema.sql + 02-seed-base.sql（必备 RBAC/超管等）。
+
+services:
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: x_my_blog
+      MYSQL_USER: ${MYSQL_USER:-blogdev}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme}
+    volumes:
+      - monolith_mysql_data:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    # 宿主机 3308 → 容器 3306，供 DBeaver 等工具连接（避开本机 MySQL 3306）
+    ports:
+      - "3308:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --maxmemory 64mb --maxmemory-policy allkeys-lru
+    volumes:
+      - monolith_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  monolith:
+    image: blog-monolith:local
+    build:
+      context: ../..
+      dockerfile: services/monolith/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - CONFIG_PATH=/app/configs/monolith.yaml
+      - GOMEMLIMIT=128MiB
+      - GOGC=50
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  uniapp:
+    image: blog-uniapp:local
+    build:
+      context: ../../../blog-home-uniapp
+      dockerfile: Dockerfile
+      args:
+        UNI_BUILD_MODE: docker
+    ports:
+      - "8008:80"
+    depends_on:
+      - monolith
+    restart: unless-stopped
+
+  admin:
+    image: blog-admin:local
+    build:
+      context: ../../../blog-admin
+      dockerfile: Dockerfile
+    ports:
+      - "9856:80"
+    depends_on:
+      - monolith
+    restart: unless-stopped
+
+volumes:
+  monolith_mysql_data:
+  monolith_redis_data:

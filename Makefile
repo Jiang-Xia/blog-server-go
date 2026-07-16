@@ -1,4 +1,4 @@
-.PHONY: dev dev-all dev-all-windows dev-all-stop dev-all-status dev-all-logs dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs deploy deploy-monolith rollback rollback-list sync-pm2-config tidy \
+.PHONY: dev dev-all dev-all-windows dev-all-stop dev-all-status dev-all-logs dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs up-monolith down-monolith logs-monolith deploy deploy-monolith rollback rollback-list sync-pm2-config tidy \
 	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run \
 	swag-apidoc swag-user swag-blog swag-rpg swag-gateway swag-all
 
@@ -13,6 +13,7 @@ USER_APP_DIR := services/user/internal/app
 BLOG_APP_DIR := services/blog/internal/app
 RPG_APP_DIR := services/rpg/internal/app
 COMPOSE_FILE := deploy/docker/docker-compose.yml
+COMPOSE_MONOLITH_FILE := deploy/docker/docker-compose.monolith.yml
 
 dev:
 	set CONFIG_PATH=$(CONFIG_PATH)&& $(GO) run ./services/monolith/cmd/main.go
@@ -102,6 +103,16 @@ down:
 
 logs:
 	docker compose -f $(COMPOSE_FILE) logs -f
+
+# 本地试验：单体 + MySQL + Redis + uniapp H5（见 deploy/docker/README.md）
+up-monolith:
+	docker compose -f $(COMPOSE_MONOLITH_FILE) up -d --build
+
+down-monolith:
+	docker compose -f $(COMPOSE_MONOLITH_FILE) down
+
+logs-monolith:
+	docker compose -f $(COMPOSE_MONOLITH_FILE) logs -f
 
 deploy:
 	powershell -ExecutionPolicy Bypass -File deploy/pm2/deploy.ps1

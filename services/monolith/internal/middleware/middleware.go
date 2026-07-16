@@ -72,9 +72,10 @@ func Logger(log *zap.Logger) app.HandlerFunc {
 }
 
 // CORS 处理跨域，origins 为空时允许全部（开发环境）。
+// 反射具体 Origin 时附带 Allow-Credentials，以支持管理端 withCredentials（验证码 Cookie）。
 func CORS(cfg *config.Config) app.HandlerFunc {
 	return func(ctx context.Context, c *app.RequestContext) {
-		origin := string(c.GetHeader("Origin"))
+		origin := strings.TrimSpace(string(c.GetHeader("Origin")))
 		allowed := len(cfg.HTTP.CORSOrigins) == 0
 		for _, o := range cfg.HTTP.CORSOrigins {
 			if o == origin || o == "*" {
@@ -84,12 +85,15 @@ func CORS(cfg *config.Config) app.HandlerFunc {
 		}
 		if allowed && origin != "" {
 			c.Response.Header.Set("Access-Control-Allow-Origin", origin)
+			c.Response.Header.Set("Access-Control-Allow-Credentials", "true")
+			c.Response.Header.Set("Vary", "Origin")
 		} else if len(cfg.HTTP.CORSOrigins) == 0 {
 			c.Response.Header.Set("Access-Control-Allow-Origin", "*")
 		}
 		c.Response.Header.Set("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS")
 		c.Response.Header.Set("Access-Control-Allow-Headers", "Authorization,Content-Type,X-Request-Id")
 		c.Response.Header.Set("Access-Control-Expose-Headers", "X-Request-Id")
+		c.Response.Header.Set("Access-Control-Max-Age", "86400")
 		if string(c.Method()) == http.MethodOptions {
 			c.AbortWithStatus(http.StatusNoContent)
 			return

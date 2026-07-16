@@ -286,7 +286,8 @@ go run scripts/dev_login.go --token-only
 | 同步 Nest 数据 | `.\scripts\sync-data-x-my-blog.ps1` |
 | 本地配置 | `.\scripts\setup-config.ps1` |
 | JWT | `go run scripts/dev_login.go --token-only` |
-| Docker 全栈（本地/CI，含 MySQL/Redis） | `docker compose -f deploy/docker/docker-compose.yml up -d --build` |
+| Docker 全栈（微服务学习，含 MySQL/Redis） | `docker compose -f deploy/docker/docker-compose.yml up -d --build` / `make up` |
+| **Docker 单体 + uniapp + admin（本地试验）** | `docker compose -f deploy/docker/docker-compose.monolith.yml up -d --build` / `make up-monolith` |
 | **生产远程部署（PM2 单体 · 主）** | `make deploy-monolith` 或 `deploy.ps1 -EnvFileName deploy.monolith.local.env` |
 | 生产远程部署（PM2 四微服务 · 学习） | `make deploy` 或 `deploy/pm2/deploy.ps1` |
 | proto | `buf generate` |
@@ -317,7 +318,7 @@ $env:CGO_ENABLED=0; md bin -Force | Out-Null
 <details>
 <summary>Linux / macOS（make 对照）</summary>
 
-`make dev-all` · `make dev-all-stop` · `make dev` · `make bootstrap-db` · `make build` · `make deploy` · `make proto` · `make ent-gen-user` · `make wire-user` · `make up` · `make down`
+`make dev-all` · `make dev-all-stop` · `make dev` · `make bootstrap-db` · `make build` · `make deploy` · `make proto` · `make ent-gen-user` · `make wire-user` · `make up` · `make up-monolith` · `make down` · `make down-monolith`
 
 </details>
 

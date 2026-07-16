@@ -42,6 +42,9 @@ configs/docker/user.yaml
 configs/docker/blog.yaml
 configs/docker/rpg.yaml
 configs/docker/gateway.yaml
+configs/docker/monolith.yaml
+# initdb：schema/seed 可提交；勿放入含隐私生产数据的大 dump
+# deploy/docker/initdb/*.sql 默认纳入版本（本地试验用）
 deploy/pm2/deploy.local.env
 deploy/pm2/deploy.monolith.local.env
 deploy/pm2/env.production

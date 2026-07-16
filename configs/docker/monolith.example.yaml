@@ -1,0 +1,47 @@
+# 单体 Docker 配置模板（复制为 monolith.yaml 后填写）
+# mysql.host / redis.addr 使用 compose 服务名；jwt.secret 仅本地试验勿用于生产
+
+app:
+  name: blog-server-go
+  env: development
+  service_mode: monolith
+  api_prefix: /api/v1
+  blog_home: "http://localhost:8008"
+
+http:
+  addr: ":8000"
+  cors_origins:
+    - http://localhost:8008
+    - http://127.0.0.1:8008
+    - http://localhost:9856
+    - http://127.0.0.1:9856
+
+mysql:
+  host: mysql
+  port: 3306
+  user: ""
+  password: ""
+  database: x_my_blog
+  table_prefix: x_
+
+redis:
+  addr: "redis:6379"
+  db: 1
+
+jwt:
+  secret: ""
+  legacy_ttl: 8h
+  access_ttl: 30m
+  refresh_ttl: 168h
+
+storage:
+  upload_path: "./public/uploads/"
+  public_prefix: "/static/"
+
+observability:
+  enable_metrics: true
+  enable_pprof: false
+  service_name: blog-server-go-monolith
+
+rag:
+  enabled: false

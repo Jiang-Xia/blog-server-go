@@ -1,0 +1,16 @@
+.git
+.bin
+vendor
+docs
+.cursor
+deploy/pm2
+services/gateway
+services/user
+services/blog
+services/rpg
+test
+scripts
+deploy/sql
+deploy/postman
+.dev-logs
+.ci-logs
