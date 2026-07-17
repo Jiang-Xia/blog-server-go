@@ -1,4 +1,7 @@
 # Go 单体 + MySQL + Redis + uniapp H5 + blog-admin（本地 WSL Docker 试验）
+# 前端不在 Docker 内编译：本机先 build，再挂载 dist 到 nginx:alpine。
+#   blog-home-uniapp: pnpm exec uni build --mode docker  → dist/build/h5
+#   blog-admin: cp .env.docker .env.production && npx vite build --config ./config/vite.config.prod.ts → dist
 # 用法（在 blog-server-go 根目录）：
 #   docker compose -f deploy/docker/docker-compose.monolith.yml up -d --build
 # 访问：API http://localhost:8000/health
@@ -61,25 +64,23 @@ services:
     restart: unless-stopped
 
   uniapp:
-    image: blog-uniapp:local
-    build:
-      context: ../../../blog-home-uniapp
-      dockerfile: Dockerfile
-      args:
-        UNI_BUILD_MODE: docker
+    image: nginx:1.27-alpine
     ports:
       - "8008:80"
+    volumes:
+      - ../../../blog-home-uniapp/dist/build/h5:/usr/share/nginx/html:ro
+      - ./nginx-spa.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - monolith
     restart: unless-stopped
 
   admin:
-    image: blog-admin:local
-    build:
-      context: ../../../blog-admin
-      dockerfile: Dockerfile
+    image: nginx:1.27-alpine
     ports:
       - "9856:80"
+    volumes:
+      - ../../../blog-admin/dist:/usr/share/nginx/html:ro
+      - ./nginx-spa.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - monolith
     restart: unless-stopped

@@ -102,9 +102,13 @@ build:
 up:
 	docker compose -f $(COMPOSE_FILE) up -d --build
 
-# 学习：user/blog/rpg/gateway 各三实例（edge nginx 对外 :8000）
+# 学习：user/blog/rpg/gateway×3 + edge + 本机已编译的 uniapp/admin 静态 nginx
+# 前置：本机 build uniapp(dist/build/h5) 与 admin(dist)，见 deploy/docker/README.md
 up-scale:
-	docker compose -f $(COMPOSE_FILE) -f deploy/docker/docker-compose.scale.yml up -d --build \
+	docker compose -f $(COMPOSE_FILE) \
+		-f deploy/docker/docker-compose.scale.yml \
+		-f deploy/docker/docker-compose.frontends.yml \
+		up -d --build \
 		--scale user=3 --scale blog=3 --scale rpg=3 --scale gateway=3
 
 # 兼容旧目标名
@@ -114,7 +118,10 @@ down:
 	docker compose -f $(COMPOSE_FILE) down
 
 down-scale:
-	docker compose -f $(COMPOSE_FILE) -f deploy/docker/docker-compose.scale.yml down
+	docker compose -f $(COMPOSE_FILE) \
+		-f deploy/docker/docker-compose.scale.yml \
+		-f deploy/docker/docker-compose.frontends.yml \
+		down
 
 logs:
 	docker compose -f $(COMPOSE_FILE) logs -f

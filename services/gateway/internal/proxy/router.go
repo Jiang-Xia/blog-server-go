@@ -54,7 +54,22 @@ func newProxy(raw, service string) (*httputil.ReverseProxy, error) {
 	p.ErrorHandler = func(w http.ResponseWriter, _ *http.Request, _ error) {
 		writeUpstreamError(w, service)
 	}
+	// 下游 user/blog/rpg 也会写 CORS；若原样透传会与 gateway 中间件重复，
+	// 浏览器遇到多个 Access-Control-Allow-Origin 会直接判跨域失败。
+	p.ModifyResponse = stripUpstreamCORS
 	return p, nil
+}
+
+// stripUpstreamCORS 去掉上游 CORS 头，统一由 gateway CORS 中间件对外声明。
+func stripUpstreamCORS(resp *http.Response) error {
+	h := resp.Header
+	h.Del("Access-Control-Allow-Origin")
+	h.Del("Access-Control-Allow-Credentials")
+	h.Del("Access-Control-Allow-Methods")
+	h.Del("Access-Control-Allow-Headers")
+	h.Del("Access-Control-Expose-Headers")
+	h.Del("Access-Control-Max-Age")
+	return nil
 }
 
 // SetProfileBFF 注入 GET /user/public/:uid BFF 处理器（由 catch-all 在 pick 前分发）。

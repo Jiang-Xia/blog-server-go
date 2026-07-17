@@ -55,6 +55,7 @@ func Run(cfgPath string) error {
 	}
 
 	h := server.Default(server.WithHostPorts(cfg.HTTP.Addr))
+	h.Use(gwmw.CORS(cfg))
 	h.Use(gwmw.JWTPassthrough(cfg))
 
 	h.GET("/health", func(ctx context.Context, c *app.RequestContext) {

@@ -5,14 +5,18 @@ app:
   env: production
   service_mode: gateway
   api_prefix: /api/v1
+  blog_home: "http://localhost:8008"
 
 http:
   addr: ":8000"
+  cors_origins:
+    - "http://localhost:8008"
+    - "http://127.0.0.1:8008"
+    - "http://localhost:9856"
+    - "http://127.0.0.1:9856"
 
 registry:
   nacos_addr: "nacos:8848"
-
-
 
 proxy:
   user_url: "http://user:5002"
