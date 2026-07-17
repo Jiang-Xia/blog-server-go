@@ -3,6 +3,8 @@ package aggregator
 
 import (
 	"context"
+	"log"
+	"os"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
 	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/kitexclient"
@@ -29,6 +31,9 @@ type pubStats struct {
 
 // Stats 经 Kitex 聚合各服务统计。
 func (h *StatsHandler) Stats(ctx context.Context, c *app.RequestContext) {
+	// 多实例学习：对照 docker logs 观察 edge → gateway 负载。
+	host, _ := os.Hostname()
+	log.Printf("[bff] pub/stats gateway_instance=%s", host)
 	stats := pubStats{}
 	if h.clients != nil && h.clients.Blog != nil {
 		if blogStats, err := h.clients.Blog.GetPubStats(ctx, &emptypb.Empty{}); err == nil && blogStats != nil {

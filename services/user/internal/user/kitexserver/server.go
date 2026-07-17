@@ -5,6 +5,8 @@ package kitexserver
 import (
 	"context"
 	"fmt"
+	"log"
+	"os"
 
 	userv1 "github.com/Jiang-Xia/blog-server-go/proto/kitex/user/v1"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/admin"
@@ -89,6 +91,9 @@ func (s *Server) CountUsers(ctx context.Context, _ *emptypb.Empty) (*userv1.Coun
 	if err != nil {
 		return nil, fmt.Errorf("count users: %w", err)
 	}
+	// 多实例学习：打出容器 hostname，便于对照 docker logs 观察 Kitex 负载均衡。
+	host, _ := os.Hostname()
+	log.Printf("[kitex] CountUsers instance=%s total=%d", host, total)
 	return &userv1.CountUsersResponse{Total: int32(total)}, nil
 }
 

@@ -63,6 +63,7 @@
 | blog | 5001 / Kitex 50051（`blog.blog`） | 文章、互动、资源、通知、WebSocket `/realtime` |
 | rpg | 5003 / Kitex 50053（`blog.rpg`） | RPG、支付、公开主页 |
 | etcd | 2379 | 学习路径服务注册与发现 |
+| etcd-ui | 8888 | 学习路径 etcd KV 可视化（`kitex/registry-etcd/`） |
 
 路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。Swagger UI 见 [`docs/swagger.md`](docs/swagger.md)；**日常开发**以单体 `http://127.0.0.1:8000/api/v1/doc/index.html` 为准。
 

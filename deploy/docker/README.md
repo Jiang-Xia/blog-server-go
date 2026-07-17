@@ -9,16 +9,68 @@
 
 ## 微服务全栈（仅本地 WSL 学习）
 
-本机或 WSL 一键拉起 **4 微服务 + MySQL + Redis + etcd + Jaeger**，用于学 Kitex BFF / etcd 发现 / 多进程拆分。与 `services/monolith` **代码不共用**，功能可能落后于单体。
+本机或 WSL 一键拉起 **4 微服务 + MySQL + Redis + etcd + etcd-ui + Jaeger**，用于学 Kitex BFF / etcd 发现 / 多进程拆分。与 `services/monolith` **代码不共用**，功能可能落后于单体。
 
 ```bash
 docker compose -f deploy/docker/docker-compose.yml up -d --build
 # 或 make up
 ```
 
-Jaeger UI：`http://localhost:16686`；etcd：`localhost:2379`。
+| 入口 | 地址 |
+|------|------|
+| Gateway | `http://localhost:8000` |
+| Jaeger UI | `http://localhost:16686` |
+| **etcd UI** | `http://localhost:8888`（已连 compose 内 `etcd:2379`） |
+| etcd gRPC | `localhost:2379` |
 
-停止：`make down`（会停 etcd）。
+Kitex 注册 key 前缀为 `kitex/registry-etcd/`（**无**前导 `/`），在 UI 中按此前缀浏览即可看到 `blog.user` / `blog.blog` / `blog.rpg` 实例。
+
+仅查本机 Windows etcd（`D:\env\etcd`，未跑 Docker 栈）时可用：
+
+```bash
+# WSL / Docker Desktop：宿主机 etcd 映射为 host.docker.internal
+docker run --rm -p 8888:8888 phanna/etcd-ui:1.0.0 -endpoint=host.docker.internal:2379
+```
+
+停止：`make down`（会停 etcd / etcd-ui）。
+
+### 多实例（学习用）
+
+默认 compose 把 `5001/5002/5003/50052` 绑到宿主机，**不能直接 `--scale`**。叠加 [`docker-compose.scale.yml`](./docker-compose.scale.yml) 取消业务服务的宿主机端口后可扩副本。
+
+```bash
+# WSL 中，仓库根目录 blog-server-go
+cd /mnt/d/study/myGithub/blog-server-go
+
+# user/blog/rpg/gateway 各扩到 3 实例（edge nginx 对外 :8000）；或 make up-scale
+docker compose -f deploy/docker/docker-compose.yml \
+  -f deploy/docker/docker-compose.scale.yml \
+  up -d --build \
+  --scale user=3 --scale blog=3 --scale rpg=3 --scale gateway=3
+
+# 冒烟：etcd 多实例 + 反复打 pub/stats 看命中分布
+bash scripts/scale-user-smoke.sh
+```
+
+说明：
+
+| 路径 | 多实例表现 |
+|------|------------|
+| Kitex（etcd） | `blog.user` / `blog.blog` / `blog.rpg` 各注册多条，gateway 客户端负载均衡 |
+| gateway HTTP | 不再直接暴露；由 **edge(nginx)** 反代到 `gateway:8000` 多副本 |
+| blog / rpg | cron **会×N 双跑**，仅学习用 |
+| MySQL | scale overlay 挂载 `initdb/`，宿主机映射改为 `3309`；**勿与 monolith compose 同时占 `:8000`** |
+
+对外仍只暴露 gateway `:8000`；业务 HTTP/Kitex 端口不再映射到宿主机。
+
+停止（与平时相同，两文件都要带上以免残留 scale 状态）：
+
+```bash
+make down-scale
+# 或
+docker compose -f deploy/docker/docker-compose.yml \
+  -f deploy/docker/docker-compose.scale.yml down
+```
 
 ## 单体 + uniapp + admin（本地联调 · 对齐线上）
 

@@ -6,6 +6,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	rpgv1 "github.com/Jiang-Xia/blog-server-go/proto/kitex/rpg/v1"
@@ -65,6 +67,9 @@ func (s *Server) GetPublicProfile(ctx context.Context, req *rpgv1.GetPublicProfi
 	if err != nil {
 		return nil, fmt.Errorf("marshal profile: %w", err)
 	}
+	// 多实例学习：对照 docker logs 观察 Kitex 负载均衡。
+	host, _ := os.Hostname()
+	log.Printf("[kitex] GetPublicProfile instance=%s uid=%d", host, uid)
 	return &rpgv1.GetPublicProfileResponse{ProfileJson: raw}, nil
 }
 

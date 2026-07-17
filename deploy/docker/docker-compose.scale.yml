@@ -1,0 +1,36 @@
+# 叠加到 docker-compose.yml：四微服务各可 --scale N
+# - 取消 user/blog/rpg/gateway 宿主机端口（避免冲突）
+# - 增加 edge(nginx) 暴露 :8000，反代到 gateway 多副本
+# - MySQL 映射 3309；挂 initdb；Redis 不暴露宿主机
+services:
+  user:
+    ports: !reset []
+  blog:
+    ports: !reset []
+  rpg:
+    ports: !reset []
+  gateway:
+    ports: !reset []
+  edge:
+    image: nginx:1.27-alpine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx-edge.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - gateway
+    restart: unless-stopped
+  mysql:
+    ports: !override
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: x_my_blog
+      MYSQL_USER: jiangxia
+      MYSQL_PASSWORD: "jiangxia123!@#"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+  redis:
+    ports: !reset []

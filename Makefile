@@ -102,8 +102,19 @@ build:
 up:
 	docker compose -f $(COMPOSE_FILE) up -d --build
 
+# 学习：user/blog/rpg/gateway 各三实例（edge nginx 对外 :8000）
+up-scale:
+	docker compose -f $(COMPOSE_FILE) -f deploy/docker/docker-compose.scale.yml up -d --build \
+		--scale user=3 --scale blog=3 --scale rpg=3 --scale gateway=3
+
+# 兼容旧目标名
+up-scale-user: up-scale
+
 down:
 	docker compose -f $(COMPOSE_FILE) down
+
+down-scale:
+	docker compose -f $(COMPOSE_FILE) -f deploy/docker/docker-compose.scale.yml down
 
 logs:
 	docker compose -f $(COMPOSE_FILE) logs -f

@@ -78,6 +78,17 @@ services:
       - "2379:2379"
     restart: unless-stopped
 
+  # 学习用：浏览 Kitex 注册 key（前缀 kitex/registry-etcd/，无前导 /）
+  etcd-ui:
+    image: phanna/etcd-ui:1.0.0
+    command:
+      - -endpoint=etcd:2379
+    ports:
+      - "8888:8888"
+    depends_on:
+      - etcd
+    restart: unless-stopped
+
   mysql:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password

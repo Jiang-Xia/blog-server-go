@@ -1,4 +1,4 @@
-﻿# 停止 dev-all.ps1 启动的四服务（HTTP + Kitex 端口）
+﻿# 停止 dev-all.ps1 启动的四服务（HTTP + Kitex 端口），并清理残留 go run / bin 包装进程
 $ErrorActionPreference = "SilentlyContinue"
 . (Join-Path $PSScriptRoot "ps-console-utf8.ps1")
 . (Join-Path $PSScriptRoot "dev-all-common.ps1")
@@ -7,7 +7,7 @@ Initialize-DevAllCommon -Root $Root
 
 $ports = @()
 foreach ($svc in Get-DevAllServices) { $ports += $svc.Port }
-$ports += Get-DevAllGrpcPorts
+$ports += Get-DevAllKitexPorts
 $ports = $ports | Sort-Object -Unique
 
 $killed = @()
@@ -18,6 +18,21 @@ foreach ($port in $ports) {
         Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue
         $killed += $procId
         Write-Host "已停止 PID $procId (端口 $port)"
+    }
+}
+
+# 清理仍挂着的 powershell 包装（go run / bin/*.exe 重定向日志）
+Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object {
+    $_.CommandLine -and $_.CommandLine -match [regex]::Escape($Root) -and (
+        $_.CommandLine -match 'bin\\(user|blog|rpg|gateway)\.exe' -or
+        $_.CommandLine -match 'go run \./services/(user|blog|rpg|gateway)' -or
+        $_.CommandLine -match 'CONFIG_PATH=.*(user|blog|rpg|gateway)\.yaml'
+    )
+} | ForEach-Object {
+    if ($killed -notcontains $_.ProcessId) {
+        Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue
+        $killed += $_.ProcessId
+        Write-Host "已停止残留包装 PID $($_.ProcessId)"
     }
 }
 

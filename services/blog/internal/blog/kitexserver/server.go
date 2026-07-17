@@ -6,6 +6,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
+	"os"
 	"strconv"
 	"time"
 
@@ -90,6 +92,9 @@ func (s *Server) GetPubStats(ctx context.Context, _ *emptypb.Empty) (*blogv1.Get
 	if err != nil {
 		return nil, fmt.Errorf("count tags: %w", err)
 	}
+	// 多实例学习：对照 docker logs 观察 Kitex 负载均衡。
+	host, _ := os.Hostname()
+	log.Printf("[kitex] GetPubStats instance=%s articles=%d", host, articleCount)
 	return &blogv1.GetPubStatsResponse{
 		ArticleCount:  int32(articleCount),
 		CategoryCount: int32(categoryCount),
