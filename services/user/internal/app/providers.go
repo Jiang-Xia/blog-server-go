@@ -15,20 +15,20 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/profile"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/repo"
 	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/sensitive"
-	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/user/internal/user/grpcserver"
+	"github.com/Jiang-Xia/blog-server-go/services/user/internal/user/kitexserver"
 	"github.com/redis/rueidis"
 	"go.uber.org/zap"
 )
 
-func provideUserGRPCServer(
+func provideUserKitexServer(
 	profileSvc *profile.Service,
 	jwt *auth.JWTService,
 	emailSvc *email.Service,
 	sensitiveSvc *sensitive.Service,
 	adminSvc *admin.Service,
 	userRepo *repo.UserRepo,
-) *usersgrpc.Server {
-	return usersgrpc.New(profileSvc, jwt, emailSvc, sensitiveSvc, adminSvc, userRepo)
+) *kitexserver.Server {
+	return kitexserver.New(profileSvc, jwt, emailSvc, sensitiveSvc, adminSvc, userRepo)
 }
 
 func provideAdminRepo(cfg *config.Config) (*repo.AdminRepo, error) {
@@ -44,7 +44,7 @@ func provideRedisStore(client rueidis.Client) *redisutil.Store {
 }
 
 func provideBlogModerationSyncer(cfg *config.Config) (blogsvc.ContentModerationSyncer, error) {
-	return blogsvc.NewGRPCModerationSyncer(cfg.GRPC.BlogAddr)
+	return blogsvc.NewKitexModerationSyncer(cfg.Registry.EtcdEndpointsOrEmpty())
 }
 
 func providePasswordChecker(cfg *config.Config, userRepo *repo.UserRepo) *auth.PasswordChecker {

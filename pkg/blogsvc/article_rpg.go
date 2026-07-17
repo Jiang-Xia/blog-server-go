@@ -1,13 +1,15 @@
-// Package blogsvc blog 文章 RPG 字段跨服务 gRPC 客户端。
+// Package blogsvc blog 文章 RPG 字段跨服务 Kitex 客户端。
 package blogsvc
 
 import (
 	"context"
 	"fmt"
 
-	blogv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
+	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/pkg/kitexreg"
+	blogv1 "github.com/Jiang-Xia/blog-server-go/proto/kitex/blog/v1"
+	"github.com/Jiang-Xia/blog-server-go/proto/kitex/blog/v1/articleservice"
+	"github.com/cloudwego/kitex/client"
 )
 
 // ArticleRPGFields 文章 RPG 快照，对齐 x_article RPG 列。
@@ -22,30 +24,34 @@ type ArticleRPGFields struct {
 	TipTotal         int
 }
 
-// ArticleRPGStore rpg-service 读写文章 RPG 字段（经 blog gRPC）。
+// ArticleRPGStore rpg-service 读写文章 RPG 字段（经 blog Kitex）。
 type ArticleRPGStore interface {
 	GetArticleRPGFields(ctx context.Context, articleID int) (*ArticleRPGFields, error)
 	UpdateArticleRPGFields(ctx context.Context, articleID int, exp, level, repGained, isMasterpiece int) error
 	AddArticleTipTotal(ctx context.Context, articleID, amount int) error
 }
 
-type grpcArticleRPGStore struct {
-	client blogv1.ArticleServiceClient
+type kitexArticleRPGStore struct {
+	client articleservice.Client
 }
 
-// NewGRPCArticleRPGStore 连接 blog-service gRPC。
-func NewGRPCArticleRPGStore(addr string) (ArticleRPGStore, error) {
-	if addr == "" {
+// NewKitexArticleRPGStore 经 etcd 发现 blog-service；endpoints 为空时返回 noop（方法均报错）。
+func NewKitexArticleRPGStore(endpoints []string) (ArticleRPGStore, error) {
+	if len(endpoints) == 0 {
 		return noopArticleRPGStore{}, nil
 	}
-	conn, err := grpc.NewClient(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	r, err := kitexreg.NewResolver(endpoints)
 	if err != nil {
-		return nil, fmt.Errorf("dial blog grpc %s: %w", addr, err)
+		return nil, err
 	}
-	return &grpcArticleRPGStore{client: blogv1.NewArticleServiceClient(conn)}, nil
+	cli, err := articleservice.NewClient(config.KitexServiceBlog, client.WithResolver(r))
+	if err != nil {
+		return nil, fmt.Errorf("new blog kitex client: %w", err)
+	}
+	return &kitexArticleRPGStore{client: cli}, nil
 }
 
-func (g *grpcArticleRPGStore) GetArticleRPGFields(ctx context.Context, articleID int) (*ArticleRPGFields, error) {
+func (g *kitexArticleRPGStore) GetArticleRPGFields(ctx context.Context, articleID int) (*ArticleRPGFields, error) {
 	res, err := g.client.GetArticleRPGFields(ctx, &blogv1.GetArticleRPGFieldsRequest{ArticleId: int32(articleID)})
 	if err != nil {
 		return nil, err
@@ -62,7 +68,7 @@ func (g *grpcArticleRPGStore) GetArticleRPGFields(ctx context.Context, articleID
 	}, nil
 }
 
-func (g *grpcArticleRPGStore) UpdateArticleRPGFields(ctx context.Context, articleID int, exp, level, repGained, isMasterpiece int) error {
+func (g *kitexArticleRPGStore) UpdateArticleRPGFields(ctx context.Context, articleID int, exp, level, repGained, isMasterpiece int) error {
 	_, err := g.client.UpdateArticleRPGFields(ctx, &blogv1.UpdateArticleRPGFieldsRequest{
 		ArticleId:        int32(articleID),
 		ArticleExp:       int32(exp),
@@ -73,7 +79,7 @@ func (g *grpcArticleRPGStore) UpdateArticleRPGFields(ctx context.Context, articl
 	return err
 }
 
-func (g *grpcArticleRPGStore) AddArticleTipTotal(ctx context.Context, articleID, amount int) error {
+func (g *kitexArticleRPGStore) AddArticleTipTotal(ctx context.Context, articleID, amount int) error {
 	_, err := g.client.AddArticleTipTotal(ctx, &blogv1.AddArticleTipTotalRequest{
 		ArticleId: int32(articleID),
 		Amount:    int32(amount),
@@ -84,11 +90,11 @@ func (g *grpcArticleRPGStore) AddArticleTipTotal(ctx context.Context, articleID,
 type noopArticleRPGStore struct{}
 
 func (noopArticleRPGStore) GetArticleRPGFields(context.Context, int) (*ArticleRPGFields, error) {
-	return nil, fmt.Errorf("blog grpc addr not configured")
+	return nil, fmt.Errorf("blog kitex etcd endpoints not configured")
 }
 func (noopArticleRPGStore) UpdateArticleRPGFields(context.Context, int, int, int, int, int) error {
-	return fmt.Errorf("blog grpc addr not configured")
+	return fmt.Errorf("blog kitex etcd endpoints not configured")
 }
 func (noopArticleRPGStore) AddArticleTipTotal(context.Context, int, int) error {
-	return fmt.Errorf("blog grpc addr not configured")
+	return fmt.Errorf("blog kitex etcd endpoints not configured")
 }

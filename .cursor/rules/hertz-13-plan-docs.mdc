@@ -11,7 +11,7 @@ Plan 01–22 已完成；**不再**新增 `docs/NN-*.md` 阶段交付文档。
 
 | 变更类型 | 更新文档 |
 |----------|----------|
-| 对外 HTTP / gRPC / WS 路由 | [`docs/api-routes.md`](../../docs/api-routes.md)；必要时 `make swag-all` + [`docs/swagger.md`](../../docs/swagger.md) |
+| 对外 HTTP / Kitex / WS 路由 | [`docs/api-routes.md`](../../docs/api-routes.md)；必要时 `make swag-all` + [`docs/swagger.md`](../../docs/swagger.md) |
 | Nest 对等能力增减 | [`docs/nest-parity-matrix.md`](../../docs/nest-parity-matrix.md) |
 | 架构 / 端口 / 单体 vs 微服务定位 | [`docs/architecture.md`](../../docs/architecture.md) |
 | 启动 / 部署流程 | 根 `README.md` 或 [`deploy/pm2/README.md`](../../deploy/pm2/README.md) / [`deploy/docker/README.md`](../../deploy/docker/README.md) |

@@ -1,4 +1,4 @@
-// Package blogsvc 提供 blog 域跨服务 gRPC 客户端（敏感词审核联动等）。
+// Package blogsvc 提供 blog 域跨服务 Kitex 客户端（敏感词审核联动等）。
 package blogsvc
 
 import "context"

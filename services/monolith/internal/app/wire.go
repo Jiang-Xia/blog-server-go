@@ -129,7 +129,6 @@ func InitializeApp(cfgPath string) (*App, error) {
 		providePubHandler,
 		handler.NewHealthHandler,
 		provideRegisterDeps,
-		provideUserGRPCServer,
 		server.NewHTTPServer,
 		NewApp,
 	)

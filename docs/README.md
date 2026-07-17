@@ -10,7 +10,7 @@
 | 文档 | 说明 |
 |------|------|
 | [architecture.md](./architecture.md) | 双形态定位、技术选型、目录边界 |
-| [api-routes.md](./api-routes.md) | HTTP / gRPC 路由全表 |
+| [api-routes.md](./api-routes.md) | HTTP / Kitex 路由全表 |
 | [nest-parity-matrix.md](./nest-parity-matrix.md) | Nest ↔ Go 功能对等矩阵 |
 | [swagger.md](./swagger.md) | Swagger / OpenAPI（swaggo） |
 

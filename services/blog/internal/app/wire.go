@@ -92,7 +92,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		handler.NewDevPushHandler,
 		handler.NewHealthHandler,
 		provideRegisterDeps,
-		provideBlogGRPCServer,
+		provideBlogKitexServer,
 		server.NewHTTPServer,
 		NewApp,
 	)

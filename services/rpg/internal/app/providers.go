@@ -20,8 +20,8 @@ import (
 	paysvc "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/pay/service"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg"
 	rpgactivity "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/activity"
-	rpggrpc "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/grpcserver"
 	rpgevent "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/event"
+	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/kitexserver"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/scheduler"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/userport"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/wspush"
@@ -62,7 +62,7 @@ func provideArticleReader(db *sql.DB) articleport.ArticleReader {
 }
 
 func provideBlogPublicProfileLister(cfg *config.Config) (blogsvc.PublicProfileLister, error) {
-	return blogsvc.NewGRPCPublicProfileLister(cfg.GRPC.BlogAddr)
+	return blogsvc.NewKitexPublicProfileLister(cfg.Registry.EtcdEndpointsOrEmpty())
 }
 
 func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
@@ -70,7 +70,7 @@ func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
 }
 
 func provideBlogArticleRPGStore(cfg *config.Config) (blogsvc.ArticleRPGStore, error) {
-	return blogsvc.NewGRPCArticleRPGStore(cfg.GRPC.BlogAddr)
+	return blogsvc.NewKitexArticleRPGStore(cfg.Registry.EtcdEndpointsOrEmpty())
 }
 
 func provideWSPusher(rds rueidis.Client) wspush.Pusher {
@@ -93,11 +93,11 @@ func providePayOrderService(orderRepo *payrepo.PayOrderRepo, pay *paysvc.PayServ
 	return providePayOrderServiceWithRecharge(orderRepo, pay, mod, log)
 }
 
-func provideRPGGRPCServer(mod *rpg.Module) *rpggrpc.Server {
+func provideRPGKitexServer(mod *rpg.Module) *kitexserver.Server {
 	if mod == nil {
-		return rpggrpc.New(nil, nil, nil)
+		return kitexserver.New(nil, nil, nil)
 	}
-	return rpggrpc.New(mod.Rpg, mod.Profile, mod.Punishment)
+	return kitexserver.New(mod.Rpg, mod.Profile, mod.Punishment)
 }
 
 func provideRPGHandler(mod *rpg.Module, game *handler.RPGGameplay, jwt *auth.JWTService) *handler.RPGHandler {

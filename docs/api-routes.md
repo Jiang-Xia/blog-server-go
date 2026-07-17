@@ -1,6 +1,6 @@
-# HTTP / gRPC 路由全表
+# HTTP / Kitex 路由全表
 
-> **更新日期**：2026-07-10  
+> **更新日期**：2026-07-17  
 > **对外主入口（线上 · 对接 uniapp）**：`http://127.0.0.1:8000`（`services/monolith`，`make dev` / `.\scripts\dev.ps1`）  
 > **数据来源**：`services/monolith/internal/handler/`（单体全量）；§1–5 另列 gateway / 各微服务（**仅本地 WSL 学习对照**，与单体代码不共用，可能落后）  
 > **Nest blog-server**：`http://127.0.0.1:5000`（待替换，可与 Go 并行）  
@@ -13,25 +13,26 @@
 | API 前缀 | 默认 `/api/v1`（`configs/*.yaml` → `app.api_prefix`） |
 | 响应格式 | `{ code, message, data }`（gateway BFF 与各微服务 HTTP 一致） |
 | 鉴权列 | **公开** = handler 未强制 JWT；**JWT** = 需 `Authorization: Bearer`；实际还可能经 RBAC `permission` 中间件（Redis/DB 权限表） |
-| Gateway 列 | **BFF-gRPC** = gateway 本地聚合/调内部 gRPC；**代理** = HTTP 反向代理；**本地** = gateway 自身处理 |
+| Gateway 列 | **BFF-Kitex** = gateway 本地聚合/调内部 Kitex；**代理** = HTTP 反向代理；**本地** = gateway 自身处理 |
 
 ### 服务端口
 
-| 服务 | HTTP | gRPC | 说明 |
-|------|------|------|------|
+| 服务 | HTTP | Kitex | 说明 |
+|------|------|-------|------|
 | **monolith** | **`:8000`** | — | **线上主入口**（全路由 · 对接 uniapp） |
-| gateway | `:8000` | — | 微服务 REST 入口（仅 WSL 学习；与单体二选一） |
-| blog-service | `:5001` | `:50051` | 文章/互动/WS/通知/定时任务 |
-| user-service | `:5002` | `:50052` | 用户/RBAC/敏感词 |
-| rpg-service | `:5003` | `:50053` | RPG/支付/公开主页 |
+| gateway | `:8000` | — | 微服务 REST 入口（仅 WSL 学习；与单体二选一）；依赖 etcd 发现 |
+| blog-service | `:5001` | `:50051`（注册名 `blog.blog`） | 文章/互动/WS/通知/定时任务 |
+| user-service | `:5002` | `:50052`（注册名 `blog.user`） | 用户/RBAC/敏感词 |
+| rpg-service | `:5003` | `:50053`（注册名 `blog.rpg`） | RPG/支付/公开主页 |
+| etcd | — | `:2379` | 学习路径服务注册/发现 |
 
 ### Gateway 路由决策（`services/gateway/internal/proxy/router.go`）
 
 ```
 /api/v1/* 请求
   ├─ pub/*              → BFF（仅 /pub/stats 已注册；其余无 upstream → 502）
-  ├─ article/info       → BFF-gRPC（blog.GetArticleDetail）
-  ├─ user/public/:uid   → BFF-gRPC（rpg.GetPublicProfile，精确 3 段路径）
+  ├─ article/info       → BFF-Kitex（blog.GetArticleDetail）
+  ├─ user/public/:uid   → BFF-Kitex（rpg.GetPublicProfile，精确 3 段路径）
   ├─ user/* captcha role dept privilege admin/* sensitive-word operation-log
   │                     → 代理 → user-service
   ├─ rpg/* admin/rpg/* pay/* user/public/* rpg/public/*
@@ -52,9 +53,9 @@
 | GET | `/health` | 本地 | 健康检查 | `gateway/internal/app/app.go` |
 | GET | `/api/v1/health` | 本地 | 健康检查 | 同上 |
 | GET | `/metrics` | 本地 | Prometheus（`enable_metrics`） | 同上 |
-| GET | `/api/v1/pub/stats` | **BFF-gRPC** | blog.GetPubStats + user.CountUsers | `gateway/internal/aggregator/stats.go` |
-| GET | `/api/v1/article/info` | **BFF-gRPC** | blog.GetArticleDetail | `gateway/internal/aggregator/article.go` |
-| GET | `/api/v1/user/public/:uid` | **BFF-gRPC** | rpg.GetPublicProfile | `gateway/internal/aggregator/profile.go` |
+| GET | `/api/v1/pub/stats` | **BFF-Kitex** | blog.GetPubStats + user.CountUsers | `gateway/internal/aggregator/stats.go` |
+| GET | `/api/v1/article/info` | **BFF-Kitex** | blog.GetArticleDetail | `gateway/internal/aggregator/article.go` |
+| GET | `/api/v1/user/public/:uid` | **BFF-Kitex** | rpg.GetPublicProfile | `gateway/internal/aggregator/profile.go` |
 | ANY | `/realtime` | 代理→blog | WebSocket 升级 | `gateway/internal/proxy/router.go` |
 | ANY | `/realtime/*path` | 代理→blog | WS 子路径 | 同上 |
 | ANY | `/api/v1/*`（未上表） | 代理 | 按前缀转发 user/blog/rpg | 同上 |
@@ -210,7 +211,7 @@
 | 方法 | 路径 | 鉴权 | Gateway 备注 |
 |------|------|------|--------------|
 | POST | `/api/v1/article/list` | 公开 | 代理 |
-| GET | `/api/v1/article/info` | 公开 | **BFF-gRPC**（gateway 拦截，不经 blog HTTP） |
+| GET | `/api/v1/article/info` | 公开 | **BFF-Kitex**（gateway 拦截，不经 blog HTTP） |
 | POST | `/api/v1/article/create` | JWT | 代理 |
 | POST | `/api/v1/article/edit` | JWT | 代理 |
 | DELETE | `/api/v1/article/delete` | JWT | 代理 |
@@ -375,7 +376,7 @@
 ## 4. rpg-service（`:5003`）
 
 > 注册：`services/rpg/internal/handler/register.go`  
-> Gateway：`rpg/*`、`admin/rpg/*`、`pay/*`、`user/public/*`、`rpg/public/*` → 代理到此服务（**例外**：`GET /user/public/:uid` 由 gateway BFF-gRPC 处理）。
+> Gateway：`rpg/*`、`admin/rpg/*`、`pay/*`、`user/public/*`、`rpg/public/*` → 代理到此服务（**例外**：`GET /user/public/:uid` 由 gateway BFF-Kitex 处理）。
 
 ### 4.1 健康与静态
 
@@ -477,7 +478,7 @@
 
 | 方法 | 路径 | 鉴权 | Gateway 备注 |
 |------|------|------|--------------|
-| GET | `/api/v1/user/public/:uid` | 公开 | **BFF-gRPC** |
+| GET | `/api/v1/user/public/:uid` | 公开 | **BFF-Kitex** |
 | GET | `/api/v1/user/public/:uid/articles` | 公开 | 代理→rpg |
 | GET | `/api/v1/user/public/:uid/collects` | 公开 | 代理→rpg |
 | GET | `/api/v1/user/public/:uid/likes` | 公开 | 代理→rpg |
@@ -510,11 +511,11 @@
 
 ---
 
-## 5. 内部 gRPC（不对外暴露）
+## 5. 内部 Kitex RPC（不对外暴露）
 
-> 仅供 gateway BFF 或服务间调用；默认 insecure，带 `grpcmeta` 鉴权拦截器。
+> 仅供 gateway BFF 或服务间调用；经 **etcd** 发现（服务名 `blog.user` / `blog.blog` / `blog.rpg`）；`kitexmeta` 透传 `x-user-id`。
 
-### 5.1 user.v1.UserService（`:50052`）
+### 5.1 user.v1.UserService（监听 `:50052`，注册名 `blog.user`）
 
 | RPC | 调用方 | 说明 |
 |-----|--------|------|
@@ -531,7 +532,7 @@
 | AssertDeptAccess | blog-service | 文章编辑/删除机构校验（Plan 17） |
 | ListSensitiveWordHits | rpg-service | C 端命中记录分页（Plan 17） |
 
-### 5.2 blog.v1.ArticleService（`:50051`）
+### 5.2 blog.v1.ArticleService（监听 `:50051`，注册名 `blog.blog`）
 
 | RPC | 调用方 | 说明 |
 |-----|--------|------|
@@ -542,13 +543,17 @@
 | UpdateContentModerationStatus | user 敏感词 | 审核后同步 comment/msgboard/reply |
 | ListPublicCollectArticles | rpg-service | 公开主页收藏文章分页 |
 | ListPublicLikeArticles | rpg-service | 公开主页点赞文章分页 |
+| GetArticleRPGFields | rpg-service | 文章 RPG 字段 |
+| UpdateArticleRPGFields | rpg-service | 更新文章 RPG 字段 |
+| AddArticleTipTotal | rpg-service | 累加打赏总额 |
 
-### 5.3 rpg.v1.RpgService（`:50053`）
+### 5.3 rpg.v1.RpgService（监听 `:50053`，注册名 `blog.rpg`）
 
 | RPC | 调用方 | 说明 |
 |-----|--------|------|
 | GetProfile | — | 等级/经验摘要 |
 | GetPublicProfile | gateway BFF | 公开主页 JSON |
+| AssertNotBanned | blog-service | 禁言校验（BanGuard） |
 
 ---
 

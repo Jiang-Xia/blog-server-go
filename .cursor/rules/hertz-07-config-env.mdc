@@ -60,4 +60,4 @@ Viper 支持 env 覆盖：`APP_ENV` → `app.env`（AutomaticEnv + `SetEnvKeyRep
 ## 多服务
 
 - 各服务独立 yaml；共享项（JWT secret、MySQL DSN）数值须一致
-- gateway 额外：`grpc.blog_addr`、`grpc.user_addr`、`grpc.rpg_addr`
+- 学习路径微服务：`kitex.addr`（本进程监听）+ `registry.etcd_endpoints`；gateway 仅需 `registry.etcd_endpoints` + `proxy.*_url`（HTTP 代理）

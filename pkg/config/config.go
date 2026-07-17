@@ -23,10 +23,11 @@ const (
 
 // Config 应用配置，字段与 configs/*.yaml 及 Nest env 语义对齐。
 type Config struct {
-	App    AppConfig    `mapstructure:"app"`
-	HTTP   HTTPConfig   `mapstructure:"http"`
-	GRPC   GRPCConfig   `mapstructure:"grpc"`
-	Proxy  ProxyConfig  `mapstructure:"proxy"`
+	App      AppConfig      `mapstructure:"app"`
+	HTTP     HTTPConfig     `mapstructure:"http"`
+	Kitex    KitexConfig    `mapstructure:"kitex"`
+	Registry RegistryConfig `mapstructure:"registry"`
+	Proxy    ProxyConfig    `mapstructure:"proxy"`
 	MySQL  MySQLConfig  `mapstructure:"mysql"`
 	Redis  RedisConfig  `mapstructure:"redis"`
 	JWT    JWTConfig    `mapstructure:"jwt"`
@@ -129,13 +130,36 @@ type HTTPConfig struct {
 	CORSOrigins []string `mapstructure:"cors_origins"`
 }
 
-// GRPCConfig gRPC 监听与上游地址（微服务间通信）。
-type GRPCConfig struct {
-	Addr     string `mapstructure:"addr"`
-	UserAddr string `mapstructure:"user_addr"`
-	BlogAddr string `mapstructure:"blog_addr"`
-	RPGAddr  string `mapstructure:"rpg_addr"`
+// KitexConfig 本服务 Kitex RPC 监听（学习路径微服务；monolith 不启）。
+type KitexConfig struct {
+	// Addr 本进程 Kitex 监听地址，如 ":50052"。
+	Addr string `mapstructure:"addr"`
 }
+
+// RegistryConfig etcd 服务注册/发现（学习路径；monolith 不需要）。
+type RegistryConfig struct {
+	// EtcdEndpoints etcd 集群地址，如 ["127.0.0.1:2379"]。
+	EtcdEndpoints []string `mapstructure:"etcd_endpoints"`
+}
+
+// EtcdEndpointsOrEmpty 返回 etcd 地址列表（可能为空）。
+func (r RegistryConfig) EtcdEndpointsOrEmpty() []string {
+	out := make([]string, 0, len(r.EtcdEndpoints))
+	for _, ep := range r.EtcdEndpoints {
+		ep = strings.TrimSpace(ep)
+		if ep != "" {
+			out = append(out, ep)
+		}
+	}
+	return out
+}
+
+// Kitex 服务注册名（与 etcd / 客户端发现一致）。
+const (
+	KitexServiceUser = "blog.user"
+	KitexServiceBlog = "blog.blog"
+	KitexServiceRPG  = "blog.rpg"
+)
 
 // ProxyConfig gateway 反向代理上游 HTTP 地址。
 type ProxyConfig struct {

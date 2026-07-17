@@ -4,23 +4,22 @@ package aggregator
 import (
 	"context"
 	"encoding/json"
+	"strings"
 
-	blogv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
-	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/grpcclient"
+	blogv1 "github.com/Jiang-Xia/blog-server-go/proto/kitex/blog/v1"
+	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/kitexclient"
 	"github.com/cloudwego/hertz/pkg/app"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
-// ArticleHandler GET /article/info BFF：经 blog gRPC 取详情 JSON。
+// ArticleHandler GET /article/info BFF：经 blog Kitex 取详情 JSON。
 type ArticleHandler struct {
-	clients *grpcclient.Clients
+	clients *kitexclient.Clients
 }
 
 // NewArticleHandler 构造 article/info BFF handler。
-func NewArticleHandler(clients *grpcclient.Clients) *ArticleHandler {
+func NewArticleHandler(clients *kitexclient.Clients) *ArticleHandler {
 	return &ArticleHandler{clients: clients}
 }
 
@@ -32,16 +31,16 @@ func (h *ArticleHandler) Info(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 	if h.clients == nil || h.clients.Blog == nil {
-		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, "blog gRPC 未配置"))
+		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, "blog Kitex 未配置"))
 		return
 	}
 	resp, err := h.clients.Blog.GetArticleDetail(ctx, &blogv1.GetArticleDetailRequest{Key: id})
 	if err != nil {
-		if st, ok := status.FromError(err); ok && st.Code() == codes.NotFound {
+		if strings.Contains(strings.ToLower(err.Error()), "not found") {
 			response.Error(ctx, c, errcode.WithMessage(errcode.NotFound, "找不到文章"))
 			return
 		}
-		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, err.Error()))
+		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, "%s", err.Error()))
 		return
 	}
 	var data interface{}

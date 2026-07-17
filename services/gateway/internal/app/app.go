@@ -17,8 +17,8 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/otel"
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
 	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/aggregator"
+	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/kitexclient"
 	gwmw "github.com/Jiang-Xia/blog-server-go/services/gateway/internal/middleware"
-	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/grpcclient"
 	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/proxy"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -49,9 +49,9 @@ func Run(cfgPath string) error {
 		return fmt.Errorf("proxy router: %w", err)
 	}
 
-	clients, err := grpcclient.New(cfg.GRPC.UserAddr, cfg.GRPC.BlogAddr, cfg.GRPC.RPGAddr)
+	clients, err := kitexclient.New(cfg.Registry.EtcdEndpointsOrEmpty())
 	if err != nil {
-		return fmt.Errorf("grpc clients: %w", err)
+		return fmt.Errorf("kitex clients: %w", err)
 	}
 
 	h := server.Default(server.WithHostPorts(cfg.HTTP.Addr))

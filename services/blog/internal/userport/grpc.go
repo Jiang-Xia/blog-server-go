@@ -1,4 +1,4 @@
-﻿// grpc user-service gRPC 客户端，实现 UserService 端口。
+﻿// Package userport blog 对 user 域跨服务依赖（经 user Kitex）。
 package userport
 
 import (
@@ -9,7 +9,7 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/usersvc"
 )
 
-// GRPCArticleUserPort 经 user gRPC 获取用户摘要与部门信息。
+// GRPCArticleUserPort 经 user Kitex 获取用户摘要与部门信息。
 type GRPCArticleUserPort struct {
 	scope usersvc.ArticleScope
 	users usersvc.UserService
@@ -43,7 +43,7 @@ func (p *GRPCArticleUserPort) FindDeptByID(ctx context.Context, id int) (*DeptIn
 	return &DeptInfo{ID: d.ID, DeptName: d.DeptName}, nil
 }
 
-// GRPCArticleAdminPort 经 user gRPC 解析文章数据权限。
+// GRPCArticleAdminPort 经 user Kitex 解析文章数据权限。
 type GRPCArticleAdminPort struct {
 	scope usersvc.ArticleScope
 }
@@ -63,11 +63,11 @@ func (p *GRPCArticleAdminPort) AssertArticleDeptAccess(ctx context.Context, uid 
 	return p.scope.AssertArticleDeptAccess(ctx, uid, deptID)
 }
 
-// ProvideUserService 装配 blog-service 专用 user gRPC 客户端。
+// ProvideUserService 装配 blog-service 专用 user Kitex 客户端（etcd 发现）。
 func ProvideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
-	addr := cfg.GRPC.UserAddr
-	if addr == "" {
-		return nil, fmt.Errorf("GRPC.UserAddr required for blog-service")
+	endpoints := cfg.Registry.EtcdEndpointsOrEmpty()
+	if len(endpoints) == 0 {
+		return nil, fmt.Errorf("registry.etcd_endpoints required for blog-service")
 	}
-	return usersvc.NewGRPCUserService(addr)
+	return usersvc.NewKitexUserService(endpoints)
 }

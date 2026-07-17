@@ -12,7 +12,7 @@ Go + Hertz 重构 [blog-server](https://github.com/Jiang-Xia/blog-server)（Nest
 | 层次 | 选型 |
 |------|------|
 | HTTP | **Hertz**（对外 REST） |
-| RPC | **gRPC** + protobuf + buf（Plan 10 拆分后） |
+| RPC | **Kitex** + protobuf + **etcd**（仅学习路径四微服务；线上 monolith 进程内） |
 | ORM | **Ent** |
 | Redis | **rueidis** |
 | 配置 | **Viper** |
@@ -25,7 +25,7 @@ Go + Hertz 重构 [blog-server](https://github.com/Jiang-Xia/blog-server)（Nest
 
 - **Plan 01–09**：`services/monolith/` 模块化单体
 - **Plan 10**：拆为 gateway / blog / user / rpg 四服务
-- 单体阶段勿过早引入 gRPC 运行时；proto 可先占位
+- 线上只跑 monolith，勿在生产引入 Kitex/etcd；学习路径用 `make kitex` 生成 stub
 
 ## 强制通则
 

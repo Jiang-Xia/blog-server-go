@@ -30,7 +30,6 @@ import (
 	rpgactivity "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/activity"
 	rpgevent "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/event"
 	userpkg "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user"
-	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/grpcserver"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/auth"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/captcha"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/email"
@@ -46,24 +45,15 @@ func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
 
 func provideBanChecker(mod *rpg.Module) rpgsvc.BanChecker {
 	if mod == nil {
-		c, _ := rpgsvc.NewGRPCBanChecker("")
+		c, _ := rpgsvc.NewKitexBanChecker(nil)
 		return c
 	}
 	return rpgport.NewLocalBanChecker(mod.Punishment)
 }
 
-func provideUserGRPCServer(cfg *config.Config, profileSvc *profile.Service, jwt *auth.JWTService) *usersgrpc.Server {
-	if cfg.App.ServiceModeOrDefault() != config.ModeUser {
-		return nil
-	}
-	return usersgrpc.New(profileSvc, jwt)
-}
-
 func provideUserServicePort(cfg *config.Config, profileSvc *profile.Service) (usersvc.UserService, error) {
-	mode := cfg.App.ServiceModeOrDefault()
-	if cfg.GRPC.UserAddr != "" && mode != config.ModeMonolith && mode != config.ModeUser {
-		return usersvc.NewGRPCUserService(cfg.GRPC.UserAddr)
-	}
+	// 单体始终进程内调用，不走远程 Kitex。
+	_ = cfg
 	return userpkg.NewUserService(profileSvc), nil
 }
 

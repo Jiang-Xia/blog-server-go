@@ -1,4 +1,4 @@
-// Package usersvc 定义跨服务 UserService 只读端口与 DTO（blog/rpg 经 gRPC 消费）。
+// Package usersvc 定义跨服务 UserService 只读端口与 DTO（blog/rpg 经 Kitex 消费）。
 package usersvc
 
 import "context"
@@ -45,7 +45,7 @@ type UserService interface {
 	GetUserBatch(ctx context.Context, ids []uint64) ([]*UserDTO, error)
 }
 
-// ContentFilter 敏感词过滤（user-service gRPC）。
+// ContentFilter 敏感词过滤（user-service Kitex）。
 type ContentFilter interface {
 	EvaluateContent(ctx context.Context, content string) (*FilterEvaluateResult, error)
 	CreateHitRecord(ctx context.Context, params FilterHitParams) error
@@ -64,7 +64,7 @@ type SensitiveHitLister interface {
 	ListSensitiveWordHits(ctx context.Context, uid, page, pageSize int) (map[string]interface{}, error)
 }
 
-// CrossClient Plan 17 跨服务 user gRPC 聚合端口。
+// CrossClient 跨服务 user Kitex 聚合端口。
 type CrossClient interface {
 	UserService
 	ContentFilter
@@ -72,7 +72,7 @@ type CrossClient interface {
 	SensitiveHitLister
 }
 
-// SystemEmailSender 系统邮件发送（user-service gRPC）。
+// SystemEmailSender 系统邮件发送（user-service Kitex）。
 type SystemEmailSender interface {
 	SendSystemEmail(ctx context.Context, to, subject, htmlBody string) (bool, error)
 }

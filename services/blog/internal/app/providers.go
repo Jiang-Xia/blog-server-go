@@ -20,7 +20,7 @@ import (
 	raglistener "github.com/Jiang-Xia/blog-server-go/services/blog/internal/rag/listener"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/userport"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent"
-	bloggrpc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/grpcserver"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/kitexserver"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/repo"
 	blogsvc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/service"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/scheduler"
@@ -44,7 +44,7 @@ func provideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
 }
 
 func provideBanChecker(cfg *config.Config) (rpgsvc.BanChecker, error) {
-	return rpgsvc.NewGRPCBanChecker(cfg.GRPC.RPGAddr)
+	return rpgsvc.NewKitexBanChecker(cfg.Registry.EtcdEndpointsOrEmpty())
 }
 
 func provideArticleUserPort(client usersvc.CrossClient) userport.ArticleUserPort {
@@ -63,8 +63,8 @@ func provideJWT(cfg *config.Config) *auth.JWTService {
 	return auth.NewJWTService(cfg)
 }
 
-func provideBlogGRPCServer(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client, publicProfile *publicprofile.Repo) *bloggrpc.Server {
-	return bloggrpc.New(articles, moderation, client, publicProfile)
+func provideBlogKitexServer(articles *blogsvc.ArticleService, moderation *blogsvc.ModerationService, client *ent.Client, publicProfile *publicprofile.Repo) *kitexserver.Server {
+	return kitexserver.New(articles, moderation, client, publicProfile)
 }
 
 func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
@@ -169,11 +169,11 @@ func provideScheduledTaskCrossDB(cfg *config.Config) (*crossdb.CrossDB, error) {
 }
 
 func provideSystemEmailSender(cfg *config.Config) (usersvc.SystemEmailSender, error) {
-	addr := cfg.GRPC.UserAddr
-	if addr == "" {
-		return nil, fmt.Errorf("GRPC.UserAddr required for system email")
+	endpoints := cfg.Registry.EtcdEndpointsOrEmpty()
+	if len(endpoints) == 0 {
+		return nil, fmt.Errorf("registry.etcd_endpoints required for system email")
 	}
-	return usersvc.NewGRPCSystemEmailSender(addr)
+	return usersvc.NewKitexSystemEmailSender(endpoints)
 }
 
 func provideScheduledTaskJobs(

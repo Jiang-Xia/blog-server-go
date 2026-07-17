@@ -9,6 +9,11 @@ app:
 http:
   addr: ":8000"
 
+registry:
+  etcd_endpoints:
+    - "etcd:2379"
+
+
 proxy:
   user_url: "http://user:5002"
   blog_url: "http://blog:5001"

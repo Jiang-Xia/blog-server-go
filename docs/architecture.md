@@ -1,6 +1,6 @@
 # 架构与部署定位
 
-> NestJS [`blog-server`](../../blog-server) 的 Go 重构：**Hertz + Ent + gRPC**，对外 `/api/v1/*` + `{code,message,data}`。  
+> NestJS [`blog-server`](../../blog-server) 的 Go 重构：**Hertz + Ent + Kitex**，对外 `/api/v1/*` + `{code,message,data}`。  
 > 详细启动见根 [`README.md`](../README.md)；功能对等见 [`nest-parity-matrix.md`](./nest-parity-matrix.md)；路由见 [`api-routes.md`](./api-routes.md)。
 
 ## 双形态（定稿）
@@ -17,8 +17,8 @@ uniapp / nuxt / admin              make up / dev-all
         │                                  │
         ▼                                  ▼
    monolith :8000                    gateway :8000
-        │                           user/blog/rpg
-   MySQL + Redis                    MySQL + Redis（自建）
+        │                           user/blog/rpg + etcd
+   MySQL + Redis                    MySQL + Redis + etcd
 ```
 
 ## 技术选型（现行）
@@ -28,7 +28,7 @@ uniapp / nuxt / admin              make up / dev-all
 | HTTP | CloudWeGo Hertz |
 | ORM | Ent（表前缀 `x_`，库 `x_my_blog`） |
 | 缓存 / 事件 | Redis（rueidis；Stream 领域事件） |
-| 内部 RPC | gRPC + protobuf（仅微服务学习路径） |
+| 内部 RPC | **Kitex + protobuf**（仅微服务学习路径）；服务发现 **etcd** |
 | DI | wire |
 | 配置 | Viper（`configs/*.yaml`） |
 | 部署 | **PM2 + 单体二进制**（[`deploy/pm2/`](../deploy/pm2/)）；Docker 见 [`deploy/docker/`](../deploy/docker/) |
@@ -39,8 +39,8 @@ uniapp / nuxt / admin              make up / dev-all
 |------|------|
 | `services/monolith/` | 线上主入口；`internal/{user,blog,rpg,pay,rag,…}` |
 | `services/{gateway,user,blog,rpg}/` | 学习用四进程；**勿 import 进 monolith**（Go `internal`） |
-| `pkg/` | 跨服务可复用包（config、jwtauth、response 等） |
-| `proto/` | gRPC 定义（学习路径） |
+| `pkg/` | 跨服务可复用包（config、jwtauth、response、kitexmeta、kitexreg 等） |
+| `proto/` | Kitex protobuf IDL；生成物在 `proto/kitex/`（`make kitex`） |
 
 ## Nest 关系
 

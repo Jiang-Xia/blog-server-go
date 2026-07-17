@@ -9,16 +9,16 @@
 
 ## 微服务全栈（仅本地 WSL 学习）
 
-本机或 WSL 一键拉起 **4 微服务 + MySQL + Redis + Jaeger**，用于学 gRPC BFF / 多进程拆分。与 `services/monolith` **代码不共用**，功能可能落后于单体。
+本机或 WSL 一键拉起 **4 微服务 + MySQL + Redis + etcd + Jaeger**，用于学 Kitex BFF / etcd 发现 / 多进程拆分。与 `services/monolith` **代码不共用**，功能可能落后于单体。
 
 ```bash
 docker compose -f deploy/docker/docker-compose.yml up -d --build
 # 或 make up
 ```
 
-Jaeger UI：`http://localhost:16686`
+Jaeger UI：`http://localhost:16686`；etcd：`localhost:2379`。
 
-停止：`make down`。
+停止：`make down`（会停 etcd）。
 
 ## 单体 + uniapp + admin（本地联调 · 对齐线上）
 

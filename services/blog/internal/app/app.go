@@ -11,7 +11,7 @@ import (
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/ent"
-	bloggrpc "github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/grpcserver"
+	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/kitexserver"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/blog/ws"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/blog/internal/event"
@@ -21,7 +21,7 @@ import (
 	"go.uber.org/zap"
 )
 
-// App 聚合 HTTP 服务与基础设施。
+// App 聚合 HTTP/Kitex 服务与基础设施。
 type App struct {
 	cfg       *config.Config
 	h         *server.Hertz
@@ -30,9 +30,9 @@ type App struct {
 	redis     rueidis.Client
 	schedTask *ScheduledTaskRuntime
 	realtime  *RealtimeRuntime
-	blogGRPC  *bloggrpc.Server
+	blogKitex *kitexserver.Server
 	cancel    context.CancelFunc
-	grpcStop  func()
+	kitexStop func()
 }
 
 // NewApp 构造 blog-service 实例。
@@ -44,11 +44,11 @@ func NewApp(
 	redisClient rueidis.Client,
 	schedTask *ScheduledTaskRuntime,
 	rt *RealtimeRuntime,
-	blogGRPC *bloggrpc.Server,
+	blogKitex *kitexserver.Server,
 ) *App {
 	return &App{
 		cfg: cfg, h: h, log: log, ent: entClient, redis: redisClient,
-		schedTask: schedTask, realtime: rt, blogGRPC: blogGRPC,
+		schedTask: schedTask, realtime: rt, blogKitex: blogKitex,
 	}
 }
 
@@ -57,14 +57,14 @@ func (a *App) Run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 	a.cancel = cancel
 
-	if a.blogGRPC != nil && a.cfg.GRPC.Addr != "" {
-		gs, err := bloggrpc.Run(a.cfg.GRPC.Addr, a.blogGRPC)
+	if a.blogKitex != nil {
+		svr, err := kitexserver.Run(a.cfg, a.blogKitex)
 		if err != nil {
-			return fmt.Errorf("start blog grpc: %w", err)
+			return fmt.Errorf("start blog kitex: %w", err)
 		}
-		if gs != nil {
-			a.log.Info("blog grpc server started", zap.String("addr", a.cfg.GRPC.Addr))
-			a.grpcStop = func() { gs.GracefulStop() }
+		if svr != nil {
+			a.log.Info("kitex server started", zap.String("addr", a.cfg.Kitex.Addr))
+			a.kitexStop = func() { _ = svr.Stop() }
 		}
 	}
 
@@ -115,8 +115,8 @@ func (a *App) Shutdown() error {
 	if a.schedTask != nil && a.schedTask.Sched != nil {
 		a.schedTask.Sched.Stop()
 	}
-	if a.grpcStop != nil {
-		a.grpcStop()
+	if a.kitexStop != nil {
+		a.kitexStop()
 	}
 	data.CloseEnt(a.ent)
 	data.CloseRedis(a.redis)

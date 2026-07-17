@@ -50,8 +50,12 @@ func userYAML(host string, port int, user, pass, db, redis string, redisDB int, 
 http:
   addr: ":5002"
 
-grpc:
+kitex:
   addr: ":50052"
+
+registry:
+  etcd_endpoints:
+    - "127.0.0.1:2379"
 
 mysql:
   host: %s
@@ -91,10 +95,12 @@ func blogYAML(host string, port int, user, pass, db, redis string, redisDB int, 
 http:
   addr: ":5001"
 
-grpc:
+kitex:
   addr: ":50051"
-  user_addr: "127.0.0.1:50052"
-  rpg_addr: "127.0.0.1:50053"
+
+registry:
+  etcd_endpoints:
+    - "127.0.0.1:2379"
 
 mysql:
   host: %s
@@ -135,10 +141,12 @@ func rpgYAML(host string, port int, user, pass, db, redis string, redisDB int, s
 http:
   addr: ":5003"
 
-grpc:
+kitex:
   addr: ":50053"
-  user_addr: "127.0.0.1:50052"
-  blog_addr: "127.0.0.1:50051"
+
+registry:
+  etcd_endpoints:
+    - "127.0.0.1:2379"
 
 mysql:
   host: %s
@@ -221,10 +229,9 @@ proxy:
   blog_url: "http://127.0.0.1:5001"
   rpg_url: "http://127.0.0.1:5003"
 
-grpc:
-  user_addr: "127.0.0.1:50052"
-  blog_addr: "127.0.0.1:50051"
-  rpg_addr: "127.0.0.1:50053"
+registry:
+  etcd_endpoints:
+    - "127.0.0.1:2379"
 
 jwt:
   secret: "%s"

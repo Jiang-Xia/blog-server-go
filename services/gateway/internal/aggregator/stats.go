@@ -5,18 +5,18 @@ import (
 	"context"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
-	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/grpcclient"
+	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/kitexclient"
 	"github.com/cloudwego/hertz/pkg/app"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 // StatsHandler GET /pub/stats BFF：合并 blog 统计与 user 用户数。
 type StatsHandler struct {
-	clients *grpcclient.Clients
+	clients *kitexclient.Clients
 }
 
 // NewStatsHandler 构造 pub/stats 聚合 handler。
-func NewStatsHandler(clients *grpcclient.Clients) *StatsHandler {
+func NewStatsHandler(clients *kitexclient.Clients) *StatsHandler {
 	return &StatsHandler{clients: clients}
 }
 
@@ -27,7 +27,7 @@ type pubStats struct {
 	UserCount     int `json:"userCount"`
 }
 
-// Stats 经 gRPC 聚合各服务统计。
+// Stats 经 Kitex 聚合各服务统计。
 func (h *StatsHandler) Stats(ctx context.Context, c *app.RequestContext) {
 	stats := pubStats{}
 	if h.clients != nil && h.clients.Blog != nil {

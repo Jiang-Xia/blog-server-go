@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
-	"github.com/Jiang-Xia/blog-server-go/pkg/grpcmeta"
+	"github.com/Jiang-Xia/blog-server-go/pkg/kitexmeta"
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -111,8 +111,8 @@ func (r *Router) proxyHandler(apiPrefix string) app.HandlerFunc {
 			})
 			return
 		}
-		if uid := c.GetHeader(grpcmeta.UserIDKey); len(uid) > 0 {
-			c.Request.Header.Set(grpcmeta.UserIDKey, string(uid))
+		if uid := c.GetHeader(kitexmeta.UserIDKey); len(uid) > 0 {
+			c.Request.Header.Set(kitexmeta.UserIDKey, string(uid))
 		}
 		adaptor.HertzHandler(http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 			proxy.ServeHTTP(w, req)

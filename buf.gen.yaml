@@ -1,10 +1,5 @@
 version: v2
-plugins:
-  - remote: buf.build/protocolbuffers/go
-    out: proto/gen/go
-    opt:
-      - paths=source_relative
-  - remote: buf.build/grpc/go
-    out: proto/gen/go
-    opt:
-      - paths=source_relative
+# 消息与 Kitex stub 由 `make kitex`（kitex + protobuf）生成到 proto/kitex；
+# 不再使用 buf 生成 google.golang.org/grpc stub。
+# 保留本文件便于 buf lint / breaking 检查 IDL。
+plugins: []

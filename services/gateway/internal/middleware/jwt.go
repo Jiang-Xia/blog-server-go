@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
-	"github.com/Jiang-Xia/blog-server-go/pkg/grpcmeta"
 	"github.com/Jiang-Xia/blog-server-go/pkg/jwtauth"
+	"github.com/Jiang-Xia/blog-server-go/pkg/kitexmeta"
 	"github.com/cloudwego/hertz/pkg/app"
 )
 
@@ -19,7 +19,7 @@ func JWTPassthrough(cfg *config.Config) app.HandlerFunc {
 		token := bearerToken(c)
 		if token != "" {
 			if claims, err := jwt.Verify(token); err == nil && claims.ID > 0 {
-				c.Request.Header.Set(grpcmeta.UserIDKey, strconv.Itoa(claims.ID))
+				c.Request.Header.Set(kitexmeta.UserIDKey, strconv.Itoa(claims.ID))
 			}
 		}
 		c.Next(ctx)

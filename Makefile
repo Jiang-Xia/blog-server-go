@@ -1,4 +1,4 @@
-.PHONY: dev dev-all dev-all-windows dev-all-stop dev-all-status dev-all-logs dev-gateway dev-user dev-blog dev-rpg proto ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs up-monolith down-monolith logs-monolith deploy deploy-monolith rollback rollback-list sync-pm2-config tidy \
+.PHONY: dev dev-all dev-all-windows dev-all-stop dev-all-status dev-all-logs dev-gateway dev-user dev-blog dev-rpg proto kitex ent-gen ent-gen-user ent-gen-blog ent-gen-rpg wire wire-user wire-blog wire-rpg build up down logs up-monolith down-monolith logs-monolith deploy deploy-monolith rollback rollback-list sync-pm2-config tidy \
 	test-unit test-smoke test-integration test-e2e test-all test-coverage test-ci test-infra-up test-infra-down test-run \
 	swag-apidoc swag-user swag-blog swag-rpg swag-gateway swag-all
 
@@ -51,8 +51,12 @@ dev-login:
 dev-login-token:
 	$(GO) run scripts/dev_login.go --token-only
 
-proto:
-	buf generate
+# Kitex + protobuf 生成（需安装：go install github.com/cloudwego/kitex/tool/cmd/kitex@v0.16.3；本机 protoc）
+# 输出：proto/kitex/{user,blog,rpg}/v1/；会短暂生成根目录 main.go/handler.go/build.sh，生成后删除
+kitex:
+	powershell -ExecutionPolicy Bypass -File scripts/gen-kitex.ps1
+
+proto: kitex
 
 ent-gen:
 	cd $(ENT_DIR) && $(GO) generate ./...

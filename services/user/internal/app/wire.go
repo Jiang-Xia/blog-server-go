@@ -52,7 +52,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		handler.NewOperationLogHandler,
 		handler.NewHealthHandler,
 		provideRegisterDeps,
-		provideUserGRPCServer,
+		provideUserKitexServer,
 		server.NewHTTPServer,
 		NewApp,
 	)

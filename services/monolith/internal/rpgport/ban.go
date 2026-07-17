@@ -15,7 +15,7 @@ type localBanChecker struct {
 // NewLocalBanChecker 用进程内 PunishmentService 实现 BanChecker。
 func NewLocalBanChecker(p *rpgpunish.PunishmentService) rpgsvc.BanChecker {
 	if p == nil {
-		c, _ := rpgsvc.NewGRPCBanChecker("")
+		c, _ := rpgsvc.NewKitexBanChecker(nil)
 		return c
 	}
 	return localBanChecker{p: p}

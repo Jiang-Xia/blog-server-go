@@ -9,8 +9,13 @@ app:
 http:
   addr: ":5002"
 
-grpc:
+kitex:
   addr: ":50052"
+
+registry:
+  etcd_endpoints:
+    - "etcd:2379"
+
 
 mysql:
   host: mysql

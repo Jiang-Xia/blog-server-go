@@ -7,22 +7,20 @@ import (
 	"strconv"
 	"strings"
 
-	rpgv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/rpg/v1"
 	"github.com/Jiang-Xia/blog-server-go/pkg/errcode"
 	"github.com/Jiang-Xia/blog-server-go/pkg/response"
-	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/grpcclient"
+	rpgv1 "github.com/Jiang-Xia/blog-server-go/proto/kitex/rpg/v1"
+	"github.com/Jiang-Xia/blog-server-go/services/gateway/internal/kitexclient"
 	"github.com/cloudwego/hertz/pkg/app"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
-// ProfileHandler GET /user/public/:uid BFF：经 rpg gRPC 取公开主页。
+// ProfileHandler GET /user/public/:uid BFF：经 rpg Kitex 取公开主页。
 type ProfileHandler struct {
-	clients *grpcclient.Clients
+	clients *kitexclient.Clients
 }
 
 // NewProfileHandler 构造 user/public BFF handler。
-func NewProfileHandler(clients *grpcclient.Clients) *ProfileHandler {
+func NewProfileHandler(clients *kitexclient.Clients) *ProfileHandler {
 	return &ProfileHandler{clients: clients}
 }
 
@@ -34,16 +32,16 @@ func (h *ProfileHandler) PublicProfile(ctx context.Context, c *app.RequestContex
 		return
 	}
 	if h.clients == nil || h.clients.RPG == nil {
-		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, "rpg gRPC 未配置"))
+		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, "rpg Kitex 未配置"))
 		return
 	}
 	resp, err := h.clients.RPG.GetPublicProfile(ctx, &rpgv1.GetPublicProfileRequest{UserId: uint64(uid)})
 	if err != nil {
-		if st, ok := status.FromError(err); ok && st.Code() == codes.NotFound {
+		if strings.Contains(strings.ToLower(err.Error()), "not found") {
 			response.Error(ctx, c, errcode.WithMessage(errcode.NotFound, "用户不存在"))
 			return
 		}
-		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, err.Error()))
+		response.Error(ctx, c, errcode.WithMessage(errcode.InternalError, "%s", err.Error()))
 		return
 	}
 	var data interface{}

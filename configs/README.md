@@ -69,9 +69,9 @@ pwsh scripts/setup-config.ps1
 | `redis.db` | **1**（与 Nest 对齐） | **2**（隔离本地 db 1） |
 | `jwt.secret` | 四服务 + gateway **完全一致** | `ci-integration-test-secret` |
 
-`gateway` 不连 MySQL/Redis，但 `jwt.secret` 须与其它服务一致。
+`gateway` 不连 MySQL/Redis，但 `jwt.secret` 须与其它服务一致；另需 `registry.etcd_endpoints`（本机 `127.0.0.1:2379`，Docker `etcd:2379`）。各微服务另配 `kitex.addr`（本进程 Kitex 监听）。**勿再配置**已废弃的 `grpc.*_addr`。
 
-修改任一学习用服务的 `mysql` / `redis` / `jwt` 后，请同步其余 `configs/{user,blog,rpg}.yaml`。单体日常开发只维护 `configs/monolith.yaml`。
+修改任一学习用服务的 `mysql` / `redis` / `jwt` / `registry` 后，请同步其余 `configs/{user,blog,rpg,gateway}.yaml`。单体日常开发只维护 `configs/monolith.yaml`（**不需要 etcd**）。
 
 `test-run.ps1` 默认不启 Docker，保留本地 `configs/*.yaml`；migrate/seed 从 `configs/user.yaml` 读取 MySQL 凭据。
 

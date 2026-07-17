@@ -54,7 +54,7 @@ pie title 模块对等粗算（按 Nest 功能域）
 | `security/auth` + `captcha` | user-service | ✅ | Plan 02；JWT/RSA/GitHub/邮箱/小程序登录 |
 | `features/user` | user-service | ✅ | Plan 02–03 |
 | `features/admin/system` RBAC | user-service | ✅ | Plan 03；角色/菜单/部门/数据权限 |
-| `features/sensitive-word` | user-service + blog gRPC | ✅ | Plan 04、17、13；过滤 + hit 审核联动实体 status |
+| `features/sensitive-word` | user-service + blog Kitex | ✅ | Plan 04、17、13；过滤 + hit 审核联动实体 status |
 | `features/operation-log` | user-service | ✅ | Plan 04 |
 | `features/article` | blog-service | ✅ | Plan 05；分类为扁平列表（与 Nest 一致） |
 | `features/category` `tag` | blog-service | ✅ | Plan 05 |
@@ -67,7 +67,7 @@ pie title 模块对等粗算（按 Nest 功能域）
 | `core/events` Stream | blog 发布 + rpg/rag 消费 | ⚠️ | Plan 08、09、18、19、**20**；惩罚链已对齐 |
 | `modules/rpg` C 端 | rpg-service | ✅ | Plan 09、**21**；核心玩法 + P0 WS 已对齐 |
 | `rpg/admin` | rpg-service | ✅ | Plan 13；admin 写操作 stub 已替换 |
-| `rpg/guards/ban.guard` | blog gRPC + rpg 本地 | ✅ | Plan 13；comment/reply/sign；msgboard 匿名同 Nest |
+| `rpg/guards/ban.guard` | blog Kitex + rpg 本地 | ✅ | Plan 13；comment/reply/sign；msgboard 匿名同 Nest |
 | `rpg/punishment` | rpg-service | ✅ | Plan 13 BanGuard + Plan **20** 全惩罚链 + 解封 WS |
 | `rpg/level/article-level` | rpg-service | ✅ | Plan 19 `ArticleLevelService` + Stream 消费 |
 | `modules/pay` | rpg-service | ⚠️ | 支付宝 ✅；微信支付 🚫 **明确不做** §3.6 |
@@ -107,7 +107,7 @@ pie title 模块对等粗算（按 Nest 功能域）
 | 能力 | Nest | Go | 状态 |
 |------|------|-----|------|
 | 评论/回复/点赞/收藏 | ✅ | ✅ | ✅ |
-| 敏感词分级 + pending | ✅ | ✅ | ✅ Plan 17 gRPC |
+| 敏感词分级 + pending | ✅ | ✅ | ✅ Plan 17 Kitex |
 | 敏感词 hit 审核 → 实体 status | ✅ | ✅ | ✅ Plan 13 |
 | 评论创建 → RPG 经验 | ✅ | ✅ | ✅ Plan 18 发布 + Plan 09 消费 |
 | BanGuard 禁言拦截 | ✅ | ✅ | ✅ Plan 13 |
@@ -224,7 +224,7 @@ rg 'notReady\(".*待完善' services/monolith/
 |------|------|
 | [README.md](./README.md) | 文档索引 |
 | [architecture.md](./architecture.md) | 单体 vs 微服务定位 |
-| [api-routes.md](./api-routes.md) | HTTP/gRPC 路由全表 |
+| [api-routes.md](./api-routes.md) | HTTP/Kitex 路由全表 |
 | [swagger.md](./swagger.md) | Swagger / OpenAPI |
 | [.cursor/plans/README.md](../.cursor/plans/README.md) | 里程碑历史摘要 |
 | [blog-server RPG-TECH.md](../../blog-server/src/modules/rpg/RPG-TECH.md) | Nest RPG 事件与惩罚设计 |

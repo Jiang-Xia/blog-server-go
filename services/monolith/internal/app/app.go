@@ -16,7 +16,6 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg"
 	rpgseeds "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/rpg/seeds"
-	usersgrpc "github.com/Jiang-Xia/blog-server-go/services/monolith/internal/user/grpcserver"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/redis/rueidis"
 	"go.uber.org/zap"
@@ -33,9 +32,7 @@ type App struct {
 	realtime       *RealtimeRuntime
 	rpgMod         *rpg.Module
 	activityNotify scheduler.ActivityNotifyRunner
-	userGRPC       *usersgrpc.Server
 	cancel         context.CancelFunc
-	grpcStop       func()
 }
 
 // NewApp 构造可运行的应用实例。
@@ -49,32 +46,19 @@ func NewApp(
 	rt *RealtimeRuntime,
 	rpgMod *rpg.Module,
 	activityNotify scheduler.ActivityNotifyRunner,
-	userGRPC *usersgrpc.Server,
 ) *App {
 	return &App{
 		cfg: cfg, h: h, log: log, ent: entClient, redis: redisClient,
 		schedTask: schedTask, realtime: rt, rpgMod: rpgMod, activityNotify: activityNotify,
-		userGRPC: userGRPC,
 	}
 }
 
-// Run 启动 HTTP/gRPC 服务并监听退出信号。
+// Run 启动 HTTP 服务并监听退出信号。
 func (a *App) Run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 	a.cancel = cancel
 
 	mode := a.cfg.App.ServiceModeOrDefault()
-
-	if a.userGRPC != nil && a.cfg.GRPC.Addr != "" {
-		gs, err := usersgrpc.Run(a.cfg.GRPC.Addr, a.userGRPC)
-		if err != nil {
-			return fmt.Errorf("start user grpc: %w", err)
-		}
-		if gs != nil {
-			a.log.Info("user grpc server started", zap.String("addr", a.cfg.GRPC.Addr))
-			a.grpcStop = func() { gs.GracefulStop() }
-		}
-	}
 
 	if a.rpgMod != nil && a.rpgMod.Repo != nil && (mode == config.ModeMonolith || mode == config.ModeRPG) {
 		if err := rpgseeds.SyncAllPredefined(ctx, a.rpgMod.Repo, a.log); err != nil {
@@ -125,7 +109,7 @@ func (a *App) Run() error {
 	return a.Shutdown()
 }
 
-// Shutdown 优雅关闭 HTTP、gRPC、Ent、Redis。
+// Shutdown 优雅关闭 HTTP、Ent、Redis。
 func (a *App) Shutdown() error {
 	if a.cancel != nil {
 		a.cancel()
@@ -137,9 +121,6 @@ func (a *App) Shutdown() error {
 	}
 	if a.schedTask != nil && a.schedTask.Sched != nil {
 		a.schedTask.Sched.Stop()
-	}
-	if a.grpcStop != nil {
-		a.grpcStop()
 	}
 	data.CloseEnt(a.ent)
 	data.CloseRedis(a.redis)

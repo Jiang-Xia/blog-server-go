@@ -1,4 +1,4 @@
-// Package rpgsvc 提供 RPG 域跨服务 gRPC 客户端（BanGuard 等）。
+// Package rpgsvc 提供 RPG 域跨服务 Kitex 客户端（BanGuard 等）。
 package rpgsvc
 
 import "context"

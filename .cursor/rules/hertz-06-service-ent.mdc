@@ -45,7 +45,7 @@ err := r.client.WithTx(ctx, func(tx *ent.Tx) error {
 
 - 单体阶段：同进程 service 调用可接受；避免 import cycle（抽 `internal/domain` 或事件）
 - 副作用（RPG 经验、通知）优先 **Redis Stream** 发布，consumer 幂等处理
-- Plan 10 后跨服务走 gRPC，禁止 shared service 包直接调其他服务 DB
+- 学习路径跨服务走 Kitex（etcd 发现），禁止 shared service 包直接调其他服务 DB
 
 ## Ent Schema
 

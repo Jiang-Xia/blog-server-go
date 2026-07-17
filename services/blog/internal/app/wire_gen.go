@@ -121,7 +121,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 	if err != nil {
 		return nil, err
 	}
-	grpcserverServer := provideBlogGRPCServer(articleService, moderationService, client, publicprofileRepo)
-	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, scheduledTaskRuntime, realtimeRuntime, grpcserverServer)
+	kitexserverServer := provideBlogKitexServer(articleService, moderationService, client, publicprofileRepo)
+	app := NewApp(configConfig, hertz, zapLogger, client, rueidisClient, scheduledTaskRuntime, realtimeRuntime, kitexserverServer)
 	return app, nil
 }

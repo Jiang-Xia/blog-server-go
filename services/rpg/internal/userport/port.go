@@ -1,4 +1,4 @@
-// Package userport RPG 对用户域的跨服务只读依赖（经 user gRPC）。
+// Package userport RPG 对用户域的跨服务只读依赖（经 user Kitex）。
 package userport
 
 import (
@@ -60,11 +60,11 @@ func (r *GRPCUserReader) FindByID(ctx context.Context, uid int) (*UserInfo, erro
 	}, nil
 }
 
-// ProvideUserService 装配 rpg-service user gRPC 客户端。
+// ProvideUserService 装配 rpg-service user Kitex 客户端（etcd 发现）。
 func ProvideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
-	addr := cfg.GRPC.UserAddr
-	if addr == "" {
-		return nil, fmt.Errorf("GRPC.UserAddr required for rpg-service")
+	endpoints := cfg.Registry.EtcdEndpointsOrEmpty()
+	if len(endpoints) == 0 {
+		return nil, fmt.Errorf("registry.etcd_endpoints required for rpg-service")
 	}
-	return usersvc.NewGRPCUserService(addr)
+	return usersvc.NewKitexUserService(endpoints)
 }

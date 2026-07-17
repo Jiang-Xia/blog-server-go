@@ -12,14 +12,14 @@ import (
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/data"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg"
-	rpggrpc "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/grpcserver"
+	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/kitexserver"
 	rpgseeds "github.com/Jiang-Xia/blog-server-go/services/rpg/internal/rpg/seeds"
 	"github.com/Jiang-Xia/blog-server-go/services/rpg/internal/scheduler"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"go.uber.org/zap"
 )
 
-// App 聚合 HTTP 服务与基础设施。
+// App 聚合 HTTP/Kitex 服务与基础设施。
 type App struct {
 	cfg            *config.Config
 	h              *server.Hertz
@@ -29,9 +29,9 @@ type App struct {
 	activityNotify scheduler.ActivityNotifyRunner
 	rpgMod         *rpg.Module
 	rpgConsumer    RPGEventConsumer
-	rpgGRPC        *rpggrpc.Server
+	rpgKitex       *kitexserver.Server
 	cancel         context.CancelFunc
-	grpcStop       func()
+	kitexStop      func()
 }
 
 // NewApp 构造 rpg-service 实例。
@@ -44,12 +44,12 @@ func NewApp(
 	activityNotify scheduler.ActivityNotifyRunner,
 	rpgMod *rpg.Module,
 	rpgConsumer RPGEventConsumer,
-	rpgGRPC *rpggrpc.Server,
+	rpgKitex *kitexserver.Server,
 ) *App {
 	return &App{
 		cfg: cfg, h: h, log: log, data: d,
 		scheduler: sched, activityNotify: activityNotify, rpgMod: rpgMod,
-		rpgConsumer: rpgConsumer, rpgGRPC: rpgGRPC,
+		rpgConsumer: rpgConsumer, rpgKitex: rpgKitex,
 	}
 }
 
@@ -58,14 +58,14 @@ func (a *App) Run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 	a.cancel = cancel
 
-	if a.rpgGRPC != nil && a.cfg.GRPC.Addr != "" {
-		gs, err := rpggrpc.Run(a.cfg.GRPC.Addr, a.rpgGRPC)
+	if a.rpgKitex != nil {
+		svr, err := kitexserver.Run(a.cfg, a.rpgKitex)
 		if err != nil {
-			return fmt.Errorf("start rpg grpc: %w", err)
+			return fmt.Errorf("start rpg kitex: %w", err)
 		}
-		if gs != nil {
-			a.log.Info("rpg grpc server started", zap.String("addr", a.cfg.GRPC.Addr))
-			a.grpcStop = func() { gs.GracefulStop() }
+		if svr != nil {
+			a.log.Info("kitex server started", zap.String("addr", a.cfg.Kitex.Addr))
+			a.kitexStop = func() { _ = svr.Stop() }
 		}
 	}
 
@@ -118,8 +118,8 @@ func (a *App) Shutdown() error {
 	if a.scheduler != nil {
 		a.scheduler.Stop()
 	}
-	if a.grpcStop != nil {
-		a.grpcStop()
+	if a.kitexStop != nil {
+		a.kitexStop()
 	}
 	if a.data != nil {
 		a.data.Close()

@@ -4,36 +4,42 @@ import (
 	"context"
 	"fmt"
 
-	blogv1 "github.com/Jiang-Xia/blog-server-go/proto/gen/go/blog/v1"
+	"github.com/Jiang-Xia/blog-server-go/pkg/config"
+	"github.com/Jiang-Xia/blog-server-go/pkg/kitexreg"
 	"github.com/Jiang-Xia/blog-server-go/pkg/pagination"
 	"github.com/Jiang-Xia/blog-server-go/pkg/publicprofile"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
+	blogv1 "github.com/Jiang-Xia/blog-server-go/proto/kitex/blog/v1"
+	"github.com/Jiang-Xia/blog-server-go/proto/kitex/blog/v1/articleservice"
+	"github.com/cloudwego/kitex/client"
 )
 
-// PublicProfileLister 公开主页收藏/点赞列表（blog gRPC）。
+// PublicProfileLister 公开主页收藏/点赞列表（blog Kitex）。
 type PublicProfileLister interface {
 	ListPublicCollectArticles(ctx context.Context, uid, page, pageSize int) (publicprofile.ListResult, error)
 	ListPublicLikeArticles(ctx context.Context, uid, page, pageSize int) (publicprofile.ListResult, error)
 }
 
-type grpcPublicProfileLister struct {
-	client blogv1.ArticleServiceClient
+type kitexPublicProfileLister struct {
+	client articleservice.Client
 }
 
-// NewGRPCPublicProfileLister 连接 blog-service gRPC。
-func NewGRPCPublicProfileLister(addr string) (PublicProfileLister, error) {
-	if addr == "" {
-		return nil, fmt.Errorf("GRPC.BlogAddr required for rpg public profile lists")
+// NewKitexPublicProfileLister 经 etcd 发现 blog-service；endpoints 为空时返回错误。
+func NewKitexPublicProfileLister(endpoints []string) (PublicProfileLister, error) {
+	if len(endpoints) == 0 {
+		return nil, fmt.Errorf("registry.etcd_endpoints required for rpg public profile lists")
 	}
-	conn, err := grpc.NewClient(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	r, err := kitexreg.NewResolver(endpoints)
 	if err != nil {
-		return nil, fmt.Errorf("dial blog grpc %s: %w", addr, err)
+		return nil, err
 	}
-	return &grpcPublicProfileLister{client: blogv1.NewArticleServiceClient(conn)}, nil
+	cli, err := articleservice.NewClient(config.KitexServiceBlog, client.WithResolver(r))
+	if err != nil {
+		return nil, fmt.Errorf("new blog kitex client: %w", err)
+	}
+	return &kitexPublicProfileLister{client: cli}, nil
 }
 
-func (g *grpcPublicProfileLister) ListPublicCollectArticles(ctx context.Context, uid, page, pageSize int) (publicprofile.ListResult, error) {
+func (g *kitexPublicProfileLister) ListPublicCollectArticles(ctx context.Context, uid, page, pageSize int) (publicprofile.ListResult, error) {
 	resp, err := g.client.ListPublicCollectArticles(ctx, &blogv1.ListPublicProfileArticlesRequest{
 		Uid: uint64(uid), Page: int32(page), PageSize: int32(pageSize),
 	})
@@ -43,7 +49,7 @@ func (g *grpcPublicProfileLister) ListPublicCollectArticles(ctx context.Context,
 	return protoToListResult(resp), nil
 }
 
-func (g *grpcPublicProfileLister) ListPublicLikeArticles(ctx context.Context, uid, page, pageSize int) (publicprofile.ListResult, error) {
+func (g *kitexPublicProfileLister) ListPublicLikeArticles(ctx context.Context, uid, page, pageSize int) (publicprofile.ListResult, error) {
 	resp, err := g.client.ListPublicLikeArticles(ctx, &blogv1.ListPublicProfileArticlesRequest{
 		Uid: uint64(uid), Page: int32(page), PageSize: int32(pageSize),
 	})
@@ -60,16 +66,16 @@ func protoToListResult(resp *blogv1.ListPublicProfileArticlesResponse) publicpro
 	list := make([]map[string]interface{}, 0, len(resp.GetItems()))
 	for _, item := range resp.GetItems() {
 		list = append(list, map[string]interface{}{
-			"id":             int(item.GetId()),
-			"title":          item.GetTitle(),
-			"description":    item.GetDescription(),
-			"cover":          item.GetCover(),
-			"views":          int(item.GetViews()),
-			"likes":          int(item.GetLikes()),
-			"articleLevel":   int(item.GetArticleLevel()),
-			"isMasterpiece":  int(item.GetIsMasterpiece()),
-			"tipTotal":       int(item.GetTipTotal()),
-			"createTime":     item.GetCreateTime(),
+			"id":            int(item.GetId()),
+			"title":         item.GetTitle(),
+			"description":   item.GetDescription(),
+			"cover":         item.GetCover(),
+			"views":         int(item.GetViews()),
+			"likes":         int(item.GetLikes()),
+			"articleLevel":  int(item.GetArticleLevel()),
+			"isMasterpiece": int(item.GetIsMasterpiece()),
+			"tipTotal":      int(item.GetTipTotal()),
+			"createTime":    item.GetCreateTime(),
 		})
 	}
 	page := int(resp.GetPage())

@@ -48,8 +48,11 @@ go run $($svc.Main)
 if (-not $SkipInfraCheck) {
     $infra = Get-DevInfraStatus
     if (-not $infra.Ok) {
-        Write-Host "MySQL/Redis 未监听: $($infra.Missing -join ', ')" -ForegroundColor Red
-        Write-Host "请先启动本机 MySQL(3306) 与 Redis(6379)，或加 -SkipInfraCheck 跳过"
+        Write-Host "MySQL/Redis/etcd 未监听: $($infra.Missing -join ', ')" -ForegroundColor Red
+        Write-Host "请先启动本机 MySQL(3306)、Redis(6379)、etcd(2379)，或加 -SkipInfraCheck 跳过"
+        Write-Host "etcd 可参考（本机已装 D:\env\etcd 时）:" -ForegroundColor DarkGray
+        Write-Host "  Start-Process D:\env\etcd\etcd.exe -ArgumentList '--data-dir=`$env:TEMP\etcd-blog-data','--advertise-client-urls=http://127.0.0.1:2379','--listen-client-urls=http://127.0.0.1:2379' -WindowStyle Hidden" -ForegroundColor DarkGray
+        Write-Host "或 Docker: docker run -d --name etcd -p 2379:2379 quay.io/coreos/etcd:v3.5.16 /usr/local/bin/etcd --advertise-client-urls=http://0.0.0.0:2379 --listen-client-urls=http://0.0.0.0:2379" -ForegroundColor DarkGray
         exit 1
     }
 }
@@ -66,7 +69,7 @@ if ($busy.Count -gt 0) {
     exit 1
 }
 
-Write-Host "启动四服务（MySQL + Redis 已就绪）..." -ForegroundColor Cyan
+Write-Host "启动四服务（MySQL + Redis + etcd 已就绪）..." -ForegroundColor Cyan
 $pids = @()
 
 foreach ($svc in $services) {

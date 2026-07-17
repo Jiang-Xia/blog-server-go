@@ -12,9 +12,13 @@ http:
   addr: ":5002"
   cors_origins: []
 
-grpc:
+kitex:
   addr: ":50052"
-  blog_addr: "127.0.0.1:50051"
+
+registry:
+  etcd_endpoints:
+    - "127.0.0.1:2379"
+
 
 mysql:
   host: 127.0.0.1

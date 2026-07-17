@@ -1,10 +1,10 @@
 # blog-server-go
 
-[NestJS blog-server](https://github.com/Jiang-Xia/blog-server) 的 Go 重构实现：**Hertz + Ent + gRPC**，对外保持 `/api/v1/*` 与 `{code, message, data}` 响应格式，前端可无感切换。
+[NestJS blog-server](https://github.com/Jiang-Xia/blog-server) 的 Go 重构实现：**Hertz + Ent + Kitex**，对外保持 `/api/v1/*` 与 `{code, message, data}` 响应格式，前端可无感切换。
 
 **线上部署与 Nest 替换以单体为准**：`services/monolith`（`:8000`）为 **主入口**——配合 `blog-home-uniapp` 等大前端、本地开发、冒烟、生产切流、新功能均在此落地。
 
-**四微服务 + gateway**（gateway 亦 `:8000`）**仅用于本地 WSL 部署学习**（gRPC BFF、进程拆分、gateway 代理等），**不受生产机内存约束**，也不上线。与单体 **代码不共用**（Go `internal` 规则下双份实现），**不强制功能 parity**，亦不作为 Nest 替换验收基准。架构见 [`docs/architecture.md`](docs/architecture.md)。
+**四微服务 + gateway**（gateway 亦 `:8000`）**仅用于本地 WSL 部署学习**（Kitex BFF、etcd 发现、进程拆分、gateway 代理等），**不受生产机内存约束**，也不上线。与单体 **代码不共用**（Go `internal` 规则下双份实现），**不强制功能 parity**，亦不作为 Nest 替换验收基准。架构见 [`docs/architecture.md`](docs/architecture.md)。
 
 ## 技术栈
 
@@ -13,7 +13,7 @@
 | HTTP | [CloudWeGo Hertz](https://github.com/cloudwego/hertz) |
 | ORM | [Ent](https://entgo.io/) |
 | 缓存 / 事件 | Redis（[rueidis](https://github.com/redis/rueidis)） |
-| 内部 RPC | gRPC + protobuf（[buf](https://buf.build/)） |
+| 内部 RPC | Kitex + protobuf + etcd（`make kitex`；仅学习路径） |
 | 依赖注入 | [wire](https://github.com/google/wire) |
 | 配置 | Viper（`configs/*.yaml`） |
 | 日志 | zap |
@@ -43,25 +43,26 @@
 
 ```
                     ┌─────────────┐
-                    │   gateway   │  :8000  REST 入口 + gRPC BFF
+                    │   gateway   │  :8000  REST 入口 + Kitex BFF
                     └──────┬──────┘
            ┌───────────────┼───────────────┐
            ▼               ▼               ▼
     ┌────────────┐  ┌────────────┐  ┌────────────┐
     │    user    │  │    blog    │  │    rpg     │
-    │ :5002 gRPC │  │ :5001 + WS │  │   :5003    │
+    │ :5002/:50052│ │ :5001/:50051│ │ :5003/:50053│
     └──────┬─────┘  └──────┬─────┘  └──────┬─────┘
            └───────────────┴───────────────┘
                            │
-                    MySQL + Redis（学习环境自建）
+              MySQL + Redis + etcd（学习环境自建）
 ```
 
 | 服务 | 端口 | 职责 |
 |------|------|------|
-| gateway | 8000 | JWT 验签、HTTP 代理、gRPC BFF（与单体同端口，勿并存） |
-| user | 5002 / gRPC 50052 | 认证、RBAC、敏感词、操作日志 |
-| blog | 5001 | 文章、互动、资源、通知、WebSocket `/realtime` |
-| rpg | 5003 | RPG、支付、公开主页 |
+| gateway | 8000 | JWT 验签、HTTP 代理、Kitex BFF（与单体同端口，勿并存） |
+| user | 5002 / Kitex 50052（`blog.user`） | 认证、RBAC、敏感词、操作日志 |
+| blog | 5001 / Kitex 50051（`blog.blog`） | 文章、互动、资源、通知、WebSocket `/realtime` |
+| rpg | 5003 / Kitex 50053（`blog.rpg`） | RPG、支付、公开主页 |
+| etcd | 2379 | 学习路径服务注册与发现 |
 
 路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。Swagger UI 见 [`docs/swagger.md`](docs/swagger.md)；**日常开发**以单体 `http://127.0.0.1:8000/api/v1/doc/index.html` 为准。
 
@@ -73,7 +74,7 @@
 | MySQL | 8.x，本地开发库 `x_my_blog`，表前缀 `x_` |
 | Redis | 7.x，开发默认 **db=1**（与 Nest `blog-server` 一致） |
 | Node | 可选，跑 `newman` / `ws-smoke.mjs` 冒烟时需要 |
-| buf | 可选，仅改 `proto/` 时需要 |
+| kitex / protoc | 可选，改 `proto/` 后执行 `make kitex`（`scripts/gen-kitex.ps1`） |
 | OS | **Windows**：PowerShell + `.\scripts\*.ps1`（无 `make`）；**Linux/macOS**：`make …`（见 [常用命令](#常用命令)） |
 
 同机联调 Nest 时，可对照 sibling 仓库 [`blog-server`](../blog-server) 的 `.env.development` 填 JWT 等配置；**仅跑 Go 服务不强制克隆该仓库**（见下文数据库说明）。
@@ -245,7 +246,7 @@ go run scripts/dev_login.go --token-only
 
 ### 7. 可选：四微服务（仅本地 WSL 学习）
 
-学习 gateway / gRPC BFF / 多进程部署时（**与单体代码不共用**；推荐 WSL Docker，见 [`deploy/docker/README.md`](deploy/docker/README.md)）：
+学习 gateway / Kitex BFF / etcd 发现 / 多进程部署时（**与单体代码不共用**；推荐 WSL Docker，见 [`deploy/docker/README.md`](deploy/docker/README.md)）：
 
 ```powershell
 .\scripts\dev-all.ps1        # user → blog → rpg → gateway（与单体 :8000 二选一）
@@ -356,11 +357,11 @@ go test -tags=smoke ./test/smoke/... -count=1 -v
 
 ```
 blog-server-go/
-├── proto/                 # user / blog / rpg gRPC 定义
-├── pkg/                   # config、jwtauth、response、usersvc 等共享包
+├── proto/                 # user / blog / rpg Kitex protobuf IDL（生成物 proto/kitex/）
+├── pkg/                   # config、jwtauth、response、usersvc、kitexmeta、kitexreg 等共享包
 ├── services/
 │   ├── gateway/           # API Gateway（仅 WSL 学习，与 monolith 代码不共用）
-│   ├── user/              # 用户域 + gRPC（学习用）
+│   ├── user/              # 用户域 + Kitex（学习用）
 │   ├── blog/              # 博客域 + WebSocket（学习用）
 │   ├── rpg/               # RPG + 支付（学习用）
 │   └── monolith/          # 单体线上主入口（:8000，对接 uniapp）
@@ -380,7 +381,7 @@ blog-server-go/
 |------|------|
 | [`docs/README.md`](docs/README.md) | 文档索引 |
 | [`docs/architecture.md`](docs/architecture.md) | 单体 vs 微服务定位 |
-| [`docs/api-routes.md`](docs/api-routes.md) | HTTP / gRPC 路由全表 |
+| [`docs/api-routes.md`](docs/api-routes.md) | HTTP / Kitex 路由全表 |
 | [`docs/nest-parity-matrix.md`](docs/nest-parity-matrix.md) | Nest ↔ Go 对等矩阵 |
 | [`docs/swagger.md`](docs/swagger.md) | Swagger / OpenAPI |
 | [`deploy/pm2/README.md`](deploy/pm2/README.md) | 生产 PM2 单体部署 |

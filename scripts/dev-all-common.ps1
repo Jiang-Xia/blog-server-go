@@ -5,9 +5,9 @@ $script:DevAllRoot = $null
 $script:DevAllPidFile = $null
 $script:DevAllLogDir = $null
 $script:DevAllServices = @(
-    @{ Name = "user";    Config = "configs/user.yaml";    Main = "./services/user/cmd/main.go";    Port = 5002; GrpcPort = 50052; AfterStart = $true }
-    @{ Name = "blog";    Config = "configs/blog.yaml";    Main = "./services/blog/cmd/main.go";    Port = 5001; GrpcPort = 50051; AfterStart = $false }
-    @{ Name = "rpg";     Config = "configs/rpg.yaml";     Main = "./services/rpg/cmd/main.go";     Port = 5003; GrpcPort = 50053; AfterStart = $false }
+    @{ Name = "user";    Config = "configs/user.yaml";    Main = "./services/user/cmd/main.go";    Port = 5002; KitexPort = 50052; AfterStart = $true }
+    @{ Name = "blog";    Config = "configs/blog.yaml";    Main = "./services/blog/cmd/main.go";    Port = 5001; KitexPort = 50051; AfterStart = $false }
+    @{ Name = "rpg";     Config = "configs/rpg.yaml";     Main = "./services/rpg/cmd/main.go";     Port = 5003; KitexPort = 50053; AfterStart = $false }
     @{ Name = "gateway"; Config = "configs/gateway.yaml"; Main = "./services/gateway/cmd/main.go"; Port = 8000; AfterStart = $true }
 )
 
@@ -20,13 +20,16 @@ function Initialize-DevAllCommon {
 
 function Get-DevAllServices { return $script:DevAllServices }
 
-function Get-DevAllGrpcPorts {
+function Get-DevAllKitexPorts {
     $ports = @()
     foreach ($svc in $script:DevAllServices) {
-        if ($svc.GrpcPort) { $ports += $svc.GrpcPort }
+        if ($svc.KitexPort) { $ports += $svc.KitexPort }
     }
     return $ports | Sort-Object -Unique
 }
+
+# 兼容旧名
+function Get-DevAllGrpcPorts { return Get-DevAllKitexPorts }
 
 function Test-DevPortListening([int]$Port) {
     $line = netstat -ano | Select-String ":$Port\s" | Select-String "LISTENING" | Select-Object -First 1
@@ -104,6 +107,7 @@ function Get-DevInfraStatus {
     $checks = @(
         @{ Label = "MySQL"; Port = 3306 }
         @{ Label = "Redis"; Port = 6379 }
+        @{ Label = "etcd";  Port = 2379 }
     )
     $missing = @()
     foreach ($c in $checks) {

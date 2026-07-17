@@ -54,7 +54,7 @@ func InitializeApp(cfgPath string) (*App, error) {
 		scheduler.New,
 		provideActivityNotifyScheduler,
 		provideRegisterDeps,
-		provideRPGGRPCServer,
+		provideRPGKitexServer,
 		server.NewHTTPServer,
 		NewApp,
 	)
