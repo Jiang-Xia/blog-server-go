@@ -1,10 +1,10 @@
 # HTTP / gRPC 路由全表
 
 > **更新日期**：2026-07-10  
-> **对外主入口（Nest 替换）**：`http://127.0.0.1:8000`（`services/monolith`，`make dev` / `.\scripts\dev.ps1`）  
-> **数据来源**：`services/monolith/internal/handler/`（单体全量）；§1–5 另列 gateway / 各微服务（**架构学习对照**，可能落后于单体）  
+> **对外主入口（线上 · 对接 uniapp）**：`http://127.0.0.1:8000`（`services/monolith`，`make dev` / `.\scripts\dev.ps1`）  
+> **数据来源**：`services/monolith/internal/handler/`（单体全量）；§1–5 另列 gateway / 各微服务（**仅本地 WSL 学习对照**，与单体代码不共用，可能落后）  
 > **Nest blog-server**：`http://127.0.0.1:5000`（待替换，可与 Go 并行）  
-> **微服务 gateway**：`http://127.0.0.1:8000`（与单体二选一）；开发直连见各服务端口表。
+> **微服务 gateway**：`http://127.0.0.1:8000`（与单体二选一，**不上生产**）；开发直连见各服务端口表。
 
 ## 约定
 
@@ -19,8 +19,8 @@
 
 | 服务 | HTTP | gRPC | 说明 |
 |------|------|------|------|
-| **monolith** | **`:8000`** | — | **Nest 替换主入口**（全路由） |
-| gateway | `:8000` | — | 微服务统一 REST 入口（与单体二选一） |
+| **monolith** | **`:8000`** | — | **线上主入口**（全路由 · 对接 uniapp） |
+| gateway | `:8000` | — | 微服务 REST 入口（仅 WSL 学习；与单体二选一） |
 | blog-service | `:5001` | `:50051` | 文章/互动/WS/通知/定时任务 |
 | user-service | `:5002` | `:50052` | 用户/RBAC/敏感词 |
 | rpg-service | `:5003` | `:50053` | RPG/支付/公开主页 |
@@ -552,9 +552,9 @@
 
 ---
 
-## 6. monolith 主入口（`:8000`，Nest 替换）
+## 6. monolith 主入口（`:8000`，线上 · 对接 uniapp）
 
-`make dev` / `.\scripts\dev.ps1` 在 `services/monolith` 注册**全部 HTTP 路由**（user / blog / rpg / pay / RAG / 定时任务 / WS），为 **Nest 对等验收与生产部署基准**：
+`make dev` / `.\scripts\dev.ps1` 在 `services/monolith` 注册**全部 HTTP 路由**（user / blog / rpg / pay / RAG / 定时任务 / WS），为 **Nest 对等验收与线上部署基准**：
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
@@ -564,13 +564,13 @@
 | GET | `/api/v1/user/public/:uid/articles` | 公开主页文章分页（对齐 Nest） |
 | GET | `/api/v1/article/statistics` | 后台统计大屏全量指标 |
 
-> **§1–5** 描述 gateway + 四微服务拆分形态，供学习 gRPC BFF / 多进程部署；功能可能落后于单体，见 [`nest-parity-matrix.md`](./nest-parity-matrix.md)。详见 [`services/monolith/README.md`](../services/monolith/README.md)。
+> **§1–5** 描述 gateway + 四微服务拆分形态，**仅本地 WSL 学习**；与单体代码不共用，功能可能落后，见 [`nest-parity-matrix.md`](./nest-parity-matrix.md)。详见 [`services/monolith/README.md`](../services/monolith/README.md)。
 
 ---
 
 ## 7. 维护说明
 
-1. **改路由后须同步本文**：修改 `register_*.go` 或 gateway `app.go` / `proxy/router.go` 时更新对应章节，并执行 `make swag-all` 刷新 OpenAPI（见 [12-swagger-api-doc.md](./12-swagger-api-doc.md)）。
+1. **改路由后须同步本文**：修改 `register_*.go` 或 gateway `app.go` / `proxy/router.go` 时更新对应章节，并执行 `make swag-all` 刷新 OpenAPI（见 [swagger.md](./swagger.md)）。
 2. **RBAC 公开路径**：除 handler 层 JWT 外，是否在未登录时可访问还取决于 DB `x_privilege` / Redis 缓存；fallback 列表见各服务 `middleware/permission.go`。
 3. **Postman 冒烟**：单体 `baseUrl=http://127.0.0.1:8000`（`monolith-smoke.ps1`）；四微服务 gateway 与单体同端口二选一。
-4. **相关文档**：[22-单体服务Nest对齐补齐](./22-单体服务Nest对齐补齐.md)、[10-微服务拆分与生产上线](./10-微服务拆分与生产上线.md)、[11-微服务代码物理拆分](./11-微服务代码物理拆分.md)。
+4. **相关文档**：[architecture.md](./architecture.md)、[nest-parity-matrix.md](./nest-parity-matrix.md)、[`services/monolith/README.md`](../services/monolith/README.md)。

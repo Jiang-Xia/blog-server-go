@@ -1,52 +1,32 @@
-# Blog-Server-Go 阶段交付文档
+# Blog-Server-Go 文档
 
-> 与 [`.cursor/plans/`](../.cursor/plans/) 一一对应：**每完成一个执行计划，须在 `docs/` 写入对应交付文档**，再进入下一计划。
->
-> 计划文件描述「要做什么」；交付文档记录「实际做了什么」——目录、命令、接口、与 Nest 差异、已知限制。  
-> **整体是否对齐 Nest**：见 [nest-parity-matrix.md](./nest-parity-matrix.md)（**以单体 `:5000` 为准**）。
->
-> **部署策略**：**单体 monolith** = Nest 替换与功能基准；**四微服务 + gateway** = 微服务架构学习，不强制与单体 parity。
+> **入口**：根 [`README.md`](../README.md)（启动、常用命令、部署一句话）  
+> **架构定位**：[`architecture.md`](./architecture.md)（单体线上 `:8000` / 微服务仅 WSL 学习）  
+> **Nest 对等**：[`nest-parity-matrix.md`](./nest-parity-matrix.md)  
+> Plan 01–22 阶段交付文档已删除；历史见 git / [`.cursor/plans/README.md`](../.cursor/plans/README.md)。
 
-## 文档索引
+## 现行文档
 
-| 计划 | 交付文档 | 状态 |
-|------|----------|------|
-| 01 脚手架与公共基础 | [01-脚手架与公共基础.md](./01-脚手架与公共基础.md) | ✅ 已交付 |
-| 02 认证与用户登录 | [02-认证与用户登录.md](./02-认证与用户登录.md) | ✅ 已交付 |
-| 03 RBAC 后台管理 | [03-RBAC后台管理.md](./03-RBAC后台管理.md) | ✅ 已交付 |
-| 04 敏感词与运维骨架 | [04-敏感词与运维骨架.md](./04-敏感词与运维骨架.md) | ✅ 已交付 |
-| 05 文章内容 | [05-文章内容.md](./05-文章内容.md) | ✅ 已交付 |
-| 06 博客互动 | [06-博客互动.md](./06-博客互动.md) | ✅ 已交付 |
-| 07 博客周边 | [07-博客周边.md](./07-博客周边.md) | ✅ 已交付 |
-| 08 WebSocket 与事件驱动 | [08-WebSocket与事件驱动.md](./08-WebSocket与事件驱动.md) | ✅ 已交付 |
-| 09 RPG 与支付 | [09-RPG与支付.md](./09-RPG与支付.md) | ✅ 已交付 |
-| 10 微服务拆分与生产上线 | [10-微服务拆分与生产上线.md](./10-微服务拆分与生产上线.md) | ✅ 已交付 |
-| 11 微服务代码物理拆分 | [11-微服务代码物理拆分.md](./11-微服务代码物理拆分.md) | ✅ 已交付 |
-| 12 定时任务与运维后台 | [12-定时任务与运维后台.md](./12-定时任务与运维后台.md) | ✅ 已交付 |
-| 13 RPG 后台补全与社区禁言联动 | [13-RPG后台补全与社区禁言联动.md](./13-RPG后台补全与社区禁言联动.md) | ✅ 已交付 |
-| 14 公开主页收藏与点赞列表 | [14-公开主页收藏与点赞列表.md](./14-公开主页收藏与点赞列表.md) | ✅ 已交付 |
-| 15 RAG 知识库模块 | [15-RAG知识库模块.md](./15-RAG知识库模块.md) | ✅ 已交付 |
-| 16 百度统计代理 | [16-百度统计代理.md](./16-百度统计代理.md) | ✅ 已交付 |
-| 17 微服务跨服务协作补齐 | [17-微服务跨服务协作补齐.md](./17-微服务跨服务协作补齐.md) | ✅ 已交付 |
-| 18 领域事件发布补齐 | [18-领域事件发布补齐.md](./18-领域事件发布补齐.md) | ✅ 已交付 |
-| 19 RPG 文章等级与 Stream 消费对齐 | [19-RPG文章等级与Stream消费对齐.md](./19-RPG文章等级与Stream消费对齐.md) | ✅ 已交付 |
-| 20 RPG 惩罚链与禁言 WS 对齐 | [20-RPG惩罚链与禁言WS对齐.md](./20-RPG惩罚链与禁言WS对齐.md) | ✅ 已交付 |
-| 21 RPG 实时通知与成就接线补齐 | [21-RPG实时通知与成就接线补齐.md](./21-RPG实时通知与成就接线补齐.md) | ✅ 已交付 |
-| 22 单体服务 Nest 对齐补齐 | [22-单体服务Nest对齐补齐.md](./22-单体服务Nest对齐补齐.md) | ✅ 已交付 |
-| — **Nest ↔ Go 对等矩阵** | [nest-parity-matrix.md](./nest-parity-matrix.md) | ✅ 已维护 |
-| — HTTP/gRPC 路由全表 | [api-routes.md](./api-routes.md) | ✅ 已维护 |
-| — Swagger / OpenAPI | [12-swagger-api-doc.md](./12-swagger-api-doc.md) | ✅ 已交付 |
+| 文档 | 说明 |
+|------|------|
+| [architecture.md](./architecture.md) | 双形态定位、技术选型、目录边界 |
+| [api-routes.md](./api-routes.md) | HTTP / gRPC 路由全表 |
+| [nest-parity-matrix.md](./nest-parity-matrix.md) | Nest ↔ Go 功能对等矩阵 |
+| [swagger.md](./swagger.md) | Swagger / OpenAPI（swaggo） |
 
-## 写作约定
+## 部署与子域
 
-1. 复制 [`_template.md`](./_template.md) 为 `docs/{序号}-{与计划同名}.md`。
-2. 验收清单全部勾选后，更新本文索引表「状态」列。
-3. 在对应 `.cursor/plans/*.md` 的「文档交付」小节勾选 `- [x] 文档已写入 docs/`。
-4. Agent 完成计划时须在回复中列出已写入的 `docs/` 路径（与根工作区 `feature-doc-sync` 精神一致）。
+| 文档 | 说明 |
+|------|------|
+| [`deploy/pm2/README.md`](../deploy/pm2/README.md) | 生产：PM2 单体 `:8000` |
+| [`deploy/docker/README.md`](../deploy/docker/README.md) | Docker：单体联调 / 微服务 WSL |
+| [`services/monolith/README.md`](../services/monolith/README.md) | 单体服务说明 |
+| [`configs/README.md`](../configs/README.md) | 配置模板与约定 |
+| [`test/README.md`](../test/README.md) | 四层测试 |
 
-## 相关
+## 新功能文档同步
 
-- 二十一阶段计划索引：[`.cursor/plans/README.md`](../.cursor/plans/README.md)（01–21；M7 为 19–21 RPG 缺失补齐）
-- **Nest 功能是否迁完**：[nest-parity-matrix.md](./nest-parity-matrix.md)（模块/行为/开放债总表）
-- 架构总方案：[`blog-server-go-重构方案.md`](../blog-server-go-重构方案.md)
-- Agent 规则：[`.cursor/rules/hertz-13-plan-docs.mdc`](../.cursor/rules/hertz-13-plan-docs.mdc)
+1. 新/改对外路由 → 更新 [`api-routes.md`](./api-routes.md)，必要时 `make swag-all`
+2. 影响 Nest 对等 → 更新 [`nest-parity-matrix.md`](./nest-parity-matrix.md)
+3. 影响启动/部署 → 更新根 README 或 `deploy/*/README.md`
+4. **不再**按计划序号新增 `docs/NN-*.md`

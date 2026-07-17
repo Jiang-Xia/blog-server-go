@@ -1,43 +1,25 @@
 ---
-description: 执行计划完成后须在 docs/ 写入对应交付文档
+description: 功能变更须同步 api-routes / nest-parity-matrix 等现行文档
 alwaysApply: true
 ---
 
-# 计划交付文档（强制）
+# 功能文档同步（blog-server-go）
 
-完成 [`.cursor/plans/`](../plans/) 中任一执行计划（01–10）的**验收**后，必须在 [`docs/`](../../docs/) 写入对应交付文档，再开始下一计划。
+Plan 01–22 已完成；**不再**新增 `docs/NN-*.md` 阶段交付文档。
 
-## 命名与索引
+## 变更时必更新
 
-| 计划文件 | 交付文档 |
+| 变更类型 | 更新文档 |
 |----------|----------|
-| `.cursor/plans/01-脚手架与公共基础.md` | `docs/01-脚手架与公共基础.md` |
-| … | `docs/{同序号与标题}.md` |
+| 对外 HTTP / gRPC / WS 路由 | [`docs/api-routes.md`](../../docs/api-routes.md)；必要时 `make swag-all` + [`docs/swagger.md`](../../docs/swagger.md) |
+| Nest 对等能力增减 | [`docs/nest-parity-matrix.md`](../../docs/nest-parity-matrix.md) |
+| 架构 / 端口 / 单体 vs 微服务定位 | [`docs/architecture.md`](../../docs/architecture.md) |
+| 启动 / 部署流程 | 根 `README.md` 或 [`deploy/pm2/README.md`](../../deploy/pm2/README.md) / [`deploy/docker/README.md`](../../deploy/docker/README.md) |
 
-完整映射见 [`docs/README.md`](../../docs/README.md)。
+索引见 [`docs/README.md`](../../docs/README.md)。
 
-## 文档内容（最低要求）
+## Agent 自检
 
-1. **交付摘要**：本阶段实际完成范围
-2. **目录与模块**：新增/变更的关键路径
-3. **配置与环境**：`configs/`、环境变量
-4. **接口一览**：本阶段对外 REST / gRPC / WS（无则明示）
-5. **本地启动与验收**：可复制命令（`make dev`、`curl` 等）
-6. **与 NestJS 差异**：路径、字段、错误码等
-7. **已知限制与后续**：留给下一计划的边界
-
-可复制 [`docs/_template.md`](../../docs/_template.md) 起草。
-
-## Agent 交付自检
-
-1. 对应 `docs/{NN}-*.md` 已创建或更新
-2. `docs/README.md` 索引表该计划状态改为「已交付」
-3. 计划文件「文档交付」小节 `- [x] 文档已写入 docs/` 已勾选
-4. 回复用户时列出已改 `docs/` 路径
-
-## 与计划文件的关系
-
-- **`.cursor/plans/`**：任务清单、验收标准、边界（执行前读）
-- **`docs/`**：实现结果、命令、差异（验收后写）
-
-勿只勾选计划任务而不写 `docs/`；勿在 `docs/` 重复粘贴整份计划。
+1. 未引入新的 `docs/0N-*.md` / `docs/1N-*.md` / `docs/2N-*.md`
+2. 回复中列出已改的现行文档路径
+3. 里程碑历史摘要仅维护 [`.cursor/plans/README.md`](../plans/README.md)（勿恢复已删计划正文）

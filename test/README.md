@@ -99,7 +99,7 @@ make test-all
 ## 与 Nest blog-server 差异
 
 1. **响应格式**：HTTP 恒 200，断言用 `body.code`（见 `testutil.IsOK` / `IsUnauthorized`）。
-2. **默认端口**：gateway `:8000`（Nest 为 `:5000`）。
+2. **默认端口**：单体 / gateway `:8000`（Nest 为 `:5000`；日常验收以单体为准）。
 3. **无 Node/newman 依赖**：Postman 集合 `deploy/postman/` 仍可用于手工验收，自动化测试已改为 Go。
 
 ## 对照 blog-server

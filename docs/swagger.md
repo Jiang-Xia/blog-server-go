@@ -5,16 +5,15 @@
 
 ## 访问地址
 
-开发环境默认开启（`configs/*.yaml` → `swagger.enabled: true`），路径对齐 Nest **`/api/v1/doc`**：
+**日常以单体为准**（`make dev` / 生产 PM2，`:8000`）。微服务直连端口仅 WSL 学习用。
 
-| 服务 | 端口 | Swagger UI | OpenAPI JSON |
-|------|------|------------|--------------|
-| gateway | `:8000` | http://127.0.0.1:8000/api/v1/doc/index.html | `/api/v1/doc/doc.json` |
-| user-service | `:5002` | http://127.0.0.1:5002/api/v1/doc/index.html | 同上 |
-| blog-service | `:5001` | http://127.0.0.1:5001/api/v1/doc/index.html | 同上 |
-| rpg-service | `:5003` | http://127.0.0.1:5003/api/v1/doc/index.html | 同上 |
+| 服务 | 端口 | Swagger UI |
+|------|------|------------|
+| **monolith** | **`:8000`** | http://127.0.0.1:8000/api/v1/doc/index.html |
+| gateway（学习） | `:8000` | 同上（与单体勿并存） |
+| user / blog / rpg（学习） | `:5002` / `:5001` / `:5003` | 各服务 `/api/v1/doc/index.html` |
 
-生产环境请在配置中设置 `swagger.enabled: false`（`deploy/pm2/env.production.example` 中 `swagger_enabled = false` 语义一致）。
+OpenAPI JSON：`/api/v1/doc/doc.json`。生产请设 `swagger.enabled: false`。
 
 ## 路由覆盖范围
 

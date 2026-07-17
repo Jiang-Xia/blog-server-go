@@ -1,8 +1,15 @@
 # Docker 部署
 
-## 微服务全栈（学习用）
+## 定位
 
-本地或测试机一键拉起 **4 微服务 + MySQL + Redis + Jaeger**：
+| Compose | 用途 |
+|---------|------|
+| **`docker-compose.monolith.yml`** | **推荐**：单体 `:8000` + uniapp + admin，本地联调 / 对照线上形态 |
+| **`docker-compose.yml`** | **仅本地 WSL 学习**：四微服务 + gateway；**不上生产**，**不按服务器内存裁剪** |
+
+## 微服务全栈（仅本地 WSL 学习）
+
+本机或 WSL 一键拉起 **4 微服务 + MySQL + Redis + Jaeger**，用于学 gRPC BFF / 多进程拆分。与 `services/monolith` **代码不共用**，功能可能落后于单体。
 
 ```bash
 docker compose -f deploy/docker/docker-compose.yml up -d --build
@@ -11,9 +18,11 @@ docker compose -f deploy/docker/docker-compose.yml up -d --build
 
 Jaeger UI：`http://localhost:16686`
 
-## 单体 + uniapp + admin（本地 WSL 试验 · 推荐）
+停止：`make down`。
 
-拉起 **monolith(:8000) + MySQL + Redis + uniapp H5(:8008) + blog-admin(:9856)**，不占用宿主机已有的 3306/6379：
+## 单体 + uniapp + admin（本地联调 · 对齐线上）
+
+拉起 **monolith(:8000) + MySQL + Redis + uniapp H5(:8008) + blog-admin(:9856)**，不占用宿主机已有的 3306/6379。形态与线上「单体 + 大前端」一致。
 
 ```bash
 # 1. 从模板生成 docker 配置（已有 configs/docker/monolith.yaml 可跳过）
@@ -49,6 +58,4 @@ docker compose -f deploy/docker/docker-compose.monolith.yml up -d --build
 - admin 构建读 `blog-admin/.env.docker`（构建时覆盖为 `.env.production`）
 - 浏览器均直连 `localhost:8000`
 
-**2G 生产机**请用 **PM2 + 二进制**，见 [`deploy/pm2/README.md`](../pm2/README.md)（复用宿主机 MySQL/Redis，内存更省）。
-
-可选：部署前在服务器执行 `deploy/docker/setup-swap.sh` 增加 1G swap。
+**线上生产**请用 **PM2 + 单体二进制**（`:8000`），见 [`deploy/pm2/README.md`](../pm2/README.md)。四微服务不部署到生产机。

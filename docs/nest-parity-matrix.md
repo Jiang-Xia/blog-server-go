@@ -1,27 +1,26 @@
 # NestJS ↔ Go 功能对等矩阵
 
-> **用途**：回答「Go 有没有完整迁移 Nest？」——本表汇总 **Plan 01–22 交付结果 + 各 `docs/0N-*.md` 已知限制 + 计划「仍不在范围」**，作为单一查阅入口。  
-> **更新日期**：2026-07-10  
+> **用途**：回答「Go 有没有完整迁移 Nest？」——汇总 Plan 01–22 结果与「仍不在范围」，作为单一查阅入口。  
+> **更新日期**：2026-07-17  
 > **Nest 对照仓库**：[`blog-server`](../../blog-server)（NestJS 11 单体）  
-> **Go 验收基准**：[`services/monolith`](../services/monolith/)（`:5000`，Nest 替换主入口）  
-> **Go 微服务**：gateway + user + blog + rpg（`:8000` 等）— **架构学习用**，表中「微服务」列仅作对照，**不强制 parity**
+> **Go 验收基准**：[`services/monolith`](../services/monolith/)（`:8000`，线上主入口 · 对接 uniapp）  
+> **Go 微服务**：gateway + user + blog + rpg — **仅本地 WSL 学习**，与单体代码不共用；表中「微服务」列仅作对照，**不强制 parity**、**不上生产**
 
 ## 如何读这张表
 
 | 状态 | 含义 |
 |------|------|
-| ✅ **对齐** | REST/行为与 Nest 一致，或差异已在交付文档标明且可接受 |
+| ✅ **对齐** | REST/行为与 Nest 一致，或差异已标明且可接受 |
 | ⚠️ **部分** | 路由存在但逻辑简化、stub 已替换但深度不足 |
 | ❌ **未做** | Nest 有，Go 明确未实现 |
-| 🚫 **不做** | 重构方案或计划刻意排除（非遗漏） |
+| 🚫 **不做** | 刻意排除（非遗漏），见 §3.6 |
 
-**「Plan 已交付」≠「Nest 100% 等价」**：每份计划只验收本阶段任务；**待补齐**见 §5（Plan 19–21，已完成），**明确不做**见 §3.6。
-
+**「Plan 已交付」≠「Nest 100% 等价」**：§5（M7）已完成；**明确不做**见 §3.6。
 **列说明**：§3 模块表 **Go** 列默认指 **单体 monolith**；若微服务落后会在备注标明。
 
 **推荐验收层次**（由浅到深）：
 
-1. **路由层**：[`api-routes.md`](./api-routes.md) — 对外 path 是否齐全（**以 `:5000` 单体为准**）  
+1. **路由层**：[`api-routes.md`](./api-routes.md) — 对外 path 是否齐全（**以 `:8000` 单体为准**）  
 2. **契约层**：`scripts/monolith-smoke.ps1` / `deploy/postman/*-smoke.json` — 冒烟是否 200  
 3. **行为层**：本文模块表 + E2E（`test/e2e/`、`test/integration/`）  
 4. **深度层**：RPG 惩罚链、文章等级、WS 事件等（§3.6 为明确不做）  
@@ -35,7 +34,7 @@
 | **能否替代 Nest 跑主站** | ✅ **可以（单体）**：认证、文章、互动、RPG C 端、后台 RBAC、定时任务、RAG、统计大屏 |
 | **是否逐模块行为等价** | ✅ **M7 + Plan 22 后单体核心对齐**；工程化/支付/边缘项见 §3.6 **明确不做** |
 | **API 路径兼容** | ✅ `/api/v1/*` + `{code,message,data}` 保持；见 [`api-routes.md`](./api-routes.md) |
-| **架构** | **生产**：单体 `:5000` 进程内模块；**学习**：4 微服务 + gRPC/Stream 对照 Nest 进程内调用 |
+| **架构** | **线上**：单体 `:8000` 进程内模块（对接 uniapp）；**学习**：4 微服务仅本地 WSL，代码不共用 |
 
 ```mermaid
 pie title 模块对等粗算（按 Nest 功能域）
@@ -154,10 +153,10 @@ pie title 模块对等粗算（按 Nest 功能域）
 | `article.published` blog 统计缓存消费者 | ✅ | 🚫 | 非 RPG 闭环必需 |
 | WS `CheckOrigin` 生产白名单 | — | 🚫 | 运维随部署处理 |
 | Stream XADD MAXLEN ~10000 | ✅ | 🚫 | 低优运维 |
-| 微服务代码副本 | — | — | 保留作架构学习；**功能以单体为准**，不强制同步 |
+| 微服务代码副本 | — | — | 与单体 **不共用**；仅 WSL 学习；**功能以单体为准**，不强制同步 |
 | `/pub/ai-stream` Pub SSE | ✅ | 🚫 | 产品决策暂不做 |
 | Gateway 全局限流 | 部分 | 🚫 | 暂不做（仅微服务 gateway 场景） |
-| Kubernetes 部署 | — | 🚫 | 2G 用 docker-compose / PM2 |
+| Kubernetes 部署 | — | 🚫 | 线上 PM2 单体；微服务仅本地 WSL docker-compose |
 
 ---
 
@@ -175,20 +174,16 @@ pie title 模块对等粗算（按 Nest 功能域）
 
 ---
 
-## 5. 待补齐（M7 · Plan 19–21）
+## 5. M7 补齐记录（Plan 19–21 · 已完成）
 
-> **仅列需执行的缺失项**；§3.6 与上表「明确不做」项**不得**再开计划。修复后改状态并注明日期。
+| ID | 项 | 状态 | 说明 |
+|----|-----|------|------|
+| P-01 | 敏感词惩罚全链 | ✅ 2026-07-06 | `PunishmentService` + Stream consumer |
+| P-02 | ArticleLevelService | ✅ 2026-07-06 | Stream 消费写 exp/level/神作 |
+| P-03 | admin 解封 WS `banStatus` | ✅ 2026-07-06 | `AdminUnban` → `NotifyBanStatus` |
+| P-04 | RPG WS 通知 + 成就/任务接线 | ✅ 2026-07-06 | P0 事件 + 埋点 |
 
-| ID | 项 | Nest 参考 | Go 现状 | 优先级 | 状态 | 计划 |
-|----|-----|-----------|---------|--------|------|------|
-| P-01 | 敏感词惩罚全链 | `punishment.service.ts` `onSensitiveWordHit` | `PunishmentService` + consumer 委托 | **高** | ✅ 2026-07-06 | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
-| P-02 | ArticleLevelService | `article-level.service.ts` + `rpg-event.consumer.ts` | Stream 消费写 exp/level/神作 | **高** | ✅ 2026-07-06 | [19](../.cursor/plans/19-RPG文章等级与Stream消费对齐.md) |
-| P-03 | admin 解封 WS `banStatus` | `adminUnban` push | `AdminUnban` → `NotifyBanStatus` | 中 | ✅ 2026-07-06 | [20](../.cursor/plans/20-RPG惩罚链与禁言WS对齐.md) |
-| P-04 | RPG WS 通知 + 成就/任务接线 | `rpg-notify.service.ts` | P0 事件 + 埋点已对齐 | **高** | ✅ 2026-07-06 | [21](../.cursor/plans/21-RPG实时通知与成就接线补齐.md) |
-
-**执行顺序**：P-02（Plan **19**）→ P-01/P-03（Plan **20**）✅ → P-04（Plan **21**）。
-
-M7 验收通过后，Go 与 Nest 在 **RPG 核心玩法**（文章等级、惩罚、实时通知）上视为对齐；其余差异以 §3.6 为准。
+M7 后 Go 与 Nest 在 **RPG 核心玩法** 上视为对齐；其余差异以 §3.6 为准。计划正文已归档（git 历史）。
 
 ---
 
@@ -203,14 +198,11 @@ cd d:\study\myGithub\blog-server-go
 # 单元测试（PR 级）
 go test ./services/monolith/internal/... -count=1
 
-# 微服务冒烟（架构学习，可选；需 dev-all）
+# 微服务冒烟（仅 WSL 学习，可选；需 dev-all）
 .\scripts\dev-all.ps1
 $env:ADMIN_TOKEN = go run scripts/dev_login.go --token-only
 $env:DEV_LOGIN_BASE='http://127.0.0.1:8000'
 newman run deploy/postman/rpg-admin-write-smoke.json --env-var baseUrl=http://127.0.0.1:8000 --env-var token=$env:ADMIN_TOKEN
-
-# 领域事件 → RPG 经验（integration tag，需 dev-all）
-go test -tags=integration ./test/integration/... -run TestIntegrationCommentPublishesRPGExp -count=1
 
 # 搜残留 stub（应为 0）
 rg 'notReady\(".*待完善' services/monolith/
@@ -220,10 +212,9 @@ rg 'notReady\(".*待完善' services/monolith/
 
 ## 7. 维护约定
 
-1. **完成 Plan 19–21** 时：更新 §3、§5 对应行状态。  
-2. **新增对外 API**：同步 [`api-routes.md`](./api-routes.md) + 本表。  
-3. **每份 `docs/0N-*.md` 的「已知限制」** 若已解决：从交付文档删除或标「已解决」，并反映到本文 §5。  
-4. **不要把本表复制进 `.cursor/plans/`**；计划写「要做什么」，本文写「整体对等真相」。
+1. **新增对外 API**：同步 [`api-routes.md`](./api-routes.md) + 本表。  
+2. **对等状态变化**：更新本文对应行；勿再新增 `docs/NN-*.md`。  
+3. **架构/部署变更**：更新 [`architecture.md`](./architecture.md) 与 `deploy/*/README.md`。
 
 ---
 
@@ -231,9 +222,9 @@ rg 'notReady\(".*待完善' services/monolith/
 
 | 文档 | 说明 |
 |------|------|
-| [docs/README.md](./README.md) | Plan 01–21 交付索引 |
-| [.cursor/plans/README.md](../.cursor/plans/README.md) | 计划边界与「仍不在范围」 |
+| [README.md](./README.md) | 文档索引 |
+| [architecture.md](./architecture.md) | 单体 vs 微服务定位 |
 | [api-routes.md](./api-routes.md) | HTTP/gRPC 路由全表 |
-| [13-RPG后台补全与社区禁言联动.md](./13-RPG后台补全与社区禁言联动.md) | BanGuard / admin 写操作 |
-| [18-领域事件发布补齐.md](./18-领域事件发布补齐.md) | 事件发布端 |
+| [swagger.md](./swagger.md) | Swagger / OpenAPI |
+| [.cursor/plans/README.md](../.cursor/plans/README.md) | 里程碑历史摘要 |
 | [blog-server RPG-TECH.md](../../blog-server/src/modules/rpg/RPG-TECH.md) | Nest RPG 事件与惩罚设计 |

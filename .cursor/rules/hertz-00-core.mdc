@@ -38,7 +38,7 @@ Go + Hertz 重构 [blog-server](https://github.com/Jiang-Xia/blog-server)（Nest
 
 ## 参考
 
-- 架构详案：`blog-server-go-重构方案.md`
-- 分阶段计划：`.cursor/plans/`
-- **阶段交付文档**：`docs/`（每完成一计划须写入，见 `hertz-13-plan-docs.mdc`）
+- 架构定位：`docs/architecture.md`
+- 里程碑摘要：`.cursor/plans/README.md`
+- 现行文档索引：`docs/README.md`（见 `hertz-13-plan-docs.mdc`）
 - Nest 对照：`../blog-server/.cursor/rules/server-*.mdc`

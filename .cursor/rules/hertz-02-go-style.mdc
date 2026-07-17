@@ -52,7 +52,7 @@ if err := repo.Save(ctx, u); err != nil {
 ## 并发
 
 - goroutine 须可退出（`context` 取消或 `done` channel）
-- WS `ReadPump` / `WritePump` 遵循重构方案中的 defer 清理模式
+- WS `ReadPump` / `WritePump` 遵循 defer 清理模式（见 `services/monolith` WS Hub）
 - 共享 map 加 `sync.RWMutex` 或 channel；禁止裸 map 并发写
 
 ## 性能与依赖

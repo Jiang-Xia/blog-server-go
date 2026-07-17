@@ -8,7 +8,7 @@
 |--------------------------------------|-------------|-----------|
 | `configs/monolith.yaml` | `monolith.example.yaml` | `.env.development` |
 | `configs/monolith.production.yaml` | `monolith.production.example.yaml` | `deploy/pm2/env.production` |
-| `configs/{user,blog,rpg,gateway}.yaml` | `*.example.yaml` | 同上（微服务拆分） |
+| `configs/{user,blog,rpg,gateway}.yaml` | `*.example.yaml` | 同上（**仅本地 WSL 微服务学习**；与 monolith 代码不共用） |
 | `configs/docker/*.yaml` | `configs/docker/*.example.yaml` | Docker 内网主机名版（含 MySQL/Redis 容器） |
 | `deploy/pm2/env.production` | `deploy/pm2/env.production.example` | 生产 PM2（与 Nest `deploy/pm2/env.production` **同格式**，本仓库独立维护） |
 | `deploy/pm2/configs/*.yaml` | （`deploy.ps1` 从 `env.production` 自动生成） | 打包进 tar |
@@ -52,9 +52,11 @@ pwsh scripts/setup-config.ps1
 | `rag_top_k` | `rag.top_k` |
 | `rag_allow_local_fallback` | `rag.allow_local_fallback` |
 
-## 微服务共享存储（强制）
+## 微服务共享存储（仅学习环境）
 
-`user` / `blog` / `rpg` / `monolith` 本地开发须指向**同一 MySQL 库**与**同一 Redis 实例及 db**，否则会出现：
+本地 WSL 跑四微服务时，`user` / `blog` / `rpg` 须指向**同一 MySQL 库**与**同一 Redis 实例及 db**。线上只跑 **monolith**，用 `configs/monolith.yaml` / `deploy/pm2` 生成配置即可。
+
+学习环境注意：
 
 - 登录 token / 验证码在 user 写入、gateway 校验失败
 - RPG 禁言、收藏点赞跨服务数据不一致
@@ -69,7 +71,7 @@ pwsh scripts/setup-config.ps1
 
 `gateway` 不连 MySQL/Redis，但 `jwt.secret` 须与其它服务一致。
 
-修改任一服务的 `mysql` / `redis` / `jwt` 后，请同步其余 `configs/{user,blog,rpg,monolith}.yaml`。
+修改任一学习用服务的 `mysql` / `redis` / `jwt` 后，请同步其余 `configs/{user,blog,rpg}.yaml`。单体日常开发只维护 `configs/monolith.yaml`。
 
 `test-run.ps1` 默认不启 Docker，保留本地 `configs/*.yaml`；migrate/seed 从 `configs/user.yaml` 读取 MySQL 凭据。
 
