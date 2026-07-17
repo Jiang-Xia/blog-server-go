@@ -44,7 +44,7 @@ func provideRedisStore(client rueidis.Client) *redisutil.Store {
 }
 
 func provideBlogModerationSyncer(cfg *config.Config) (blogsvc.ContentModerationSyncer, error) {
-	return blogsvc.NewKitexModerationSyncer(cfg.Registry.EtcdEndpointsOrEmpty())
+	return blogsvc.NewKitexModerationSyncer(cfg.Registry)
 }
 
 func providePasswordChecker(cfg *config.Config, userRepo *repo.UserRepo) *auth.PasswordChecker {

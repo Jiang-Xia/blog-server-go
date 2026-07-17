@@ -23,13 +23,13 @@ var (
 	emailErr  error
 )
 
-// NewKitexSystemEmailSender 经 etcd 发现 user-service 并返回 SystemEmailSender。
-func NewKitexSystemEmailSender(endpoints []string) (SystemEmailSender, error) {
-	if len(endpoints) == 0 {
-		return nil, fmt.Errorf("registry.etcd_endpoints required for system email")
+// NewKitexSystemEmailSender 经 Nacos 发现 user-service 并返回 SystemEmailSender。
+func NewKitexSystemEmailSender(reg config.RegistryConfig) (SystemEmailSender, error) {
+	if !reg.Enabled() {
+		return nil, fmt.Errorf("registry.nacos_addr required for system email")
 	}
 	emailOnce.Do(func() {
-		r, err := kitexreg.NewResolver(endpoints)
+		r, err := kitexreg.NewResolver(reg)
 		if err != nil {
 			emailErr = err
 			return

@@ -10,8 +10,8 @@ http:
   addr: ":8000"
 
 registry:
-  etcd_endpoints:
-    - "etcd:2379"
+  nacos_addr: "nacos:8848"
+
 
 
 proxy:

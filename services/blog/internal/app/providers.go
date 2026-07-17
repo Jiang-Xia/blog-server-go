@@ -44,7 +44,7 @@ func provideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
 }
 
 func provideBanChecker(cfg *config.Config) (rpgsvc.BanChecker, error) {
-	return rpgsvc.NewKitexBanChecker(cfg.Registry.EtcdEndpointsOrEmpty())
+	return rpgsvc.NewKitexBanChecker(cfg.Registry)
 }
 
 func provideArticleUserPort(client usersvc.CrossClient) userport.ArticleUserPort {
@@ -169,11 +169,10 @@ func provideScheduledTaskCrossDB(cfg *config.Config) (*crossdb.CrossDB, error) {
 }
 
 func provideSystemEmailSender(cfg *config.Config) (usersvc.SystemEmailSender, error) {
-	endpoints := cfg.Registry.EtcdEndpointsOrEmpty()
-	if len(endpoints) == 0 {
-		return nil, fmt.Errorf("registry.etcd_endpoints required for system email")
+	if !cfg.Registry.Enabled() {
+		return nil, fmt.Errorf("registry.nacos_addr required for system email")
 	}
-	return usersvc.NewKitexSystemEmailSender(endpoints)
+	return usersvc.NewKitexSystemEmailSender(cfg.Registry)
 }
 
 func provideScheduledTaskJobs(

@@ -35,12 +35,12 @@ type kitexArticleRPGStore struct {
 	client articleservice.Client
 }
 
-// NewKitexArticleRPGStore 经 etcd 发现 blog-service；endpoints 为空时返回 noop（方法均报错）。
-func NewKitexArticleRPGStore(endpoints []string) (ArticleRPGStore, error) {
-	if len(endpoints) == 0 {
+// NewKitexArticleRPGStore 经 Nacos 发现 blog-service；未配置时返回 noop（方法均报错）。
+func NewKitexArticleRPGStore(reg config.RegistryConfig) (ArticleRPGStore, error) {
+	if !reg.Enabled() {
 		return noopArticleRPGStore{}, nil
 	}
-	r, err := kitexreg.NewResolver(endpoints)
+	r, err := kitexreg.NewResolver(reg)
 	if err != nil {
 		return nil, err
 	}
@@ -90,11 +90,11 @@ func (g *kitexArticleRPGStore) AddArticleTipTotal(ctx context.Context, articleID
 type noopArticleRPGStore struct{}
 
 func (noopArticleRPGStore) GetArticleRPGFields(context.Context, int) (*ArticleRPGFields, error) {
-	return nil, fmt.Errorf("blog kitex etcd endpoints not configured")
+	return nil, fmt.Errorf("blog kitex nacos not configured")
 }
 func (noopArticleRPGStore) UpdateArticleRPGFields(context.Context, int, int, int, int, int) error {
-	return fmt.Errorf("blog kitex etcd endpoints not configured")
+	return fmt.Errorf("blog kitex nacos not configured")
 }
 func (noopArticleRPGStore) AddArticleTipTotal(context.Context, int, int) error {
-	return fmt.Errorf("blog kitex etcd endpoints not configured")
+	return fmt.Errorf("blog kitex nacos not configured")
 }

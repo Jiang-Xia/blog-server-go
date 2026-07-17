@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 四服务各多实例冒烟：etcd 注册条数 + pub/stats 负载命中分布。
+# 四服务各多实例冒烟：Nacos 注册实例数 + pub/stats 负载命中分布。
 # 用法（WSL）: bash scripts/scale-user-smoke.sh
 set -euo pipefail
 
@@ -31,12 +31,13 @@ for i in $(seq 1 60); do
 done
 
 echo ""
-echo "==> etcd Kitex 注册"
+echo "==> Nacos Kitex 注册实例"
 for name in blog.user blog.blog blog.rpg; do
-  keys="$("${COMPOSE[@]}" exec -T etcd etcdctl get --prefix "kitex/registry-etcd/${name}/" --keys-only 2>/dev/null | grep -c "$name" || true)"
-  echo "  $name: ${keys:-0}"
-  "${COMPOSE[@]}" exec -T etcd etcdctl get --prefix "kitex/registry-etcd/${name}/" --keys-only 2>/dev/null || true
+  json="$(curl -sf "http://127.0.0.1:8848/nacos/v1/ns/instance/list?serviceName=${name}&groupName=DEFAULT_GROUP" || true)"
+  count="$(printf '%s' "$json" | grep -o '"ip"' | wc -l | tr -d ' ')"
+  echo "  $name: ${count:-0}"
 done
+echo "  控制台: http://localhost:8848/nacos → 服务管理"
 
 echo ""
 echo "==> GET /api/v1/pub/stats × ${ROUNDS:-30}"
@@ -67,5 +68,5 @@ hit_svc user 'CountUsers instance='
 hit_svc blog 'GetPubStats instance='
 
 echo ""
-echo "完成。etcd 各服务约 3 条、且多 hostname 有 hits>0 即多实例生效。"
+echo "完成。Nacos 各服务约 3 实例、且多 hostname 有 hits>0 即多实例生效。"
 echo "说明：blog/rpg cron 也会×3，仅适合学习，勿当生产。"

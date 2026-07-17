@@ -1,4 +1,4 @@
-// Package kitexserver 启动 rpg-service Kitex 监听并注册到 etcd。
+// Package kitexserver 启动 rpg-service Kitex 监听并注册到 Nacos。
 package kitexserver
 
 import (
@@ -10,14 +10,13 @@ import (
 	"github.com/cloudwego/kitex/server"
 )
 
-// Run 启动 Kitex 并注册到 etcd；addr 或 etcd 为空时不启动。
+// Run 启动 Kitex 并注册到 Nacos；addr 或 nacos 未配置时不启动。
 func Run(cfg *config.Config, srv *Server) (server.Server, error) {
 	addr := cfg.Kitex.Addr
-	endpoints := cfg.Registry.EtcdEndpointsOrEmpty()
-	if addr == "" || len(endpoints) == 0 {
+	if addr == "" || !cfg.Registry.Enabled() {
 		return nil, nil
 	}
-	r, err := kitexreg.NewRegistry(endpoints)
+	r, err := kitexreg.NewRegistry(cfg.Registry)
 	if err != nil {
 		return nil, err
 	}

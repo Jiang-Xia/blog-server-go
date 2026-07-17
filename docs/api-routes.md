@@ -20,11 +20,11 @@
 | 服务 | HTTP | Kitex | 说明 |
 |------|------|-------|------|
 | **monolith** | **`:8000`** | — | **线上主入口**（全路由 · 对接 uniapp） |
-| gateway | `:8000` | — | 微服务 REST 入口（仅 WSL 学习；与单体二选一）；依赖 etcd 发现 |
+| gateway | `:8000` | — | 微服务 REST 入口（仅 WSL 学习；与单体二选一）；依赖 Nacos 发现 |
 | blog-service | `:5001` | `:50051`（注册名 `blog.blog`） | 文章/互动/WS/通知/定时任务 |
 | user-service | `:5002` | `:50052`（注册名 `blog.user`） | 用户/RBAC/敏感词 |
 | rpg-service | `:5003` | `:50053`（注册名 `blog.rpg`） | RPG/支付/公开主页 |
-| etcd | — | `:2379` | 学习路径服务注册/发现 |
+| Nacos | — | `:8848` | 学习路径服务注册/发现（控制台 `/nacos`） |
 
 ### Gateway 路由决策（`services/gateway/internal/proxy/router.go`）
 
@@ -513,7 +513,7 @@
 
 ## 5. 内部 Kitex RPC（不对外暴露）
 
-> 仅供 gateway BFF 或服务间调用；经 **etcd** 发现（服务名 `blog.user` / `blog.blog` / `blog.rpg`）；`kitexmeta` 透传 `x-user-id`。
+> 仅供 gateway BFF 或服务间调用；经 **Nacos** 发现（服务名 `blog.user` / `blog.blog` / `blog.rpg`）；`kitexmeta` 透传 `x-user-id`。
 
 ### 5.1 user.v1.UserService（监听 `:50052`，注册名 `blog.user`）
 

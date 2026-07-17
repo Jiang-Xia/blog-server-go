@@ -45,7 +45,7 @@ func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
 
 func provideBanChecker(mod *rpg.Module) rpgsvc.BanChecker {
 	if mod == nil {
-		c, _ := rpgsvc.NewKitexBanChecker(nil)
+		c, _ := rpgsvc.NewKitexBanChecker(config.RegistryConfig{})
 		return c
 	}
 	return rpgport.NewLocalBanChecker(mod.Punishment)

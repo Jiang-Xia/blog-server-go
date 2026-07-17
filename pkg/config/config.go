@@ -136,25 +136,25 @@ type KitexConfig struct {
 	Addr string `mapstructure:"addr"`
 }
 
-// RegistryConfig etcd 服务注册/发现（学习路径；monolith 不需要）。
+// RegistryConfig Nacos 服务注册/发现（学习路径；monolith 不需要）。
 type RegistryConfig struct {
-	// EtcdEndpoints etcd 集群地址，如 ["127.0.0.1:2379"]。
-	EtcdEndpoints []string `mapstructure:"etcd_endpoints"`
+	// NacosAddr Nacos 地址，如 "127.0.0.1:8848"（Docker 内为 "nacos:8848"）。
+	NacosAddr string `mapstructure:"nacos_addr"`
+	// NamespaceID Nacos 命名空间；空或 public 表示默认 public。
+	NamespaceID string `mapstructure:"namespace_id"`
+	// Group 服务分组，默认 DEFAULT_GROUP。
+	Group string `mapstructure:"group"`
+	// Username / Password 可选；学习环境通常关闭鉴权。
+	Username string `mapstructure:"username"`
+	Password string `mapstructure:"password"`
 }
 
-// EtcdEndpointsOrEmpty 返回 etcd 地址列表（可能为空）。
-func (r RegistryConfig) EtcdEndpointsOrEmpty() []string {
-	out := make([]string, 0, len(r.EtcdEndpoints))
-	for _, ep := range r.EtcdEndpoints {
-		ep = strings.TrimSpace(ep)
-		if ep != "" {
-			out = append(out, ep)
-		}
-	}
-	return out
+// Enabled 是否配置了 Nacos 地址（学习路径微服务/gateway 需要）。
+func (r RegistryConfig) Enabled() bool {
+	return strings.TrimSpace(r.NacosAddr) != ""
 }
 
-// Kitex 服务注册名（与 etcd / 客户端发现一致）。
+// Kitex 服务注册名（与 Nacos / 客户端发现一致）。
 const (
 	KitexServiceUser = "blog.user"
 	KitexServiceBlog = "blog.blog"

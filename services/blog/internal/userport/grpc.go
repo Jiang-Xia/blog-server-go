@@ -63,11 +63,10 @@ func (p *GRPCArticleAdminPort) AssertArticleDeptAccess(ctx context.Context, uid 
 	return p.scope.AssertArticleDeptAccess(ctx, uid, deptID)
 }
 
-// ProvideUserService 装配 blog-service 专用 user Kitex 客户端（etcd 发现）。
+// ProvideUserService 装配 blog-service 专用 user Kitex 客户端（Nacos 发现）。
 func ProvideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
-	endpoints := cfg.Registry.EtcdEndpointsOrEmpty()
-	if len(endpoints) == 0 {
-		return nil, fmt.Errorf("registry.etcd_endpoints required for blog-service")
+	if !cfg.Registry.Enabled() {
+		return nil, fmt.Errorf("registry.nacos_addr required for blog-service")
 	}
-	return usersvc.NewKitexUserService(endpoints)
+	return usersvc.NewKitexUserService(cfg.Registry)
 }

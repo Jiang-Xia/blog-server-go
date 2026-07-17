@@ -54,8 +54,7 @@ kitex:
   addr: ":50052"
 
 registry:
-  etcd_endpoints:
-    - "127.0.0.1:2379"
+  nacos_addr: "127.0.0.1:8848"
 
 mysql:
   host: %s
@@ -99,8 +98,7 @@ kitex:
   addr: ":50051"
 
 registry:
-  etcd_endpoints:
-    - "127.0.0.1:2379"
+  nacos_addr: "127.0.0.1:8848"
 
 mysql:
   host: %s
@@ -145,8 +143,7 @@ kitex:
   addr: ":50053"
 
 registry:
-  etcd_endpoints:
-    - "127.0.0.1:2379"
+  nacos_addr: "127.0.0.1:8848"
 
 mysql:
   host: %s
@@ -230,8 +227,7 @@ proxy:
   rpg_url: "http://127.0.0.1:5003"
 
 registry:
-  etcd_endpoints:
-    - "127.0.0.1:2379"
+  nacos_addr: "127.0.0.1:8848"
 
 jwt:
   secret: "%s"

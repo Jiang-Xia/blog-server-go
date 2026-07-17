@@ -13,8 +13,8 @@ kitex:
   addr: ":50052"
 
 registry:
-  etcd_endpoints:
-    - "etcd:2379"
+  nacos_addr: "nacos:8848"
+
 
 
 mysql:

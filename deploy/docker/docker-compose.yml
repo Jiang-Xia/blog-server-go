@@ -10,10 +10,14 @@ services:
       - GOMEMLIMIT=60MiB
       - GOGC=50
     depends_on:
-      - blog
-      - user
-      - rpg
-      - etcd
+      blog:
+        condition: service_started
+      user:
+        condition: service_started
+      rpg:
+        condition: service_started
+      nacos:
+        condition: service_healthy
     restart: unless-stopped
 
   blog:
@@ -27,10 +31,14 @@ services:
       - GOMEMLIMIT=90MiB
       - GOGC=50
     depends_on:
-      - mysql
-      - redis
-      - user
-      - etcd
+      mysql:
+        condition: service_started
+      redis:
+        condition: service_started
+      user:
+        condition: service_started
+      nacos:
+        condition: service_healthy
     restart: unless-stopped
 
   user:
@@ -45,9 +53,12 @@ services:
       - GOMEMLIMIT=70MiB
       - GOGC=50
     depends_on:
-      - mysql
-      - redis
-      - etcd
+      mysql:
+        condition: service_started
+      redis:
+        condition: service_started
+      nacos:
+        condition: service_healthy
     restart: unless-stopped
 
   rpg:
@@ -61,32 +72,35 @@ services:
       - GOMEMLIMIT=90MiB
       - GOGC=50
     depends_on:
-      - mysql
-      - redis
-      - user
-      - etcd
+      mysql:
+        condition: service_started
+      redis:
+        condition: service_started
+      user:
+        condition: service_started
+      nacos:
+        condition: service_healthy
     restart: unless-stopped
 
-  etcd:
-    image: quay.io/coreos/etcd:v3.5.16
-    command:
-      - /usr/local/bin/etcd
-      - --advertise-client-urls=http://0.0.0.0:2379
-      - --listen-client-urls=http://0.0.0.0:2379
-      - --data-dir=/etcd-data
+  # 学习用注册中心：控制台 http://localhost:8848/nacos（nacos/nacos）
+  nacos:
+    image: nacos/nacos-server:v2.3.2
+    environment:
+      MODE: standalone
+      PREFER_HOST_MODE: hostname
+      NACOS_AUTH_ENABLE: "false"
+      JVM_XMS: 256m
+      JVM_XMX: 256m
     ports:
-      - "2379:2379"
-    restart: unless-stopped
-
-  # 学习用：浏览 Kitex 注册 key（前缀 kitex/registry-etcd/，无前导 /）
-  etcd-ui:
-    image: phanna/etcd-ui:1.0.0
-    command:
-      - -endpoint=etcd:2379
-    ports:
-      - "8888:8888"
-    depends_on:
-      - etcd
+      - "8848:8848"
+      - "9848:9848"
+    # Kitex 注册依赖 HTTP API；未就绪时 Register 失败会导致 Kitex 进程退出
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8848/nacos/"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
     restart: unless-stopped
 
   mysql:

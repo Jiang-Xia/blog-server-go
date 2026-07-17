@@ -1,4 +1,4 @@
-// Package usersvc 提供 UserService 端口的 Kitex + etcd 远程实现。
+// Package usersvc 提供 UserService 端口的 Kitex + Nacos 远程实现。
 package usersvc
 
 import (
@@ -25,14 +25,14 @@ var (
 	kitexUserErr  error
 )
 
-// NewKitexUserService 经 etcd 发现 user-service 并返回 CrossClient。
-// endpoints 为空时返回错误（blog/rpg 微服务必须配置 registry.etcd_endpoints）。
-func NewKitexUserService(endpoints []string) (CrossClient, error) {
-	if len(endpoints) == 0 {
-		return nil, fmt.Errorf("registry.etcd_endpoints required for user Kitex client")
+// NewKitexUserService 经 Nacos 发现 user-service 并返回 CrossClient。
+// nacos 未配置时返回错误（blog/rpg 微服务必须配置 registry.nacos_addr）。
+func NewKitexUserService(reg config.RegistryConfig) (CrossClient, error) {
+	if !reg.Enabled() {
+		return nil, fmt.Errorf("registry.nacos_addr required for user Kitex client")
 	}
 	kitexUserOnce.Do(func() {
-		r, err := kitexreg.NewResolver(endpoints)
+		r, err := kitexreg.NewResolver(reg)
 		if err != nil {
 			kitexUserErr = err
 			return

@@ -49,7 +49,7 @@ func Run(cfgPath string) error {
 		return fmt.Errorf("proxy router: %w", err)
 	}
 
-	clients, err := kitexclient.New(cfg.Registry.EtcdEndpointsOrEmpty())
+	clients, err := kitexclient.New(cfg.Registry)
 	if err != nil {
 		return fmt.Errorf("kitex clients: %w", err)
 	}

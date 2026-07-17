@@ -17,12 +17,12 @@ type kitexBanChecker struct {
 	client rpgservice.Client
 }
 
-// NewKitexBanChecker 经 etcd 发现 rpg-service；endpoints 为空时返回 noop（单体/测试跳过禁言校验）。
-func NewKitexBanChecker(endpoints []string) (BanChecker, error) {
-	if len(endpoints) == 0 {
+// NewKitexBanChecker 经 Nacos 发现 rpg-service；未配置时返回 noop（单体/测试跳过禁言校验）。
+func NewKitexBanChecker(reg config.RegistryConfig) (BanChecker, error) {
+	if !reg.Enabled() {
 		return noopBanChecker{}, nil
 	}
-	r, err := kitexreg.NewResolver(endpoints)
+	r, err := kitexreg.NewResolver(reg)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (g *kitexBanChecker) AssertNotBanned(ctx context.Context, uid int) error {
 	return nil
 }
 
-// noopBanChecker 未配置 etcd 时跳过禁言校验（本地单体/测试）。
+// noopBanChecker 未配置 Nacos 时跳过禁言校验（本地单体/测试）。
 type noopBanChecker struct{}
 
 func (noopBanChecker) AssertNotBanned(context.Context, int) error { return nil }

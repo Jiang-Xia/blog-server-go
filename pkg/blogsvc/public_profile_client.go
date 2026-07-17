@@ -23,12 +23,12 @@ type kitexPublicProfileLister struct {
 	client articleservice.Client
 }
 
-// NewKitexPublicProfileLister 经 etcd 发现 blog-service；endpoints 为空时返回错误。
-func NewKitexPublicProfileLister(endpoints []string) (PublicProfileLister, error) {
-	if len(endpoints) == 0 {
-		return nil, fmt.Errorf("registry.etcd_endpoints required for rpg public profile lists")
+// NewKitexPublicProfileLister 经 Nacos 发现 blog-service；未配置时返回错误。
+func NewKitexPublicProfileLister(reg config.RegistryConfig) (PublicProfileLister, error) {
+	if !reg.Enabled() {
+		return nil, fmt.Errorf("registry.nacos_addr required for rpg public profile lists")
 	}
-	r, err := kitexreg.NewResolver(endpoints)
+	r, err := kitexreg.NewResolver(reg)
 	if err != nil {
 		return nil, err
 	}

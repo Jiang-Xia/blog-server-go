@@ -1,4 +1,4 @@
-// Package kitexclient gateway 经 etcd 发现内部微服务 Kitex 客户端。
+// Package kitexclient gateway 经 Nacos 发现内部微服务 Kitex 客户端。
 package kitexclient
 
 import (
@@ -26,14 +26,14 @@ var (
 	loadErr error
 )
 
-// New 按 etcd endpoints 建立 Kitex 客户端（gateway 进程内单例）。
-func New(endpoints []string) (*Clients, error) {
+// New 按 Nacos 配置建立 Kitex 客户端（gateway 进程内单例）。
+func New(reg config.RegistryConfig) (*Clients, error) {
 	once.Do(func() {
-		if len(endpoints) == 0 {
-			loadErr = fmt.Errorf("registry.etcd_endpoints required for gateway Kitex clients")
+		if !reg.Enabled() {
+			loadErr = fmt.Errorf("registry.nacos_addr required for gateway Kitex clients")
 			return
 		}
-		r, err := kitexreg.NewResolver(endpoints)
+		r, err := kitexreg.NewResolver(reg)
 		if err != nil {
 			loadErr = err
 			return

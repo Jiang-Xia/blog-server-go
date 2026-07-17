@@ -62,7 +62,7 @@ func provideArticleReader(db *sql.DB) articleport.ArticleReader {
 }
 
 func provideBlogPublicProfileLister(cfg *config.Config) (blogsvc.PublicProfileLister, error) {
-	return blogsvc.NewKitexPublicProfileLister(cfg.Registry.EtcdEndpointsOrEmpty())
+	return blogsvc.NewKitexPublicProfileLister(cfg.Registry)
 }
 
 func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
@@ -70,7 +70,7 @@ func providePublicProfileRepo(cfg *config.Config) (*publicprofile.Repo, error) {
 }
 
 func provideBlogArticleRPGStore(cfg *config.Config) (blogsvc.ArticleRPGStore, error) {
-	return blogsvc.NewKitexArticleRPGStore(cfg.Registry.EtcdEndpointsOrEmpty())
+	return blogsvc.NewKitexArticleRPGStore(cfg.Registry)
 }
 
 func provideWSPusher(rds rueidis.Client) wspush.Pusher {

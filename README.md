@@ -4,7 +4,7 @@
 
 **线上部署与 Nest 替换以单体为准**：`services/monolith`（`:8000`）为 **主入口**——配合 `blog-home-uniapp` 等大前端、本地开发、冒烟、生产切流、新功能均在此落地。
 
-**四微服务 + gateway**（gateway 亦 `:8000`）**仅用于本地 WSL 部署学习**（Kitex BFF、etcd 发现、进程拆分、gateway 代理等），**不受生产机内存约束**，也不上线。与单体 **代码不共用**（Go `internal` 规则下双份实现），**不强制功能 parity**，亦不作为 Nest 替换验收基准。架构见 [`docs/architecture.md`](docs/architecture.md)。
+**四微服务 + gateway**（gateway 亦 `:8000`）**仅用于本地 WSL 部署学习**（Kitex BFF、Nacos 发现、进程拆分、gateway 代理等），**不受生产机内存约束**，也不上线。与单体 **代码不共用**（Go `internal` 规则下双份实现），**不强制功能 parity**，亦不作为 Nest 替换验收基准。架构见 [`docs/architecture.md`](docs/architecture.md)。
 
 ## 技术栈
 
@@ -13,7 +13,7 @@
 | HTTP | [CloudWeGo Hertz](https://github.com/cloudwego/hertz) |
 | ORM | [Ent](https://entgo.io/) |
 | 缓存 / 事件 | Redis（[rueidis](https://github.com/redis/rueidis)） |
-| 内部 RPC | Kitex + protobuf + etcd（`make kitex`；仅学习路径） |
+| 内部 RPC | Kitex + protobuf + Nacos（`make kitex`；仅学习路径） |
 | 依赖注入 | [wire](https://github.com/google/wire) |
 | 配置 | Viper（`configs/*.yaml`） |
 | 日志 | zap |
@@ -53,7 +53,7 @@
     └──────┬─────┘  └──────┬─────┘  └──────┬─────┘
            └───────────────┴───────────────┘
                            │
-              MySQL + Redis + etcd（学习环境自建）
+              MySQL + Redis + Nacos（学习环境自建）
 ```
 
 | 服务 | 端口 | 职责 |
@@ -62,8 +62,7 @@
 | user | 5002 / Kitex 50052（`blog.user`） | 认证、RBAC、敏感词、操作日志 |
 | blog | 5001 / Kitex 50051（`blog.blog`） | 文章、互动、资源、通知、WebSocket `/realtime` |
 | rpg | 5003 / Kitex 50053（`blog.rpg`） | RPG、支付、公开主页 |
-| etcd | 2379 | 学习路径服务注册与发现 |
-| etcd-ui | 8888 | 学习路径 etcd KV 可视化（`kitex/registry-etcd/`） |
+| Nacos | 8848 | 学习路径服务注册与发现（控制台 `/nacos`） |
 
 路由全表见 [`docs/api-routes.md`](docs/api-routes.md)。Swagger UI 见 [`docs/swagger.md`](docs/swagger.md)；**日常开发**以单体 `http://127.0.0.1:8000/api/v1/doc/index.html` 为准。
 
@@ -247,7 +246,7 @@ go run scripts/dev_login.go --token-only
 
 ### 7. 可选：四微服务（仅本地 WSL 学习）
 
-学习 gateway / Kitex BFF / etcd 发现 / 多进程部署时（**与单体代码不共用**；推荐 WSL Docker，见 [`deploy/docker/README.md`](deploy/docker/README.md)）：
+学习 gateway / Kitex BFF / Nacos 发现 / 多进程部署时（**与单体代码不共用**；推荐 WSL Docker，见 [`deploy/docker/README.md`](deploy/docker/README.md)）：
 
 ```powershell
 .\scripts\dev-all.ps1        # user → blog → rpg → gateway（与单体 :8000 二选一）

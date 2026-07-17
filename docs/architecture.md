@@ -17,8 +17,8 @@ uniapp / nuxt / admin              make up / dev-all
         │                                  │
         ▼                                  ▼
    monolith :8000                    gateway :8000
-        │                           user/blog/rpg + etcd
-   MySQL + Redis                    MySQL + Redis + etcd
+        │                           user/blog/rpg + Nacos
+   MySQL + Redis                    MySQL + Redis + Nacos
 ```
 
 ## 技术选型（现行）
@@ -28,7 +28,7 @@ uniapp / nuxt / admin              make up / dev-all
 | HTTP | CloudWeGo Hertz |
 | ORM | Ent（表前缀 `x_`，库 `x_my_blog`） |
 | 缓存 / 事件 | Redis（rueidis；Stream 领域事件） |
-| 内部 RPC | **Kitex + protobuf**（仅微服务学习路径）；服务发现 **etcd** |
+| 内部 RPC | **Kitex + protobuf**（仅微服务学习路径）；服务发现 **Nacos** |
 | DI | wire |
 | 配置 | Viper（`configs/*.yaml`） |
 | 部署 | **PM2 + 单体二进制**（[`deploy/pm2/`](../deploy/pm2/)）；Docker 见 [`deploy/docker/`](../deploy/docker/) |

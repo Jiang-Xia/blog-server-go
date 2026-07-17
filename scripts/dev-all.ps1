@@ -44,26 +44,6 @@ function Clear-DevServiceLogs {
     }
 }
 
-function Clear-DevEtcdRegistry {
-    $etcdctl = $null
-    foreach ($c in @("D:\env\etcd\etcdctl.exe", "etcdctl")) {
-        if ($c -eq "etcdctl") {
-            $cmd = Get-Command etcdctl -ErrorAction SilentlyContinue
-            if ($cmd) { $etcdctl = $cmd.Source; break }
-        } elseif (Test-Path $c) {
-            $etcdctl = $c
-            break
-        }
-    }
-    if (-not $etcdctl) { return }
-    try {
-        & $etcdctl del --prefix / 2>$null | Out-Null
-        Write-Host "已清空 etcd 注册表（避免残留错误 IP）" -ForegroundColor DarkGray
-    } catch {
-        # ignore
-    }
-}
-
 function Build-DevAllBinaries {
     New-Item -ItemType Directory -Force -Path $binDir | Out-Null
     Write-Host "编译四服务二进制到 bin/ ..." -ForegroundColor Cyan
@@ -123,11 +103,11 @@ go run $($svc.Main)
 if (-not $SkipInfraCheck) {
     $infra = Get-DevInfraStatus
     if (-not $infra.Ok) {
-        Write-Host "MySQL/Redis/etcd 未监听: $($infra.Missing -join ', ')" -ForegroundColor Red
-        Write-Host "请先启动本机 MySQL(3306)、Redis(6379)、etcd(2379)，或加 -SkipInfraCheck 跳过"
-        Write-Host "etcd 可参考（本机已装 D:\env\etcd 时）:" -ForegroundColor DarkGray
-        Write-Host "  Start-Process D:\env\etcd\etcd.exe -ArgumentList '--data-dir=`$env:TEMP\etcd-blog-data','--advertise-client-urls=http://127.0.0.1:2379','--listen-client-urls=http://127.0.0.1:2379' -WindowStyle Hidden" -ForegroundColor DarkGray
-        Write-Host "或 Docker: docker run -d --name etcd -p 2379:2379 quay.io/coreos/etcd:v3.5.16 /usr/local/bin/etcd --advertise-client-urls=http://0.0.0.0:2379 --listen-client-urls=http://0.0.0.0:2379" -ForegroundColor DarkGray
+        Write-Host "MySQL/Redis/Nacos 未监听: $($infra.Missing -join ', ')" -ForegroundColor Red
+        Write-Host "请先启动本机 MySQL(3306)、Redis(6379)、Nacos(8848)，或加 -SkipInfraCheck 跳过"
+        Write-Host "Nacos 推荐 Docker:" -ForegroundColor DarkGray
+        Write-Host "  .\scripts\start-nacos.ps1" -ForegroundColor DarkGray
+        Write-Host "  或: docker run -d --name blog-nacos -e MODE=standalone -e NACOS_AUTH_ENABLE=false -e JVM_XMS=256m -e JVM_XMX=256m -p 8848:8848 -p 9848:9848 nacos/nacos-server:v2.3.2" -ForegroundColor DarkGray
         exit 1
     }
 }
@@ -145,7 +125,6 @@ if ($busy.Count -gt 0) {
 }
 
 Clear-DevServiceLogs
-Clear-DevEtcdRegistry
 
 if (-not $GoRun) {
     if (-not $SkipBuild) {
@@ -165,7 +144,7 @@ if (-not $GoRun) {
 
 $healthTimeout = if ($GoRun) { 180 } else { 60 }
 
-Write-Host "启动四服务（MySQL + Redis + etcd 已就绪）..." -ForegroundColor Cyan
+Write-Host "启动四服务（MySQL + Redis + Nacos 已就绪）..." -ForegroundColor Cyan
 $pids = @()
 
 foreach ($svc in $services) {

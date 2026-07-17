@@ -9,7 +9,9 @@
 
 ## 微服务全栈（仅本地 WSL 学习）
 
-本机或 WSL 一键拉起 **4 微服务 + MySQL + Redis + etcd + etcd-ui + Jaeger**，用于学 Kitex BFF / etcd 发现 / 多进程拆分。与 `services/monolith` **代码不共用**，功能可能落后于单体。
+本机或 WSL 一键拉起 **4 微服务 + MySQL + Redis + Nacos + Jaeger**，用于学 Kitex BFF / Nacos 发现 / 多进程拆分。与 `services/monolith` **代码不共用**，功能可能落后于单体。
+
+> Nacos 较慢启动；compose 已对 `nacos` 做 healthcheck，业务服务 `depends_on: service_healthy`，避免 Kitex 注册失败后退出。
 
 ```bash
 docker compose -f deploy/docker/docker-compose.yml up -d --build
@@ -20,19 +22,10 @@ docker compose -f deploy/docker/docker-compose.yml up -d --build
 |------|------|
 | Gateway | `http://localhost:8000` |
 | Jaeger UI | `http://localhost:16686` |
-| **etcd UI** | `http://localhost:8888`（已连 compose 内 `etcd:2379`） |
-| etcd gRPC | `localhost:2379` |
+| **Nacos 控制台** | `http://localhost:8848/nacos`（服务管理可见 `blog.user` / `blog.blog` / `blog.rpg`） |
+| Nacos | `localhost:8848`（gRPC 客户端口 `9848`） |
 
-Kitex 注册 key 前缀为 `kitex/registry-etcd/`（**无**前导 `/`），在 UI 中按此前缀浏览即可看到 `blog.user` / `blog.blog` / `blog.rpg` 实例。
-
-仅查本机 Windows etcd（`D:\env\etcd`，未跑 Docker 栈）时可用：
-
-```bash
-# WSL / Docker Desktop：宿主机 etcd 映射为 host.docker.internal
-docker run --rm -p 8888:8888 phanna/etcd-ui:1.0.0 -endpoint=host.docker.internal:2379
-```
-
-停止：`make down`（会停 etcd / etcd-ui）。
+停止：`make down`（会停 Nacos）。
 
 ### 多实例（学习用）
 
@@ -48,7 +41,7 @@ docker compose -f deploy/docker/docker-compose.yml \
   up -d --build \
   --scale user=3 --scale blog=3 --scale rpg=3 --scale gateway=3
 
-# 冒烟：etcd 多实例 + 反复打 pub/stats 看命中分布
+# 冒烟：Nacos 多实例 + 反复打 pub/stats 看命中分布
 bash scripts/scale-user-smoke.sh
 ```
 
@@ -56,7 +49,7 @@ bash scripts/scale-user-smoke.sh
 
 | 路径 | 多实例表现 |
 |------|------------|
-| Kitex（etcd） | `blog.user` / `blog.blog` / `blog.rpg` 各注册多条，gateway 客户端负载均衡 |
+| Kitex（Nacos） | `blog.user` / `blog.blog` / `blog.rpg` 各注册多条，gateway 客户端负载均衡 |
 | gateway HTTP | 不再直接暴露；由 **edge(nginx)** 反代到 `gateway:8000` 多副本 |
 | blog / rpg | cron **会×N 双跑**，仅学习用 |
 | MySQL | scale overlay 挂载 `initdb/`，宿主机映射改为 `3309`；**勿与 monolith compose 同时占 `:8000`** |

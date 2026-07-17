@@ -107,7 +107,7 @@ function Get-DevInfraStatus {
     $checks = @(
         @{ Label = "MySQL"; Port = 3306 }
         @{ Label = "Redis"; Port = 6379 }
-        @{ Label = "etcd";  Port = 2379 }
+        @{ Label = "nacos"; Port = 8848 }
     )
     $missing = @()
     foreach ($c in $checks) {

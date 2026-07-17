@@ -60,11 +60,10 @@ func (r *GRPCUserReader) FindByID(ctx context.Context, uid int) (*UserInfo, erro
 	}, nil
 }
 
-// ProvideUserService 装配 rpg-service user Kitex 客户端（etcd 发现）。
+// ProvideUserService 装配 rpg-service user Kitex 客户端（Nacos 发现）。
 func ProvideUserService(cfg *config.Config) (usersvc.CrossClient, error) {
-	endpoints := cfg.Registry.EtcdEndpointsOrEmpty()
-	if len(endpoints) == 0 {
-		return nil, fmt.Errorf("registry.etcd_endpoints required for rpg-service")
+	if !cfg.Registry.Enabled() {
+		return nil, fmt.Errorf("registry.nacos_addr required for rpg-service")
 	}
-	return usersvc.NewKitexUserService(endpoints)
+	return usersvc.NewKitexUserService(cfg.Registry)
 }

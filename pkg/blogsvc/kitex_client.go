@@ -16,12 +16,12 @@ type kitexModerationSyncer struct {
 	client articleservice.Client
 }
 
-// NewKitexModerationSyncer 经 etcd 发现 blog-service；endpoints 为空时返回 noop（单体/测试）。
-func NewKitexModerationSyncer(endpoints []string) (ContentModerationSyncer, error) {
-	if len(endpoints) == 0 {
+// NewKitexModerationSyncer 经 Nacos 发现 blog-service；未配置时返回 noop（单体/测试）。
+func NewKitexModerationSyncer(reg config.RegistryConfig) (ContentModerationSyncer, error) {
+	if !reg.Enabled() {
 		return noopModerationSyncer{}, nil
 	}
-	r, err := kitexreg.NewResolver(endpoints)
+	r, err := kitexreg.NewResolver(reg)
 	if err != nil {
 		return nil, err
 	}
