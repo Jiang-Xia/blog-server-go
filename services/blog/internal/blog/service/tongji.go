@@ -13,9 +13,10 @@ import (
 )
 
 const (
-	tongjiTokenRedisKey = "baidu:tongji:access_token"
-	tongjiTokenTTLSec   = 25 * 24 * 3600
-	tongjiAPIPrefix     = "/rest/2.0/tongji/"
+	tongjiTokenRedisKey        = "baidu:tongji:access_token"
+	tongjiRefreshTokenRedisKey = "baidu:tongji:refresh_token"
+	tongjiTokenTTLSec          = 25 * 24 * 3600
+	tongjiAPIPrefix            = "/rest/2.0/tongji/"
 )
 
 // TongjiRefresher 百度统计 token 刷新（scheduled-task 与 resources 共用）。
@@ -23,7 +24,7 @@ type TongjiRefresher interface {
 	ForceRefreshTongjiAccessToken(ctx context.Context) (map[string]interface{}, error)
 }
 
-// BaiduTongJi 代理百度统计 OpenAPI（token 缺失或过期时自动 refresh 后重试）。
+// BaiduTongJi 代理百度统计 OpenAPI（token 缺失或过期时自动刷新后重试）。
 func (s *ResourcesService) BaiduTongJi(ctx context.Context, query map[string]string) (interface{}, error) {
 	normalized, err := normalizeTongjiQuery(query)
 	if err != nil {
@@ -48,7 +49,8 @@ func (s *ResourcesService) BaiduTongJi(ctx context.Context, query map[string]str
 	return data, nil
 }
 
-// ForceRefreshTongjiAccessToken 清除缓存并重新换取 access_token（超管手动刷新）。
+// ForceRefreshTongjiAccessToken 清除 access_token 缓存并重新换取（超管手动刷新）。
+// 副作用：只删 access_token，保留 Redis 中最新 refresh_token，避免误用已作废的配置种子。
 func (s *ResourcesService) ForceRefreshTongjiAccessToken(ctx context.Context) (map[string]interface{}, error) {
 	s.tongjiMu.Lock()
 	s.tongjiMemCache = ""
@@ -62,16 +64,21 @@ func (s *ResourcesService) ForceRefreshTongjiAccessToken(ctx context.Context) (m
 	return map[string]interface{}{"refreshed": true}, nil
 }
 
-// RefreshAccessToken 用 refresh_token 换取 access_token 并写入 Redis。
+// RefreshAccessToken 用最新 refresh_token 换取 access_token，并回写 access_token + 新 refresh_token。
+// 百度每次刷新会轮换 refresh_token（旧值作废），故运行期以 Redis 为准，配置项仅作首次种子。
 func (s *ResourcesService) RefreshAccessToken(ctx context.Context) (map[string]interface{}, error) {
 	cfg := s.cfg.App
-	if cfg.TongjiRefreshToken == "" || cfg.TongjiClientID == "" || cfg.TongjiClientSecret == "" {
+	if cfg.TongjiClientID == "" || cfg.TongjiClientSecret == "" {
 		return nil, errcode.WithMessage(errcode.InternalError,
-			"百度统计 OAuth 配置不完整，请检查 app_tongjiRefreshToken / app_tongjiClientId / app_tongjiClientSecret")
+			"百度统计 OAuth 配置不完整，请检查 app_tongjiClientId / app_tongjiClientSecret")
+	}
+	refreshToken, err := s.readTongjiRefreshToken(ctx)
+	if err != nil {
+		return nil, err
 	}
 	tokenURL := "http://openapi.baidu.com/oauth/2.0/token?" + url.Values{
 		"grant_type":    {"refresh_token"},
-		"refresh_token": {cfg.TongjiRefreshToken},
+		"refresh_token": {refreshToken},
 		"client_id":     {cfg.TongjiClientID},
 		"client_secret": {cfg.TongjiClientSecret},
 	}.Encode()
@@ -104,6 +111,12 @@ func (s *ResourcesService) RefreshAccessToken(ctx context.Context) (map[string]i
 	if s.redis != nil {
 		if err := s.redis.Set(ctx, tongjiTokenRedisKey, accessToken, tongjiTokenTTLSec); err != nil {
 			return nil, err
+		}
+		// 百度会返回新的 refresh_token 并使旧值作废，必须持久化
+		if newRefresh, _ := parsed["refresh_token"].(string); strings.TrimSpace(newRefresh) != "" {
+			if err := s.redis.Set(ctx, tongjiRefreshTokenRedisKey, strings.TrimSpace(newRefresh), 0); err != nil {
+				return nil, err
+			}
 		}
 	}
 	return parsed, nil
@@ -170,6 +183,30 @@ func (s *ResourcesService) readTongjiAccessToken(ctx context.Context) (string, e
 		}
 	}
 	return "", errcode.WithMessage(errcode.InternalError, "百度统计 access_token 不存在，请先触发 token 刷新")
+}
+
+// readTongjiRefreshToken Redis 优先；缺失时用配置种子写入 Redis。
+func (s *ResourcesService) readTongjiRefreshToken(ctx context.Context) (string, error) {
+	if s.redis != nil {
+		fromRedis, err := s.redis.Get(ctx, tongjiRefreshTokenRedisKey)
+		if err != nil {
+			return "", err
+		}
+		if token := strings.TrimSpace(fromRedis); token != "" {
+			return token, nil
+		}
+	}
+	seed := strings.TrimSpace(s.cfg.App.TongjiRefreshToken)
+	if seed == "" {
+		return "", errcode.WithMessage(errcode.InternalError,
+			"百度统计 refresh_token 不存在，请配置 app_tongjiRefreshToken 或写入 Redis baidu:tongji:refresh_token")
+	}
+	if s.redis != nil {
+		if err := s.redis.Set(ctx, tongjiRefreshTokenRedisKey, seed, 0); err != nil {
+			return "", err
+		}
+	}
+	return seed, nil
 }
 
 func normalizeTongjiQuery(query map[string]string) (map[string]string, error) {

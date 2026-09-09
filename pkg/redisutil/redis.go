@@ -28,9 +28,12 @@ func (s *Store) Get(ctx context.Context, key string) (string, error) {
 	return resp.ToString()
 }
 
-// Set 写入字符串键并设置 TTL（秒）。
+// Set 写入字符串键。ttlSec > 0 时设置过期（秒）；<=0 为持久键。
 func (s *Store) Set(ctx context.Context, key, value string, ttlSec int) error {
-	return s.client.Do(ctx, s.client.B().Set().Key(key).Value(value).ExSeconds(int64(ttlSec)).Build()).Error()
+	if ttlSec > 0 {
+		return s.client.Do(ctx, s.client.B().Set().Key(key).Value(value).ExSeconds(int64(ttlSec)).Build()).Error()
+	}
+	return s.client.Do(ctx, s.client.B().Set().Key(key).Value(value).Build()).Error()
 }
 
 // SetNX 仅在键不存在时写入。

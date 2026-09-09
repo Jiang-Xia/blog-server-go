@@ -46,4 +46,7 @@ func TestTongjiTokenRedisKeyConstant(t *testing.T) {
 	if tongjiTokenRedisKey != "baidu:tongji:access_token" {
 		t.Fatalf("redis key mismatch: %s", tongjiTokenRedisKey)
 	}
+	if tongjiRefreshTokenRedisKey != "baidu:tongji:refresh_token" {
+		t.Fatalf("refresh redis key mismatch: %s", tongjiRefreshTokenRedisKey)
+	}
 }

@@ -9,6 +9,7 @@ app:
   blog_home: "https://your-domain.example"
   notify_email: ""
   # 百度统计 OAuth（Nest：app_tongjiRefreshToken / app_tongjiClientId / app_tongjiClientSecret）
+  # tongji_refresh_token 仅作首次种子；运行期最新值在 Redis baidu:tongji:refresh_token
   tongji_refresh_token: ""
   tongji_client_id: ""
   tongji_client_secret: ""
