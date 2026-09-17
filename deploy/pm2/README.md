@@ -56,6 +56,8 @@ powershell -ExecutionPolicy Bypass -File scripts/setup-config.ps1
 
 `deploy.ps1` 部署前自动把 `env.production` 同步为 `deploy/pm2/configs/*.yaml`（含 **monolith.yaml**），无需手改 yaml。
 
+**约定**：`blog-server/deploy/pm2/env.production` 或根目录生产 env 新增业务键时，本仓库 `deploy/pm2/env.production`（及 `.example`）须一并补齐同键，再跑 deploy 生成 yaml。
+
 ### 3. 服务器初始化（一次）
 
 服务器须已安装 **nvm + pm2**（Nest 部署过通常已有）。若 `pm2: command not found`：
