@@ -11,7 +11,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
 	"time"
 
 	"github.com/Jiang-Xia/blog-server-go/pkg/config"
@@ -32,12 +31,10 @@ const (
 
 // ResourcesService 文件资源与代理接口。
 type ResourcesService struct {
-	files          *blogrepo.FileRepo
-	cfg            *config.Config
-	client         *http.Client
-	redis          *redisutil.Store
-	tongjiMu       sync.RWMutex
-	tongjiMemCache string
+	files  *blogrepo.FileRepo
+	cfg    *config.Config
+	client *http.Client
+	redis  *redisutil.Store
 }
 
 // NewResourcesService 构造 ResourcesService。

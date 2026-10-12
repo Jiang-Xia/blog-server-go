@@ -13,200 +13,78 @@ import (
 )
 
 const (
-	tongjiTokenRedisKey        = "baidu:tongji:access_token"
-	tongjiRefreshTokenRedisKey = "baidu:tongji:refresh_token"
-	tongjiTokenTTLSec          = 25 * 24 * 3600
-	tongjiAPIPrefix            = "/rest/2.0/tongji/"
+	tongjiAPIPrefix = "/rest/2.0/tongji/"
 )
 
-// TongjiRefresher 百度统计 token 刷新（scheduled-task 与 resources 共用）。
+// TongjiRefresher 百度统计 token 刷新入口（scheduled-task 与 resources 共用）。
+// 代理模式下 token 由 blog-server（Nest）统一管理，本服务不再持有百度 OAuth 凭据。
 type TongjiRefresher interface {
 	ForceRefreshTongjiAccessToken(ctx context.Context) (map[string]interface{}, error)
 }
 
-// BaiduTongJi 代理百度统计 OpenAPI（token 缺失或过期时自动刷新后重试）。
+// BaiduTongJi 代理百度统计 OpenAPI：透传查询参数到 blog-server（Nest）的同名代理接口。
+// token（access_token / refresh_token）由 Nest 单点管理，避免多服务共用同一条
+// refresh_token 轮换链互相作废（百度 refresh_token 一次性，轮换即废）。
 func (s *ResourcesService) BaiduTongJi(ctx context.Context, query map[string]string) (interface{}, error) {
 	normalized, err := normalizeTongjiQuery(query)
 	if err != nil {
 		return nil, err
 	}
-	data, err := s.getTongjiData(ctx, normalized)
-	if err != nil {
-		if isTongjiTokenMissingErr(err) {
-			if _, refreshErr := s.RefreshAccessToken(ctx); refreshErr != nil {
-				return nil, refreshErr
-			}
-			return s.getTongjiData(ctx, normalized)
-		}
-		return nil, err
-	}
-	if isBaiduTokenExpired(data) {
-		if _, refreshErr := s.RefreshAccessToken(ctx); refreshErr != nil {
-			return nil, refreshErr
-		}
-		return s.getTongjiData(ctx, normalized)
-	}
-	return data, nil
+	return s.proxyTongjiToNest(ctx, normalized)
 }
 
-// ForceRefreshTongjiAccessToken 清除 access_token 缓存并重新换取（超管手动刷新）。
-// 副作用：只删 access_token，保留 Redis 中最新 refresh_token，避免误用已作废的配置种子。
+// ForceRefreshTongjiAccessToken 代理模式下的刷新入口。
+// token 归 Nest 管理，此处不做实际刷新，仅返回提示（保留接口以满足 TongjiRefresher 依赖）。
+// 需要真正刷新时应在 blog-server 管理端触发：POST /scheduled-task/cache/refresh-tongji-token。
 func (s *ResourcesService) ForceRefreshTongjiAccessToken(ctx context.Context) (map[string]interface{}, error) {
-	s.tongjiMu.Lock()
-	s.tongjiMemCache = ""
-	s.tongjiMu.Unlock()
-	if s.redis != nil {
-		_ = s.redis.Del(ctx, tongjiTokenRedisKey)
-	}
-	if _, err := s.RefreshAccessToken(ctx); err != nil {
-		return nil, err
-	}
-	return map[string]interface{}{"refreshed": true}, nil
+	return map[string]interface{}{
+		"refreshed":  false,
+		"managed_by": "blog-server",
+		"message":    "百度统计 token 已由 blog-server(Nest) 统一管理，请在其管理端刷新",
+	}, nil
 }
 
-// RefreshAccessToken 用最新 refresh_token 换取 access_token，并回写 access_token + 新 refresh_token。
-// 百度每次刷新会轮换 refresh_token（旧值作废），故运行期以 Redis 为准，配置项仅作首次种子。
-func (s *ResourcesService) RefreshAccessToken(ctx context.Context) (map[string]interface{}, error) {
-	cfg := s.cfg.App
-	if cfg.TongjiClientID == "" || cfg.TongjiClientSecret == "" {
-		return nil, errcode.WithMessage(errcode.InternalError,
-			"百度统计 OAuth 配置不完整，请检查 app_tongjiClientId / app_tongjiClientSecret")
-	}
-	refreshToken, err := s.readTongjiRefreshToken(ctx)
-	if err != nil {
-		return nil, err
-	}
-	tokenURL := "http://openapi.baidu.com/oauth/2.0/token?" + url.Values{
-		"grant_type":    {"refresh_token"},
-		"refresh_token": {refreshToken},
-		"client_id":     {cfg.TongjiClientID},
-		"client_secret": {cfg.TongjiClientSecret},
-	}.Encode()
-
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, tokenURL, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := s.client.Do(req)
-	if err != nil {
-		return nil, errcode.WithMessage(errcode.InternalError, "刷新百度统计 access_token 失败: %s", err.Error())
-	}
-	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	var parsed map[string]interface{}
-	if err := json.Unmarshal(body, &parsed); err != nil {
-		return nil, errcode.WithMessage(errcode.InternalError, "刷新百度统计 access_token 失败: 响应解析错误")
-	}
-	accessToken, _ := parsed["access_token"].(string)
-	if accessToken == "" {
-		msg := tongjiErrMessage(parsed)
-		return nil, errcode.WithMessage(errcode.InternalError, "刷新百度统计 access_token 失败: %s", msg)
-	}
-	s.tongjiMu.Lock()
-	s.tongjiMemCache = accessToken
-	s.tongjiMu.Unlock()
-	if s.redis != nil {
-		if err := s.redis.Set(ctx, tongjiTokenRedisKey, accessToken, tongjiTokenTTLSec); err != nil {
-			return nil, err
-		}
-		// 百度会返回新的 refresh_token 并使旧值作废，必须持久化
-		if newRefresh, _ := parsed["refresh_token"].(string); strings.TrimSpace(newRefresh) != "" {
-			if err := s.redis.Set(ctx, tongjiRefreshTokenRedisKey, strings.TrimSpace(newRefresh), 0); err != nil {
-				return nil, err
-			}
-		}
-	}
-	return parsed, nil
-}
-
-func (s *ResourcesService) getTongjiData(ctx context.Context, query map[string]string) (map[string]interface{}, error) {
-	apiPath := query["url"]
-	accessToken, err := s.readTongjiAccessToken(ctx)
-	if err != nil {
-		return nil, err
-	}
+// proxyTongjiToNest 将查询参数透传给 Nest 的 /resources/baidutongji 并解包 data。
+func (s *ResourcesService) proxyTongjiToNest(ctx context.Context, query map[string]string) (interface{}, error) {
+	base := s.cfg.App.TongjiProxyBaseURLOrDefault()
 	params := url.Values{}
 	for k, v := range query {
-		if k == "url" {
-			continue
-		}
 		params.Set(k, v)
 	}
-	params.Set("access_token", accessToken)
-
-	reqURL := "https://openapi.baidu.com" + apiPath + "?" + params.Encode()
+	reqURL := base + "/resources/baidutongji?" + params.Encode()
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, reqURL, nil)
 	if err != nil {
-		return nil, err
+		return nil, errcode.WithMessage(errcode.InternalError, "百度统计代理请求构造失败: %s", err.Error())
 	}
 	resp, err := s.client.Do(req)
 	if err != nil {
-		return nil, errcode.WithMessage(errcode.InternalError, "百度统计接口调用失败: %s", err.Error())
+		return nil, errcode.WithMessage(errcode.InternalError,
+			"百度统计代理请求失败(检查 blog-server 是否在线): %s", err.Error())
 	}
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
-	var data map[string]interface{}
-	if err := json.Unmarshal(body, &data); err != nil {
-		return nil, errcode.WithMessage(errcode.InternalError, "百度统计接口调用失败: 响应解析错误")
+	// Nest 统一响应格式：{code, bizCode, data, message}
+	var envelope struct {
+		Code    int         `json:"code"`
+		BizCode int         `json:"bizCode"`
+		Data    interface{} `json:"data"`
+		Message string      `json:"message"`
 	}
-	if msg := strings.TrimSpace(fmt.Sprint(data["error_description"])); msg != "" && data["access_token"] == nil {
+	if err := json.Unmarshal(body, &envelope); err != nil {
+		return nil, errcode.WithMessage(errcode.InternalError,
+			"百度统计代理响应解析错误(HTTP %d)", resp.StatusCode)
+	}
+	if resp.StatusCode != http.StatusOK || envelope.Code != 200 {
+		msg := strings.TrimSpace(envelope.Message)
+		if msg == "" {
+			msg = fmt.Sprintf("blog-server 代理返回 HTTP %d", resp.StatusCode)
+		}
 		return nil, errcode.WithMessage(errcode.InternalError, "百度统计接口调用失败: %s", msg)
 	}
-	return data, nil
-}
-
-func (s *ResourcesService) readTongjiAccessToken(ctx context.Context) (string, error) {
-	s.tongjiMu.RLock()
-	if s.tongjiMemCache != "" {
-		token := s.tongjiMemCache
-		s.tongjiMu.RUnlock()
-		return token, nil
-	}
-	s.tongjiMu.RUnlock()
-
-	if s.redis != nil {
-		token, err := s.redis.Get(ctx, tongjiTokenRedisKey)
-		if err != nil {
-			return "", err
-		}
-		if token != "" {
-			s.tongjiMu.Lock()
-			s.tongjiMemCache = token
-			s.tongjiMu.Unlock()
-			return token, nil
-		}
-	}
-	return "", errcode.WithMessage(errcode.InternalError, "百度统计 access_token 不存在，请先触发 token 刷新")
-}
-
-// readTongjiRefreshToken Redis 优先；缺失时用配置种子写入 Redis。
-func (s *ResourcesService) readTongjiRefreshToken(ctx context.Context) (string, error) {
-	if s.redis != nil {
-		fromRedis, err := s.redis.Get(ctx, tongjiRefreshTokenRedisKey)
-		if err != nil {
-			return "", err
-		}
-		if token := strings.TrimSpace(fromRedis); token != "" {
-			return token, nil
-		}
-	}
-	seed := strings.TrimSpace(s.cfg.App.TongjiRefreshToken)
-	if seed == "" {
-		return "", errcode.WithMessage(errcode.InternalError,
-			"百度统计 refresh_token 不存在，请配置 app_tongjiRefreshToken 或写入 Redis baidu:tongji:refresh_token")
-	}
-	if s.redis != nil {
-		if err := s.redis.Set(ctx, tongjiRefreshTokenRedisKey, seed, 0); err != nil {
-			return "", err
-		}
-	}
-	return seed, nil
+	return envelope.Data, nil
 }
 
 func normalizeTongjiQuery(query map[string]string) (map[string]string, error) {
@@ -226,40 +104,6 @@ func normalizeTongjiQuery(query map[string]string) (map[string]string, error) {
 	}
 	out["url"] = apiURL
 	return out, nil
-}
-
-func isBaiduTokenExpired(data map[string]interface{}) bool {
-	if data == nil {
-		return false
-	}
-	switch code := data["error_code"].(type) {
-	case float64:
-		return int(code) == 110 || int(code) == 111
-	case int:
-		return code == 110 || code == 111
-	case json.Number:
-		n, _ := code.Int64()
-		return n == 110 || n == 111
-	default:
-		return false
-	}
-}
-
-func isTongjiTokenMissingErr(err error) bool {
-	if err == nil {
-		return false
-	}
-	return strings.Contains(err.Error(), "access_token 不存在")
-}
-
-func tongjiErrMessage(parsed map[string]interface{}) string {
-	if msg, ok := parsed["error_description"].(string); ok && msg != "" {
-		return msg
-	}
-	if msg, ok := parsed["error"].(string); ok && msg != "" {
-		return msg
-	}
-	return "百度返回的 access_token 为空"
 }
 
 var _ TongjiRefresher = (*ResourcesService)(nil)

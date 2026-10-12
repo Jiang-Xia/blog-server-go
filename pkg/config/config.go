@@ -104,9 +104,16 @@ type AppConfig struct {
 	APIPrefix          string      `mapstructure:"api_prefix"`
 	BlogHome           string      `mapstructure:"blog_home"`
 	NotifyEmail        string      `mapstructure:"notify_email"`
-	TongjiRefreshToken string      `mapstructure:"tongji_refresh_token"`
-	TongjiClientID     string      `mapstructure:"tongji_client_id"`
-	TongjiClientSecret string      `mapstructure:"tongji_client_secret"`
+	TongjiProxyBaseURL string      `mapstructure:"tongji_proxy_base_url"`
+}
+
+// TongjiProxyBaseURLOrDefault 百度统计代理（blog-server/Nest）基础地址。
+// 代理模式下本服务不持有百度 OAuth 凭据，token 由 Nest 统一管理。
+func (a AppConfig) TongjiProxyBaseURLOrDefault() string {
+	if a.TongjiProxyBaseURL != "" {
+		return strings.TrimRight(a.TongjiProxyBaseURL, "/")
+	}
+	return "http://127.0.0.1:5000/api/v1"
 }
 
 // BackupConfig 数据库定时备份（mysqldump）配置。

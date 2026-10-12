@@ -7,11 +7,8 @@ app:
   service_mode: blog
   api_prefix: /api/v1
   blog_home: "http://localhost:5050"
-  # 百度统计 OAuth（env：APP_TONGJI_REFRESH_TOKEN / APP_TONGJI_CLIENT_ID / APP_TONGJI_CLIENT_SECRET）
-  # tongji_refresh_token 仅作首次种子；运行期最新值在 Redis baidu:tongji:refresh_token
-  tongji_refresh_token: ""
-  tongji_client_id: ""
-  tongji_client_secret: ""
+  # 百度统计：代理 blog-server(Nest) 的 /resources/baidutongji，token 由 Nest 统一管理
+  tongji_proxy_base_url: "http://127.0.0.1:5000/api/v1"
 
 http:
   addr: ":5001"

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"context"
 	"testing"
 )
 
@@ -31,20 +32,17 @@ func TestNormalizeTongjiQueryAcceptsValidPath(t *testing.T) {
 	}
 }
 
-func TestIsBaiduTokenExpired(t *testing.T) {
-	if !isBaiduTokenExpired(map[string]interface{}{"error_code": float64(110)}) {
-		t.Fatal("110 should be expired")
+// 代理模式下 ForceRefresh 不做实际刷新，返回 managed_by 提示。
+func TestForceRefreshReturnsNestManagedInfo(t *testing.T) {
+	svc := &ResourcesService{}
+	out, err := svc.ForceRefreshTongjiAccessToken(context.Background())
+	if err != nil {
+		t.Fatal(err)
 	}
-	if isBaiduTokenExpired(map[string]interface{}{"error_code": float64(0)}) {
-		t.Fatal("0 should not be expired")
+	if v, _ := out["managed_by"].(string); v != "blog-server" {
+		t.Fatalf("unexpected managed_by: %v", out["managed_by"])
 	}
-}
-
-func TestTongjiTokenRedisKeyConstant(t *testing.T) {
-	if tongjiTokenRedisKey != "baidu:tongji:access_token" {
-		t.Fatalf("redis key mismatch: %s", tongjiTokenRedisKey)
-	}
-	if tongjiRefreshTokenRedisKey != "baidu:tongji:refresh_token" {
-		t.Fatalf("refresh redis key mismatch: %s", tongjiRefreshTokenRedisKey)
+	if refreshed, _ := out["refreshed"].(bool); refreshed {
+		t.Fatal("proxy mode should not report refreshed=true")
 	}
 }

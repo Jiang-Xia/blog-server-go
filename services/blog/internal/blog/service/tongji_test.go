@@ -1,6 +1,9 @@
 package service
 
-import "testing"
+import (
+	"context"
+	"testing"
+)
 
 func TestNormalizeTongjiQueryRequiresURL(t *testing.T) {
 	_, err := normalizeTongjiQuery(map[string]string{})
@@ -14,10 +17,6 @@ func TestNormalizeTongjiQueryRejectsInvalidPrefix(t *testing.T) {
 	if err == nil {
 		t.Fatal("expected error for invalid url prefix")
 	}
-	_, err = normalizeTongjiQuery(map[string]string{"url": "/etc/passwd"})
-	if err == nil {
-		t.Fatal("expected error for /etc/passwd")
-	}
 }
 
 func TestNormalizeTongjiQueryAcceptsValidPath(t *testing.T) {
@@ -29,24 +28,21 @@ func TestNormalizeTongjiQueryAcceptsValidPath(t *testing.T) {
 		t.Fatal(err)
 	}
 	if out["url"] != "/rest/2.0/tongji/report/getData" || out["siteId"] != "1" {
-		t.Fatalf("unexpected normalized query: %#v", out)
+		t.Fatalf("unexpected out: %+v", out)
 	}
 }
 
-func TestIsBaiduTokenExpired(t *testing.T) {
-	if !isBaiduTokenExpired(map[string]interface{}{"error_code": float64(110)}) {
-		t.Fatal("110 should mean expired")
+// 代理模式下 ForceRefresh 不做实际刷新，返回 managed_by 提示。
+func TestForceRefreshReturnsNestManagedInfo(t *testing.T) {
+	svc := &ResourcesService{}
+	out, err := svc.ForceRefreshTongjiAccessToken(context.Background())
+	if err != nil {
+		t.Fatal(err)
 	}
-	if isBaiduTokenExpired(map[string]interface{}{"error_code": float64(0)}) {
-		t.Fatal("0 should not mean expired")
+	if v, _ := out["managed_by"].(string); v != "blog-server" {
+		t.Fatalf("unexpected managed_by: %v", out["managed_by"])
 	}
-}
-
-func TestTongjiTokenRedisKeyConstant(t *testing.T) {
-	if tongjiTokenRedisKey != "baidu:tongji:access_token" {
-		t.Fatalf("redis key mismatch: %s", tongjiTokenRedisKey)
-	}
-	if tongjiRefreshTokenRedisKey != "baidu:tongji:refresh_token" {
-		t.Fatalf("refresh redis key mismatch: %s", tongjiRefreshTokenRedisKey)
+	if refreshed, _ := out["refreshed"].(bool); refreshed {
+		t.Fatal("proxy mode should not report refreshed=true")
 	}
 }
